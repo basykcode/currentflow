@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f2efe6" />
+    <meta name="description" content="Current is a situational-awareness instrument for timing." />
+    <meta property="og:title" content="Current ~ Flow" />
+    <meta property="og:description" content="A calm precision almanac for the structure of now." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://current-flow.net" />
+    <meta property="og:image" content="https://current-flow.net/og.png" />
+    <meta property="og:image:alt" content="Current Flow — A timing instrument" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://current-flow.net/og.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      ;(() => {
+        try {
+          const saved = localStorage.getItem('current:preferences')
+          const theme = saved ? JSON.parse(saved).theme : 'system'
+          const dark =
+            theme === 'dark' ||
+            (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+          document.documentElement.dataset.theme = dark ? 'dark' : 'light'
+        } catch {
+          document.documentElement.dataset.theme = 'light'
+        }
+      })()
+    </script>
+    <title>Current ~ Flow</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

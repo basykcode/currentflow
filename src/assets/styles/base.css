@@ -1,0 +1,228 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--paper);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  text-rendering: optimizeLegibility;
+}
+
+body::before {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: -1;
+  height: 34rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 45%, transparent);
+  background: color-mix(in srgb, var(--paper-raised) 55%, transparent);
+  content: '';
+  pointer-events: none;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  border: 0;
+}
+
+button:not(:disabled),
+select:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled,
+input:disabled,
+textarea:disabled {
+  cursor: not-allowed;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--jade) 70%, transparent);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--jade-wash);
+  color: var(--ink);
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.12;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-3);
+  color: var(--jade);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.page-shell {
+  width: min(calc(100% - 2rem), var(--content));
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 6vw, 5.5rem) var(--space-9);
+}
+
+.page-intro {
+  max-width: var(--reading);
+  margin-bottom: clamp(2rem, 5vw, 4.5rem);
+}
+
+.page-title {
+  margin-bottom: var(--space-4);
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 7vw, 5.75rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+
+.page-lede {
+  max-width: 64ch;
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: clamp(1.02rem, 2vw, 1.22rem);
+}
+
+.panel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--paper-raised) 94%, transparent);
+  box-shadow: var(--shadow);
+}
+
+.control {
+  min-height: 2.75rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  background: var(--paper-raised);
+  padding: 0.65rem 0.85rem;
+}
+
+.quiet-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 2.65rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  padding: 0.6rem 1rem;
+  color: var(--ink-soft);
+  font-size: 0.88rem;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.quiet-button:hover:not(:disabled) {
+  border-color: var(--jade);
+  background: var(--jade-wash);
+  color: var(--ink);
+}
+
+.status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  width: fit-content;
+  border: 1px solid color-mix(in srgb, var(--cinnabar) 35%, var(--line));
+  border-radius: 999px;
+  background: var(--cinnabar-wash);
+  padding: 0.35rem 0.65rem;
+  color: var(--cinnabar);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.status-label::before {
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: currentColor;
+  content: '';
+}
+
+.route-enter-active,
+.route-leave-active {
+  transition:
+    opacity 160ms ease,
+    transform 160ms ease;
+}
+
+.route-enter-from,
+.route-leave-to {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+@media (max-width: 640px) {
+  .page-shell {
+    width: min(calc(100% - 1.25rem), var(--content));
+    padding-top: 2rem;
+  }
+
+  .page-title {
+    letter-spacing: -0.035em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
