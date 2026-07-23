@@ -43,6 +43,12 @@ docs                product, architecture, integration, and deployment notes
 public              local metadata assets
 ```
 
+## Project continuity
+
+Durable project memory lives in [`docs/continuity/PROJECT_STATE.md`](docs/continuity/PROJECT_STATE.md).
+Read the [continuity guide](docs/continuity/README.md) before substantial work; decisions and
+session handoffs preserve rationale and operational history without relying on chat transcripts.
+
 ## Current data status
 
 All Astrology content is polished demo fixture data. It is not the actual present temporal configuration, and the displayed hexagrams and relationships were not calculated. The adapter boundary and provenance fields are ready for verified sources; see `docs/DATA_INTEGRATION.md`.
@@ -54,7 +60,7 @@ Cloudflare Pages should build `master` with `npm run build` and publish `dist`. 
 If no Git remote exists after the first commit:
 
 ```bash
-git remote add origin https://github.com/basykcode/current-flow.git
+git remote add origin https://github.com/basykcode/currentflow.git
 git push -u origin master
 ```
 

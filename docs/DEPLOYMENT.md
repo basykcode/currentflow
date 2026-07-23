@@ -5,7 +5,7 @@ Current is prepared as a static single-page Vue application for Cloudflare Pages
 ## Cloudflare Pages settings
 
 - Git provider: GitHub
-- Suggested repository: `basykcode/current-flow`
+- Repository: `basykcode/currentflow`
 - Production branch: `master`
 - Framework preset: Vue (or None)
 - Build command: `npm run build`
@@ -28,6 +28,6 @@ Do not place secrets in Vite environment variables: values bundled into a static
 If the repository has no remote, create an empty GitHub repository and run:
 
 ```bash
-git remote add origin https://github.com/basykcode/current-flow.git
+git remote add origin https://github.com/basykcode/currentflow.git
 git push -u origin master
 ```
