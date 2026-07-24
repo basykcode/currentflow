@@ -30,6 +30,9 @@ output, and secrets remain intentionally excluded.
   strict Vue/TypeScript, zero-warning ESLint, 62 passing Vitest tests, and production build.
 - Backend: `services/alchemy-api/.venv/Scripts/python.exe -m current_alchemy.cli.main check` passed:
   Ruff, strict mypy, 26 passing tests, one opt-in integration skip, and current OpenAPI.
+- GitHub Actions: the `Alchemy API` workflow for publication commit `04f0a66` completed successfully,
+  including the disposable Neo4j integration job and API container build:
+  `https://github.com/basykcode/currentflow/actions/runs/30127511440`.
 - Credential-fragment scan found no previously supplied credential in project files.
 - Scoped commits and an explicit merge preserved independent backend/frontend histories.
 

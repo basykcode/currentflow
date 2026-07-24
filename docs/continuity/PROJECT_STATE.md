@@ -153,8 +153,10 @@ is the only Alchemy state in Pinia.
   translations should receive subject-matter review before stronger authority claims.
 - Organ-clock selection is civil-time educational context, not apparent-solar-time correction or a
   medical claim.
-- The Alchemy Dockerfile and Compose stack could not be built or started because no Docker-compatible
-  runtime is installed. The API and real Neo4j integration passed with portable local runtimes.
+- The complete Compose stack has not been started locally because this computer has no
+  Docker-compatible runtime. GitHub's `Alchemy API` workflow succeeded for publication commit
+  `04f0a66`, including backend quality, a disposable real-Neo4j integration test, and the API image
+  build; production migration/readiness smoke remains outstanding.
 - No production Alchemy dataset has been imported. USDA Duke passed checksum validation and offline
   dry-run mapping; PubChem is opt-in and cached; SymMap remains blocked pending rights review.
 - Alchemy auth, saved research workspaces, remote deployment, embeddings, and inference are inactive.
