@@ -3,12 +3,12 @@
 ## Last reconciled
 
 - UTC date: 2026-07-24
-- Branch represented: `feat/alchemy-integration` (committed integration, pending publication)
-- Commit inspected: `d442f82daf9c9f7d7ba544aa78077c7a0f2d55d6`
+- Branch represented: `master` (complete Alchemy integration publication)
+- Commit inspected: `c8f8e04fd77e943c41fd2cac5435b191c8dea730`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
-- `feat/alchemy-integration` merges both workstreams; `master` remains at the prior published baseline
-  until the authorized CMP publication completes.
+- `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
+- `master` merges the complete integration at `c8f8e04`; all intended tracked work is committed.
 
 ## Project purpose
 
@@ -140,9 +140,10 @@ is the only Alchemy state in Pinia.
 | -------------------------- | ---------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
 | `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; pending remote publication                      | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
-| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; pending remote publication                      | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Backend and frontend merged at `d442f82`; pending `master` publication   | [Integration handoff](handoffs/20260724T204328Z--feat-alchemy-integration--complete-alchemy-http-integration.md) |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                            | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
+| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                            | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`     | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
+| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record   | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
 
 ## Known issues and risks
 
