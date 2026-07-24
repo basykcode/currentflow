@@ -81,7 +81,8 @@ documented as explicit operating risks rather than hidden.
 
 ## Implementation or migration implications
 
-- Create an AuraDB Free instance and enter its URI, username, and password in Render.
+- Create an AuraDB Free instance and enter its URI, username, password, and generated database name
+  in Render.
 - Apply the root `render.yaml` Blueprint and verify migrations, seed, readiness, and metadata.
 - Point the Cloudflare `api` CNAME at the actual Render service, initially DNS-only for certificate
   verification.
@@ -110,3 +111,10 @@ None.
 - [`../../ALCHEMY_BACKEND.md`](../../ALCHEMY_BACKEND.md)
 - [`../../../render.yaml`](../../../render.yaml)
 - [Establish a provenance-first Alchemy graph service](20260724T005309Z--establish-provenance-first-alchemy-graph-service.md)
+
+## Factual correction
+
+On 2026-07-24, the first Aura deployment demonstrated that a new Aura database name is not
+necessarily `neo4j`. The Blueprint now prompts for `NEO4J_DATABASE`, and operators must use the
+database name in Aura's downloaded credential file rather than assuming the username and database
+name match.

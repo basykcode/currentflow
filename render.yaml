@@ -39,7 +39,7 @@ services:
       - key: NEO4J_PASSWORD
         sync: false
       - key: NEO4J_DATABASE
-        value: neo4j
+        sync: false
       - key: PUBCHEM_USER_AGENT
         sync: false
       - key: EXTERNAL_REQUEST_TIMEOUT_SECONDS

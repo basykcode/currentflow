@@ -51,7 +51,8 @@ access, Docker Desktop, firewall changes, inbound local networking, or a local s
    - connection URI, normally beginning with `neo4j+s://`
    - username
    - password
-   - database name, which is `neo4j` for this deployment
+   - database name exactly as shown in the credentials file; do not assume it is `neo4j` or reuse
+     the username
 
 Only one Free instance is available per Aura account. Do not expose its credentials to the browser
 or put them in Cloudflare Pages variables.
@@ -61,13 +62,14 @@ or put them in Cloudflare Pages variables.
 1. Sign in or create an account at [Render](https://dashboard.render.com/).
 2. Connect the GitHub account that can read `basykcode/currentflow`.
 3. Choose **New → Blueprint**, select the repository, and use the root `render.yaml`.
-4. Render prompts for the four values marked `sync: false`:
+4. Render prompts for the five values marked `sync: false`:
 
    | Render variable      | Value to enter                                |
    | -------------------- | --------------------------------------------- |
    | `NEO4J_URI`          | Aura connection URI                           |
    | `NEO4J_USERNAME`     | Aura username                                 |
    | `NEO4J_PASSWORD`     | Aura password                                 |
+   | `NEO4J_DATABASE`     | Aura database name from the credentials file  |
    | `PUBCHEM_USER_AGENT` | `CurrentAlchemy/0.1 (a real project contact)` |
 
 5. Apply the Blueprint.
@@ -80,6 +82,11 @@ pass and uses `/api/v1/health/ready` for dependency-aware health checks.
 The first useful values to copy from Render are the service URL, such as
 `https://current-flow-alchemy-api.onrender.com`, and the successful deploy event. Do not copy secret
 environment values out of Render.
+
+If the Blueprint already created the web service before `NEO4J_DATABASE` was added as a prompted
+value, open the service's **Environment** page, replace the existing `NEO4J_DATABASE=neo4j` value with
+the database name from the Aura credentials file, save, and deploy the latest commit. Render only
+prompts for new `sync: false` values during initial Blueprint creation.
 
 ## API custom domain
 

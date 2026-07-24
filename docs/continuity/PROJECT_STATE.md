@@ -147,15 +147,15 @@ is the only Alchemy state in Pinia.
 
 ## Active workstreams
 
-| Branch/worktree            | Objective                          | Status                                                                     | Latest handoff                                                                                                   |
-| -------------------------- | ---------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                  | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
-| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                  | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                              | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
-| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                              | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`       | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
-| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record     | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
-| `master`                   | Prepare no-admin alpha backend     | Configuration published at `81c6d4e`; Render/Aura provisioning in progress | [Publication handoff](handoffs/20260724T234032Z--master--publish-no-admin-alpha-backend.md)                      |
+| Branch/worktree            | Objective                          | Status                                                                           | Latest handoff                                                                                                   |
+| -------------------------- | ---------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                        | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
+| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                        | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                                    | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
+| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                                    | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`             | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
+| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record           | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
+| `master`                   | Prepare no-admin alpha backend     | Aura database-name correction published; Render provisioning remains in progress | [Correction handoff](handoffs/20260724T235138Z--master--correct-aura-database-name.md)                           |
 
 ## Known issues and risks
 
@@ -178,6 +178,8 @@ is the only Alchemy state in Pinia.
 - Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
   inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
   an alpha host, not a production SLA.
+- Aura-generated database names are not necessarily `neo4j`. Render must receive the exact
+  `NEO4J_DATABASE` value from Aura's downloaded credentials; it is distinct from the username.
 - Personal BaZi, changing-line divination, interpretive synthesis, and execution recommendations are
   inactive.
 - Cloudflare Pages responds successfully at `https://current-flow.net` and
@@ -194,8 +196,8 @@ is the only Alchemy state in Pinia.
 
 ## Next priorities
 
-1. In Render, select `master`, validate the root `render.yaml`, enter secrets directly in the
-   Blueprint form, and apply it after GitHub checks pass.
+1. Publish the Blueprint correction that prompts for `NEO4J_DATABASE`, set the existing Render
+   service to Aura's exact database name, and deploy the latest `master` after GitHub checks pass.
 2. Verify Render migration/seed/readiness, add the Cloudflare `api` CNAME, validate Render TLS, switch
    the Pages production build to API mode, and run the documented public smoke checks.
 3. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
@@ -204,8 +206,8 @@ is the only Alchemy state in Pinia.
    mapping before stronger authority claims.
 5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action: select `master` in Render's Blueprint flow, keep path `render.yaml`, and
-enter the Aura credentials directly into Render without copying them into chat or source.
+Exact next useful action: replace `NEO4J_DATABASE=neo4j` in the Render service with the database name
+from Aura's downloaded credentials, without copying credentials into chat or source.
 
 ## Documentation map
 
