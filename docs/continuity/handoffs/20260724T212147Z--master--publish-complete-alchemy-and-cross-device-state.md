@@ -6,8 +6,7 @@
 - **Integration merge:** `c8f8e04fd77e943c41fd2cac5435b191c8dea730`
 - **Objective:** Complete the authorized CMP and make GitHub sufficient to resume development on a
   replacement computer without relying on local chat or filesystem state.
-- **Status:** Complete locally; this handoff and `PROJECT_STATE.md` are the final publication record
-  to push with all workstream branches.
+- **Status:** Published; all four local branch tips were verified against their matching remote refs.
 
 ## Published history
 
@@ -16,7 +15,7 @@
 - Frontend branch: `feat/alchemy-frontend` at
   `fc2a0f9a9a4ec59c210bbc846f81bcb91c3a595c`.
 - Integration branch: `feat/alchemy-integration` at
-  `15e77c077322dc83665b49269242abb225b7077d`, including merge
+  `15e77c0126b5322053bf304c9048618b7bb0aa6d`, including merge
   `d442f82daf9c9f7d7ba544aa78077c7a0f2d55d6`.
 - Canonical branch: `master`, with the complete integration merged at
   `c8f8e04fd77e943c41fd2cac5435b191c8dea730`.
