@@ -3,12 +3,13 @@
 ## Last reconciled
 
 - UTC date: 2026-07-24
-- Branch represented: `master` (complete Alchemy integration publication)
-- Commit inspected: `c8f8e04fd77e943c41fd2cac5435b191c8dea730`
+- Branch represented: `master` (complete integration plus prepared alpha backend hosting)
+- Commit inspected: `4280a16c8aeb55a2e55f0a944fce16f6d167d53f`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
-- `master` merges the complete integration at `c8f8e04`; all intended tracked work is committed.
+- `master` merges the complete integration at `c8f8e04` and records publication through `4280a16`;
+  the alpha hosting configuration described here remains uncommitted and unprovisioned.
 
 ## Project purpose
 
@@ -36,9 +37,11 @@ focused presentation in `src/components`; and lazy route composition in `src/vie
 `CurrentFlowProvider` is the stable Astrology data seam.
 
 The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI service under
-`services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j Community
-is its only persistent database; external-source access is limited to explicit administration
-commands; and `contracts/alchemy-openapi.json` is the frontend seam. See
+`services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
+only persistent database; external-source access is limited to explicit administration commands;
+and `contracts/alchemy-openapi.json` is the frontend seam. Local Compose/CI use the pinned Community
+image. The prepared alpha topology keeps the frontend on Cloudflare Pages, remotely builds the API
+Docker image on Render, and connects it to managed AuraDB. See
 [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 
 The Alchemy frontend is isolated under `src/features/alchemy`. An injected provider boundary
@@ -86,6 +89,8 @@ is the only Alchemy state in Pinia.
   only explicitly supported metric units, and reports missing interactions as unknown.
 - Synthetic demo fixtures, administration CLI, generated OpenAPI, Compose definition, CI workflow,
   and focused backend/API/integration tests.
+- A Render Blueprint and provider-neutral production start script apply migrations before serving,
+  optionally seed visibly synthetic data, use exact CORS origins, and expose dependency-aware health.
 - A complete responsive Alchemy shell with Materia Medica, Formula Library, Formula Workbench, Text
   Library, and deliberately disabled Guided Inquiry routes.
 - Deterministic synthetic searches, sourced detail, explicit conflicts/incompleteness, relationship
@@ -111,7 +116,11 @@ is the only Alchemy state in Pinia.
 - Alchemy knowledge facts require provenance, demo status, conflict state, or explicit unavailability.
 - Raw Cypher, APOC, runtime source scraping, external inference, diagnosis, dose recommendations,
   compatibility/safety scores, and personal health data are outside the Alchemy service boundary.
-- Neo4j must remain private in deployment; local Compose binds its ports only to loopback.
+- Self-hosted Neo4j must remain private; local Compose binds its ports only to loopback. AuraDB
+  credentials and its managed TLS endpoint are backend-only and never enter frontend configuration.
+- This workstation has no administrator credentials. Work must not require Docker Desktop, firewall
+  or inbound/local-network permission changes, system installs, local tunnels, or a local production
+  listener; prefer provider dashboards, GitHub CI, remote builds, and user-scoped tools.
 - The year pillar changes at exact Li Chun, the month at exact solar-term transition, and the sect-2
   day remains on the civil day during 23:00–23:59.
 - Organ-clock selection uses civil time in the chosen IANA timezone and makes no apparent-solar-time
@@ -131,19 +140,21 @@ is the only Alchemy state in Pinia.
 - [Separate the Alchemy frontend domain from transport](decisions/20260724T010602Z--separate-alchemy-domain-from-transport.md)
 - [Use dedicated Alchemy branches and CMP publication gates](decisions/20260724T014000Z--use-dedicated-alchemy-branches-and-cmp-publication-gates.md)
 - [Align the Alchemy HTTP contract with the frontend domain](decisions/20260724T204127Z--align-alchemy-http-contract-with-the-frontend-domain.md)
+- [Host the alpha Alchemy API on Render and its graph on AuraDB](decisions/20260724T224853Z--host-alpha-alchemy-on-render-and-aura.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 
 ## Active workstreams
 
-| Branch/worktree            | Objective                          | Status                                                                   | Latest handoff                                                                                                   |
-| -------------------------- | ---------------------------------- | ------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
-| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                            | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
-| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                            | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`     | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
-| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record   | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
+| Branch/worktree            | Objective                          | Status                                                                      | Latest handoff                                                                                                   |
+| -------------------------- | ---------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                   | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
+| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                   | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                               | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
+| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                               | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`        | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
+| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record      | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
+| `master`                   | Prepare no-admin alpha backend     | Local configuration ready; accounts, commit, push, and provisioning pending | [Hosting handoff](handoffs/20260724T225442Z--master--prepare-no-admin-alpha-backend.md)                          |
 
 ## Known issues and risks
 
@@ -154,44 +165,46 @@ is the only Alchemy state in Pinia.
 - Organ-clock selection is civil-time educational context, not apparent-solar-time correction or a
   medical claim.
 - The complete Compose stack has not been started locally because this computer has no
-  Docker-compatible runtime. GitHub's `Alchemy API` workflow succeeded for publication commit
-  `04f0a66`, including backend quality, a disposable real-Neo4j integration test, and the API image
-  build; production migration/readiness smoke remains outstanding.
+  Docker-compatible runtime and must not request administrator or network permissions to add one.
+  GitHub's `Alchemy API` workflow succeeded for publication commit `04f0a66`, including backend
+  quality, a disposable real-Neo4j integration test, and the API image build; remote
+  migration/readiness smoke remains outstanding.
 - No production Alchemy dataset has been imported. USDA Duke passed checksum validation and offline
   dry-run mapping; PubChem is opt-in and cached; SymMap remains blocked pending rights review.
-- Alchemy auth, saved research workspaces, remote deployment, embeddings, and inference are inactive.
-- Frontend verification ran under the available Node 24.14.0 runtime; the repository pins Node
-  22.18.0, so the quality gate should be repeated on the pinned runtime before release.
+- Alchemy auth, saved research workspaces, embeddings, and inference are inactive. Remote deployment
+  is configured but not provisioned because the Render and Aura account boundary remains.
+- Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
+  inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
+  an alpha host, not a production SLA.
 - Personal BaZi, changing-line divination, interpretive synthesis, and execution recommendations are
   inactive.
-- Cloudflare Pages deployment and the production domain are prepared but not confirmed as connected.
+- Cloudflare Pages responds successfully at `https://current-flow.net` and
+  `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
 
 ## Open questions
 
 - Which independent calendrical implementation should become the cross-check for exact solar-term
   boundaries?
-- What is the canonical production URL? `https://current-flow.net` remains a placeholder.
 - What privacy, retention, and identity requirements must precede personal context and saved readings?
-- Has a Cloudflare Pages project been connected to the GitHub repository? Repository evidence does not
-  establish deployment status.
 - What authentication, authorization, retention, and deployment topology should precede production
   Alchemy access?
 - Which reviewed traditional-source corpus and identity crosswalk should be onboarded first?
 
 ## Next priorities
 
-1. On a Docker-capable machine, build and start Neo4j and the Alchemy API through Compose, then rerun
-   migration, idempotent seed, readiness, endpoint smoke, and image-build gates.
-2. Configure an actual API/Neo4j production host, exact CORS/API origins, TLS, backups, and a
-   post-test deployment workflow; the existing GitHub workflow validates but does not deploy.
+1. Create the AuraDB Free instance and Render account, connect Render to the GitHub repository, enter
+   secrets directly in the Blueprint form, and apply `render.yaml`.
+2. Verify Render migration/seed/readiness, add the Cloudflare `api` CNAME, validate Render TLS, switch
+   the Pages production build to API mode, and run the documented public smoke checks.
 3. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
 4. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
 5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action after publication: clone `master` on the replacement computer, rerun the
-documented frontend/backend checks, then provision the private Neo4j/API deployment host.
+Exact next useful action: create an AuraDB Free instance and a Render account, then enter the Aura
+credentials directly into Render's `render.yaml` Blueprint form without copying them into chat or
+source.
 
 ## Documentation map
 

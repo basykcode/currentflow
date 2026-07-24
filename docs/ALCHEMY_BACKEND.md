@@ -3,8 +3,10 @@
 ## Scope
 
 `services/alchemy-api` is a separately deployable Python 3.12 service. FastAPI owns the HTTP
-contract, Neo4j Community Edition is the only persistent database, and offline administration
-commands own all external source ingestion. The existing Vue application remains a static frontend.
+contract, Neo4j is the only persistent database, and offline administration commands own all
+external source ingestion. Local Compose and CI use the pinned Community image; the hosted alpha
+uses managed AuraDB through the same driver and repository contract. The existing Vue application
+remains a static frontend.
 
 Alchemy is educational and research-only. It retrieves sourced information, preserves source
 conflicts, compares supplied formulas deterministically, searches licensed or public-domain text,
@@ -43,6 +45,23 @@ uv run alchemy db migrate
 uv run alchemy data seed-demo
 uv run uvicorn current_alchemy.app:create_app --factory --host 0.0.0.0 --port 8000
 ```
+
+## Remote alpha operation
+
+The no-admin remote deployment keeps the existing Docker boundary and uses AuraDB as managed Neo4j:
+
+- `render.yaml` defines the Render Free Docker web service, exact production CORS origins, custom
+  API domain, health check, and secret prompts.
+- `deploy/start.sh` runs checksum-protected migrations before every process start, applies the
+  idempotent synthetic seed only when `ALCHEMY_SEED_DEMO=1`, and binds Uvicorn to the provider's
+  assigned `PORT`.
+- Aura credentials exist only as Render secret environment variables. The frontend receives only
+  `https://api.current-flow.net`.
+- Self-hosted Neo4j ports remain loopback-only in Compose. Aura's managed TLS endpoint is never
+  exposed through frontend configuration.
+
+The complete account, DNS, Cloudflare Pages, smoke-test, free-tier, and no-admin procedure is in
+[`DEPLOYMENT.md`](DEPLOYMENT.md).
 
 ## Request lifecycle
 

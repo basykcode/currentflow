@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=https://render.com/schema/render.yaml.json
+
+services:
+  - type: web
+    name: current-flow-alchemy-api
+    runtime: docker
+    plan: free
+    region: virginia
+    branch: master
+    autoDeployTrigger: checksPass
+    dockerfilePath: ./services/alchemy-api/Dockerfile
+    dockerContext: ./services/alchemy-api
+    dockerCommand: sh deploy/start.sh
+    healthCheckPath: /api/v1/health/ready
+    domains:
+      - api.current-flow.net
+    buildFilter:
+      paths:
+        - services/alchemy-api/**
+        - contracts/alchemy-openapi.json
+        - render.yaml
+    envVars:
+      - key: ALCHEMY_ENV
+        value: production
+      - key: ALCHEMY_API_HOST
+        value: 0.0.0.0
+      - key: ALCHEMY_API_PORT
+        value: '10000'
+      - key: ALCHEMY_LOG_LEVEL
+        value: INFO
+      - key: ALCHEMY_ALLOWED_ORIGINS
+        value: '["https://current-flow.net","https://www.current-flow.net"]'
+      - key: ALCHEMY_SEED_DEMO
+        value: '1'
+      - key: NEO4J_URI
+        sync: false
+      - key: NEO4J_USERNAME
+        sync: false
+      - key: NEO4J_PASSWORD
+        sync: false
+      - key: NEO4J_DATABASE
+        value: neo4j
+      - key: PUBCHEM_USER_AGENT
+        sync: false
+      - key: EXTERNAL_REQUEST_TIMEOUT_SECONDS
+        value: '20'
+      - key: EXTERNAL_REQUEST_MIN_INTERVAL_MS
+        value: '250'

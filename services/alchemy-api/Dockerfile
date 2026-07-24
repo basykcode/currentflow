@@ -14,6 +14,7 @@ COPY pyproject.toml uv.lock README.md ./
 COPY src ./src
 COPY migrations ./migrations
 COPY data ./data
+COPY deploy ./deploy
 RUN uv sync --frozen --no-dev
 
 RUN useradd --create-home --uid 10001 alchemy \

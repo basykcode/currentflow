@@ -7,12 +7,14 @@ on:
       - 'services/alchemy-api/**'
       - 'contracts/alchemy-openapi.json'
       - 'compose.yaml'
+      - 'render.yaml'
       - '.github/workflows/alchemy-api.yml'
   pull_request:
     paths:
       - 'services/alchemy-api/**'
       - 'contracts/alchemy-openapi.json'
       - 'compose.yaml'
+      - 'render.yaml'
       - '.github/workflows/alchemy-api.yml'
 
 permissions:

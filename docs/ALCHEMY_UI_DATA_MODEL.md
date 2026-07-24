@@ -128,7 +128,7 @@ Transport mapping must preserve uncertainty and absence. It must not:
 
 - Current knowledge is synthetic and intended only for interface evaluation.
 - The HTTP provider and generated schema are integrated; connected mode still depends on a running
-  configured API and private Neo4j service.
+  configured API and a backend-only Neo4j service.
 - Draft persistence is device-local, unencrypted browser storage and is not suitable for health
   history.
 - Demo analysis is deterministic fixture behavior, not medical analysis.

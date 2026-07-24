@@ -18,10 +18,11 @@ The Astrology view requests a `CurrentFlowSnapshot` from a provider. It does not
 
 ## Runtime behavior
 
-The alpha makes no runtime network calls. Theme, timezone preference, and an optional location label
-are device-local. The active provider projects an instant into the selected timezone, delegates
-GanZhi calculation to `lunar-javascript`, then applies pure domain lookups and transformations. The
-view remains unaware of those calculation details.
+The default demo build makes no runtime network calls. Theme, timezone preference, and an optional
+location label are device-local. The active Astrology provider projects an instant into the selected
+timezone, delegates GanZhi calculation to `lunar-javascript`, then applies pure domain lookups and
+transformations. A production build can independently select the documented Alchemy HTTP provider;
+the Astrology view remains unaware of either integration.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.
 
@@ -45,10 +46,11 @@ and API failures remain visible and never silently substitute fixtures.
 ## Alchemy service boundary
 
 Alchemy introduces a separate FastAPI service under `services/alchemy-api`; it does not convert the
-Vue application into a server-rendered app or move frontend code. Neo4j Community Edition is the
-service's only persistent store. The backend separates domain models and deterministic analysis,
-application ports/services, a centralized Neo4j repository, offline ingestion adapters, and API
-transport.
+Vue application into a server-rendered app or move frontend code. Neo4j is the service's only
+persistent store: local Compose and CI use the pinned Community image, while the hosted alpha uses
+managed AuraDB through the same driver and repository contract. The backend separates domain models
+and deterministic analysis, application ports/services, a centralized Neo4j repository, offline
+ingestion adapters, and API transport.
 
 The checked-in OpenAPI contract is the frontend integration seam. The browser never receives Neo4j
 credentials or arbitrary Cypher access, and external source or future local-model calls do not occur
