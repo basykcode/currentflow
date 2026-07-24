@@ -1,0 +1,32 @@
+sourceId: source:symmap-v2
+title: SymMap version 2.0
+authorsOrOrganization:
+  - SymMap project
+publisher: SymMap project
+publicationOrReleaseYear: 2019
+sourceUrl: https://www.symmap.org/
+downloadUrl: null
+sourceType: tcm_database
+language:
+  - en
+  - zh
+version: "2.0"
+licenseName: License review incomplete
+licenseUrl: null
+rightsStatus: review_required
+attributionRequirement: Pending a completed written license review.
+intendedUseNotes: Potential fields include herbs, TCM symptom terms, compounds, targets, and relationships.
+useLimitations:
+  - Do not download, distribute, or ingest in the normal workflow.
+  - Commercial reuse rights have not been established by Current.
+retrievedAt: 2026-07-24T00:02:00Z
+sha256Checksum: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+adapterName: symmap-placeholder
+adapterVersion: "1"
+expectedFiles: []
+ingestionScope:
+  - candidate herb vocabulary fields
+  - candidate symptom-term fields
+  - candidate ingredient and target identifiers
+  - candidate relationship tables
+citationTemplate: SymMap version 2.0; use prohibited until Current completes license review.

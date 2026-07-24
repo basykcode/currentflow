@@ -1,0 +1,37 @@
+sourceId: demo:source:fixture-v1
+title: Current Alchemy synthetic interface fixture
+authorsOrOrganization:
+  - Current project
+publisher: Current project
+publicationOrReleaseYear: 2026
+sourceUrl: https://current-flow.net/
+downloadUrl: null
+sourceType: synthetic_fixture
+language:
+  - en
+  - zh-Hans
+  - zh-Latn-pinyin
+version: "1"
+licenseName: Project test fixture
+licenseUrl: null
+rightsStatus: approved
+attributionRequirement: Label every record as synthetic_fixture.
+intendedUseNotes: Tests, local interface development, and contract verification only.
+useLimitations:
+  - Not clinically or historically authoritative.
+  - Not medical advice.
+retrievedAt: 2026-07-24T00:02:00Z
+sha256Checksum: ad75b824ec86bf17ae00eef580da0002b13c2bad9bbc39b3c8bf0eed7e0d3fdc
+adapterName: synthetic-fixture
+adapterVersion: "1"
+expectedFiles:
+  - path: synthetic-fixtures.json
+    sha256: ad75b824ec86bf17ae00eef580da0002b13c2bad9bbc39b3c8bf0eed7e0d3fdc
+    required: true
+ingestionScope:
+  - aliases
+  - conflicting claims
+  - preparations
+  - formula composition
+  - missing data
+citationTemplate: Synthetic test fixture; not clinically or historically authoritative.

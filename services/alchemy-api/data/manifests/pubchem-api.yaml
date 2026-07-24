@@ -1,0 +1,34 @@
+sourceId: source:pubchem
+title: PubChem
+authorsOrOrganization:
+  - National Center for Biotechnology Information
+publisher: U.S. National Library of Medicine
+publicationOrReleaseYear: 2004
+sourceUrl: https://pubchem.ncbi.nlm.nih.gov/
+downloadUrl: https://pubchem.ncbi.nlm.nih.gov/docs/programmatic-access
+sourceType: official_programmatic_database
+language:
+  - en
+version: live-pug-rest
+licenseName: U.S. government public resource; verify third-party deposited record rights
+licenseUrl: https://www.ncbi.nlm.nih.gov/home/about/policies/
+rightsStatus: approved
+attributionRequirement: Cite PubChem and retain the compound URL and response checksum.
+intendedUseNotes: Offline enrichment of stable chemical identifiers and molecular properties.
+useLimitations:
+  - Never infer traditional properties from PubChem.
+  - No PubChem requests during end-user API handling.
+  - Respect the official request-rate and dynamic-throttling guidance.
+retrievedAt: 2026-07-24T00:02:00Z
+sha256Checksum: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+adapterName: pubchem
+adapterVersion: "1"
+expectedFiles: []
+ingestionScope:
+  - PubChem CID
+  - compound title
+  - molecular formula
+  - InChI
+  - InChIKey
+  - canonical connectivity SMILES
+citationTemplate: PubChem, National Library of Medicine, compound CID {pubchem_cid}.
