@@ -4,7 +4,7 @@
 
 - UTC date: 2026-07-24
 - Branch represented: `master` (complete integration plus published alpha backend hosting)
-- Commit inspected: `81c6d4e00de7717522a6e083a6c513fc69abbe7d`
+- Commit inspected: `761553dafaecaff911ebfa4ec4623b02077f23b2`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -147,15 +147,15 @@ is the only Alchemy state in Pinia.
 
 ## Active workstreams
 
-| Branch/worktree            | Objective                          | Status                                                                           | Latest handoff                                                                                                   |
-| -------------------------- | ---------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                        | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
-| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                        | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                                    | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
-| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                                    | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`             | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
-| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record           | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
-| `master`                   | Prepare no-admin alpha backend     | Aura database-name correction published; Render provisioning remains in progress | [Correction handoff](handoffs/20260724T235138Z--master--correct-aura-database-name.md)                           |
+| Branch/worktree            | Objective                          | Status                                                                 | Latest handoff                                                                                                   |
+| -------------------------- | ---------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                              | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
+| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                              | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                          | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
+| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                          | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`   | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
+| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
+| `master`                   | Prepare no-admin alpha backend     | Render API and Aura are live; custom DNS and Pages connection remain   | [Live verification](handoffs/20260724T235843Z--master--verify-live-render-backend.md)                            |
 
 ## Known issues and risks
 
@@ -172,9 +172,10 @@ is the only Alchemy state in Pinia.
   migration/readiness smoke remains outstanding.
 - No production Alchemy dataset has been imported. USDA Duke passed checksum validation and offline
   dry-run mapping; PubChem is opt-in and cached; SymMap remains blocked pending rights review.
-- Alchemy auth, saved research workspaces, embeddings, and inference are inactive. Remote deployment
-  configuration is published; the user reports that AuraDB exists, while Render provisioning,
-  custom-domain setup, and production frontend connection remain incomplete.
+- Alchemy auth, saved research workspaces, embeddings, and inference are inactive. The Render API is
+  publicly live, Aura readiness succeeds, migrations and synthetic seed data are present, and all
+  publication checks pass. Custom-domain setup and the production frontend connection remain
+  incomplete.
 - Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
   inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
   an alpha host, not a production SLA.
@@ -196,18 +197,18 @@ is the only Alchemy state in Pinia.
 
 ## Next priorities
 
-1. Publish the Blueprint correction that prompts for `NEO4J_DATABASE`, set the existing Render
-   service to Aura's exact database name, and deploy the latest `master` after GitHub checks pass.
-2. Verify Render migration/seed/readiness, add the Cloudflare `api` CNAME, validate Render TLS, switch
-   the Pages production build to API mode, and run the documented public smoke checks.
+1. Confirm `api.current-flow.net` in Render custom domains, add the DNS-only Cloudflare `api` CNAME,
+   verify Render TLS, and optionally enable the Cloudflare proxy.
+2. Set the three documented Cloudflare Pages production Vite variables, redeploy `master`, and run
+   custom-domain plus connected-frontend smoke checks.
 3. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
 4. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
 5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action: replace `NEO4J_DATABASE=neo4j` in the Render service with the database name
-from Aura's downloaded credentials, without copying credentials into chat or source.
+Exact next useful action: in Render confirm `api.current-flow.net` is a custom domain, then create a
+DNS-only Cloudflare CNAME named `api` targeting `current-flow-alchemy-api.onrender.com`.
 
 ## Documentation map
 
