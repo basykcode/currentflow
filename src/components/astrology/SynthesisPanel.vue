@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CurrentFlowSnapshot, ExecutionFriction } from '@/domain/astrology/types'
+import StatusBadge from '@/components/common/StatusBadge.vue'
 
 import RelatedHexagramCard from './RelatedHexagramCard.vue'
 
@@ -19,6 +20,10 @@ const frictionLabel: Record<ExecutionFriction, string> = {
     <div class="oltr-block">
       <p class="eyebrow">OLTR · One Line To Remember</p>
       <h2 id="oltr-heading">{{ snapshot.synthesis.oltr }}</h2>
+      <div class="synthesis-status">
+        <StatusBadge :status="snapshot.synthesis.status" :label="snapshot.synthesis.status" />
+        <span>{{ snapshot.synthesis.sourceLabel }}</span>
+      </div>
     </div>
 
     <div class="synthesis-grid">
@@ -48,17 +53,20 @@ const frictionLabel: Record<ExecutionFriction, string> = {
             </span>
           </li>
         </ul>
+        <p v-if="snapshot.synthesis.recommendedExecution.length === 0" class="empty-guidance">
+          No activity recommendations are generated without a verified synthesis model.
+        </p>
       </section>
     </div>
 
     <section class="related" aria-labelledby="related-heading">
       <div class="section-heading">
         <div>
-          <p class="eyebrow">Illustrative relationships</p>
+          <p class="eyebrow">Line-derived relationships</p>
           <h3 id="related-heading">Related Hexagrams</h3>
         </div>
-        <p class="demo-explainer">
-          Demo only · Plum Blossom transformation logic is not connected.
+        <p class="relationship-explainer">
+          Deterministic nuclear, reverse, and complementary forms of the day hexagram.
         </p>
       </div>
       <div class="related-grid">
@@ -83,7 +91,7 @@ const frictionLabel: Record<ExecutionFriction, string> = {
     </section>
 
     <details class="provenance-details">
-      <summary>Demo provenance and limits</summary>
+      <summary>Calculation provenance and limits</summary>
       <div>
         <p>
           Provider <strong>{{ snapshot.provenance.providerId }}</strong> · version
@@ -116,6 +124,16 @@ const frictionLabel: Record<ExecutionFriction, string> = {
   font-weight: 400;
   letter-spacing: -0.035em;
   line-height: 1.08;
+}
+
+.synthesis-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1rem;
+  color: var(--ink-faint);
+  font-size: 0.68rem;
 }
 
 .synthesis-grid {
@@ -191,6 +209,14 @@ h3 {
   font-size: 0.78rem;
 }
 
+.empty-guidance {
+  border-top: 1px solid var(--line);
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  color: var(--ink-faint);
+  font-size: 0.78rem;
+}
+
 .friction {
   flex: 0 0 auto;
   border: 1px solid var(--line);
@@ -218,7 +244,7 @@ h3 {
   align-items: end;
 }
 
-.demo-explainer {
+.relationship-explainer {
   max-width: 28rem;
   margin: 0 0 1rem;
   color: var(--ink-faint);
@@ -296,7 +322,7 @@ h3 {
     flex-direction: column;
   }
 
-  .demo-explainer {
+  .relationship-explainer {
     text-align: left;
   }
 }

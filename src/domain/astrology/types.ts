@@ -51,6 +51,7 @@ export type RelatedHexagram = {
   hexagram: Hexagram
   relationshipLabel: string
   status: DataStatus
+  sourceLabel: string
 }
 
 export type CurrentFlowSnapshot = {
@@ -66,6 +67,8 @@ export type CurrentFlowSnapshot = {
   }
   organ: OrganMoment
   synthesis: {
+    status: DataStatus
+    sourceLabel: string
     oltr: string
     recommendedIntention: string
     recommendedExecution: readonly ExecutionItem[]

@@ -1,10 +1,16 @@
 # Current ~ Flow
 
-Current is a situational-awareness instrument for timing: a calm precision almanac that keeps global conditions, personal context, and their interface distinct. This repository is the first clean product alpha, not a verified traditional calculation engine.
+Current is a situational-awareness instrument for timing: a calm precision almanac that keeps
+global conditions, personal context, and their interface distinct. The current alpha includes a
+deterministic global temporal calculation layer while keeping personal and interpretive systems
+unconnected.
 
 ## Alpha scope
 
-The Astrology route is a functional proof of concept powered by a plainly labeled demo provider. Alchemy, Intelligence, Other Tools, authentication, and deeper factor exploration are deliberate nonconnected previews. Settings for theme and local preferences work on the current device.
+The Astrology route calculates timezone-aware GanZhi pillars, their 60 Jia Zi hexagrams, the
+traditional two-hour organ period, and line-derived structural relationships. Alchemy, Intelligence,
+Other Tools, authentication, personal BaZi, and interpretive synthesis are deliberate nonconnected
+previews. Settings for theme, timezone, and local preferences work on the current device.
 
 ## Local setup
 
@@ -51,7 +57,11 @@ session handoffs preserve rationale and operational history without relying on c
 
 ## Current data status
 
-All Astrology content is polished demo fixture data. It is not the actual present temporal configuration, and the displayed hexagrams and relationships were not calculated. The adapter boundary and provenance fields are ready for verified sources; see `docs/DATA_INTEGRATION.md`.
+Astrology's global temporal facts are calculated locally. `lunar-javascript` supplies the four
+GanZhi pillars, a versioned 60 Jia Zi to 64 Da Gua table supplies their hexagrams, and a cited
+two-hour table supplies the organ period. Interpretive forecasts and activity recommendations remain
+explicitly unavailable. See [`docs/CALCULATION_SOURCES.md`](docs/CALCULATION_SOURCES.md) and
+[`docs/DATA_INTEGRATION.md`](docs/DATA_INTEGRATION.md).
 
 ## Deployment summary
 
@@ -66,4 +76,5 @@ git push -u origin master
 
 ## Next integration points
 
-Implement a verified `CurrentFlowProvider`, add the deterministic organ-clock engine, introduce a separate personal BaZi contract, and connect constrained synthesis only after authoritative inputs and provenance are available.
+Add cross-library solar-term boundary fixtures, introduce a separate personal BaZi contract, and
+connect constrained synthesis only after authoritative inputs and provenance are available.

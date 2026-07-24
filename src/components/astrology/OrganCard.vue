@@ -12,7 +12,7 @@ defineProps<{
 <template>
   <article class="organ-card">
     <div class="organ-copy">
-      <p class="scope">Active period</p>
+      <p class="scope">Organ hour · active period</p>
       <h2>{{ organ.nameEnglish }}</h2>
       <p v-if="organ.nameChinese" class="chinese" lang="zh">{{ organ.nameChinese }}</p>
       <p class="time-range">{{ organ.timeRangeLabel }}</p>

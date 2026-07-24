@@ -72,6 +72,8 @@ export class DemoCurrentFlowProvider implements CurrentFlowProvider {
         sourceLabel: 'Interface fixture · organ clock not connected',
       },
       synthesis: {
+        status: 'demo',
+        sourceLabel: 'Curated interface fixture · not calculated',
         oltr: 'A steady approach leaves room for the next useful opening to become visible.',
         recommendedIntention:
           'Hold the direction lightly enough to notice where conditions are already cooperating.',
@@ -93,9 +95,24 @@ export class DemoCurrentFlowProvider implements CurrentFlowProvider {
           },
         ],
         relatedHexagrams: [
-          { hexagram: INNER, relationshipLabel: 'Inner pattern · demo', status: 'demo' },
-          { hexagram: LIMITATION, relationshipLabel: 'Boundary lens · demo', status: 'demo' },
-          { hexagram: INFLUENCE, relationshipLabel: 'Contrast · demo', status: 'demo' },
+          {
+            hexagram: INNER,
+            relationshipLabel: 'Inner pattern · demo',
+            status: 'demo',
+            sourceLabel: 'Interface fixture · not calculated',
+          },
+          {
+            hexagram: LIMITATION,
+            relationshipLabel: 'Boundary lens · demo',
+            status: 'demo',
+            sourceLabel: 'Interface fixture · not calculated',
+          },
+          {
+            hexagram: INFLUENCE,
+            relationshipLabel: 'Contrast · demo',
+            status: 'demo',
+            sourceLabel: 'Interface fixture · not calculated',
+          },
         ],
       },
       provenance: {

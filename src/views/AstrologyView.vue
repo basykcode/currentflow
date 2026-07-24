@@ -6,7 +6,9 @@ import SynthesisPanel from '@/components/astrology/SynthesisPanel.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
 import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
 import { currentFlowProvider } from '@/providers/currentFlow'
+import { usePreferencesStore } from '@/stores/preferences'
 
+const preferences = usePreferencesStore()
 const snapshot = ref<CurrentFlowSnapshot | null>(null)
 const now = ref(new Date())
 const loading = ref(true)
@@ -17,6 +19,7 @@ const dateTimeLabel = computed(() =>
   new Intl.DateTimeFormat(undefined, {
     dateStyle: 'full',
     timeStyle: 'medium',
+    ...(snapshot.value ? { timeZone: snapshot.value.timezone } : {}),
   }).format(now.value),
 )
 
@@ -29,7 +32,10 @@ const refresh = async () => {
   errorMessage.value = ''
   now.value = new Date()
   try {
-    snapshot.value = await currentFlowProvider.getSnapshot(now.value)
+    snapshot.value = await currentFlowProvider.getSnapshot(now.value, {
+      timezone: preferences.timezone,
+      ...(preferences.locationLabel ? { locationLabel: preferences.locationLabel } : {}),
+    })
   } catch {
     errorMessage.value = 'The snapshot is unavailable. No temporal data has been inferred.'
   } finally {
@@ -40,7 +46,7 @@ const refresh = async () => {
 onMounted(() => {
   void refresh()
   clockTimer = window.setInterval(() => {
-    now.value = new Date()
+    void refresh()
   }, 60_000)
 })
 
@@ -57,9 +63,13 @@ onBeforeUnmount(() => {
         <h1>The Current Flow</h1>
       </div>
       <div class="flow-meta" aria-live="polite">
-        <StatusBadge status="demo" label="Demo data" />
+        <StatusBadge
+          :status="snapshot?.status ?? 'unavailable'"
+          :label="snapshot ? 'Live calculation' : 'Awaiting calculation'"
+        />
         <p>{{ dateTimeLabel }}</p>
         <p>{{ timezoneLabel }}</p>
+        <p v-if="snapshot?.locationLabel">{{ snapshot.locationLabel }}</p>
         <button class="refresh-button" type="button" :disabled="loading" @click="refresh">
           <span aria-hidden="true">↻</span>
           {{ loading ? 'Loading' : 'Refresh snapshot' }}
@@ -67,15 +77,15 @@ onBeforeUnmount(() => {
       </div>
     </header>
 
-    <div class="demo-boundary" role="note">
-      <strong>Interface evaluation only.</strong>
-      The displayed hexagrams, organ period, and relationships are curated demo fixtures—not the
-      actual current configuration and not calculated results.
+    <div class="calculation-boundary" role="note">
+      <strong>Live, bounded calculation.</strong>
+      GanZhi pillars, 60 Jia Zi hexagrams, organ period, and structural relationships are calculated
+      for the selected timezone. Interpretive forecasts remain unavailable rather than inferred.
     </div>
 
     <p v-if="errorMessage" class="error-message" role="alert">{{ errorMessage }}</p>
     <div v-else-if="loading && !snapshot" class="loading-state" aria-live="polite">
-      Preparing the demo instrument…
+      Calculating the current temporal factors…
     </div>
     <template v-else-if="snapshot">
       <FiveElementComposition :snapshot="snapshot" />
@@ -141,7 +151,7 @@ h1 {
   opacity: 0.5;
 }
 
-.demo-boundary {
+.calculation-boundary {
   margin-bottom: clamp(2rem, 5vw, 4rem);
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -150,8 +160,8 @@ h1 {
   font-size: 0.74rem;
 }
 
-.demo-boundary strong {
-  color: var(--cinnabar);
+.calculation-boundary strong {
+  color: var(--jade);
 }
 
 .loading-state,

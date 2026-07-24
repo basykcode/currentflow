@@ -1,5 +1,5 @@
 import type { CurrentFlowProvider } from '@/domain/astrology/provider'
 
-import { DemoCurrentFlowProvider } from './demoCurrentFlow'
+import { LunarScriptCurrentFlowProvider } from './lunarScriptCurrentFlow'
 
-export const currentFlowProvider: CurrentFlowProvider = new DemoCurrentFlowProvider()
+export const currentFlowProvider: CurrentFlowProvider = new LunarScriptCurrentFlowProvider()

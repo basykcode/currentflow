@@ -63,7 +63,9 @@ None.
 
 ## Superseded by
 
-None.
+The demo-only active-provider portion is superseded by
+[Calculate temporal facts with declared source boundaries](20260723T235840Z--calculate-temporal-facts-with-declared-source-boundaries.md).
+The provider and provenance contract remains accepted.
 
 ## Related files, issues, handoffs, and commits
 

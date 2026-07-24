@@ -5,7 +5,9 @@ Current is a client-side Vue 3 application organized around explicit domain boun
 ## Layers
 
 - `src/domain`: framework-independent contracts for astrology snapshots, authentication, and settings.
-- `src/providers`: swappable adapters that satisfy domain interfaces. The alpha selects `DemoCurrentFlowProvider` in one place.
+- `src/providers`: swappable adapters that satisfy domain interfaces. The alpha selects
+  `LunarScriptCurrentFlowProvider` in one place and retains the demo adapter only as a testable
+  fixture.
 - `src/stores`: Pinia state reserved for cross-route preferences and the future identity scaffold.
 - `src/components`: focused presentation grouped by product area or shared role.
 - `src/views`: route composition and page-level data loading.
@@ -16,6 +18,9 @@ The Astrology view requests a `CurrentFlowSnapshot` from a provider. It does not
 
 ## Runtime behavior
 
-The alpha makes no network calls. Theme, timezone preference, and an optional location label are device-local. The demo provider is asynchronous so it can later be replaced by a deterministic local engine or API adapter without changing the view contract.
+The alpha makes no runtime network calls. Theme, timezone preference, and an optional location label
+are device-local. The active provider projects an instant into the selected timezone, delegates
+GanZhi calculation to `lunar-javascript`, then applies pure domain lookups and transformations. The
+view remains unaware of those calculation details.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.

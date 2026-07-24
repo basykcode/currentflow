@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { RelatedHexagram } from '@/domain/astrology/types'
+import StatusBadge from '@/components/common/StatusBadge.vue'
 
 import HexagramGlyph from './HexagramGlyph.vue'
 
@@ -22,7 +23,10 @@ defineProps<{
         >{{ item.hexagram.nameEnglish }}
       </h3>
       <p v-if="item.hexagram.nameChinese" lang="zh">{{ item.hexagram.nameChinese }}</p>
-      <span class="demo-note">{{ item.status }} · not computed</span>
+      <div class="relationship-source">
+        <StatusBadge :status="item.status" :label="item.status" />
+        <span>{{ item.sourceLabel }}</span>
+      </div>
     </div>
   </article>
 </template>
@@ -73,9 +77,19 @@ h3 {
   font-size: 0.78rem;
 }
 
-.demo-note {
-  color: var(--cinnabar);
-  font-size: 0.62rem;
-  text-transform: capitalize;
+.relationship-source {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.4rem;
+  color: var(--ink-faint);
+  font-size: 0.58rem;
+  line-height: 1.25;
+}
+
+.relationship-source :deep(.status-label) {
+  flex: 0 0 auto;
+  padding: 0.15rem 0.35rem;
+  font-size: 0.52rem;
 }
 </style>

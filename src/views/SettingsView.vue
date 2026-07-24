@@ -77,7 +77,10 @@ const clearLocalData = () => {
               autocomplete="off"
               :placeholder="preferences.detectedTimezone"
             />
-            <small>Scaffold only; the demo adapter does not recalculate from this value.</small>
+            <small>
+              Used for live GanZhi, hexagram, and organ-period calculations. Enter an IANA name such
+              as America/New_York.
+            </small>
           </label>
           <label>
             <span>Location label</span>
@@ -120,7 +123,7 @@ const clearLocalData = () => {
           </div>
           <div>
             <dt>Data provider</dt>
-            <dd>Demo fixture · no calculations</dd>
+            <dd>lunar-javascript · deterministic local calculation</dd>
           </div>
           <div>
             <dt>Canonical URL</dt>
