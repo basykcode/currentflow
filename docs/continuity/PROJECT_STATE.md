@@ -4,8 +4,10 @@
 
 - UTC date: 2026-07-24
 - Branch represented: `master` (integrated state)
-- Commit inspected: `d3f0e97ca3f72bfebf6848788754f7e006dd8c66`
+- Commit inspected: `9b6cbe12d3282086c0989ffedca613bd1fca2760`
 - Working tree before live-calculation work: clean
+- Current working tree contains a separate uncommitted `services/alchemy-api` scaffold and related
+  `.gitignore` edits that were not part of the live-calculation publication.
 
 ## Project purpose
 
@@ -77,9 +79,10 @@ Astrology data seam. See [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 
 ## Active workstreams
 
-| Branch/worktree | Objective                          | Status                                | Latest handoff                                                                                       |
-| --------------- | ---------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `master`        | Replace fixtures with live factors | Complete in working tree; uncommitted | [Live-calculation handoff](handoffs/20260724T000118Z--master--replace-demo-temporal-calculations.md) |
+| Branch/worktree | Objective                          | Status                                                | Latest handoff                                                                                  |
+| --------------- | ---------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `master`        | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`             | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md) |
+| `master`        | Concurrent Alchemy API scaffold    | Uncommitted separate work; excluded from this publish | No handoff observed                                                                             |
 
 ## Known issues and risks
 
@@ -93,7 +96,6 @@ Astrology data seam. See [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 - Personal BaZi, changing-line divination, interpretive synthesis, and execution recommendations are
   inactive.
 - Cloudflare Pages deployment and the production domain are prepared but not confirmed as connected.
-- The live-calculation changes are not committed or pushed.
 
 ## Open questions
 
@@ -112,8 +114,8 @@ Astrology data seam. See [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 3. Define the separate personal BaZi contract before any personal/global synthesis.
 4. Confirm the canonical domain and deployment state, then update metadata and deployment docs.
 
-Exact next useful action: review and commit the completed live-calculation change, then add
-cross-library fixtures around the 2026 Li Chun and monthly solar-term boundaries.
+Exact next useful action: add cross-library fixtures around the 2026 Li Chun and monthly solar-term
+boundaries without disturbing the separate uncommitted Alchemy API scaffold.
 
 ## Documentation map
 
