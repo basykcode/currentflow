@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import { alchemyChildRoutes } from '@/features/alchemy'
+
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior: () => ({ top: 0 }),
@@ -11,8 +13,8 @@ export const router = createRouter({
     },
     {
       path: '/alchemy',
-      name: 'alchemy',
       component: () => import('@/views/AlchemyView.vue'),
+      children: [...alchemyChildRoutes],
     },
     {
       path: '/intelligence',
