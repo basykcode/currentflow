@@ -33,3 +33,21 @@ Every display datum carries a `DataStatus` and a source label. Snapshots add pro
 version, factor labels, and notes. The UI displays local status near each datum and exposes
 snapshot-level provenance below the synthesis. Calculated facts are labeled `computed`; interpretive
 synthesis remains `unavailable`.
+
+## Alchemy integration
+
+Alchemy sources enter through rights- and checksum-validated manifests and closed adapters. The
+backend keeps BotanicalTaxon, HerbMaterial, Preparation, Formula, Compound, Source, Claim, Document,
+and Passage identities separate. Source claims coexist when disputed; search conveniences never
+replace provenance.
+
+The initial real-data boundaries are a conservative USDA Duke subset and offline PubChem compound
+enrichment. The distributable seed is synthetic; SymMap is review-required and disabled. Details are
+in [`ALCHEMY_DATA_GOVERNANCE.md`](ALCHEMY_DATA_GOVERNANCE.md).
+
+The frontend integrates through its own `AlchemyProvider` domain interface. Demo mode is an explicit
+deterministic fixture provider with no runtime network calls. API mode uses checked-in generated
+types, `openapi-fetch`, and pure transport mappers. The backend supplies source-backed summary
+properties, document titles, mentioned entities, and exact selected-passage retrieval so the
+frontend does not infer missing knowledge. API failures never fall back to demo data. The verified
+endpoint matrix is in [`ALCHEMY_FRONTEND_INTEGRATION.md`](ALCHEMY_FRONTEND_INTEGRATION.md).

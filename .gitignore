@@ -4,3 +4,12 @@ dist/
 coverage/
 *.local
 .DS_Store
+.env
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.py[cod]
+services/alchemy-api/.cache/
+services/alchemy-api/data/raw/
