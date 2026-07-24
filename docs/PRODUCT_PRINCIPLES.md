@@ -18,3 +18,8 @@ Current is a situational-awareness instrument for timing. It makes global tempor
 ## Visual character
 
 Current should feel like a calm precision almanac: contemporary, spacious, legible, and grounded. It is not a generic SaaS dashboard, horoscope or wellness app, “new age” experience, or theatrical imitation of ancient China.
+
+The primary palette expresses the water element through deep navy fields, moonlit pale-blue text,
+translucent blue-green surfaces, and restrained wave-like depth. Dark is the default experience;
+the light alternative should feel like morning mist rather than paper. Cinnabar remains a rare,
+small-scale seal accent rather than a competing field color.

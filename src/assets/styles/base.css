@@ -16,7 +16,14 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--paper);
+  background:
+    radial-gradient(
+      circle at 12% -8%,
+      color-mix(in srgb, var(--jade) 11%, transparent),
+      transparent 32rem
+    ),
+    linear-gradient(180deg, var(--paper), color-mix(in srgb, var(--paper) 94%, #000 6%));
+  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1rem;
@@ -28,9 +35,15 @@ body::before {
   position: fixed;
   inset: 0 0 auto;
   z-index: -1;
-  height: 34rem;
+  height: 38rem;
   border-bottom: 1px solid color-mix(in srgb, var(--line) 45%, transparent);
-  background: color-mix(in srgb, var(--paper-raised) 55%, transparent);
+  background:
+    radial-gradient(
+      ellipse at 52% 0%,
+      color-mix(in srgb, var(--jade-wash) 58%, transparent),
+      transparent 68%
+    ),
+    linear-gradient(180deg, color-mix(in srgb, var(--paper-raised) 42%, transparent), transparent);
   content: '';
   pointer-events: none;
 }
@@ -128,8 +141,9 @@ h3 {
 .panel {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: color-mix(in srgb, var(--paper-raised) 94%, transparent);
+  background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
 }
 
 .control {

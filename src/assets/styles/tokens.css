@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light;
+  color-scheme: dark;
   --font-sans:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
     'Noto Sans CJK SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
@@ -7,21 +7,22 @@
     Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, 'Noto Serif CJK SC', 'Songti SC',
     serif;
 
-  --paper: #f2efe6;
-  --paper-raised: #faf8f1;
-  --paper-soft: #e8e6dc;
-  --ink: #17231f;
-  --ink-soft: #52605a;
-  --ink-faint: #77827d;
-  --line: #c8cbc1;
-  --line-strong: #9fa9a3;
-  --jade: #2d6658;
-  --jade-deep: #173f37;
-  --jade-wash: #dce4db;
-  --cinnabar: #a94f3c;
-  --cinnabar-wash: #eeddd7;
-  --shadow: 0 18px 50px rgb(34 49 43 / 8%);
-  --backdrop: rgb(23 35 31 / 45%);
+  --paper: #061522;
+  --paper-raised: #0a2132;
+  --paper-soft: #0d2a3d;
+  --ink: #e2f6ff;
+  --ink-soft: #b3d8e8;
+  --ink-faint: #789fb2;
+  --line: #1d4459;
+  --line-strong: #35667d;
+  --jade: #74cadc;
+  --jade-deep: #b8ebf3;
+  --jade-wash: #0d3347;
+  --cinnabar: #d98970;
+  --cinnabar-wash: #3a2528;
+  --shadow: 0 22px 70px rgb(0 7 15 / 46%);
+  --shadow-soft: 0 12px 36px rgb(0 7 15 / 32%);
+  --backdrop: rgb(1 8 15 / 78%);
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -41,21 +42,22 @@
   --header-height: 76px;
 }
 
-:root[data-theme='dark'] {
-  color-scheme: dark;
-  --paper: #121815;
-  --paper-raised: #19211d;
-  --paper-soft: #222a26;
-  --ink: #e9e7df;
-  --ink-soft: #b0bab4;
-  --ink-faint: #89948e;
-  --line: #35423c;
-  --line-strong: #596861;
-  --jade: #79aa97;
-  --jade-deep: #a7c7ba;
-  --jade-wash: #20372f;
-  --cinnabar: #d17a65;
-  --cinnabar-wash: #442b26;
-  --shadow: 0 20px 60px rgb(0 0 0 / 22%);
-  --backdrop: rgb(0 0 0 / 66%);
+:root[data-theme='light'] {
+  color-scheme: light;
+  --paper: #e9f4f7;
+  --paper-raised: #f5fbfc;
+  --paper-soft: #dcecf1;
+  --ink: #0d2b3a;
+  --ink-soft: #3d6172;
+  --ink-faint: #4f7486;
+  --line: #bfd4dd;
+  --line-strong: #8fb1c0;
+  --jade: #1d7086;
+  --jade-deep: #114c61;
+  --jade-wash: #cce8ef;
+  --cinnabar: #a95745;
+  --cinnabar-wash: #f2ddd7;
+  --shadow: 0 18px 50px rgb(10 47 66 / 12%);
+  --shadow-soft: 0 12px 36px rgb(10 47 66 / 9%);
+  --backdrop: rgb(6 21 34 / 48%);
 }

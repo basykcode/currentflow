@@ -3,12 +3,13 @@ import { defineStore } from 'pinia'
 
 import type { LocalPreferences, ThemePreference } from '@/domain/settings/types'
 
-const STORAGE_KEY = 'current:preferences'
+const STORAGE_KEY = 'current:preferences:v2'
+const LEGACY_STORAGE_KEY = 'current:preferences'
 
 const detectedTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Browser local time'
 
 const defaults: LocalPreferences = {
-  theme: 'system',
+  theme: 'dark',
   timezone: detectedTimezone,
   locationLabel: '',
 }
@@ -16,13 +17,19 @@ const defaults: LocalPreferences = {
 const readPreferences = (): LocalPreferences => {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (!stored) return { ...defaults }
-    const parsed = JSON.parse(stored) as Partial<LocalPreferences>
-    return {
-      theme: parsed.theme ?? defaults.theme,
+    const legacyStored = stored ? null : localStorage.getItem(LEGACY_STORAGE_KEY)
+    if (!stored && !legacyStored) return { ...defaults }
+    const parsed = JSON.parse(stored ?? legacyStored ?? '{}') as Partial<LocalPreferences>
+    const preferences: LocalPreferences = {
+      // The v2 palette intentionally starts legacy installs in the new water-dark theme once.
+      theme: stored ? (parsed.theme ?? defaults.theme) : defaults.theme,
       timezone: parsed.timezone ?? defaults.timezone,
       locationLabel: parsed.locationLabel ?? defaults.locationLabel,
     }
+    if (!stored && legacyStored) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences))
+    }
+    return preferences
   } catch {
     return { ...defaults }
   }
@@ -59,6 +66,7 @@ export const usePreferencesStore = defineStore('preferences', () => {
     timezone.value = defaults.timezone
     locationLabel.value = defaults.locationLabel
     localStorage.removeItem(STORAGE_KEY)
+    localStorage.removeItem(LEGACY_STORAGE_KEY)
   }
 
   mediaQuery.addEventListener('change', (event) => {

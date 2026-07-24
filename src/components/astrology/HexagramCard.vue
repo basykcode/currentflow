@@ -52,7 +52,7 @@ defineProps<{
   border-radius: var(--radius-lg);
   background: var(--paper-raised);
   padding: clamp(1.1rem, 2vw, 1.6rem);
-  box-shadow: 0 12px 36px rgb(34 49 43 / 5%);
+  box-shadow: var(--shadow-soft);
 }
 
 .hexagram-card--featured {

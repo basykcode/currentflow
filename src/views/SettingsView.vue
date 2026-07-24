@@ -10,8 +10,8 @@ const { theme, timezone, locationLabel } = storeToRefs(preferences)
 const cleared = ref(false)
 
 const themes: readonly { value: ThemePreference; label: string; detail: string }[] = [
-  { value: 'light', label: 'Light', detail: 'Mineral paper' },
-  { value: 'dark', label: 'Dark', detail: 'Deep ink' },
+  { value: 'dark', label: 'Dark', detail: 'Deep water' },
+  { value: 'light', label: 'Light', detail: 'Morning mist' },
   { value: 'system', label: 'System', detail: 'Follow this device' },
 ]
 
@@ -205,15 +205,15 @@ const clearLocalData = () => {
   margin-bottom: 0.7rem;
   border: 1px solid var(--line);
   border-radius: 0.4rem;
-  background: #f2efe6;
+  background: #e9f4f7;
 }
 
 .swatch[data-theme-preview='dark'] {
-  background: #121815;
+  background: #061522;
 }
 
 .swatch[data-theme-preview='system'] {
-  background: linear-gradient(90deg, #f2efe6 50%, #121815 50%);
+  background: linear-gradient(90deg, #e9f4f7 50%, #061522 50%);
 }
 
 .theme-options strong {
