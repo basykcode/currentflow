@@ -3,13 +3,14 @@
 ## Last reconciled
 
 - UTC date: 2026-07-24
-- Branch represented: `master` (complete integration plus prepared alpha backend hosting)
-- Commit inspected: `4280a16c8aeb55a2e55f0a944fce16f6d167d53f`
+- Branch represented: `master` (complete integration plus published alpha backend hosting)
+- Commit inspected: `81c6d4e00de7717522a6e083a6c513fc69abbe7d`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
-- `master` merges the complete integration at `c8f8e04` and records publication through `4280a16`;
-  the alpha hosting configuration described here remains uncommitted and unprovisioned.
+- `master` merges the complete integration at `c8f8e04`, records prior publication through
+  `4280a16`, and publishes the alpha hosting configuration at `81c6d4e`. Provider provisioning
+  remains in progress.
 
 ## Project purpose
 
@@ -146,15 +147,15 @@ is the only Alchemy state in Pinia.
 
 ## Active workstreams
 
-| Branch/worktree            | Objective                          | Status                                                                      | Latest handoff                                                                                                   |
-| -------------------------- | ---------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                   | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
-| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                   | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                               | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
-| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                               | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`        | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
-| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record      | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
-| `master`                   | Prepare no-admin alpha backend     | Local configuration ready; accounts, commit, push, and provisioning pending | [Hosting handoff](handoffs/20260724T225442Z--master--prepare-no-admin-alpha-backend.md)                          |
+| Branch/worktree            | Objective                          | Status                                                                     | Latest handoff                                                                                                   |
+| -------------------------- | ---------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                                  | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
+| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                                  | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                              | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
+| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                              | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`       | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
+| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record     | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
+| `master`                   | Prepare no-admin alpha backend     | Configuration published at `81c6d4e`; Render/Aura provisioning in progress | [Publication handoff](handoffs/20260724T234032Z--master--publish-no-admin-alpha-backend.md)                      |
 
 ## Known issues and risks
 
@@ -172,7 +173,8 @@ is the only Alchemy state in Pinia.
 - No production Alchemy dataset has been imported. USDA Duke passed checksum validation and offline
   dry-run mapping; PubChem is opt-in and cached; SymMap remains blocked pending rights review.
 - Alchemy auth, saved research workspaces, embeddings, and inference are inactive. Remote deployment
-  is configured but not provisioned because the Render and Aura account boundary remains.
+  configuration is published; the user reports that AuraDB exists, while Render provisioning,
+  custom-domain setup, and production frontend connection remain incomplete.
 - Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
   inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
   an alpha host, not a production SLA.
@@ -192,8 +194,8 @@ is the only Alchemy state in Pinia.
 
 ## Next priorities
 
-1. Create the AuraDB Free instance and Render account, connect Render to the GitHub repository, enter
-   secrets directly in the Blueprint form, and apply `render.yaml`.
+1. In Render, select `master`, validate the root `render.yaml`, enter secrets directly in the
+   Blueprint form, and apply it after GitHub checks pass.
 2. Verify Render migration/seed/readiness, add the Cloudflare `api` CNAME, validate Render TLS, switch
    the Pages production build to API mode, and run the documented public smoke checks.
 3. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
@@ -202,9 +204,8 @@ is the only Alchemy state in Pinia.
    mapping before stronger authority claims.
 5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action: create an AuraDB Free instance and a Render account, then enter the Aura
-credentials directly into Render's `render.yaml` Blueprint form without copying them into chat or
-source.
+Exact next useful action: select `master` in Render's Blueprint flow, keep path `render.yaml`, and
+enter the Aura credentials directly into Render without copying them into chat or source.
 
 ## Documentation map
 
