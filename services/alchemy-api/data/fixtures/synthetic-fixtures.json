@@ -1,0 +1,160 @@
+{
+  "nodes": [
+    {
+      "entityType": "Source",
+      "id": "demo:source:fixture-v1",
+      "properties": {
+        "display_name": "Current Alchemy synthetic interface fixture",
+        "title": "Current Alchemy synthetic interface fixture",
+        "rights_status": "approved",
+        "review_status": "synthetic_fixture",
+        "citation": "Synthetic test fixture; not clinically or historically authoritative.",
+        "active": true,
+        "demo": true
+      }
+    },
+    {
+      "entityType": "HerbMaterial",
+      "id": "demo:herb:azure-root",
+      "properties": {
+        "display_name": "Azure Root (synthetic)",
+        "aliases_search": "azure root yanshi gen jia 演示根甲",
+        "base_material_id": "demo:herb:azure-root",
+        "thermal_natures": ["warm", "cool"],
+        "flavors": ["sweet"],
+        "channels": ["demo:channel:river"],
+        "categories": ["demo:category:foundation"],
+        "actions": ["demo:action:supports-research-example"],
+        "patterns": ["demo:pattern:fixture-alpha"],
+        "review_status": "synthetic_fixture",
+        "review_statuses": ["synthetic_fixture", "disputed"],
+        "source_ids": ["demo:source:fixture-v1"],
+        "data_status": "conflicted",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "HerbMaterial",
+      "id": "demo:herb:azure-root-roasted",
+      "properties": {
+        "display_name": "Roasted Azure Root (synthetic)",
+        "base_material_id": "demo:herb:azure-root",
+        "preparation_id": "demo:preparation:roasted",
+        "review_status": "synthetic_fixture",
+        "review_statuses": ["synthetic_fixture"],
+        "source_ids": ["demo:source:fixture-v1"],
+        "data_status": "incomplete",
+        "missing_fields": ["actions", "patterns"],
+        "demo": true
+      }
+    },
+    {
+      "entityType": "Formula",
+      "id": "demo:formula:two-lanterns",
+      "properties": {
+        "display_name": "Two Lanterns Formula (synthetic)",
+        "ingredient_ids": ["demo:herb:azure-root", "demo:herb:azure-root-roasted"],
+        "review_status": "synthetic_fixture",
+        "review_statuses": ["synthetic_fixture"],
+        "source_ids": ["demo:source:fixture-v1"],
+        "data_status": "demo",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "Claim",
+      "id": "demo:claim:azure-warm",
+      "properties": {
+        "display_name": "Synthetic warm claim",
+        "predicate": "HAS_NATURE",
+        "textual_value": "warm",
+        "language": "en",
+        "source_locator": "fixture:claim:warm",
+        "evidence_type": "synthetic_fixture",
+        "review_status": "synthetic_fixture",
+        "import_run_id": "demo:import-run:fixture-v1",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "Claim",
+      "id": "demo:claim:azure-cool",
+      "properties": {
+        "display_name": "Synthetic conflicting cool claim",
+        "predicate": "HAS_NATURE",
+        "textual_value": "cool",
+        "language": "en",
+        "source_locator": "fixture:claim:cool",
+        "evidence_type": "synthetic_fixture",
+        "review_status": "synthetic_fixture",
+        "import_run_id": "demo:import-run:fixture-v1",
+        "demo": true
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "demo:rel:formula-azure",
+      "sourceId": "demo:formula:two-lanterns",
+      "targetId": "demo:herb:azure-root",
+      "relationshipType": "CONTAINS",
+      "properties": {
+        "sequence": 1,
+        "source_record_id": "demo:formula:line:1",
+        "demo": true
+      }
+    },
+    {
+      "id": "demo:rel:formula-roasted",
+      "sourceId": "demo:formula:two-lanterns",
+      "targetId": "demo:herb:azure-root-roasted",
+      "relationshipType": "CONTAINS",
+      "properties": {
+        "sequence": 2,
+        "preparation_text": "roasted (synthetic)",
+        "source_record_id": "demo:formula:line:2",
+        "demo": true
+      }
+    },
+    {
+      "id": "demo:rel:warm-subject",
+      "sourceId": "demo:claim:azure-warm",
+      "targetId": "demo:herb:azure-root",
+      "relationshipType": "SUBJECT",
+      "properties": {
+        "demo": true
+      }
+    },
+    {
+      "id": "demo:rel:cool-subject",
+      "sourceId": "demo:claim:azure-cool",
+      "targetId": "demo:herb:azure-root",
+      "relationshipType": "SUBJECT",
+      "properties": {
+        "demo": true
+      }
+    },
+    {
+      "id": "demo:rel:warm-source",
+      "sourceId": "demo:claim:azure-warm",
+      "targetId": "demo:source:fixture-v1",
+      "relationshipType": "SUPPORTED_BY",
+      "properties": {
+        "demo": true
+      }
+    },
+    {
+      "id": "demo:rel:cool-source",
+      "sourceId": "demo:claim:azure-cool",
+      "targetId": "demo:source:fixture-v1",
+      "relationshipType": "SUPPORTED_BY",
+      "properties": {
+        "demo": true
+      }
+    }
+  ],
+  "rawRecordsPreserved": 0,
+  "unresolvedFields": [
+    "Synthetic fixture intentionally leaves prepared-material actions and patterns unavailable."
+  ]
+}

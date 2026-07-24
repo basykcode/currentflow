@@ -1,0 +1,67 @@
+[project]
+name = "current-alchemy"
+version = "0.1.0"
+description = "Graph-backed research API for Current Alchemy"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+  "fastapi==0.116.1",
+  "httpx==0.28.1",
+  "neo4j==5.28.2",
+  "pydantic==2.11.7",
+  "pydantic-settings==2.10.1",
+  "pyyaml==6.0.2",
+  "typer==0.16.0",
+  "uvicorn[standard]==0.35.0",
+]
+
+[dependency-groups]
+dev = [
+  "mypy==1.17.0",
+  "pytest==8.4.1",
+  "pytest-asyncio==1.1.0",
+  "ruff==0.12.5",
+]
+
+[project.scripts]
+alchemy = "current_alchemy.cli.main:app"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/current_alchemy"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+"src/current_alchemy/api/routers/*.py" = ["B008"]
+"src/current_alchemy/cli/main.py" = ["B008", "UP047"]
+"src/current_alchemy/domain/common/models.py" = ["UP046"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+packages = ["current_alchemy"]
+mypy_path = "src"
+plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = ["yaml"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+  "integration: requires a reachable disposable Neo4j database",
+]

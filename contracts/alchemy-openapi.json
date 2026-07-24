@@ -1,0 +1,3808 @@
+{
+  "components": {
+    "schemas": {
+      "Citation": {
+        "additionalProperties": false,
+        "properties": {
+          "citationText": {
+            "title": "Citationtext",
+            "type": "string"
+          },
+          "locator": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Locator"
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "sourceId": {
+            "title": "Sourceid",
+            "type": "string"
+          },
+          "sourceTitle": {
+            "title": "Sourcetitle",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sourceId",
+          "sourceTitle",
+          "citationText",
+          "reviewStatus"
+        ],
+        "title": "Citation",
+        "type": "object"
+      },
+      "ClaimRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "confidence": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Confidence"
+          },
+          "createdAt": {
+            "format": "date-time",
+            "title": "Createdat",
+            "type": "string"
+          },
+          "evidenceType": {
+            "title": "Evidencetype",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "importRunId": {
+            "title": "Importrunid",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "normalizedInterpretation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Normalizedinterpretation"
+          },
+          "objectId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Objectid"
+          },
+          "originalQuotation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Originalquotation"
+          },
+          "predicate": {
+            "title": "Predicate",
+            "type": "string"
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "source": {
+            "$ref": "#/components/schemas/SourceSummary"
+          },
+          "sourceLocator": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcelocator"
+          },
+          "subjectId": {
+            "title": "Subjectid",
+            "type": "string"
+          },
+          "textualValue": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Textualvalue"
+          }
+        },
+        "required": [
+          "id",
+          "predicate",
+          "subjectId",
+          "language",
+          "evidenceType",
+          "reviewStatus",
+          "source",
+          "importRunId",
+          "createdAt"
+        ],
+        "title": "ClaimRecord",
+        "type": "object"
+      },
+      "DataStatus": {
+        "enum": [
+          "verified",
+          "source_reported",
+          "conflicted",
+          "demo",
+          "incomplete"
+        ],
+        "title": "DataStatus",
+        "type": "string"
+      },
+      "DependencyStatus": {
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "status"
+        ],
+        "title": "DependencyStatus",
+        "type": "object"
+      },
+      "Direction": {
+        "enum": [
+          "outgoing",
+          "incoming",
+          "both"
+        ],
+        "title": "Direction",
+        "type": "string"
+      },
+      "DisabledInquiryRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Query",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "title": "DisabledInquiryRequest",
+        "type": "object"
+      },
+      "DistributionEntry": {
+        "additionalProperties": false,
+        "properties": {
+          "count": {
+            "minimum": 0.0,
+            "title": "Count",
+            "type": "integer"
+          },
+          "proportion": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Proportion",
+            "type": "number"
+          },
+          "value": {
+            "title": "Value",
+            "type": "string"
+          },
+          "weightGrams": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weightgrams"
+          },
+          "weightedProportion": {
+            "anyOf": [
+              {
+                "maximum": 1.0,
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weightedproportion"
+          }
+        },
+        "required": [
+          "value",
+          "count",
+          "proportion"
+        ],
+        "title": "DistributionEntry",
+        "type": "object"
+      },
+      "DocumentRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "checksum": {
+            "title": "Checksum",
+            "type": "string"
+          },
+          "citation": {
+            "$ref": "#/components/schemas/Citation"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "sourceId": {
+            "title": "Sourceid",
+            "type": "string"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          },
+          "version": {
+            "title": "Version",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "sourceId",
+          "title",
+          "language",
+          "version",
+          "checksum",
+          "reviewStatus",
+          "citation"
+        ],
+        "title": "DocumentRecord",
+        "type": "object"
+      },
+      "EntityDetail": {
+        "additionalProperties": false,
+        "properties": {
+          "ambiguity": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Ambiguity",
+            "type": "array"
+          },
+          "claims": {
+            "items": {
+              "$ref": "#/components/schemas/ClaimRecord"
+            },
+            "title": "Claims",
+            "type": "array"
+          },
+          "completeness": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Completeness",
+            "type": "number"
+          },
+          "dataStatus": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "displayName": {
+            "title": "Displayname",
+            "type": "string"
+          },
+          "entityType": {
+            "$ref": "#/components/schemas/EntityType"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "names": {
+            "items": {
+              "$ref": "#/components/schemas/NameRecord"
+            },
+            "title": "Names",
+            "type": "array"
+          },
+          "properties": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Properties",
+            "type": "object"
+          },
+          "reviewStatuses": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewStatus"
+            },
+            "title": "Reviewstatuses",
+            "type": "array"
+          },
+          "sourceIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sourceids",
+            "type": "array"
+          },
+          "unresolvedConflicts": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolvedconflicts",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "entityType",
+          "displayName",
+          "dataStatus",
+          "completeness"
+        ],
+        "title": "EntityDetail",
+        "type": "object"
+      },
+      "EntitySummary": {
+        "additionalProperties": false,
+        "properties": {
+          "ambiguity": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Ambiguity",
+            "type": "array"
+          },
+          "dataStatus": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "displayName": {
+            "title": "Displayname",
+            "type": "string"
+          },
+          "entityType": {
+            "$ref": "#/components/schemas/EntityType"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "names": {
+            "items": {
+              "$ref": "#/components/schemas/NameRecord"
+            },
+            "title": "Names",
+            "type": "array"
+          },
+          "properties": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Properties",
+            "type": "object"
+          },
+          "reviewStatuses": {
+            "items": {
+              "$ref": "#/components/schemas/ReviewStatus"
+            },
+            "title": "Reviewstatuses",
+            "type": "array"
+          },
+          "sourceIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sourceids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "entityType",
+          "displayName",
+          "dataStatus"
+        ],
+        "title": "EntitySummary",
+        "type": "object"
+      },
+      "EntityType": {
+        "enum": [
+          "HerbMaterial",
+          "BotanicalTaxon",
+          "MedicinalPart",
+          "Preparation",
+          "Formula",
+          "FormulaVariant",
+          "Compound",
+          "Action",
+          "Pattern",
+          "SymptomTerm",
+          "Channel",
+          "Flavor",
+          "ThermalNature",
+          "Category",
+          "Source",
+          "Claim",
+          "Document",
+          "Passage",
+          "ImportRun"
+        ],
+        "title": "EntityType",
+        "type": "string"
+      },
+      "Envelope_DocumentRecord_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/DocumentRecord"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[DocumentRecord]",
+        "type": "object"
+      },
+      "Envelope_EntityDetail_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/EntityDetail"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[EntityDetail]",
+        "type": "object"
+      },
+      "Envelope_ExploreQueryResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/ExploreQueryResult"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[ExploreQueryResult]",
+        "type": "object"
+      },
+      "Envelope_FormulaAnalysisResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/FormulaAnalysisResult"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[FormulaAnalysisResult]",
+        "type": "object"
+      },
+      "Envelope_FormulaComparisonResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/FormulaComparisonResult"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[FormulaComparisonResult]",
+        "type": "object"
+      },
+      "Envelope_PaginatedData_DocumentRecord__": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PaginatedData_DocumentRecord_"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[PaginatedData[DocumentRecord]]",
+        "type": "object"
+      },
+      "Envelope_PaginatedData_EntitySummary__": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PaginatedData_EntitySummary_"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[PaginatedData[EntitySummary]]",
+        "type": "object"
+      },
+      "Envelope_PaginatedData_SourceSummary__": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PaginatedData_SourceSummary_"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[PaginatedData[SourceSummary]]",
+        "type": "object"
+      },
+      "Envelope_PaginatedData_TextSearchResult__": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PaginatedData_TextSearchResult_"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[PaginatedData[TextSearchResult]]",
+        "type": "object"
+      },
+      "Envelope_PassageRecord_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/PassageRecord"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[PassageRecord]",
+        "type": "object"
+      },
+      "Envelope_RetrievalPackage_": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/RetrievalPackage"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[RetrievalPackage]",
+        "type": "object"
+      },
+      "Envelope_list_EntitySummary__": {
+        "additionalProperties": false,
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/EntitySummary"
+            },
+            "title": "Data",
+            "type": "array"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/KnowledgeMeta"
+          }
+        },
+        "required": [
+          "data",
+          "meta"
+        ],
+        "title": "Envelope[list[EntitySummary]]",
+        "type": "object"
+      },
+      "ExploreQueryRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "direction": {
+            "$ref": "#/components/schemas/Direction",
+            "default": "both"
+          },
+          "exactPropertyFilters": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "maxProperties": 10,
+            "title": "Exactpropertyfilters",
+            "type": "object"
+          },
+          "maximumDepth": {
+            "default": 1,
+            "maximum": 2.0,
+            "minimum": 1.0,
+            "title": "Maximumdepth",
+            "type": "integer"
+          },
+          "projectionFields": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "title": "Projectionfields",
+            "type": "array"
+          },
+          "relationshipTypes": {
+            "items": {
+              "$ref": "#/components/schemas/RelationshipType"
+            },
+            "maxItems": 20,
+            "minItems": 1,
+            "title": "Relationshiptypes",
+            "type": "array"
+          },
+          "resultLimit": {
+            "default": 25,
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Resultlimit",
+            "type": "integer"
+          },
+          "startEntityType": {
+            "$ref": "#/components/schemas/EntityType"
+          },
+          "textQuery": {
+            "anyOf": [
+              {
+                "maxLength": 300,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Textquery"
+          }
+        },
+        "required": [
+          "startEntityType",
+          "relationshipTypes"
+        ],
+        "title": "ExploreQueryRequest",
+        "type": "object"
+      },
+      "ExploreQueryResult": {
+        "additionalProperties": false,
+        "properties": {
+          "edges": {
+            "items": {
+              "$ref": "#/components/schemas/GraphEdge"
+            },
+            "title": "Edges",
+            "type": "array"
+          },
+          "nodes": {
+            "items": {
+              "$ref": "#/components/schemas/GraphNode"
+            },
+            "title": "Nodes",
+            "type": "array"
+          },
+          "rows": {
+            "items": {
+              "additionalProperties": {
+                "anyOf": [
+                  {
+                    "type": "string"
+                  },
+                  {
+                    "type": "integer"
+                  },
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "boolean"
+                  },
+                  {
+                    "items": {
+                      "type": "string"
+                    },
+                    "type": "array"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "type": "object"
+            },
+            "title": "Rows",
+            "type": "array"
+          }
+        },
+        "required": [
+          "rows",
+          "nodes",
+          "edges"
+        ],
+        "title": "ExploreQueryResult",
+        "type": "object"
+      },
+      "FeatureFlags": {
+        "additionalProperties": false,
+        "properties": {
+          "disabled": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Disabled",
+            "type": "array"
+          },
+          "enabled": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Enabled",
+            "type": "array"
+          }
+        },
+        "title": "FeatureFlags",
+        "type": "object"
+      },
+      "FormulaAnalysisRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "composition": {
+            "$ref": "#/components/schemas/FormulaCompositionInput-Input"
+          }
+        },
+        "required": [
+          "composition"
+        ],
+        "title": "FormulaAnalysisRequest",
+        "type": "object"
+      },
+      "FormulaAnalysisResult": {
+        "additionalProperties": false,
+        "properties": {
+          "algorithmVersion": {
+            "title": "Algorithmversion",
+            "type": "string"
+          },
+          "conflicts": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Conflicts",
+            "type": "array"
+          },
+          "dataVersion": {
+            "title": "Dataversion",
+            "type": "string"
+          },
+          "distributions": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/DistributionEntry"
+              },
+              "type": "array"
+            },
+            "title": "Distributions",
+            "type": "object"
+          },
+          "documentedActions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Documentedactions",
+            "type": "array"
+          },
+          "documentedPatterns": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Documentedpatterns",
+            "type": "array"
+          },
+          "exactDuplicateIngredientIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Exactduplicateingredientids",
+            "type": "array"
+          },
+          "explicitRoles": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Explicitroles",
+            "type": "object"
+          },
+          "missingData": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Missingdata",
+            "type": "object"
+          },
+          "normalizedIngredients": {
+            "items": {
+              "$ref": "#/components/schemas/NormalizedIngredient"
+            },
+            "title": "Normalizedingredients",
+            "type": "array"
+          },
+          "originalInput": {
+            "$ref": "#/components/schemas/FormulaCompositionInput-Output"
+          },
+          "pairSignals": {
+            "items": {
+              "$ref": "#/components/schemas/IngredientPairSignal"
+            },
+            "title": "Pairsignals",
+            "type": "array"
+          },
+          "preparationDistinctions": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Preparationdistinctions",
+            "type": "object"
+          },
+          "reviewStatusBreakdown": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Reviewstatusbreakdown",
+            "type": "object"
+          },
+          "sourceCoveragePercentage": {
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Sourcecoveragepercentage",
+            "type": "number"
+          },
+          "supportedUnitTotalsGrams": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Supportedunittotalsgrams"
+          },
+          "unsupportedOrUnresolvedUnits": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unsupportedorunresolvedunits",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "algorithmVersion",
+          "dataVersion",
+          "originalInput",
+          "normalizedIngredients",
+          "exactDuplicateIngredientIds",
+          "preparationDistinctions",
+          "supportedUnitTotalsGrams",
+          "unsupportedOrUnresolvedUnits",
+          "distributions",
+          "documentedActions",
+          "documentedPatterns",
+          "explicitRoles",
+          "pairSignals",
+          "conflicts",
+          "missingData",
+          "sourceCoveragePercentage",
+          "reviewStatusBreakdown",
+          "warnings"
+        ],
+        "title": "FormulaAnalysisResult",
+        "type": "object"
+      },
+      "FormulaComparisonRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "compositions": {
+            "items": {
+              "$ref": "#/components/schemas/FormulaCompositionInput-Input"
+            },
+            "maxItems": 4,
+            "minItems": 2,
+            "title": "Compositions",
+            "type": "array"
+          }
+        },
+        "required": [
+          "compositions"
+        ],
+        "title": "FormulaComparisonRequest",
+        "type": "object"
+      },
+      "FormulaComparisonResult": {
+        "additionalProperties": false,
+        "properties": {
+          "algorithmVersion": {
+            "title": "Algorithmversion",
+            "type": "string"
+          },
+          "analyses": {
+            "items": {
+              "$ref": "#/components/schemas/FormulaAnalysisResult"
+            },
+            "title": "Analyses",
+            "type": "array"
+          },
+          "combinedDistributions": {
+            "additionalProperties": {
+              "items": {
+                "$ref": "#/components/schemas/DistributionEntry"
+              },
+              "type": "array"
+            },
+            "title": "Combineddistributions",
+            "type": "object"
+          },
+          "completenessSummary": {
+            "additionalProperties": {
+              "type": "number"
+            },
+            "title": "Completenesssummary",
+            "type": "object"
+          },
+          "crossFormulaPairSignals": {
+            "items": {
+              "$ref": "#/components/schemas/IngredientPairSignal"
+            },
+            "title": "Crossformulapairsignals",
+            "type": "array"
+          },
+          "dataVersion": {
+            "title": "Dataversion",
+            "type": "string"
+          },
+          "distinctActions": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Distinctactions",
+            "type": "object"
+          },
+          "distinctPatterns": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Distinctpatterns",
+            "type": "object"
+          },
+          "pairwise": {
+            "items": {
+              "$ref": "#/components/schemas/PairwiseComparison"
+            },
+            "title": "Pairwise",
+            "type": "array"
+          },
+          "repeatedIngredientIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Repeatedingredientids",
+            "type": "array"
+          },
+          "sharedActions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sharedactions",
+            "type": "array"
+          },
+          "sharedPatterns": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sharedpatterns",
+            "type": "array"
+          },
+          "sourceConflicts": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sourceconflicts",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "algorithmVersion",
+          "dataVersion",
+          "analyses",
+          "pairwise",
+          "repeatedIngredientIds",
+          "combinedDistributions",
+          "sharedActions",
+          "distinctActions",
+          "sharedPatterns",
+          "distinctPatterns",
+          "crossFormulaPairSignals",
+          "sourceConflicts",
+          "warnings",
+          "completenessSummary"
+        ],
+        "title": "FormulaComparisonResult",
+        "type": "object"
+      },
+      "FormulaCompositionInput-Input": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "ingredients": {
+            "items": {
+              "$ref": "#/components/schemas/FormulaIngredientInput-Input"
+            },
+            "maxItems": 64,
+            "minItems": 1,
+            "title": "Ingredients",
+            "type": "array"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "sourceFormulaId": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourceformulaid"
+          }
+        },
+        "required": [
+          "name",
+          "ingredients"
+        ],
+        "title": "FormulaCompositionInput",
+        "type": "object"
+      },
+      "FormulaCompositionInput-Output": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "ingredients": {
+            "items": {
+              "$ref": "#/components/schemas/FormulaIngredientInput-Output"
+            },
+            "maxItems": 64,
+            "minItems": 1,
+            "title": "Ingredients",
+            "type": "array"
+          },
+          "name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "maxLength": 4000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "sourceFormulaId": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourceformulaid"
+          }
+        },
+        "required": [
+          "name",
+          "ingredients"
+        ],
+        "title": "FormulaCompositionInput",
+        "type": "object"
+      },
+      "FormulaIngredientInput-Input": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          },
+          "herbMaterialId": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Herbmaterialid",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "preparationId": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preparationid"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "sourceText": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcetext"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "maxLength": 32,
+                "minLength": 1,
+                "pattern": "^[\\w%./-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          }
+        },
+        "required": [
+          "herbMaterialId"
+        ],
+        "title": "FormulaIngredientInput",
+        "type": "object"
+      },
+      "FormulaIngredientInput-Output": {
+        "additionalProperties": false,
+        "properties": {
+          "amount": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Amount"
+          },
+          "herbMaterialId": {
+            "maxLength": 160,
+            "minLength": 1,
+            "title": "Herbmaterialid",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "preparationId": {
+            "anyOf": [
+              {
+                "maxLength": 160,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preparationid"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "maxLength": 120,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "sourceText": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcetext"
+          },
+          "unit": {
+            "anyOf": [
+              {
+                "maxLength": 32,
+                "minLength": 1,
+                "pattern": "^[\\w%./-]+$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit"
+          }
+        },
+        "required": [
+          "herbMaterialId"
+        ],
+        "title": "FormulaIngredientInput",
+        "type": "object"
+      },
+      "GraphEdge": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "properties": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Properties",
+            "type": "object"
+          },
+          "relationshipType": {
+            "$ref": "#/components/schemas/RelationshipType"
+          },
+          "sourceId": {
+            "title": "Sourceid",
+            "type": "string"
+          },
+          "targetId": {
+            "title": "Targetid",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "sourceId",
+          "targetId",
+          "relationshipType",
+          "properties"
+        ],
+        "title": "GraphEdge",
+        "type": "object"
+      },
+      "GraphNode": {
+        "additionalProperties": false,
+        "properties": {
+          "displayName": {
+            "title": "Displayname",
+            "type": "string"
+          },
+          "entityType": {
+            "$ref": "#/components/schemas/EntityType"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "properties": {
+            "additionalProperties": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "boolean"
+                },
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "title": "Properties",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "entityType",
+          "displayName",
+          "properties"
+        ],
+        "title": "GraphNode",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "IngredientPairSignal": {
+        "additionalProperties": false,
+        "properties": {
+          "claims": {
+            "items": {
+              "$ref": "#/components/schemas/ClaimRecord"
+            },
+            "title": "Claims",
+            "type": "array"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Context"
+          },
+          "directionality": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Directionality"
+          },
+          "leftHerbMaterialId": {
+            "title": "Leftherbmaterialid",
+            "type": "string"
+          },
+          "relationshipStatus": {
+            "enum": [
+              "documented",
+              "unknown"
+            ],
+            "title": "Relationshipstatus",
+            "type": "string"
+          },
+          "relationshipType": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Relationshiptype"
+          },
+          "rightHerbMaterialId": {
+            "title": "Rightherbmaterialid",
+            "type": "string"
+          },
+          "uncertainty": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uncertainty"
+          }
+        },
+        "required": [
+          "leftHerbMaterialId",
+          "rightHerbMaterialId",
+          "relationshipStatus"
+        ],
+        "title": "IngredientPairSignal",
+        "type": "object"
+      },
+      "KnowledgeMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "algorithmVersion": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Algorithmversion"
+          },
+          "dataStatus": {
+            "$ref": "#/components/schemas/DataStatus"
+          },
+          "generatedAt": {
+            "format": "date-time",
+            "title": "Generatedat",
+            "type": "string"
+          },
+          "requestId": {
+            "title": "Requestid",
+            "type": "string"
+          },
+          "schemaVersion": {
+            "title": "Schemaversion",
+            "type": "string"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/SourceSummary"
+            },
+            "title": "Sources",
+            "type": "array"
+          },
+          "warnings": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Warnings",
+            "type": "array"
+          }
+        },
+        "required": [
+          "requestId",
+          "dataStatus",
+          "schemaVersion"
+        ],
+        "title": "KnowledgeMeta",
+        "type": "object"
+      },
+      "LiveResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "service": {
+            "default": "current-alchemy-api",
+            "title": "Service",
+            "type": "string"
+          },
+          "status": {
+            "default": "live",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "title": "LiveResponse",
+        "type": "object"
+      },
+      "MetaResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "activeDataSourceCount": {
+            "title": "Activedatasourcecount",
+            "type": "integer"
+          },
+          "apiVersion": {
+            "title": "Apiversion",
+            "type": "string"
+          },
+          "applicationVersion": {
+            "title": "Applicationversion",
+            "type": "string"
+          },
+          "featureFlags": {
+            "$ref": "#/components/schemas/FeatureFlags"
+          },
+          "formulaAnalysisAlgorithmVersion": {
+            "title": "Formulaanalysisalgorithmversion",
+            "type": "string"
+          },
+          "graphSchemaVersion": {
+            "title": "Graphschemaversion",
+            "type": "string"
+          },
+          "safetyBoundarySummary": {
+            "title": "Safetyboundarysummary",
+            "type": "string"
+          },
+          "serviceName": {
+            "title": "Servicename",
+            "type": "string"
+          }
+        },
+        "required": [
+          "serviceName",
+          "apiVersion",
+          "applicationVersion",
+          "graphSchemaVersion",
+          "formulaAnalysisAlgorithmVersion",
+          "activeDataSourceCount",
+          "safetyBoundarySummary",
+          "featureFlags"
+        ],
+        "title": "MetaResponse",
+        "type": "object"
+      },
+      "NameRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "normalized": {
+            "title": "Normalized",
+            "type": "string"
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "script": {
+            "title": "Script",
+            "type": "string"
+          },
+          "sourceId": {
+            "title": "Sourceid",
+            "type": "string"
+          },
+          "text": {
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text",
+          "normalized",
+          "language",
+          "script",
+          "kind",
+          "sourceId",
+          "reviewStatus"
+        ],
+        "title": "NameRecord",
+        "type": "object"
+      },
+      "NormalizedIngredient": {
+        "additionalProperties": false,
+        "properties": {
+          "baseMaterialId": {
+            "title": "Basematerialid",
+            "type": "string"
+          },
+          "displayName": {
+            "title": "Displayname",
+            "type": "string"
+          },
+          "grams": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Grams"
+          },
+          "herbMaterialId": {
+            "title": "Herbmaterialid",
+            "type": "string"
+          },
+          "inputIndex": {
+            "title": "Inputindex",
+            "type": "integer"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          },
+          "originalAmount": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Originalamount"
+          },
+          "originalUnit": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Originalunit"
+          },
+          "preparationId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Preparationid"
+          },
+          "role": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Role"
+          },
+          "sourceText": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sourcetext"
+          }
+        },
+        "required": [
+          "inputIndex",
+          "herbMaterialId",
+          "displayName",
+          "baseMaterialId",
+          "preparationId",
+          "originalAmount",
+          "originalUnit",
+          "grams",
+          "role",
+          "sourceText",
+          "note"
+        ],
+        "title": "NormalizedIngredient",
+        "type": "object"
+      },
+      "PageMeta": {
+        "additionalProperties": false,
+        "properties": {
+          "hasMore": {
+            "title": "Hasmore",
+            "type": "boolean"
+          },
+          "limit": {
+            "minimum": 1.0,
+            "title": "Limit",
+            "type": "integer"
+          },
+          "offset": {
+            "minimum": 0.0,
+            "title": "Offset",
+            "type": "integer"
+          },
+          "total": {
+            "minimum": 0.0,
+            "title": "Total",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "offset",
+          "limit",
+          "total",
+          "hasMore"
+        ],
+        "title": "PageMeta",
+        "type": "object"
+      },
+      "PaginatedData_DocumentRecord_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/DocumentRecord"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        },
+        "required": [
+          "items",
+          "pagination"
+        ],
+        "title": "PaginatedData[DocumentRecord]",
+        "type": "object"
+      },
+      "PaginatedData_EntitySummary_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/EntitySummary"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        },
+        "required": [
+          "items",
+          "pagination"
+        ],
+        "title": "PaginatedData[EntitySummary]",
+        "type": "object"
+      },
+      "PaginatedData_SourceSummary_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/SourceSummary"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        },
+        "required": [
+          "items",
+          "pagination"
+        ],
+        "title": "PaginatedData[SourceSummary]",
+        "type": "object"
+      },
+      "PaginatedData_TextSearchResult_": {
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TextSearchResult"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "pagination": {
+            "$ref": "#/components/schemas/PageMeta"
+          }
+        },
+        "required": [
+          "items",
+          "pagination"
+        ],
+        "title": "PaginatedData[TextSearchResult]",
+        "type": "object"
+      },
+      "PairwiseComparison": {
+        "additionalProperties": false,
+        "properties": {
+          "jaccardSimilarity": {
+            "maximum": 1.0,
+            "minimum": 0.0,
+            "title": "Jaccardsimilarity",
+            "type": "number"
+          },
+          "leftKey": {
+            "title": "Leftkey",
+            "type": "string"
+          },
+          "leftUniqueIngredientIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Leftuniqueingredientids",
+            "type": "array"
+          },
+          "rightKey": {
+            "title": "Rightkey",
+            "type": "string"
+          },
+          "rightUniqueIngredientIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Rightuniqueingredientids",
+            "type": "array"
+          },
+          "sameMaterialDifferentPreparations": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "title": "Samematerialdifferentpreparations",
+            "type": "object"
+          },
+          "sharedIngredientIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Sharedingredientids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "leftKey",
+          "rightKey",
+          "jaccardSimilarity",
+          "sharedIngredientIds",
+          "leftUniqueIngredientIds",
+          "rightUniqueIngredientIds",
+          "sameMaterialDifferentPreparations"
+        ],
+        "title": "PairwiseComparison",
+        "type": "object"
+      },
+      "PassageRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "checksum": {
+            "title": "Checksum",
+            "type": "string"
+          },
+          "citation": {
+            "$ref": "#/components/schemas/Citation"
+          },
+          "documentId": {
+            "title": "Documentid",
+            "type": "string"
+          },
+          "documentTitle": {
+            "title": "Documenttitle",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "language": {
+            "title": "Language",
+            "type": "string"
+          },
+          "mentionedEntities": {
+            "items": {
+              "$ref": "#/components/schemas/EntitySummary"
+            },
+            "title": "Mentionedentities",
+            "type": "array"
+          },
+          "mentionedEntityIds": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Mentionedentityids",
+            "type": "array"
+          },
+          "normalizedText": {
+            "title": "Normalizedtext",
+            "type": "string"
+          },
+          "originalText": {
+            "title": "Originaltext",
+            "type": "string"
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "sourceLocator": {
+            "title": "Sourcelocator",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "documentId",
+          "documentTitle",
+          "originalText",
+          "normalizedText",
+          "language",
+          "sourceLocator",
+          "checksum",
+          "reviewStatus",
+          "citation"
+        ],
+        "title": "PassageRecord",
+        "type": "object"
+      },
+      "ReadyResponse": {
+        "additionalProperties": false,
+        "properties": {
+          "dependencies": {
+            "items": {
+              "$ref": "#/components/schemas/DependencyStatus"
+            },
+            "title": "Dependencies",
+            "type": "array"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "dependencies"
+        ],
+        "title": "ReadyResponse",
+        "type": "object"
+      },
+      "RelationshipType": {
+        "enum": [
+          "DERIVED_FROM",
+          "USES_PART",
+          "PREPARED_FROM",
+          "HAS_PREPARATION",
+          "HAS_NATURE",
+          "HAS_FLAVOR",
+          "ENTERS_CHANNEL",
+          "HAS_ACTION",
+          "ADDRESSES_PATTERN",
+          "ASSOCIATED_WITH_TERM",
+          "IN_CATEGORY",
+          "CONTAINS_COMPOUND",
+          "CONTAINS",
+          "VARIANT_OF",
+          "SUBJECT",
+          "OBJECT",
+          "SUPPORTED_BY",
+          "EXTRACTED_FROM",
+          "HAS_PASSAGE",
+          "MENTIONS",
+          "IMPORTED",
+          "CREATED_OR_UPDATED",
+          "INTERACTS_WITH"
+        ],
+        "title": "RelationshipType",
+        "type": "string"
+      },
+      "RetrievalContextRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "entityIds": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Entityids",
+            "type": "array"
+          },
+          "maximumCharacterBudget": {
+            "default": 12000,
+            "maximum": 50000.0,
+            "minimum": 500.0,
+            "title": "Maximumcharacterbudget",
+            "type": "integer"
+          },
+          "maximumPassages": {
+            "default": 10,
+            "maximum": 30.0,
+            "minimum": 1.0,
+            "title": "Maximumpassages",
+            "type": "integer"
+          },
+          "passageIds": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 30,
+            "title": "Passageids",
+            "type": "array"
+          },
+          "query": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Query"
+          },
+          "sourceIds": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Sourceids",
+            "type": "array"
+          }
+        },
+        "title": "RetrievalContextRequest",
+        "type": "object"
+      },
+      "RetrievalFact": {
+        "additionalProperties": false,
+        "properties": {
+          "citation": {
+            "$ref": "#/components/schemas/Citation"
+          },
+          "objectId": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Objectid"
+          },
+          "predicate": {
+            "title": "Predicate",
+            "type": "string"
+          },
+          "subjectId": {
+            "title": "Subjectid",
+            "type": "string"
+          },
+          "textualValue": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Textualvalue"
+          }
+        },
+        "required": [
+          "subjectId",
+          "predicate",
+          "citation"
+        ],
+        "title": "RetrievalFact",
+        "type": "object"
+      },
+      "RetrievalPackage": {
+        "additionalProperties": false,
+        "properties": {
+          "characterBudget": {
+            "minimum": 1.0,
+            "title": "Characterbudget",
+            "type": "integer"
+          },
+          "citations": {
+            "items": {
+              "$ref": "#/components/schemas/Citation"
+            },
+            "title": "Citations",
+            "type": "array"
+          },
+          "graphNeighborhoodFacts": {
+            "items": {
+              "$ref": "#/components/schemas/RetrievalFact"
+            },
+            "title": "Graphneighborhoodfacts",
+            "type": "array"
+          },
+          "matchedEntities": {
+            "items": {
+              "$ref": "#/components/schemas/EntitySummary"
+            },
+            "title": "Matchedentities",
+            "type": "array"
+          },
+          "passages": {
+            "items": {
+              "$ref": "#/components/schemas/PassageRecord"
+            },
+            "title": "Passages",
+            "type": "array"
+          },
+          "query": {
+            "title": "Query",
+            "type": "string"
+          },
+          "reviewStatuses": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Reviewstatuses",
+            "type": "object"
+          },
+          "sourceStatuses": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "title": "Sourcestatuses",
+            "type": "object"
+          },
+          "unresolvedAmbiguities": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolvedambiguities",
+            "type": "array"
+          },
+          "usedCharacters": {
+            "minimum": 0.0,
+            "title": "Usedcharacters",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "query",
+          "passages",
+          "citations",
+          "matchedEntities",
+          "graphNeighborhoodFacts",
+          "unresolvedAmbiguities",
+          "sourceStatuses",
+          "reviewStatuses",
+          "usedCharacters",
+          "characterBudget"
+        ],
+        "title": "RetrievalPackage",
+        "type": "object"
+      },
+      "ReviewStatus": {
+        "enum": [
+          "synthetic_fixture",
+          "machine_imported",
+          "human_reviewed",
+          "disputed",
+          "superseded"
+        ],
+        "title": "ReviewStatus",
+        "type": "string"
+      },
+      "RightsStatus": {
+        "enum": [
+          "approved",
+          "review_required",
+          "blocked"
+        ],
+        "title": "RightsStatus",
+        "type": "string"
+      },
+      "SourceSummary": {
+        "additionalProperties": false,
+        "properties": {
+          "citation": {
+            "title": "Citation",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "reviewStatus": {
+            "$ref": "#/components/schemas/ReviewStatus"
+          },
+          "rightsStatus": {
+            "$ref": "#/components/schemas/RightsStatus"
+          },
+          "title": {
+            "title": "Title",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "rightsStatus",
+          "reviewStatus",
+          "citation"
+        ],
+        "title": "SourceSummary",
+        "type": "object"
+      },
+      "TextSearchResult": {
+        "additionalProperties": false,
+        "properties": {
+          "matchedTerms": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Matchedterms",
+            "type": "array"
+          },
+          "passage": {
+            "$ref": "#/components/schemas/PassageRecord"
+          },
+          "score": {
+            "minimum": 0.0,
+            "title": "Score",
+            "type": "number"
+          }
+        },
+        "required": [
+          "passage",
+          "score"
+        ],
+        "title": "TextSearchResult",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "description": "Educational and research information only; not medical advice. Data may be incomplete, and absence of a known interaction does not establish safety.",
+    "summary": "Sourced graph research and deterministic formula analysis",
+    "title": "Current Alchemy API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/api/v1/documents": {
+      "get": {
+        "operationId": "list_documents_api_v1_documents_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_PaginatedData_DocumentRecord__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Documents",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/documents/{document_id}": {
+      "get": {
+        "operationId": "get_document_api_v1_documents__document_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "title": "Document Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_DocumentRecord_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Document",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/explore/query": {
+      "post": {
+        "operationId": "explore_api_v1_explore_query_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ExploreQueryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ExploreQueryResult_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Explore",
+        "tags": [
+          "exploration"
+        ]
+      }
+    },
+    "/api/v1/formulas": {
+      "get": {
+        "operationId": "list_formulas_api_v1_formulas_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Query"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          },
+          {
+            "in": "query",
+            "name": "ingredient",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Ingredient"
+            }
+          },
+          {
+            "in": "query",
+            "name": "action",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Action"
+            }
+          },
+          {
+            "in": "query",
+            "name": "pattern",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Pattern"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          },
+          {
+            "in": "query",
+            "name": "review_status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ReviewStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Review Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_PaginatedData_EntitySummary__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Formulas",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/formulas/analyze": {
+      "post": {
+        "operationId": "analyze_api_v1_formulas_analyze_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormulaAnalysisRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_FormulaAnalysisResult_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Analyze",
+        "tags": [
+          "formula analysis"
+        ]
+      }
+    },
+    "/api/v1/formulas/compare": {
+      "post": {
+        "operationId": "compare_api_v1_formulas_compare_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/FormulaComparisonRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_FormulaComparisonResult_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Compare",
+        "tags": [
+          "formula analysis"
+        ]
+      }
+    },
+    "/api/v1/formulas/{formula_id}": {
+      "get": {
+        "operationId": "get_formula_api_v1_formulas__formula_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "formula_id",
+            "required": true,
+            "schema": {
+              "title": "Formula Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_EntityDetail_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Formula",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/graph/entities/{entity_id}/neighborhood": {
+      "get": {
+        "operationId": "graph_neighborhood_api_v1_graph_entities__entity_id__neighborhood_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "entity_id",
+            "required": true,
+            "schema": {
+              "title": "Entity Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "depth",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "maximum": 2,
+              "minimum": 1,
+              "title": "Depth",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_ExploreQueryResult_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Graph Neighborhood",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/health/live": {
+      "get": {
+        "operationId": "live_api_v1_health_live_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LiveResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Live",
+        "tags": [
+          "service"
+        ]
+      }
+    },
+    "/api/v1/health/ready": {
+      "get": {
+        "operationId": "ready_api_v1_health_ready_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ReadyResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "503": {
+            "description": "Neo4j dependency is unavailable"
+          }
+        },
+        "summary": "Ready",
+        "tags": [
+          "service"
+        ]
+      }
+    },
+    "/api/v1/herbs": {
+      "get": {
+        "operationId": "list_herbs_api_v1_herbs_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Query"
+            }
+          },
+          {
+            "in": "query",
+            "name": "name_language",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Name Language"
+            }
+          },
+          {
+            "in": "query",
+            "name": "thermal_nature",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Thermal Nature"
+            }
+          },
+          {
+            "in": "query",
+            "name": "flavor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Flavor"
+            }
+          },
+          {
+            "in": "query",
+            "name": "channel",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Channel"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          },
+          {
+            "in": "query",
+            "name": "action",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Action"
+            }
+          },
+          {
+            "in": "query",
+            "name": "botanical_taxon",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Botanical Taxon"
+            }
+          },
+          {
+            "in": "query",
+            "name": "review_status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/ReviewStatus"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Review Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_PaginatedData_EntitySummary__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Herbs",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/herbs/{herb_id}": {
+      "get": {
+        "operationId": "get_herb_api_v1_herbs__herb_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "herb_id",
+            "required": true,
+            "schema": {
+              "title": "Herb Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_EntityDetail_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Herb",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/inquiry/synthesize": {
+      "post": {
+        "operationId": "disabled_synthesis_api_v1_inquiry_synthesize_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DisabledInquiryRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          },
+          "501": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Disabled Synthesis",
+        "tags": [
+          "retrieval"
+        ]
+      }
+    },
+    "/api/v1/meta": {
+      "get": {
+        "operationId": "meta_api_v1_meta_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetaResponse"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Meta",
+        "tags": [
+          "service"
+        ]
+      }
+    },
+    "/api/v1/passages/{passage_id}": {
+      "get": {
+        "operationId": "get_passage_api_v1_passages__passage_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "passage_id",
+            "required": true,
+            "schema": {
+              "title": "Passage Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_PassageRecord_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Passage",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/retrieval/context": {
+      "post": {
+        "operationId": "retrieval_context_api_v1_retrieval_context_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetrievalContextRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_RetrievalPackage_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Retrieval Context",
+        "tags": [
+          "retrieval"
+        ]
+      }
+    },
+    "/api/v1/search/suggest": {
+      "get": {
+        "operationId": "suggest_api_v1_search_suggest_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 1,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 10,
+              "maximum": 20,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_EntitySummary__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Suggest",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/sources": {
+      "get": {
+        "operationId": "list_sources_api_v1_sources_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_PaginatedData_SourceSummary__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Sources",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/sources/{source_id}": {
+      "get": {
+        "operationId": "get_source_api_v1_sources__source_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "source_id",
+            "required": true,
+            "schema": {
+              "title": "Source Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_EntityDetail_"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Source",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    },
+    "/api/v1/text/search": {
+      "get": {
+        "operationId": "text_search_api_v1_text_search_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 1000,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "source_id",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "items": {
+                    "type": "string"
+                  },
+                  "maxItems": 20,
+                  "type": "array"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Source Id"
+            }
+          },
+          {
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "title": "Offset",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_PaginatedData_TextSearchResult__"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Text Search",
+        "tags": [
+          "knowledge"
+        ]
+      }
+    }
+  }
+}

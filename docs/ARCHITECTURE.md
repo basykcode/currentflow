@@ -24,3 +24,32 @@ GanZhi calculation to `lunar-javascript`, then applies pure domain lookups and t
 view remains unaware of those calculation details.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.
+
+## Alchemy frontend boundary
+
+Alchemy is a vertically scoped feature under `src/features/alchemy`. Its frontend domain models do
+not depend on OpenAPI transport types. An `AlchemyProvider` is installed at application startup and
+injected into the shell and route views; ordinary components do not import an active singleton.
+
+The shell shares provider status and capabilities. Search results, material/formula detail, passages,
+and retrieval packages remain route-local async resources with stale-request cancellation. Pinia is
+reserved for the one-to-four formula workbench because drafts cross the formula-library/workbench
+route boundary and persist under a versioned device-local key.
+
+Demo mode binds to deterministic local fixtures and makes no network calls. API mode binds to a typed
+`HttpAlchemyProvider` generated from the backend-owned OpenAPI contract. Pure mappers under
+`src/features/alchemy/api` translate transport records into the richer frontend domain, preserving
+missing data, conflicts, citations, request IDs, cancellation, and timeouts. Invalid configuration
+and API failures remain visible and never silently substitute fixtures.
+
+## Alchemy service boundary
+
+Alchemy introduces a separate FastAPI service under `services/alchemy-api`; it does not convert the
+Vue application into a server-rendered app or move frontend code. Neo4j Community Edition is the
+service's only persistent store. The backend separates domain models and deterministic analysis,
+application ports/services, a centralized Neo4j repository, offline ingestion adapters, and API
+transport.
+
+The checked-in OpenAPI contract is the frontend integration seam. The browser never receives Neo4j
+credentials or arbitrary Cypher access, and external source or future local-model calls do not occur
+inside ordinary knowledge requests. See [`ALCHEMY_BACKEND.md`](ALCHEMY_BACKEND.md).

@@ -1,0 +1,86 @@
+name: Alchemy API
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'services/alchemy-api/**'
+      - 'contracts/alchemy-openapi.json'
+      - 'compose.yaml'
+      - '.github/workflows/alchemy-api.yml'
+  pull_request:
+    paths:
+      - 'services/alchemy-api/**'
+      - 'contracts/alchemy-openapi.json'
+      - 'compose.yaml'
+      - '.github/workflows/alchemy-api.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/alchemy-api
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.11.32'
+          enable-cache: true
+      - run: uv sync --frozen --all-groups
+      - run: uv run ruff format --check .
+      - run: uv run ruff check .
+      - run: uv run mypy src
+      - run: uv run pytest -m "not integration"
+      - run: uv run alchemy openapi export --check
+
+  neo4j-integration:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/alchemy-api
+    services:
+      neo4j:
+        image: neo4j:5.26.28-community
+        env:
+          NEO4J_AUTH: neo4j/integration-password
+        ports:
+          - 7687:7687
+        options: >-
+          --health-cmd "cypher-shell -u neo4j -p integration-password 'RETURN 1'"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 30
+    env:
+      ALCHEMY_ENV: test
+      ALCHEMY_ALLOWED_ORIGINS: '["http://localhost:5173"]'
+      NEO4J_URI: bolt://localhost:7687
+      NEO4J_USERNAME: neo4j
+      NEO4J_PASSWORD: integration-password
+      NEO4J_DATABASE: neo4j
+      PUBCHEM_USER_AGENT: CurrentAlchemy-CI/0.1
+      ALCHEMY_RUN_INTEGRATION: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          version: '0.11.32'
+          enable-cache: true
+      - run: uv sync --frozen --all-groups
+      - run: uv run pytest -m integration
+
+  container:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - uses: docker/build-push-action@v6
+        with:
+          context: services/alchemy-api
+          push: false
+          tags: current-alchemy-api:test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
