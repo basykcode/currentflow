@@ -4,11 +4,10 @@
 
 - UTC date: 2026-07-24
 - Branch represented: `master` (integrated state)
-- Commit inspected: `9b6cbe12d3282086c0989ffedca613bd1fca2760`
+- Commit inspected: `11c5ced9ea3199b96e36a6a356dee305563d9e79`
 - Working tree before live-calculation work: clean
 - Current working tree contains a separate uncommitted `services/alchemy-api` scaffold and related
   `.gitignore` edits that were not part of the live-calculation publication.
-- The dark-first water-palette change is also complete in the working tree and remains uncommitted.
 
 ## Project purpose
 
@@ -89,7 +88,7 @@ Astrology data seam. See [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 | Branch/worktree | Objective                          | Status                                                | Latest handoff                                                                                  |
 | --------------- | ---------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | `master`        | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`             | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md) |
-| `master`        | Adopt dark-first water palette     | Complete in working tree; uncommitted                 | [Water-theme handoff](handoffs/20260724T001523Z--master--adopt-dark-first-water-theme.md)       |
+| `master`        | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`             | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)     |
 | `master`        | Concurrent Alchemy API scaffold    | Uncommitted separate work; excluded from this publish | No handoff observed                                                                             |
 
 ## Known issues and risks
@@ -104,7 +103,6 @@ Astrology data seam. See [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 - Personal BaZi, changing-line divination, interpretive synthesis, and execution recommendations are
   inactive.
 - Cloudflare Pages deployment and the production domain are prepared but not confirmed as connected.
-- The water-theme change is not committed, pushed, or deployed.
 
 ## Open questions
 
@@ -123,8 +121,8 @@ Astrology data seam. See [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 3. Define the separate personal BaZi contract before any personal/global synthesis.
 4. Confirm the canonical domain and deployment state, then update metadata and deployment docs.
 
-Exact next useful action: review and commit the water-theme files with path-scoped staging, without
-disturbing the separate uncommitted Alchemy API scaffold.
+Exact next useful action: add a Li Chun boundary fixture without disturbing the separate uncommitted
+Alchemy API scaffold.
 
 ## Documentation map
 
