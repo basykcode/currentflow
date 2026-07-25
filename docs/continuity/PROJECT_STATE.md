@@ -4,8 +4,7 @@
 
 - UTC date: 2026-07-25
 - Branch represented: `master` (complete integration plus published alpha backend hosting)
-- Commit inspected: `9147625db3b277f94221f574d072e27497794243` plus the special-message work
-  described in the latest handoff
+- Commit inspected: `5fa474fee9d29b34b5889af15c174fa32356d7c0`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -165,6 +164,7 @@ is the only Alchemy state in Pinia.
 | `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`   | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
 | `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
 | `master`                   | Prepare no-admin alpha backend     | Render API and Aura are live; custom DNS and Pages connection remain   | [Live verification](handoffs/20260724T235843Z--master--verify-live-render-backend.md)                            |
+| `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
 
 ## Known issues and risks
 
@@ -194,6 +194,8 @@ is the only Alchemy state in Pinia.
   inactive.
 - Cloudflare Pages responds successfully at `https://current-flow.net` and
   `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
+- The VH page intentionally contains encrypted Lorem Ipsum and no music asset yet. Its music controls
+  remain visibly unavailable until the licensed track is supplied.
 
 ## Open questions
 
@@ -206,15 +208,17 @@ is the only Alchemy state in Pinia.
 
 ## Next priorities
 
-1. Confirm `api.current-flow.net` in Render custom domains, add the DNS-only Cloudflare `api` CNAME,
+1. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
+   supplies both.
+2. Confirm `api.current-flow.net` in Render custom domains, add the DNS-only Cloudflare `api` CNAME,
    verify Render TLS, and optionally enable the Cloudflare proxy.
-2. Set the three documented Cloudflare Pages production Vite variables, redeploy `master`, and run
+3. Set the three documented Cloudflare Pages production Vite variables, redeploy `master`, and run
    custom-domain plus connected-frontend smoke checks.
-3. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
+4. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-4. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+5. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
+6. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
 Exact next useful action: in Render confirm `api.current-flow.net` is a custom domain, then create a
 DNS-only Cloudflare CNAME named `api` targeting `current-flow-alchemy-api.onrender.com`.
