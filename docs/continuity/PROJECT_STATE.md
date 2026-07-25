@@ -3,14 +3,13 @@
 ## Last reconciled
 
 - UTC date: 2026-07-25
-- Branch represented: `master` (complete integration plus published alpha backend hosting)
-- Commit inspected: `5fa474fee9d29b34b5889af15c174fa32356d7c0`
+- Branch represented: `master` (complete Alchemy stack with connected production frontend)
+- Commit inspected: `3a44820118be79a8feb0ab51106a2fc3e011fadb`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
-- `master` merges the complete integration at `c8f8e04`, records prior publication through
-  `4280a16`, and publishes the alpha hosting configuration at `81c6d4e`. Provider provisioning
-  remains in progress.
+- `master` merges the complete integration at `c8f8e04`, publishes the alpha hosting configuration
+  at `81c6d4e`, and connects the production frontend to the live API at `3a44820`.
 
 ## Project purpose
 
@@ -41,7 +40,7 @@ The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI se
 `services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
 only persistent database; external-source access is limited to explicit administration commands;
 and `contracts/alchemy-openapi.json` is the frontend seam. Local Compose/CI use the pinned Community
-image. The prepared alpha topology keeps the frontend on Cloudflare Pages, remotely builds the API
+image. The live alpha topology keeps the frontend on Cloudflare Pages, remotely builds the API
 Docker image on Render, and connects it to managed AuraDB. See
 [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 
@@ -106,6 +105,8 @@ is the only Alchemy state in Pinia.
   back from unavailable API mode.
 - A generated, typed `HttpAlchemyProvider` maps every provider method, preserves request IDs and
   problems, combines cancellation with configured timeouts, and reports disconnected/degraded state.
+- Production Cloudflare Pages builds select the HTTP provider through checked-in public
+  configuration, use `https://api.current-flow.net`, and allow 90 seconds for a Render cold start.
 - The backend contract exposes source-backed summary properties, document titles, mentioned
   entities, empty-query text listing, and exact passage-ID retrieval so the browser never invents
   missing provenance.
@@ -163,7 +164,7 @@ is the only Alchemy state in Pinia.
 | `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                          | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
 | `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`   | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
 | `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
-| `master`                   | Prepare no-admin alpha backend     | Render API and Aura are live; custom DNS and Pages connection remain   | [Live verification](handoffs/20260724T235843Z--master--verify-live-render-backend.md)                            |
+| `master`                   | Connect production Alchemy stack   | API-mode Pages release is live at `3a44820`                            | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)          |
 | `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
 
 ## Known issues and risks
@@ -183,8 +184,9 @@ is the only Alchemy state in Pinia.
   dry-run mapping; PubChem is opt-in and cached; SymMap remains blocked pending rights review.
 - Alchemy auth, saved research workspaces, embeddings, and inference are inactive. The Render API is
   publicly live, Aura readiness succeeds, migrations and synthetic seed data are present, and all
-  publication checks pass. Custom-domain setup and the production frontend connection remain
-  incomplete.
+  publication checks pass. `api.current-flow.net` now resolves, serves a valid certificate, reports
+  dependency readiness, and permits the exact production browser origin. The live Cloudflare Pages
+  bundle selects API mode with the custom API hostname and no fixture fallback.
 - Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
   inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
   an alpha host, not a production SLA.
@@ -210,18 +212,16 @@ is the only Alchemy state in Pinia.
 
 1. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
    supplies both.
-2. Confirm `api.current-flow.net` in Render custom domains, add the DNS-only Cloudflare `api` CNAME,
-   verify Render TLS, and optionally enable the Cloudflare proxy.
-3. Set the three documented Cloudflare Pages production Vite variables, redeploy `master`, and run
-   custom-domain plus connected-frontend smoke checks.
-4. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
+2. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-5. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+3. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-6. Define authentication, privacy, retention, and private Neo4j deployment requirements.
+4. Import the first rights-approved, reviewed Alchemy source corpus, then retire the synthetic seed
+   only after its replacement data is verified.
+5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action: in Render confirm `api.current-flow.net` is a custom domain, then create a
-DNS-only Cloudflare CNAME named `api` targeting `current-flow-alchemy-api.onrender.com`.
+Exact next useful action: obtain domain review for the first rights-approved Alchemy source corpus
+before importing it into Aura and disabling the synthetic startup seed.
 
 ## Documentation map
 
