@@ -30,12 +30,12 @@ defineProps<{
 }
 
 .message-paper {
-  border: 1px solid rgb(255 255 255 / 22%);
+  border: 1px solid rgb(255 255 255 / 18%);
   border-radius: 1.4rem;
-  background: rgb(2 7 16 / 62%);
+  background: rgb(2 7 16 / 24%);
   padding: clamp(1.5rem, 5vw, 4.25rem);
-  box-shadow: 0 28px 90px rgb(0 0 0 / 45%);
-  backdrop-filter: blur(12px);
+  box-shadow: 0 28px 90px rgb(0 0 0 / 28%);
+  backdrop-filter: blur(3px);
 }
 
 .message-status {
