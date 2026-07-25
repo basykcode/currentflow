@@ -2,9 +2,10 @@
 
 ## Last reconciled
 
-- UTC date: 2026-07-24
+- UTC date: 2026-07-25
 - Branch represented: `master` (complete integration plus published alpha backend hosting)
-- Commit inspected: `761553dafaecaff911ebfa4ec4623b02077f23b2`
+- Commit inspected: `9147625db3b277f94221f574d072e27497794243` plus the special-message work
+  described in the latest handoff
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -54,7 +55,8 @@ is the only Alchemy state in Pinia.
 ## Current integrated capabilities
 
 - Responsive application shell with desktop and mobile navigation.
-- Routes for Astrology, Alchemy, Intelligence, Other Tools, Settings, and not-found handling.
+- Routes for Astrology, Alchemy, Intelligence, Settings, an encrypted VH special message, and
+  not-found handling; Other Tools is now a two-level navigation menu rather than a route.
 - Functional Astrology view with selected-timezone time, automatic refresh, five-element
   composition, reusable accessible hexagram glyphs, structural relationships, and visible
   provenance.
@@ -72,9 +74,12 @@ is the only Alchemy state in Pinia.
 - Interpretive synthesis and execution guidance are explicitly unavailable; no forecast is inferred.
 - Disabled, nonconnected shells for authentication, Intelligence, and future tools; Alchemy has
   explicit demo and connected API modes.
-- Sixty-two frontend unit tests cover Astrology calculations, Alchemy UI/state, every HTTP provider
-  operation, timeout/problem handling, and no-fallback behavior; Cloudflare Pages build preparation
-  and local metadata assets remain.
+- A responsive VH special-message experience uses the supplied four-frame fixed background, a
+  password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
+  music controls until the track is supplied.
+- Sixty-six frontend unit tests cover Astrology calculations, Alchemy UI/state, every HTTP provider
+  operation, timeout/problem handling, no-fallback behavior, special-message decryption, and
+  two-level tools navigation; Cloudflare Pages build preparation and local metadata assets remain.
 
 ## Current Alchemy capabilities
 
@@ -114,6 +119,9 @@ is the only Alchemy state in Pinia.
 - Domain calculations remain independent from Vue presentation.
 - Preferences are device-local; no geolocation, auth, AI, analytics, or remote database SDK is active
   in the integrated SPA.
+- Special-message plaintext and passwords remain absent from source and browser storage.
+  Browser-side encrypted messages resist casual source inspection but do not replace server-side
+  authorization for stronger confidentiality requirements.
 - Alchemy knowledge facts require provenance, demo status, conflict state, or explicit unavailability.
 - Raw Cypher, APOC, runtime source scraping, external inference, diagnosis, dose recommendations,
   compatibility/safety scores, and personal health data are outside the Alchemy service boundary.
@@ -142,6 +150,7 @@ is the only Alchemy state in Pinia.
 - [Use dedicated Alchemy branches and CMP publication gates](decisions/20260724T014000Z--use-dedicated-alchemy-branches-and-cmp-publication-gates.md)
 - [Align the Alchemy HTTP contract with the frontend domain](decisions/20260724T204127Z--align-alchemy-http-contract-with-the-frontend-domain.md)
 - [Host the alpha Alchemy API on Render and its graph on AuraDB](decisions/20260724T224853Z--host-alpha-alchemy-on-render-and-aura.md)
+- [Protect static special messages with browser-side encryption](decisions/20260725T215859Z--protect-static-special-messages-with-browser-side-encryption.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 

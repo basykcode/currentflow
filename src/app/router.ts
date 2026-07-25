@@ -23,8 +23,15 @@ export const router = createRouter({
     },
     {
       path: '/tools',
-      name: 'tools',
-      component: () => import('@/views/ToolsView.vue'),
+      redirect: '/',
+    },
+    {
+      path: '/special-messages/vh',
+      name: 'special-message-vh',
+      component: () => import('@/features/special-messages/views/SpecialMessageView.vue'),
+      meta: {
+        immersive: true,
+      },
     },
     {
       path: '/settings',

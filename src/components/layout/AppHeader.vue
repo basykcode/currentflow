@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import BrandMark from '@/components/common/BrandMark.vue'
 
 import AuthScaffold from './AuthScaffold.vue'
+import OtherToolsMenu from './OtherToolsMenu.vue'
 
 const route = useRoute()
 const menuOpen = ref(false)
@@ -32,7 +33,7 @@ watch(
           <RouterLink to="/intelligence">Intelligence</RouterLink>
         </div>
         <div class="nav-group nav-group-right">
-          <RouterLink to="/tools">Other Tools</RouterLink>
+          <OtherToolsMenu mode="desktop" />
           <RouterLink to="/settings">Settings</RouterLink>
           <AuthScaffold />
         </div>
@@ -54,7 +55,7 @@ watch(
       <RouterLink to="/">Astrology</RouterLink>
       <RouterLink to="/alchemy">Alchemy</RouterLink>
       <RouterLink to="/intelligence">Intelligence</RouterLink>
-      <RouterLink to="/tools">Other Tools</RouterLink>
+      <OtherToolsMenu mode="mobile" />
       <RouterLink to="/settings">Settings</RouterLink>
       <div class="mobile-auth"><AuthScaffold /></div>
     </nav>

@@ -26,6 +26,22 @@ the Astrology view remains unaware of either integration.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.
 
+## Special-message privacy boundary
+
+Special-message routes remain part of the static Vue deployment and make no runtime network calls.
+The navigation exposes only message initials; selecting a message opens an immersive route outside
+the ordinary application header.
+
+Message copy is stored as AES-256-GCM ciphertext rather than plaintext source. The browser derives
+the decryption key from the visitor-supplied password with PBKDF2-SHA-256 and decrypts only after a
+successful authenticated-cipher operation. The password, decrypted copy, and derived key are not
+persisted. Search crawlers are asked not to index the route, but `robots.txt` is not an access
+control.
+
+This boundary protects the copy from casual source inspection without introducing a server. It
+still permits offline password guessing by anyone who obtains the bundle, so sensitive content or a
+stronger threat model requires server-side authentication and authorization.
+
 ## Alchemy frontend boundary
 
 Alchemy is a vertically scoped feature under `src/features/alchemy`. Its frontend domain models do
