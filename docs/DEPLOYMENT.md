@@ -111,8 +111,7 @@ domain verification; proxying can be enabled afterward.
 
 ## Connect the Cloudflare Pages frontend
 
-In the Cloudflare Pages project's **Settings → Environment variables**, set these production build
-variables:
+The repository tracks these non-secret production build values in `.env.production`:
 
 ```dotenv
 VITE_ALCHEMY_DATA_MODE=api
@@ -120,9 +119,14 @@ VITE_ALCHEMY_API_BASE_URL=https://api.current-flow.net
 VITE_ALCHEMY_REQUEST_TIMEOUT_MS=90000
 ```
 
-Then trigger a new production deployment of `master`. Vite variables are public browser
-configuration, so only the API URL and timeout belong there. The 90-second timeout accommodates a
-free Render cold start; paid or always-on hosting can lower it later.
+Pushing `master` therefore gives Cloudflare Pages the connected API configuration without requiring
+dashboard variables. Vite values are public browser configuration, so only the data mode, public API
+URL, and timeout belong in this file. The 90-second timeout accommodates a free Render cold start;
+paid or always-on hosting can lower it later.
+
+Cloudflare Pages production environment variables may override these values when an operational
+change must be made without a source release. Never place Aura or Render credentials in either
+location.
 
 ## Production smoke check
 

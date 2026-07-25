@@ -130,8 +130,10 @@ clinical appropriateness. Every source claim retains citations or an explicit ab
 
 Cloudflare Pages builds `master` with `npm run build` and publishes `dist` at
 `https://current-flow.net`. The no-admin alpha backend plan keeps the frontend on Pages, builds the
-Alchemy API Docker image remotely on Render, and uses managed AuraDB for Neo4j. Account, secret, DNS,
-free-tier, and smoke-test steps are in `docs/DEPLOYMENT.md`.
+Alchemy API Docker image remotely on Render, and uses managed AuraDB for Neo4j. The checked-in
+`.env.production` selects the public API at `https://api.current-flow.net` for production builds;
+local development remains in deterministic demo mode unless explicitly configured otherwise.
+Account, secret, DNS, free-tier, and smoke-test steps are in `docs/DEPLOYMENT.md`.
 
 If no Git remote exists after the first commit:
 
