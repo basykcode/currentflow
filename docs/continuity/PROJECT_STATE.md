@@ -3,14 +3,16 @@
 ## Last reconciled
 
 - UTC date: 2026-07-26
-- Branch represented: `master` with the hexagram inspection/library release published
-- Commit inspected: `a095f0640bffb421e951dc1aa455143e9e5dee6c`
+- Branch represented: unmerged `feat/alchemy-knowledge-graph` worktree based on current `master`
+- Commit inspected: `e24f4403248e7c988b4f1e2e70faf7f8030e9399`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
 - `master` merges the complete integration at `c8f8e04`, publishes the alpha hosting configuration
   at `81c6d4e`, and connects the production frontend to the live API at `3a44820`.
 - `master` publishes the complete hexagram inspection and library workspace at `a095f06`.
+- `master` records that publication at `c839ad5`; the unmerged
+  `feat/alchemy-knowledge-graph` branch adds the release-aware data foundation at `e24f440`.
 
 ## Project purpose
 
@@ -127,6 +129,19 @@ is the only Alchemy state in Pinia.
   entities, empty-query text listing, and exact passage-ID retrieval so the browser never invents
   missing provenance.
 
+The unmerged `feat/alchemy-knowledge-graph` worktree additionally contains:
+
+- A 36-source machine-readable registry with explicit approved/conditional/pending/blocked rights,
+  release snapshots, row-level inheritance, and deny-by-default production filtering.
+- An immutable release lake, verified resumable downloader, DuckDB/Parquet staging, checkpoints,
+  graph exports, and reports.
+- Reified source records, mappings, claims, scientific observations, formula witnesses,
+  ingredient uses, and a separate prediction model.
+- Neo4j knowledge constraints/indexes, batched idempotent loading, 20 critical audits, provenance
+  queries, and approved-projection rebuilding.
+- A pinned Disease Ontology `v2026-06-30` adapter and real 250-term verification slice; downloaded
+  and generated data remain ignored.
+
 ## Important invariants and constraints
 
 - TypeScript remains strict; avoid undocumented `any`.
@@ -170,6 +185,7 @@ is the only Alchemy state in Pinia.
 - [Host the alpha Alchemy API on Render and its graph on AuraDB](decisions/20260724T224853Z--host-alpha-alchemy-on-render-and-aura.md)
 - [Protect static special messages with browser-side encryption](decisions/20260725T215859Z--protect-static-special-messages-with-browser-side-encryption.md)
 - [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
+- [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 
@@ -186,6 +202,7 @@ is the only Alchemy state in Pinia.
 | `master`                   | Connect production Alchemy stack   | API-mode Pages release is live at `3a44820`                            | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)          |
 | `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
 | `master`                   | Build hexagram inspection/library  | Feature `a095f06` is live on Cloudflare                                | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                |
+| `feat/alchemy-knowledge-graph` | Build release-aware Alchemy data foundation | Feature commit `e24f440`; verified and unmerged | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md) |
 
 ## Known issues and risks
 
@@ -200,8 +217,10 @@ is the only Alchemy state in Pinia.
   GitHub's `Alchemy API` workflow succeeded for publication commit `04f0a66`, including backend
   quality, a disposable real-Neo4j integration test, and the API image build; remote
   migration/readiness smoke remains outstanding.
-- No production Alchemy dataset has been imported. USDA Duke passed checksum validation and offline
-  dry-run mapping; PubChem is opt-in and cached; SymMap remains blocked pending rights review.
+- No new dataset has been imported into production AuraDB. The feature worktree verified and loaded
+  a 250-term Disease Ontology `v2026-06-30` slice into disposable local Neo4j; USDA Duke passed
+  checksum validation and offline dry-run mapping; PubChem is opt-in and cached; SymMap remains
+  blocked pending rights review.
 - Alchemy auth, saved research workspaces, embeddings, and inference are inactive. The Render API is
   publicly live, Aura readiness succeeds, migrations and synthetic seed data are present, and all
   publication checks pass. `api.current-flow.net` now resolves, serves a valid certificate, reports
@@ -239,12 +258,12 @@ is the only Alchemy state in Pinia.
    implementation and add before/after fixtures.
 5. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-6. Import the first rights-approved, reviewed Alchemy source corpus, then retire the synthetic seed
-   only after its replacement data is verified.
+6. Review and integrate the release-aware Alchemy foundation, then pin and import a manageable
+   LOTUS natural-products release before considering larger chemistry/bioactivity sources.
 7. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action: receive and inventory the prechunked hexagram commentary corpus before
-drafting any OLTR or detailed summary.
+Exact next useful action for Alchemy: review and commit the unmerged knowledge-foundation worktree,
+then create a pinned LOTUS release manifest and dry-run a deterministic occurrence subset.
 
 ## Documentation map
 
@@ -255,6 +274,11 @@ drafting any OLTR or detailed summary.
 - Alchemy backend operation: [`../ALCHEMY_BACKEND.md`](../ALCHEMY_BACKEND.md)
 - Alchemy API/frontend contract: [`../ALCHEMY_API.md`](../ALCHEMY_API.md)
 - Alchemy graph schema: [`../ALCHEMY_GRAPH_SCHEMA.md`](../ALCHEMY_GRAPH_SCHEMA.md)
+- Alchemy knowledge architecture: [`../ALCHEMY_GRAPH_ARCHITECTURE.md`](../ALCHEMY_GRAPH_ARCHITECTURE.md)
+- Alchemy source register: [`../ALCHEMY_SOURCE_REGISTER.md`](../ALCHEMY_SOURCE_REGISTER.md)
+- Alchemy release pipeline: [`../ALCHEMY_DATA_PIPELINE.md`](../ALCHEMY_DATA_PIPELINE.md)
+- Alchemy import runbook: [`../ALCHEMY_IMPORT_RUNBOOK.md`](../ALCHEMY_IMPORT_RUNBOOK.md)
+- Alchemy rights policy: [`../ALCHEMY_RIGHTS_AND_LICENSING.md`](../ALCHEMY_RIGHTS_AND_LICENSING.md)
 - Alchemy data governance: [`../ALCHEMY_DATA_GOVERNANCE.md`](../ALCHEMY_DATA_GOVERNANCE.md)
 - Alchemy safety boundary: [`../ALCHEMY_SAFETY.md`](../ALCHEMY_SAFETY.md)
 - Alchemy frontend operation: [`../ALCHEMY_FRONTEND.md`](../ALCHEMY_FRONTEND.md)
