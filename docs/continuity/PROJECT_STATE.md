@@ -3,13 +3,14 @@
 ## Last reconciled
 
 - UTC date: 2026-07-26
-- Branch represented: `master` with uncommitted hexagram inspection/library work
-- Commit inspected: `fb668fbd43782512ca202bb57e05b92beb8af143`
+- Branch represented: `master` with the hexagram inspection/library release published
+- Commit inspected: `a095f0640bffb421e951dc1aa455143e9e5dee6c`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
 - `master` merges the complete integration at `c8f8e04`, publishes the alpha hosting configuration
   at `81c6d4e`, and connects the production frontend to the live API at `3a44820`.
+- `master` publishes the complete hexagram inspection and library workspace at `a095f06`.
 
 ## Project purpose
 
@@ -184,7 +185,7 @@ is the only Alchemy state in Pinia.
 | `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
 | `master`                   | Connect production Alchemy stack   | API-mode Pages release is live at `3a44820`                            | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)          |
 | `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
-| `master`                   | Build hexagram inspection/library  | Complete and verified; uncommitted local work                          | [Development handoff](handoffs/20260726T194848Z--master--build-hexagram-inspection-library.md)                  |
+| `master`                   | Build hexagram inspection/library  | Feature `a095f06` is live on Cloudflare                                | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                |
 
 ## Known issues and risks
 
@@ -211,8 +212,8 @@ is the only Alchemy state in Pinia.
   an alpha host, not a production SLA.
 - Aura-generated database names are not necessarily `neo4j`. Render must receive the exact
   `NEO4J_DATABASE` value from Aura's downloaded credentials; it is distinct from the username.
-- Personal BaZi, changing-line divination, interpretive synthesis, and execution recommendations are
-  inactive.
+- Personal BaZi, changing-line interpretation/divination, interpretive synthesis, and execution
+  recommendations are inactive; structural user-selected line transformations are available.
 - Cloudflare Pages responds successfully at `https://current-flow.net` and
   `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
 - The VH page intentionally contains encrypted Lorem Ipsum and no music asset yet. Its music controls
@@ -229,18 +230,21 @@ is the only Alchemy state in Pinia.
 
 ## Next priorities
 
-1. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
+1. Inventory the prechunked hexagram commentary corpus by lens, source, rights, and figure, then
+   develop source-grounded OLTRs and summaries.
+2. Define and review the deterministic Absolute Shadow transformation before implementation.
+3. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
    supplies both.
-2. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
+4. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-3. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+5. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-4. Import the first rights-approved, reviewed Alchemy source corpus, then retire the synthetic seed
+6. Import the first rights-approved, reviewed Alchemy source corpus, then retire the synthetic seed
    only after its replacement data is verified.
-5. Define authentication, privacy, retention, and private Neo4j deployment requirements.
+7. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action: obtain domain review for the first rights-approved Alchemy source corpus
-before importing it into Aura and disabling the synthetic startup seed.
+Exact next useful action: receive and inventory the prechunked hexagram commentary corpus before
+drafting any OLTR or detailed summary.
 
 ## Documentation map
 
