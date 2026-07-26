@@ -1,0 +1,27 @@
+format-version: 1.2
+data-version: releases/demo/doid.obo
+date: 01:01:2026 00:00
+default-namespace: demo_disease_ontology
+remark: Every term in this file is visibly synthetic and has no clinical authority.
+ontology: demo-doid
+
+[Term]
+id: DEMO:0001
+name: synthetic parent condition
+def: "A fictional parent used only to test a provenance pipeline." []
+synonym: "demo parent" EXACT []
+xref: DEMO_XREF:PARENT
+
+[Term]
+id: DEMO:0002
+name: synthetic child condition
+def: "A fictional child used only to test source conflict and hierarchy handling." []
+synonym: "demo child" EXACT []
+xref: DEMO_XREF:CHILD
+is_a: DEMO:0001 ! synthetic parent condition
+
+[Term]
+id: DEMO:0003
+name: obsolete synthetic condition
+is_obsolete: true
+replaced_by: DEMO:0002

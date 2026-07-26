@@ -81,6 +81,213 @@ _FILTER_PROPERTIES: Final[dict[str, str]] = {
     "pattern": "pattern",
 }
 
+_AUDIT_QUERIES: Final[tuple[tuple[str, bool, str], ...]] = (
+    (
+        "canonical_nodes_without_stable_ids",
+        True,
+        """
+        MATCH (node)
+        WHERE NOT node:AlchemyMigration AND (node.id IS NULL OR node.id = '')
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "canonical_entities_without_provenance",
+        True,
+        """
+        MATCH (node:CanonicalEntity)
+        WHERE NOT (node)-[:SUPPORTED_BY]->(:SourceRecord)
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "claims_without_source_records",
+        True,
+        """
+        MATCH (node:Claim)
+        WHERE NOT (node)-[:SUPPORTED_BY]->(:SourceRecord)
+          AND NOT node.demo = true
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "observations_without_source_records",
+        True,
+        """
+        MATCH (node)
+        WHERE (node:CompoundOccurrence OR node:BioactivityObservation
+               OR node:ToxicityObservation OR node:ExposureObservation
+               OR node:ClinicalEvidenceRecord)
+          AND NOT (node)-[:SUPPORTED_BY]->(:SourceRecord)
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "source_records_without_release",
+        True,
+        """
+        MATCH (node:SourceRecord)
+        WHERE NOT (:SourceRelease)-[:CONTAINS_RECORD]->(node)
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "releases_without_license_decision",
+        True,
+        """
+        MATCH (node:SourceRelease)
+        WHERE NOT (node)-[:USES_LICENSE]->(:License)
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "production_records_with_incompatible_rights",
+        True,
+        """
+        MATCH (release:SourceRelease)-[:CONTAINS_RECORD]->(record:SourceRecord)
+        MATCH (release)-[:USES_LICENSE]->(license:License)
+        WHERE record.production_eligible = true
+          AND (license.commercial_use <> 'allowed'
+               OR license.redistribution <> 'allowed'
+               OR license.derivative_database <> 'allowed')
+        RETURN count(record) AS count
+        """,
+    ),
+    (
+        "duplicate_external_identifiers",
+        True,
+        """
+        MATCH (identifier:ExternalIdentifier)
+        WITH identifier.scheme AS scheme, identifier.value AS value, count(*) AS occurrences
+        WHERE occurrences > 1
+        RETURN count(*) AS count
+        """,
+    ),
+    (
+        "conflicting_accepted_mappings",
+        True,
+        """
+        MATCH (mapping:MappingAssertion {status: 'accepted'})
+              -[:MAPPING_SUBJECT]->(record:SourceRecord)
+        MATCH (mapping)-[:MAPPING_TARGET]->(target:CanonicalEntity)
+        WITH record, count(DISTINCT target) AS target_count
+        WHERE target_count > 1
+        RETURN count(*) AS count
+        """,
+    ),
+    (
+        "mapping_self_cycles",
+        True,
+        """
+        MATCH (mapping:MappingAssertion)-[:MAPPING_SUBJECT]->(subject)
+        MATCH (mapping)-[:MAPPING_TARGET]->(target)
+        WHERE subject.id = target.id
+        RETURN count(mapping) AS count
+        """,
+    ),
+    (
+        "orphan_ingredient_uses",
+        True,
+        """
+        MATCH (ingredient:IngredientUse)
+        WHERE NOT (:FormulaWitness)-[:HAS_INGREDIENT_USE]->(ingredient)
+           OR NOT (ingredient)-[:USES_MATERIAL|USES_PREPARED_MATERIAL]->()
+        RETURN count(ingredient) AS count
+        """,
+    ),
+    (
+        "formula_witnesses_without_source",
+        True,
+        """
+        MATCH (witness:FormulaWitness)
+        WHERE NOT (witness)-[:EXTRACTED_FROM]->(:Passage)
+          AND NOT (witness)-[:SUPPORTED_BY]->(:SourceRecord)
+        RETURN count(witness) AS count
+        """,
+    ),
+    (
+        "measurements_without_unit_context",
+        True,
+        """
+        MATCH (node)
+        WHERE (node:CompoundOccurrence OR node:BioactivityObservation
+               OR node:ToxicityObservation OR node:ExposureObservation)
+          AND node.value IS NOT NULL AND node.unit IS NULL
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "predictions_represented_as_observations",
+        True,
+        """
+        MATCH (node:Prediction)
+        WHERE node:CompoundOccurrence OR node:BioactivityObservation
+           OR node:ToxicityObservation OR node:ExposureObservation
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "unsourced_convenience_properties",
+        True,
+        """
+        MATCH (node:CanonicalEntity)
+        WHERE node.projection_version IS NOT NULL
+          AND NOT (node)-[:SUPPORTED_BY]->(:SourceRecord)
+        RETURN count(node) AS count
+        """,
+    ),
+    (
+        "failed_checksums",
+        True,
+        """
+        MATCH (release:SourceRelease)
+        WHERE release.checksum_verified <> true
+        RETURN count(release) AS count
+        """,
+    ),
+    (
+        "unexpected_source_schema_drift",
+        True,
+        """
+        MATCH (release:SourceRelease)
+        WHERE release.schema_drift = true
+        RETURN count(release) AS count
+        """,
+    ),
+    (
+        "unresolved_import_rejects",
+        True,
+        """
+        MATCH (release:SourceRelease)
+        WHERE coalesce(release.unresolved_rejects, 0) > 0
+        RETURN count(release) AS count
+        """,
+    ),
+    (
+        "source_count_drift_between_stages",
+        True,
+        """
+        MATCH (release:SourceRelease)
+        WHERE release.stage_count IS NOT NULL
+          AND release.stage_count <> coalesce(release.normalized_count, 0)
+                                   + coalesce(release.rejected_count, 0)
+        RETURN count(release) AS count
+        """,
+    ),
+    (
+        "non_idempotent_release_imports",
+        True,
+        """
+        MATCH (run:ImportRun)
+        WITH run.source_id AS source_id, run.release_id AS release_id,
+             run.adapter_version AS adapter_version, count(*) AS occurrences
+        WHERE source_id IS NOT NULL AND release_id IS NOT NULL
+          AND adapter_version IS NOT NULL AND occurrences > 1
+        RETURN count(*) AS count
+        """,
+    ),
+)
+
 
 def _escaped_fulltext(value: str) -> str:
     """Escape Lucene operators so user input remains plain text."""
@@ -851,9 +1058,9 @@ class Neo4jAlchemyRepository:
             ).consume()
         return {"deleted": int(count_record["deleted"]) if count_record else 0}
 
-    async def audit(self) -> dict[str, int | list[str]]:
+    async def audit(self) -> dict[str, object]:
         async with self._driver.session(database=self._database) as session:
-            record = await (
+            summary = await (
                 await session.run(
                     """
                     MATCH (node)
@@ -865,27 +1072,185 @@ class Neo4jAlchemyRepository:
                     """
                 )
             ).single()
-        if record is None:
-            return {"nodes": 0, "claims": 0, "sources": 0, "warnings": []}
-        missing = int(record["missing_review"])
+            issues: list[dict[str, object]] = []
+            for code, critical, cypher in _AUDIT_QUERIES:
+                record = await (await session.run(cypher)).single()
+                count = int(record["count"]) if record else 0
+                if count:
+                    issues.append({"code": code, "count": count, "critical": critical})
+        if summary is None:
+            return {
+                "nodes": 0,
+                "claims": 0,
+                "sources": 0,
+                "criticalFailures": 0,
+                "issues": [],
+                "warnings": [],
+            }
+        missing = int(summary["missing_review"])
+        critical_failures = sum(
+            int(cast(int | str, issue["count"])) for issue in issues if bool(issue["critical"])
+        )
         return {
-            "nodes": int(record["nodes"]),
-            "claims": int(record["claims"]),
-            "sources": int(record["sources"]),
+            "nodes": int(summary["nodes"]),
+            "claims": int(summary["claims"]),
+            "sources": int(summary["sources"]),
+            "criticalFailures": critical_failures,
+            "issues": issues,
             "warnings": ([f"{missing} nodes lack review status."] if missing else []),
         }
 
+    async def graph_counts(self) -> dict[str, object]:
+        async with self._driver.session(database=self._database) as session:
+            summary = await (
+                await session.run(
+                    """
+                    MATCH (node)
+                    WITH count(node) AS total_nodes
+                    OPTIONAL MATCH ()-[relationship]->()
+                    RETURN total_nodes, count(relationship) AS total_relationships
+                    """
+                )
+            ).single()
+            label_rows = await (
+                await session.run(
+                    """
+                    MATCH (node)
+                    UNWIND labels(node) AS label
+                    RETURN label, count(*) AS count
+                    ORDER BY label
+                    """
+                )
+            ).data()
+            relationship_rows = await (
+                await session.run(
+                    """
+                    MATCH ()-[relationship]->()
+                    RETURN type(relationship) AS type, count(*) AS count
+                    ORDER BY type
+                    """
+                )
+            ).data()
+        return {
+            "totalNodes": int(summary["total_nodes"]) if summary else 0,
+            "totalRelationships": (int(summary["total_relationships"]) if summary else 0),
+            "labels": {str(row["label"]): int(row["count"]) for row in label_rows},
+            "relationshipTypes": {str(row["type"]): int(row["count"]) for row in relationship_rows},
+        }
+
+    async def provenance(self, entity_id: str) -> dict[str, object]:
+        async with self._driver.session(database=self._database) as session:
+            result = await session.run(
+                """
+                MATCH (entity {id: $entity_id})
+                OPTIONAL MATCH (entity)-[:SUPPORTED_BY]->(direct:SourceRecord)
+                OPTIONAL MATCH (mapping:MappingAssertion)
+                              -[:MAPPING_TARGET]->(entity)
+                OPTIONAL MATCH (mapping)-[:MAPPING_SUBJECT]->(mapped:SourceRecord)
+                WITH entity, [record IN collect(DISTINCT direct) + collect(DISTINCT mapped)
+                              WHERE record IS NOT NULL] AS records
+                UNWIND CASE WHEN size(records) = 0 THEN [null] ELSE records END AS record
+                WITH DISTINCT entity, record
+                OPTIONAL MATCH (release:SourceRelease)-[:CONTAINS_RECORD]->(record)
+                OPTIONAL MATCH (source:Source)-[:HAS_RELEASE]->(release)
+                OPTIONAL MATCH (release)-[:USES_LICENSE]->(license:License)
+                OPTIONAL MATCH (run:ImportRun)-[:IMPORTED_RELEASE]->(release)
+                RETURN entity.id AS entity_id,
+                       record.id AS source_record_id,
+                       release.release_id AS release_id,
+                       source.id AS source_id,
+                       source.title AS source_title,
+                       license.name AS license,
+                       license.url AS license_url,
+                       run.id AS import_run_id
+                ORDER BY source_id, release_id, source_record_id
+                """,
+                entity_id=entity_id,
+            )
+            rows = await result.data()
+        found = bool(rows)
+        paths = [
+            {
+                "sourceRecordId": row["source_record_id"],
+                "releaseId": row["release_id"],
+                "sourceId": row["source_id"],
+                "sourceTitle": row["source_title"],
+                "license": row["license"],
+                "licenseUrl": row["license_url"],
+                "importRunId": row["import_run_id"],
+            }
+            for row in rows
+            if row["source_record_id"] is not None
+        ]
+        return {"entityId": entity_id, "found": found, "paths": paths}
+
+    async def rebuild_projections(self) -> dict[str, object]:
+        audit = await self.audit()
+        if int(cast(int | str, audit.get("criticalFailures", 0))):
+            raise RuntimeError("critical graph audit blocks projection rebuild")
+        async with self._driver.session(database=self._database) as session:
+            record_result = await (
+                await session.run(
+                    """
+                    MATCH (release:SourceRelease)-[:CONTAINS_RECORD]->(record:SourceRecord)
+                    MATCH (release)-[:USES_LICENSE]->(license:License)
+                    SET record.production_eligible =
+                        release.checksum_verified = true
+                        AND release.import_audit_passed = true
+                        AND license.commercial_use = 'allowed'
+                        AND license.redistribution = 'allowed'
+                        AND license.derivative_database = 'allowed'
+                        AND coalesce(record.row_production_eligible, true)
+                    RETURN count(record) AS count
+                    """
+                )
+            ).single()
+            entity_result = await (
+                await session.run(
+                    """
+                    MATCH (entity:CanonicalEntity)
+                    OPTIONAL MATCH (entity)-[:SUPPORTED_BY]->(record:SourceRecord)
+                    WITH entity, collect(coalesce(record.production_eligible, false)) AS eligibility
+                    SET entity.production_eligible = any(value IN eligibility WHERE value = true),
+                        entity.projection_version = 'accepted-claims-v1'
+                    RETURN count(entity) AS count
+                    """
+                )
+            ).single()
+            await (
+                await session.run(
+                    """
+                    MERGE (projection:GraphProjection {id: 'production-approved-v1'})
+                    SET projection.version = 'production-approved-v1',
+                        projection.built_at = datetime(),
+                        projection.review_status = 'machine_imported'
+                    """
+                )
+            ).consume()
+        return {
+            "projectionVersion": "production-approved-v1",
+            "sourceRecords": int(record_result["count"]) if record_result else 0,
+            "canonicalEntities": int(entity_result["count"]) if entity_result else 0,
+            "audit": audit,
+        }
+
     async def ingest_batch(self, batch: IngestionBatch, batch_size: int) -> dict[str, int]:
-        node_groups: dict[EntityType, list[NodeUpsert]] = {}
+        node_groups: dict[tuple[str, tuple[str, ...]], list[NodeUpsert]] = {}
         for node in batch.nodes:
-            node_groups.setdefault(node.entity_type, []).append(node)
-        relationship_groups: dict[RelationshipType, list[RelationshipUpsert]] = {}
+            key = (
+                node.entity_type.value,
+                tuple(sorted({label.value for label in node.additional_labels})),
+            )
+            node_groups.setdefault(key, []).append(node)
+        relationship_groups: dict[str, list[RelationshipUpsert]] = {}
         for relationship in batch.relationships:
-            relationship_groups.setdefault(relationship.relationship_type, []).append(relationship)
+            relationship_groups.setdefault(relationship.relationship_type.value, []).append(
+                relationship
+            )
 
         async with self._driver.session(database=self._database) as session:
-            for entity_type, nodes in node_groups.items():
-                label = entity_type.value
+            for (entity_type, additional_labels), nodes in node_groups.items():
+                labels = ":" + ":".join([entity_type, *additional_labels])
                 for start in range(0, len(nodes), batch_size):
                     values = [
                         {"id": node.id, "properties": node.properties}
@@ -895,14 +1260,14 @@ class Neo4jAlchemyRepository:
                         await session.run(
                             f"""
                             UNWIND $values AS value
-                            MERGE (node:{label} {{id: value.id}})
+                            MERGE (node{labels} {{id: value.id}})
                             SET node += value.properties, node.id = value.id
                             """,
                             values=values,
                         )
                     ).consume()
             for relationship_type, relationships in relationship_groups.items():
-                rel_type = relationship_type.value
+                rel_type = relationship_type
                 for start in range(0, len(relationships), batch_size):
                     values = [
                         {

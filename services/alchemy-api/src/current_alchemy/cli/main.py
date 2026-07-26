@@ -15,6 +15,13 @@ from pydantic import ValidationError
 from current_alchemy.app import create_app
 from current_alchemy.application.ports.repository import AlchemyRepository
 from current_alchemy.application.services.ingestion import IngestionService
+from current_alchemy.cli.data_platform import (
+    downloads_app,
+    graph_app,
+    ingest_release,
+    reports_app,
+    sources_app,
+)
 from current_alchemy.config import Settings, get_settings
 from current_alchemy.infrastructure.external.pubchem import PubChemClient
 from current_alchemy.infrastructure.memory_repository import MemoryAlchemyRepository
@@ -34,6 +41,11 @@ openapi_app = typer.Typer(help="OpenAPI contract commands")
 app.add_typer(db_app, name="db")
 app.add_typer(data_app, name="data")
 app.add_typer(openapi_app, name="openapi")
+app.add_typer(sources_app, name="sources")
+app.add_typer(downloads_app, name="downloads")
+app.add_typer(graph_app, name="graph")
+app.add_typer(reports_app, name="reports")
+app.command("ingest")(ingest_release)
 
 T = TypeVar("T")
 
@@ -179,7 +191,7 @@ def ingest(
 
 @data_app.command("audit")
 def audit() -> None:
-    async def run(repository: AlchemyRepository) -> dict[str, int | list[str]]:
+    async def run(repository: AlchemyRepository) -> dict[str, object]:
         return await repository.audit()
 
     typer.echo(json.dumps(asyncio.run(_with_repository(run)), indent=2, sort_keys=True))
@@ -191,6 +203,24 @@ def seed_demo() -> None:
         return await repository.seed_demo()
 
     typer.echo(json.dumps(asyncio.run(_with_repository(seed)), sort_keys=True))
+
+
+@data_app.command("clear-demo")
+def clear_demo(
+    confirm: bool = typer.Option(False, "--confirm"),
+) -> None:
+    settings = _runtime_settings()
+    if settings.alchemy_env == "production":
+        typer.echo("Demo deletion is forbidden in production.", err=True)
+        raise typer.Exit(2)
+    if not confirm:
+        typer.echo("Pass --confirm to delete demo records.", err=True)
+        raise typer.Exit(2)
+
+    async def clear(repository: AlchemyRepository) -> dict[str, int]:
+        return await repository.reset_demo()
+
+    typer.echo(json.dumps(asyncio.run(_with_repository(clear)), sort_keys=True))
 
 
 @data_app.command("pubchem-enrich")

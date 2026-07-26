@@ -1,0 +1,41 @@
+manifestVersion: "1"
+sourceId: source:disease-ontology
+releaseId: v2026-06-30
+sourceVersion: "2026-06-30"
+releaseDate: 2026-06-30
+retrievedAt: null
+officialSourceUrl: https://github.com/DiseaseOntology/HumanDiseaseOntology/tree/v2026-06-30
+officialDownloadUrl: https://raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/v2026-06-30/src/ontology/releases/doid.obo
+acquisitionMethod: http_download
+artifacts:
+  - filename: doid.obo
+    downloadUrl: https://raw.githubusercontent.com/DiseaseOntology/HumanDiseaseOntology/v2026-06-30/src/ontology/releases/doid.obo
+    expectedSize: 7162791
+    observedSize: null
+    sha256: 079fbbfc6d39f5d6c87b7ad1d2db2e058916584aefdcde0a42156860edae2bbc
+    etag: null
+    lastModified: null
+    archiveFormat: obo
+    expectedExtractedFiles: []
+adapterName: disease-ontology-obo
+adapterVersion: "1"
+schemaVersion: alchemy-graph-v2
+normalizationVersion: unicode-whitespace-v1
+mappingVersion: doid-exact-v1
+licenseSnapshot:
+  licenseName: CC0 1.0 Universal
+  licenseUrl: https://creativecommons.org/publicdomain/zero/1.0/
+  attributionRequirements:
+    - Cite the Disease Ontology project and the exact release used.
+  commercialUse: allowed
+  redistribution: allowed
+  derivativeDatabase: allowed
+  aiUse: allowed
+  reviewedAt: 2026-07-26
+  reviewNotes: The official project site and pinned release repository license state CC0 1.0.
+citationTemplate: Human Disease Ontology, release v2026-06-30, Disease Ontology project.
+originalReleaseNotes: https://github.com/DiseaseOntology/HumanDiseaseOntology/releases/tag/v2026-06-30
+importEligibility: production_approved
+checksumVerified: false
+importAuditPassed: false
+manualAcquisitionInstructions: []

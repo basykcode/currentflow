@@ -65,8 +65,10 @@ configuration is shown as unavailable, and API failures never fall back to demo 
 
 The first Alchemy backend foundation lives in `services/alchemy-api` and leaves the Vue frontend in
 place. It provides sourced Neo4j retrieval, safe graph exploration, document/passages search, and
-versioned deterministic formula analysis. It is research information, not medical advice; demo
-records are fictional and visibly use `demo:` IDs.
+versioned deterministic formula analysis. Its release-aware data foundation adds a machine-readable
+source/rights register, immutable manifests and checksums, DuckDB/Parquet staging, explicit mapping
+assertions, source-record provenance, graph audits, and production-eligible projections. It is
+research information, not medical advice; demo records are fictional and visibly use `demo:` IDs.
 
 Install Docker Desktop and `uv`, then:
 
@@ -81,6 +83,11 @@ npm run alchemy:seed
 The API is at `http://localhost:8000`, OpenAPI UI at
 `http://localhost:8000/api/v1/docs`, and local Neo4j Browser at `http://localhost:7474`.
 Operational and safety details are in [`docs/ALCHEMY_BACKEND.md`](docs/ALCHEMY_BACKEND.md).
+Data-import operations start in
+[`docs/ALCHEMY_IMPORT_RUNBOOK.md`](docs/ALCHEMY_IMPORT_RUNBOOK.md); the graph and rights boundaries
+are described in
+[`docs/ALCHEMY_GRAPH_ARCHITECTURE.md`](docs/ALCHEMY_GRAPH_ARCHITECTURE.md) and
+[`docs/ALCHEMY_RIGHTS_AND_LICENSING.md`](docs/ALCHEMY_RIGHTS_AND_LICENSING.md).
 
 ## Scripts
 

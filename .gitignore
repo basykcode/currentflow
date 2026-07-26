@@ -13,3 +13,4 @@ __pycache__/
 *.py[cod]
 services/alchemy-api/.cache/
 services/alchemy-api/data/raw/
+var/alchemy-data/

@@ -14,24 +14,28 @@ reported fact. Accepted, alternative, disputed, and superseded claims can coexis
 
 | Label                                            | Purpose                                                              |
 | ------------------------------------------------ | -------------------------------------------------------------------- |
-| `HerbMaterial`                                   | A traditional medicinal material                                     |
+| `MedicinalMaterial` / `HerbMaterial`             | A traditional medicinal material; legacy `HerbMaterial` remains API-compatible |
 | `BotanicalTaxon`                                 | Biological taxonomy; not automatically a medicinal material          |
 | `MedicinalPart`                                  | Root, rhizome, bark, seed, mineral, animal material, or similar part |
-| `Preparation`                                    | Processing method or prepared form                                   |
-| `Formula` / `FormulaVariant`                     | Named composition and explicitly sourced variant                     |
+| `Preparation` / `PreparedMaterial`               | Processing method and distinct material-preparation identity         |
+| `FormulaConcept`                                 | Canonical named formula identity, never an unsourced composition      |
+| `FormulaWitness` / `IngredientUse`               | Source-attested formula variant and its reified ingredients           |
 | `Compound`                                       | Chemical identity with external IDs                                  |
+| `DiseaseConcept` / `Condition`                   | Governed condition identity and source-resolved disease concept       |
 | `Action`, `Pattern`, `SymptomTerm`               | Source vocabulary; a symptom term is never a Current diagnosis       |
 | `Channel`, `Flavor`, `ThermalNature`, `Category` | Source-reported classifications                                      |
-| `Source`, `Claim`                                | Publication/dataset identity and its source-specific assertion       |
+| `Source`, `SourceRelease`, `SourceRecord`        | Dataset identity, immutable release, and preserved release record     |
+| `Claim`, observation types, `Prediction`         | Sourced assertions; predictions remain separate from measurements     |
+| `MappingAssertion`                               | Versioned and reviewable source-to-canonical identity decision         |
 | `Document`, `Passage`                            | Rights-approved text and citation-addressable chunk                  |
-| `ImportRun`                                      | One idempotent ingestion operation                                   |
+| `ImportRun`, version labels                      | One idempotent operation and its adapter/schema/mapping versions      |
 | `AlchemyMigration`                               | Applied graph-schema migration checksum                              |
 
 ## Relationship map
 
 ```mermaid
 graph TD
-  HM["HerbMaterial"] -->|DERIVED_FROM| BT["BotanicalTaxon"]
+  HM["MedicinalMaterial"] -->|DERIVED_FROM| BT["BotanicalTaxon"]
   HM -->|USES_PART| MP["MedicinalPart"]
   HM -->|PREPARED_FROM| HM
   HM -->|HAS_PREPARATION| PR["Preparation"]
@@ -39,16 +43,18 @@ graph TD
   HM -->|ENTERS_CHANNEL / HAS_ACTION| VOCAB["Channel / Action"]
   HM -->|ADDRESSES_PATTERN / ASSOCIATED_WITH_TERM| TERMS["Pattern / SymptomTerm"]
   HM -->|IN_CATEGORY / CONTAINS_COMPOUND| OTHER["Category / Compound"]
-  F["Formula"] -->|CONTAINS| HM
-  FV["FormulaVariant"] -->|VARIANT_OF| F
+  F["FormulaConcept"] -->|HAS_FORMULA_WITNESS| FW["FormulaWitness"]
+  FW -->|HAS_INGREDIENT_USE| IU["IngredientUse"]
+  IU -->|USES_MATERIAL| HM
   C["Claim"] -->|SUBJECT| HM
   C -->|OBJECT| OTHER
-  C -->|SUPPORTED_BY| S["Source"]
+  C -->|SUPPORTED_BY| SR["SourceRecord"]
   C -->|EXTRACTED_FROM| P["Passage"]
   D["Document"] -->|HAS_PASSAGE| P
   P -->|MENTIONS| HM
-  IR["ImportRun"] -->|IMPORTED| S
-  IR -->|CREATED_OR_UPDATED| C
+  REL["SourceRelease"] -->|CONTAINS_RECORD| SR
+  S["Source"] -->|HAS_RELEASE| REL
+  IR["ImportRun"] -->|IMPORTED_RELEASE| REL
 ```
 
 The implementation allowlists the complete relationship vocabulary in
@@ -58,18 +64,22 @@ preparation or dose dependence. Missing edges mean unknown, never compatible.
 
 ## Formula composition
 
-`Formula-[:CONTAINS]->HerbMaterial` can store amount, unit, preparation text, sequence, explicitly
-supplied traditional role, and source-record ID. A Jun/Chen/Zuo/Shi role is not inferred. A prepared
-material can have its own `HerbMaterial` ID plus a stable `base_material_id`; this lets analysis
-recognize the same base material across distinct preparations without collapsing the records.
-
-A `FormulaVariant` remains independently citable and points to its base formula with `VARIANT_OF`.
-It is not represented as an unsourced overwrite of the base composition.
+Composition is never stored as an authoritative direct edge from a formula concept. A
+`FormulaWitness` preserves one source's named formula or variant and points to reified
+`IngredientUse` nodes. Each ingredient use can retain amount, unit, preparation text, sequence,
+explicitly supplied traditional role, and source-record evidence. A Jun/Chen/Zuo/Shi role is not
+inferred. A `PreparedMaterial` has a distinct identity and can point to its base material without
+collapsing the preparation.
 
 ## Constraints and indexes
 
-Versioned idempotent migrations create uniqueness constraints for every stable-ID label; property
-indexes for source, claim, import, and review fields; and full-text indexes for herb names, formula
-names, and Document/Passage text. Migration nodes store file IDs and SHA-256 checksums so an applied
-migration cannot be silently rewritten. Static schema identifiers are migration-controlled; all
-data values are parameters. APOC is not required.
+Versioned idempotent migrations create stable-ID constraints, property indexes for provenance,
+identity, review, and measurement fields, and full-text indexes for material, formula, taxon,
+compound, disease, Document, and Passage text. Migration nodes store file IDs and SHA-256 checksums
+so an applied migration cannot be silently rewritten. Static schema identifiers are
+migration-controlled; all data values are parameters. APOC is not required. Vector indexes are
+reserved until a reproducible embedding contract is accepted.
+
+The full evidence-layer and release architecture is in
+[`ALCHEMY_GRAPH_ARCHITECTURE.md`](ALCHEMY_GRAPH_ARCHITECTURE.md), and field definitions are in
+[`ALCHEMY_DATA_DICTIONARY.md`](ALCHEMY_DATA_DICTIONARY.md).

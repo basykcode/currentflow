@@ -568,7 +568,7 @@ class MemoryAlchemyRepository:
         self._seeded = False
         return {"deleted": len(self.entities) + len(self.passages) + (1 if was_seeded else 0)}
 
-    async def audit(self) -> dict[str, int | list[str]]:
+    async def audit(self) -> dict[str, object]:
         counts = Counter(item.entity_type.value for item in self.entities.values())
         return {
             "sources": 1 if self._seeded else 0,
@@ -578,6 +578,42 @@ class MemoryAlchemyRepository:
                 ["Memory repository is synthetic and must not be used as authoritative data."]
             ),
             **dict(counts),
+        }
+
+    async def graph_counts(self) -> dict[str, object]:
+        counts = Counter(item.entity_type.value for item in self.entities.values())
+        return {
+            "totalNodes": len(self.entities) + (1 if self._seeded else 0),
+            "totalRelationships": 0,
+            "labels": dict(sorted(counts.items())),
+        }
+
+    async def provenance(self, entity_id: str) -> dict[str, object]:
+        entity = self.entities.get(entity_id)
+        return {
+            "entityId": entity_id,
+            "found": entity is not None,
+            "paths": (
+                [
+                    {
+                        "sourceId": self.source.id,
+                        "sourceTitle": self.source.title,
+                        "license": "Project test fixture",
+                        "importRunId": "demo:import-run:fixture-v1",
+                    }
+                ]
+                if entity is not None
+                else []
+            ),
+        }
+
+    async def rebuild_projections(self) -> dict[str, object]:
+        audit = await self.audit()
+        return {
+            "projectionVersion": "accepted-claims-v1",
+            "canonicalEntities": len(self.entities),
+            "audit": audit,
+            "synthetic": True,
         }
 
     async def ingest_batch(self, batch: IngestionBatch, batch_size: int) -> dict[str, int]:

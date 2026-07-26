@@ -28,6 +28,17 @@ Neo4j Browser at `http://localhost:7474`.
 ```bash
 uv run alchemy db verify
 uv run alchemy db migrate
+uv run alchemy sources validate
+uv run alchemy sources audit-rights
+uv run alchemy downloads plan source:disease-ontology --release v2026-06-30
+uv run alchemy downloads fetch source:disease-ontology --release v2026-06-30
+uv run alchemy downloads verify source:disease-ontology --release v2026-06-30
+uv run alchemy ingest source:disease-ontology --release v2026-06-30 \
+  --through graph --dry-run --mode subset --subset-limit 250
+uv run alchemy graph audit
+uv run alchemy graph counts
+uv run alchemy graph provenance disease:doid:0001816
+uv run alchemy graph rebuild-projections
 uv run alchemy db reset-demo --confirm-reset-demo
 uv run alchemy data validate-manifest data/manifests/synthetic-fixture.yaml --input-dir data/fixtures
 uv run alchemy data ingest data/manifests/synthetic-fixture.yaml --input-dir data/fixtures --dry-run
@@ -53,3 +64,20 @@ uv run alchemy data ingest data/manifests/usda-duke-2023.yaml \
 
 Remove `--dry-run` only after reviewing the field-mapping report in
 `docs/ALCHEMY_DATA_GOVERNANCE.md` at the repository root.
+
+## Release-aware knowledge foundation
+
+The source registry, immutable release manifests, local/object-store lake interface, DuckDB/Parquet
+staging, mapping assertions, evidence graph, rights policy, and graph audits are implemented for
+offline administration. Disease Ontology `v2026-06-30` is the first pinned real-source adapter.
+Downloaded source files and generated lake data remain ignored by Git.
+
+See the root documentation:
+
+- `docs/ALCHEMY_GRAPH_ARCHITECTURE.md`
+- `docs/ALCHEMY_SOURCE_REGISTER.md`
+- `docs/ALCHEMY_DATA_PIPELINE.md`
+- `docs/ALCHEMY_IDENTITY_RESOLUTION.md`
+- `docs/ALCHEMY_RIGHTS_AND_LICENSING.md`
+- `docs/ALCHEMY_IMPORT_RUNBOOK.md`
+- `docs/MANUAL_DATA_ACQUISITION.md`

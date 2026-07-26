@@ -1,0 +1,452 @@
+{
+  "nodes": [
+    {
+      "entityType": "Source",
+      "id": "demo:source:knowledge-foundation",
+      "properties": {
+        "display_name": "Synthetic knowledge-foundation source",
+        "title": "Synthetic knowledge-foundation source",
+        "rights_status": "approved",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "License",
+      "id": "demo:license:unrestricted",
+      "properties": {
+        "display_name": "Synthetic unrestricted license",
+        "name": "Synthetic unrestricted license",
+        "commercial_use": "allowed",
+        "redistribution": "allowed",
+        "derivative_database": "allowed",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "License",
+      "id": "demo:license:share-alike",
+      "properties": {
+        "display_name": "Synthetic share-alike license",
+        "name": "Synthetic share-alike license",
+        "commercial_use": "allowed",
+        "redistribution": "share_alike",
+        "derivative_database": "share_alike",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "SourceRelease",
+      "id": "demo:release:knowledge-foundation:v1",
+      "properties": {
+        "display_name": "Synthetic knowledge foundation v1",
+        "source_id": "demo:source:knowledge-foundation",
+        "release_id": "demo-v1",
+        "checksum_verified": true,
+        "import_audit_passed": true,
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "SourceRecord",
+      "id": "demo:record:formula:1",
+      "properties": {
+        "display_name": "Synthetic formula record",
+        "source_id": "demo:source:knowledge-foundation",
+        "release_id": "demo-v1",
+        "source_locator": "fixture:folio:1",
+        "original_text": "Fictional formula text.",
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "SourceRecord",
+      "id": "demo:record:assay:1",
+      "properties": {
+        "display_name": "Synthetic assay record",
+        "source_id": "demo:source:knowledge-foundation",
+        "release_id": "demo-v1",
+        "source_locator": "fixture:assay:1",
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "SourceRecord",
+      "id": "demo:record:mixed-rights:1",
+      "properties": {
+        "display_name": "Synthetic share-alike row",
+        "source_id": "demo:source:knowledge-foundation",
+        "release_id": "demo-v1",
+        "row_rights_status": "share_alike",
+        "row_production_eligible": false,
+        "production_eligible": false,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "MedicinalMaterial",
+      "additionalLabels": ["CanonicalEntity"],
+      "id": "demo:material:azure-root",
+      "properties": {
+        "display_name": "Fictional Azure Root",
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "PreparedMaterial",
+      "additionalLabels": ["CanonicalEntity"],
+      "id": "demo:prepared-material:toasted-azure-root",
+      "properties": {
+        "display_name": "Fictional Toasted Azure Root",
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "PreparationMethod",
+      "id": "demo:preparation:toasted",
+      "properties": {
+        "display_name": "Fictional toasting",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "FormulaConcept",
+      "additionalLabels": ["CanonicalEntity"],
+      "id": "demo:formula-concept:lantern",
+      "properties": {
+        "display_name": "Synthetic Lantern Formula",
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "FormulaWitness",
+      "id": "demo:formula-witness:lantern:folio-1",
+      "properties": {
+        "display_name": "Synthetic Lantern witness at folio 1",
+        "source_locator": "fixture:folio:1",
+        "variant_label": "fictional early witness",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "IngredientUse",
+      "id": "demo:ingredient-use:lantern:1",
+      "properties": {
+        "display_name": "Fictional Toasted Azure Root ingredient use",
+        "amount": "9",
+        "unit": "fictional-li",
+        "original_unit_text": "fictional li",
+        "sequence": 1,
+        "source_locator": "fixture:folio:1:line:1",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "MappingAssertion",
+      "id": "demo:mapping:ambiguous-common-name",
+      "properties": {
+        "display_name": "Synthetic ambiguous common-name proposal",
+        "relation": "possible_match",
+        "method": "fuzzy_candidate",
+        "status": "needs_review",
+        "score": 0.98,
+        "mapping_version": "demo-v1",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "MappingAssertion",
+      "id": "demo:mapping:rejected-common-name",
+      "properties": {
+        "display_name": "Synthetic rejected common-name proposal",
+        "relation": "possible_match",
+        "method": "normalized_name",
+        "status": "rejected",
+        "mapping_version": "demo-v1",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "Compound",
+      "additionalLabels": ["CanonicalEntity"],
+      "id": "demo:compound:moon-blue",
+      "properties": {
+        "display_name": "Fictional Moon-Blue Compound",
+        "production_eligible": true,
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "CompoundOccurrence",
+      "id": "demo:observation:occurrence:1",
+      "properties": {
+        "display_name": "Synthetic compound occurrence",
+        "value": "2.5",
+        "operator": "=",
+        "unit": "fictional-mg-per-g",
+        "matrix": "fictional extract",
+        "detection_status": "detected",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "BioactivityObservation",
+      "id": "demo:observation:bioactivity:1",
+      "properties": {
+        "display_name": "Synthetic bioactivity observation",
+        "value": "12.5",
+        "operator": "<",
+        "unit": "fictional-uM",
+        "activity_type": "fictional assay response",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "ToxicityObservation",
+      "id": "demo:observation:toxicity:1",
+      "properties": {
+        "display_name": "Synthetic toxicity observation",
+        "value": "40",
+        "operator": ">",
+        "unit": "fictional-mg-per-kg",
+        "endpoint": "fictional test endpoint",
+        "route": "fictional route",
+        "duration": "fictional duration",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "ExposureObservation",
+      "id": "demo:observation:exposure:1",
+      "properties": {
+        "display_name": "Synthetic exposure observation",
+        "value": "3",
+        "operator": "=",
+        "unit": "fictional-minute",
+        "route": "fictional route",
+        "population": "synthetic population",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    },
+    {
+      "entityType": "Prediction",
+      "id": "demo:prediction:compound-target:1",
+      "properties": {
+        "display_name": "Synthetic model prediction",
+        "model_name": "Fictional model",
+        "model_version": "demo-v1",
+        "score": 0.75,
+        "training_data_reference": "demo:training-data:1",
+        "review_status": "synthetic_fixture",
+        "demo": true
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "id": "demo:rel:source-release",
+      "sourceId": "demo:source:knowledge-foundation",
+      "targetId": "demo:release:knowledge-foundation:v1",
+      "relationshipType": "HAS_RELEASE"
+    },
+    {
+      "id": "demo:rel:release-license",
+      "sourceId": "demo:release:knowledge-foundation:v1",
+      "targetId": "demo:license:unrestricted",
+      "relationshipType": "USES_LICENSE"
+    },
+    {
+      "id": "demo:rel:release-formula-record",
+      "sourceId": "demo:release:knowledge-foundation:v1",
+      "targetId": "demo:record:formula:1",
+      "relationshipType": "CONTAINS_RECORD"
+    },
+    {
+      "id": "demo:rel:release-assay-record",
+      "sourceId": "demo:release:knowledge-foundation:v1",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "CONTAINS_RECORD"
+    },
+    {
+      "id": "demo:rel:release-mixed-record",
+      "sourceId": "demo:release:knowledge-foundation:v1",
+      "targetId": "demo:record:mixed-rights:1",
+      "relationshipType": "CONTAINS_RECORD"
+    },
+    {
+      "id": "demo:rel:material-record",
+      "sourceId": "demo:material:azure-root",
+      "targetId": "demo:record:formula:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:prepared-material-record",
+      "sourceId": "demo:prepared-material:toasted-azure-root",
+      "targetId": "demo:record:formula:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:formula-concept-record",
+      "sourceId": "demo:formula-concept:lantern",
+      "targetId": "demo:record:formula:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:compound-record",
+      "sourceId": "demo:compound:moon-blue",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:material-prepared-form",
+      "sourceId": "demo:material:azure-root",
+      "targetId": "demo:prepared-material:toasted-azure-root",
+      "relationshipType": "HAS_PREPARED_FORM"
+    },
+    {
+      "id": "demo:rel:prepared-process",
+      "sourceId": "demo:prepared-material:toasted-azure-root",
+      "targetId": "demo:preparation:toasted",
+      "relationshipType": "USES_PROCESS"
+    },
+    {
+      "id": "demo:rel:formula-witness",
+      "sourceId": "demo:formula-concept:lantern",
+      "targetId": "demo:formula-witness:lantern:folio-1",
+      "relationshipType": "HAS_WITNESS"
+    },
+    {
+      "id": "demo:rel:witness-record",
+      "sourceId": "demo:formula-witness:lantern:folio-1",
+      "targetId": "demo:record:formula:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:witness-ingredient",
+      "sourceId": "demo:formula-witness:lantern:folio-1",
+      "targetId": "demo:ingredient-use:lantern:1",
+      "relationshipType": "HAS_INGREDIENT_USE"
+    },
+    {
+      "id": "demo:rel:ingredient-prepared-material",
+      "sourceId": "demo:ingredient-use:lantern:1",
+      "targetId": "demo:prepared-material:toasted-azure-root",
+      "relationshipType": "USES_PREPARED_MATERIAL"
+    },
+    {
+      "id": "demo:rel:mapping-ambiguous-subject",
+      "sourceId": "demo:mapping:ambiguous-common-name",
+      "targetId": "demo:record:mixed-rights:1",
+      "relationshipType": "MAPPING_SUBJECT"
+    },
+    {
+      "id": "demo:rel:mapping-ambiguous-target",
+      "sourceId": "demo:mapping:ambiguous-common-name",
+      "targetId": "demo:material:azure-root",
+      "relationshipType": "MAPPING_TARGET"
+    },
+    {
+      "id": "demo:rel:mapping-rejected-subject",
+      "sourceId": "demo:mapping:rejected-common-name",
+      "targetId": "demo:record:mixed-rights:1",
+      "relationshipType": "MAPPING_SUBJECT"
+    },
+    {
+      "id": "demo:rel:mapping-rejected-target",
+      "sourceId": "demo:mapping:rejected-common-name",
+      "targetId": "demo:prepared-material:toasted-azure-root",
+      "relationshipType": "MAPPING_TARGET"
+    },
+    {
+      "id": "demo:rel:occurrence-subject",
+      "sourceId": "demo:observation:occurrence:1",
+      "targetId": "demo:compound:moon-blue",
+      "relationshipType": "SUBJECT"
+    },
+    {
+      "id": "demo:rel:occurrence-record",
+      "sourceId": "demo:observation:occurrence:1",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:bioactivity-subject",
+      "sourceId": "demo:observation:bioactivity:1",
+      "targetId": "demo:compound:moon-blue",
+      "relationshipType": "SUBJECT"
+    },
+    {
+      "id": "demo:rel:bioactivity-record",
+      "sourceId": "demo:observation:bioactivity:1",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:toxicity-subject",
+      "sourceId": "demo:observation:toxicity:1",
+      "targetId": "demo:compound:moon-blue",
+      "relationshipType": "SUBJECT"
+    },
+    {
+      "id": "demo:rel:toxicity-record",
+      "sourceId": "demo:observation:toxicity:1",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:exposure-subject",
+      "sourceId": "demo:observation:exposure:1",
+      "targetId": "demo:material:azure-root",
+      "relationshipType": "SUBJECT"
+    },
+    {
+      "id": "demo:rel:exposure-record",
+      "sourceId": "demo:observation:exposure:1",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "SUPPORTED_BY"
+    },
+    {
+      "id": "demo:rel:prediction-subject",
+      "sourceId": "demo:prediction:compound-target:1",
+      "targetId": "demo:compound:moon-blue",
+      "relationshipType": "SUBJECT"
+    },
+    {
+      "id": "demo:rel:prediction-record",
+      "sourceId": "demo:prediction:compound-target:1",
+      "targetId": "demo:record:assay:1",
+      "relationshipType": "SUPPORTED_BY"
+    }
+  ],
+  "rawRecordsPreserved": 3,
+  "unresolvedFields": [
+    "demo:mapping:ambiguous-common-name requires review",
+    "demo:record:mixed-rights:1 is excluded from the unrestricted projection",
+    "Synthetic fixture intentionally contains no real medical assertion"
+  ]
+}

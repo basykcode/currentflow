@@ -1,0 +1,717 @@
+sources:
+  - &source_defaults
+    sourceId: source:disease-ontology
+    title: Human Disease Ontology
+    acronym: DO
+    responsibleOrganization: Disease Ontology project, University of Maryland
+    description: Open ontology of human disease concepts and their relationships.
+    officialHomepage: https://disease-ontology.org/
+    officialDownloadPage: https://disease-ontology.org/downloads/
+    sourceType: ontology
+    languages: [en]
+    updateCadence: monthly
+    expectedScale: approximately 12,000 disease classes per release
+    canonicalIdentifiersSupplied: [DOID]
+    knownUpstreamSources: []
+    rights: &cc0_rights
+      licenseName: CC0 1.0 Universal
+      licenseUrl: https://creativecommons.org/publicdomain/zero/1.0/
+      attributionRequirements:
+        - Cite the Disease Ontology project and the release used.
+      commercialUse: allowed
+      redistribution: allowed
+      derivativeDatabase: allowed
+      aiUse: allowed
+    sourceDataStatus: authoritative_release_verified
+    productionStatus: approved
+    acquisitionMode: automatic
+    adapterName: disease-ontology-obo
+    adapterVersion: "1"
+    citationTemplate: Human Disease Ontology, release {release_id}, Disease Ontology project.
+    intendedUses: [disease identity, disease hierarchy, synonyms, external identifier crosswalks]
+    useLimitations:
+      - Ontology membership and hierarchy do not establish diagnosis or clinical advice.
+    safetyNotes:
+      - Research classification only; no patient or diagnostic workflow.
+    contactInformation: https://disease-ontology.org/about/contact/
+    lastLicenseReviewDate: 2026-07-26
+    licenseReviewNotes: The official project resources and pinned v2026-06-30 repository license both state CC0.
+    usefulFieldInventory: [id, name, definition, synonym, xref, is_a, obsolete, replaced_by]
+    desiredGraphMapping: [DiseaseConcept, SourceRecord, MappingAssertion, Claim, ExternalIdentifier]
+    permissionRequestChecklist: []
+
+  - <<: *source_defaults
+    sourceId: source:usda-duke
+    title: Dr. Duke's Phytochemical and Ethnobotanical Databases
+    acronym: USDA Duke
+    responsibleOrganization: U.S. Department of Agriculture, Agricultural Research Service
+    description: Phytochemical, plant, biological-activity, ethnobotanical, and reference data.
+    officialHomepage: https://phytochem.nal.usda.gov/
+    officialDownloadPage: https://agdatacommons.nal.usda.gov/articles/dataset/Dr_Duke_s_Phytochemical_and_Ethnobotanical_Databases/24660351
+    sourceType: natural_products_dataset
+    updateCadence: irregular
+    expectedScale: hundreds of thousands of tabular records
+    canonicalIdentifiersSupplied: [USDA Duke source IDs, CAS when supplied]
+    productionStatus: approved
+    adapterName: usda-duke
+    sourceDataStatus: release_verification_required
+    citationTemplate: U.S. Department of Agriculture, Agricultural Research Service, Dr. Duke's databases, release {release_id}.
+    intendedUses: [taxa, compounds, occurrence, biological activities, ethnobotanical uses, toxicity, references]
+    useLimitations:
+      - Do not create MedicinalMaterial identities automatically from plant records.
+      - Retain the source warning against self-diagnosis and self-medication.
+    usefulFieldInventory: [taxa, chemicals, activities, quantitative records, ethnobotany, references]
+    desiredGraphMapping: [Taxon, Compound, CompoundOccurrence, BioactivityObservation, ToxicityObservation]
+    licenseReviewNotes: CC0 is the task baseline; every selected release remains checksum and release-metadata gated.
+
+  - <<: *source_defaults
+    sourceId: source:lotus
+    title: LOTUS natural products occurrence database
+    acronym: LOTUS
+    responsibleOrganization: LOTUS initiative
+    description: Natural-product structures and organism occurrence with publication and upstream provenance.
+    officialHomepage: https://lotus.naturalproducts.net/
+    officialDownloadPage: https://github.com/lotusnprod/lotus-processor
+    sourceType: natural_products_dataset
+    updateCadence: periodic
+    expectedScale: hundreds of thousands of structures and occurrence links
+    canonicalIdentifiersSupplied: [InChIKey, SMILES, Wikidata identifiers]
+    sourceDataStatus: release_verification_required
+    productionStatus: approved
+    adapterName: lotus
+    citationTemplate: LOTUS natural products database, release {release_id}.
+    intendedUses: [compound identity, taxon occurrence, publications, upstream provenance]
+    useLimitations: [Do not infer clinical importance from occurrence.]
+    usefulFieldInventory: [structure, organism, reference, contributing database]
+    desiredGraphMapping: [Compound, Taxon, CompoundOccurrence, Publication, SourceRecord]
+    licenseReviewNotes: CC0 is the task baseline; the exact release and included upstream fields require verification.
+
+  - <<: *source_defaults
+    sourceId: source:coconut
+    title: Collection of Open Natural Products
+    acronym: COCONUT
+    responsibleOrganization: COCONUT project
+    description: Open natural-product structures, identifiers, properties, and classifications.
+    officialHomepage: https://coconut.naturalproducts.net/
+    officialDownloadPage: https://zenodo.org/communities/coconut
+    sourceType: natural_products_dataset
+    updateCadence: periodic
+    expectedScale: hundreds of thousands of compounds
+    canonicalIdentifiersSupplied: [InChIKey, SMILES, source compound IDs]
+    sourceDataStatus: release_verification_required
+    productionStatus: approved
+    adapterName: coconut
+    citationTemplate: COCONUT, release {release_id}.
+    intendedUses: [compound identity, structures, physicochemical properties, classification]
+    useLimitations: [COCONUT presence is not evidence of occurrence in a medicinal material.]
+    usefulFieldInventory: [structure, identifier, formula, physicochemical property, classification]
+    desiredGraphMapping: [Compound, ChemicalClass, ExternalIdentifier, SourceRecord]
+    licenseReviewNotes: Promote only a specifically verified CC0 release.
+
+  - <<: *source_defaults
+    sourceId: source:chebi
+    title: Chemical Entities of Biological Interest
+    acronym: ChEBI
+    responsibleOrganization: EMBL-EBI
+    description: Curated chemical ontology with identifiers, names, structures, and relationships.
+    officialHomepage: https://www.ebi.ac.uk/chebi/
+    officialDownloadPage: https://ftp.ebi.ac.uk/pub/databases/chebi/
+    sourceType: chemical_ontology
+    updateCadence: monthly
+    expectedScale: hundreds of thousands of chemical entries and ontology links
+    canonicalIdentifiersSupplied: [ChEBI ID, InChIKey, structure]
+    rights: &ccby_rights
+      licenseName: Creative Commons Attribution 4.0 International
+      licenseUrl: https://creativecommons.org/licenses/by/4.0/
+      attributionRequirements: [Retain source attribution and cite the selected release.]
+      commercialUse: allowed
+      redistribution: allowed
+      derivativeDatabase: allowed
+      aiUse: allowed
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    adapterName: chebi
+    citationTemplate: ChEBI, EMBL-EBI, release {release_id}.
+    intendedUses: [compound identity, synonyms, formula, charge, structure, chemical classes]
+    usefulFieldInventory: [identifier, name, synonym, formula, charge, InChI, ontology relationship]
+    desiredGraphMapping: [Compound, ChemicalClass, ExternalIdentifier, MappingAssertion]
+    licenseReviewNotes: CC BY 4.0 is the task baseline; attribution must be carried into exports.
+
+  - <<: *source_defaults
+    sourceId: source:catalogue-of-life
+    title: Catalogue of Life
+    acronym: COL
+    responsibleOrganization: Catalogue of Life
+    description: Taxonomic names, accepted taxa, synonyms, classifications, and source provenance.
+    officialHomepage: https://www.catalogueoflife.org/
+    officialDownloadPage: https://www.catalogueoflife.org/data/download
+    sourceType: taxonomy
+    updateCadence: monthly and annual
+    expectedScale: millions of taxa and names
+    canonicalIdentifiersSupplied: [Catalogue of Life taxon ID]
+    rights: *ccby_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    acquisitionMode: manual
+    adapterName: catalogue-of-life
+    citationTemplate: Catalogue of Life Base Release {release_id}.
+    intendedUses: [accepted taxa, synonyms, ranks, classifications, vernacular names]
+    useLimitations: [Prefer the conservative Base Release and preserve component provenance.]
+    usefulFieldInventory: [taxon ID, accepted name, synonym, rank, parent, source dataset]
+    desiredGraphMapping: [Taxon, CanonicalName, Alias, MappingAssertion, SourceRecord]
+    licenseReviewNotes: CC BY 4.0 is the baseline; component-level exceptions and interactive export are manual gates.
+
+  - <<: *source_defaults
+    sourceId: source:epa-comptox
+    title: EPA CompTox and ToxCast downloadable data
+    acronym: CompTox
+    responsibleOrganization: U.S. Environmental Protection Agency
+    description: Government chemical, assay, exposure, bioactivity, and toxicity datasets.
+    officialHomepage: https://comptox.epa.gov/dashboard/
+    officialDownloadPage: https://comptox.epa.gov/dashboard/downloads
+    sourceType: toxicology_dataset
+    updateCadence: periodic
+    expectedScale: large chemical and assay tables
+    canonicalIdentifiersSupplied: [DTXSID, CAS, chemical structures]
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    acquisitionMode: manual
+    adapterName: epa-comptox
+    citationTemplate: U.S. EPA CompTox/ToxCast release {release_id}.
+    intendedUses: [compounds, assays, toxicity, exposure, bioactivity, endpoints]
+    usefulFieldInventory: [chemical, assay, endpoint, result, unit, method]
+    desiredGraphMapping: [Compound, BioactivityObservation, ToxicityObservation, ExposureObservation]
+    licenseReviewNotes: U.S. government/open-data baseline; verify each download's release notice and upstream fields.
+
+  - <<: *source_defaults
+    sourceId: source:mondo
+    title: Mondo Disease Ontology
+    acronym: MONDO
+    responsibleOrganization: Monarch Initiative
+    description: Harmonized disease ontology and cross-resource mappings.
+    officialHomepage: https://mondo.monarchinitiative.org/
+    officialDownloadPage: https://github.com/monarch-initiative/mondo/releases
+    sourceType: ontology
+    canonicalIdentifiersSupplied: [MONDO ID]
+    rights: *ccby_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    adapterName: mondo
+    citationTemplate: Mondo Disease Ontology release {release_id}.
+    intendedUses: [disease identity, mappings, hierarchy]
+    usefulFieldInventory: [id, label, definition, synonym, xref, relationship]
+    desiredGraphMapping: [DiseaseConcept, MappingAssertion, Claim]
+    licenseReviewNotes: CC BY 4.0 baseline; release attribution remains required.
+
+  - <<: *source_defaults
+    sourceId: source:evidence-conclusion-ontology
+    title: Evidence and Conclusion Ontology
+    acronym: ECO
+    responsibleOrganization: Evidence and Conclusion Ontology project
+    description: Controlled vocabulary for evidence types and assertion methods.
+    officialHomepage: https://www.evidenceontology.org/
+    officialDownloadPage: https://github.com/evidenceontology/evidenceontology/releases
+    sourceType: ontology
+    canonicalIdentifiersSupplied: [ECO ID]
+    rights: *cc0_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved
+    adapterName: eco
+    citationTemplate: Evidence and Conclusion Ontology release {release_id}.
+    intendedUses: [evidence types, assertion methods]
+    usefulFieldInventory: [id, label, definition, synonym, parent]
+    desiredGraphMapping: [EvidenceType, AssertionMethod, MappingAssertion]
+    licenseReviewNotes: CC0 baseline; promote only after exact release verification.
+
+  - <<: *source_defaults
+    sourceId: source:uniprot
+    title: UniProt
+    acronym: UniProt
+    responsibleOrganization: UniProt Consortium
+    description: Protein sequences, identifiers, functions, and annotations.
+    officialHomepage: https://www.uniprot.org/
+    officialDownloadPage: https://www.uniprot.org/help/downloads
+    sourceType: protein_database
+    expectedScale: global protein universe; subset imports only
+    canonicalIdentifiersSupplied: [UniProt accession]
+    rights: &unclear_rights
+      licenseName: Release-specific terms require review
+      licenseUrl: null
+      attributionRequirements: [Record and satisfy the authoritative release terms before use.]
+      commercialUse: unclear
+      redistribution: unclear
+      derivativeDatabase: unclear
+      aiUse: unclear
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    adapterName: uniprot
+    citationTemplate: UniProt release {release_id}.
+    intendedUses: [protein identity, genes, function annotations]
+    usefulFieldInventory: [accession, sequence, gene, organism, annotation, cross-reference]
+    desiredGraphMapping: [Protein, Gene, Taxon, Claim, ExternalIdentifier]
+    licenseReviewNotes: Attribution terms must be verified before a release enters production.
+
+  - <<: *source_defaults
+    sourceId: source:gene-ontology
+    title: Gene Ontology
+    acronym: GO
+    responsibleOrganization: Gene Ontology Consortium
+    description: Ontology and annotations for molecular functions, biological processes, and cellular components.
+    officialHomepage: https://geneontology.org/
+    officialDownloadPage: https://geneontology.org/docs/download-ontology/
+    sourceType: ontology
+    canonicalIdentifiersSupplied: [GO ID]
+    rights: *ccby_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    adapterName: gene-ontology
+    citationTemplate: Gene Ontology release {release_id}.
+    intendedUses: [biological process, molecular function, cellular component]
+    usefulFieldInventory: [id, label, definition, synonym, relationship]
+    desiredGraphMapping: [CanonicalEntity, Pathway, Claim, ExternalIdentifier]
+    licenseReviewNotes: Verify current consortium attribution terms for the selected release.
+
+  - <<: *source_defaults
+    sourceId: source:reactome
+    title: Reactome
+    acronym: Reactome
+    responsibleOrganization: Reactome project
+    description: Curated pathways, reactions, participants, and supporting publications.
+    officialHomepage: https://reactome.org/
+    officialDownloadPage: https://reactome.org/download-data
+    sourceType: pathway_database
+    canonicalIdentifiersSupplied: [Reactome stable ID]
+    rights: *ccby_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    adapterName: reactome
+    citationTemplate: Reactome release {release_id}.
+    intendedUses: [pathways, reactions, proteins, publications]
+    usefulFieldInventory: [pathway, reaction, participant, species, evidence]
+    desiredGraphMapping: [Pathway, Reaction, Protein, ProteinComplex, Publication]
+    licenseReviewNotes: Verify the current release license and attribution instructions.
+
+  - <<: *source_defaults
+    sourceId: source:openalex
+    title: OpenAlex
+    acronym: OpenAlex
+    responsibleOrganization: OurResearch
+    description: Open scholarly metadata and citation graph.
+    officialHomepage: https://openalex.org/
+    officialDownloadPage: https://docs.openalex.org/download-all-data/openalex-snapshot
+    sourceType: literature_metadata
+    expectedScale: global scholarly graph; subset imports only
+    canonicalIdentifiersSupplied: [OpenAlex Work ID, DOI]
+    rights: *cc0_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved
+    adapterName: openalex
+    citationTemplate: OpenAlex metadata snapshot {release_id}.
+    intendedUses: [publication metadata, citation links, author and venue metadata]
+    useLimitations: [Do not load the complete global snapshot into Neo4j.]
+    usefulFieldInventory: [work ID, DOI, title, date, authors, concepts, citations]
+    desiredGraphMapping: [Publication, ExternalIdentifier, Claim]
+    licenseReviewNotes: CC0 metadata baseline; subset workflow only.
+
+  - <<: *source_defaults
+    sourceId: source:crossref
+    title: Crossref metadata
+    acronym: Crossref
+    responsibleOrganization: Crossref
+    description: DOI registration metadata and relationships.
+    officialHomepage: https://www.crossref.org/
+    officialDownloadPage: https://www.crossref.org/documentation/retrieve-metadata/
+    sourceType: literature_metadata
+    expectedScale: global DOI metadata; subset imports only
+    canonicalIdentifiersSupplied: [DOI]
+    rights: *unclear_rights
+    sourceDataStatus: metadata_only
+    productionStatus: permission_pending
+    acquisitionMode: api_snapshot
+    adapterName: crossref
+    citationTemplate: Crossref metadata retrieved {release_id}.
+    intendedUses: [DOI metadata, publication identity]
+    usefulFieldInventory: [DOI, title, author, date, venue, relation]
+    desiredGraphMapping: [Publication, ExternalIdentifier, SourceRecord]
+    licenseReviewNotes: Metadata-focused baseline; current terms must be reviewed before production.
+
+  - <<: *source_defaults
+    sourceId: source:pubmed
+    title: PubMed baseline and update metadata
+    acronym: PubMed
+    responsibleOrganization: U.S. National Library of Medicine
+    description: Biomedical citation and abstract metadata.
+    officialHomepage: https://pubmed.ncbi.nlm.nih.gov/
+    officialDownloadPage: https://ftp.ncbi.nlm.nih.gov/pubmed/
+    sourceType: literature_metadata
+    expectedScale: global biomedical metadata; subset imports only
+    canonicalIdentifiersSupplied: [PMID, DOI]
+    rights: *unclear_rights
+    sourceDataStatus: metadata_only
+    productionStatus: permission_pending
+    acquisitionMode: metadata_only
+    adapterName: pubmed
+    citationTemplate: PubMed metadata release {release_id}.
+    intendedUses: [publication identity, citation metadata, abstracts where permitted]
+    usefulFieldInventory: [PMID, DOI, title, abstract, author, journal, publication type]
+    desiredGraphMapping: [Publication, ExternalIdentifier, SourceRecord]
+    licenseReviewNotes: NLM terms and record-specific restrictions require release verification.
+
+  - <<: *source_defaults
+    sourceId: source:pmc-open-access
+    title: PubMed Central Open Access subset
+    acronym: PMC OA
+    responsibleOrganization: U.S. National Library of Medicine
+    description: Article packages whose reuse rights are declared per article.
+    officialHomepage: https://pmc.ncbi.nlm.nih.gov/tools/openftlist/
+    officialDownloadPage: https://ftp.ncbi.nlm.nih.gov/pub/pmc/oa_package/
+    sourceType: full_text_literature
+    expectedScale: large per-article-rights corpus; subset imports only
+    canonicalIdentifiersSupplied: [PMCID, PMID, DOI]
+    rights: *unclear_rights
+    sourceDataStatus: mixed_upstream_rights
+    productionStatus: approved_with_conditions
+    acquisitionMode: metadata_only
+    adapterName: pmc-open-access
+    citationTemplate: PMC Open Access article {pmcid}, license recorded per article.
+    intendedUses: [rights-approved full text, passages, citations]
+    useLimitations: [Eligibility is determined at article level, never from collection membership alone.]
+    usefulFieldInventory: [PMCID, article license, XML, citation, section, reference]
+    desiredGraphMapping: [Publication, Document, Passage, License, SourceRecord]
+    licenseReviewNotes: Row/article-level rights override collection defaults.
+
+  - <<: *source_defaults
+    sourceId: source:chembl
+    title: ChEMBL
+    acronym: ChEMBL
+    responsibleOrganization: EMBL-EBI
+    description: Bioactive molecules, assays, targets, and measured activities.
+    officialHomepage: https://www.ebi.ac.uk/chembl/
+    officialDownloadPage: https://ftp.ebi.ac.uk/pub/databases/chembl/ChEMBLdb/
+    sourceType: bioactivity_database
+    canonicalIdentifiersSupplied: [ChEMBL ID, InChIKey]
+    rights: &share_alike_rights
+      licenseName: Creative Commons Attribution-ShareAlike 3.0
+      licenseUrl: https://creativecommons.org/licenses/by-sa/3.0/
+      attributionRequirements: [Retain attribution and apply compatible share-alike terms.]
+      commercialUse: allowed
+      redistribution: allowed
+      derivativeDatabase: share_alike
+      aiUse: allowed
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    acquisitionMode: manual
+    adapterName: chembl
+    citationTemplate: ChEMBL release {release_id}.
+    intendedUses: [compound identity, targets, assays, bioactivity observations]
+    usefulFieldInventory: [compound, structure, target, assay, activity, unit, relation]
+    desiredGraphMapping: [Compound, Protein, Assay, BioactivityObservation]
+    licenseReviewNotes: Keep in a share-alike partition; do not enter unrestricted exports.
+
+  - <<: *source_defaults
+    sourceId: source:bindingdb
+    title: BindingDB
+    acronym: BindingDB
+    responsibleOrganization: BindingDB project
+    description: Measured protein-ligand binding affinities with mixed upstream lineage.
+    officialHomepage: https://www.bindingdb.org/
+    officialDownloadPage: https://www.bindingdb.org/rwd/bind/chemsearch/marvin/Download.jsp
+    sourceType: bioactivity_database
+    canonicalIdentifiersSupplied: [BindingDB ID, DOI, target identifiers]
+    rights: *unclear_rights
+    sourceDataStatus: mixed_upstream_rights
+    productionStatus: approved_with_conditions
+    acquisitionMode: manual
+    adapterName: bindingdb
+    citationTemplate: BindingDB release {release_id}, row lineage retained.
+    intendedUses: [compound-target binding observations, assays, publications]
+    usefulFieldInventory: [ligand, target, affinity, unit, DOI, upstream source]
+    desiredGraphMapping: [Compound, Protein, BioactivityObservation, Publication, License]
+    licenseReviewNotes: Partition BindingDB-curated and ChEMBL-derived records with row-level rights.
+
+  - <<: *source_defaults
+    sourceId: source:pubchem
+    title: PubChem
+    acronym: PubChem
+    responsibleOrganization: U.S. National Library of Medicine
+    description: Compound identifiers, structures, synonyms, and contributor-supplied annotations.
+    officialHomepage: https://pubchem.ncbi.nlm.nih.gov/
+    officialDownloadPage: https://pubchem.ncbi.nlm.nih.gov/docs/downloads
+    sourceType: chemical_database
+    canonicalIdentifiersSupplied: [PubChem CID, InChIKey]
+    rights: *unclear_rights
+    sourceDataStatus: mixed_upstream_rights
+    productionStatus: approved_with_conditions
+    acquisitionMode: api_snapshot
+    adapterName: pubchem
+    citationTemplate: PubChem CID {external_id}, contributor provenance retained.
+    intendedUses: [identifiers, structures, synonyms, source crosswalks]
+    useLimitations: [Preserve contributor provenance for annotations.]
+    usefulFieldInventory: [CID, structure, synonym, contributor, annotation]
+    desiredGraphMapping: [Compound, ExternalIdentifier, MappingAssertion, SourceRecord]
+    licenseReviewNotes: Government platform metadata and mixed contributor content require field-level provenance.
+
+  - <<: *source_defaults
+    sourceId: source:open-targets
+    title: Open Targets Platform
+    acronym: Open Targets
+    responsibleOrganization: Open Targets
+    description: Target-disease association outputs with upstream evidence.
+    officialHomepage: https://platform.opentargets.org/
+    officialDownloadPage: https://platform.opentargets.org/downloads
+    sourceType: target_disease_platform
+    canonicalIdentifiersSupplied: [Ensembl gene ID, disease identifiers]
+    rights:
+      <<: *cc0_rights
+      attributionRequirements:
+        - Cite Open Targets and preserve every upstream evidence source and its terms.
+    sourceDataStatus: mixed_upstream_rights
+    productionStatus: approved_with_conditions
+    acquisitionMode: manual
+    adapterName: open-targets
+    citationTemplate: Open Targets release {release_id}, upstream evidence retained.
+    intendedUses: [target-disease evidence, target identifiers, evidence provenance]
+    usefulFieldInventory: [target, disease, score, datasource, evidence]
+    desiredGraphMapping: [Gene, Protein, DiseaseConcept, Claim, SourceRecord]
+    licenseReviewNotes: Platform output baseline is CC0; upstream evidence remains independently governed.
+
+  - <<: *source_defaults
+    sourceId: source:tcmsp
+    title: Traditional Chinese Medicine Systems Pharmacology Database
+    acronym: TCMSP
+    responsibleOrganization: TCMSP project
+    description: TCM herb, ingredient, target, and disease records subject to database share-alike review.
+    officialHomepage: https://tcmsp-e.com/
+    officialDownloadPage: null
+    sourceType: tcm_database
+    canonicalIdentifiersSupplied: [TCMSP source IDs]
+    rights:
+      licenseName: Open Database License 1.0 baseline
+      licenseUrl: https://opendatacommons.org/licenses/odbl/1-0/
+      attributionRequirements: [Attribution, share-alike, and keep-open obligations require legal review.]
+      commercialUse: allowed
+      redistribution: allowed
+      derivativeDatabase: share_alike
+      aiUse: unclear
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    acquisitionMode: permission_required
+    adapterName: tcmsp
+    citationTemplate: TCMSP release {release_id}, ODbL partition.
+    intendedUses: [source-record inventory and future reviewed share-alike partition]
+    usefulFieldInventory: [herb, ingredient, target, disease, source relationship]
+    desiredGraphMapping: [SourceRecord, MappingAssertion, Compound, Protein, MedicinalMaterial]
+    licenseReviewNotes: Do not merge into unrestricted production; database-law review is required.
+
+  - <<: *source_defaults
+    sourceId: source:kanripo
+    title: Kanseki Repository
+    acronym: Kanripo
+    responsibleOrganization: Kanseki Repository project
+    description: Digitized premodern Chinese texts under share-alike terms.
+    officialHomepage: https://www.kanripo.org/
+    officialDownloadPage: https://github.com/kanripo
+    sourceType: classical_text_corpus
+    canonicalIdentifiersSupplied: [Kanripo text ID]
+    rights: *share_alike_rights
+    sourceDataStatus: release_verification_required
+    productionStatus: approved_with_conditions
+    adapterName: kanripo
+    citationTemplate: Kanripo text {external_id}, release {release_id}.
+    intendedUses: [rights-approved classical text witnesses and passages]
+    usefulFieldInventory: [work, edition, witness, page, passage]
+    desiredGraphMapping: [TextWork, Edition, TextWitness, Passage, SourceRecord]
+    licenseReviewNotes: Keep text and derivatives in a share-alike partition; verify each edition.
+
+  - <<: *source_defaults
+    sourceId: source:wikisource
+    title: Wikisource editions
+    acronym: Wikisource
+    responsibleOrganization: Wikimedia Foundation and Wikisource contributors
+    description: Community-hosted editions and transcription pages with per-edition provenance.
+    officialHomepage: https://wikisource.org/
+    officialDownloadPage: https://dumps.wikimedia.org/
+    sourceType: classical_text_corpus
+    canonicalIdentifiersSupplied: [Wikimedia page and revision ID]
+    rights: *share_alike_rights
+    sourceDataStatus: mixed_upstream_rights
+    productionStatus: approved_with_conditions
+    acquisitionMode: metadata_only
+    adapterName: wikisource
+    citationTemplate: Wikisource page {external_id}, revision {release_id}.
+    intendedUses: [verified public-domain or licensed edition witnesses]
+    usefulFieldInventory: [page, revision, work, text, scan provenance, license]
+    desiredGraphMapping: [TextWork, Edition, TextWitness, Passage, License]
+    licenseReviewNotes: Verify the individual edition, scan provenance, and revision license.
+
+  - &permission_pending
+    <<: *source_defaults
+    sourceId: source:herb
+    title: HERB 2.0
+    acronym: HERB
+    responsibleOrganization: HERB project
+    description: Candidate TCM herb, ingredient, target, disease, and experiment resource.
+    officialHomepage: http://herb.ac.cn/
+    officialDownloadPage: null
+    sourceType: tcm_database
+    canonicalIdentifiersSupplied: [HERB source IDs]
+    rights: *unclear_rights
+    sourceDataStatus: permission_pending
+    productionStatus: permission_pending
+    acquisitionMode: permission_required
+    adapterName: disabled-permission-pending
+    citationTemplate: HERB 2.0; use prohibited until Current records permission.
+    intendedUses: [metadata inventory only until permission]
+    usefulFieldInventory: [herb, ingredient, target, disease, experiment, reference]
+    desiredGraphMapping: [MedicinalMaterial, Compound, Protein, DiseaseConcept, Observation]
+    permissionRequestChecklist: [identify maintainer contact, request commercial reuse terms, request redistribution terms, request derivative-database terms]
+    licenseReviewNotes: No production download or ingestion is authorized.
+
+  - <<: *permission_pending
+    sourceId: source:etcm
+    title: ETCM 2.0
+    acronym: ETCM
+    responsibleOrganization: ETCM project
+    description: Candidate TCM herb, formula, ingredient, target, and disease resource.
+    officialHomepage: http://www.tcmip.cn/ETCM2/front/#/
+    usefulFieldInventory: [herb, formula, ingredient, target, disease, reference]
+    desiredGraphMapping: [MedicinalMaterial, FormulaConcept, Compound, Protein, DiseaseConcept]
+    citationTemplate: ETCM 2.0; use prohibited until Current records permission.
+
+  - <<: *permission_pending
+    sourceId: source:symmap
+    title: SymMap 2.0
+    acronym: SymMap
+    responsibleOrganization: SymMap project
+    description: Candidate TCM herb, symptom, ingredient, target, and relationship resource.
+    officialHomepage: https://www.symmap.org/
+    usefulFieldInventory: [herb, symptom, ingredient, target, relationship]
+    desiredGraphMapping: [MedicinalMaterial, TraditionalTerm, Compound, Protein, Claim]
+    citationTemplate: SymMap 2.0; use prohibited until Current records permission.
+
+  - <<: *permission_pending
+    sourceId: source:tcmbank
+    title: TCMBank
+    acronym: TCMBank
+    responsibleOrganization: TCMBank project
+    description: Candidate TCM ingredient, formula, target, and disease resource.
+    officialHomepage: https://tcmbank.cn/
+    usefulFieldInventory: [herb, formula, ingredient, target, disease]
+    desiredGraphMapping: [MedicinalMaterial, FormulaConcept, Compound, Protein, DiseaseConcept]
+    citationTemplate: TCMBank; use prohibited until Current records permission.
+
+  - <<: *permission_pending
+    sourceId: source:batman-tcm
+    title: BATMAN-TCM 2.0
+    acronym: BATMAN-TCM
+    responsibleOrganization: BATMAN-TCM project
+    description: Candidate TCM ingredient-target and functional analysis resource.
+    officialHomepage: http://bionet.ncpsb.org.cn/batman-tcm/
+    usefulFieldInventory: [formula, herb, ingredient, target, pathway, disease]
+    desiredGraphMapping: [FormulaConcept, MedicinalMaterial, Compound, Protein, Pathway]
+    citationTemplate: BATMAN-TCM 2.0; use prohibited until Current records permission.
+
+  - <<: *permission_pending
+    sourceId: source:tcmid
+    title: TCMID 2.0
+    acronym: TCMID
+    responsibleOrganization: TCMID project
+    description: Candidate TCM prescription, herb, ingredient, target, and disease resource.
+    officialHomepage: http://www.megabionet.org/tcmid/
+    usefulFieldInventory: [prescription, herb, ingredient, target, disease, reference]
+    desiredGraphMapping: [FormulaConcept, MedicinalMaterial, Compound, Protein, DiseaseConcept]
+    citationTemplate: TCMID 2.0; use prohibited until Current records permission.
+
+  - <<: *permission_pending
+    sourceId: source:dcabm-tcm
+    title: DCABM-TCM
+    acronym: DCABM-TCM
+    responsibleOrganization: DCABM-TCM project
+    description: Candidate TCM bioactivity and molecular relationship resource.
+    officialHomepage: https://pubmed.ncbi.nlm.nih.gov/
+    usefulFieldInventory: [herb, compound, target, bioactivity, reference]
+    desiredGraphMapping: [MedicinalMaterial, Compound, Protein, BioactivityObservation]
+    citationTemplate: DCABM-TCM; use prohibited until Current records permission.
+
+  - <<: *permission_pending
+    sourceId: source:herbcomb
+    title: HerbComb
+    acronym: HerbComb
+    responsibleOrganization: HerbComb project
+    description: Candidate herb-combination and literature resource pending upstream-license audit.
+    officialHomepage: https://pubmed.ncbi.nlm.nih.gov/
+    usefulFieldInventory: [herb pair, formula, reference, source database]
+    desiredGraphMapping: [MedicinalMaterial, FormulaWitness, Claim, Publication]
+    citationTemplate: HerbComb; use prohibited until upstream licenses are audited.
+    licenseReviewNotes: Permission and upstream-source audit are both pending.
+
+  - <<: *permission_pending
+    sourceId: source:ctext
+    title: Chinese Text Project
+    acronym: CTEXT
+    responsibleOrganization: Chinese Text Project
+    description: Digital library of premodern Chinese texts pending commercial and data-use review.
+    officialHomepage: https://ctext.org/
+    usefulFieldInventory: [work, edition, chapter, passage, identifier]
+    desiredGraphMapping: [TextWork, Edition, TextWitness, Passage]
+    citationTemplate: Chinese Text Project; use prohibited until Current records permission.
+    licenseReviewNotes: Browser visibility is not bulk or commercial-use permission.
+
+  - <<: *permission_pending
+    sourceId: source:cbeta
+    title: Chinese Buddhist Electronic Text Association
+    acronym: CBETA
+    responsibleOrganization: CBETA
+    description: Buddhist text corpus pending commercial-use permission and edition-level review.
+    officialHomepage: https://www.cbeta.org/
+    usefulFieldInventory: [work, edition, volume, page, line, passage]
+    desiredGraphMapping: [TextWork, Edition, TextWitness, Passage]
+    citationTemplate: CBETA; use prohibited until Current records permission.
+    licenseReviewNotes: Commercial-use permission remains pending.
+
+  - &blocked_source
+    <<: *source_defaults
+    sourceId: source:tcm-data-hub
+    title: TCM Data Hub
+    acronym: TCM Data Hub
+    responsibleOrganization: TCM Data Hub operator
+    description: Commercial TCM reference source blocked under currently reviewed terms.
+    officialHomepage: https://www.tcmdatahub.com/
+    officialDownloadPage: null
+    sourceType: commercial_reference
+    canonicalIdentifiersSupplied: []
+    rights: &blocked_rights
+      licenseName: Reuse prohibited under currently reviewed terms
+      licenseUrl: null
+      attributionRequirements: [No ingestion permitted.]
+      commercialUse: prohibited
+      redistribution: prohibited
+      derivativeDatabase: prohibited
+      aiUse: prohibited
+    sourceDataStatus: blocked
+    productionStatus: blocked
+    acquisitionMode: blocked
+    adapterName: blocked-no-adapter
+    citationTemplate: Blocked source inventory record only.
+    intendedUses: [blocked inventory only]
+    useLimitations: [No downloader, scraper, or ingestion implementation.]
+    usefulFieldInventory: []
+    desiredGraphMapping: []
+    permissionRequestChecklist: []
+    licenseReviewNotes: Do not scrape or ingest under the currently reviewed terms.
+
+  - <<: *blocked_source
+    sourceId: source:american-dragon
+    title: American Dragon
+    acronym: American Dragon
+    responsibleOrganization: American Dragon
+    description: Commercial materia-medica reference site explicitly blocked from scraping.
+    officialHomepage: https://www.americandragon.com/
+
+  - <<: *blocked_source
+    sourceId: source:commercial-materia-medica
+    title: Commercial materia-medica sites without explicit bulk rights
+    acronym: null
+    responsibleOrganization: Various commercial publishers
+    description: Inventory category for commercial references that lack explicit bulk, commercial, and derivative-database rights.
+    officialHomepage: https://current-flow.net/

@@ -36,6 +36,8 @@ jobs:
       - run: uv run ruff format --check .
       - run: uv run ruff check .
       - run: uv run mypy src
+      - run: uv run alchemy sources validate
+      - run: uv run alchemy sources audit-rights
       - run: uv run pytest -m "not integration"
       - run: uv run alchemy openapi export --check
 
@@ -73,6 +75,7 @@ jobs:
           enable-cache: true
       - run: uv sync --frozen --all-groups
       - run: uv run pytest -m integration
+      - run: uv run alchemy graph audit
 
   container:
     runs-on: ubuntu-latest

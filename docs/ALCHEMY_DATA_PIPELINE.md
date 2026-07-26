@@ -1,0 +1,68 @@
+# Alchemy release data pipeline
+
+## Phases
+
+Every release adapter implements the same contract:
+
+`discover → resolve → plan → acquire → verify → extract → inspect_schema → stage → normalize →
+propose_mappings → load_graph → audit → report`
+
+`--through` stops after a named phase. `--resume` uses the release checkpoint. `--dry-run` performs
+the complete transformation and export without graph writes. A deterministic import-run ID ties
+source, release, adapter, schema, and mapping versions together.
+
+## Release lake
+
+`ALCHEMY_DATA_ROOT` defaults to `var/alchemy-data`. Source and release IDs are percent-encoded as
+path segments so IDs remain stable on Windows.
+
+```text
+raw/<source>/<release>/original
+raw/<source>/<release>/resolved-manifest.json
+raw/<source>/<release>/checksums.json
+extracted/<source>/<release>
+staging/<source>/<release>
+normalized/<source>/<release>
+graph-export/<source>/<release>
+cache
+reports/<source>/<release>
+logs/<source>/<release>
+```
+
+Raw artifacts are immutable. Downloads use a temporary `.part` file, optional HTTP range resume,
+bounded retries, size limits, content-length validation, HTML rejection, SHA-256 verification, and
+atomic finalization. The resolved manifest records observed retrieval metadata. Local storage
+implements the object-store interface; a remote implementation can be substituted without changing
+adapters.
+
+## Staging and normalization
+
+DuckDB holds typed staging tables and writes Parquet. Adapters preserve original source strings and
+raw record text, emit explicit rejects, and never invent missing facts. Normalization creates
+stable source records and typed domain records. Missing hierarchy parents in a subset are reported
+as unresolved, not guessed.
+
+## Mapping and graph export
+
+Exact authoritative identifiers may be accepted automatically. Names and fuzzy similarity produce
+review candidates only. Normalized output produces:
+
+- node and relationship JSON batches for application loading;
+- node and relationship Parquet tables for inspection or future bulk loading;
+- schema, counts, null, duplicate, reject, unresolved, rights, load, and audit reports.
+
+The graph loader accepts only enumerated labels and relationship types. Values remain parameters.
+
+## Disease Ontology reference slice
+
+The pinned `v2026-06-30` OBO release is the first real slice. A deterministic 250-term subset
+observed 14,735 available terms, staged 188 aliases, 528 xrefs, and 195 parent records, retained
+250 terms, rejected none, and reported 183 parent references outside the subset. It exported 1,966
+nodes and 2,672 relationships. These figures are release reports, not hard-coded source claims.
+
+## Adapter scaffolds
+
+The registry provides an adapter name, acquisition mode, expected artifacts, field inventory,
+mapping targets, and checklist for every candidate. Permission-pending and blocked entries are
+deliberately disabled. A concrete adapter is enabled only with a pinned release manifest, fixture,
+schema inspection, mapping/reject tests, rights audit, and idempotency evidence.

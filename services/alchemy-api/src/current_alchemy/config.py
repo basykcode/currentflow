@@ -1,6 +1,7 @@
 """Validated, environment-driven service configuration."""
 
 from functools import lru_cache
+from pathlib import Path
 from typing import Literal
 
 from pydantic import Field, SecretStr, field_validator, model_validator
@@ -44,6 +45,20 @@ class Settings(BaseSettings):
         default=250,
         ge=200,
         validation_alias="EXTERNAL_REQUEST_MIN_INTERVAL_MS",
+    )
+    alchemy_data_root: Path = Field(
+        default=Path("var/alchemy-data"),
+        validation_alias="ALCHEMY_DATA_ROOT",
+    )
+    alchemy_max_autodownload_bytes: int = Field(
+        default=2 * 1024 * 1024 * 1024,
+        ge=1,
+        validation_alias="ALCHEMY_MAX_AUTODOWNLOAD_BYTES",
+    )
+    alchemy_download_user_agent: str = Field(
+        default="CurrentAlchemy-DataEngineering/0.2 (https://current-flow.net)",
+        min_length=12,
+        validation_alias="ALCHEMY_DOWNLOAD_USER_AGENT",
     )
     max_page_size: int = 100
     max_explore_results: int = 100
