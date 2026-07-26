@@ -26,6 +26,11 @@ export const router = createRouter({
       redirect: '/',
     },
     {
+      path: '/tools/hexagrams',
+      name: 'hexagram-library',
+      component: () => import('@/views/HexagramLibraryView.vue'),
+    },
+    {
       path: '/special-messages/vh',
       name: 'special-message-vh',
       component: () => import('@/features/special-messages/views/SpecialMessageView.vue'),

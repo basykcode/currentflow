@@ -33,8 +33,13 @@ table. The lookup is versioned source data, not a formula inferred by the applic
 
 The King Wen hexagram catalog stores every figure bottom-line first. Trigram composition supplies
 the six line polarities; presentation alone reverses them for top-to-bottom screen rendering.
+Received Chinese names and unaccented romanization are cross-checked against the
+[Chinese Text Project Zhouyi index](https://ctext.org/book-of-changes); display pinyin adds standard
+Mandarin tone marks. English display titles follow the widely circulated Wilhelm/Baynes convention
+where translations differ. These identity fields are curated references rather than calculations.
 
-Golden case: `丙午` (Yang Fire Horse) maps to Hexagram 28, `大過` / Great Exceeding.
+Golden case: `丙午` (Yang Fire Horse) maps to Hexagram 28, `大過` / `Dà Guò` /
+Preponderance of the Great.
 
 ## Organ clock
 
@@ -63,20 +68,40 @@ framework, not a diagnostic or treatment claim.
 
 ## Structural relationships
 
-The day hexagram supplies three deterministic, line-derived relationships:
+The Astrology day hexagram continues to expose three deterministic, line-derived relationships:
 
 - nuclear: source lines 2–4 form the lower trigram and lines 3–5 form the upper trigram;
 - reverse: the six source lines are read in the opposite order;
 - complement: every yin line becomes yang and every yang line becomes yin.
 
-These are structural transformations, not Plum Blossom changing-line divination. No changing line
-is selected or implied.
+The shared inspector exposes those three relationships plus a fourth fixed trigram exchange, in
+which the lower and upper three-line groups change places. Its separate changing-line selector
+inverts exactly one user-selected line, counted 1–6 from bottom to top, and resolves the resulting
+figure through the same verified catalog. These are reproducible structural operations; the
+interface does not attach forecasts or select a changing line on the user's behalf.
+
+The library's Fu Xi binary option sorts all-yin through all-yang using the bottom line as the least
+significant bit. The trigram-matrix option groups the same complete set by upper and then lower
+trigram in Early Heaven order. Both conventions are stated in the selector rather than presented as
+King Wen numbering.
+
+## Gene Keys vocabulary
+
+Each numbered hexagram is paired one-to-one with the same-numbered Gene Key. The inspector displays
+only the three short frequency-band terms published on the corresponding
+[Gene Keys Living Library](https://genekeys.com/gene-key-1/) page: Shadow, Gift, and Siddhi. Every
+entry stores a direct official source URL, carries `curated` status, and makes no runtime request.
+No proprietary commentary or profile calculation is reproduced or inferred.
 
 ## Deliberately unavailable
 
 Current does not generate interpretive forecasts, recommended actions, personal BaZi synthesis, or
 medical guidance from these factors. Those surfaces remain explicitly unavailable until a separate,
 verified and reviewable model is connected.
+
+Hexagram commentary tabs likewise remain unavailable until their pre-chunked source texts are
+reviewed and summarized. Absolute Shadow is a visible advanced placeholder only; no transformation
+is returned until its rule is defined and accepted.
 
 ## Known verification risk
 

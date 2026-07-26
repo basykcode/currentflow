@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import type { RelatedHexagram } from '@/domain/astrology/types'
 import StatusBadge from '@/components/common/StatusBadge.vue'
+import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
 
 import HexagramGlyph from './HexagramGlyph.vue'
 
-defineProps<{
+const props = defineProps<{
   item: RelatedHexagram
 }>()
+
+const inspector = useHexagramInspectorStore()
+const inspect = () => inspector.open(props.item.hexagram)
 </script>
 
 <template>
-  <article class="related-card">
+  <article
+    class="related-card"
+    role="button"
+    tabindex="0"
+    :aria-label="`Inspect Hexagram ${item.hexagram.number ?? ''}, ${item.hexagram.nameEnglish}`"
+    @click="inspect"
+    @keydown.enter="inspect"
+    @keydown.space.prevent="inspect"
+  >
     <HexagramGlyph
       :lines="item.hexagram.linesBottomToTop"
       size="compact"
@@ -41,6 +53,17 @@ defineProps<{
   border-radius: var(--radius-md);
   background: var(--paper-raised);
   padding: 1rem;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.related-card:hover {
+  border-color: color-mix(in srgb, var(--jade) 55%, var(--line));
+  background: var(--jade-wash);
+  transform: translateY(-1px);
 }
 
 .hexagram-glyph {

@@ -12,6 +12,9 @@ const menuOpen = ref(false)
 const menuView = ref<'root' | 'special-messages'>('root')
 const menuId = computed(() => `other-tools-menu-${props.mode}`)
 const isSpecialMessageRoute = computed(() => route.path.startsWith('/special-messages/'))
+const isOtherToolsRoute = computed(
+  () => isSpecialMessageRoute.value || route.path === '/tools/hexagrams',
+)
 
 function closeMenu() {
   menuOpen.value = false
@@ -58,7 +61,7 @@ onBeforeUnmount(() => {
   >
     <button
       class="tools-menu-trigger"
-      :class="{ 'is-active': isSpecialMessageRoute }"
+      :class="{ 'is-active': isOtherToolsRoute }"
       type="button"
       aria-haspopup="true"
       :aria-controls="menuId"
@@ -78,6 +81,13 @@ onBeforeUnmount(() => {
     >
       <template v-if="menuView === 'root'">
         <p class="menu-kicker">Other Tools</p>
+        <RouterLink class="menu-item hexagram-link" to="/tools/hexagrams">
+          <span>
+            <strong>Hexagram Library</strong>
+            <small>Browse and inspect all 64 figures</small>
+          </span>
+          <span aria-hidden="true">›</span>
+        </RouterLink>
         <button class="menu-item" type="button" @click="menuView = 'special-messages'">
           <span>Special Messages</span>
           <span aria-hidden="true">›</span>
@@ -209,17 +219,21 @@ onBeforeUnmount(() => {
 }
 
 .message-link strong,
-.message-link small {
+.message-link small,
+.hexagram-link strong,
+.hexagram-link small {
   display: block;
 }
 
-.message-link strong {
+.message-link strong,
+.hexagram-link strong {
   margin-bottom: 0.15rem;
   font-family: var(--font-serif);
   font-size: 1rem;
 }
 
-.message-link small {
+.message-link small,
+.hexagram-link small {
   color: var(--ink-soft);
   font-size: 0.68rem;
 }

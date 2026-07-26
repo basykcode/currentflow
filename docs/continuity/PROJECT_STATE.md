@@ -2,9 +2,9 @@
 
 ## Last reconciled
 
-- UTC date: 2026-07-25
-- Branch represented: `master` (complete Alchemy stack with connected production frontend)
-- Commit inspected: `3a44820118be79a8feb0ab51106a2fc3e011fadb`
+- UTC date: 2026-07-26
+- Branch represented: `master` with uncommitted hexagram inspection/library work
+- Commit inspected: `fb668fbd43782512ca202bb57e05b92beb8af143`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -36,6 +36,11 @@ The integrated product is a static Vue 3/Vite/TypeScript SPA. Framework-independ
 focused presentation in `src/components`; and lazy route composition in `src/views`.
 `CurrentFlowProvider` is the stable Astrology data seam.
 
+The framework-independent hexagram reference boundary now owns the complete identity catalog,
+trigrams, Gene Keys keyword mapping, three library orderings, and pure structural transformations.
+A transient Pinia store holds the inspected King Wen number, while one app-level modal supplies the
+shared interaction for Astrology and the `/tools/hexagrams` library route.
+
 The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI service under
 `services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
 only persistent database; external-source access is limited to explicit administration commands;
@@ -53,8 +58,8 @@ is the only Alchemy state in Pinia.
 ## Current integrated capabilities
 
 - Responsive application shell with desktop and mobile navigation.
-- Routes for Astrology, Alchemy, Intelligence, Settings, an encrypted VH special message, and
-  not-found handling; Other Tools is now a two-level navigation menu rather than a route.
+- Routes for Astrology, Alchemy, Intelligence, Settings, a complete Hexagram Library, an encrypted
+  VH special message, and not-found handling; Other Tools is a two-level navigation menu.
 - Functional Astrology view with selected-timezone time, automatic refresh, five-element
   composition, reusable accessible hexagram glyphs, structural relationships, and visible
   provenance.
@@ -62,6 +67,15 @@ is the only Alchemy state in Pinia.
   two-hour GanZhi through `lunar-javascript` 1.7.7.
 - The complete 60 Jia Zi to 64 Da Gua table resolves all four pillars to King Wen hexagrams; the
   2026 Yang Fire Horse golden case resolves to Hexagram 28.
+- Every visible Astrology or related-relationship hexagram opens a shared responsive inspector with
+  Chinese characters, tone-marked pinyin, an English display title, labeled upper/lower trigrams,
+  four fixed relationships, six selectable single-line changes, and visible source status.
+- The Other Tools Hexagram Library renders all 64 verified figures and can order them by King Wen,
+  bottom-up Fu Xi binary value, or an Early Heaven trigram matrix.
+- The inspector shows the official Shadow/Gift/Siddhi vocabulary for all 64 corresponding Gene Keys
+  with direct source links; it makes no runtime request.
+- Daoism, Confucianism, Buddhism, Psychology, Human Design, and Gene Keys commentary views plus
+  Absolute Shadow are present but explicitly unavailable until reviewed content or rules arrive.
 - A cited twelve-window meridian-clock table selects the active organ period from civil time in the
   snapshot timezone.
 - Local light/dark/system theme, functional timezone preference, optional location label, and local
@@ -75,9 +89,10 @@ is the only Alchemy state in Pinia.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- Sixty-six frontend unit tests cover Astrology calculations, Alchemy UI/state, every HTTP provider
-  operation, timeout/problem handling, no-fallback behavior, special-message decryption, and
-  two-level tools navigation; Cloudflare Pages build preparation and local metadata assets remain.
+- Seventy-four frontend unit tests cover Astrology calculations, the complete hexagram catalog and
+  transforms, inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
+  timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
+  navigation; Cloudflare Pages build preparation and local metadata assets remain.
 
 ## Current Alchemy capabilities
 
@@ -115,6 +130,8 @@ is the only Alchemy state in Pinia.
 
 - TypeScript remains strict; avoid undocumented `any`.
 - Hexagram lines are stored bottom-to-top and reversed only for display.
+- Hexagram identity and Gene Keys keywords are curated references; structural transforms are
+  computed; commentary and undefined advanced transforms remain unavailable.
 - All display data carries status/provenance; no fabricated calculations or hidden network calls.
 - Domain calculations remain independent from Vue presentation.
 - Preferences are device-local; no geolocation, auth, AI, analytics, or remote database SDK is active
@@ -151,6 +168,7 @@ is the only Alchemy state in Pinia.
 - [Align the Alchemy HTTP contract with the frontend domain](decisions/20260724T204127Z--align-alchemy-http-contract-with-the-frontend-domain.md)
 - [Host the alpha Alchemy API on Render and its graph on AuraDB](decisions/20260724T224853Z--host-alpha-alchemy-on-render-and-aura.md)
 - [Protect static special messages with browser-side encryption](decisions/20260725T215859Z--protect-static-special-messages-with-browser-side-encryption.md)
+- [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 
@@ -166,6 +184,7 @@ is the only Alchemy state in Pinia.
 | `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
 | `master`                   | Connect production Alchemy stack   | API-mode Pages release is live at `3a44820`                            | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)          |
 | `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
+| `master`                   | Build hexagram inspection/library  | Complete and verified; uncommitted local work                          | [Development handoff](handoffs/20260726T194848Z--master--build-hexagram-inspection-library.md)                  |
 
 ## Known issues and risks
 

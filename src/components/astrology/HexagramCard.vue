@@ -1,17 +1,30 @@
 <script setup lang="ts">
 import StatusBadge from '@/components/common/StatusBadge.vue'
 import type { TemporalHexagram } from '@/domain/astrology/types'
+import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
 
 import HexagramGlyph from './HexagramGlyph.vue'
 
-defineProps<{
+const props = defineProps<{
   item: TemporalHexagram
   featured?: boolean
 }>()
+
+const inspector = useHexagramInspectorStore()
+const inspect = () => inspector.open(props.item.hexagram)
 </script>
 
 <template>
-  <article class="hexagram-card" :class="{ 'hexagram-card--featured': featured }">
+  <article
+    class="hexagram-card"
+    :class="{ 'hexagram-card--featured': featured }"
+    role="button"
+    tabindex="0"
+    :aria-label="`Inspect Hexagram ${item.hexagram.number ?? ''}, ${item.hexagram.nameEnglish}`"
+    @click="inspect"
+    @keydown.enter="inspect"
+    @keydown.space.prevent="inspect"
+  >
     <div class="card-heading">
       <div>
         <p class="scope">{{ item.scope }}</p>
@@ -53,6 +66,15 @@ defineProps<{
   background: var(--paper-raised);
   padding: clamp(1.1rem, 2vw, 1.6rem);
   box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.hexagram-card:hover {
+  border-color: color-mix(in srgb, var(--jade) 55%, var(--line));
+  transform: translateY(-2px);
 }
 
 .hexagram-card--featured {

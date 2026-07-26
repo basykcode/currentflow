@@ -12,6 +12,13 @@ implementation.
   in the snapshot timezone.
 - **Structural relationships:** pure line transformations calculate nuclear, reverse, and
   complementary forms from the day hexagram.
+- **Hexagram reference library:** a local 64-entry catalog supplies received Chinese names,
+  tone-marked pinyin, English display titles, upper/lower trigrams, and three deterministic
+  orderings. The shared inspector adds a fourth trigram-exchange relationship and six
+  single-changing-line results through pure domain functions.
+- **Gene Keys vocabulary:** a static, source-linked mapping reproduces only the official
+  Shadow/Gift/Siddhi keywords for the corresponding numbered Key. It is labeled `curated` and does
+  not fetch or infer Gene Keys material at runtime.
 - **Local context:** the Settings timezone is active; invalid values fall back to the device timezone
   and appear in provenance. The optional location label is display-only and no geolocation is used.
 
@@ -22,6 +29,10 @@ Full sources and boundary conventions are in
 
 - **Personal BaZi:** enters through a separate personal-context contract. Global temporal facts and personal facts remain separate before synthesis.
 - **AI synthesis:** receives only verified facts, curated passages, user-controlled context, and provenance. It may phrase OLTR, intention, execution, and explanations, but may not invent hexagrams, calendar facts, organ periods, or transformations.
+- **Hexagram commentaries:** six visible Daoism, Confucianism, Buddhism, Psychology, Human Design,
+  and Gene Keys views remain `unavailable` until the pre-chunked texts are reviewed and connected.
+- **Advanced transformations:** Absolute Shadow is named as a future inspection tool but returns no
+  result until its deterministic rule and source boundary are accepted.
 
 ## Deterministic authority
 

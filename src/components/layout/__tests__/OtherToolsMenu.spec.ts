@@ -16,6 +16,10 @@ async function mountMenu() {
         path: '/special-messages/vh',
         component: { template: '<div>Message</div>' },
       },
+      {
+        path: '/tools/hexagrams',
+        component: { template: '<div>Hexagrams</div>' },
+      },
     ],
   })
 
@@ -42,7 +46,10 @@ describe('OtherToolsMenu', () => {
     await trigger.trigger('click')
 
     expect(trigger.attributes('aria-expanded')).toBe('true')
-    expect(wrapper.get('.menu-item').text()).toContain('Special Messages')
+    const hexagramLink = wrapper.get('a.hexagram-link')
+    expect(hexagramLink.text()).toContain('Hexagram Library')
+    expect(hexagramLink.attributes('href')).toBe('/tools/hexagrams')
+    expect(wrapper.get('button.menu-item').text()).toContain('Special Messages')
 
     await wrapper.get('button.menu-item').trigger('click')
 

@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 
 import AppHeader from '@/components/layout/AppHeader.vue'
+import HexagramInspector from '@/components/hexagrams/HexagramInspector.vue'
 import { usePreferencesStore } from '@/stores/preferences'
 
 usePreferencesStore()
@@ -20,4 +21,5 @@ const showAppHeader = computed(() => route.meta['immersive'] !== true)
       </Transition>
     </RouterView>
   </main>
+  <HexagramInspector />
 </template>

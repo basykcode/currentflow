@@ -1,4 +1,4 @@
-export type DataStatus = 'demo' | 'computed' | 'unavailable'
+export type DataStatus = 'demo' | 'computed' | 'curated' | 'unavailable'
 
 export type LinePolarity = 'yin' | 'yang'
 
@@ -17,6 +17,37 @@ export type Hexagram = {
   nameChinese?: string
   /** Traditional construction order: index 0 is the bottom line. */
   linesBottomToTop: HexagramLines
+}
+
+export type TrigramKey = 'qian' | 'dui' | 'li' | 'zhen' | 'xun' | 'kan' | 'gen' | 'kun'
+
+export type Trigram = {
+  key: TrigramKey
+  nameEnglish: string
+  nameChinese: string
+  namePinyin: string
+  imageEnglish: string
+  linesBottomToTop: readonly [LinePolarity, LinePolarity, LinePolarity]
+}
+
+export type GeneKeySpectrum = {
+  shadow: string
+  gift: string
+  siddhi: string
+  status: Extract<DataStatus, 'curated'>
+  sourceLabel: string
+  sourceUrl: string
+}
+
+export type HexagramReference = Hexagram & {
+  number: number
+  nameChinese: string
+  namePinyin: string
+  lowerTrigram: Trigram
+  upperTrigram: Trigram
+  geneKey: GeneKeySpectrum
+  status: Extract<DataStatus, 'curated'>
+  sourceLabel: string
 }
 
 export type TemporalScope = 'year' | 'month' | 'day' | 'hour'

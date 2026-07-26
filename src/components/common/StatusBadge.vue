@@ -22,6 +22,12 @@ const displayLabel = computed(() => props.label ?? `${props.status} data`)
   color: var(--jade);
 }
 
+[data-status='curated'] {
+  border-color: color-mix(in srgb, var(--jade) 40%, var(--line));
+  background: color-mix(in srgb, var(--jade-wash) 72%, transparent);
+  color: var(--jade-deep);
+}
+
 [data-status='unavailable'] {
   border-color: var(--line);
   background: var(--paper-soft);

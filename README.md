@@ -10,10 +10,16 @@ unconnected.
 The Astrology route calculates timezone-aware GanZhi pillars, their 60 Jia Zi hexagrams, the
 traditional two-hour organ period, and line-derived structural relationships. Alchemy provides a
 synthetic source-aware materia medica, formula library, four-slot local workbench, formula
-analysis/comparison demonstration, and text-retrieval library. Intelligence, Other Tools,
-authentication, personal BaZi, interpretive synthesis, the Alchemy HTTP client, and guided-inquiry
-model remain deliberately unconnected. Settings for theme, timezone, and local preferences work on
-the current device.
+analysis/comparison demonstration, and text-retrieval library. Other Tools includes a complete
+64-figure Hexagram Library and the special-message area. Intelligence, authentication, personal
+BaZi, interpretive synthesis, and the guided-inquiry model remain deliberately unconnected. Settings
+for theme, timezone, and local preferences work on the current device.
+
+Every hexagram shown in Astrology, related relationships, or the library opens the shared inspection
+workspace. It exposes verified Chinese identity and pinyin, upper/lower trigrams, four fixed
+structural transformations, six single-line changes, and the official Gene Keys
+Shadow/Gift/Siddhi vocabulary. The six future commentary lenses are visible but explicitly
+unavailable until their reviewed source texts and OLTRs are connected.
 
 ## Local setup
 
@@ -101,7 +107,7 @@ src/components      focused UI by feature
 src/domain          framework-independent contracts
 src/features        vertically scoped product features, including Alchemy
 src/providers       swappable data adapters
-src/stores          shared preferences and identity state
+src/stores          shared preferences, identity, and transient inspector state
 src/views           route-level composition
 docs                product, architecture, integration, and deployment notes
 public              local metadata assets

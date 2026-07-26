@@ -8,7 +8,8 @@ Current is a client-side Vue 3 application organized around explicit domain boun
 - `src/providers`: swappable adapters that satisfy domain interfaces. The alpha selects
   `LunarScriptCurrentFlowProvider` in one place and retains the demo adapter only as a testable
   fixture.
-- `src/stores`: Pinia state reserved for cross-route preferences and the future identity scaffold.
+- `src/stores`: Pinia state reserved for cross-route preferences, the future identity scaffold, and
+  transient app-level UI selection such as the open hexagram inspector.
 - `src/components`: focused presentation grouped by product area or shared role.
 - `src/views`: route composition and page-level data loading.
 - `src/app/router.ts`: lazy route definitions.
@@ -25,6 +26,20 @@ transformations. A production build can independently select the documented Alch
 the Astrology view remains unaware of either integration.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.
+
+## Hexagram reference boundary
+
+The complete hexagram catalog remains framework-independent under `src/domain/astrology`. Each
+verified entry combines its King Wen number, received Chinese name, tone-marked pinyin, display
+title, bottom-to-top line structure, upper/lower trigram identities, and an official Gene Keys
+three-band vocabulary reference. Static reference data is labeled `curated`; transformations are
+labeled `computed`; undefined advanced rules and commentary content are `unavailable`.
+
+Pure functions calculate nuclear, reverse, complementary, trigram-exchange, and single-changing-line
+results. Presentation components never recalculate or reinterpret those relationships. A transient
+Pinia store holds only the currently inspected King Wen number so any focused hexagram component or
+the `/tools/hexagrams` route can open the same app-level dialog. The store is not persisted and makes
+no network calls.
 
 ## Special-message privacy boundary
 
