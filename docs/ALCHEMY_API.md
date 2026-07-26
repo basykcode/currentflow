@@ -17,7 +17,7 @@ Knowledge responses use:
     "sources": [],
     "warnings": ["Educational and research information only; not medical advice."],
     "generatedAt": "2026-07-24T00:00:00Z",
-    "schemaVersion": "alchemy-graph-v1",
+    "schemaVersion": "alchemy-graph-v2",
     "algorithmVersion": null
   }
 }

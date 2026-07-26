@@ -2,7 +2,7 @@
 
 SERVICE_NAME = "current-alchemy-api"
 API_VERSION = "v1"
-GRAPH_SCHEMA_VERSION = "alchemy-graph-v1"
+GRAPH_SCHEMA_VERSION = "alchemy-graph-v2"
 FORMULA_ANALYSIS_VERSION = "alchemy-formula-analysis-v0"
 DATA_VERSION = "demo-v1"
 SAFETY_SUMMARY = (
