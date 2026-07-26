@@ -3,16 +3,16 @@
 ## Last reconciled
 
 - UTC date: 2026-07-26
-- Branch represented: unmerged `feat/alchemy-knowledge-graph` worktree based on current `master`
-- Commit inspected: `e24f4403248e7c988b4f1e2e70faf7f8030e9399`
+- Branch represented: `master` with the release-aware Alchemy foundation deployed
+- Commit inspected: `b32f2d5`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
 - `master` merges the complete integration at `c8f8e04`, publishes the alpha hosting configuration
   at `81c6d4e`, and connects the production frontend to the live API at `3a44820`.
 - `master` publishes the complete hexagram inspection and library workspace at `a095f06`.
-- `master` records that publication at `c839ad5`; the unmerged
-  `feat/alchemy-knowledge-graph` branch adds the release-aware data foundation at `e24f440`.
+- `master` records the hexagram publication at `c839ad5`, integrates the release-aware Alchemy
+  foundation through `0eea8d3`, and publishes graph-schema-v2 metadata at `b32f2d5`.
 
 ## Project purpose
 
@@ -129,7 +129,7 @@ is the only Alchemy state in Pinia.
   entities, empty-query text listing, and exact passage-ID retrieval so the browser never invents
   missing provenance.
 
-The unmerged `feat/alchemy-knowledge-graph` worktree additionally contains:
+The integrated release-aware Alchemy foundation additionally provides:
 
 - A 36-source machine-readable registry with explicit approved/conditional/pending/blocked rights,
   release snapshots, row-level inheritance, and deny-by-default production filtering.
@@ -202,7 +202,7 @@ The unmerged `feat/alchemy-knowledge-graph` worktree additionally contains:
 | `master`                   | Connect production Alchemy stack   | API-mode Pages release is live at `3a44820`                            | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)          |
 | `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
 | `master`                   | Build hexagram inspection/library  | Feature `a095f06` is live on Cloudflare                                | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                |
-| `feat/alchemy-knowledge-graph` | Build release-aware Alchemy data foundation | Feature commit `e24f440`; verified and unmerged | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md) |
+| `master` | Publish release-aware Alchemy data foundation | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5` | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md) |
 
 ## Known issues and risks
 
@@ -212,20 +212,19 @@ The unmerged `feat/alchemy-knowledge-graph` worktree additionally contains:
   translations should receive subject-matter review before stronger authority claims.
 - Organ-clock selection is civil-time educational context, not apparent-solar-time correction or a
   medical claim.
-- The complete Compose stack has not been started locally because this computer has no
-  Docker-compatible runtime and must not request administrator or network permissions to add one.
-  GitHub's `Alchemy API` workflow succeeded for publication commit `04f0a66`, including backend
-  quality, a disposable real-Neo4j integration test, and the API image build; remote
-  migration/readiness smoke remains outstanding.
-- No new dataset has been imported into production AuraDB. The feature worktree verified and loaded
+- A portable disposable Neo4j 5.26.28 runtime verified the new migrations locally without changing
+  the workstation. GitHub `Alchemy API` run `30223980968` passed backend quality, a clean Neo4j
+  integration test, graph audit, and the production container build for `b32f2d5`.
+- No new dataset has been imported into production AuraDB. The foundation work verified and loaded
   a 250-term Disease Ontology `v2026-06-30` slice into disposable local Neo4j; USDA Duke passed
   checksum validation and offline dry-run mapping; PubChem is opt-in and cached; SymMap remains
   blocked pending rights review.
 - Alchemy auth, saved research workspaces, embeddings, and inference are inactive. The Render API is
-  publicly live, Aura readiness succeeds, migrations and synthetic seed data are present, and all
-  publication checks pass. `api.current-flow.net` now resolves, serves a valid certificate, reports
-  dependency readiness, and permits the exact production browser origin. The live Cloudflare Pages
-  bundle selects API mode with the custom API hostname and no fixture fallback.
+  publicly live at graph schema v2, Aura readiness succeeds, migrations `001`–`005` and synthetic
+  seed data are present, and all publication checks pass. `api.current-flow.net` resolves, serves a
+  valid certificate, reports dependency readiness, and permits the exact production browser origin.
+  The live Cloudflare Pages Alchemy route reports `current-alchemy-api`, API v1, graph schema v2,
+  and no fixture fallback.
 - Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
   inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
   an alpha host, not a production SLA.
@@ -258,12 +257,13 @@ The unmerged `feat/alchemy-knowledge-graph` worktree additionally contains:
    implementation and add before/after fixtures.
 5. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-6. Review and integrate the release-aware Alchemy foundation, then pin and import a manageable
-   LOTUS natural-products release before considering larger chemistry/bioactivity sources.
+6. Use an authenticated Render administration shell to import and audit the pinned Disease
+   Ontology subset into Aura, then pin a manageable LOTUS natural-products release.
 7. Define authentication, privacy, retention, and private Neo4j deployment requirements.
 
-Exact next useful action for Alchemy: review and commit the unmerged knowledge-foundation worktree,
-then create a pinned LOTUS release manifest and dry-run a deterministic occurrence subset.
+Exact next useful action for Alchemy: authenticate to Render, run the pinned Disease Ontology subset
+through the deployed CLI into Aura, verify graph counts/provenance, and retain the synthetic seed
+until a real material/formula source can support the existing public routes.
 
 ## Documentation map
 
