@@ -2,9 +2,9 @@
 
 ## Last reconciled
 
-- UTC date: 2026-07-26
-- Branch represented: `master` with the release-aware Alchemy foundation deployed
-- Commit inspected: `b32f2d5`
+- UTC date: 2026-07-27
+- Branch represented: `master` with the official herb/formula foundation live
+- Commit inspected: `9a1fa5a`
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -13,6 +13,9 @@
 - `master` publishes the complete hexagram inspection and library workspace at `a095f06`.
 - `master` records the hexagram publication at `c839ad5`, integrates the release-aware Alchemy
   foundation through `0eea8d3`, and publishes graph-schema-v2 metadata at `b32f2d5`.
+- `master` establishes the official Taiwan MOHW herb/formula release at `0b69993`, corrects its
+  canonical artifact and source-record identity through `ac778c1`, and aligns live search/property
+  transport through `07f7318`; `9a1fa5a` removes the remaining demo-only UI assumptions.
 
 ## Project purpose
 
@@ -128,10 +131,19 @@ is the only Alchemy state in Pinia.
 - The backend contract exposes source-backed summary properties, document titles, mentioned
   entities, empty-query text listing, and exact passage-ID retrieval so the browser never invents
   missing provenance.
+- Production AuraDB contains the complete pinned Taiwan MOHW foundation: 355 official
+  materia-medica monographs, 200 standardized formulas, 1,672 ordered ingredient uses, and 555
+  distinct source records. The public projection exposes 447 material terms and 200 formulas.
+- Formula detail returns ordered material IDs, source terms, source-reported amounts, and units;
+  the HTTP frontend resolves those IDs and can load the composition into a device-local workbench
+  draft.
+- Render startup verifies exact foundation counts, imports or safely reconciles an incomplete
+  release before serving, rebuilds the approved projection, and retires exact synthetic demo nodes
+  only after a zero-critical-failure graph audit.
 
 The integrated release-aware Alchemy foundation additionally provides:
 
-- A 36-source machine-readable registry with explicit approved/conditional/pending/blocked rights,
+- A 37-source machine-readable registry with explicit approved/conditional/pending/blocked rights,
   release snapshots, row-level inheritance, and deny-by-default production filtering.
 - An immutable release lake, verified resumable downloader, DuckDB/Parquet staging, checkpoints,
   graph exports, and reports.
@@ -141,6 +153,8 @@ The integrated release-aware Alchemy foundation additionally provides:
   queries, and approved-projection rebuilding.
 - A pinned Disease Ontology `v2026-06-30` adapter and real 250-term verification slice; downloaded
   and generated data remain ignored.
+- A pinned Taiwan Herbal Pharmacopeia 4th edition/correction release and lossless official
+  standardized-formula snapshot under Taiwan's Open Government Data License 1.0.
 
 ## Important invariants and constraints
 
@@ -203,6 +217,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
 | `master`                   | Build hexagram inspection/library  | Feature `a095f06` is live on Cloudflare                                | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                |
 | `master` | Publish release-aware Alchemy data foundation | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5` | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md) |
+| `master` | Publish official herb/formula foundation | Feature and production corrections through `9a1fa5a`; audited Taiwan MOHW release and real-data UI are live | [Official foundation handoff](handoffs/20260727T003600Z--master--publish-official-herb-formula-foundation.md) |
 
 ## Known issues and risks
 
@@ -215,16 +230,19 @@ The integrated release-aware Alchemy foundation additionally provides:
 - A portable disposable Neo4j 5.26.28 runtime verified the new migrations locally without changing
   the workstation. GitHub `Alchemy API` run `30223980968` passed backend quality, a clean Neo4j
   integration test, graph audit, and the production container build for `b32f2d5`.
-- No new dataset has been imported into production AuraDB. The foundation work verified and loaded
-  a 250-term Disease Ontology `v2026-06-30` slice into disposable local Neo4j; USDA Duke passed
-  checksum validation and offline dry-run mapping; PubChem is opt-in and cached; SymMap remains
-  blocked pending rights review.
+- The official Taiwan MOHW release is live in production AuraDB. Its completeness is scoped to the
+  pinned release, not to all Chinese materia medica or formula traditions. Ninety-two public
+  formula-only material terms still require reviewed cross-source identity decisions; parenthetical
+  source terms are intentionally not collapsed into inferred botanical or preparation equivalence.
+- Disease Ontology remains a disposable architecture proof and deferred registered source. USDA
+  Duke passed checksum validation and offline dry-run mapping; PubChem is opt-in and cached; SymMap
+  remains blocked pending rights review.
 - Alchemy auth, saved research workspaces, embeddings, and inference are inactive. The Render API is
-  publicly live at graph schema v2, Aura readiness succeeds, migrations `001`–`005` and synthetic
-  seed data are present, and all publication checks pass. `api.current-flow.net` resolves, serves a
-  valid certificate, reports dependency readiness, and permits the exact production browser origin.
-  The live Cloudflare Pages Alchemy route reports `current-alchemy-api`, API v1, graph schema v2,
-  and no fixture fallback.
+  publicly live at graph schema v2, Aura readiness succeeds, migrations `001`–`005` and the
+  official herb/formula release are present, synthetic public records are retired, and publication
+  checks pass. `api.current-flow.net` resolves, reports dependency readiness, and permits the exact
+  production browser origin. The live Cloudflare Pages Alchemy route reports
+  `current-alchemy-api`, API v1, graph schema v2, and no fixture fallback.
 - Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
   inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
   an alpha host, not a production SLA.
@@ -244,7 +262,8 @@ The integrated release-aware Alchemy foundation additionally provides:
 - What privacy, retention, and identity requirements must precede personal context and saved readings?
 - What authentication, authorization, retention, and deployment topology should precede production
   Alchemy access?
-- Which reviewed traditional-source corpus and identity crosswalk should be onboarded first?
+- Which reviewed cross-source identity authority should control equivalence among official
+  monograph names, formula-only terms, prepared materials, and future bilingual aliases?
 
 ## Next priorities
 
@@ -255,15 +274,17 @@ The integrated release-aware Alchemy foundation additionally provides:
    supplies both.
 4. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-5. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+5. Review the 92 formula-only material terms and prepared-material boundaries, then add curated
+   bilingual aliases and explicit equivalence mappings without collapsing source wording.
+6. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-6. Use an authenticated Render administration shell to import and audit the pinned Disease
-   Ontology subset into Aura, then pin a manageable LOTUS natural-products release.
-7. Define authentication, privacy, retention, and private Neo4j deployment requirements.
+7. Add condition, compound, and target sources such as Disease Ontology only after the live
+   herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
+   deployment requirements.
 
-Exact next useful action for Alchemy: authenticate to Render, run the pinned Disease Ontology subset
-through the deployed CLI into Aura, verify graph counts/provenance, and retain the synthetic seed
-until a real material/formula source can support the existing public routes.
+Exact next useful action for Alchemy: domain-review the 92 formula-only exact material terms and
+select a licensed bilingual identity authority, then add explicit aliases/mappings while preserving
+the live Taiwan MOHW source records and formula witness text.
 
 ## Documentation map
 
