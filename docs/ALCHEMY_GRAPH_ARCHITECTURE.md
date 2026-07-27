@@ -48,6 +48,25 @@ dataset row, or historical variant and owns ordered `IngredientUse` nodes. Each 
 preserves its source amount, unit text, preparation, role only when explicitly supplied, and
 locator. Prepared materials remain separate canonical entities.
 
+### Multilingual names
+
+Names are modeled independently from entity identity. A canonical herb/material or formula can own
+multiple `CanonicalName` nodes through `HAS_NAME`, with language, script, name kind, review status,
+derivation method, source, and optional source-record evidence. The public projection may choose one
+English display name without changing the exact Traditional Chinese source title or the entity ID.
+
+The Taiwan MOHW foundation uses `taiwan-mohw-multilingual-names-v1`:
+
+- English is the preferred public display/search name.
+- tone-marked Hanyu Pinyin is a secondary romanized name; untoned Pinyin remains a search form;
+- Traditional Chinese is the exact source-preferred name;
+- 355 monograph English common names come from the official Taiwan Herbal Pharmacopeia index;
+- formula and formula-only material English translations are marked as Current Flow derived,
+  machine-imported names pending domain review rather than represented as official source titles.
+
+This boundary permits future reviewed aliases and cross-source identity mappings without rewriting
+source records or collapsing exact ingredient wording.
+
 Scientific evidence uses `CompoundOccurrence`, `BioactivityObservation`, `ToxicityObservation`, and
 `ExposureObservation` nodes so value, operator, unit, assay/specimen/route, time, geography, and
 source context cannot disappear into an edge. `Prediction` is a separate label with model/training

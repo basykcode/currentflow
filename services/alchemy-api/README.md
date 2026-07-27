@@ -77,7 +77,10 @@ offline administration. The live foundation pins Taiwan MOHW release `thp4-2025-
 official medicinal-material monographs, 200 standardized formulas, and 1,672 ordered base
 ingredient uses. Disease Ontology `v2026-06-30` remains an architecture proof and later enrichment,
 not a material/formula dependency. Downloaded official PDFs and generated lake data remain ignored
-by Git; the checksum-pinned lossless foundation snapshot is committed for reproducibility.
+by Git; the checksum-pinned lossless foundation and multilingual-name snapshots are committed for
+reproducibility. Public material/formula display is English-first with tone-marked Hanyu Pinyin and
+exact Traditional Chinese secondary names. Official pharmacopeia English names remain distinct from
+provenance-labeled derived formula and formula-only material translations.
 
 See the root documentation:
 

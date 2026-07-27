@@ -271,8 +271,11 @@ onBeforeUnmount(() => {
             </span>
             <span class="result-identity">
               <strong>{{ formula.displayName }}</strong>
-              <span v-if="formula.nameChineseSimplified" lang="zh-Hans">
-                {{ formula.nameChineseSimplified }}
+              <span
+                v-if="formula.nameChineseTraditional || formula.nameChineseSimplified"
+                lang="zh-Hant"
+              >
+                {{ formula.nameChineseTraditional || formula.nameChineseSimplified }}
               </span>
               <small>{{ formula.pinyin }}</small>
               <small>{{ formula.categories.join(' · ') }}</small>
@@ -320,11 +323,17 @@ onBeforeUnmount(() => {
                 <h3 id="formula-detail-heading">{{ detailResource.data.value.displayName }}</h3>
               </div>
               <span
-                v-if="detailResource.data.value.nameChineseSimplified"
+                v-if="
+                  detailResource.data.value.nameChineseTraditional ||
+                  detailResource.data.value.nameChineseSimplified
+                "
                 class="cjk-name"
-                lang="zh-Hans"
+                lang="zh-Hant"
               >
-                {{ detailResource.data.value.nameChineseSimplified }}
+                {{
+                  detailResource.data.value.nameChineseTraditional ||
+                  detailResource.data.value.nameChineseSimplified
+                }}
               </span>
             </div>
             <p class="identity-line">{{ detailResource.data.value.pinyin }}</p>
@@ -384,7 +393,26 @@ onBeforeUnmount(() => {
                     v-for="ingredient in detailResource.data.value.ingredients"
                     :key="ingredient.id"
                   >
-                    <th scope="row">{{ ingredient.herbDisplayName }}</th>
+                    <th scope="row">
+                      <span class="ingredient-identity">
+                        <strong>{{ ingredient.herbDisplayName }}</strong>
+                        <small>{{ ingredient.pinyin }}</small>
+                        <small
+                          v-if="
+                            ingredient.nameChineseTraditional ||
+                            ingredient.nameChineseSimplified ||
+                            ingredient.note
+                          "
+                          lang="zh-Hant"
+                        >
+                          {{
+                            ingredient.nameChineseTraditional ||
+                            ingredient.nameChineseSimplified ||
+                            ingredient.note
+                          }}
+                        </small>
+                      </span>
+                    </th>
                     <td>{{ ingredient.amountText || 'Unspecified' }} {{ ingredient.unit }}</td>
                     <td>{{ ingredient.preparationLabel || 'Not supplied' }}</td>
                     <td>{{ ingredient.role || 'Not supplied' }}</td>

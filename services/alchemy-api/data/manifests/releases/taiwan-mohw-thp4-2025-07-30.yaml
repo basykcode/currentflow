@@ -26,6 +26,15 @@ artifacts:
     lastModified: null
     archiveFormat: pdf
     expectedExtractedFiles: []
+  - filename: mohw-common-formulas-bilingual-2021.pdf
+    downloadUrl: https://www.mohw.gov.tw/dl-69997-92bcd2d5-5987-48d1-a15e-ffb2185fb1e7.html
+    expectedSize: 1723384
+    observedSize: null
+    sha256: 002b0a6bce7ac2681737415b03296c14a7c4d964dc69315d909c1e22b9f92c1b
+    etag: null
+    lastModified: null
+    archiveFormat: pdf
+    expectedExtractedFiles: []
   - filename: taiwan-mohw-thp4-2025-07-30.json
     downloadUrl: null
     expectedSize: 542062
@@ -35,11 +44,29 @@ artifacts:
     lastModified: null
     archiveFormat: json
     expectedExtractedFiles: []
+  - filename: taiwan-mohw-multilingual-seed-v1.json
+    downloadUrl: null
+    expectedSize: 14219
+    observedSize: null
+    sha256: b88cc64ef1def1fc5b63f62d2aa3b04564e8733cfb6f09a330aee6d767dee66e
+    etag: null
+    lastModified: null
+    archiveFormat: json
+    expectedExtractedFiles: []
+  - filename: taiwan-mohw-multilingual-names-v1.json
+    downloadUrl: null
+    expectedSize: 249820
+    observedSize: null
+    sha256: ebfe48e04b1654252f2779af8b8073884a91f59a289f850831f44f925e66f99a
+    etag: null
+    lastModified: null
+    archiveFormat: json
+    expectedExtractedFiles: []
 adapterName: taiwan-mohw-pharmacopeia
-adapterVersion: "1"
+adapterVersion: "2"
 schemaVersion: alchemy-graph-v2
-normalizationVersion: unicode-whitespace-v1
-mappingVersion: taiwan-mohw-exact-source-v1
+normalizationVersion: unicode-whitespace-and-multilingual-names-v2
+mappingVersion: taiwan-mohw-exact-source-and-names-v2
 licenseSnapshot:
   licenseName: Taiwan Open Government Data License 1.0
   licenseUrl: https://data.gov.tw/license

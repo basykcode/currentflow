@@ -924,6 +924,22 @@
   font-weight: 650;
 }
 
+.ingredient-identity {
+  display: grid;
+  gap: 0.16rem;
+}
+
+.ingredient-identity small {
+  color: var(--ink-faint);
+  font-weight: 400;
+}
+
+.ingredient-identity small[lang='zh-Hant'] {
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+}
+
 .alchemy-shell tbody td {
   color: var(--ink-soft);
 }

@@ -142,8 +142,19 @@ class ReleasePipeline:
         manifest = adapter.resolve_manifest(source, manifest)
         import_run_id = _import_run_id(manifest)
         checkpoint_path = self._paths.checkpoint(source.source_id, manifest.release_id)
-        checkpoint = _load_checkpoint(
-            checkpoint_path, source.source_id, manifest.release_id, import_run_id
+        checkpoint = (
+            _load_checkpoint(
+                checkpoint_path,
+                source.source_id,
+                manifest.release_id,
+                import_run_id,
+            )
+            if resume
+            else PipelineCheckpoint(
+                source_id=source.source_id,
+                release_id=manifest.release_id,
+                import_run_id=import_run_id,
+            )
         )
         phase_results = dict(checkpoint.phase_results)
         completed = list(checkpoint.completed_phases) if resume else []

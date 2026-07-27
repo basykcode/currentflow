@@ -1190,6 +1190,16 @@ class Neo4jAlchemyRepository:
                 MATCH (witness)-[:HAS_INGREDIENT_USE]->(ingredient:IngredientUse)
                 RETURN count(DISTINCT ingredient) AS count
             """,
+            "multilingualEntities": """
+                MATCH (entity:CanonicalEntity)
+                WHERE $source_id IN coalesce(entity.source_ids, [])
+                  AND entity.name_schema_version = 'taiwan-mohw-multilingual-names-v1'
+                  AND entity.display_name IS NOT NULL
+                  AND entity.names_json CONTAINS '"language": "en"'
+                  AND entity.names_json CONTAINS '"language": "zh-Hant"'
+                  AND entity.names_json CONTAINS '"language": "zh-Latn-pinyin"'
+                RETURN count(DISTINCT entity) AS count
+            """,
         }
         counts: dict[str, int] = {}
         async with self._driver.session(database=self._database) as session:

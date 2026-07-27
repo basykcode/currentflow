@@ -41,6 +41,7 @@ _FOUNDATION_EXPECTED = {
     "formulas": 200,
     "formulaWitnesses": 200,
     "ingredientUses": 1672,
+    "multilingualEntities": 647,
 }
 
 T = TypeVar("T")

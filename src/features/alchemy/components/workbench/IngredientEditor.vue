@@ -42,6 +42,9 @@ const resolveMaterial = (lineId: string, value: string) => {
   emit('update', lineId, {
     herbMaterialId: herb?.id ?? '',
     herbDisplayName: herb?.displayName ?? value,
+    nameChineseSimplified: herb?.nameChineseSimplified ?? '',
+    nameChineseTraditional: herb?.nameChineseTraditional ?? '',
+    pinyin: herb?.pinyin ?? '',
   })
 }
 
@@ -61,7 +64,7 @@ const validationFor = (lineId: string): IngredientLineValidation | undefined =>
 
     <datalist id="alchemy-material-options">
       <option v-for="herb in herbOptions" :key="herb.id" :value="herb.displayName">
-        {{ herb.nameChineseSimplified }} · {{ herb.pinyin }}
+        {{ herb.nameChineseTraditional || herb.nameChineseSimplified }} · {{ herb.pinyin }}
       </option>
     </datalist>
 
@@ -87,12 +90,18 @@ const validationFor = (lineId: string): IngredientLineValidation | undefined =>
               type="text"
               list="alchemy-material-options"
               :value="line.herbDisplayName"
-              placeholder="Search a demo material"
+              placeholder="Search English, Pinyin, or Chinese"
               autocomplete="off"
               @change="resolveMaterial(line.id, inputValue($event))"
             />
             <small v-if="line.herbMaterialId">Resolved · {{ line.herbMaterialId }}</small>
             <small v-else class="field-error">Unresolved identity</small>
+            <small v-if="line.pinyin || line.nameChineseTraditional || line.nameChineseSimplified">
+              {{ line.pinyin }}
+              <span lang="zh-Hant">
+                · {{ line.nameChineseTraditional || line.nameChineseSimplified }}
+              </span>
+            </small>
           </label>
           <label>
             Amount

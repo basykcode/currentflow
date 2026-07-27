@@ -84,6 +84,9 @@ export type FormulaIngredientLine = {
   id: string
   herbMaterialId: string
   herbDisplayName: string
+  nameChineseSimplified?: string
+  nameChineseTraditional?: string
+  pinyin?: string
   amountText: string
   unit: string
   preparationId?: string

@@ -7,9 +7,9 @@ sources:
     officialHomepage: https://dep.mohw.gov.tw/DOCMAP/
     officialDownloadPage: https://dep.mohw.gov.tw/DOCMAP/cp-759-63293-108.html
     sourceType: official_pharmacopeia_and_formula_standard
-    languages: [zh-Hant]
+    languages: [zh-Hant, en, zh-Latn-pinyin]
     updateCadence: irregular amendments
-    expectedScale: 355 medicinal-material monographs and 200 standardized formulas in the pinned release
+    expectedScale: 355 medicinal-material monographs, 92 additional public formula ingredient terms, and 200 standardized formulas in the pinned release
     canonicalIdentifiersSupplied: [official formula page identifier, THP monograph name and page]
     knownUpstreamSources: []
     rights:
@@ -26,11 +26,13 @@ sources:
     productionStatus: approved
     acquisitionMode: automatic
     adapterName: taiwan-mohw-pharmacopeia
-    adapterVersion: "1"
+    adapterVersion: "2"
     citationTemplate: Taiwan Ministry of Health and Welfare, Taiwan Herbal Pharmacopeia 4th edition (as amended 2025-07-30) and Standardized Formulas snapshot 2026-07-26.
     intendedUses:
       - official medicinal-material name foundation
       - official standardized-formula name foundation
+      - official English common names for pharmacopeia monographs
+      - tone-marked Hanyu Pinyin and English-first public name projection
       - exact formula ingredient composition and source-reported quantities
     useLimitations:
       - Exhaustiveness means complete within this pinned official release, not every historical or regional Chinese-medicine tradition.
@@ -44,6 +46,8 @@ sources:
     licenseReviewNotes: The ministry website's Government Website Open Information Announcement applies Taiwan Open Government Data License 1.0 to site materials and permits reproduction, adaptation, editing, public transmission, and product or service development with attribution.
     usefulFieldInventory:
       - medicinal-material monograph name
+      - official medicinal-material English common name
+      - tone-marked Hanyu Pinyin name
       - formula name
       - source text
       - efficacy text

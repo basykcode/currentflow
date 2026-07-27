@@ -144,7 +144,12 @@ def test_committed_source_registry_and_release_manifests_validate() -> None:
     taiwan_source = store.source("source:taiwan-mohw-docmap")
     taiwan_release = store.release("source:taiwan-mohw-docmap", "thp4-2025-07-30")
     assert taiwan_source.production_status is ProductionStatus.APPROVED
-    assert taiwan_release.artifacts[2].sha256 == (
+    taiwan_snapshot = next(
+        artifact
+        for artifact in taiwan_release.artifacts
+        if artifact.filename == "taiwan-mohw-thp4-2025-07-30.json"
+    )
+    assert taiwan_snapshot.sha256 == (
         "fe579c1aa0f96307a54882bae790661d805aa3a0955ce601c410190441ac5e20"
     )
 
@@ -356,7 +361,20 @@ async def test_fixture_pipeline_is_resumable_idempotent_and_dry_run_has_no_graph
         dry_run=True,
         resume=True,
     )
+    revised_release = _release(content).model_copy(update={"mapping_version": "demo-doid-exact-v2"})
+    revised = await pipeline.run(
+        _source(),
+        revised_release,
+        through=PipelinePhase.GRAPH,
+        mode=PipelineMode.FULL,
+        subset_limit=100,
+        projection=RightsProjection.PRODUCTION_APPROVED,
+        batch_size=2,
+        dry_run=True,
+        resume=False,
+    )
     assert first["importRunId"] == second["importRunId"]
+    assert revised["importRunId"] != first["importRunId"]
     graph = first["phases"]["graph"]
     assert graph["dryRun"] is True
     assert graph["nodes"] > 3

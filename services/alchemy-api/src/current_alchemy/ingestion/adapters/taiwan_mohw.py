@@ -35,12 +35,19 @@ from current_alchemy.ingestion.source_registry.models import (
 )
 
 _SNAPSHOT_FILENAME = "taiwan-mohw-thp4-2025-07-30.json"
+_MULTILINGUAL_SEED_FILENAME = "taiwan-mohw-multilingual-seed-v1.json"
+_MULTILINGUAL_NAMES_FILENAME = "taiwan-mohw-multilingual-names-v1.json"
 _PHARMACOPEIA_FILENAME = "taiwan-herbal-pharmacopeia-4.pdf"
 _CORRECTIONS_FILENAME = "thp4-corrections-2025-07-30.pdf"
+_FORMULA_COMPENDIUM_FILENAME = "mohw-common-formulas-bilingual-2021.pdf"
+_NAME_SCHEMA_VERSION = "taiwan-mohw-multilingual-names-v1"
 _EXPECTED_MATERIALS = 355
+_EXPECTED_ALL_MATERIAL_TERMS = 448
+_EXPECTED_PUBLIC_MATERIALS = 447
 _EXPECTED_FORMULAS = 200
 _EXPECTED_INGREDIENT_USES = 1672
 _EXCIPIENT_TERMS = frozenset({"油質基劑"})
+_DOSAGE_FORM_ENGLISH = {"丸": "Pill", "丹": "Elixir", "散": "Powder"}
 _FORMULA_PAGE_ID = re.compile(r"(cp-866-\d+-108)\.html$")
 
 
@@ -86,6 +93,16 @@ def _snapshot(path: Path) -> dict[str, object]:
     return result
 
 
+def _names_snapshot(path: Path) -> dict[str, object]:
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise ValueError("multilingual names snapshot root must be an object")
+    result = cast(dict[str, object], value)
+    if result.get("schemaVersion") != _NAME_SCHEMA_VERSION:
+        raise ValueError("unsupported Taiwan MOHW multilingual names snapshot schema")
+    return result
+
+
 def _formula_page_id(url: str) -> str:
     match = _FORMULA_PAGE_ID.search(url)
     if match is None:
@@ -114,22 +131,141 @@ def _formula_id(source_url: str) -> str:
     return f"formula:taiwan-mohw:{_formula_page_id(source_url)}"
 
 
-def _names_json(name: str, source_id: str) -> str:
+def _names_json(
+    *,
+    chinese_traditional: str,
+    english: str,
+    pinyin_toned: str,
+    pinyin_ascii: str,
+    source_id: str,
+) -> str:
     return json.dumps(
         [
             {
-                "text": name,
-                "normalized": normalize_name(name),
-                "language": "zh-Hant",
-                "script": "Hant",
+                "text": english,
+                "normalized": normalize_name(english),
+                "language": "en",
+                "script": "Latn",
                 "kind": "preferred",
                 "sourceId": source_id,
                 "reviewStatus": "machine_imported",
-            }
+            },
+            {
+                "text": pinyin_toned,
+                "normalized": normalize_name(pinyin_toned),
+                "language": "zh-Latn-pinyin",
+                "script": "Latn",
+                "kind": "hanyu_pinyin_tone_marks",
+                "sourceId": source_id,
+                "reviewStatus": "machine_imported",
+            },
+            {
+                "text": pinyin_ascii,
+                "normalized": normalize_name(pinyin_ascii),
+                "language": "zh-Latn-pinyin-x-plain",
+                "script": "Latn",
+                "kind": "search_romanization",
+                "sourceId": source_id,
+                "reviewStatus": "machine_imported",
+            },
+            {
+                "text": chinese_traditional,
+                "normalized": normalize_name(chinese_traditional),
+                "language": "zh-Hant",
+                "script": "Hant",
+                "kind": "source_preferred",
+                "sourceId": source_id,
+                "reviewStatus": "machine_imported",
+            },
         ],
         ensure_ascii=False,
         sort_keys=True,
     )
+
+
+def _append_multilingual_names(
+    nodes: list[NodeUpsert],
+    relationships: list[RelationshipUpsert],
+    *,
+    entity_id: str,
+    source_id: str,
+    source_record_id: str | None,
+    chinese_traditional: str,
+    english: str,
+    english_provenance: str,
+    pinyin_toned: str,
+    pinyin_ascii: str,
+    pinyin_provenance: str,
+) -> None:
+    names = (
+        (
+            "en",
+            english,
+            normalize_name(english),
+            "Latn",
+            "preferred",
+            english_provenance,
+        ),
+        (
+            "zh-Latn-pinyin",
+            pinyin_toned,
+            normalize_name(pinyin_toned),
+            "Latn",
+            "hanyu_pinyin_tone_marks",
+            pinyin_provenance,
+        ),
+        (
+            "zh-Hant",
+            chinese_traditional,
+            normalize_name(chinese_traditional),
+            "Hant",
+            "source_preferred",
+            "taiwan_mohw_exact_source_title",
+        ),
+    )
+    for language, text, normalized, script, kind, provenance in names:
+        name_id = stable_id("canonical-name", f"{entity_id}|{text}|{language}")
+        nodes.append(
+            NodeUpsert(
+                entity_type=GraphLabel.CANONICAL_NAME,
+                id=name_id,
+                properties={
+                    "display_name": text,
+                    "text": text,
+                    "normalized": normalized,
+                    "language": language,
+                    "script": script,
+                    "kind": kind,
+                    "source_id": source_id,
+                    "source_record_id": source_record_id,
+                    "derivation_method": provenance,
+                    "name_schema_version": _NAME_SCHEMA_VERSION,
+                    "review_status": "machine_imported",
+                },
+            )
+        )
+        relationship_id = (
+            f"rel:{entity_id}:preferred-name"
+            if language == "zh-Hant"
+            else f"rel:{entity_id}:name:{language}"
+        )
+        relationships.append(
+            RelationshipUpsert(
+                id=relationship_id,
+                source_id=entity_id,
+                target_id=name_id,
+                relationship_type=GraphRelationshipType.HAS_NAME,
+            )
+        )
+        if source_record_id is not None:
+            relationships.append(
+                RelationshipUpsert(
+                    id=f"rel:{name_id}:record:{source_record_id}",
+                    source_id=name_id,
+                    target_id=source_record_id,
+                    relationship_type=RelationshipType.SUPPORTED_BY,
+                )
+            )
 
 
 def _deduplicate(batch: IngestionBatch) -> IngestionBatch:
@@ -147,14 +283,16 @@ class TaiwanMohwPharmacopeiaAdapter:
     """Map exact government source records to the public and evidence graph layers."""
 
     name = "taiwan-mohw-pharmacopeia"
-    version = "1"
+    version = "2"
     supported_source_versions: tuple[str, ...] = (
         "THP4 amended 2025-07-30; standardized-formula snapshot 2026-07-26",
     )
     input_files: tuple[str, ...] = (
         _PHARMACOPEIA_FILENAME,
         _CORRECTIONS_FILENAME,
+        _FORMULA_COMPENDIUM_FILENAME,
         _SNAPSHOT_FILENAME,
+        _MULTILINGUAL_NAMES_FILENAME,
     )
     output_tables: tuple[str, ...] = ("materials", "formulas", "ingredient_uses")
     graph_entities: tuple[str, ...] = (
@@ -179,6 +317,7 @@ class TaiwanMohwPharmacopeiaAdapter:
         "Complete means complete within the pinned official release, not globally exhaustive.",
         "Parenthetical ingredient terms remain exact source terms without inferred equivalence.",
         "Traditional-preparation additions after the base quantity context remain witness text.",
+        "Derived English formula titles remain machine-imported until domain review.",
     )
 
     def discover_release(self, source: SourceRegistryEntry) -> str:
@@ -201,6 +340,16 @@ class TaiwanMohwPharmacopeiaAdapter:
     def _bundled_snapshot(self) -> Path:
         return Path(__file__).resolve().parents[4] / "data" / "releases" / _SNAPSHOT_FILENAME
 
+    def _bundled_names_snapshot(self) -> Path:
+        return (
+            Path(__file__).resolve().parents[4] / "data" / "releases" / _MULTILINGUAL_NAMES_FILENAME
+        )
+
+    def _bundled_names_seed(self) -> Path:
+        return (
+            Path(__file__).resolve().parents[4] / "data" / "releases" / _MULTILINGUAL_SEED_FILENAME
+        )
+
     def _artifact_path(
         self,
         manifest: SourceReleaseManifest,
@@ -215,16 +364,23 @@ class TaiwanMohwPharmacopeiaAdapter:
         manifest: SourceReleaseManifest,
         downloader: ReleaseDownloader,
     ) -> DownloadPlan:
-        snapshot_artifact = next(
-            artifact for artifact in manifest.artifacts if artifact.filename == _SNAPSHOT_FILENAME
-        )
-        bundled = self._bundled_snapshot()
-        if not bundled.exists() or file_sha256(bundled) != snapshot_artifact.sha256:
-            raise ValueError("bundled Taiwan MOHW snapshot is missing or fails its pinned checksum")
+        local_artifacts = {
+            _SNAPSHOT_FILENAME: self._bundled_snapshot(),
+            _MULTILINGUAL_SEED_FILENAME: self._bundled_names_seed(),
+            _MULTILINGUAL_NAMES_FILENAME: self._bundled_names_snapshot(),
+        }
+        for filename, bundled in local_artifacts.items():
+            artifact = next(
+                artifact for artifact in manifest.artifacts if artifact.filename == filename
+            )
+            if not bundled.exists() or file_sha256(bundled) != artifact.sha256:
+                raise ValueError(
+                    f"bundled Taiwan MOHW artifact {filename} is missing or fails its checksum"
+                )
         return downloader.plan(
             source,
             manifest,
-            additional_local_artifacts=frozenset({_SNAPSHOT_FILENAME}),
+            additional_local_artifacts=frozenset(local_artifacts),
         )
 
     async def acquire(
@@ -233,16 +389,23 @@ class TaiwanMohwPharmacopeiaAdapter:
         manifest: SourceReleaseManifest,
         downloader: ReleaseDownloader,
     ) -> SourceReleaseManifest:
-        snapshot_artifact = next(
-            artifact for artifact in manifest.artifacts if artifact.filename == _SNAPSHOT_FILENAME
-        )
-        bundled = self._bundled_snapshot()
-        if not bundled.exists() or file_sha256(bundled) != snapshot_artifact.sha256:
-            raise ValueError("bundled Taiwan MOHW snapshot is missing or fails its pinned checksum")
-        target = downloader.local_artifact_path(manifest, _SNAPSHOT_FILENAME)
-        target.parent.mkdir(parents=True, exist_ok=True)
-        if not target.exists():
-            shutil.copyfile(bundled, target)
+        local_artifacts = {
+            _SNAPSHOT_FILENAME: self._bundled_snapshot(),
+            _MULTILINGUAL_SEED_FILENAME: self._bundled_names_seed(),
+            _MULTILINGUAL_NAMES_FILENAME: self._bundled_names_snapshot(),
+        }
+        for filename, bundled in local_artifacts.items():
+            artifact = next(
+                artifact for artifact in manifest.artifacts if artifact.filename == filename
+            )
+            if not bundled.exists() or file_sha256(bundled) != artifact.sha256:
+                raise ValueError(
+                    f"bundled Taiwan MOHW artifact {filename} is missing or fails its checksum"
+                )
+            target = downloader.local_artifact_path(manifest, filename)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if not target.exists():
+                shutil.copyfile(bundled, target)
         return await downloader.fetch(source, manifest)
 
     def verify(
@@ -271,21 +434,37 @@ class TaiwanMohwPharmacopeiaAdapter:
         paths: AlchemyDataPaths,
     ) -> dict[str, int | str | list[str]]:
         value = _snapshot(self._artifact_path(manifest, paths, _SNAPSHOT_FILENAME))
+        names_value = _names_snapshot(
+            self._artifact_path(manifest, paths, _MULTILINGUAL_NAMES_FILENAME)
+        )
         materials = _dict_list(value.get("materiaMedica"), "materiaMedica")
         formulas = _dict_list(value.get("formulas"), "formulas")
+        material_names = _dict_list(names_value.get("materials"), "names.materials")
+        formula_names = _dict_list(names_value.get("formulas"), "names.formulas")
         ingredient_count = sum(
             len(_dict_list(formula.get("ingredients"), "formulas[].ingredients"))
             for formula in formulas
         )
+        if len(material_names) != _EXPECTED_ALL_MATERIAL_TERMS:
+            raise ValueError("multilingual material-name snapshot is incomplete")
+        if len(formula_names) != _EXPECTED_FORMULAS:
+            raise ValueError("multilingual formula-name snapshot is incomplete")
         report: dict[str, int | str | list[str]] = {
             "schemaVersion": str(value["schemaVersion"]),
+            "nameSchemaVersion": str(names_value["schemaVersion"]),
             "materialCount": len(materials),
+            "multilingualMaterialTermCount": len(material_names),
             "formulaCount": len(formulas),
+            "multilingualFormulaCount": len(formula_names),
             "ingredientUseCount": ingredient_count,
             "fields": [
                 "materiaMedica.name",
                 "materiaMedica.monographPage",
+                "names.materials.english",
+                "names.materials.pinyin",
                 "formulas.name",
+                "names.formulas.english",
+                "names.formulas.pinyin",
                 "formulas.sourceText",
                 "formulas.efficacy",
                 "formulas.indications",
@@ -312,8 +491,23 @@ class TaiwanMohwPharmacopeiaAdapter:
         import_run_id: str,
     ) -> dict[str, int | str | list[str]]:
         value = _snapshot(self._artifact_path(manifest, paths, _SNAPSHOT_FILENAME))
+        names_value = _names_snapshot(
+            self._artifact_path(manifest, paths, _MULTILINGUAL_NAMES_FILENAME)
+        )
         available_materials = _dict_list(value.get("materiaMedica"), "materiaMedica")
         available_formulas = _dict_list(value.get("formulas"), "formulas")
+        material_names = {
+            str(item["chineseTraditional"]): item
+            for item in _dict_list(names_value.get("materials"), "names.materials")
+        }
+        formula_names = {
+            int(cast(int, item["sequence"])): item
+            for item in _dict_list(names_value.get("formulas"), "names.formulas")
+        }
+        if len(material_names) != _EXPECTED_ALL_MATERIAL_TERMS:
+            raise ValueError("multilingual material-name snapshot has duplicate or missing terms")
+        if len(formula_names) != _EXPECTED_FORMULAS:
+            raise ValueError("multilingual formula-name snapshot has duplicate or missing formulas")
         selected_materials = (
             available_materials if mode is PipelineMode.FULL else available_materials[:subset_limit]
         )
@@ -324,6 +518,9 @@ class TaiwanMohwPharmacopeiaAdapter:
         material_rows: list[dict[str, object]] = []
         for material in selected_materials:
             name = str(material["name"])
+            multilingual = material_names.get(name)
+            if multilingual is None:
+                raise ValueError(f"multilingual names are missing medicinal material: {name}")
             material_rows.append(
                 {
                     "source_record_id": _record_id(
@@ -334,6 +531,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                     "toc_order": int(cast(int, material["tocOrder"])),
                     "toc_pdf_page": int(cast(int, material["tocPdfPage"])),
                     "source_locator": f"THP4 monograph p. {material['monographPage']}",
+                    "english_name": str(multilingual["english"]),
+                    "english_name_provenance": str(multilingual["englishProvenance"]),
+                    "pinyin": str(multilingual["pinyin"]),
+                    "pinyin_ascii": str(multilingual["pinyinAscii"]),
+                    "pinyin_provenance": str(multilingual["pinyinProvenance"]),
                     "raw_record_json": json.dumps(material, ensure_ascii=False, sort_keys=True),
                     "import_run_id": import_run_id,
                 }
@@ -342,6 +544,10 @@ class TaiwanMohwPharmacopeiaAdapter:
         formula_rows: list[dict[str, object]] = []
         ingredient_rows: list[dict[str, object]] = []
         for formula in selected_formulas:
+            sequence = int(cast(int, formula["sequence"]))
+            multilingual = formula_names.get(sequence)
+            if multilingual is None:
+                raise ValueError(f"multilingual names are missing formula sequence {sequence}")
             source_url = str(formula["sourceUrl"])
             page_id = _formula_page_id(source_url)
             formula_record_id = _record_id(
@@ -350,9 +556,14 @@ class TaiwanMohwPharmacopeiaAdapter:
             formula_rows.append(
                 {
                     "source_record_id": formula_record_id,
-                    "sequence": int(cast(int, formula["sequence"])),
+                    "sequence": sequence,
                     "reported_item": str(formula["reportedItem"]),
                     "name": str(formula["name"]),
+                    "english_name": str(multilingual["english"]),
+                    "english_name_provenance": str(multilingual["englishProvenance"]),
+                    "pinyin": str(multilingual["pinyin"]),
+                    "pinyin_ascii": str(multilingual["pinyinAscii"]),
+                    "pinyin_provenance": str(multilingual["pinyinProvenance"]),
                     "dosage_form": (
                         str(formula["dosageForm"]) if formula.get("dosageForm") else None
                     ),
@@ -369,12 +580,23 @@ class TaiwanMohwPharmacopeiaAdapter:
                 }
             )
             for ingredient in _dict_list(formula.get("ingredients"), "formulas[].ingredients"):
+                ingredient_name = str(ingredient["name"])
+                material_multilingual = material_names.get(ingredient_name)
+                if material_multilingual is None:
+                    raise ValueError(
+                        f"multilingual names are missing formula ingredient: {ingredient_name}"
+                    )
                 ingredient_rows.append(
                     {
                         "formula_source_record_id": formula_record_id,
-                        "formula_sequence": int(cast(int, formula["sequence"])),
+                        "formula_sequence": sequence,
                         "position": int(cast(int, ingredient["position"])),
-                        "name": str(ingredient["name"]),
+                        "name": ingredient_name,
+                        "english_name": str(material_multilingual["english"]),
+                        "english_name_provenance": str(material_multilingual["englishProvenance"]),
+                        "pinyin": str(material_multilingual["pinyin"]),
+                        "pinyin_ascii": str(material_multilingual["pinyinAscii"]),
+                        "pinyin_provenance": str(material_multilingual["pinyinProvenance"]),
                         "amount_text": str(ingredient["amountText"]),
                         "unit": str(ingredient["unit"]),
                         "quantity_context": str(ingredient["quantityContext"]),
@@ -391,6 +613,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 ("toc_order", pa.int64()),
                 ("toc_pdf_page", pa.int64()),
                 ("source_locator", pa.string()),
+                ("english_name", pa.string()),
+                ("english_name_provenance", pa.string()),
+                ("pinyin", pa.string()),
+                ("pinyin_ascii", pa.string()),
+                ("pinyin_provenance", pa.string()),
                 ("raw_record_json", pa.string()),
                 ("import_run_id", pa.string()),
             ]
@@ -401,6 +628,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 ("sequence", pa.int64()),
                 ("reported_item", pa.string()),
                 ("name", pa.string()),
+                ("english_name", pa.string()),
+                ("english_name_provenance", pa.string()),
+                ("pinyin", pa.string()),
+                ("pinyin_ascii", pa.string()),
+                ("pinyin_provenance", pa.string()),
                 ("dosage_form", pa.string()),
                 ("source_text", pa.string()),
                 ("efficacy", pa.string()),
@@ -420,6 +652,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 ("formula_sequence", pa.int64()),
                 ("position", pa.int64()),
                 ("name", pa.string()),
+                ("english_name", pa.string()),
+                ("english_name_provenance", pa.string()),
+                ("pinyin", pa.string()),
+                ("pinyin_ascii", pa.string()),
+                ("pinyin_provenance", pa.string()),
                 ("amount_text", pa.string()),
                 ("unit", pa.string()),
                 ("quantity_context", pa.string()),
@@ -509,6 +746,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 "normalized_name": normalize_name(name),
                 "material_scope": "official_monograph",
                 "entity_kind": "medicinal_material",
+                "english_name": str(row["english_name"]),
+                "english_name_provenance": str(row["english_name_provenance"]),
+                "pinyin": str(row["pinyin"]),
+                "pinyin_ascii": str(row["pinyin_ascii"]),
+                "pinyin_provenance": str(row["pinyin_provenance"]),
                 "monograph_source_record_id": str(row["source_record_id"]),
                 "monograph_page": int(cast(int, row["monograph_page"])),
                 "source_locator": str(row["source_locator"]),
@@ -535,6 +777,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                     "normalized_name": normalize_name(name),
                     "material_scope": "official_formula_ingredient_term",
                     "entity_kind": ("prepared_material" if is_excipient else "medicinal_material"),
+                    "english_name": str(row["english_name"]),
+                    "english_name_provenance": str(row["english_name_provenance"]),
+                    "pinyin": str(row["pinyin"]),
+                    "pinyin_ascii": str(row["pinyin_ascii"]),
+                    "pinyin_provenance": str(row["pinyin_provenance"]),
                     "monograph_source_record_id": None,
                     "monograph_page": None,
                     "source_locator": str(row["source_url"]),
@@ -577,6 +824,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 ("normalized_name", pa.string()),
                 ("material_scope", pa.string()),
                 ("entity_kind", pa.string()),
+                ("english_name", pa.string()),
+                ("english_name_provenance", pa.string()),
+                ("pinyin", pa.string()),
+                ("pinyin_ascii", pa.string()),
+                ("pinyin_provenance", pa.string()),
                 ("monograph_source_record_id", pa.string()),
                 ("monograph_page", pa.int64()),
                 ("source_locator", pa.string()),
@@ -590,6 +842,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 ("name", pa.string()),
                 ("normalized_name", pa.string()),
                 ("formula_id", pa.string()),
+                ("english_name", pa.string()),
+                ("english_name_provenance", pa.string()),
+                ("pinyin", pa.string()),
+                ("pinyin_ascii", pa.string()),
+                ("pinyin_provenance", pa.string()),
                 ("dosage_form", pa.string()),
                 ("source_text", pa.string()),
                 ("efficacy", pa.string()),
@@ -612,6 +869,11 @@ class TaiwanMohwPharmacopeiaAdapter:
                 ("normalized_name", pa.string()),
                 ("material_id", pa.string()),
                 ("entity_kind", pa.string()),
+                ("english_name", pa.string()),
+                ("english_name_provenance", pa.string()),
+                ("pinyin", pa.string()),
+                ("pinyin_ascii", pa.string()),
+                ("pinyin_provenance", pa.string()),
                 ("amount_text", pa.string()),
                 ("unit", pa.string()),
                 ("quantity_context", pa.string()),
@@ -988,6 +1250,14 @@ class TaiwanMohwPharmacopeiaAdapter:
         for material in materials:
             material_id = str(material["material_id"])
             name = str(material["name"])
+            english_name = str(material["english_name"])
+            english_name_provenance = str(material["english_name_provenance"])
+            pinyin_toned = str(material["pinyin"])
+            pinyin_ascii = str(material["pinyin_ascii"])
+            pinyin_provenance = str(material["pinyin_provenance"])
+            aliases_search = normalize_name(
+                " ".join((english_name, pinyin_toned, pinyin_ascii, name))
+            )
             source_record_id = (
                 str(material["monograph_source_record_id"])
                 if material["monograph_source_record_id"] is not None
@@ -999,9 +1269,19 @@ class TaiwanMohwPharmacopeiaAdapter:
                         entity_type=GraphLabel.PREPARED_MATERIAL,
                         id=material_id,
                         properties={
-                            "display_name": name,
-                            "normalized_name": str(material["normalized_name"]),
+                            "display_name": english_name,
+                            "normalized_name": normalize_name(english_name),
+                            "source_normalized_name": str(material["normalized_name"]),
+                            "aliases_search": aliases_search,
+                            "names_json": _names_json(
+                                chinese_traditional=name,
+                                english=english_name,
+                                pinyin_toned=pinyin_toned,
+                                pinyin_ascii=pinyin_ascii,
+                                source_id=source.source_id,
+                            ),
                             "material_scope": str(material["material_scope"]),
+                            "name_schema_version": _NAME_SCHEMA_VERSION,
                             "source_ids": [source.source_id],
                             "data_status": "source_reported",
                             "review_status": "machine_imported",
@@ -1010,74 +1290,79 @@ class TaiwanMohwPharmacopeiaAdapter:
                         },
                     )
                 )
-                continue
-            preferred_name_id = stable_id(
-                "canonical-name",
-                f"{material_id}|{name}|zh-Hant",
-            )
-            nodes.extend(
-                [
-                    NodeUpsert(
-                        entity_type=EntityType.HERB_MATERIAL,
-                        additional_labels=[
-                            GraphLabel.MEDICINAL_MATERIAL,
-                            GraphLabel.CANONICAL_ENTITY,
-                        ],
-                        id=material_id,
-                        properties={
-                            "canonical_id": material_id,
-                            "display_name": name,
-                            "normalized_name": str(material["normalized_name"]),
-                            "aliases_search": str(material["normalized_name"]),
-                            "names_json": _names_json(name, source.source_id),
-                            "material_scope": str(material["material_scope"]),
-                            "monograph_page": (
-                                int(cast(int, material["monograph_page"]))
-                                if material["monograph_page"] is not None
-                                else None
-                            ),
-                            "review_status": "machine_imported",
-                            "review_statuses": ["machine_imported"],
-                            "source_ids": [source.source_id],
-                            "data_status": "source_reported",
-                            "availability_status": "available",
-                            "ambiguity": (
-                                ["exact source term; broader identity mapping not asserted"]
-                                if material["material_scope"] == "official_formula_ingredient_term"
-                                else []
-                            ),
-                            "unresolved_conflicts": [],
-                            "completeness": (
-                                0.2 if material["material_scope"] == "official_monograph" else 0.1
-                            ),
-                            "projection_version": "accepted-claims-v1",
-                            "production_eligible": production_eligible,
-                        },
-                    ),
-                    NodeUpsert(
-                        entity_type=GraphLabel.CANONICAL_NAME,
-                        id=preferred_name_id,
-                        properties={
-                            "display_name": name,
-                            "text": name,
-                            "normalized": str(material["normalized_name"]),
-                            "language": "zh-Hant",
-                            "script": "Hant",
-                            "kind": "preferred",
-                            "source_id": source.source_id,
-                            "source_record_id": source_record_id,
-                            "review_status": "machine_imported",
-                        },
-                    ),
-                ]
-            )
-            relationships.append(
-                RelationshipUpsert(
-                    id=f"rel:{material_id}:preferred-name",
-                    source_id=material_id,
-                    target_id=preferred_name_id,
-                    relationship_type=GraphRelationshipType.HAS_NAME,
+                _append_multilingual_names(
+                    nodes,
+                    relationships,
+                    entity_id=material_id,
+                    source_id=source.source_id,
+                    source_record_id=None,
+                    chinese_traditional=name,
+                    english=english_name,
+                    english_provenance=english_name_provenance,
+                    pinyin_toned=pinyin_toned,
+                    pinyin_ascii=pinyin_ascii,
+                    pinyin_provenance=pinyin_provenance,
                 )
+                continue
+            nodes.append(
+                NodeUpsert(
+                    entity_type=EntityType.HERB_MATERIAL,
+                    additional_labels=[
+                        GraphLabel.MEDICINAL_MATERIAL,
+                        GraphLabel.CANONICAL_ENTITY,
+                    ],
+                    id=material_id,
+                    properties={
+                        "canonical_id": material_id,
+                        "display_name": english_name,
+                        "normalized_name": normalize_name(english_name),
+                        "source_normalized_name": str(material["normalized_name"]),
+                        "aliases_search": aliases_search,
+                        "names_json": _names_json(
+                            chinese_traditional=name,
+                            english=english_name,
+                            pinyin_toned=pinyin_toned,
+                            pinyin_ascii=pinyin_ascii,
+                            source_id=source.source_id,
+                        ),
+                        "material_scope": str(material["material_scope"]),
+                        "monograph_page": (
+                            int(cast(int, material["monograph_page"]))
+                            if material["monograph_page"] is not None
+                            else None
+                        ),
+                        "name_schema_version": _NAME_SCHEMA_VERSION,
+                        "review_status": "machine_imported",
+                        "review_statuses": ["machine_imported"],
+                        "source_ids": [source.source_id],
+                        "data_status": "source_reported",
+                        "availability_status": "available",
+                        "ambiguity": (
+                            ["exact source term; broader identity mapping not asserted"]
+                            if material["material_scope"] == "official_formula_ingredient_term"
+                            else []
+                        ),
+                        "unresolved_conflicts": [],
+                        "completeness": (
+                            0.2 if material["material_scope"] == "official_monograph" else 0.1
+                        ),
+                        "projection_version": "accepted-claims-v1",
+                        "production_eligible": production_eligible,
+                    },
+                )
+            )
+            _append_multilingual_names(
+                nodes,
+                relationships,
+                entity_id=material_id,
+                source_id=source.source_id,
+                source_record_id=source_record_id,
+                chinese_traditional=name,
+                english=english_name,
+                english_provenance=english_name_provenance,
+                pinyin_toned=pinyin_toned,
+                pinyin_ascii=pinyin_ascii,
+                pinyin_provenance=pinyin_provenance,
             )
             if source_record_id is None:
                 continue
@@ -1140,19 +1425,31 @@ class TaiwanMohwPharmacopeiaAdapter:
             formula_record_id = str(formula["source_record_id"])
             source_url = str(formula["source_url"])
             name = str(formula["name"])
+            english_name = str(formula["english_name"])
+            english_name_provenance = str(formula["english_name_provenance"])
+            pinyin_toned = str(formula["pinyin"])
+            pinyin_ascii = str(formula["pinyin_ascii"])
+            pinyin_provenance = str(formula["pinyin_provenance"])
+            aliases_search = normalize_name(
+                " ".join((english_name, pinyin_toned, pinyin_ascii, name))
+            )
             formula_uses = uses_by_formula.get(formula_record_id, [])
             public_uses = [
                 row for row in formula_uses if row["entity_kind"] == "medicinal_material"
             ]
-            preferred_name_id = stable_id(
-                "canonical-name",
-                f"{formula_id}|{name}|zh-Hant",
-            )
             witness_id = stable_id(
                 "formula-witness",
                 f"{formula_record_id}|{manifest.release_id}",
             )
-            categories = [str(formula["dosage_form"])] if formula["dosage_form"] is not None else []
+            dosage_form_source = (
+                str(formula["dosage_form"]) if formula["dosage_form"] is not None else None
+            )
+            dosage_form_english = (
+                _DOSAGE_FORM_ENGLISH.get(dosage_form_source, dosage_form_source)
+                if dosage_form_source is not None
+                else None
+            )
+            categories = [dosage_form_english] if dosage_form_english is not None else []
             nodes.extend(
                 [
                     NodeUpsert(
@@ -1182,16 +1479,20 @@ class TaiwanMohwPharmacopeiaAdapter:
                         id=formula_id,
                         properties={
                             "canonical_id": formula_id,
-                            "display_name": name,
-                            "normalized_name": str(formula["normalized_name"]),
-                            "aliases_search": str(formula["normalized_name"]),
-                            "names_json": _names_json(name, source.source_id),
-                            "categories": categories,
-                            "dosage_form": (
-                                str(formula["dosage_form"])
-                                if formula["dosage_form"] is not None
-                                else None
+                            "display_name": english_name,
+                            "normalized_name": normalize_name(english_name),
+                            "source_normalized_name": str(formula["normalized_name"]),
+                            "aliases_search": aliases_search,
+                            "names_json": _names_json(
+                                chinese_traditional=name,
+                                english=english_name,
+                                pinyin_toned=pinyin_toned,
+                                pinyin_ascii=pinyin_ascii,
+                                source_id=source.source_id,
                             ),
+                            "categories": categories,
+                            "dosage_form": dosage_form_english,
+                            "dosage_form_source": dosage_form_source,
                             "ingredient_ids": [str(row["material_id"]) for row in public_uses],
                             "ingredient_amount_texts": [
                                 str(row["amount_text"]) for row in public_uses
@@ -1207,6 +1508,7 @@ class TaiwanMohwPharmacopeiaAdapter:
                             "prescription_text": str(formula["prescription"]),
                             "quantity_context": str(formula["quantity_context"]),
                             "source_url": source_url,
+                            "name_schema_version": _NAME_SCHEMA_VERSION,
                             "review_status": "machine_imported",
                             "review_statuses": ["machine_imported"],
                             "source_ids": [source.source_id],
@@ -1240,22 +1542,20 @@ class TaiwanMohwPharmacopeiaAdapter:
                             "production_eligible": production_eligible,
                         },
                     ),
-                    NodeUpsert(
-                        entity_type=GraphLabel.CANONICAL_NAME,
-                        id=preferred_name_id,
-                        properties={
-                            "display_name": name,
-                            "text": name,
-                            "normalized": str(formula["normalized_name"]),
-                            "language": "zh-Hant",
-                            "script": "Hant",
-                            "kind": "preferred",
-                            "source_id": source.source_id,
-                            "source_record_id": formula_record_id,
-                            "review_status": "machine_imported",
-                        },
-                    ),
                 ]
+            )
+            _append_multilingual_names(
+                nodes,
+                relationships,
+                entity_id=formula_id,
+                source_id=source.source_id,
+                source_record_id=formula_record_id,
+                chinese_traditional=name,
+                english=english_name,
+                english_provenance=english_name_provenance,
+                pinyin_toned=pinyin_toned,
+                pinyin_ascii=pinyin_ascii,
+                pinyin_provenance=pinyin_provenance,
             )
             relationships.extend(
                 [
@@ -1282,12 +1582,6 @@ class TaiwanMohwPharmacopeiaAdapter:
                         source_id=witness_id,
                         target_id=formula_record_id,
                         relationship_type=RelationshipType.SUPPORTED_BY,
-                    ),
-                    RelationshipUpsert(
-                        id=f"rel:{formula_id}:preferred-name",
-                        source_id=formula_id,
-                        target_id=preferred_name_id,
-                        relationship_type=GraphRelationshipType.HAS_NAME,
                     ),
                 ]
             )

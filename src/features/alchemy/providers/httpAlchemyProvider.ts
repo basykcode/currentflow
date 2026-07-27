@@ -383,7 +383,7 @@ export class HttpAlchemyProvider implements AlchemyProvider {
       return mapFormulaDetail(
         result.data,
         new Map(
-          herbs.filter((herb) => herb !== undefined).map((herb) => [herb.id, herb.displayName]),
+          herbs.filter((herb) => herb !== undefined).map((herb) => [herb.id, herb]),
         ),
       )
     } catch (error) {

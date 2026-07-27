@@ -35,6 +35,11 @@ const isIngredientLine = (value: unknown): value is FormulaIngredientLine => {
     typeof value['id'] === 'string' &&
     typeof value['herbMaterialId'] === 'string' &&
     typeof value['herbDisplayName'] === 'string' &&
+    (value['nameChineseSimplified'] === undefined ||
+      typeof value['nameChineseSimplified'] === 'string') &&
+    (value['nameChineseTraditional'] === undefined ||
+      typeof value['nameChineseTraditional'] === 'string') &&
+    (value['pinyin'] === undefined || typeof value['pinyin'] === 'string') &&
     typeof value['amountText'] === 'string' &&
     typeof value['unit'] === 'string' &&
     (value['preparationId'] === undefined || typeof value['preparationId'] === 'string') &&
@@ -139,6 +144,13 @@ export const useAlchemyWorkbenchStore = defineStore('alchemy-workbench', () => {
         id: nextLocalId('line'),
         herbMaterialId: ingredient.herbMaterialId,
         herbDisplayName: ingredient.herbDisplayName,
+        ...(ingredient.nameChineseSimplified
+          ? { nameChineseSimplified: ingredient.nameChineseSimplified }
+          : {}),
+        ...(ingredient.nameChineseTraditional
+          ? { nameChineseTraditional: ingredient.nameChineseTraditional }
+          : {}),
+        ...(ingredient.pinyin ? { pinyin: ingredient.pinyin } : {}),
         amountText: ingredient.amountText,
         unit: ingredient.unit,
         ...(ingredient.preparationId ? { preparationId: ingredient.preparationId } : {}),

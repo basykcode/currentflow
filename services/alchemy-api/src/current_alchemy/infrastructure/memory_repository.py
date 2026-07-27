@@ -597,6 +597,7 @@ class MemoryAlchemyRepository:
             "formulas": 0,
             "formulaWitnesses": 0,
             "ingredientUses": 0,
+            "multilingualEntities": 0,
         }
 
     async def reset_source_release_evidence(

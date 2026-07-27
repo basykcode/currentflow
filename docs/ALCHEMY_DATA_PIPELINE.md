@@ -69,9 +69,20 @@ monograph records, 200 formula records, and 1,672 ordered base ingredient uses. 
 448 material-term identities: 355 monographs, 92 additional medicinal formula terms, and one
 prepared-material excipient.
 
+The same pinned release now includes the ministry's 2021 bilingual common-formula compendium and a
+deterministically generated multilingual name snapshot. The snapshot covers all 448 material terms
+and all 200 formulas with English, tone-marked Hanyu Pinyin, untoned search Pinyin, and exact
+Traditional Chinese. The pharmacopeia supplies 355 official common English material names. Current
+Flow's 93 exact formula-only material translations and 200 conventional formula translations retain
+derived-name provenance and `machine_imported` review status. The official formula compendium
+provides 65 romanization references; 58 exactly match the generated Hanyu Pinyin after removing
+tones, while the seven source spelling variants remain recorded for audit.
+
 `alchemy foundation ensure` queries persistent graph counts first. It imports only when the exact
-release is missing or incomplete, audits the graph, rebuilds projections, and can retire demo nodes
-after success. Render enables this guard at startup; ordinary API requests never acquire sources.
+release or its 647 public multilingual projections are missing or incomplete, audits the graph,
+rebuilds projections, and can retire demo nodes after success. A non-resume run starts a fresh
+checkpoint even when an older adapter/mapping checkpoint exists. Render enables this guard at
+startup; ordinary API requests never acquire sources.
 
 ## Adapter scaffolds
 

@@ -349,8 +349,11 @@ onBeforeUnmount(() => {
             </span>
             <span class="result-identity">
               <strong>{{ herb.displayName }}</strong>
-              <span v-if="herb.nameChineseSimplified" lang="zh-Hans">
-                {{ herb.nameChineseSimplified }}
+              <span
+                v-if="herb.nameChineseTraditional || herb.nameChineseSimplified"
+                lang="zh-Hant"
+              >
+                {{ herb.nameChineseTraditional || herb.nameChineseSimplified }}
               </span>
               <small>{{ herb.pinyin }}</small>
               <small>{{ herb.latinDrugName || herb.botanicalNames[0] }}</small>
@@ -396,11 +399,17 @@ onBeforeUnmount(() => {
                 <h3 id="herb-detail-heading">{{ herbResource.data.value.displayName }}</h3>
               </div>
               <span
-                v-if="herbResource.data.value.nameChineseSimplified"
+                v-if="
+                  herbResource.data.value.nameChineseTraditional ||
+                  herbResource.data.value.nameChineseSimplified
+                "
                 class="cjk-name"
-                lang="zh-Hans"
+                lang="zh-Hant"
               >
-                {{ herbResource.data.value.nameChineseSimplified }}
+                {{
+                  herbResource.data.value.nameChineseTraditional ||
+                  herbResource.data.value.nameChineseSimplified
+                }}
               </span>
             </div>
             <p class="identity-line">

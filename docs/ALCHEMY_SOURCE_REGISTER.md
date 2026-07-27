@@ -24,7 +24,7 @@ adapter checklist.
 
 | Source | Planning class | Recorded license baseline | Intended use / controlling restriction |
 | --- | --- | --- | --- |
-| Taiwan MOHW THP / Standardized Formulas | Initial | Taiwan OGL 1.0 | Live foundation: 355 official monographs, 200 formulas, and exact base compositions |
+| Taiwan MOHW THP / Standardized Formulas | Initial | Taiwan OGL 1.0 | Live foundation: 355 official monographs, 200 formulas, exact base compositions, official monograph English names, and provenance-labeled English/Pinyin projections |
 | Disease Ontology | Initial | CC0 1.0 | Disease identity/hierarchy; release `v2026-06-30` is pinned |
 | USDA Dr. Duke | Initial | CC0 1.0 | Phytochemical/ethnobotanical source records; mappings need domain review |
 | LOTUS | Initial | CC0 1.0 | Natural-product occurrences; pin a release before use |
@@ -74,8 +74,9 @@ blanket license approval.
 
 Two releases have checked-in, fully specified manifests:
 
-- `source:taiwan-mohw-docmap` / `thp4-2025-07-30` pins the official pharmacopeia and correction
-  PDFs plus the reproducible 2026-07-26 formula-page extraction under Taiwan OGL 1.0.
+- `source:taiwan-mohw-docmap` / `thp4-2025-07-30` pins the official pharmacopeia, correction, and
+  2021 bilingual common-formula PDFs plus the reproducible 2026-07-26 formula-page extraction and
+  multilingual-name projection under Taiwan OGL 1.0.
 - `source:disease-ontology` / `v2026-06-30` pins the exact OBO artifact and CC0 snapshot.
 
 The checked-in manifest starts with runtime verification/audit flags false. A successful acquisition

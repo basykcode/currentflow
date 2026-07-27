@@ -45,6 +45,24 @@ const herb = {
       sourceId: source.id,
       reviewStatus: 'synthetic_fixture',
     },
+    {
+      text: 'Yǎnshì Gēn',
+      normalized: 'yǎnshì gēn',
+      language: 'zh-Latn-pinyin',
+      script: 'Latn',
+      kind: 'hanyu_pinyin_tone_marks',
+      sourceId: source.id,
+      reviewStatus: 'synthetic_fixture',
+    },
+    {
+      text: '演示根',
+      normalized: '演示根',
+      language: 'zh-Hant',
+      script: 'Hant',
+      kind: 'source_preferred',
+      sourceId: source.id,
+      reviewStatus: 'synthetic_fixture',
+    },
   ],
   reviewStatuses: ['synthetic_fixture'],
   sourceIds: [source.id],
@@ -421,6 +439,8 @@ describe('HttpAlchemyProvider', () => {
       ingredients: [
         {
           herbDisplayName: herb.displayName,
+          nameChineseTraditional: '演示根',
+          pinyin: 'Yǎnshì Gēn',
           amountText: '1',
           unit: 'g',
           note: 'Demo Root source term',
