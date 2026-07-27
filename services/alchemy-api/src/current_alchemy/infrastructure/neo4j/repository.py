@@ -1195,9 +1195,11 @@ class Neo4jAlchemyRepository:
                 WHERE $source_id IN coalesce(entity.source_ids, [])
                   AND entity.name_schema_version = 'taiwan-mohw-multilingual-names-v1'
                   AND entity.display_name IS NOT NULL
-                  AND entity.names_json CONTAINS '"language": "en"'
-                  AND entity.names_json CONTAINS '"language": "zh-Hant"'
-                  AND entity.names_json CONTAINS '"language": "zh-Latn-pinyin"'
+                MATCH (entity)-[:HAS_NAME]->(:CanonicalName {language: 'en'})
+                MATCH (entity)-[:HAS_NAME]->(:CanonicalName {language: 'zh-Hant'})
+                MATCH (entity)-[:HAS_NAME]->(
+                  :CanonicalName {language: 'zh-Latn-pinyin'}
+                )
                 RETURN count(DISTINCT entity) AS count
             """,
         }

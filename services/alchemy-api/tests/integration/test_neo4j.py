@@ -145,7 +145,39 @@ async def test_migrations_seed_search_traversal_claims_and_idempotency() -> None
                     id=entity_id,
                     properties={
                         "display_name": "Synthetic integration condition",
+                        "source_ids": [source_id],
+                        "name_schema_version": "taiwan-mohw-multilingual-names-v1",
                         "production_eligible": True,
+                        "review_status": "synthetic_fixture",
+                    },
+                ),
+                NodeUpsert(
+                    entity_type=GraphLabel.CANONICAL_NAME,
+                    id="demo:name:integration-do:en",
+                    properties={
+                        "display_name": "Synthetic integration condition",
+                        "text": "Synthetic integration condition",
+                        "language": "en",
+                        "review_status": "synthetic_fixture",
+                    },
+                ),
+                NodeUpsert(
+                    entity_type=GraphLabel.CANONICAL_NAME,
+                    id="demo:name:integration-do:pinyin",
+                    properties={
+                        "display_name": "Yǎn Shì",
+                        "text": "Yǎn Shì",
+                        "language": "zh-Latn-pinyin",
+                        "review_status": "synthetic_fixture",
+                    },
+                ),
+                NodeUpsert(
+                    entity_type=GraphLabel.CANONICAL_NAME,
+                    id="demo:name:integration-do:zh-hant",
+                    properties={
+                        "display_name": "演示",
+                        "text": "演示",
+                        "language": "zh-Hant",
                         "review_status": "synthetic_fixture",
                     },
                 ),
@@ -197,6 +229,24 @@ async def test_migrations_seed_search_traversal_claims_and_idempotency() -> None
                     relationship_type=RelationshipType.SUPPORTED_BY,
                 ),
                 RelationshipUpsert(
+                    id="demo:rel:integration-name-en",
+                    source_id=entity_id,
+                    target_id="demo:name:integration-do:en",
+                    relationship_type=GraphRelationshipType.HAS_NAME,
+                ),
+                RelationshipUpsert(
+                    id="demo:rel:integration-name-pinyin",
+                    source_id=entity_id,
+                    target_id="demo:name:integration-do:pinyin",
+                    relationship_type=GraphRelationshipType.HAS_NAME,
+                ),
+                RelationshipUpsert(
+                    id="demo:rel:integration-name-zh-hant",
+                    source_id=entity_id,
+                    target_id="demo:name:integration-do:zh-hant",
+                    relationship_type=GraphRelationshipType.HAS_NAME,
+                ),
+                RelationshipUpsert(
                     id="demo:rel:integration-mapping-subject",
                     source_id=mapping_id,
                     target_id=record_id,
@@ -219,6 +269,8 @@ async def test_migrations_seed_search_traversal_claims_and_idempotency() -> None
         first_import = await repository.ingest_batch(batch, 2)
         second_import = await repository.ingest_batch(batch, 2)
         assert first_import == second_import
+        foundation = await repository.foundation_status(source_id, "v1")
+        assert foundation["multilingualEntities"] == 1
 
         knowledge_fixture = IngestionBatch.model_validate_json(
             (SERVICE_ROOT / "tests" / "fixtures" / "knowledge-foundation-demo.json").read_text(
