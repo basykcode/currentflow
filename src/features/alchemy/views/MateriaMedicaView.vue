@@ -11,6 +11,7 @@ import ResourceError from '../components/common/ResourceError.vue'
 import ReviewStatusBadge from '../components/common/ReviewStatusBadge.vue'
 import { useAlchemyEnvironment } from '../composables/alchemyEnvironment'
 import { useAsyncResource } from '../composables/useAsyncResource'
+import { parseReviewStatus, reviewStatusLabel } from '../domain/reviewStatus'
 import type { Citation, EntityNeighborhood, HerbDetail, PaginatedResult } from '../domain/types'
 import type { HerbSummary } from '../domain/types'
 import { useAlchemyProvider } from '../providers'
@@ -42,7 +43,7 @@ const resultAnnouncement = computed(() => {
   if (searchResource.loading.value) return 'Searching the materia medica.'
   if (searchResource.error.value) return searchResource.error.value.detail
   if (!searchResource.data.value) return ''
-  return `${searchResource.data.value.total} synthetic material ${
+  return `${searchResource.data.value.total} material ${
     searchResource.data.value.total === 1 ? 'record' : 'records'
   } found.`
 })
@@ -59,6 +60,7 @@ const routeQuery = () => ({
 })
 
 const search = async () => {
+  const selectedReviewStatus = parseReviewStatus(reviewStatus.value)
   await searchResource.run((signal) =>
     provider.searchHerbs(
       {
@@ -70,12 +72,7 @@ const search = async () => {
         ...(category.value ? { category: category.value } : {}),
         ...(action.value ? { action: action.value } : {}),
         ...(source.value ? { source: source.value } : {}),
-        ...(reviewStatus.value
-          ? {
-              reviewStatus:
-                reviewStatus.value === 'synthetic_fixture' ? 'synthetic_fixture' : 'human_reviewed',
-            }
-          : {}),
+        ...(selectedReviewStatus ? { reviewStatus: selectedReviewStatus } : {}),
       },
       signal,
     ),
@@ -300,7 +297,13 @@ onBeforeUnmount(() => {
               Review status
               <select v-model="reviewStatus" class="control">
                 <option value="">All review states</option>
-                <option value="synthetic_fixture">Synthetic fixture</option>
+                <option
+                  v-for="item in environment.capabilities.value.filters.reviewStatuses"
+                  :key="item"
+                  :value="item"
+                >
+                  {{ reviewStatusLabel(item) }}
+                </option>
               </select>
             </label>
             <button class="quiet-button" type="button" @click="clearFilters">Reset filters</button>
@@ -325,7 +328,7 @@ onBeforeUnmount(() => {
           v-if="searchResource.loading.value && !searchResource.data.value"
           class="loading-panel"
         >
-          Reading the synthetic index…
+          Reading the materia-medica index…
         </div>
         <ResourceError
           v-else-if="searchResource.error.value"
@@ -436,7 +439,10 @@ onBeforeUnmount(() => {
             unresolved classification group.
           </div>
 
-          <CompletenessSummary :completeness="herbResource.data.value.completeness" />
+          <CompletenessSummary
+            :completeness="herbResource.data.value.completeness"
+            :status="herbResource.data.value.status"
+          />
           <ClaimGroup
             title="Biological source"
             :claims="herbResource.data.value.biologicalSources"

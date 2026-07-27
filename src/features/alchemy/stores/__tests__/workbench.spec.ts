@@ -95,6 +95,7 @@ describe('Alchemy workbench store', () => {
 
     const local = store.importFormula(source)
     expect(local?.sourceFormulaId).toBe(source.id)
+    expect(local?.notes).toBe(`Imported from source record ${source.displayName}.`)
     expect(local?.ingredients[0]?.id).not.toBe(source.ingredients[0]?.id)
     if (local?.ingredients[0]) {
       store.updateIngredient(local.id, local.ingredients[0].id, { amountText: '99' })

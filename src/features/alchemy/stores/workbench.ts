@@ -146,7 +146,7 @@ export const useAlchemyWorkbenchStore = defineStore('alchemy-workbench', () => {
         ...(ingredient.role ? { role: ingredient.role } : {}),
         ...(ingredient.note ? { note: ingredient.note } : {}),
       })),
-      notes: `Imported from synthetic source record ${formula.displayName}.`,
+      notes: `Imported from source record ${formula.displayName}.`,
       updatedAtIso: nowIso(),
     }
     drafts.value.push(draft)

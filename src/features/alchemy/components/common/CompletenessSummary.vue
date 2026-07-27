@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import type { KnowledgeCompleteness } from '../../domain/types'
+import type { AlchemyDataStatus, KnowledgeCompleteness } from '../../domain/types'
 import DataStatusBadge from './DataStatusBadge.vue'
 
 defineProps<{
   completeness: KnowledgeCompleteness
+  status: AlchemyDataStatus
 }>()
 </script>
 
@@ -17,7 +18,7 @@ defineProps<{
     </div>
     <DataStatusBadge
       :status="
-        completeness.knownFieldCount === completeness.totalFieldCount ? 'demo' : 'incomplete'
+        completeness.knownFieldCount === completeness.totalFieldCount ? status : 'incomplete'
       "
     />
     <div
