@@ -290,10 +290,8 @@ def main() -> None:
     try:
         snapshot = build_snapshot(pdf_path, args.retrieved_date, args.workers)
         args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(
-            f"{json.dumps(snapshot, ensure_ascii=False, indent=2, sort_keys=True)}\n",
-            encoding="utf-8",
-        )
+        with args.output.open("w", encoding="utf-8", newline="\n") as stream:
+            stream.write(f"{json.dumps(snapshot, ensure_ascii=False, indent=2, sort_keys=True)}\n")
     finally:
         if temporary_path is not None:
             temporary_path.unlink(missing_ok=True)

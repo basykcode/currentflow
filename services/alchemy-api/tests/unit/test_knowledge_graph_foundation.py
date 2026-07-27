@@ -145,7 +145,7 @@ def test_committed_source_registry_and_release_manifests_validate() -> None:
     taiwan_release = store.release("source:taiwan-mohw-docmap", "thp4-2025-07-30")
     assert taiwan_source.production_status is ProductionStatus.APPROVED
     assert taiwan_release.artifacts[2].sha256 == (
-        "dc6b973c1ebad8b40dafba6332dc180ac2029ce83a9fa668cb85e7af43247e1e"
+        "fe579c1aa0f96307a54882bae790661d805aa3a0955ce601c410190441ac5e20"
     )
 
 

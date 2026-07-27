@@ -28,9 +28,9 @@ artifacts:
     expectedExtractedFiles: []
   - filename: taiwan-mohw-thp4-2025-07-30.json
     downloadUrl: null
-    expectedSize: 560796
+    expectedSize: 542062
     observedSize: null
-    sha256: dc6b973c1ebad8b40dafba6332dc180ac2029ce83a9fa668cb85e7af43247e1e
+    sha256: fe579c1aa0f96307a54882bae790661d805aa3a0955ce601c410190441ac5e20
     etag: null
     lastModified: null
     archiveFormat: json
