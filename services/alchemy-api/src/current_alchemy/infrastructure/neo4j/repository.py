@@ -1201,6 +1201,93 @@ class Neo4jAlchemyRepository:
                 counts[name] = int(record["count"]) if record else 0
         return counts
 
+    async def reset_source_release_evidence(
+        self, source_id: str, release_id: str
+    ) -> dict[str, int]:
+        parameters = {"source_id": source_id, "release_id": release_id}
+        statements = {
+            "convenienceRelationships": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                MATCH (:Formula)-[relationship:CONTAINS]->()
+                WHERE relationship.source_record_id = record.id
+                WITH DISTINCT relationship
+                DELETE relationship
+                RETURN count(*) AS count
+            """,
+            "ingredientUses": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                MATCH (witness:FormulaWitness)-[:SUPPORTED_BY]->(record)
+                MATCH (witness)-[:HAS_INGREDIENT_USE]->(ingredient:IngredientUse)
+                WITH DISTINCT ingredient
+                DETACH DELETE ingredient
+                RETURN count(*) AS count
+            """,
+            "evidenceNodes": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                MATCH (node)-[:SUPPORTED_BY]->(record)
+                WHERE (node:CanonicalName OR node:Claim OR node:FormulaWitness)
+                  AND NOT EXISTS {
+                    MATCH (node)-[:SUPPORTED_BY]->(other_record:SourceRecord)
+                    MATCH (other_release:SourceRelease)-[:CONTAINS_RECORD]->(other_record)
+                    WHERE other_release <> release
+                  }
+                WITH DISTINCT node
+                DETACH DELETE node
+                RETURN count(*) AS count
+            """,
+            "mappingAssertions": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                MATCH (mapping:MappingAssertion)-[:MAPPING_SUBJECT]->(record)
+                WITH DISTINCT mapping
+                DETACH DELETE mapping
+                RETURN count(*) AS count
+            """,
+            "externalIdentifiers": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                MATCH (record)-[:HAS_EXTERNAL_IDENTIFIER]->(identifier:ExternalIdentifier)
+                WHERE NOT EXISTS {
+                    MATCH (other_record:SourceRecord)-[:HAS_EXTERNAL_IDENTIFIER]->(identifier)
+                    MATCH (other_release:SourceRelease)-[:CONTAINS_RECORD]->(other_record)
+                    WHERE other_release <> release
+                }
+                WITH DISTINCT identifier
+                DETACH DELETE identifier
+                RETURN count(*) AS count
+            """,
+            "sourceRecords": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                WITH DISTINCT record
+                DETACH DELETE record
+                RETURN count(*) AS count
+            """,
+        }
+        counts: dict[str, int] = {}
+        async with self._driver.session(database=self._database) as session:
+            for field, cypher in statements.items():
+                record = await (
+                    await session.run(cypher, parameters=cast(dict[str, Any], parameters))
+                ).single()
+                counts[field] = int(record["count"]) if record else 0
+        return counts
+
     async def provenance(self, entity_id: str) -> dict[str, object]:
         async with self._driver.session(database=self._database) as session:
             result = await session.run(

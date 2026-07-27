@@ -6,6 +6,7 @@ import json
 import re
 import shutil
 from collections import defaultdict
+from hashlib import sha256
 from pathlib import Path
 from typing import cast
 
@@ -98,10 +99,11 @@ def _record_id(
     record_type: str,
     external_id: str,
 ) -> str:
-    return stable_id(
-        "source-record-taiwan-mohw",
-        f"{source_id}|{release_id}|{record_type}|{external_id}",
-    )
+    invariant = f"{source_id}|{release_id}|{record_type}|{external_id}"
+    if external_id.isascii():
+        return stable_id("source-record-taiwan-mohw", invariant)
+    digest = sha256(invariant.encode("utf-8")).hexdigest()[:24]
+    return f"source-record-taiwan-mohw:sha256:{digest}"
 
 
 def _material_id(name: str) -> str:
@@ -1508,10 +1510,19 @@ class TaiwanMohwPharmacopeiaAdapter:
         paths: AlchemyDataPaths,
     ) -> dict[str, int | str | list[str] | bool]:
         report_root = paths.release_root("reports", manifest.source_id, manifest.release_id)
+        staged_root = paths.staging_parquet(manifest.source_id, manifest.release_id)
         stage = json.loads((report_root / "row-counts-stage.json").read_text(encoding="utf-8"))
         normalized = json.loads(
             (report_root / "row-counts-normalized.json").read_text(encoding="utf-8")
         )
+        source_record_ids = {
+            str(row["source_record_id"])
+            for row in [
+                *_read_rows(staged_root / "materials.parquet"),
+                *_read_rows(staged_root / "formulas.parquet"),
+            ]
+        }
+        expected_source_records = int(stage["stagedMaterials"]) + int(stage["stagedFormulas"])
         critical: list[str] = []
         if int(stage["duplicateMaterialNames"]):
             critical.append("duplicate official medicinal-material names")
@@ -1521,6 +1532,11 @@ class TaiwanMohwPharmacopeiaAdapter:
             critical.append("source records were rejected during normalization")
         if int(stage["stagedIngredientUses"]) != int(normalized["normalizedIngredientUses"]):
             critical.append("staged and normalized ingredient-use counts do not reconcile")
+        if len(source_record_ids) != expected_source_records:
+            critical.append(
+                "source-record IDs are not unique: "
+                f"expected {expected_source_records}, got {len(source_record_ids)}"
+            )
         if stage["mode"] == PipelineMode.FULL.value:
             expected = {
                 "stagedMaterials": _EXPECTED_MATERIALS,
@@ -1539,6 +1555,7 @@ class TaiwanMohwPharmacopeiaAdapter:
             "stagedIngredientUses": int(stage["stagedIngredientUses"]),
             "normalizedMaterials": int(normalized["normalizedMaterials"]),
             "preparedMaterialTerms": int(normalized["preparedMaterialTerms"]),
+            "uniqueSourceRecords": len(source_record_ids),
             "rejectedRecords": int(normalized["rejectedRecords"]),
         }
         _write_json(report_root / "pipeline-audit.json", result)

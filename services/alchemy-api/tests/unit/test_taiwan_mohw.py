@@ -105,10 +105,12 @@ def test_adapter_builds_public_projection_and_evidence_graph(tmp_path: Path) -> 
     ingredient_uses = [
         node for node in batch.nodes if node.entity_type is GraphLabel.INGREDIENT_USE
     ]
+    source_records = [node for node in batch.nodes if node.entity_type is GraphLabel.SOURCE_RECORD]
     assert len(public_materials) == 447
     assert len(formulas) == 200
     assert len(witnesses) == 200
     assert len(ingredient_uses) == 1672
+    assert len(source_records) == 555
     assert len({node.id for node in batch.nodes}) == len(batch.nodes)
     assert len({relationship.id for relationship in batch.relationships}) == len(
         batch.relationships

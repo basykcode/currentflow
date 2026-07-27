@@ -286,9 +286,22 @@ def foundation_ensure(
     async def run(repository: AlchemyRepository) -> dict[str, object]:
         before = await repository.foundation_status(_FOUNDATION_SOURCE_ID, _FOUNDATION_RELEASE_ID)
         imported = False
+        reconciled = {
+            "convenienceRelationships": 0,
+            "ingredientUses": 0,
+            "evidenceNodes": 0,
+            "mappingAssertions": 0,
+            "externalIdentifiers": 0,
+            "sourceRecords": 0,
+        }
         pipeline_result: dict[str, object] | None = None
         if not _foundation_complete(before):
             imported = True
+            if any(before.values()):
+                reconciled = await repository.reset_source_release_evidence(
+                    _FOUNDATION_SOURCE_ID,
+                    _FOUNDATION_RELEASE_ID,
+                )
             pipeline = ReleasePipeline(
                 repository=repository,
                 paths=paths,
@@ -321,6 +334,7 @@ def foundation_ensure(
             "imported": imported,
             "before": before,
             "after": after,
+            "reconciled": reconciled,
             "retiredDemoNodes": retired["deleted"],
             "projection": projection,
             "audit": audit,

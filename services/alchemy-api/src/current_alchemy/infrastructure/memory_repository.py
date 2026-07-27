@@ -599,6 +599,19 @@ class MemoryAlchemyRepository:
             "ingredientUses": 0,
         }
 
+    async def reset_source_release_evidence(
+        self, source_id: str, release_id: str
+    ) -> dict[str, int]:
+        del source_id, release_id
+        return {
+            "convenienceRelationships": 0,
+            "ingredientUses": 0,
+            "evidenceNodes": 0,
+            "mappingAssertions": 0,
+            "externalIdentifiers": 0,
+            "sourceRecords": 0,
+        }
+
     async def provenance(self, entity_id: str) -> dict[str, object]:
         entity = self.entities.get(entity_id)
         return {
