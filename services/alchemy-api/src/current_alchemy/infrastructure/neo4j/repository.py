@@ -434,8 +434,10 @@ class Neo4jAlchemyRepository:
             )
             where.insert(0, f"n:{label}")
             where_clause = f"WHERE {' AND '.join(where)}"
+            order_clause = "WITH n, score ORDER BY score DESC, toLower(n.display_name), n.id"
         else:
             match_clause = f"MATCH (n:{label})"
+            order_clause = "WITH n ORDER BY toLower(n.display_name), n.id"
             if query:
                 params["query_lower"] = query.casefold()
                 where.insert(
@@ -447,7 +449,7 @@ class Neo4jAlchemyRepository:
         cypher = f"""
         {match_clause}
         {where_clause}
-        WITH n ORDER BY toLower(n.display_name), n.id
+        {order_clause}
         WITH collect(n) AS nodes
         RETURN size(nodes) AS total,
                [n IN nodes[$offset..$offset + $limit] | properties(n)] AS items
