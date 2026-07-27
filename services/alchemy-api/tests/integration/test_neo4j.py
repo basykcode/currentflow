@@ -55,6 +55,14 @@ async def test_migrations_seed_search_traversal_claims_and_idempotency() -> None
         assert detail is not None
         assert len(detail.claims) == 3
         assert {claim.source.id for claim in detail.claims} == {"demo:source:fixture-v1"}
+        formula_detail = await repository.get_entity(
+            EntityType.FORMULA, "demo:formula:two-lanterns"
+        )
+        assert formula_detail is not None
+        assert formula_detail.properties["ingredientIds"] == [
+            "demo:herb:azure-root",
+            "demo:herb:amber-seed",
+        ]
 
         graph = await repository.neighborhood("demo:formula:two-lanterns", 2, 50)
         assert graph is not None

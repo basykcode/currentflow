@@ -7,6 +7,7 @@ from typing import Any, Final, cast
 
 from neo4j import AsyncDriver
 from neo4j.time import DateTime as Neo4jDateTime
+from pydantic.alias_generators import to_camel
 
 from current_alchemy.application.ports.repository import (
     DocumentPageResult,
@@ -346,7 +347,7 @@ def _public_properties(
         "demo",
     }
     return {
-        key: item
+        to_camel(key): item
         for key, item in value.items()
         if key not in reserved
         and (
