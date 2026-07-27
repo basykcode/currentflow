@@ -214,4 +214,4 @@ def test_acquisition_plan_accepts_pinned_bundled_snapshot(tmp_path: Path) -> Non
     plan = TaiwanMohwPharmacopeiaAdapter().plan_acquisition(source, manifest, downloader)
 
     assert plan.automatic is True
-    assert plan.expected_bytes == 17_596_383
+    assert plan.expected_bytes == 17_590_331

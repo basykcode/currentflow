@@ -55,9 +55,9 @@ artifacts:
     expectedExtractedFiles: []
   - filename: taiwan-mohw-multilingual-names-v1.json
     downloadUrl: null
-    expectedSize: 249820
+    expectedSize: 243768
     observedSize: null
-    sha256: ebfe48e04b1654252f2779af8b8073884a91f59a289f850831f44f925e66f99a
+    sha256: 973045af6c75764a0f9eb85fab1277e59fc07b5b93ef0501ebb557c5a4bca371
     etag: null
     lastModified: null
     archiveFormat: json

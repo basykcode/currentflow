@@ -274,10 +274,8 @@ def main() -> None:
         formula_compendium_path=args.formula_compendium,
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(
-        f"{json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True)}\n",
-        encoding="utf-8",
-    )
+    with args.output.open("w", encoding="utf-8", newline="\n") as output:
+        output.write(f"{json.dumps(result, ensure_ascii=False, indent=2, sort_keys=True)}\n")
 
 
 if __name__ == "__main__":
