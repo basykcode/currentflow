@@ -1,19 +1,19 @@
 # Alchemy source register
 
 The machine-readable authority is
-`services/alchemy-api/data/source-registry/sources.yaml`. This document explains its review
+`services/alchemy-api/data/source-registry/*.yaml`. This document explains its review
 categories; it does not supersede release-specific manifests or grant rights.
 
 ## Current inventory
 
 | Registry status | Count | Meaning |
 | --- | ---: | --- |
-| Initial candidate | 16 | Useful first-wave source; each release still requires checksum and rights verification |
+| Initial candidate | 17 | Useful first-wave source; each release still requires checksum and rights verification |
 | Conditional | 7 | Potentially usable only under the recorded terms and production projection |
 | Permission pending | 10 | Adapter disabled; no acquisition or production use |
 | Blocked | 3 | Excluded under the present distribution/product model |
 
-The 36 registered candidates cover traditional materials/formulas, taxonomy and ontology,
+The 37 registered sources cover traditional materials/formulas, taxonomy and ontology,
 chemistry/bioactivity, exposure/toxicity, literature and classical text. Each entry records:
 source ID, title, URL, domain, adapter, acquisition method, release/version strategy, expected
 artifacts, license evidence, commercial/redistribution/derivative/AI rights, attribution,
@@ -24,6 +24,7 @@ adapter checklist.
 
 | Source | Planning class | Recorded license baseline | Intended use / controlling restriction |
 | --- | --- | --- | --- |
+| Taiwan MOHW THP / Standardized Formulas | Initial | Taiwan OGL 1.0 | Live foundation: 355 official monographs, 200 formulas, and exact base compositions |
 | Disease Ontology | Initial | CC0 1.0 | Disease identity/hierarchy; release `v2026-06-30` is pinned |
 | USDA Dr. Duke | Initial | CC0 1.0 | Phytochemical/ethnobotanical source records; mappings need domain review |
 | LOTUS | Initial | CC0 1.0 | Natural-product occurrences; pin a release before use |
@@ -66,15 +67,16 @@ control machine behavior, and a release snapshot can only narrow these baselines
 
 ## Initial candidates
 
-Disease Ontology, USDA Dr. Duke, LOTUS, COCONUT, ChEBI, Catalogue of Life, EPA resources, Mondo,
+Taiwan MOHW, Disease Ontology, USDA Dr. Duke, LOTUS, COCONUT, ChEBI, Catalogue of Life, EPA resources, Mondo,
 Evidence and Conclusion Ontology, UniProt, Gene Ontology, Reactome, OpenAlex, Crossref, PubMed, and
 PubMed Central are registered as first-wave candidates. This category is planning priority, not a
 blanket license approval.
 
-Only `source:disease-ontology` release `v2026-06-30` currently has a checked-in, fully specified
-release manifest. Its exact OBO artifact, expected byte count, SHA-256, release date, official URL,
-adapter, schema, mapping version, and CC0 snapshot are pinned in
-`data/manifests/releases/disease-ontology-v2026-06-30.yaml`.
+Two releases have checked-in, fully specified manifests:
+
+- `source:taiwan-mohw-docmap` / `thp4-2025-07-30` pins the official pharmacopeia and correction
+  PDFs plus the reproducible 2026-07-26 formula-page extraction under Taiwan OGL 1.0.
+- `source:disease-ontology` / `v2026-06-30` pins the exact OBO artifact and CC0 snapshot.
 
 The checked-in manifest starts with runtime verification/audit flags false. A successful acquisition
 writes a resolved local manifest with observed retrieval metadata and true verification flags; that
@@ -104,6 +106,7 @@ cd services/alchemy-api
 uv run alchemy sources validate
 uv run alchemy sources list
 uv run alchemy sources show source:disease-ontology
+uv run alchemy sources show source:taiwan-mohw-docmap
 uv run alchemy sources audit-rights
 ```
 

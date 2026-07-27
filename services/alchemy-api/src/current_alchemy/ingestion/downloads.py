@@ -63,7 +63,20 @@ class ReleaseDownloader:
         self._retry_count = retry_count
         self._transport = transport
 
-    def plan(self, source: SourceRegistryEntry, release: SourceReleaseManifest) -> DownloadPlan:
+    def local_artifact_path(self, release: SourceReleaseManifest, filename: str) -> Path:
+        """Return the immutable local path for one declared release artifact."""
+
+        if filename not in {artifact.filename for artifact in release.artifacts}:
+            raise AcquisitionError(f"{filename} is not declared by {release.release_id}")
+        return self._paths.raw_original(release.source_id, release.release_id) / filename
+
+    def plan(
+        self,
+        source: SourceRegistryEntry,
+        release: SourceReleaseManifest,
+        *,
+        additional_local_artifacts: frozenset[str] = frozenset(),
+    ) -> DownloadPlan:
         reasons: list[str] = []
         expected = sum(artifact.expected_size or 0 for artifact in release.artifacts)
         automatic = True
@@ -73,9 +86,20 @@ class ReleaseDownloader:
         if release.acquisition_method is not AcquisitionMethod.HTTP_DOWNLOAD:
             automatic = False
             reasons.append(f"release acquisition method is {release.acquisition_method.value}")
-        if any(artifact.download_url is None for artifact in release.artifacts):
+        original = self._paths.raw_original(release.source_id, release.release_id)
+        missing_urls = [
+            artifact.filename
+            for artifact in release.artifacts
+            if artifact.download_url is None
+            and artifact.filename not in additional_local_artifacts
+            and not (original / artifact.filename).exists()
+        ]
+        if missing_urls:
             automatic = False
-            reasons.append("one or more artifacts have no machine download URL")
+            reasons.append(
+                "artifacts have neither a machine download URL nor a verified local copy: "
+                + ", ".join(missing_urls)
+            )
         if expected > self._max_automatic_bytes:
             automatic = False
             reasons.append(
@@ -135,12 +159,12 @@ class ReleaseDownloader:
         return resolved
 
     async def _fetch_artifact(self, artifact: ReleaseArtifact, original: Path) -> ReleaseArtifact:
-        if artifact.download_url is None:
-            raise AcquisitionError(f"{artifact.filename} has no download URL")
         target = original / artifact.filename
         if target.exists():
             self._verify_artifact(artifact, target)
             return artifact.model_copy(update={"observed_size": target.stat().st_size})
+        if artifact.download_url is None:
+            raise AcquisitionError(f"{artifact.filename} has no download URL")
 
         partial = target.with_name(f"{target.name}.part")
         headers = {"User-Agent": self._user_agent}

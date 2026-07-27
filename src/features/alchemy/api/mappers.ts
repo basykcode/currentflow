@@ -231,6 +231,9 @@ export const mapFormulaDetail = (
   const summary = mapFormulaSummary(entity)
   const citations = (entity.claims ?? []).map(claimCitation)
   const ingredientIds = stringArray(entity.properties, 'ingredientIds')
+  const ingredientAmounts = stringArray(entity.properties, 'ingredientAmountTexts')
+  const ingredientUnits = stringArray(entity.properties, 'ingredientUnits')
+  const ingredientSourceTerms = stringArray(entity.properties, 'ingredientSourceTerms')
   const status: AlchemyDataStatus =
     ingredientIds.length > 0 && ingredientLabels.size < ingredientIds.length
       ? 'incomplete'
@@ -251,11 +254,13 @@ export const mapFormulaDetail = (
       id: `api-formula-line:${entity.id}:${index}`,
       herbMaterialId,
       herbDisplayName: ingredientLabels.get(herbMaterialId) ?? herbMaterialId,
-      amountText: '',
-      unit: '',
+      amountText: ingredientAmounts[index] ?? '',
+      unit: ingredientUnits[index] ?? '',
       status: ingredientLabels.has(herbMaterialId) ? entity.dataStatus : 'unavailable',
       citations,
-      note: 'The source contract identifies this material but does not report an amount.',
+      note:
+        ingredientSourceTerms[index] ??
+        'The source identifies this material without a separate source-term label.',
     })),
     preparationNotes: claimsFor(
       entity.claims,

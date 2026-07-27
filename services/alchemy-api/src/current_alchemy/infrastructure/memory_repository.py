@@ -588,6 +588,17 @@ class MemoryAlchemyRepository:
             "labels": dict(sorted(counts.items())),
         }
 
+    async def foundation_status(self, source_id: str, release_id: str) -> dict[str, int]:
+        del source_id, release_id
+        return {
+            "releases": 0,
+            "sourceRecords": 0,
+            "officialMonographs": 0,
+            "formulas": 0,
+            "formulaWitnesses": 0,
+            "ingredientUses": 0,
+        }
+
     async def provenance(self, entity_id: str) -> dict[str, object]:
         entity = self.entities.get(entity_id)
         return {

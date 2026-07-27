@@ -71,6 +71,12 @@ explicitly supplied traditional role, and source-record evidence. A Jun/Chen/Zuo
 inferred. A `PreparedMaterial` has a distinct identity and can point to its base material without
 collapsing the preparation.
 
+For API search and workbench loading, an audited projection may add regenerable `CONTAINS` edges
+and ordered `ingredient_ids`, `ingredient_amount_texts`, and `ingredient_units` properties to the
+dual-labeled `Formula:FormulaConcept`. Those conveniences point to dual-labeled
+`HerbMaterial:MedicinalMaterial` nodes but do not replace the witness → ingredient-use → material
+evidence path.
+
 ## Constraints and indexes
 
 Versioned idempotent migrations create stable-ID constraints, property indexes for provenance,

@@ -1,0 +1,60 @@
+manifestVersion: "1"
+sourceId: source:taiwan-mohw-docmap
+releaseId: thp4-2025-07-30
+sourceVersion: "THP4 amended 2025-07-30; standardized-formula snapshot 2026-07-26"
+releaseDate: 2025-07-30
+retrievedAt: null
+officialSourceUrl: https://dep.mohw.gov.tw/docmap/cp-759-83251-108.html
+officialDownloadUrl: https://www.mohw.gov.tw/dl-71936-0a89f40d-7558-4ab2-8f4b-55e58de6552b.html
+acquisitionMethod: http_download
+artifacts:
+  - filename: taiwan-herbal-pharmacopeia-4.pdf
+    downloadUrl: https://www.mohw.gov.tw/dl-71936-0a89f40d-7558-4ab2-8f4b-55e58de6552b.html
+    expectedSize: 14939542
+    observedSize: null
+    sha256: ca88926998263873522da0098e9046ba30af6c4699e98bf60658668c92a0f964
+    etag: null
+    lastModified: null
+    archiveFormat: pdf
+    expectedExtractedFiles: []
+  - filename: thp4-corrections-2025-07-30.pdf
+    downloadUrl: https://www.mohw.gov.tw/dl-96177-c3aa4eb1-88b5-4700-8be3-439a8f8da971.html
+    expectedSize: 127356
+    observedSize: null
+    sha256: aeb3be126c52c200ce6035b05f7a2266d41529f0f2c7bdede08f93c02ac3ad08
+    etag: null
+    lastModified: null
+    archiveFormat: pdf
+    expectedExtractedFiles: []
+  - filename: taiwan-mohw-thp4-2025-07-30.json
+    downloadUrl: null
+    expectedSize: 560796
+    observedSize: null
+    sha256: dc6b973c1ebad8b40dafba6332dc180ac2029ce83a9fa668cb85e7af43247e1e
+    etag: null
+    lastModified: null
+    archiveFormat: json
+    expectedExtractedFiles: []
+adapterName: taiwan-mohw-pharmacopeia
+adapterVersion: "1"
+schemaVersion: alchemy-graph-v2
+normalizationVersion: unicode-whitespace-v1
+mappingVersion: taiwan-mohw-exact-source-v1
+licenseSnapshot:
+  licenseName: Taiwan Open Government Data License 1.0
+  licenseUrl: https://data.gov.tw/license
+  attributionRequirements:
+    - Attribute the Taiwan Ministry of Health and Welfare and identify the source release.
+    - Do not imply government endorsement.
+  commercialUse: allowed
+  redistribution: allowed
+  derivativeDatabase: allowed
+  aiUse: allowed
+  reviewedAt: 2026-07-26
+  reviewNotes: The ministry's Government Website Open Information Announcement applies Taiwan Open Government Data License 1.0 to site materials.
+citationTemplate: Taiwan Ministry of Health and Welfare, Taiwan Herbal Pharmacopeia 4th edition (as amended 2025-07-30) and Standardized Formulas snapshot 2026-07-26.
+originalReleaseNotes: https://dep.mohw.gov.tw/docmap/cp-759-83251-108.html
+importEligibility: production_approved
+checksumVerified: false
+importAuditPassed: false
+manualAcquisitionInstructions: []

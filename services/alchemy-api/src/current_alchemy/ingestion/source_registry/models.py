@@ -78,6 +78,7 @@ class AcquisitionMethod(StrEnum):
 
 
 class ArtifactFormat(StrEnum):
+    PDF = "pdf"
     OBO = "obo"
     OWL = "owl"
     JSON = "json"

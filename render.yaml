@@ -31,7 +31,11 @@ services:
       - key: ALCHEMY_ALLOWED_ORIGINS
         value: '["https://current-flow.net","https://www.current-flow.net"]'
       - key: ALCHEMY_SEED_DEMO
+        value: '0'
+      - key: ALCHEMY_ENSURE_FOUNDATION
         value: '1'
+      - key: ALCHEMY_DATA_ROOT
+        value: /app/.cache/alchemy-data
       - key: NEO4J_URI
         sync: false
       - key: NEO4J_USERNAME

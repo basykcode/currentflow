@@ -21,6 +21,23 @@ uv run alchemy downloads fetch source:disease-ontology --release v2026-06-30
 uv run alchemy downloads verify source:disease-ontology --release v2026-06-30
 ```
 
+For the live material/formula foundation:
+
+```powershell
+uv run alchemy downloads plan source:taiwan-mohw-docmap --release thp4-2025-07-30
+uv run alchemy ingest source:taiwan-mohw-docmap `
+  --release thp4-2025-07-30 `
+  --through graph `
+  --dry-run `
+  --mode full `
+  --batch-size 1000
+uv run alchemy foundation status
+uv run alchemy foundation ensure
+```
+
+Production startup uses `alchemy foundation ensure --retire-demo`. The command deletes only
+`demo=true` or `demo:*` nodes, and only after exact required counts are present and audited.
+
 Review the resolved manifest and checksum report under
 `var/alchemy-data/raw/source%3Adisease-ontology/v2026-06-30`. A byte or SHA mismatch is a hard
 failure. Do not edit the raw artifact to make it pass.

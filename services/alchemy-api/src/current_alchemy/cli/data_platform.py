@@ -5,7 +5,7 @@ import json
 from collections.abc import Awaitable, Callable
 from dataclasses import asdict
 from pathlib import Path
-from typing import TypeVar
+from typing import TypeVar, cast
 
 import typer
 from neo4j import AsyncGraphDatabase
@@ -30,6 +30,18 @@ sources_app = typer.Typer(help="Rights-aware source registry")
 downloads_app = typer.Typer(help="Immutable release acquisition")
 graph_app = typer.Typer(help="Graph audits, provenance, counts, and projections")
 reports_app = typer.Typer(help="Machine- and human-readable import reports")
+foundation_app = typer.Typer(help="Required live herb/formula foundation")
+
+_FOUNDATION_SOURCE_ID = "source:taiwan-mohw-docmap"
+_FOUNDATION_RELEASE_ID = "thp4-2025-07-30"
+_FOUNDATION_EXPECTED = {
+    "releases": 1,
+    "sourceRecords": 555,
+    "officialMonographs": 355,
+    "formulas": 200,
+    "formulaWitnesses": 200,
+    "ingredientUses": 1672,
+}
 
 T = TypeVar("T")
 
@@ -158,7 +170,8 @@ def downloads_plan(source_id: str, release: str = typer.Option(..., "--release")
     store = _store()
     source = store.source(source_id)
     manifest = store.release(source_id, release)
-    plan = _downloader(settings).plan(source, manifest)
+    adapter = get_release_adapter(manifest.adapter_name, manifest.adapter_version)
+    plan = adapter.plan_acquisition(source, manifest, _downloader(settings))
     typer.echo(json.dumps(asdict(plan), indent=2, sort_keys=True))
 
 
@@ -168,7 +181,8 @@ def downloads_fetch(source_id: str, release: str = typer.Option(..., "--release"
     store = _store()
     source = store.source(source_id)
     manifest = store.release(source_id, release)
-    resolved = asyncio.run(_downloader(settings).fetch(source, manifest))
+    adapter = get_release_adapter(manifest.adapter_name, manifest.adapter_version)
+    resolved = asyncio.run(adapter.acquire(source, manifest, _downloader(settings)))
     typer.echo(resolved.model_dump_json(by_alias=True, indent=2))
 
 
@@ -176,7 +190,8 @@ def downloads_fetch(source_id: str, release: str = typer.Option(..., "--release"
 def downloads_verify(source_id: str, release: str = typer.Option(..., "--release")) -> None:
     settings = _settings()
     manifest = _store().release(source_id, release)
-    result = _downloader(settings).verify(manifest)
+    adapter = get_release_adapter(manifest.adapter_name, manifest.adapter_version)
+    result = adapter.verify(manifest, _downloader(settings))
     typer.echo(json.dumps(result, indent=2, sort_keys=True))
 
 
@@ -242,6 +257,77 @@ def ingest_release(
 def _phase_before_graph(phase: PipelinePhase) -> bool:
     order = list(PipelinePhase)
     return order.index(phase) < order.index(PipelinePhase.GRAPH)
+
+
+def _foundation_complete(status: dict[str, int]) -> bool:
+    return all(status.get(field) == expected for field, expected in _FOUNDATION_EXPECTED.items())
+
+
+@foundation_app.command("status")
+def foundation_status() -> None:
+    async def run(repository: AlchemyRepository) -> dict[str, object]:
+        counts = await repository.foundation_status(_FOUNDATION_SOURCE_ID, _FOUNDATION_RELEASE_ID)
+        return {"complete": _foundation_complete(counts), **counts}
+
+    typer.echo(json.dumps(asyncio.run(_with_repository(run)), indent=2, sort_keys=True))
+
+
+@foundation_app.command("ensure")
+def foundation_ensure(
+    retire_demo: bool = typer.Option(False, "--retire-demo"),
+) -> None:
+    settings = _settings()
+    store = _store()
+    source = store.source(_FOUNDATION_SOURCE_ID)
+    manifest = store.release(_FOUNDATION_SOURCE_ID, _FOUNDATION_RELEASE_ID)
+    paths = AlchemyDataPaths(_data_root(settings))
+    downloader = _downloader(settings)
+
+    async def run(repository: AlchemyRepository) -> dict[str, object]:
+        before = await repository.foundation_status(_FOUNDATION_SOURCE_ID, _FOUNDATION_RELEASE_ID)
+        imported = False
+        pipeline_result: dict[str, object] | None = None
+        if not _foundation_complete(before):
+            imported = True
+            pipeline = ReleasePipeline(
+                repository=repository,
+                paths=paths,
+                downloader=downloader,
+            )
+            pipeline_result = await pipeline.run(
+                source,
+                manifest,
+                through=PipelinePhase.GRAPH,
+                mode=PipelineMode.FULL,
+                subset_limit=_FOUNDATION_EXPECTED["formulas"],
+                projection=RightsProjection.PRODUCTION_APPROVED,
+                batch_size=1_000,
+                dry_run=False,
+                resume=False,
+            )
+        after = await repository.foundation_status(_FOUNDATION_SOURCE_ID, _FOUNDATION_RELEASE_ID)
+        if not _foundation_complete(after):
+            raise RuntimeError(
+                "foundation import did not reach required counts: "
+                + json.dumps(after, sort_keys=True)
+            )
+        projection = await repository.rebuild_projections()
+        retired = await repository.reset_demo() if retire_demo else {"deleted": 0}
+        audit = await repository.audit()
+        if int(cast(int | str, audit.get("criticalFailures", 0))):
+            raise RuntimeError("critical graph audit failed after foundation import")
+        return {
+            "complete": True,
+            "imported": imported,
+            "before": before,
+            "after": after,
+            "retiredDemoNodes": retired["deleted"],
+            "projection": projection,
+            "audit": audit,
+            "pipeline": pipeline_result,
+        }
+
+    typer.echo(json.dumps(asyncio.run(_with_repository(run)), indent=2, sort_keys=True))
 
 
 @graph_app.command("audit")

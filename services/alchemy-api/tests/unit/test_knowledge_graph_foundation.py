@@ -134,12 +134,18 @@ def _release(
 
 def test_committed_source_registry_and_release_manifests_validate() -> None:
     store = SourceRegistryStore(SERVICE_ROOT / "data")
-    assert store.validate() == {"sources": 36, "releases": 1}
+    assert store.validate() == {"sources": 37, "releases": 2}
     source = store.source("source:disease-ontology")
     release = store.release("source:disease-ontology", "v2026-06-30")
     assert source.rights.license_name == "CC0 1.0 Universal"
     assert release.artifacts[0].sha256 == (
         "079fbbfc6d39f5d6c87b7ad1d2db2e058916584aefdcde0a42156860edae2bbc"
+    )
+    taiwan_source = store.source("source:taiwan-mohw-docmap")
+    taiwan_release = store.release("source:taiwan-mohw-docmap", "thp4-2025-07-30")
+    assert taiwan_source.production_status is ProductionStatus.APPROVED
+    assert taiwan_release.artifacts[2].sha256 == (
+        "dc6b973c1ebad8b40dafba6332dc180ac2029ce83a9fa668cb85e7af43247e1e"
     )
 
 

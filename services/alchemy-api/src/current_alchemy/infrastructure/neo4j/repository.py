@@ -325,6 +325,8 @@ def _native_datetime(value: object) -> datetime:
         return value
     if isinstance(value, Neo4jDateTime):
         return value.to_native()
+    if isinstance(value, str):
+        return datetime.fromisoformat(value.replace("Z", "+00:00"))
     raise ValueError("Neo4j claim created_at is not a supported datetime")
 
 
@@ -463,8 +465,13 @@ class Neo4jAlchemyRepository:
             result = await session.run(
                 """
                 MATCH (claim:Claim)-[:SUBJECT]->(subject {id: $entity_id})
-                MATCH (claim)-[:SUPPORTED_BY]->(source:Source)
                 OPTIONAL MATCH (claim)-[:OBJECT]->(object)
+                OPTIONAL MATCH (claim)-[:SUPPORTED_BY]->(direct_source:Source)
+                OPTIONAL MATCH (claim)-[:SUPPORTED_BY]->(record:SourceRecord)
+                OPTIONAL MATCH (release:SourceRelease)-[:CONTAINS_RECORD]->(record)
+                OPTIONAL MATCH (release_source:Source)-[:HAS_RELEASE]->(release)
+                WITH claim, object, coalesce(direct_source, release_source) AS source
+                WHERE source IS NOT NULL
                 RETURN properties(claim) AS claim, object.id AS object_id,
                        properties(source) AS source
                 ORDER BY claim.id
@@ -1137,6 +1144,62 @@ class Neo4jAlchemyRepository:
             "labels": {str(row["label"]): int(row["count"]) for row in label_rows},
             "relationshipTypes": {str(row["type"]): int(row["count"]) for row in relationship_rows},
         }
+
+    async def foundation_status(self, source_id: str, release_id: str) -> dict[str, int]:
+        queries = {
+            "releases": """
+                MATCH (release:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })
+                RETURN count(release) AS count
+            """,
+            "sourceRecords": """
+                MATCH (:SourceRelease {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })-[:CONTAINS_RECORD]->(record:SourceRecord)
+                RETURN count(DISTINCT record) AS count
+            """,
+            "officialMonographs": """
+                MATCH (material:HerbMaterial:MedicinalMaterial)
+                WHERE $source_id IN coalesce(material.source_ids, [])
+                  AND material.material_scope = 'official_monograph'
+                RETURN count(DISTINCT material) AS count
+            """,
+            "formulas": """
+                MATCH (formula:Formula:FormulaConcept)
+                WHERE $source_id IN coalesce(formula.source_ids, [])
+                RETURN count(DISTINCT formula) AS count
+            """,
+            "formulaWitnesses": """
+                MATCH (witness:FormulaWitness)-[:SUPPORTED_BY]->(record:SourceRecord {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })
+                RETURN count(DISTINCT witness) AS count
+            """,
+            "ingredientUses": """
+                MATCH (witness:FormulaWitness)-[:SUPPORTED_BY]->(:SourceRecord {
+                  source_id: $source_id,
+                  release_id: $release_id
+                })
+                MATCH (witness)-[:HAS_INGREDIENT_USE]->(ingredient:IngredientUse)
+                RETURN count(DISTINCT ingredient) AS count
+            """,
+        }
+        counts: dict[str, int] = {}
+        async with self._driver.session(database=self._database) as session:
+            for name, cypher in queries.items():
+                record = await (
+                    await session.run(
+                        cypher,
+                        source_id=source_id,
+                        release_id=release_id,
+                    )
+                ).single()
+                counts[name] = int(record["count"]) if record else 0
+        return counts
 
     async def provenance(self, entity_id: str) -> dict[str, object]:
         async with self._driver.session(database=self._database) as session:

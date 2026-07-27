@@ -1,0 +1,63 @@
+sources:
+  - sourceId: source:taiwan-mohw-docmap
+    title: Taiwan Herbal Pharmacopeia and Standardized Formulas
+    acronym: THP / MOHW formulas
+    responsibleOrganization: Taiwan Ministry of Health and Welfare, Department of Chinese Medicine and Pharmacy
+    description: Official medicinal-material monographs and standardized formula prescriptions published by Taiwan's Ministry of Health and Welfare.
+    officialHomepage: https://dep.mohw.gov.tw/DOCMAP/
+    officialDownloadPage: https://dep.mohw.gov.tw/DOCMAP/cp-759-63293-108.html
+    sourceType: official_pharmacopeia_and_formula_standard
+    languages: [zh-Hant]
+    updateCadence: irregular amendments
+    expectedScale: 355 medicinal-material monographs and 200 standardized formulas in the pinned release
+    canonicalIdentifiersSupplied: [official formula page identifier, THP monograph name and page]
+    knownUpstreamSources: []
+    rights:
+      licenseName: Taiwan Open Government Data License 1.0
+      licenseUrl: https://data.gov.tw/license
+      attributionRequirements:
+        - Attribute the Taiwan Ministry of Health and Welfare and identify the source release.
+        - Do not imply government endorsement.
+      commercialUse: allowed
+      redistribution: allowed
+      derivativeDatabase: allowed
+      aiUse: allowed
+    sourceDataStatus: authoritative_release_verified
+    productionStatus: approved
+    acquisitionMode: automatic
+    adapterName: taiwan-mohw-pharmacopeia
+    adapterVersion: "1"
+    citationTemplate: Taiwan Ministry of Health and Welfare, Taiwan Herbal Pharmacopeia 4th edition (as amended 2025-07-30) and Standardized Formulas snapshot 2026-07-26.
+    intendedUses:
+      - official medicinal-material name foundation
+      - official standardized-formula name foundation
+      - exact formula ingredient composition and source-reported quantities
+    useLimitations:
+      - Exhaustiveness means complete within this pinned official release, not every historical or regional Chinese-medicine tradition.
+      - Parenthetical ingredient wording is preserved as an exact source term and is not treated as a botanical, synonym, or preparation equivalence.
+      - Traditional preparation additions after the base quantity context remain in the formula witness text and are not projected as base ingredient uses.
+    safetyNotes:
+      - Source-reported prescriptions are research records, not prescribing or dosing guidance.
+      - External-use and traditional-preparation-only formula wording must remain visible.
+    contactInformation: https://dep.mohw.gov.tw/DOCMAP/
+    lastLicenseReviewDate: 2026-07-26
+    licenseReviewNotes: The ministry website's Government Website Open Information Announcement applies Taiwan Open Government Data License 1.0 to site materials and permits reproduction, adaptation, editing, public transmission, and product or service development with attribution.
+    usefulFieldInventory:
+      - medicinal-material monograph name
+      - formula name
+      - source text
+      - efficacy text
+      - indication text
+      - prescription text
+      - ordered ingredient name
+      - source-reported quantity
+      - caution text
+      - source URL
+    desiredGraphMapping:
+      - MedicinalMaterial
+      - FormulaConcept
+      - FormulaWitness
+      - IngredientUse
+      - SourceRecord
+      - Claim
+    permissionRequestChecklist: []

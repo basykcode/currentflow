@@ -30,6 +30,10 @@ uv run alchemy db verify
 uv run alchemy db migrate
 uv run alchemy sources validate
 uv run alchemy sources audit-rights
+uv run alchemy foundation status
+uv run alchemy foundation ensure
+uv run alchemy ingest source:taiwan-mohw-docmap --release thp4-2025-07-30 \
+  --through graph --dry-run --mode full
 uv run alchemy downloads plan source:disease-ontology --release v2026-06-30
 uv run alchemy downloads fetch source:disease-ontology --release v2026-06-30
 uv run alchemy downloads verify source:disease-ontology --release v2026-06-30
@@ -69,8 +73,11 @@ Remove `--dry-run` only after reviewing the field-mapping report in
 
 The source registry, immutable release manifests, local/object-store lake interface, DuckDB/Parquet
 staging, mapping assertions, evidence graph, rights policy, and graph audits are implemented for
-offline administration. Disease Ontology `v2026-06-30` is the first pinned real-source adapter.
-Downloaded source files and generated lake data remain ignored by Git.
+offline administration. The live foundation pins Taiwan MOHW release `thp4-2025-07-30` with 355
+official medicinal-material monographs, 200 standardized formulas, and 1,672 ordered base
+ingredient uses. Disease Ontology `v2026-06-30` remains an architecture proof and later enrichment,
+not a material/formula dependency. Downloaded official PDFs and generated lake data remain ignored
+by Git; the checksum-pinned lossless foundation snapshot is committed for reproducibility.
 
 See the root documentation:
 

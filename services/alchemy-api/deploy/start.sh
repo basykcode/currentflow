@@ -5,6 +5,10 @@ service_port="${PORT:-${ALCHEMY_API_PORT:-8000}}"
 
 alchemy db migrate
 
+if [ "${ALCHEMY_ENSURE_FOUNDATION:-0}" = "1" ]; then
+  alchemy foundation ensure --retire-demo
+fi
+
 if [ "${ALCHEMY_SEED_DEMO:-0}" = "1" ]; then
   alchemy data seed-demo
 fi

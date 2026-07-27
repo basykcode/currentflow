@@ -17,6 +17,7 @@ from current_alchemy.application.ports.repository import AlchemyRepository
 from current_alchemy.application.services.ingestion import IngestionService
 from current_alchemy.cli.data_platform import (
     downloads_app,
+    foundation_app,
     graph_app,
     ingest_release,
     reports_app,
@@ -45,6 +46,7 @@ app.add_typer(sources_app, name="sources")
 app.add_typer(downloads_app, name="downloads")
 app.add_typer(graph_app, name="graph")
 app.add_typer(reports_app, name="reports")
+app.add_typer(foundation_app, name="foundation")
 app.command("ingest")(ingest_release)
 
 T = TypeVar("T")

@@ -89,6 +89,9 @@ const formula = {
   ambiguity: [],
   properties: {
     ingredientIds: [herb.id],
+    ingredientAmountTexts: ['1'],
+    ingredientUnits: ['g'],
+    ingredientSourceTerms: ['Demo Root source term'],
     category: 'demo-category',
   },
 }
@@ -415,7 +418,15 @@ describe('HttpAlchemyProvider', () => {
     })
     await expect(provider.getFormula(formula.id)).resolves.toMatchObject({
       id: formula.id,
-      ingredients: [{ herbDisplayName: herb.displayName, status: 'demo' }],
+      ingredients: [
+        {
+          herbDisplayName: herb.displayName,
+          amountText: '1',
+          unit: 'g',
+          note: 'Demo Root source term',
+          status: 'demo',
+        },
+      ],
     })
     await expect(provider.analyzeFormula(draft)).resolves.toMatchObject({
       algorithmVersion: 'analysis-v1',

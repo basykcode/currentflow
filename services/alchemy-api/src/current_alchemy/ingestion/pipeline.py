@@ -11,6 +11,9 @@ from current_alchemy.ingestion.adapters.base import ReleaseAdapter
 from current_alchemy.ingestion.adapters.disease_ontology import (
     DiseaseOntologyAdapter,
 )
+from current_alchemy.ingestion.adapters.taiwan_mohw import (
+    TaiwanMohwPharmacopeiaAdapter,
+)
 from current_alchemy.ingestion.downloads import ReleaseDownloader
 from current_alchemy.ingestion.lake import AlchemyDataPaths
 from current_alchemy.ingestion.models import (
@@ -41,7 +44,10 @@ _ORDER = (
 
 
 def release_adapters() -> dict[str, ReleaseAdapter]:
-    values: list[ReleaseAdapter] = [DiseaseOntologyAdapter()]
+    values: list[ReleaseAdapter] = [
+        DiseaseOntologyAdapter(),
+        TaiwanMohwPharmacopeiaAdapter(),
+    ]
     return {adapter.name: adapter for adapter in values}
 
 
