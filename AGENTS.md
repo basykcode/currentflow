@@ -10,6 +10,20 @@
 - Update documentation when architecture or integration boundaries change.
 - Preserve accessibility, responsive behavior, and the product principles in `docs/PRODUCT_PRINCIPLES.md`.
 
+## Yijing transformation rules
+
+- Store and calculate hexagram lines bottom-to-top; resolve every target through the canonical
+  registry under `src/domain/astrology`.
+- Keep transformation definitions, pure calculations, provenance, and presentation separate. Mark
+  Current compositions as Current formalizations and results without reviewed interpretation as
+  structural-only.
+- Source-gate lineage tables and directed Yilin transitions. Never infer missing mappings, attach
+  transition text to a static endpoint, or bundle raw commentary evidence into the SPA.
+- Use the shared transformation result card and typed modal-navigation stack for every target.
+  Self-mappings must not create history loops, and close must reset transient Lab state.
+- Verify exact Hexagram 5 vectors, all 63 destinations, path pagination, source-table failures, and
+  same-dialog Back restoration when changing this workbench.
+
 ## Project continuity protocol
 
 This protocol is mandatory for every substantial Codex task. The repository is the durable project

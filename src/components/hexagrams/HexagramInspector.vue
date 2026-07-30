@@ -4,21 +4,18 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import HexagramGlyph from '@/components/astrology/HexagramGlyph.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
 import {
-  changeHexagramLine,
-  getInitialTransformations,
-  type ChangingLineNumber,
-} from '@/domain/astrology/transformations'
+  createTransformationEngine,
+  getRelatingResult,
+  type LineNumber,
+  type TransformationResult,
+} from '@/domain/yijing/transformations'
 import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
 
-import TransformationButton from './TransformationButton.vue'
+import TransformationHexagramCard from './transformations/TransformationHexagramCard.vue'
+import TransformationLab from './transformations/TransformationLab.vue'
 
 type CommentaryKey =
-  | 'daoism'
-  | 'confucianism'
-  | 'buddhism'
-  | 'psychology'
-  | 'human-design'
-  | 'gene-keys'
+  'daoism' | 'confucianism' | 'buddhism' | 'psychology' | 'human-design' | 'gene-keys'
 
 const COMMENTARIES: readonly { key: CommentaryKey; label: string }[] = [
   { key: 'daoism', label: 'Daoism' },
@@ -29,32 +26,54 @@ const COMMENTARIES: readonly { key: CommentaryKey; label: string }[] = [
   { key: 'gene-keys', label: 'Gene Keys' },
 ]
 
-const LINE_NUMBERS: readonly ChangingLineNumber[] = [1, 2, 3, 4, 5, 6]
+const LINE_NUMBERS: readonly LineNumber[] = [1, 2, 3, 4, 5, 6]
 
 const inspector = useHexagramInspectorStore()
+const transformationEngine = createTransformationEngine()
 const dialog = ref<HTMLElement | null>(null)
 const modalScroll = ref<HTMLElement | null>(null)
 const splitPinned = ref(false)
 const splitHovered = ref(false)
-const selectedLine = ref<ChangingLineNumber>(1)
+const selectedLine = ref<LineNumber>(1)
 const activeCommentary = ref<CommentaryKey>('daoism')
 let previousFocus: HTMLElement | null = null
 let priorBodyOverflow = ''
 
 const hexagram = computed(() => inspector.hexagram)
-const transformations = computed(() =>
-  hexagram.value ? getInitialTransformations(hexagram.value) : [],
+const screen = computed(() => inspector.screen)
+const arrivalContext = computed(() =>
+  screen.value?.kind === 'hexagram' ? screen.value.arrivalContext : undefined,
 )
-const lineTransformation = computed(() =>
-  hexagram.value ? changeHexagramLine(hexagram.value, selectedLine.value) : null,
+const baseTransformations = computed(() => {
+  if (!hexagram.value) return []
+  const intrinsic = transformationEngine
+    .getIntrinsic(hexagram.value)
+    .filter((result) => result.definitionId !== 'trigram-exchange')
+  return [getRelatingResult(hexagram.value, [selectedLine.value]), ...intrinsic]
+})
+const labScreen = computed(() =>
+  screen.value?.kind === 'transformation-lab' ? screen.value : null,
 )
 const splitVisible = computed(() => splitPinned.value || splitHovered.value)
 const commentaryLabel = computed(
   () => COMMENTARIES.find((item) => item.key === activeCommentary.value)?.label ?? 'Commentary',
 )
 
-const selectHexagram = (number: number) => {
-  inspector.open(number)
+const selectTransformation = (result: TransformationResult) => {
+  if (labScreen.value) {
+    inspector.updateTransformationLab({
+      scrollTop: modalScroll.value?.scrollTop ?? 0,
+    })
+  }
+  inspector.openHexagramFromTransformation(result)
+}
+
+const openTransformationLab = () => {
+  inspector.openTransformationLab([selectedLine.value], modalScroll.value?.scrollTop ?? 0)
+}
+
+const navigateBack = () => {
+  inspector.navigateBackWithinModal()
 }
 
 const close = () => {
@@ -109,12 +128,27 @@ watch(
 )
 
 watch(
-  () => inspector.selectedNumber,
-  async () => {
-    selectedLine.value = 1
-    splitPinned.value = false
+  () => inspector.screen,
+  async (nextScreen, previousScreen) => {
+    if (!nextScreen) return
+    if (!previousScreen) selectedLine.value = 1
+    if (nextScreen.kind === 'hexagram') splitPinned.value = false
     await nextTick()
-    if (modalScroll.value) modalScroll.value.scrollTop = 0
+    if (modalScroll.value) modalScroll.value.scrollTop = nextScreen.scrollTop ?? 0
+
+    if (nextScreen.kind === 'transformation-lab') {
+      dialog.value?.querySelector<HTMLElement>('.lab-back')?.focus()
+      return
+    }
+
+    if (previousScreen?.kind === 'transformation-lab' && nextScreen.arrivalContext === undefined) {
+      dialog.value?.querySelector<HTMLElement>('.advanced-lab-button')?.focus()
+      return
+    }
+
+    if (nextScreen.arrivalContext) {
+      dialog.value?.querySelector<HTMLElement>('.modal-back')?.focus()
+    }
   },
 )
 
@@ -126,48 +160,83 @@ onBeforeUnmount(() => {
 <template>
   <Teleport to="body">
     <Transition name="inspector">
-      <div
-        v-if="hexagram"
-        class="inspector-backdrop"
-        role="presentation"
-        @mousedown.self="close"
-      >
+      <div v-if="hexagram" class="inspector-backdrop" role="presentation" @mousedown.self="close">
         <section
           ref="dialog"
           class="inspector-dialog"
           role="dialog"
           aria-modal="true"
-          :aria-labelledby="`hexagram-${hexagram.number}-title`"
+          :aria-labelledby="
+            labScreen ? 'transformation-lab-title' : `hexagram-${hexagram.number}-title`
+          "
           @keydown="handleKeydown"
         >
           <header class="inspector-header">
-            <div>
-              <p>Hexagram inspection</p>
-              <span>King Wen {{ hexagram.number }} · {{ hexagram.namePinyin }}</span>
+            <div class="inspector-header-context">
+              <button
+                v-if="inspector.canNavigateBack && !labScreen"
+                class="modal-back"
+                type="button"
+                @click="navigateBack"
+              >
+                <span aria-hidden="true">←</span>
+                Back
+              </button>
+              <div>
+                <p>{{ labScreen ? 'Advanced transformation lab' : 'Hexagram inspection' }}</p>
+                <span>King Wen {{ hexagram.number }} · {{ hexagram.namePinyin }}</span>
+              </div>
             </div>
-            <button class="inspector-close" type="button" aria-label="Close hexagram inspection" @click="close">
+            <button
+              class="inspector-close"
+              type="button"
+              aria-label="Close hexagram inspection"
+              @click="close"
+            >
               <span aria-hidden="true">×</span>
             </button>
           </header>
 
           <div ref="modalScroll" class="inspector-scroll">
-            <div class="inspector-layout">
+            <TransformationLab
+              v-if="labScreen"
+              :source="hexagram"
+              :active-section="labScreen.activeSection"
+              :selected-moving-lines="labScreen.selectedMovingLines"
+              :filters="labScreen.filters"
+              :chain="inspector.chain"
+              :visited="inspector.visitedHexagramNumbers"
+              :engine="transformationEngine"
+              @back="navigateBack"
+              @select="selectTransformation"
+              @select-section="inspector.updateTransformationLab({ activeSection: $event })"
+              @update-moving-lines="
+                inspector.updateTransformationLab({ selectedMovingLines: $event })
+              "
+              @update-filters="inspector.updateTransformationLab({ filters: $event })"
+              @reset-chain="inspector.resetTransformationChain"
+              @select-chain-hexagram="inspector.openChainHexagram"
+            />
+
+            <div v-else class="inspector-layout">
               <aside class="transformations-panel" aria-labelledby="transformations-title">
                 <div class="panel-heading">
                   <p class="section-kicker">Computed structure</p>
                   <h2 id="transformations-title">Transformations</h2>
-                  <p>
-                    Four fixed relationships, calculated directly from the six source lines.
-                  </p>
+                  <p>Four compact relationships, calculated directly from the six source lines.</p>
                 </div>
 
                 <div class="transformation-list">
-                  <TransformationButton
-                    v-for="transformation in transformations"
-                    :key="transformation.key"
-                    :transformation="transformation"
-                    :title="transformation.description"
-                    @select="selectHexagram"
+                  <TransformationHexagramCard
+                    v-for="transformation in baseTransformations"
+                    :key="transformation.id"
+                    compact
+                    :result="transformation"
+                    :visited="
+                      transformation.targetHexagramNumber !== undefined &&
+                      inspector.visitedHexagramNumbers.has(transformation.targetHexagramNumber)
+                    "
+                    @select="selectTransformation"
                   />
                 </div>
 
@@ -192,12 +261,21 @@ onBeforeUnmount(() => {
                       {{ line }}
                     </button>
                   </div>
-                  <TransformationButton
-                    v-if="lineTransformation"
-                    :transformation="lineTransformation"
-                    @select="selectHexagram"
-                  />
+                  <p class="line-change-note">
+                    The selected line updates the compact Relating / Changed result above. The Lab
+                    supports any combination of lines.
+                  </p>
                 </section>
+
+                <button class="advanced-lab-button" type="button" @click="openTransformationLab">
+                  <span>
+                    <strong>Advanced Transformation Lab</strong>
+                    <small
+                      >Explore structures, destinations, paths, and source-gated systems.</small
+                    >
+                  </span>
+                  <span aria-hidden="true">→</span>
+                </button>
 
                 <section class="advanced-transformations" aria-labelledby="advanced-title">
                   <p class="section-kicker">Advanced</p>
@@ -213,6 +291,26 @@ onBeforeUnmount(() => {
               </aside>
 
               <article class="hexagram-focus">
+                <aside
+                  v-if="arrivalContext"
+                  class="arrival-context"
+                  aria-label="Transformation arrival context"
+                >
+                  <div>
+                    <span>Reached through transformation</span>
+                    <p>
+                      From Hexagram {{ arrivalContext.sourceHexagramNumber }} through
+                      {{ arrivalContext.transformationLabel }}
+                      <template v-if="arrivalContext.changedLines.length">
+                        · lines {{ arrivalContext.changedLines.join(', ') }}
+                      </template>
+                    </p>
+                  </div>
+                  <button type="button" @click="inspector.returnToSourceHexagram">
+                    Return to source
+                  </button>
+                </aside>
+
                 <header class="hexagram-identity">
                   <span class="hexagram-number">{{ hexagram.number }}</span>
                   <div>
@@ -403,9 +501,35 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
-.inspector-header div > span {
+.inspector-header-context {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.inspector-header-context > div > span {
   color: var(--ink-faint);
   font-size: 0.68rem;
+}
+
+.modal-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  padding: 0.45rem 0.65rem;
+  color: var(--jade);
+  font-size: 0.64rem;
+}
+
+.modal-back:hover,
+.modal-back:focus-visible {
+  border-color: var(--jade);
+  background: var(--jade-wash);
 }
 
 .inspector-close {
@@ -535,6 +659,53 @@ onBeforeUnmount(() => {
   color: var(--ink);
 }
 
+.line-change-note {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: 0.6rem;
+  line-height: 1.45;
+}
+
+.advanced-lab-button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  width: 100%;
+  min-height: 3.5rem;
+  margin-top: 1.15rem;
+  border: 1px solid color-mix(in srgb, var(--jade) 54%, var(--line));
+  border-radius: var(--radius-sm);
+  background: var(--jade-wash);
+  padding: 0.7rem 0.8rem;
+  color: var(--ink);
+  text-align: left;
+}
+
+.advanced-lab-button > span:first-child {
+  display: grid;
+  gap: 0.15rem;
+}
+
+.advanced-lab-button strong {
+  color: var(--jade-deep);
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 500;
+}
+
+.advanced-lab-button small {
+  color: var(--ink-faint);
+  font-size: 0.56rem;
+  line-height: 1.35;
+}
+
+.advanced-lab-button:hover,
+.advanced-lab-button:focus-visible {
+  border-color: var(--jade);
+  background: color-mix(in srgb, var(--jade-wash) 76%, var(--paper-raised));
+}
+
 .advanced-transformations {
   margin-top: 1.4rem;
   border: 1px dashed var(--line);
@@ -561,6 +732,42 @@ onBeforeUnmount(() => {
 .hexagram-focus {
   min-width: 0;
   padding: clamp(1.25rem, 3.2vw, 2.5rem);
+}
+
+.arrival-context {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  border: 1px solid color-mix(in srgb, var(--jade) 36%, var(--line));
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--jade-wash) 54%, transparent);
+  padding: 0.65rem 0.75rem;
+}
+
+.arrival-context span {
+  color: var(--jade);
+  font-size: 0.52rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.arrival-context p {
+  margin: 0.15rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.63rem;
+}
+
+.arrival-context button {
+  flex: 0 0 auto;
+  min-height: 2.4rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  padding: 0.4rem 0.6rem;
+  color: var(--ink-soft);
+  font-size: 0.58rem;
 }
 
 .hexagram-identity {

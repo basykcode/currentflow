@@ -16,10 +16,12 @@ BaZi, interpretive synthesis, and the guided-inquiry model remain deliberately u
 for theme, timezone, and local preferences work on the current device.
 
 Every hexagram shown in Astrology, related relationships, or the library opens the shared inspection
-workspace. It exposes verified Chinese identity and pinyin, upper/lower trigrams, four fixed
-structural transformations, six single-line changes, and the official Gene Keys
-Shadow/Gift/Siddhi vocabulary. The six future commentary lenses are visible but explicitly
-unavailable until their reviewed source texts and OLTRs are connected.
+workspace. It exposes verified Chinese identity and pinyin, upper/lower trigrams, compact structural
+transformations, and the official Gene Keys Shadow/Gift/Siddhi vocabulary. Its Advanced
+Transformation Lab adds provenance-aware symmetry, interior, all-destination, path, sequence, and
+structural analysis while keeping unconnected lineage sources visibly unavailable. The six future
+commentary lenses remain explicitly unavailable until their reviewed source texts and OLTRs are
+connected.
 
 ## Local setup
 

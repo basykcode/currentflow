@@ -35,11 +35,18 @@ title, bottom-to-top line structure, upper/lower trigram identities, and an offi
 three-band vocabulary reference. Static reference data is labeled `curated`; transformations are
 labeled `computed`; undefined advanced rules and commentary content are `unavailable`.
 
-Pure functions calculate nuclear, reverse, complementary, trigram-exchange, and single-changing-line
-results. Presentation components never recalculate or reinterpret those relationships. A transient
-Pinia store holds only the currently inspected King Wen number so any focused hexagram component or
-the `/tools/hexagrams` route can open the same app-level dialog. The store is not persisted and makes
-no network calls.
+Pure functions under `src/domain/yijing/transformations` calculate intrinsic relationships,
+symmetry families, interior structures, moving-line destinations and paths, textual relations, and
+structural anatomy. Every result resolves through the existing catalog and carries operation
+provenance plus interpretation availability. A per-inspector engine memoizes the bounded result sets;
+presentation components never recalculate or reinterpret them.
+
+The same app-level Hexagram Inspector dialog contains a compact Base Hexagram screen and the Advanced
+Transformation Lab. Its transient Pinia store owns a typed modal-screen stack, transformation chain,
+visited targets, moving lines, filters, and arrival context so Back restores the prior screen
+exactly. Closing clears the stack and no state is persisted. Classical lineage modules are closed
+interfaces that remain `source-needed` until complete reviewed tables are connected. See
+[`YIJING_TRANSFORMATION_LAB.md`](YIJING_TRANSFORMATION_LAB.md).
 
 ## Special-message privacy boundary
 

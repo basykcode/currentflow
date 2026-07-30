@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Yijing Transformation Lab'
+  short_description: 'Build provenance-safe Yijing transformation tools'
+  default_prompt: 'Use $yijing-transformation-lab to extend the Yijing transformation workbench safely.'
