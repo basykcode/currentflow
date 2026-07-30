@@ -2,9 +2,12 @@
 
 ## Last reconciled
 
-- UTC date: 2026-07-27
-- Branch represented: `master` with the English-first multilingual herb/formula foundation live
-- Commit inspected: `fc941d8`
+- UTC date: 2026-07-30
+- Branch represented: local `master` with the English-first multilingual herb/formula foundation
+  live and concurrent Codex isolation integrated
+- Commit inspected: `6ed5351`
+- `master` enforces one Codex chat per linked worktree, branch, lease, and runtime namespace at
+  `6ed5351`; the commit is local and not yet pushed to `origin/master`.
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -44,6 +47,11 @@ The integrated product is a static Vue 3/Vite/TypeScript SPA. Framework-independ
 `src/domain`; swappable adapters in `src/providers`; shared device-local state in Pinia stores;
 focused presentation in `src/components`; and lazy route composition in `src/views`.
 `CurrentFlowProvider` is the stable Astrology data seam.
+
+Concurrent Codex work is isolated by a trusted project `SessionStart` hook, a local atomic lease
+registry in shared Git metadata, one linked worktree and branch per chat, copied-by-value ignored
+inputs, and lease-specific Vite/Alchemy runtime namespaces. The primary checkout is
+coordination-only. See [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md).
 
 The framework-independent hexagram reference boundary now owns the complete identity catalog,
 trigrams, Gene Keys keyword mapping, three library orderings, and pure structural transformations.
@@ -192,6 +200,9 @@ The integrated release-aware Alchemy foundation additionally provides:
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
 - Node baseline is `22.18.0`; `npm run check` is required before completion.
+- Concurrent Codex implementation starts only in a clean linked worktree. One chat owns one
+  worktree/branch lease; feature chats do not switch branches, use stash as task state, hand work to
+  Local, or rewrite canonical project state.
 - Production branch is `master`; Vite base is `/`; static output is `dist`.
 
 ## Key accepted decisions
@@ -209,25 +220,27 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
 - [Project English-first multilingual Alchemy names](decisions/20260727T013844Z--project-english-first-multilingual-alchemy-names.md)
+- [Isolate every Codex chat by worktree, lease, and runtime](decisions/20260730T020000Z--isolate-every-codex-chat-by-worktree-lease-and-runtime.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 
 ## Active workstreams
 
-| Branch/worktree            | Objective                          | Status                                                                 | Latest handoff                                                                                                   |
-| -------------------------- | ---------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `master`                   | Replace fixtures with live factors | Published to `origin/master` in `9b6cbe1`                              | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                  |
-| `master`                   | Adopt dark-first water palette     | Published to `origin/master` in `11c5ced`                              | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                      |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation   | Scoped commit `8a287c3`; published workstream                          | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                    |
-| `feat/alchemy-frontend`    | Alchemy research frontend          | Scoped commit `fc2a0f9`; published workstream                          | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                 |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts        | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`   | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md) |
-| `master`                   | Publish complete Alchemy stack     | Canonical integrated branch at merge `c8f8e04` plus publication record | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)     |
-| `master`                   | Connect production Alchemy stack   | API-mode Pages release is live at `3a44820`                            | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)          |
-| `master`                   | Publish VH special message         | Feature `5fa474f` is live on Cloudflare                                | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                          |
-| `master`                   | Build hexagram inspection/library  | Feature `a095f06` is live on Cloudflare                                | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                |
-| `master` | Publish release-aware Alchemy data foundation | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5` | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md) |
-| `master` | Publish official herb/formula foundation | Feature and production corrections through `9a1fa5a`; audited Taiwan MOHW release and real-data UI are live | [Official foundation handoff](handoffs/20260727T003600Z--master--publish-official-herb-formula-foundation.md) |
-| `master` | Publish English-first multilingual Alchemy names | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
+| Branch/worktree            | Objective                                        | Status                                                                                                         | Latest handoff                                                                                                       |
+| -------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `master`                   | Replace fixtures with live factors               | Published to `origin/master` in `9b6cbe1`                                                                      | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                      |
+| `master`                   | Adopt dark-first water palette                   | Published to `origin/master` in `11c5ced`                                                                      | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                          |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation                 | Scoped commit `8a287c3`; published workstream                                                                  | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                        |
+| `feat/alchemy-frontend`    | Alchemy research frontend                        | Scoped commit `fc2a0f9`; published workstream                                                                  | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                     |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts                      | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`                                           | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md)     |
+| `master`                   | Publish complete Alchemy stack                   | Canonical integrated branch at merge `c8f8e04` plus publication record                                         | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)         |
+| `master`                   | Connect production Alchemy stack                 | API-mode Pages release is live at `3a44820`                                                                    | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)              |
+| `master`                   | Publish VH special message                       | Feature `5fa474f` is live on Cloudflare                                                                        | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                              |
+| `master`                   | Build hexagram inspection/library                | Feature `a095f06` is live on Cloudflare                                                                        | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                     |
+| `master`                   | Publish release-aware Alchemy data foundation    | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5`          | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md)   |
+| `master`                   | Publish official herb/formula foundation         | Feature and production corrections through `9a1fa5a`; audited Taiwan MOHW release and real-data UI are live    | [Official foundation handoff](handoffs/20260727T003600Z--master--publish-official-herb-formula-foundation.md)        |
+| `master`                   | Publish English-first multilingual Alchemy names | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
+| `master`                   | Isolate concurrent Codex chats                   | Integrated locally at `6ed5351`; verified and not yet pushed                                                   | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
 
 ## Known issues and risks
 
@@ -324,6 +337,7 @@ while preserving the live Taiwan MOHW source records and formula witness text.
 - Alchemy UI data model: [`../ALCHEMY_UI_DATA_MODEL.md`](../ALCHEMY_UI_DATA_MODEL.md)
 - Calculation sources and conventions: [`../CALCULATION_SOURCES.md`](../CALCULATION_SOURCES.md)
 - Deployment: [`../DEPLOYMENT.md`](../DEPLOYMENT.md)
+- Concurrent Codex work: [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md)
 - Continuity procedure: [`README.md`](README.md)
 - Accepted decisions: [`decisions/`](decisions/)
 - Session handoffs: [`handoffs/`](handoffs/)
