@@ -169,10 +169,20 @@ async function main() {
         `Vite port ${runtime.vitePort} is already in use. Stop this chat's existing server before starting another.`,
       )
     }
-    const npm = process.platform === 'win32' ? 'npm.cmd' : 'npm'
+    const npmCommand =
+      process.platform === 'win32' && process.env.npm_execpath
+        ? {
+            command: process.execPath,
+            leadingArgs: [process.env.npm_execpath],
+          }
+        : {
+            command: 'npm',
+            leadingArgs: [],
+          }
     await runChild(
-      npm,
+      npmCommand.command,
       [
+        ...npmCommand.leadingArgs,
         'run',
         'dev',
         '--',
