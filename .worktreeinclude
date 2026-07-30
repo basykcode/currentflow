@@ -1,0 +1,8 @@
+# Codex-managed worktrees copy these ignored, local-only inputs by value.
+# Each chat gets an isolated snapshot; changes are not synchronized back.
+.env
+.env.local
+.env.*.local
+data/hexagram-commentary/chunked/
+content/yijing/internal/
+data/hexagram-transitions/local/

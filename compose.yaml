@@ -1,4 +1,4 @@
-name: current-flow
+name: ${COMPOSE_PROJECT_NAME:-current-flow}
 
 services:
   neo4j:
@@ -12,8 +12,8 @@ services:
       NEO4J_server_memory_heap_initial__size: 512m
       NEO4J_server_memory_heap_max__size: 512m
     ports:
-      - '127.0.0.1:7474:7474'
-      - '127.0.0.1:7687:7687'
+      - '127.0.0.1:${CURRENT_FLOW_NEO4J_HTTP_PORT:-7474}:7474'
+      - '127.0.0.1:${CURRENT_FLOW_NEO4J_BOLT_PORT:-7687}:7687'
     volumes:
       - alchemy_neo4j_data:/data
       - alchemy_neo4j_logs:/logs
@@ -47,7 +47,7 @@ services:
       EXTERNAL_REQUEST_TIMEOUT_SECONDS: ${EXTERNAL_REQUEST_TIMEOUT_SECONDS:-20}
       EXTERNAL_REQUEST_MIN_INTERVAL_MS: ${EXTERNAL_REQUEST_MIN_INTERVAL_MS:-250}
     ports:
-      - '127.0.0.1:8000:8000'
+      - '127.0.0.1:${CURRENT_FLOW_API_PORT:-8000}:8000'
     depends_on:
       neo4j:
         condition: service_healthy

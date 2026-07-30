@@ -32,6 +32,13 @@ The local endpoints are:
 - OpenAPI UI: `http://localhost:8000/api/v1/docs`
 - Neo4j Browser: `http://localhost:7474`
 
+Those defaults are for a single human checkout. Concurrent Codex chats must use
+`npm run workspace:alchemy -- up` and read their assigned endpoints from
+`npm run workspace:doctor`; use `npm run workspace:alchemy -- migrate` and
+`npm run workspace:alchemy -- seed` for the data setup steps. The wrapper gives each worktree
+separate ports, containers, volumes, and Neo4j CLI targeting. See
+[`CODEX_PARALLEL_WORK.md`](CODEX_PARALLEL_WORK.md).
+
 Neo4j is bound to loopback in Compose. Deployment designs must keep Bolt and Browser on a private
 network rather than expose them publicly. Compose also disables Neo4j anonymous usage reporting.
 

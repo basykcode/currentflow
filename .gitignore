@@ -11,6 +11,19 @@ __pycache__/
 .mypy_cache/
 .ruff_cache/
 *.py[cod]
+tmp/
 services/alchemy-api/.cache/
 services/alchemy-api/data/raw/
 var/alchemy-data/
+
+# User-supplied copyrighted hexagram commentary. Keep source text local-only;
+# track only its preparation code, provenance manifest, and validation index.
+data/hexagram-commentary/chunked/
+
+# Local research artifacts may contain protected source excerpts. Public
+# summaries, metadata-only reports, and schemas remain trackable.
+content/yijing/internal/
+
+# User-supplied transition source files and extracted evidence stay local.
+# Only hashes, locators, original summaries, and public bundles are tracked.
+data/hexagram-transitions/local/

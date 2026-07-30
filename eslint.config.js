@@ -8,6 +8,16 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   ...eslintPluginVue.configs['flat/essential'],
   {
+    files: ['scripts/codex/**/*.mjs'],
+    ...tseslint.configs.disableTypeChecked,
+    languageOptions: {
+      ...tseslint.configs.disableTypeChecked.languageOptions,
+      globals: {
+        process: 'readonly',
+      },
+    },
+  },
+  {
     files: ['**/*.{ts,vue}'],
     languageOptions: {
       globals: {

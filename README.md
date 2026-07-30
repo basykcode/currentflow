@@ -34,6 +34,11 @@ npm run dev
 The development server prints the local URL. No service credentials or environment variables are
 required for Alchemy demo mode.
 
+Concurrent Codex work must start with the desktop app's **Worktree** option. Each chat receives an
+exclusive branch, lease, and runtime namespace; Local is coordination-only. Follow
+[`docs/CODEX_PARALLEL_WORK.md`](docs/CODEX_PARALLEL_WORK.md) and run
+`npm run workspace:doctor` before editing.
+
 ## Alchemy frontend
 
 Alchemy routes include:
@@ -99,6 +104,9 @@ are described in
 - `npm run format` — format source and documentation
 - `npm run test:unit` — run Vitest unit tests
 - `npm run check` — type-check, lint, unit test, and production build
+- `npm run workspace:doctor` / `workspace:status` — verify or inspect Codex worktree isolation
+- `npm run workspace:dev` — start Vite on the current chat's leased port
+- `npm run workspace:alchemy -- <action>` — manage this chat's isolated Alchemy stack and data tools
 - `npm run alchemy:up` / `alchemy:down` — start or stop local Neo4j and API
 - `npm run alchemy:migrate` / `alchemy:seed` — apply graph migrations and seed fictional demo data
 - `npm run alchemy:check` — run backend formatting, lint, typing, tests, and contract checks
@@ -116,6 +124,7 @@ src/features        vertically scoped product features, including Alchemy
 src/providers       swappable data adapters
 src/stores          shared preferences, identity, and transient inspector state
 src/views           route-level composition
+scripts/codex       per-chat worktree leases and isolated runtime commands
 docs                product, architecture, integration, and deployment notes
 public              local metadata assets
 ```

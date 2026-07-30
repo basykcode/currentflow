@@ -57,6 +57,24 @@ Authority, from intent to implementation:
 - Never push, merge, rebase, switch branches, delete branches, or delete worktrees without explicit
   authorization in the current task.
 
+### Codex chat isolation
+
+- The primary checkout (where `.git` is a directory) is coordination-only. Do not make tracked or
+  untracked project changes there. Start implementation chats with the Codex desktop app's
+  **Worktree** option from a clean integration branch.
+- One chat owns one linked worktree and one branch. Never reuse a worktree for another active chat,
+  hand implementation work back to Local, or switch the worktree's branch.
+- The project `SessionStart` hook is an isolation boundary. Do not disable or bypass it. It assigns
+  detached Codex worktrees a `codex/chat-<session>` branch, rejects dirty unclaimed worktrees, and
+  rejects worktrees leased to another chat.
+- Run `npm run workspace:doctor` before tracked changes. Use `npm run workspace:dev` and
+  `npm run workspace:alchemy -- <action>` so concurrent chats receive isolated ports, containers,
+  volumes, migrations, and seed operations.
+- Do not use `git stash` as chat state and do not use broad staging. A feature chat owns only its
+  branch, worktree, unique handoff, and task-scoped files.
+- Feature chats do not edit `docs/continuity/PROJECT_STATE.md`; only an explicitly authorized
+  integration task reconciles that shared summary.
+
 ### Completion
 
 A handoff is required when a session changes tracked files, makes a material decision, completes or
