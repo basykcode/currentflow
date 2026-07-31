@@ -3,12 +3,14 @@
 ## Last reconciled
 
 - UTC date: 2026-07-31
-- Branch represented: local `master` with the English-first multilingual herb/formula foundation,
-  concurrent Codex isolation, and the Advanced Yijing Transformation Lab integrated
-- Commit inspected: `267cbd0`
+- Branch represented: local `master` with the Advanced Yijing Transformation Lab, Forest
+  line-change commentary, and six-school hexagram commentary integrated
+- Commit inspected: `8b14fc8`
 - `master` enforces one Codex chat per linked worktree, branch, lease, and runtime namespace at
   `6ed5351`, with the continuity record at `828c400`.
 - `master` merges the Advanced Yijing Transformation Lab at `267cbd0`.
+- `master` merges the restored line-change result experience, 384 Forest transition summaries, and
+  six-school commentary corpus at `8b14fc8`.
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -63,6 +65,11 @@ store holds the modal's inspected figure, Base/Lab view, filters, comparison cha
 navigation stack, while one app-level modal supplies the shared interaction for Astrology and the
 `/tools/hexagrams` library route.
 
+The inspector loads public, quotation-free commentary through typed repositories under
+`src/features/hexagram-commentary` and `src/features/hexagram-transitions`. The SPA receives only
+lazy generated bundles: six school lenses across all 64 figures and one Forest summary for each of
+the 384 single-line routes. Raw and normalized evidence remains local-only and ignored.
+
 The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI service under
 `services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
 only persistent database; external-source access is limited to explicit administration commands;
@@ -96,15 +103,19 @@ is the only Alchemy state in Pinia.
   symmetry and derived figures, mutual/deep-nuclear structure, structural analysis, all 63 reachable
   destinations, and lazily generated shortest-path sequences. Lab results can be opened, compared,
   chained, and returned through a bounded local modal stack.
-- Zagua, Eight-Palace, Yilin, and other lineage-dependent modules remain explicit source-gated
-  contracts. They display unavailable states until reviewed, rights-eligible source inputs exist;
-  the UI does not infer or fabricate lineage data.
+- The Base view's six-position line selector previews and links to the resulting hexagram, then
+  displays the matching draft Forest theme and transition summary with source and review status.
+- Zagua, Eight-Palace, the full directed Yilin Lab module, and other lineage-dependent modules remain
+  explicit source-gated contracts. They display unavailable states until reviewed, rights-eligible
+  source inputs exist; the UI does not infer or fabricate missing lineage data.
 - The Other Tools Hexagram Library renders all 64 verified figures and can order them by King Wen,
   bottom-up Fu Xi binary value, or an Early Heaven trigram matrix.
 - The inspector shows the official Shadow/Gift/Siddhi vocabulary for all 64 corresponding Gene Keys
   with direct source links; it makes no runtime request.
-- Daoism, Confucianism, Buddhism, Psychology, Human Design, and Gene Keys commentary views plus
-  Absolute Shadow are present but explicitly unavailable until reviewed content or rules arrive.
+- Daoist, Buddhist, Confucian, Psychological, Human Design, and Gene Keys tabs lazily expose 379
+  source-grounded draft summaries and OLTRs across all 64 figures. Five Buddhist records are
+  explicitly unavailable because their evidence is quarantined; Absolute Shadow remains unavailable
+  until reviewed deterministic rules arrive.
 - A cited twelve-window meridian-clock table selects the active organ period from civil time in the
   snapshot timezone.
 - Local light/dark/system theme, functional timezone preference, optional location label, and local
@@ -118,8 +129,9 @@ is the only Alchemy state in Pinia.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- Ninety-five frontend unit tests cover Astrology calculations, the complete hexagram catalog and
-  transforms, inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
+- One hundred eight frontend unit tests cover Astrology calculations, the complete hexagram catalog
+  and transforms, commentary/transition repositories and rendering,
+  inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
   timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
   navigation; Cloudflare Pages build preparation and local metadata assets remain.
 
@@ -189,8 +201,9 @@ The integrated release-aware Alchemy foundation additionally provides:
 - TypeScript remains strict; avoid undocumented `any`.
 - Hexagram lines are stored bottom-to-top and reversed only for display.
 - Hexagram identity and Gene Keys keywords are curated references; structural transforms are
-  computed. Lineage-dependent relations and commentary remain unavailable unless backed by eligible
-  reviewed sources; directed Yilin records must never be treated as symmetric.
+  computed. Six-school commentary and selected Forest transitions are available only as
+  source-grounded, quotation-free drafts; missing lineage records remain unavailable, and directed
+  Yilin records must never be treated as symmetric.
 - All display data carries status/provenance; no fabricated calculations or hidden network calls.
 - Domain calculations remain independent from Vue presentation.
 - Preferences are device-local; no geolocation, auth, AI, analytics, or remote database SDK is active
@@ -235,6 +248,9 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Project English-first multilingual Alchemy names](decisions/20260727T013844Z--project-english-first-multilingual-alchemy-names.md)
 - [Isolate every Codex chat by worktree, lease, and runtime](decisions/20260730T020000Z--isolate-every-codex-chat-by-worktree-lease-and-runtime.md)
 - [Keep Transformation Lab state local and lineage data source-gated](decisions/20260730T233100Z--transformation-lab-modal-state-and-source-gates.md)
+- [Keep proprietary hexagram commentary local and provenance-indexed](decisions/20260730T000122Z--keep-proprietary-hexagram-commentary-local-and-provenance-indexed.md)
+- [Ship only derived, auditable hexagram commentary drafts](decisions/20260730T011500Z--ship-only-derived-auditable-hexagram-commentary-drafts.md)
+- [Keep Forest transition evidence local and line-specific](decisions/20260730T233445Z--keep-forest-transition-evidence-local-and-line-specific.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 
@@ -256,6 +272,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Publish English-first multilingual Alchemy names | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
 | `master`                   | Isolate concurrent Codex chats                   | Integrated at `6ed5351` with continuity at `828c400`; included in the current publication                      | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
 | `master`                   | Add the Advanced Yijing Transformation Lab       | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized           | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
+| `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                       | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
 
 ## Known issues and risks
 
@@ -292,10 +309,13 @@ The integrated release-aware Alchemy foundation additionally provides:
   an alpha host, not a production SLA.
 - Aura-generated database names are not necessarily `neo4j`. Render must receive the exact
   `NEO4J_DATABASE` value from Aura's downloaded credentials; it is distinct from the username.
-- Personal BaZi, changing-line interpretation/divination, interpretive synthesis, and execution
-  recommendations are inactive; structural user-selected line transformations are available.
+- Personal BaZi, divinatory synthesis, and execution recommendations are inactive. Structural
+  user-selected line transformations and source-grounded draft Forest summaries are available.
+- The 379 school records and 384 Forest transition records remain draft-only pending human editorial
+  review. Buddhist records for Hexagrams 1, 5, 6, 7, and 17 remain explicitly unavailable until
+  eligible evidence replaces their quarantined inputs.
 - Source-gated Transformation Lab modules remain unavailable by design until reviewed Zagua,
-  Eight-Palace, Yilin, or other lineage records and rights metadata are supplied.
+  Eight-Palace, full directed Yilin, or other lineage records and rights metadata are supplied.
 - Cloudflare Pages responds successfully at `https://current-flow.net` and
   `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
 - The VH page intentionally contains encrypted Lorem Ipsum and no music asset yet. Its music controls
@@ -313,21 +333,23 @@ The integrated release-aware Alchemy foundation additionally provides:
 
 ## Next priorities
 
-1. Domain-review the Transformation Lab terminology and onboard lineage relations only from
-   reviewed, rights-eligible source inputs; keep missing modules explicitly unavailable.
-2. Inventory the prechunked hexagram commentary corpus by lens, source, rights, and figure, then
-   develop source-grounded OLTRs and summaries.
-3. Define and review the deterministic Absolute Shadow transformation before implementation.
-4. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
+1. Human-review the 379 school commentary drafts and 384 Forest transition drafts before changing
+   their publication eligibility.
+2. Replace the quarantined Buddhist evidence for Hexagrams 1, 5, 6, 7, and 17, then regenerate and
+   review those explicit unavailable records.
+3. Domain-review the Transformation Lab terminology and onboard remaining lineage relations only
+   from reviewed, rights-eligible source inputs; keep missing modules explicitly unavailable.
+4. Define and review the deterministic Absolute Shadow transformation before implementation.
+5. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
    supplies both.
-5. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
+6. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-6. Domain-review the 200 derived formula English titles, 92 public formula-only material
+7. Domain-review the 200 derived formula English titles, 92 public formula-only material
    translations, the non-public excipient, and prepared-material boundaries; promote reviewed names
    and add explicit equivalence mappings without collapsing source wording.
-7. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+8. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-8. Add condition, compound, and target sources such as Disease Ontology only after the live
+9. Add condition, compound, and target sources such as Disease Ontology only after the live
    herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
    deployment requirements.
 
@@ -363,6 +385,10 @@ while preserving the live Taiwan MOHW source records and formula witness text.
   [`../YIJING_TRANSFORMATION_PROVENANCE.md`](../YIJING_TRANSFORMATION_PROVENANCE.md)
 - Transformation source-gate schema:
   [`../YIJING_TRANSFORMATION_DATA.md`](../YIJING_TRANSFORMATION_DATA.md)
+- Hexagram commentary pipeline: [`../HEXAGRAM_COMMENTARY_PIPELINE.md`](../HEXAGRAM_COMMENTARY_PIPELINE.md)
+- Hexagram commentary rights boundary: [`../HEXAGRAM_COMMENTARY_RIGHTS.md`](../HEXAGRAM_COMMENTARY_RIGHTS.md)
+- Hexagram modal content contract: [`../HEXAGRAM_MODAL_CONTENT.md`](../HEXAGRAM_MODAL_CONTENT.md)
+- Forest transition commentary: [`../HEXAGRAM_TRANSITION_COMMENTARY.md`](../HEXAGRAM_TRANSITION_COMMENTARY.md)
 - Deployment: [`../DEPLOYMENT.md`](../DEPLOYMENT.md)
 - Concurrent Codex work: [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md)
 - Continuity procedure: [`README.md`](README.md)
