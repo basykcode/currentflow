@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 60,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-60-29",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 29,
+      "changingLine": 1,
+      "theme": "Predators Block the Roads",
+      "summary": "Organized predators attack livestock and close the routes, harming cultivation and exchange together by making movement unsafe for every livelihood.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "60-29",
+        "resolvedLocator": "60-29",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "da01bf647e99d74484e5980e490bbd16660b84e56da0797d344f0f7ec355ad6f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-60-03",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 3,
+      "changingLine": 2,
+      "theme": "Longing Under Scarcity",
+      "summary": "Dreams repeatedly supply the meal that waking life withholds, while fear of insufficiency reflects a livelihood narrowly apportioned.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "60-3",
+        "resolvedLocator": "60-3",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2cc148d4749a1c2d3a6297103ee3adb48f10d32b18e901669568fbec2ae49e31"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-60-05",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 5,
+      "changingLine": 3,
+      "theme": "The Guest Displaces the Young",
+      "summary": "A foreign chick occupies another bird’s nest while inner and outer relationships rebel, and the original young are driven from their own shelter.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "60-5",
+        "resolvedLocator": "60-5",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "443a0b9d2cf5ba66318a80a88ae654713bcb7ef6393297aab3827fbe464a7427"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-60-58",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 58,
+      "changingLine": 4,
+      "theme": "Mastery Makes Passage Safe",
+      "summary": "Renowned ministers guide a powerful chariot through every border and direction, making disciplined skill the condition for travel without disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "60-58",
+        "resolvedLocator": "60-58",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "856941c6eb1748c159286b76bd1013b9df0f2386e8600793f3bc927bd55c9d18"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-60-19",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 19,
+      "changingLine": 5,
+      "theme": "Vice Forfeits Protection",
+      "summary": "Waste, appetite, stinginess, and greed estrange a person from both celestial and earthly support until the household itself fills with hostile influences.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "60-19",
+        "resolvedLocator": "60-19",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "60dc431fa726a1effe643d0b0733ebbc13695293c539968a2d7c4f2d38f86b3f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-60-61",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 61,
+      "changingLine": 6,
+      "theme": "Quickness Finds Abundance",
+      "summary": "Rivers and seas hold precious materials and large fish in plenty, but prosperity belongs to the person agile enough to recognize and gather them.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "60-61",
+        "resolvedLocator": "60-61",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6557ccd1dd04ffd62e3ff66ed831899a82661e58207c4e779b61096df81042eb"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

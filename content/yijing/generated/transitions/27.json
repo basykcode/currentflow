@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 27,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-27-23",
+      "sourceHexagramNumber": 27,
+      "targetHexagramNumber": 23,
+      "changingLine": 1,
+      "theme": "Leaving the Native Element",
+      "summary": "A water creature rejects the environment that sustains it and continues over dry land until body, place, and opportunity are all lost.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "27-23",
+        "resolvedLocator": "11-60",
+        "crossReferenceChain": ["27-23"],
+        "sourcePassageSha256": "26fe0a284d8a83a4b85f05a810e39802da715d6e3ac4eb158e09d4576bdf681c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-27-41",
+      "sourceHexagramNumber": 27,
+      "targetHexagramNumber": 41,
+      "changingLine": 2,
+      "theme": "Past Overpowers Present",
+      "summary": "Artificial brightness extends the day but fixation on what has passed weakens active authority, allowing receptive forces to become proud and ungovernable.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "27-41",
+        "resolvedLocator": "27-41",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "668a72610dbe4d2199040f1656ae0cccdbf8438999cf6c351870e2b0c043a13a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-27-22",
+      "sourceHexagramNumber": 27,
+      "targetHexagramNumber": 22,
+      "changingLine": 3,
+      "theme": "Defense Preserves the Realm",
+      "summary": "Predatory forces enter the settled center seeking consumption, but capable leadership stands firm and prevents the community from being lost.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "27-22",
+        "resolvedLocator": "27-22",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0ceb47dd822e1f1412b9de2fe2eff650a580c05f464e26a1ce7898935366a189"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-27-21",
+      "sourceHexagramNumber": 27,
+      "targetHexagramNumber": 21,
+      "changingLine": 4,
+      "theme": "Keeping Seasonal Measure",
+      "summary": "Movement follows the sun’s appointed rhythms without missing its times, joining temporal discipline with civic peace and freedom from disruption.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "27-21",
+        "resolvedLocator": "27-21",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f0742bcea9f5422efe95959e787df74277048dcc1f13076bbd1b5fb90d67a81b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-27-42",
+      "sourceHexagramNumber": 27,
+      "targetHexagramNumber": 42,
+      "changingLine": 5,
+      "theme": "Unearned Gain Collapses",
+      "summary": "Harvest and reward arrive without corresponding labor, but excess beyond merit cannot hold; vehicle, house, and office all give way.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "27-42",
+        "resolvedLocator": "27-42",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "fdd3e9f478baec37562fef6256af6c087dd03547d0280580f599b2b7a5ac4b2d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-27-24",
+      "sourceHexagramNumber": 27,
+      "targetHexagramNumber": 24,
+      "changingLine": 6,
+      "theme": "Confinement Before Renewal",
+      "summary": "Founders of new orders endure imprisonment under failing regimes, while ordinary nourishment and the people’s joy quietly anticipate a change in mandate.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "27-24",
+        "resolvedLocator": "27-24",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "cbab66b93c9659714282c05ad22d8684ecee9386740b20c6b9cf65fccca00a70"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

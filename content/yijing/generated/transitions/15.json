@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 15,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-15-36",
+      "sourceHexagramNumber": 15,
+      "targetHexagramNumber": 36,
+      "changingLine": 1,
+      "theme": "Constricted Refuge",
+      "summary": "Small creatures hide in mud after leaving open water, while narrow passages and distant poles intensify deprivation; concealment protects little when movement remains constrained.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "15-36",
+        "resolvedLocator": "15-36",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "df4526732b80dd1cc308848fd0e96b14c4f85e85e5401c8c163145eead5e5321"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-15-46",
+      "sourceHexagramNumber": 15,
+      "targetHexagramNumber": 46,
+      "changingLine": 2,
+      "theme": "Wisdom Shapes the Pattern",
+      "summary": "The culture hero’s extraordinary perception gives form to the eight figures and aligns humane influence with the time, linking insight, pattern, and enduring benefit.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "15-46",
+        "resolvedLocator": "15-46",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b28f0f19869357c7ed86fb5946ca7e5a4e40c19ac6254fc0324acd989a85d8de"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-15-02",
+      "sourceHexagramNumber": 15,
+      "targetHexagramNumber": 2,
+      "changingLine": 3,
+      "theme": "Centered Humane Authority",
+      "summary": "Like the pole star within its palace, ordered appearance and benevolent power establish a stable center; unsuitable tools, however, cannot realize demanding work.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "15-2",
+        "resolvedLocator": "15-2",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b181fcf700079a765d96ae7715147ff258b735018529518c21446ca883dcd24a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-15-62",
+      "sourceHexagramNumber": 15,
+      "targetHexagramNumber": 62,
+      "changingLine": 4,
+      "theme": "Untimely Fruiting",
+      "summary": "Winter fruiting signals disturbed seasonality as banditry spreads and governance fails, joining natural irregularity with persistent political disorder.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "15-62",
+        "resolvedLocator": "15-62",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "675bcd2326a478952c5f7380bc39e879e466582fcf188ae894935bf1cade4e3b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-15-39",
+      "sourceHexagramNumber": 15,
+      "targetHexagramNumber": 39,
+      "changingLine": 5,
+      "theme": "Nearness Without Recognition",
+      "summary": "Damaged and misaligned sight cannot identify what stands only a few paces away, making proximity useless where perception itself is impaired.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "15-39",
+        "resolvedLocator": "15-39",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "95ca4dc18a7e6e19bc51e363f382dc4337cda51e4cbc45074d95870f5642c43e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-15-52",
+      "sourceHexagramNumber": 15,
+      "targetHexagramNumber": 52,
+      "changingLine": 6,
+      "theme": "Resources Out of Reach",
+      "summary": "Hungry animals crowd around an empty or inaccessible source, while a panicked bird barely escapes; need, scarcity, and misdirected force compound one another.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "15-52",
+        "resolvedLocator": "15-52",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ffc7d3e30deaee1332adef5572c5420a2a043aaca201d7d86558fa56a60787cf"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

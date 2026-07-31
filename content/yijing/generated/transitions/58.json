@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 58,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-58-47",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 47,
+      "changingLine": 1,
+      "theme": "One House Left Exposed",
+      "summary": "Fire surrounds the mountain while needed moisture fails to arrive, leaving an isolated household without the communal protection its neighbors require.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "58-47",
+        "resolvedLocator": "58-47",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "10ceec81c40e000a5814bc94c06ef387d1f50b0cbba96068e2fa7ba73d521eba"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-58-17",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 17,
+      "changingLine": 2,
+      "theme": "Fear Prevents Resistance",
+      "summary": "Age, weakness, and comparison magnify perceived danger until the threatened creatures surrender their capacity to contend before any fight begins.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "58-17",
+        "resolvedLocator": "58-17",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f230104d6ec64009990deabbb80c96b6fb0bd6a7d9e4ab1689f9133acf3003d9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-58-43",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 43,
+      "changingLine": 3,
+      "theme": "Intimacy in a Narrow Place",
+      "summary": "Kin and a well-matched young pair meet within a confined lane, where shared music turns close quarters into sociable connection.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "58-43",
+        "resolvedLocator": "58-43",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "28060b16ab0fcf51b4cce381777f83e566ab61ca87a7e5c36202daef1bb43fd2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-58-60",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 60,
+      "changingLine": 4,
+      "theme": "Brief Life Leaves Grief",
+      "summary": "An early death transforms companionship into absence, leaving the surviving wife to carry the sorrow of a partnership abruptly cut short.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "58-60",
+        "resolvedLocator": "58-60",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4ec873637efe320ea8dad1cc6dcff689a0cb439e21419c82e685baf4581c86fc"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-58-54",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 54,
+      "changingLine": 5,
+      "theme": "Cultivated Threat Returns",
+      "summary": "Raising predators creates danger close to home and courts self-destruction, though the corrupt closing lines leave the final outcome uncertain rather than complete.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "58-54",
+        "resolvedLocator": "58-54",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "190d5ca471bc9743bc2c5ec599f123dfddeb056beca2e7ff51e611249b5ae5bf"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-58-10",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 10,
+      "changingLine": 6,
+      "theme": "Rain Ruins Poor Soil",
+      "summary": "A weak field produces a thin and irregular crop, then excessive rain rots even that small yield while containers fill uselessly with water.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "58-10",
+        "resolvedLocator": "58-10",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "74451a00508c1eb87b8d640bc926462441d8af3588881b62deb083f432309d93"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

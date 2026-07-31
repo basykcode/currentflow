@@ -48,6 +48,15 @@ exactly. Closing clears the stack and no state is persisted. Classical lineage m
 interfaces that remain `source-needed` until complete reviewed tables are connected. See
 [`YIJING_TRANSFORMATION_LAB.md`](YIJING_TRANSFORMATION_LAB.md).
 
+The line-change commentary boundary keeps protected evidence separate from the SPA.
+`scripts/transitions` verifies and indexes the complete Forest of Changes matrix, keeps verses and
+notes under `content/yijing/internal/transitions`, and builds only original draft paraphrases into
+`content/yijing/generated/transitions`. The typed
+`src/features/hexagram-transitions/repository.ts` lazy-loads one six-line bundle and
+`HexagramTransitionInsight.vue` renders the selected route directly beneath its computed
+transformation. The deterministic line result remains owned by the astrology domain; Forest prose
+never participates in the calculation.
+
 ## Special-message privacy boundary
 
 Special-message routes remain part of the static Vue deployment and make no runtime network calls.

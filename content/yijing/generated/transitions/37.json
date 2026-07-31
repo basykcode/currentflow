@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 37,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-37-53",
+      "sourceHexagramNumber": 37,
+      "targetHexagramNumber": 53,
+      "changingLine": 1,
+      "theme": "Ritual Joins Families",
+      "summary": "Practical preparation, mediation, and due ceremony unite two clans in affection, satisfying both the couple and the parents who receive them.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "37-53",
+        "resolvedLocator": "37-53",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "df9cefac2cb04a5fbb4b4b6f3d3e026c17bade617871d2691a1e6809d9943f23"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-37-09",
+      "sourceHexagramNumber": 37,
+      "targetHexagramNumber": 9,
+      "changingLine": 2,
+      "theme": "The High Harms the Low",
+      "summary": "An eclipse portrays the upper power obscuring and damaging what depends upon it, while the historical image shows a successor driven from his place.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "37-9",
+        "resolvedLocator": "37-9",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2f288a927175491bca2f03c0480925b4ed3ac515b6737d70882972687c3bb838"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-37-42",
+      "sourceHexagramNumber": 37,
+      "targetHexagramNumber": 42,
+      "changingLine": 3,
+      "theme": "Fire Crosses Every Path",
+      "summary": "A lingering blaze moves through the heavenly routes and consumes essential materials, leaving divided communities to mourn a disaster whose source is unclear.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "37-42",
+        "resolvedLocator": "37-42",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c6284e71749f0974805e7501a05076e7dedf2770b3525aeb6800c1c61376f384"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-37-13",
+      "sourceHexagramNumber": 37,
+      "targetHexagramNumber": 13,
+      "changingLine": 4,
+      "theme": "Commands Without Force",
+      "summary": "Drums and threatening orders announce battle, but troops scatter instead of acting; authority unable to secure response proceeds directly to defeat.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "37-13",
+        "resolvedLocator": "37-13",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "aea1a7754b9d9299d0549198d971a6677af9d03f23d6014fb11ff65a37ed05e2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-37-22",
+      "sourceHexagramNumber": 37,
+      "targetHexagramNumber": 22,
+      "changingLine": 5,
+      "theme": "Fine Form Empty Within",
+      "summary": "An impressive dragon is drawn without a body, just as polished speech lacks substance when no authentic core supports its surface.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "37-22",
+        "resolvedLocator": "37-22",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a3c517a017b56d791052f331203af3a8b5073e06c35ee41099d55825af613327"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-37-63",
+      "sourceHexagramNumber": 37,
+      "targetHexagramNumber": 63,
+      "changingLine": 6,
+      "theme": "Protected Amid Upheaval",
+      "summary": "Even when heaven and earth appear to overturn, a surrounding spiritual protection preserves safety, happiness, and freedom from blame.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "37-63",
+        "resolvedLocator": "37-63",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "74e837f4e4e5e3efca792b520effd43ea1b19cdea54b93a15d9655a110c732a4"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

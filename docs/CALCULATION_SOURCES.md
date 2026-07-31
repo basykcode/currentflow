@@ -114,6 +114,12 @@ reviewed and summarized. Named classical systems without accepted source data ap
 `source-needed`; no transformation or commentary is returned until the relevant rule/table and
 source boundary are accepted.
 
+Selected line changes also show an original draft paraphrase of the corresponding source-to-result
+entry in the _Jiaoshi Yilin_. The target hexagram is computed first from the canonical bottom-to-top
+line registry; the Forest entry is joined afterward by its verified route and never determines the
+calculation. All 384 records retain locator, passage-hash, rights, and review metadata, and no source
+verse or note is shipped.
+
 ## Known verification risk
 
 Exact solar-term boundaries inherit `lunar-javascript` data and implementation behavior. Boundary

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 26,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-26-18",
+      "sourceHexagramNumber": 26,
+      "targetHexagramNumber": 18,
+      "changingLine": 1,
+      "theme": "Gentle Kinship",
+      "summary": "Many young share one nurturing source and remain pliant toward one another, allowing consultation, safety, and long continuity to grow from family cohesion.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "26-18",
+        "resolvedLocator": "26-18",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "724fbb0a5795de35d5f5618d132b9dd6a07c74a0d7d0a919f165f68449b59858"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-26-22",
+      "sourceHexagramNumber": 26,
+      "targetHexagramNumber": 22,
+      "changingLine": 2,
+      "theme": "Character Draws Position",
+      "summary": "Moral excellence becomes its own protection and attracts recognition without aggressive pursuit, so standing emerges as a consequence of cultivated quality.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "26-22",
+        "resolvedLocator": "26-22",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "61aa856ced298197efb447911fbca4f62edf4de3aa61cff989f56e0de79d0cf7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-26-41",
+      "sourceHexagramNumber": 26,
+      "targetHexagramNumber": 41,
+      "changingLine": 3,
+      "theme": "Conflict Without Lasting Hatred",
+      "summary": "Equal powers injure one another in direct struggle, yet the encounter ends through separation rather than enduring resentment or renewed attack.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "26-41",
+        "resolvedLocator": "26-41",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7f485f422009345cdd1dc29ff3fcede33c4c729a4ef321452ace7e4e0bfd188a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-26-14",
+      "sourceHexagramNumber": 26,
+      "targetHexagramNumber": 14,
+      "changingLine": 4,
+      "theme": "Imperial Passage and Fragments",
+      "summary": "A culture hero’s ordered journey brings widespread rejoicing, though unrelated appended images of drivers, blame, and failed commerce make the entry internally discontinuous.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "26-14",
+        "resolvedLocator": "26-14",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "406155dd0ecefd499a63958c16a2d4d89512185053e8330cac20fece444c472b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-26-09",
+      "sourceHexagramNumber": 26,
+      "targetHexagramNumber": 9,
+      "changingLine": 5,
+      "theme": "Joy Shadowed by Delay",
+      "summary": "A meeting spreads benefit and fitting words in every direction, yet the quoted missed appointment leaves a subtle tension between celebration and lateness.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "26-9",
+        "resolvedLocator": "26-9",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "339c6b41dcd81bd9ec8678199940a47ace4ed5d5ecaac7c82233315e46b2dbc0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-26-11",
+      "sourceHexagramNumber": 26,
+      "targetHexagramNumber": 11,
+      "changingLine": 6,
+      "theme": "Small Defense Checks Threat",
+      "summary": "A great predator prepares to strike, but an unlikely smaller creature frightens it away, allowing the vulnerable herd to feed safely.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "26-11",
+        "resolvedLocator": "26-11",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0084a7e5b491487a96c5b4a9c2cdf5d1753465f0a237fb21ec66e590303ebe90"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

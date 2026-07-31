@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 3,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-03-08",
+      "sourceHexagramNumber": 3,
+      "targetHexagramNumber": 8,
+      "changingLine": 1,
+      "theme": "Restored to the Enclosure",
+      "summary": "A wandering animal returns to its proper bounds and its keeper comes home, turning recovered belonging into a condition without further concern.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "3-8",
+        "resolvedLocator": "3-8",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bf3eee57b98676af890b076f26ebcc0165c3bcbb0054c3f46b2fdaef71979db1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-03-60",
+      "sourceHexagramNumber": 3,
+      "targetHexagramNumber": 60,
+      "changingLine": 2,
+      "theme": "Disorder Calls for Correction",
+      "summary": "Tyranny and chaos become matters of collective concern, prompting organized force and the search for worthy authority capable of restoring limits.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "3-60",
+        "resolvedLocator": "3-60",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ec013b6e956d974302d929ccda8a90f3ad7070b192d60f213e65a7dc227a8bce"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-03-63",
+      "sourceHexagramNumber": 3,
+      "targetHexagramNumber": 63,
+      "changingLine": 3,
+      "theme": "Elevation Through Support",
+      "summary": "Appointment raises a capable person into visible service, and favor from above allows the new position to radiate benefit.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "3-63",
+        "resolvedLocator": "3-63",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bf35e9b52eda45cd6a2b8ddea8e8bc3e83b3ae4086a9d09e50a14f5049423b2e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-03-17",
+      "sourceHexagramNumber": 3,
+      "targetHexagramNumber": 17,
+      "changingLine": 4,
+      "theme": "Summoned Into Service",
+      "summary": "A high power descends and brothers are called into duty, where the burden of service is accompanied by recognition and secure standing.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "3-17",
+        "resolvedLocator": "3-17",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3e0877cc2492cc822cb6ff5963ce5dc934d572fd042fcc82bd4956d29c3a3ae3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-03-24",
+      "sourceHexagramNumber": 3,
+      "targetHexagramNumber": 24,
+      "changingLine": 5,
+      "theme": "Alarm Passes",
+      "summary": "A vulnerable animal enters cultivated ground and hears a predator’s roar, yet the immediate terror subsides without becoming lasting disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "3-24",
+        "resolvedLocator": "3-24",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "312aae12a512066f18a27956d7f8b97ddf2d5ced1aa72d96a9d6afc1239ccd3a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-03-42",
+      "sourceHexagramNumber": 3,
+      "targetHexagramNumber": 42,
+      "changingLine": 6,
+      "theme": "Vessel Without Anchor",
+      "summary": "Boats drift across boundless water without roots or secure mooring, leaving the heart anxious because movement lacks any stable point of return.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "3-42",
+        "resolvedLocator": "3-42",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0b69afcd97f4a4c3e1c823e35efa9c1045d3be983bfef92ae134ecf6a411ef64"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 16,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-16-51",
+      "sourceHexagramNumber": 16,
+      "targetHexagramNumber": 51,
+      "changingLine": 1,
+      "theme": "Value Before Exchange",
+      "summary": "A well-cared-for horse and wagon attract a buyer, but the exchange remains sound only if the offered value is sufficient to prevent regret.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "16-51",
+        "resolvedLocator": "16-51",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "efcb18599bc00841d1308a691318a3b996878c53fd6951add3126b9787aed5d3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-16-40",
+      "sourceHexagramNumber": 16,
+      "targetHexagramNumber": 40,
+      "changingLine": 2,
+      "theme": "Governance Holds the Weave",
+      "summary": "Complete civic order keeps the shuttle straight across the whole realm, allowing capable administration to connect distant regions in peace.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "16-40",
+        "resolvedLocator": "16-40",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6fb91068021954f1e8cae6ae1a0387123c082a4deda67bedb51badc87444daea"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-16-62",
+      "sourceHexagramNumber": 16,
+      "targetHexagramNumber": 62,
+      "changingLine": 3,
+      "theme": "Renewal Spreads Outward",
+      "summary": "A tree fruits beyond its ordinary cycle as migrating birds rise and settle; cultivated wisdom extends its benefit toward lands at the margins.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "16-62",
+        "resolvedLocator": "16-62",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "48e8fda423673aea67fcd12f593a8e9417104bcda7340903cc167f56e8c8d054"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-16-02",
+      "sourceHexagramNumber": 16,
+      "targetHexagramNumber": 2,
+      "changingLine": 4,
+      "theme": "Loyalty Across Distance",
+      "summary": "A marquis pauses at the river and marks passing days while separated from his ruler, holding political attachment steady across distance and delay.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "16-2",
+        "resolvedLocator": "16-2",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c34194af8136b62d70f762b5da307b3737b1bcc16fdb4694934c46e36525d89b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-16-45",
+      "sourceHexagramNumber": 16,
+      "targetHexagramNumber": 45,
+      "changingLine": 5,
+      "theme": "Abundance Shared",
+      "summary": "Food ripens at the center of the plain and many companions are invited to partake, turning patient completion into collective fulfillment.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "16-45",
+        "resolvedLocator": "16-45",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "033422133b21ae276cadf85c31ccec73b676177e896361e5062fbad391ef6ae6"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-16-35",
+      "sourceHexagramNumber": 16,
+      "targetHexagramNumber": 35,
+      "changingLine": 6,
+      "theme": "Strength Without Character",
+      "summary": "A stronger bird occupies a nest another built, but physical advantage lacks moral support; possession gained through displacement remains without heaven’s assistance.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "16-35",
+        "resolvedLocator": "16-35",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d3a0ee05e3c3465b1872a377176368362386b87052df570f58c9b6ddc3ac3229"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

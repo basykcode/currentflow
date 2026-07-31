@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 59,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-59-61",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 61,
+      "changingLine": 1,
+      "theme": "Words Without Trust",
+      "summary": "Force cannot move the resistant sheep, and speech cannot move those who disbelieve it; frustration twists inward until failed influence becomes personal danger.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "59-61",
+        "resolvedLocator": "59-61",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "353c0e2681f651664c0c1e7679bf31e6a07bde480f2c653591a7f3f58e0e19ed"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-59-20",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 20,
+      "changingLine": 2,
+      "theme": "Union Without Capacity",
+      "summary": "Two impaired creatures join forces, but shared limitation cannot create the missing ability, so their combined desire still remains unrealized.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "59-20",
+        "resolvedLocator": "59-20",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "48493f28b0f2c5dea711b59c73ca2e84bce5d998eb55734d8fb1dee99c617d2d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-59-57",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 57,
+      "changingLine": 3,
+      "theme": "Worth Without Standing",
+      "summary": "A capable and attractive suitor lacks wealth and reputation, so the family chooses a coarser match and lives with enduring regret.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "59-57",
+        "resolvedLocator": "59-57",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "05f27bb7d9c96a08cf4fa8b454528579354399ffe1d18b1815766f6a79d6abe1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-59-06",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 6,
+      "changingLine": 4,
+      "theme": "Unnatural Sign and Invasion",
+      "summary": "An impossible birth at an astrologically charged hour signals a world out of order, followed by invasion and the flight of an uncertain ruler.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "59-6",
+        "resolvedLocator": "59-6",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b0ecbe7cac1fc51d7db2cf3798a899c608d2708de3f560b0f0b0d990706989b1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-59-04",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 4,
+      "changingLine": 5,
+      "theme": "Misfortune Reverses",
+      "summary": "The direction of events turns from disaster toward favor, with blessing entering the household and previously obstructed action reaching completion.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "59-4",
+        "resolvedLocator": "59-4",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "721f79f15138f20e9ed6c660c2f1c2927f64cfc21f4960e9d127ea4b56dc2884"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-59-29",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 29,
+      "changingLine": 6,
+      "theme": "Virtue Breaks Encirclement",
+      "summary": "A teacher survives repeated political confinement, and principled conduct ultimately proves stronger than the forces surrounding him and opens a way out.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "59-29",
+        "resolvedLocator": "59-29",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "72eb7dac65a782a42535dabe037749b89c8ea11d906f11bd0d87b43f6b687a63"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

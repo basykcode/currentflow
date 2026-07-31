@@ -35,6 +35,22 @@ Full sources and boundary conventions are in
   Yong maps, Cantong Qi overlays, Jiaoshi Yilin transitions, and text-reading conventions remain
   unavailable until complete reviewed source adapters are connected. Required inputs are listed in
   [`YIJING_TRANSFORMATION_SOURCE_INPUT_REQUIRED.md`](YIJING_TRANSFORMATION_SOURCE_INPUT_REQUIRED.md).
+- **Advanced transformations:** Absolute Shadow is named as a future inspection tool but returns no
+  result until its deterministic rule and source boundary are accepted.
+
+## Forest transition staging
+
+The user-supplied _Forest of Changes_ EPUB is parsed only by
+`scripts/transitions/prepare_forest.py`. Protected verses and notes remain beneath the ignored
+`content/yijing/internal/transitions` boundary. The tracked transition index carries the exact
+source/result locator, resolved cross-reference chain, changing line, and source-passage hash for
+all 384 deterministic one-line routes.
+
+Original summaries are stored in eight draft batches and built into 64 lazy public bundles. The
+public records retain source identity, route, evidence mode, rights, and review status but never
+verse or footnote text. Runtime access is local and network-free through
+`src/features/hexagram-transitions/repository.ts`. See
+[`HEXAGRAM_TRANSITION_COMMENTARY.md`](HEXAGRAM_TRANSITION_COMMENTARY.md).
 
 ## Deterministic authority
 

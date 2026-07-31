@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 38,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-38-64",
+      "sourceHexagramNumber": 38,
+      "targetHexagramNumber": 64,
+      "changingLine": 1,
+      "theme": "Blessed Beginning",
+      "summary": "A birth at an ancestral mountain receives supreme approval, establishing an image of abundant favor, distinction, and continuity.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "38-64",
+        "resolvedLocator": "38-64",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "86f1b68d907fe46a6659d375ddd70120be0f6bb9ed676b51f47102a0a23e086b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-38-21",
+      "sourceHexagramNumber": 38,
+      "targetHexagramNumber": 21,
+      "changingLine": 2,
+      "theme": "Domestic Unrest",
+      "summary": "When peace cannot be found within the home, instability at the intimate center leaves the wider situation exposed to sudden disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "38-21",
+        "resolvedLocator": "38-21",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "397410fec4e55d6d865fc3c9e4e077277f5a89fc57ab7ca163e79690d8f0a11f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-38-14",
+      "sourceHexagramNumber": 38,
+      "targetHexagramNumber": 14,
+      "changingLine": 3,
+      "theme": "Creatures Scatter",
+      "summary": "Wild animals flee human presence in every direction but find no clear shelter, turning escape into disorganized exposure.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "38-14",
+        "resolvedLocator": "38-14",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "407d0ec5e764a82df38fe58ee9ee8225a75ddeed87005c6241dda2feb26db66f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-38-41",
+      "sourceHexagramNumber": 38,
+      "targetHexagramNumber": 41,
+      "changingLine": 4,
+      "theme": "Empty Gate Before Judgment",
+      "summary": "The celestial threshold stands vacant while danger approaches, and one who cannot hear or speak effectively submits to a fatal sentence.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "38-41",
+        "resolvedLocator": "38-41",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6814035f351d511d57d0892fbfa5edbe045abd557b91ddb2ef7066fc99baa39c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-38-10",
+      "sourceHexagramNumber": 38,
+      "targetHexagramNumber": 10,
+      "changingLine": 5,
+      "theme": "Driving Without Light",
+      "summary": "Travel through darkness and dangerous heights ends in a ditch, ruining clothing and breaking the vehicle’s ability to continue.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "38-10",
+        "resolvedLocator": "38-10",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "23ee9cdb580f8a97bd33aabe3a9bf8bc0a8181043177c9749ace25d7f7899d24"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-38-54",
+      "sourceHexagramNumber": 38,
+      "targetHexagramNumber": 54,
+      "changingLine": 6,
+      "theme": "The Right Tool Gives Form",
+      "summary": "A soft blade cannot shape jade, while a master craftsperson and principled helpers can animate difficult material and bring sincere aims toward completion.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "38-54",
+        "resolvedLocator": "38-54",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "08fb714a9c365515352bb579fd58278b4f799b3fe29815ef4522a7894c34bf73"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

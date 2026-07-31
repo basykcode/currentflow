@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 18,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-18-26",
+      "sourceHexagramNumber": 18,
+      "targetHexagramNumber": 26,
+      "changingLine": 1,
+      "theme": "Clouded Overlong",
+      "summary": "Repeated rain and dense cloud withhold the sun for too long, turning potentially nourishing weather into a sustained atmosphere of heaviness.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "18-26",
+        "resolvedLocator": "18-26",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9dbc565d26637c3584859e3cba5ea79ab47d0110ffc332404adee6337924a05b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-18-52",
+      "sourceHexagramNumber": 18,
+      "targetHexagramNumber": 52,
+      "changingLine": 2,
+      "theme": "Force Cannot Prevail",
+      "summary": "Crude strength confronts conditions beyond its command; ridicule and insecurity reveal that wealth alone cannot protect a position opposed by the larger order.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "18-52",
+        "resolvedLocator": "18-52",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f2fd22ae22e29956bdd913c41b482a78ffdca6386df45d7ac73f06f4b68ca508"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-18-04",
+      "sourceHexagramNumber": 18,
+      "targetHexagramNumber": 4,
+      "changingLine": 3,
+      "theme": "Solitary Along Deep Water",
+      "summary": "At a turbulent shore, the prince moves slowly and alone without a clear destination, mirroring uncertainty in the winding depth beside him.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "18-4",
+        "resolvedLocator": "18-4",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "727d6b0a805a28c07b8426c3a389dbb56447beb7fa430bbc70fc879b89089016"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-18-50",
+      "sourceHexagramNumber": 18,
+      "targetHexagramNumber": 50,
+      "changingLine": 4,
+      "theme": "Abundant Gathering",
+      "summary": "Many kinds of game are brought together and the catch exceeds what remains at pasture, pleasing authority through concentrated abundance.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "18-50",
+        "resolvedLocator": "18-50",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "be9ecfeda68d5a37224c8d3b06e35f69f33e790761e389a632a791d190297e46"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-18-57",
+      "sourceHexagramNumber": 18,
+      "targetHexagramNumber": 57,
+      "changingLine": 5,
+      "theme": "Mediation Relieves Worry",
+      "summary": "Interpreters stationed at the boundary bridge separation and resolve uncertainty, allowing all parties to share the fortunate result.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "18-57",
+        "resolvedLocator": "18-57",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c70a5680beb65f21ba060dd82cd5ddf98ad2e89a89ce78e50a79c346c837432b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-18-46",
+      "sourceHexagramNumber": 18,
+      "targetHexagramNumber": 46,
+      "changingLine": 6,
+      "theme": "Nourishment Interrupted",
+      "summary": "The bird reaches for grain but a predator suddenly drives it away, replacing expected nourishment with breathless fear and an empty outcome.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "18-46",
+        "resolvedLocator": "18-46",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d0f18f27d026374d7ea85cf3c5049ef7e4c8ded226ef8082c17f09d57710c082"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

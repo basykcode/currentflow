@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 9,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-09-57",
+      "sourceHexagramNumber": 9,
+      "targetHexagramNumber": 57,
+      "changingLine": 1,
+      "theme": "Motion Without Support",
+      "summary": "Ceaseless turning fails to establish dignity or livelihood; when the social center loses substance, leaders and cultivators alike receive no sustaining return.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "9-57",
+        "resolvedLocator": "9-57",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d707d26a354b8ad31024941ffd8ed14d2b5921f55342d71c2be7965a4775729b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-09-37",
+      "sourceHexagramNumber": 9,
+      "targetHexagramNumber": 37,
+      "changingLine": 2,
+      "theme": "Coordinated Ascent",
+      "summary": "Wheels, horses, and companions move as one across difficult ground, while the crane remains safely sheltered; coordinated effort makes the demanding route workable.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "9-37",
+        "resolvedLocator": "9-37",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9ab98e285a5b85cf458dfd60d85e72b3c9eb752e9c1089c48c5a4e36727dfb18"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-09-61",
+      "sourceHexagramNumber": 9,
+      "targetHexagramNumber": 61,
+      "changingLine": 3,
+      "theme": "Drought Disperses Promise",
+      "summary": "Scorching pressure and scattering winds prevent the rain from gathering, so persistence cannot secure relief and the movement turns back toward shelter.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "9-61",
+        "resolvedLocator": "9-61",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "1ee788a5dd8a3857a9839cb3fea24d189645f4245eafe36788bb97d985c90710"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-09-01",
+      "sourceHexagramNumber": 9,
+      "targetHexagramNumber": 1,
+      "changingLine": 4,
+      "theme": "Passage Cut Off",
+      "summary": "A tiger’s sudden presence scatters the herds and closes the road, leaving forward movement trapped within a narrow southern passage.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "9-1",
+        "resolvedLocator": "9-1",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4d7619bd48d91ac7dc4360edf25854609f189b1f33abd52e19188c73cfac49f7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-09-26",
+      "sourceHexagramNumber": 9,
+      "targetHexagramNumber": 26,
+      "changingLine": 5,
+      "theme": "Benevolence in Season",
+      "summary": "A royal circuit aligned with the autumn sky distributes care across the land, linking timely authority with public calm and material security.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "9-26",
+        "resolvedLocator": "9-26",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0b3a4e0105646f1c1152876c754fd3b2163a9b6d2a6801c11fc277f69d961b3c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-09-05",
+      "sourceHexagramNumber": 9,
+      "targetHexagramNumber": 5,
+      "changingLine": 6,
+      "theme": "Sufficient Shelter",
+      "summary": "An old dwelling is already settled and complete; without surplus for renovation, its adequacy still allows it to become a contented home.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "9-5",
+        "resolvedLocator": "9-5",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "72baed846ace555d7190aad8cd8a6438613f96403a363fa656a47a53e6b34e74"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 12,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-12-25",
+      "sourceHexagramNumber": 12,
+      "targetHexagramNumber": 25,
+      "changingLine": 1,
+      "theme": "Light Displaced",
+      "summary": "Darkness reaches fullness and gives way to illumination, but the achievement lacks endurance; an unworthy substitute soon occupies the central seat.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "12-25",
+        "resolvedLocator": "12-25",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4d7b9855d8be51398789229432afb646e11a4deed48cd3ca66a4ca9a29f8f978"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-12-06",
+      "sourceHexagramNumber": 12,
+      "targetHexagramNumber": 6,
+      "changingLine": 2,
+      "theme": "Hidden Merit Recognized",
+      "summary": "Precious court objects accompany the image of impoverished counselors raised into service, suggesting that overlooked capacity can find a fitting public role.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "12-6",
+        "resolvedLocator": "12-6",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b30d021ec1b44b96bbaaf6aa55128cdd4c68004710c6a9ab68ca68bcf72c19b8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-12-33",
+      "sourceHexagramNumber": 12,
+      "targetHexagramNumber": 33,
+      "changingLine": 3,
+      "theme": "Confidence Departs",
+      "summary": "Trust dissolves across family, friendship, and partnership, leaving hesitant movement and the dejection of one who no longer feels securely received.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "12-33",
+        "resolvedLocator": "12-33",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "166bc8eb4f1608a06790b9dfe74df0097f11a529e7f030588a012d39caa12da3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-12-20",
+      "sourceHexagramNumber": 12,
+      "targetHexagramNumber": 20,
+      "changingLine": 4,
+      "theme": "Guardians at the Center",
+      "summary": "Exemplary rulers inhabit the household’s sacred corner, making quiet centrality a source of protection for both living beings and the wider polity.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "12-20",
+        "resolvedLocator": "12-20",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7fd2e1d06d8f97939d51de448384485f50febf79137151f4062b3a3ede4bbf89"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-12-35",
+      "sourceHexagramNumber": 12,
+      "targetHexagramNumber": 35,
+      "changingLine": 5,
+      "theme": "Companions Struck Together",
+      "summary": "Two birds return together toward sustenance but are wounded while crossing concealment, turning shared movement into a scene of mutual vulnerability and grief.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "12-35",
+        "resolvedLocator": "12-35",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2d1a5cedf82bbcc365c241c21e350f9aea05a3f1f80960c7768d0d0687181516"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-12-45",
+      "sourceHexagramNumber": 12,
+      "targetHexagramNumber": 45,
+      "changingLine": 6,
+      "theme": "Vessels Beyond Repair",
+      "summary": "Broken containers lie crushed and pierced in the road; once the capacity to hold value is destroyed, former treasures can no longer be gathered.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "12-45",
+        "resolvedLocator": "12-45",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "89bfc5cb421c39a89abee7df668fe71e1752b91a0dd0d40746d0f788a6f9af74"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

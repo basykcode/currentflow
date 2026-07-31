@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 6,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-06-10",
+      "sourceHexagramNumber": 6,
+      "targetHexagramNumber": 10,
+      "changingLine": 1,
+      "theme": "Duty Neglects Cultivation",
+      "summary": "Service to the ruler pulls labor away from the fields, so public obligation leaves the agricultural foundation untended and without harvest.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "6-10",
+        "resolvedLocator": "6-10",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0c4503b16ec3e7c8042677e3f7e20924e76a6d5ca75ffb6f565d48c4ab0cb7bc"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-06-12",
+      "sourceHexagramNumber": 6,
+      "targetHexagramNumber": 12,
+      "changingLine": 2,
+      "theme": "Humble Labor Meets Authority",
+      "summary": "Work in the fields unexpectedly comes within sight of the ruler’s tower, suggesting a transition from obscure cultivation toward recognized service.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "6-12",
+        "resolvedLocator": "6-12",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7b89131cd6dde03b9a3eb8cc6ac838bd5043acba9e7743baa1def9f6bdb10395"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-06-44",
+      "sourceHexagramNumber": 6,
+      "targetHexagramNumber": 44,
+      "changingLine": 3,
+      "theme": "Cultivated Refuge",
+      "summary": "Auspicious creatures rest where a noble person teaches the people, joining humane education with a stable civic environment.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "6-44",
+        "resolvedLocator": "6-44",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "13825b6f1bdad6d1fc566e6772b0a5f3b96b8940d316fa2fc7196e606f392a60"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-06-59",
+      "sourceHexagramNumber": 6,
+      "targetHexagramNumber": 59,
+      "changingLine": 4,
+      "theme": "Warning Limits the Damage",
+      "summary": "Disordered weaving leaves ceremonial clothing unfinished, but hearing the warning in time checks the difficulty before it becomes complete disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "6-59",
+        "resolvedLocator": "6-59",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "235471d2aa2696606e1198a8213c6cf30ddfb3419c482d52d8aa9208e290485f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-06-64",
+      "sourceHexagramNumber": 6,
+      "targetHexagramNumber": 64,
+      "changingLine": 5,
+      "theme": "Scattered Evasion Fails",
+      "summary": "Repeated attempts to dodge danger provide no secure route and steadily consume resources, leaving the traveler worried and poorly supplied.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "6-64",
+        "resolvedLocator": "6-64",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bf8da69a79a0c1d147df18123ed56d579b5516194c89ba0db5a3f697415e1446"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-06-47",
+      "sourceHexagramNumber": 6,
+      "targetHexagramNumber": 47,
+      "changingLine": 6,
+      "theme": "Timing Not Yet Ripe",
+      "summary": "Hobbled movement and opposed speech prevent advancement, while the unbloomed lotus marks a condition whose development has not yet reached its time.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "6-47",
+        "resolvedLocator": "6-47",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0126cf0e7c518846a3d5d3723d8bea30715a9ac589b3b93ac47388202fb35e07"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

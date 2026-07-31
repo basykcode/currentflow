@@ -8,11 +8,13 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   ...eslintPluginVue.configs['flat/essential'],
   {
-    files: ['scripts/codex/**/*.mjs'],
+    files: ['scripts/codex/**/*.mjs', 'scripts/transitions/**/*.mjs'],
     ...tseslint.configs.disableTypeChecked,
     languageOptions: {
       ...tseslint.configs.disableTypeChecked.languageOptions,
       globals: {
+        Buffer: 'readonly',
+        console: 'readonly',
         process: 'readonly',
       },
     },

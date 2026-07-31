@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 7,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-07-19",
+      "sourceHexagramNumber": 7,
+      "targetHexagramNumber": 19,
+      "changingLine": 1,
+      "theme": "Support Exhausted",
+      "summary": "A failing horse and depleted attendants cannot carry the traveler home, so return is postponed by the weakness of the whole supporting system.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "7-19",
+        "resolvedLocator": "7-19",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7d3536ba0115967f353eba360df1fd9abf0241280aa4607790c4f7f732deaa0d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-07-02",
+      "sourceHexagramNumber": 7,
+      "targetHexagramNumber": 2,
+      "changingLine": 2,
+      "theme": "Union Amid Mobilization",
+      "summary": "Marriage, blossom, and long blessing unfold within a military setting, where a young person’s life also rises toward noble recognition.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "7-2",
+        "resolvedLocator": "7-2",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c8a14eaa16a567ef4984ce0458b42733fb4a6ad31a2daadbe8829516bb9c9f4f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-07-46",
+      "sourceHexagramNumber": 7,
+      "targetHexagramNumber": 46,
+      "changingLine": 3,
+      "theme": "Action Without Effect",
+      "summary": "Loss of sight, hearing, and speech separates action from understanding and response, so effort proceeds without producing meaningful accomplishment.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "7-46",
+        "resolvedLocator": "7-46",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bbd8d564d1b7443e618ae567c1f7f395557df1122e83659d828b0dbb1e4be03d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-07-40",
+      "sourceHexagramNumber": 7,
+      "targetHexagramNumber": 40,
+      "changingLine": 4,
+      "theme": "Coordinated Order Releases Danger",
+      "summary": "Virtues, phases, seasons, and complementary forces take their proper sequence, allowing the country to settle into health and security.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "7-40",
+        "resolvedLocator": "7-40",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "49dd0c19caa33df0906da0af43064a711fdc1dda14d976c5cd2270ff3566539c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-07-29",
+      "sourceHexagramNumber": 7,
+      "targetHexagramNumber": 29,
+      "changingLine": 5,
+      "theme": "Command Collapses",
+      "summary": "Mutiny and disorder dissolve the army’s organizing center, and the violence spreads into households as plunder, hunger, and cold.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "7-29",
+        "resolvedLocator": "7-29",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2e8771934dbddf3b2f3141f2e18227dd26ddfe06bf5f3f559f350d43f67c049a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-07-04",
+      "sourceHexagramNumber": 7,
+      "targetHexagramNumber": 4,
+      "changingLine": 6,
+      "theme": "Blindness Creates Isolation",
+      "summary": "Leaves cover the eyes until even siblings disappear from view, and chosen or imposed blindness leaves the solitary figure separated from worthy company.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "7-4",
+        "resolvedLocator": "7-4",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "73c27f64099077b866d1a51b499455e84a129e70745749fda2b0b89c50b652a1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

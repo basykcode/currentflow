@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 22,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-22-52",
+      "sourceHexagramNumber": 22,
+      "targetHexagramNumber": 52,
+      "changingLine": 1,
+      "theme": "Exile Without Purpose",
+      "summary": "A prolonged wilderness assignment offers neither return nor meaningful engagement, leaving the wanderer’s attention fixed on the distant bond of home.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "22-52",
+        "resolvedLocator": "22-52",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "aa44ab665908d5bd8238075a3541003de5c5a6f59c0178089f9de05adca988f6"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-22-26",
+      "sourceHexagramNumber": 22,
+      "targetHexagramNumber": 26,
+      "changingLine": 2,
+      "theme": "Pattern Reversed",
+      "summary": "Backward flight and an injurious meal mark an undertaking out of alignment; departing from sound pattern prevents the work from succeeding.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "22-26",
+        "resolvedLocator": "22-26",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "cce6bf865fb245c597e425c4246ed095615359d6b4b210417109b3eef0311e0a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-22-27",
+      "sourceHexagramNumber": 22,
+      "targetHexagramNumber": 27,
+      "changingLine": 3,
+      "theme": "Companionship Ends Hardship",
+      "summary": "A solitary bird calls and is joined by its mate, transforming the bitterness of isolation into shelter, nourishment, and shared enjoyment.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "22-27",
+        "resolvedLocator": "22-27",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f331716b227bc2a379747ab1ca83c928ce7d3af66778759c555e42cf369a1779"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-22-30",
+      "sourceHexagramNumber": 22,
+      "targetHexagramNumber": 30,
+      "changingLine": 4,
+      "theme": "Wisdom Avoids Darkness",
+      "summary": "Clear intelligence neither lingers where perception is obscured nor enters avoidable danger, preserving an enduring atmosphere of ease and joy.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "22-30",
+        "resolvedLocator": "22-30",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "e03cd6c7a3db450f257f0c2f13ec48d9b88c464cbb2572f2f68941e4da7bbbb1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-22-37",
+      "sourceHexagramNumber": 22,
+      "targetHexagramNumber": 37,
+      "changingLine": 5,
+      "theme": "Distant Mutual Regard",
+      "summary": "Two figures remain calm on separate mountains and can see one another clearly, yet distance prevents their regard from becoming an actual meeting.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "22-37",
+        "resolvedLocator": "22-37",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "495b412f30cdcd4504a3b48a8228b74a9258e25d02a480b977c3550e9c4d2bd3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-22-36",
+      "sourceHexagramNumber": 22,
+      "targetHexagramNumber": 36,
+      "changingLine": 6,
+      "theme": "Shelter Beneath Instability",
+      "summary": "A household enjoys peace at the mountain’s foot until the larger structure collapses overnight, destroying the vessels that sustained ordinary life.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "22-36",
+        "resolvedLocator": "22-36",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "601b41a10b1f82c82ca2ed93f020be1da8507727942d0cd10367b586471d721c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

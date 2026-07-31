@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 53,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-53-37",
+      "sourceHexagramNumber": 53,
+      "targetHexagramNumber": 37,
+      "changingLine": 1,
+      "theme": "No Roots No Canopy",
+      "summary": "Without an established root, leaves and blossoms fall away until only the unsupported trunk remains, exposing the cost of growth without foundation.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "53-37",
+        "resolvedLocator": "53-37",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c3141e72f4a3b5c998fb744c2cee46a3e1e7027e05d7f7f8134e1f49bd676c1f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-53-57",
+      "sourceHexagramNumber": 53,
+      "targetHexagramNumber": 57,
+      "changingLine": 2,
+      "theme": "Profit Before Readiness",
+      "summary": "A fall leaves the seeker unable to rise, while concern for gain precedes the actual marketplace and the intended prize escapes.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "53-57",
+        "resolvedLocator": "53-57",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "11e503ed752ef0f7f1ba6204c180a4116b7de9c64296da0f09481bcf8f71bff0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-53-20",
+      "sourceHexagramNumber": 53,
+      "targetHexagramNumber": 20,
+      "changingLine": 3,
+      "theme": "Trade Rewards the Season",
+      "summary": "Spring migration coincides with a profitable horse sale, and well-timed exchange brings a grand return to the home village.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "53-20",
+        "resolvedLocator": "53-20",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "459eb60d090734b8fd27a83070803b6982d7a263ad0d2ce8e0fb5bd9bb6cc905"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-53-33",
+      "sourceHexagramNumber": 53,
+      "targetHexagramNumber": 33,
+      "changingLine": 4,
+      "theme": "Integrity Punished",
+      "summary": "Honest defense of another draws imperial punishment, ending a family line and forcing the historian to bear severe loss for principled speech.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "53-33",
+        "resolvedLocator": "53-33",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "77c2a93bca36053bbd1b7b5ea0c1c888d16569a23ffc71ad66e0150bfde41bf3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-53-52",
+      "sourceHexagramNumber": 53,
+      "targetHexagramNumber": 52,
+      "changingLine": 5,
+      "theme": "Benevolence Tames the Wild",
+      "summary": "Powerful animals play without predation in the mountain valley, mirroring a capable and humane person whose quality makes desired outcomes attainable.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "53-52",
+        "resolvedLocator": "53-52",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "08434e701b93c2e12f653774604dc09a8ae4bb400b4e6002bac88749c43ba57f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-53-39",
+      "sourceHexagramNumber": 53,
+      "targetHexagramNumber": 39,
+      "changingLine": 6,
+      "theme": "Skill Misses the Mark",
+      "summary": "Agility and correct preparation resemble a monkey’s easy climb, yet the fully drawn bow still sends its arrow wide of the target.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "53-39",
+        "resolvedLocator": "53-39",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "5cb49a3fc805d5d310b6bf273e7194d39ee4efbc23e8d1a4a57623f2d9616974"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 11,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-11-46",
+      "sourceHexagramNumber": 11,
+      "targetHexagramNumber": 46,
+      "changingLine": 1,
+      "theme": "Mutual Exchange",
+      "summary": "A well-timed market lets each participant convert what they hold into what they value, creating shared satisfaction through reciprocal exchange.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "11-46",
+        "resolvedLocator": "11-46",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b2eb4deb6406b74aae624261bc2e78a43dfda16fa5cf60ccbb5806ee0d76a1c9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-11-36",
+      "sourceHexagramNumber": 11,
+      "targetHexagramNumber": 36,
+      "changingLine": 2,
+      "theme": "Success With a Wound",
+      "summary": "The pursuit produces more than expected and is welcomed with joy, yet an obscure injury remains above, tempering an easy victory with caution.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "11-36",
+        "resolvedLocator": "11-36",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "19a77c7bff8dc31254ac0fc2f6d15f9b76831db27d5199e1f127d54284c093f6"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-11-19",
+      "sourceHexagramNumber": 11,
+      "targetHexagramNumber": 19,
+      "changingLine": 3,
+      "theme": "Ceremonial Obscurity",
+      "summary": "Covered eyes and absent lights lead into a formal chamber filled with ritual objects, where outward dignity accompanies an inability to see clearly.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "11-19",
+        "resolvedLocator": "11-19",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "674359a78a6bf30b1003a7a32cd2376daa133474b0384133c6b12792d79af0f9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-11-34",
+      "sourceHexagramNumber": 11,
+      "targetHexagramNumber": 34,
+      "changingLine": 4,
+      "theme": "Resources Find Their Use",
+      "summary": "As streams naturally gather in the sea, portable wealth is deliberately exchanged for nourishment, turning possession into something immediately useful.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "11-34",
+        "resolvedLocator": "11-34",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3f83a19289d14d6e16d010a7a0b977eb9b84ba9846ffc93ea62cff51e44a75c9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-11-05",
+      "sourceHexagramNumber": 11,
+      "targetHexagramNumber": 5,
+      "changingLine": 5,
+      "theme": "Orderly Reception",
+      "summary": "A properly prepared offering and a southern inspection bring ruler and respondents into reciprocal accord, allowing the encounter to benefit both sides.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "11-5",
+        "resolvedLocator": "11-5",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f3759817c68243ae44c0bfda83a302ef2f1c7dbdf48b9491730157b798cac2bf"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-11-26",
+      "sourceHexagramNumber": 11,
+      "targetHexagramNumber": 26,
+      "changingLine": 6,
+      "theme": "Roots in Right Season",
+      "summary": "Planting at the fitting time establishes durable roots; balanced conditions then support a cycle of growth without disruptive reversal.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "11-26",
+        "resolvedLocator": "11-26",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3ff19cd4345d529b000e7d70ded5c296394421cd519fba1d8bfc0eeb3a2c2276"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

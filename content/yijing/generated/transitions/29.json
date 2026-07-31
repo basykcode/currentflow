@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 29,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-29-60",
+      "sourceHexagramNumber": 29,
+      "targetHexagramNumber": 60,
+      "changingLine": 1,
+      "theme": "Converging Waters Devastate",
+      "summary": "Several rivers combine into a force beyond containment, destroying the royal center and interrupting the people’s access to food.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "29-60",
+        "resolvedLocator": "29-60",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "879d992169e2ae240f240328e69b6c85f739fcf1458a62095a25ca1b79fce2aa"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-29-08",
+      "sourceHexagramNumber": 29,
+      "targetHexagramNumber": 8,
+      "changingLine": 2,
+      "theme": "Small Defense Checks Threat",
+      "summary": "A great predator prepares to strike, but an unlikely smaller creature frightens it away, allowing the vulnerable herd to feed safely.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "29-8",
+        "resolvedLocator": "26-11",
+        "crossReferenceChain": ["29-8"],
+        "sourcePassageSha256": "0084a7e5b491487a96c5b4a9c2cdf5d1753465f0a237fb21ec66e590303ebe90"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-29-48",
+      "sourceHexagramNumber": 29,
+      "targetHexagramNumber": 48,
+      "changingLine": 3,
+      "theme": "Office Through Auspicious Reception",
+      "summary": "Formal preparation and southward travel meet favorable signs, generous hospitality, and appointment, turning readiness into recognized public responsibility.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "29-48",
+        "resolvedLocator": "29-48",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3b981b1dd5e85bab5f4a5d10f305747f0291d8c1495d2d22d4aab5372e40cdc0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-29-47",
+      "sourceHexagramNumber": 29,
+      "targetHexagramNumber": 47,
+      "changingLine": 4,
+      "theme": "World Turned to Water",
+      "summary": "Mountains sink, dry ground becomes aquatic, and both birds and people lose their dwellings; environmental reversal erases every ordinary refuge.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "29-47",
+        "resolvedLocator": "29-47",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c6949fa954618a9704e6cc40fa7432de5e5cce4ae7bc3db9921ca61a3e73ba6b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-29-07",
+      "sourceHexagramNumber": 29,
+      "targetHexagramNumber": 7,
+      "changingLine": 5,
+      "theme": "Repeated Shock Before Victory",
+      "summary": "Blows arrive too quickly for recovery as battle spreads across the plain, yet the violent sequence ends with the opposing force overcome.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "29-7",
+        "resolvedLocator": "29-7",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "83a91df120484fca17d063df3eef53d00a0c0e15394e9f497603f781d9e626dd"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-29-59",
+      "sourceHexagramNumber": 29,
+      "targetHexagramNumber": 59,
+      "changingLine": 6,
+      "theme": "Justice Reaches Inward",
+      "summary": "Solar emblems accompany an official who corrects wrongdoing within his own kin, showing impartial punishment while acknowledging the sorrow ruin leaves behind.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "29-59",
+        "resolvedLocator": "29-59",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c8c509c0036a4d71065910fc3b6f5d100ada8bdd8b49fafbb6cec38a91c6827c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

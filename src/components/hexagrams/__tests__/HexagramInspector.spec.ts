@@ -1,7 +1,7 @@
 import { createPinia, setActivePinia } from 'pinia'
-import { mount } from '@vue/test-utils'
+import { flushPromises, mount } from '@vue/test-utils'
 import { nextTick } from 'vue'
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import HexagramInspector from '@/components/hexagrams/HexagramInspector.vue'
 import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
@@ -33,7 +33,8 @@ describe('HexagramInspector', () => {
     expect(wrapper.get('.hexagram-identity').text()).toContain('Preponderance of the Great')
     expect(wrapper.get('.hexagram-identity').text()).toContain('大過')
     expect(wrapper.get('.hexagram-identity').text()).toContain('Dà Guò')
-    expect(wrapper.findAll('.transformation-card')).toHaveLength(4)
+    expect(wrapper.findAll('.transformation-list .transformation-card')).toHaveLength(4)
+    expect(wrapper.findAll('.line-change .transformation-card')).toHaveLength(1)
     expect(wrapper.get('.advanced-lab-button').text()).toContain('Advanced Transformation Lab')
     expect(wrapper.get('.gene-key-spectrum').text()).toContain('Purposelessness')
     expect(wrapper.get('.gene-key-spectrum').text()).toContain('Totality')
@@ -63,15 +64,20 @@ describe('HexagramInspector', () => {
 
     const lineButtons = wrapper.findAll('[role="radio"]')
     await lineButtons[1]?.trigger('click')
+    await flushPromises()
+    await vi.waitFor(() => {
+      expect(wrapper.get('.transition-insight').text()).toContain('1 → 13')
+    })
 
     expect(lineButtons[1]?.attributes('aria-checked')).toBe('true')
-    expect(wrapper.findAll('.transformation-card')[0]?.text()).toContain(
+    expect(wrapper.get('.line-change .transformation-card').text()).toContain(
       'Relating / Changed Hexagram',
     )
-    expect(wrapper.findAll('.transformation-card')[0]?.text()).toContain('13')
+    expect(wrapper.get('.line-change .transformation-card').text()).toContain('13')
+    expect(wrapper.get('.transition-insight').text()).toContain('Care Meets Absence')
 
-    await wrapper.findAll('.transformation-card')[2]?.trigger('click')
-    expect(inspector.hexagram?.number).toBe(2)
+    await wrapper.get('.line-change .transformation-card').trigger('click')
+    expect(inspector.hexagram?.number).toBe(13)
   })
 
   it('opens the Lab in the same dialog and restores the exact base state', async () => {

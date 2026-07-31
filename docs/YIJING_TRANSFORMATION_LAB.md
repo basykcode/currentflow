@@ -51,6 +51,11 @@ Every target in these sections, including path intermediates, uses
 `TransformationHexagramCard.vue`. It carries the operation label, target identity, changed lines,
 canonicality, provenance/availability, interpretation status, and visited state.
 
+The Base screen keeps the four intrinsic relationships together, then gives the single-line selector
+its own linked relating-hexagram preview. A separate lazy component beneath that preview can display
+the draft Forest summary for the exact ordered source-to-target route. The summary never changes the
+structural result.
+
 ## Component and domain boundaries
 
 Pure calculations live in `src/domain/yijing/transformations`. A per-inspector engine memoizes
@@ -74,6 +79,8 @@ horizontal page overflow. Motion uses the application's reduced-motion rules.
 ## Deliberate future work
 
 Source-gated modules become available only after complete, rights-reviewed tables pass the validators
-described in `YIJING_TRANSFORMATION_DATA.md`. Jiaoshi Yilin requires a separate directed
-origin-to-destination repository; it is not endpoint commentary. Reading conventions may reorder
-source-backed text display but may not alter the deterministic relating hexagram.
+described in `YIJING_TRANSFORMATION_DATA.md`. The Base selector's 384 draft Forest summaries cover
+only the six one-line routes per source and do not activate the Lab's complete Jiaoshi Yilin module
+or availability filter. Yilin remains an ordered origin-to-destination relation, not endpoint
+commentary. Reading conventions may reorder source-backed text display but may not alter the
+deterministic relating hexagram.

@@ -3,6 +3,7 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 
 import HexagramGlyph from '@/components/astrology/HexagramGlyph.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
+import HexagramTransitionInsight from '@/components/hexagrams/HexagramTransitionInsight.vue'
 import {
   createTransformationEngine,
   getRelatingResult,
@@ -46,11 +47,11 @@ const arrivalContext = computed(() =>
 )
 const baseTransformations = computed(() => {
   if (!hexagram.value) return []
-  const intrinsic = transformationEngine
-    .getIntrinsic(hexagram.value)
-    .filter((result) => result.definitionId !== 'trigram-exchange')
-  return [getRelatingResult(hexagram.value, [selectedLine.value]), ...intrinsic]
+  return transformationEngine.getIntrinsic(hexagram.value)
 })
+const lineTransformation = computed(() =>
+  hexagram.value ? getRelatingResult(hexagram.value, [selectedLine.value]) : null,
+)
 const labScreen = computed(() =>
   screen.value?.kind === 'transformation-lab' ? screen.value : null,
 )
@@ -223,7 +224,7 @@ onBeforeUnmount(() => {
                 <div class="panel-heading">
                   <p class="section-kicker">Computed structure</p>
                   <h2 id="transformations-title">Transformations</h2>
-                  <p>Four compact relationships, calculated directly from the six source lines.</p>
+                  <p>Four fixed relationships, calculated directly from the six source lines.</p>
                 </div>
 
                 <div class="transformation-list">
@@ -262,9 +263,27 @@ onBeforeUnmount(() => {
                     </button>
                   </div>
                   <p class="line-change-note">
-                    The selected line updates the compact Relating / Changed result above. The Lab
-                    supports any combination of lines.
+                    Select a line to preview its relating hexagram. Open the result to inspect it in
+                    this dialog; the Lab supports any combination of lines.
                   </p>
+                  <TransformationHexagramCard
+                    v-if="lineTransformation"
+                    compact
+                    :result="lineTransformation"
+                    :visited="
+                      lineTransformation.targetHexagramNumber !== undefined &&
+                      inspector.visitedHexagramNumbers.has(lineTransformation.targetHexagramNumber)
+                    "
+                    @select="selectTransformation"
+                  />
+                  <HexagramTransitionInsight
+                    v-if="
+                      lineTransformation && lineTransformation.targetHexagramNumber !== undefined
+                    "
+                    :source-hexagram-number="hexagram.number"
+                    :target-hexagram-number="lineTransformation.targetHexagramNumber"
+                    :changing-line="selectedLine"
+                  />
                 </section>
 
                 <button class="advanced-lab-button" type="button" @click="openTransformationLab">

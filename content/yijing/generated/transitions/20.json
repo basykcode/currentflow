@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 20,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-20-42",
+      "sourceHexagramNumber": 20,
+      "targetHexagramNumber": 42,
+      "changingLine": 1,
+      "theme": "Remedy Worsens Harm",
+      "summary": "Removing one troublesome growth introduces a more damaging one, and escape from one confined place leads into another; attempted correction compounds the difficulty.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "20-42",
+        "resolvedLocator": "20-42",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a01e669898af68df468cc20b66d51cbebb46308190a4d74644e19061545965c9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-20-59",
+      "sourceHexagramNumber": 20,
+      "targetHexagramNumber": 59,
+      "changingLine": 2,
+      "theme": "Assistance at the Crossing",
+      "summary": "A traveler enters water deeper than expected and is soaked, but timely practical help arrives before discomfort develops into disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "20-59",
+        "resolvedLocator": "20-59",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "431ebbd41a45c354252d5735645ead493b0275e3d4439bfd8f1230a250af50c6"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-20-53",
+      "sourceHexagramNumber": 20,
+      "targetHexagramNumber": 53,
+      "changingLine": 3,
+      "theme": "Fortunate Encounter",
+      "summary": "A swift journey across a storied landscape unexpectedly meets a culture hero and still completes with a return to familiar ground.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "20-53",
+        "resolvedLocator": "20-53",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "597e40f9563473e0f120a46cdf5834aaab2ed76dc7217f46a3b38054790c3952"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-20-12",
+      "sourceHexagramNumber": 20,
+      "targetHexagramNumber": 12,
+      "changingLine": 4,
+      "theme": "Labor in Season",
+      "summary": "A summons to cultivate plentiful land aligns effort with the agricultural season, producing abundance and a period of public rest.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "20-12",
+        "resolvedLocator": "20-12",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "5c58810aa11ca015ac874a9e396c15bba87a4c6afed4e4f8bd18d2815160ddba"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-20-23",
+      "sourceHexagramNumber": 20,
+      "targetHexagramNumber": 23,
+      "changingLine": 5,
+      "theme": "Contented Apartness",
+      "summary": "The reclusive life remains steady as the heavenly lights, finding ease outside ordinary entanglement and avoiding the sorrows attached to public striving.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "20-23",
+        "resolvedLocator": "20-23",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "824b7f01acf006b7355255e8ce265c6bc9d12559c5453a38af6946f9d59e96b1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-20-08",
+      "sourceHexagramNumber": 20,
+      "targetHexagramNumber": 8,
+      "changingLine": 6,
+      "theme": "Swift Open Passage",
+      "summary": "An extraordinary mare covers immense distance along an even road, linking exceptional capacity with a journey free from obstruction or anxiety.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "20-8",
+        "resolvedLocator": "20-8",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "23247c3581ea7309b4b695573bcb75452f1e5d37bb9f38e621d3064f2f6c4846"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}
