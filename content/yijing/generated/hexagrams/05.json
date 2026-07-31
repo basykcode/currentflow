@@ -1,0 +1,512 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 5,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 5,
+      "schoolId": "daoist",
+      "essence": "Stored strength meets danger without forcing, allowing sincerity, nourishment, and right timing to gather effective movement.",
+      "summary": "From the Daoist lens, Waiting is active conservation rather than delay: firm yang remains whole while danger stands ahead. Wang Bi emphasizes a centered, correct position that can hold strength without becoming trapped, so movement retains the possibility of effective action. Liu Yiming turns the configuration inward, describing true strength as something gathered and nourished gradually amid obstructing conditions. Both readings distinguish responsive timing from either impetuous advance or passive resignation. Their scopes differ—one foregrounds governing structure, the other alchemical restoration—but each treats accord with the moment as the condition that lets stored capacity cross difficulty.",
+      "sourceTensionNote": "Wang Bi foregrounds position, centrality, and timely function; Liu Yiming recasts waiting as gradual internal-alchemical recovery. These are complementary scopes, not interchangeable doctrines.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-05:c1ed1b1a16ae"
+          ]
+        },
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-05:d5e846bfc0e0"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-05:d5e846bfc0e0",
+            "daoist_2_wang_bi:hex-05:c1ed1b1a16ae"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_2_wang_bi:hex-05:c1ed1b1a16ae"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-05:d5e846bfc0e0"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-05:d5e846bfc0e0",
+            "daoist_2_wang_bi:hex-05:c1ed1b1a16ae"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-05:d5e846bfc0e0",
+            "daoist_2_wang_bi:hex-05:c1ed1b1a16ae"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "d662c70676a5ce6f451ad9c52339dbab6c1f98078d63546ea5b098b75a9c2ef0"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 5,
+      "schoolId": "buddhist",
+      "essence": "",
+      "summary": "",
+      "evidenceMode": "insufficient",
+      "sourcesUsed": [],
+      "sentenceSupport": [],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 0,
+        "directSourceCount": 0,
+        "chunkCount": 0
+      },
+      "rights": {
+        "publicationEligibility": "blocked",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "blocked",
+        "issues": [
+          "The only registered Buddhist chunk for Hexagram 5 is misidentified material for Hexagram 25 and is quarantined."
+        ]
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "3394950a111f316bbcefda102afc6a0e59ee8056fe671c4647ca8597b749d1dd"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 5,
+      "schoolId": "confucian",
+      "essence": "Sincere restraint preserves correct position until responsibility, timing, and conditions can support consequential action.",
+      "summary": "The Confucian lens treats Waiting as disciplined conduct under conditions that are not yet ready for advance. Sincerity and steadfastness keep strength from becoming rash, while centrality and correctness preserve one’s place within the larger order. The Image adds a cultivated ease: nourishment and composure are not evasions of duty but ways of remaining fit for it. The line sequence distinguishes distance from danger, increasing exposure, and the balanced authority able to wait without losing purpose. Action becomes appropriate when timing, position, and responsibility align, so restraint and progress belong to one continuous practice.",
+      "sourceTensionNote": "The two translations differ in diction and explanatory scope, but both center sincerity, firmness, correct position, and readiness for consequential movement.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-05:999ac900558a"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-05:23bad8540ec0"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-05:999ac900558a",
+            "confucian_2_legge:hex-05:23bad8540ec0"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-05:999ac900558a",
+            "confucian_2_legge:hex-05:23bad8540ec0"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-05:999ac900558a"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-05:999ac900558a",
+            "confucian_2_legge:hex-05:23bad8540ec0"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-05:999ac900558a",
+            "confucian_2_legge:hex-05:23bad8540ec0"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "78ba55297dc762ee5a1a2955aafa8ab36ddfe9b41207486ddd46e357052652f4"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 5,
+      "schoolId": "psychological",
+      "essence": "Waiting exposes the difference between anxious suspension and deliberate preparation grounded in clear perception and inner security.",
+      "summary": "Psychologically, Waiting resembles a period when intention is active but external conditions do not yet permit direct movement. Uncertainty may narrow attention toward urgency, wishful thinking, or premature action, making delay feel like helplessness rather than information. The sources instead emphasize objective appraisal, nourishment, and the preservation of confidence while plans mature beyond immediate control. Relationally, this can appear as pressure to force reassurance or resolution before the situation has disclosed enough. Integration lies in holding purpose and receptivity together, so patience becomes an organized capacity for readiness rather than a denial of desire.",
+      "sourceTensionNote": "Wilhelm emphasizes structural centrality and nourishment, Balkin contrasts calculated with apprehensive waiting, and Dening foregrounds ordinary emotional strain and self-care.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-05:3f24f92e0a1c"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-05:79206f87b03b"
+          ]
+        },
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-05:e38e35ce1739"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-05:e38e35ce1739",
+            "psychological_2_balkin:hex-05:3f24f92e0a1c",
+            "psychological_3_dening:hex-05:79206f87b03b"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_2_balkin:hex-05:3f24f92e0a1c",
+            "psychological_3_dening:hex-05:79206f87b03b"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-05:e38e35ce1739",
+            "psychological_2_balkin:hex-05:3f24f92e0a1c",
+            "psychological_3_dening:hex-05:79206f87b03b"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_2_balkin:hex-05:3f24f92e0a1c",
+            "psychological_3_dening:hex-05:79206f87b03b"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-05:e38e35ce1739",
+            "psychological_2_balkin:hex-05:3f24f92e0a1c",
+            "psychological_3_dening:hex-05:79206f87b03b"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "4283e6c5e982d66f57699014730c6d0dd31f3338e418c39989ab5941f6dd92f5"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 5,
+      "schoolId": "human-design",
+      "essence": "Gate 5 describes Sacral consistency within natural rhythms, while full meaning still depends on activation and chart context.",
+      "summary": "Within Human Design, Gate 5 concerns fixed rhythms: the Sacral capacity to sustain recurring patterns and wait within a natural tempo. Its harmonic relationship with Gate 15 forms the 15–5 Channel of Rhythm in the Understanding Circuit, but a static Gate description does not establish that channel or any personal activation. The source frames waiting as active attunement rather than vacant delay, with pressure arising when concepts try to alter an embodied pattern. Differentiated expression appears as steadiness within timing, while distortion appears as identification with imposed routines or impatience toward the unexpected. Line, planetary, and chart context remain necessary for a complete reading.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-05:d808accd489a"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-05:d808accd489a"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-05:d808accd489a"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-05:d808accd489a"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-05:d808accd489a"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-05:d808accd489a"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "808d6940146ef8f88e24d3d227d66e6867fa47e6d759c8006417198de1714402"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 5,
+      "schoolId": "gene-keys",
+      "essence": "Impatience softens into patient participation in life’s rhythms, opening contemplation beyond the pressure of measured time.",
+      "summary": "The Gene Keys lens names the movement of Key 5 as a passage from Impatience through Patience toward Timelessness. Its constricted pattern appears when distrust of timing turns natural rhythm into pressure, making the present feel like an obstacle to what should already have arrived. Patience is described less as passive endurance than as growing sensitivity to recurring patterns that cannot be hurried without distortion. As awareness releases its demand for immediate resolution, time can be experienced as participation rather than scarcity. Timelessness marks the system’s highest contemplative horizon, not a guaranteed attainment or a claim about anyone’s present state.",
+      "sourceTensionNote": "The two sources share the named spectrum; one develops its broader system architecture while the later contemplation emphasizes ordinary experiences of pace and impatience.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-05:8c37a04f7264"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-05:1dda54998f09"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-05:8c37a04f7264",
+            "gene_keys_2_rudd:hex-05:1dda54998f09"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-05:8c37a04f7264",
+            "gene_keys_2_rudd:hex-05:1dda54998f09"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-05:8c37a04f7264",
+            "gene_keys_2_rudd:hex-05:1dda54998f09"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-05:8c37a04f7264",
+            "gene_keys_2_rudd:hex-05:1dda54998f09"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-05:8c37a04f7264",
+            "gene_keys_2_rudd:hex-05:1dda54998f09"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "760154aab0007ea743c215789fe48aa65ec94720a0b8dedb14c0c47d6e4daac6"
+      }
+    }
+  ]
+}

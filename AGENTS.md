@@ -24,6 +24,15 @@
 - Verify exact Hexagram 5 vectors, all 63 destinations, path pagination, source-table failures, and
   same-dialog Back restoration when changing this workbench.
 
+## Hexagram commentary rules
+
+- Keep raw and normalized commentary evidence local-only; never import it into the SPA or commit it.
+- Use the canonical school IDs and identity registries; do not create parallel hexagram or Gene Key tables.
+- Every synthesis sentence must map to eligible source chunks and remain quotation-free.
+- Treat automated commentary as `draft-only`; `qa-passed` is not human editorial approval.
+- Use explicit unavailable records when evidence is missing or quarantined; never infer replacement text.
+- Run `npm run commentary:validate` after changing commentary data, loaders, or rendering.
+
 ## Project continuity protocol
 
 This protocol is mandatory for every substantial Codex task. The repository is the durable project

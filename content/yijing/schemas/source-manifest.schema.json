@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://current-flow.local/schemas/yijing-source-manifest.schema.json",
+  "title": "Yijing commentary source manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "sources"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/source" }
+    }
+  },
+  "$defs": {
+    "nullableString": { "type": ["string", "null"] },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceId",
+        "title",
+        "titleChinese",
+        "author",
+        "authorChinese",
+        "schoolId",
+        "sourceRole",
+        "language",
+        "edition",
+        "translator",
+        "publicationYear",
+        "originalPublicationPeriod",
+        "rightsStatus",
+        "displayPolicy",
+        "quotationPolicy",
+        "sourcePath",
+        "expectedHexagramCoverage",
+        "frameworkOnly",
+        "notes"
+      ],
+      "properties": {
+        "sourceId": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "titleChinese": { "$ref": "#/$defs/nullableString" },
+        "author": { "$ref": "#/$defs/nullableString" },
+        "authorChinese": { "$ref": "#/$defs/nullableString" },
+        "schoolId": {
+          "enum": ["daoist", "buddhist", "confucian", "psychological", "human-design", "gene-keys"]
+        },
+        "sourceRole": {
+          "enum": [
+            "direct-commentary",
+            "line-commentary",
+            "image-commentary",
+            "judgment-commentary",
+            "framework",
+            "transition-commentary",
+            "secondary-analysis",
+            "translation"
+          ]
+        },
+        "language": { "type": "string", "minLength": 2 },
+        "edition": { "$ref": "#/$defs/nullableString" },
+        "translator": { "$ref": "#/$defs/nullableString" },
+        "publicationYear": { "type": ["integer", "null"], "minimum": 1 },
+        "originalPublicationPeriod": { "$ref": "#/$defs/nullableString" },
+        "rightsStatus": {
+          "enum": ["public-domain", "licensed", "user-supplied-internal", "review-required", "blocked"]
+        },
+        "displayPolicy": {
+          "enum": ["summary-and-short-quotation", "summary-only", "internal-research-only", "blocked"]
+        },
+        "quotationPolicy": { "enum": ["none", "short-reviewed-only"] },
+        "sourcePath": { "type": "string", "pattern": "\\{hexagram:02d\\}" },
+        "expectedHexagramCoverage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["scheme", "first", "last"],
+          "properties": {
+            "scheme": { "const": "King Wen" },
+            "first": { "const": 1 },
+            "last": { "const": 64 }
+          }
+        },
+        "frameworkOnly": { "type": "boolean" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

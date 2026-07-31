@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hexagram School Synthesis"
+  short_description: "Evidence-grounded Yijing school synthesis"
+  default_prompt: "Use $hexagram-school-synthesis to build and review source-grounded school commentaries."

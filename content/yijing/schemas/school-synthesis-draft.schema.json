@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://current-flow.local/schemas/yijing-school-synthesis-draft.schema.json",
+  "title": "Hexagram school synthesis draft",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "hexagramNumber", "records"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "hexagramNumber": { "type": "integer", "minimum": 1, "maximum": 64 },
+    "records": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/record" }
+    }
+  },
+  "$defs": {
+    "schoolId": {
+      "enum": ["daoist", "buddhist", "confucian", "psychological", "human-design", "gene-keys"]
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schoolId", "essence", "summary", "sources", "sentenceSources"],
+      "properties": {
+        "schoolId": { "$ref": "#/$defs/schoolId" },
+        "essence": { "type": "string" },
+        "summary": { "type": "string" },
+        "sourceTensionNote": { "type": "string" },
+        "insufficientReason": { "type": "string" },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["sourceId", "contribution"],
+            "properties": {
+              "sourceId": { "type": "string" },
+              "contribution": { "enum": ["primary", "supporting", "framework", "contrasting"] }
+            }
+          }
+        },
+        "sentenceSources": {
+          "type": "array",
+          "items": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    }
+  }
+}

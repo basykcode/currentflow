@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0.0",
+  "hexagramNumber": 15,
+  "records": [
+    {
+      "schoolId": "daoist",
+      "essence": "Measured self-knowledge that restores balance gives Modesty a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Modesty, the central situation is fullness moderated so all parts can participate, and the commentarial evidence repeatedly emphasizes development, humility, and people. The main danger is false modesty hiding either pride or ability, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is measured self-knowledge that restores balance, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ]
+      ]
+    },
+    {
+      "schoolId": "buddhist",
+      "essence": "Measured self-knowledge that restores balance gives Modesty a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Modesty, the central situation is fullness moderated so all parts can participate, and the commentarial evidence repeatedly emphasizes humility, birth, and terms. The main danger is false modesty hiding either pride or ability, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is measured self-knowledge that restores balance, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "sources": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ]
+      ]
+    },
+    {
+      "schoolId": "confucian",
+      "essence": "Measured self-knowledge that restores balance gives Modesty a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Modesty, the central situation is fullness moderated so all parts can participate, and the commentarial evidence repeatedly emphasizes humble, earth, and humility. The main danger is false modesty hiding either pride or ability, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is measured self-knowledge that restores balance, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ]
+      ]
+    },
+    {
+      "schoolId": "psychological",
+      "essence": "Psychologically, Modesty asks how measured self-knowledge that restores balance can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Modesty describes fullness moderated so all parts can participate as an experience that organizes attention, expectation, and response. The source perspectives highlight lower, trigram, and modesty, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through false modesty hiding either pride or ability; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering measured self-knowledge that restores balance. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "contribution": "supporting"
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "contribution": "contrasting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ]
+      ]
+    },
+    {
+      "schoolId": "human-design",
+      "essence": "Gate 15 frames measured self-knowledge that restores balance as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 15 treats fullness moderated so all parts can participate as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the G Center, the Understanding Circuit, Channel 15-5, harmonic Gate 5, and emphasizes extremes, rhythm, and channel in describing how its energy operates. Distortion can appear through false modesty hiding either pride or ability; differentiated expression develops as measured self-knowledge that restores balance. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "sources": [
+        {
+          "sourceId": "human_design_1_ra",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ]
+      ]
+    },
+    {
+      "schoolId": "gene-keys",
+      "essence": "Dullness opens toward Magnetism, with Florescence held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 15 as a passage from Dullness through Magnetism toward Florescence. Its constricted pattern can be contemplated through false modesty hiding either pride or ability, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in fullness moderated so all parts can participate, expressed here as measured self-knowledge that restores balance. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Florescence remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ]
+      ]
+    }
+  ]
+}

@@ -29,14 +29,41 @@ Full sources and boundary conventions are in
 
 - **Personal BaZi:** enters through a separate personal-context contract. Global temporal facts and personal facts remain separate before synthesis.
 - **AI synthesis:** receives only verified facts, curated passages, user-controlled context, and provenance. It may phrase OLTR, intention, execution, and explanations, but may not invent hexagrams, calendar facts, organ periods, or transformations.
-- **Hexagram commentaries:** six visible Daoism, Confucianism, Buddhism, Psychology, Human Design,
-  and Gene Keys views remain `unavailable` until the pre-chunked texts are reviewed and connected.
+- **Hexagram commentaries:** six Daoist, Buddhist, Confucian, Psychological, Human Design, and Gene
+  Keys views lazy-load static derived drafts. Each record exposes evidence and review status.
+  Missing eligible evidence remains `unavailable`; automated drafts are not forecasts or personal
+  readings.
 - **Source-gated Yijing modules:** Zagua, Eight Palaces, Na Jia, Gua Bian, message hexagrams, Shao
   Yong maps, Cantong Qi overlays, Jiaoshi Yilin transitions, and text-reading conventions remain
   unavailable until complete reviewed source adapters are connected. Required inputs are listed in
   [`YIJING_TRANSFORMATION_SOURCE_INPUT_REQUIRED.md`](YIJING_TRANSFORMATION_SOURCE_INPUT_REQUIRED.md).
 - **Advanced transformations:** Absolute Shadow is named as a future inspection tool but returns no
   result until its deterministic rule and source boundary are accepted.
+
+## Hexagram commentary staging
+
+`data/hexagram-commentary` is a preparation boundary, not an active frontend data source. Its
+manifest identifies lens, source sequence, title, contributors, extraction method, SHA-256, King
+Wen coverage, rights status, and known issues. `chunk-index.jsonl` supplies one provenance and
+eligibility record per local passage.
+
+The full passages live under the Git-ignored `chunked/` directory. They are user-provided or
+inherited commercial texts whose redistribution rights have not been cleared, so they must never be
+copied into `src`, `public`, a build artifact, or Git history. Derived essences and summaries retain
+source IDs and chunk hashes and remain drafts until human review.
+
+The current local preparation contains eleven 64-chunk source directories: seven imported
+byte-for-byte from pinned legacy repository commit `ed95936` and four newly extracted sources
+(`daoist_2_wang_bi`, `psychological_2_balkin`, `psychological_3_dening`, and
+`gene_keys_2_rudd`). The Wang Bi source is Richard John Lynn's *Classic of Changes* translation,
+split at the EPUB's explicit `HEXAGRAM 1` through `HEXAGRAM 64` markers. Six malformed legacy
+records are quarantined by the current index.
+
+The public boundary is `content/yijing/generated/hexagrams`: 64 bundles contain 379 supported draft
+records and five explicit unavailable records. `src/features/hexagram-commentary/repository.ts`
+lazy-loads and caches only these derived records. Full pipeline and rights details are in
+[`HEXAGRAM_COMMENTARY_PIPELINE.md`](HEXAGRAM_COMMENTARY_PIPELINE.md) and
+[`HEXAGRAM_COMMENTARY_RIGHTS.md`](HEXAGRAM_COMMENTARY_RIGHTS.md).
 
 ## Forest transition staging
 

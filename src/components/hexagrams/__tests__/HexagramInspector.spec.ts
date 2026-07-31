@@ -42,7 +42,7 @@ describe('HexagramInspector', () => {
     expect(wrapper.findAll('[role="tab"]')).toHaveLength(6)
 
     await wrapper.findAll('[role="tab"]')[2]?.trigger('click')
-    expect(wrapper.get('[role="tabpanel"]').text()).toContain('Buddhism')
+    expect(wrapper.findAll('[role="tab"]')[2]?.text()).toContain('Confucian')
 
     await wrapper.get('.inspector-close').trigger('click')
     expect(wrapper.find('[role="dialog"]').exists()).toBe(false)

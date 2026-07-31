@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": {
+    "start": 33,
+    "end": 40,
+    "label": "33-40"
+  },
+  "generated": [
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40
+  ],
+  "preserved": [],
+  "generatorVersion": "deterministic-editorial-v1",
+  "promptVersion": "school-synthesis-v1",
+  "generatedAtIso": "2026-07-30T00:00:00Z"
+}

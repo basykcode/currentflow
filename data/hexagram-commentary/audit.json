@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at_utc": "2026-07-30T00:35:54Z",
+  "passed": true,
+  "checks": [
+    {
+      "name": "legacy-reference-import",
+      "passed": true,
+      "detail": "Copied 448 legacy chunks byte-for-byte from reference commit ed959364eba06e2d41d51f7655e381a7bf97fd19."
+    },
+    {
+      "name": "new-source-coverage",
+      "passed": true,
+      "detail": "Wang Bi/Lynn, Balkin, Dening, and The 64 Ways each produced exactly one non-empty UTF-8 chunk for King Wen numbers 1-64."
+    },
+    {
+      "name": "legacy-anomaly-quarantine",
+      "passed": true,
+      "detail": "Six downloaded legacy records are marked needs-review and are not ingestion eligible."
+    },
+    {
+      "name": "wang-bi-source-identity",
+      "passed": true,
+      "detail": "The supplied EPUB identifies itself as Richard John Lynn's translation of Wang Bi's Classic of Changes and contains explicit HEXAGRAM 1-64 section markers."
+    },
+    {
+      "name": "distribution-boundary",
+      "passed": true,
+      "detail": "Full chunk text is local-only beneath the Git-ignored chunked directory; manifests contain hashes and metadata only."
+    }
+  ],
+  "counts": {
+    "source_records": 11,
+    "chunked_sources": 11,
+    "blocked_sources": 0,
+    "chunk_files": 704,
+    "ingestion_eligible_chunks": 698,
+    "needs_review_chunks": 6
+  },
+  "known_issues": [
+    {
+      "source_id": "buddhist_1_cleary",
+      "hexagram": 1,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 61 rather than Hexagram 1."
+      ]
+    },
+    {
+      "source_id": "buddhist_1_cleary",
+      "hexagram": 5,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 25 rather than Hexagram 5."
+      ]
+    },
+    {
+      "source_id": "buddhist_1_cleary",
+      "hexagram": 6,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 56 rather than Hexagram 6."
+      ]
+    },
+    {
+      "source_id": "buddhist_1_cleary",
+      "hexagram": 7,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 57 rather than Hexagram 7."
+      ]
+    },
+    {
+      "source_id": "buddhist_1_cleary",
+      "hexagram": 17,
+      "issues": [
+        "The downloaded legacy chunk contains only a chapter heading and page number."
+      ]
+    },
+    {
+      "source_id": "confucian_2_legge",
+      "hexagram": 64,
+      "issues": [
+        "The downloaded legacy chunk is an extreme size outlier and appears to include post-hexagram material."
+      ]
+    }
+  ]
+}

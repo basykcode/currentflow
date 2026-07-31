@@ -8,7 +8,7 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   ...eslintPluginVue.configs['flat/essential'],
   {
-    files: ['scripts/codex/**/*.mjs', 'scripts/transitions/**/*.mjs'],
+    files: ['scripts/**/*.mjs'],
     ...tseslint.configs.disableTypeChecked,
     languageOptions: {
       ...tseslint.configs.disableTypeChecked.languageOptions,

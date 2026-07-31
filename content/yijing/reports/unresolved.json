@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "1.0.0",
+  "summary": {
+    "quarantinedChunks": 6,
+    "blockedCells": 5,
+    "missingTransitionSources": 1
+  },
+  "quarantinedChunks": [
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 1,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 61 rather than Hexagram 1."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 5,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 25 rather than Hexagram 5."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 6,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 56 rather than Hexagram 6."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 7,
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 57 rather than Hexagram 7."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 17,
+      "issues": [
+        "The downloaded legacy chunk contains only a chapter heading and page number."
+      ]
+    },
+    {
+      "sourceId": "confucian_2_legge",
+      "hexagramNumber": 64,
+      "issues": [
+        "The downloaded legacy chunk is an extreme size outlier and appears to include post-hexagram material."
+      ]
+    }
+  ],
+  "blockedCells": [
+    {
+      "hexagramNumber": 1,
+      "hexagramName": "The Creative",
+      "schoolId": "buddhist",
+      "reason": "No eligible evidence remains for this cell; quarantined source record(s): buddhist_1_cleary."
+    },
+    {
+      "hexagramNumber": 5,
+      "hexagramName": "Waiting",
+      "schoolId": "buddhist",
+      "reason": "The only registered Buddhist chunk for Hexagram 5 is misidentified material for Hexagram 25 and is quarantined."
+    },
+    {
+      "hexagramNumber": 6,
+      "hexagramName": "Conflict",
+      "schoolId": "buddhist",
+      "reason": "No eligible evidence remains for this cell; quarantined source record(s): buddhist_1_cleary."
+    },
+    {
+      "hexagramNumber": 7,
+      "hexagramName": "The Army",
+      "schoolId": "buddhist",
+      "reason": "No eligible evidence remains for this cell; quarantined source record(s): buddhist_1_cleary."
+    },
+    {
+      "hexagramNumber": 17,
+      "hexagramName": "Following",
+      "schoolId": "buddhist",
+      "reason": "No eligible evidence remains for this cell; quarantined source record(s): buddhist_1_cleary."
+    }
+  ],
+  "missingInputs": [
+    {
+      "input": "Jiaoshi Yilin transition corpus",
+      "status": "not-registered",
+      "effect": "Transition-commentary synthesis is excluded."
+    }
+  ]
+}
