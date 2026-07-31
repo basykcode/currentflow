@@ -66,7 +66,7 @@ Selection uses civil clock time in the snapshot timezone. It does not correct fo
 time or longitude because Current does not request coordinates. This is a traditional educational
 framework, not a diagnostic or treatment claim.
 
-## Structural relationships
+## Structural relationships and Transformation Lab
 
 The Astrology day hexagram continues to expose three deterministic, line-derived relationships:
 
@@ -74,11 +74,21 @@ The Astrology day hexagram continues to expose three deterministic, line-derived
 - reverse: the six source lines are read in the opposite order;
 - complement: every yin line becomes yang and every yang line becomes yin.
 
-The shared inspector exposes those three relationships plus a fourth fixed trigram exchange, in
-which the lower and upper three-line groups change places. Its separate changing-line selector
-inverts exactly one user-selected line, counted 1–6 from bottom to top, and resolves the resulting
-figure through the same verified catalog. These are reproducible structural operations; the
-interface does not attach forecasts or select a changing line on the user's behalf.
+The shared inspector's compact screen exposes a user-selected relating result plus nuclear,
+complement, and reversal. Its Advanced Transformation Lab adds trigram exchange, explicit symmetry
+compositions, a five-result Mutual Field, bounded nuclear iteration, all 63 non-self line-change
+destinations, lazily paged minimal paths, King Wen sequence relations, and structural anatomy. Line
+positions are always counted 1–6 from bottom to top and every result resolves through the same
+verified catalog.
+
+The composed symmetry family, four non-central Mutual Field projections, Deep Nuclear iteration, and
+minimal-path enumeration are labeled Current formalizations rather than received traditional
+systems. Zagua, Eight Palaces, Na Jia, lineage-specific Gua Bian, message hexagrams, Shao Yong maps,
+Cantong Qi mappings, and Jiaoshi Yilin transitions remain explicitly source-needed. Exact formulas
+and availability semantics are documented in
+[`YIJING_TRANSFORMATIONS.md`](YIJING_TRANSFORMATIONS.md) and
+[`YIJING_TRANSFORMATION_PROVENANCE.md`](YIJING_TRANSFORMATION_PROVENANCE.md). These tools remain
+structural; the interface does not attach forecasts or select moving lines on the user's behalf.
 
 The library's Fu Xi binary option sorts all-yin through all-yang using the bottom line as the least
 significant bit. The trigram-matrix option groups the same complete set by upper and then lower
@@ -100,8 +110,9 @@ medical guidance from these factors. Those surfaces remain explicitly unavailabl
 verified and reviewable model is connected.
 
 Hexagram commentary tabs likewise remain unavailable until their pre-chunked source texts are
-reviewed and summarized. Absolute Shadow is a visible advanced placeholder only; no transformation
-is returned until its rule is defined and accepted.
+reviewed and summarized. Named classical systems without accepted source data appear as
+`source-needed`; no transformation or commentary is returned until the relevant rule/table and
+source boundary are accepted.
 
 ## Known verification risk
 
