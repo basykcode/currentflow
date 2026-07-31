@@ -2,12 +2,13 @@
 
 ## Last reconciled
 
-- UTC date: 2026-07-30
-- Branch represented: local `master` with the English-first multilingual herb/formula foundation
-  live and concurrent Codex isolation integrated
-- Commit inspected: `6ed5351`
+- UTC date: 2026-07-31
+- Branch represented: local `master` with the English-first multilingual herb/formula foundation,
+  concurrent Codex isolation, and the Advanced Yijing Transformation Lab integrated
+- Commit inspected: `267cbd0`
 - `master` enforces one Codex chat per linked worktree, branch, lease, and runtime namespace at
-  `6ed5351`; the commit is local and not yet pushed to `origin/master`.
+  `6ed5351`, with the continuity record at `828c400`.
+- `master` merges the Advanced Yijing Transformation Lab at `267cbd0`.
 - `feat/alchemy-backend` contains the scoped backend foundation at `8a287c3`.
 - `feat/alchemy-frontend` contains the scoped research UI and HTTP provider at `fc2a0f9`.
 - `feat/alchemy-integration` merges both workstreams and their shared contract alignment at `15e77c0`.
@@ -55,8 +56,12 @@ coordination-only. See [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md).
 
 The framework-independent hexagram reference boundary now owns the complete identity catalog,
 trigrams, Gene Keys keyword mapping, three library orderings, and pure structural transformations.
-A transient Pinia store holds the inspected King Wen number, while one app-level modal supplies the
-shared interaction for Astrology and the `/tools/hexagrams` library route.
+The advanced transformation engine under `src/domain/yijing/transformations` adds derived figures,
+structural classification, all 63 reachable destinations, and lazy factoradic enumeration of up to
+720 shortest line-change paths without placing domain calculations in Vue. A transient typed Pinia
+store holds the modal's inspected figure, Base/Lab view, filters, comparison chain, and bounded
+navigation stack, while one app-level modal supplies the shared interaction for Astrology and the
+`/tools/hexagrams` library route.
 
 The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI service under
 `services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
@@ -86,7 +91,14 @@ is the only Alchemy state in Pinia.
   2026 Yang Fire Horse golden case resolves to Hexagram 28.
 - Every visible Astrology or related-relationship hexagram opens a shared responsive inspector with
   Chinese characters, tone-marked pinyin, an English display title, labeled upper/lower trigrams,
-  four fixed relationships, six selectable single-line changes, and visible source status.
+  four compact base relationships, and visible source status.
+- The same inspector's Advanced Lab provides six focused sections for line transformations,
+  symmetry and derived figures, mutual/deep-nuclear structure, structural analysis, all 63 reachable
+  destinations, and lazily generated shortest-path sequences. Lab results can be opened, compared,
+  chained, and returned through a bounded local modal stack.
+- Zagua, Eight-Palace, Yilin, and other lineage-dependent modules remain explicit source-gated
+  contracts. They display unavailable states until reviewed, rights-eligible source inputs exist;
+  the UI does not infer or fabricate lineage data.
 - The Other Tools Hexagram Library renders all 64 verified figures and can order them by King Wen,
   bottom-up Fu Xi binary value, or an Early Heaven trigram matrix.
 - The inspector shows the official Shadow/Gift/Siddhi vocabulary for all 64 corresponding Gene Keys
@@ -106,7 +118,7 @@ is the only Alchemy state in Pinia.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- Seventy-four frontend unit tests cover Astrology calculations, the complete hexagram catalog and
+- Ninety-five frontend unit tests cover Astrology calculations, the complete hexagram catalog and
   transforms, inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
   timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
   navigation; Cloudflare Pages build preparation and local metadata assets remain.
@@ -177,7 +189,8 @@ The integrated release-aware Alchemy foundation additionally provides:
 - TypeScript remains strict; avoid undocumented `any`.
 - Hexagram lines are stored bottom-to-top and reversed only for display.
 - Hexagram identity and Gene Keys keywords are curated references; structural transforms are
-  computed; commentary and undefined advanced transforms remain unavailable.
+  computed. Lineage-dependent relations and commentary remain unavailable unless backed by eligible
+  reviewed sources; directed Yilin records must never be treated as symmetric.
 - All display data carries status/provenance; no fabricated calculations or hidden network calls.
 - Domain calculations remain independent from Vue presentation.
 - Preferences are device-local; no geolocation, auth, AI, analytics, or remote database SDK is active
@@ -221,6 +234,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
 - [Project English-first multilingual Alchemy names](decisions/20260727T013844Z--project-english-first-multilingual-alchemy-names.md)
 - [Isolate every Codex chat by worktree, lease, and runtime](decisions/20260730T020000Z--isolate-every-codex-chat-by-worktree-lease-and-runtime.md)
+- [Keep Transformation Lab state local and lineage data source-gated](decisions/20260730T233100Z--transformation-lab-modal-state-and-source-gates.md)
 - Supporting architecture: [`../ARCHITECTURE.md`](../ARCHITECTURE.md)
 - Planned data seams: [`../DATA_INTEGRATION.md`](../DATA_INTEGRATION.md)
 
@@ -240,7 +254,8 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Publish release-aware Alchemy data foundation    | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5`          | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md)   |
 | `master`                   | Publish official herb/formula foundation         | Feature and production corrections through `9a1fa5a`; audited Taiwan MOHW release and real-data UI are live    | [Official foundation handoff](handoffs/20260727T003600Z--master--publish-official-herb-formula-foundation.md)        |
 | `master`                   | Publish English-first multilingual Alchemy names | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
-| `master`                   | Isolate concurrent Codex chats                   | Integrated locally at `6ed5351`; verified and not yet pushed                                                   | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
+| `master`                   | Isolate concurrent Codex chats                   | Integrated at `6ed5351` with continuity at `828c400`; included in the current publication                      | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
+| `master`                   | Add the Advanced Yijing Transformation Lab       | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized           | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
 
 ## Known issues and risks
 
@@ -279,6 +294,8 @@ The integrated release-aware Alchemy foundation additionally provides:
   `NEO4J_DATABASE` value from Aura's downloaded credentials; it is distinct from the username.
 - Personal BaZi, changing-line interpretation/divination, interpretive synthesis, and execution
   recommendations are inactive; structural user-selected line transformations are available.
+- Source-gated Transformation Lab modules remain unavailable by design until reviewed Zagua,
+  Eight-Palace, Yilin, or other lineage records and rights metadata are supplied.
 - Cloudflare Pages responds successfully at `https://current-flow.net` and
   `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
 - The VH page intentionally contains encrypted Lorem Ipsum and no music asset yet. Its music controls
@@ -296,19 +313,21 @@ The integrated release-aware Alchemy foundation additionally provides:
 
 ## Next priorities
 
-1. Inventory the prechunked hexagram commentary corpus by lens, source, rights, and figure, then
+1. Domain-review the Transformation Lab terminology and onboard lineage relations only from
+   reviewed, rights-eligible source inputs; keep missing modules explicitly unavailable.
+2. Inventory the prechunked hexagram commentary corpus by lens, source, rights, and figure, then
    develop source-grounded OLTRs and summaries.
-2. Define and review the deterministic Absolute Shadow transformation before implementation.
-3. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
+3. Define and review the deterministic Absolute Shadow transformation before implementation.
+4. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
    supplies both.
-4. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
+5. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-5. Domain-review the 200 derived formula English titles, 92 public formula-only material
+6. Domain-review the 200 derived formula English titles, 92 public formula-only material
    translations, the non-public excipient, and prepared-material boundaries; promote reviewed names
    and add explicit equivalence mappings without collapsing source wording.
-6. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+7. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
    mapping before stronger authority claims.
-7. Add condition, compound, and target sources such as Disease Ontology only after the live
+8. Add condition, compound, and target sources such as Disease Ontology only after the live
    herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
    deployment requirements.
 
@@ -336,6 +355,14 @@ while preserving the live Taiwan MOHW source records and formula witness text.
 - Alchemy frontend integration: [`../ALCHEMY_FRONTEND_INTEGRATION.md`](../ALCHEMY_FRONTEND_INTEGRATION.md)
 - Alchemy UI data model: [`../ALCHEMY_UI_DATA_MODEL.md`](../ALCHEMY_UI_DATA_MODEL.md)
 - Calculation sources and conventions: [`../CALCULATION_SOURCES.md`](../CALCULATION_SOURCES.md)
+- Transformation Lab product and interaction contract:
+  [`../YIJING_TRANSFORMATION_LAB.md`](../YIJING_TRANSFORMATION_LAB.md)
+- Transformation formulas and invariants:
+  [`../YIJING_TRANSFORMATIONS.md`](../YIJING_TRANSFORMATIONS.md)
+- Transformation provenance:
+  [`../YIJING_TRANSFORMATION_PROVENANCE.md`](../YIJING_TRANSFORMATION_PROVENANCE.md)
+- Transformation source-gate schema:
+  [`../YIJING_TRANSFORMATION_DATA.md`](../YIJING_TRANSFORMATION_DATA.md)
 - Deployment: [`../DEPLOYMENT.md`](../DEPLOYMENT.md)
 - Concurrent Codex work: [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md)
 - Continuity procedure: [`README.md`](README.md)
