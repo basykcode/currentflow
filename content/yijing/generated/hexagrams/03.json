@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 3,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 3,
+      "schoolId": "daoist",
+      "essence": "Patient organization of first steps and alliances gives Difficulty at the Beginning a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Difficulty at the Beginning, the central situation is new life meeting disorder at its beginning, and the commentarial evidence repeatedly emphasizes advancement, danger, and difficulty. The main danger is forcing coherence before foundations can hold, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is patient organization of first steps and alliances, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-03:aaade94e07c1"
+          ]
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-03:da344a9b410c"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-03:aaade94e07c1",
+            "daoist_2_wang_bi:hex-03:da344a9b410c"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-03:aaade94e07c1",
+            "daoist_2_wang_bi:hex-03:da344a9b410c"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-03:aaade94e07c1",
+            "daoist_2_wang_bi:hex-03:da344a9b410c"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-03:aaade94e07c1",
+            "daoist_2_wang_bi:hex-03:da344a9b410c"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-03:aaade94e07c1",
+            "daoist_2_wang_bi:hex-03:da344a9b410c"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "e403ca7c3797effdc717a358b63b20bdf808e05a58be1bc9428ffbc97149de26"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 3,
+      "schoolId": "buddhist",
+      "essence": "Patient organization of first steps and alliances gives Difficulty at the Beginning a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Difficulty at the Beginning, the central situation is new life meeting disorder at its beginning, and the commentarial evidence repeatedly emphasizes engaged, nature, and thought. The main danger is forcing coherence before foundations can hold, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is patient organization of first steps and alliances, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "title": "The Buddhist I Ching",
+          "contributors": [
+            "Chih-hsu Ou-i",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "buddhist_1_cleary:hex-03:b5f4496222a2"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-03:b5f4496222a2"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-03:b5f4496222a2"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-03:b5f4496222a2"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-03:b5f4496222a2"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-03:b5f4496222a2"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "e7da3c75b8b5f53ab7176cac38ac0af551ccbd4995b317b6e4037d68c21cc2be"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 3,
+      "schoolId": "confucian",
+      "essence": "Patient organization of first steps and alliances gives Difficulty at the Beginning a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Difficulty at the Beginning, the central situation is new life meeting disorder at its beginning, and the commentarial evidence repeatedly emphasizes difficulty, establish, and honest. The main danger is forcing coherence before foundations can hold, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is patient organization of first steps and alliances, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-03:a74679b36462"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-03:60c9fbe0687f"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-03:a74679b36462",
+            "confucian_2_legge:hex-03:60c9fbe0687f"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-03:a74679b36462",
+            "confucian_2_legge:hex-03:60c9fbe0687f"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-03:a74679b36462",
+            "confucian_2_legge:hex-03:60c9fbe0687f"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-03:a74679b36462",
+            "confucian_2_legge:hex-03:60c9fbe0687f"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-03:a74679b36462",
+            "confucian_2_legge:hex-03:60c9fbe0687f"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "b071e0f88fa5e82ab153aa20c0c58d5a985a6cd2e4ae619ec80a721f24fccb4f"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 3,
+      "schoolId": "psychological",
+      "essence": "Psychologically, Difficulty at the Beginning asks how patient organization of first steps and alliances can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Difficulty at the Beginning describes new life meeting disorder at its beginning as an experience that organizes attention, expectation, and response. The source perspectives highlight beginning, beings, and difficulty, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through forcing coherence before foundations can hold; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering patient organization of first steps and alliances. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-03:1c1bae7554e7"
+          ]
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-03:02896f0473f3"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-03:c7e68f98d808"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-03:1c1bae7554e7",
+            "psychological_2_balkin:hex-03:02896f0473f3",
+            "psychological_3_dening:hex-03:c7e68f98d808"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-03:1c1bae7554e7",
+            "psychological_2_balkin:hex-03:02896f0473f3",
+            "psychological_3_dening:hex-03:c7e68f98d808"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-03:1c1bae7554e7",
+            "psychological_2_balkin:hex-03:02896f0473f3",
+            "psychological_3_dening:hex-03:c7e68f98d808"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-03:1c1bae7554e7",
+            "psychological_2_balkin:hex-03:02896f0473f3",
+            "psychological_3_dening:hex-03:c7e68f98d808"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-03:1c1bae7554e7",
+            "psychological_2_balkin:hex-03:02896f0473f3",
+            "psychological_3_dening:hex-03:c7e68f98d808"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "5b63bd487d4e72578626849cd7cc2a56bc299e2e801d27bf86baae4a7fa3a751"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 3,
+      "schoolId": "human-design",
+      "essence": "Gate 3 frames patient organization of first steps and alliances as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 3 treats new life meeting disorder at its beginning as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Sacral Center, the Knowing Circuit, Channel 3-60, harmonic Gate 60, and emphasizes mutation, potential, and sacral in describing how its energy operates. Distortion can appear through forcing coherence before foundations can hold; differentiated expression develops as patient organization of first steps and alliances. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-03:7f0c57627c94"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-03:7f0c57627c94"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-03:7f0c57627c94"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-03:7f0c57627c94"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-03:7f0c57627c94"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-03:7f0c57627c94"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "5408373c8e892e737baa51fe3d2f13e3a83a5b3f37481db82325a4e19b42754f"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 3,
+      "schoolId": "gene-keys",
+      "essence": "Chaos opens toward Innovation, with Innocence held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 3 as a passage from Chaos through Innovation toward Innocence. Its constricted pattern can be contemplated through forcing coherence before foundations can hold, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in new life meeting disorder at its beginning, expressed here as patient organization of first steps and alliances. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Innocence remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-03:043faab68191"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-03:a9e5ae420d7d"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-03:043faab68191",
+            "gene_keys_2_rudd:hex-03:a9e5ae420d7d"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-03:043faab68191",
+            "gene_keys_2_rudd:hex-03:a9e5ae420d7d"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-03:043faab68191",
+            "gene_keys_2_rudd:hex-03:a9e5ae420d7d"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-03:043faab68191",
+            "gene_keys_2_rudd:hex-03:a9e5ae420d7d"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-03:043faab68191",
+            "gene_keys_2_rudd:hex-03:a9e5ae420d7d"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "8643948e2767ff8a7b52d272a4f46605d1f61a32880400ec976d92d1e884e88f"
+      }
+    }
+  ]
+}

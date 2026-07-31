@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 19,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-19-07",
+      "sourceHexagramNumber": 19,
+      "targetHexagramNumber": 7,
+      "changingLine": 1,
+      "theme": "Shared Loss Unseen",
+      "summary": "Companions traveling the same road each lose what they carried, while light itself seems to disappear; without visibility, recovery remains impossible.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "19-7",
+        "resolvedLocator": "19-7",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "70acf4bb89851ee92e0a3d942945929d47e31fefb8c7a0d8170bf63ca0fe954c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-19-24",
+      "sourceHexagramNumber": 19,
+      "targetHexagramNumber": 24,
+      "changingLine": 2,
+      "theme": "Untroubled Continuity",
+      "summary": "A benefit descending from above establishes steady prosperity and removes immediate danger, leaving the situation calm, open, and consistently supported.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "19-24",
+        "resolvedLocator": "19-24",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "560a8c5917715d05b8f835c320d169558c62e4757774fb2e7d7cdd197f0c9475"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-19-11",
+      "sourceHexagramNumber": 19,
+      "targetHexagramNumber": 11,
+      "changingLine": 3,
+      "theme": "Vengeance Gains Office",
+      "summary": "A wronged exile builds an alliance, returns with overwhelming retaliation, and converts satisfied vengeance into public authority, though the history behind the image remains morally costly.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "19-11",
+        "resolvedLocator": "19-11",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "214a80e101b60e5d58b5b3d7cee53af5b838222626547d87fed421e5b731a08a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-19-54",
+      "sourceHexagramNumber": 19,
+      "targetHexagramNumber": 54,
+      "changingLine": 4,
+      "theme": "Obstruction Separates Kin",
+      "summary": "Trouble arrives together with an impassable mountain barrier, making ordinary means ineffective and leaving the household divided across the blocked road.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "19-54",
+        "resolvedLocator": "19-54",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "1bba9ab5da3063c11c4359b1a6d88f1db57893fdb8da2816fa43e38e69113251"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-19-60",
+      "sourceHexagramNumber": 19,
+      "targetHexagramNumber": 60,
+      "changingLine": 5,
+      "theme": "Safety Above the Flood",
+      "summary": "Relentless rain raises the sea into charging waves; amid unstable waters, only the higher ground offers a dependable refuge.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "19-60",
+        "resolvedLocator": "19-60",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bd835bf338a1e5887838bae86bda4ac8d06337ebc0b8a73b79f9fb8600330ced"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-19-41",
+      "sourceHexagramNumber": 19,
+      "targetHexagramNumber": 41,
+      "changingLine": 6,
+      "theme": "Seasonal Withdrawal",
+      "summary": "Snakes enter shelter according to autumn’s rhythm while a royal wife returns alone to her natal state, joining necessary retreat with separation.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "19-41",
+        "resolvedLocator": "19-41",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d23761355b6eed222045fc9c3c7b68342fe3914f37b5b617f95f5221112d7e1e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

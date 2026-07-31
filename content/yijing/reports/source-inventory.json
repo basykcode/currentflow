@@ -1,0 +1,126 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedFrom": {
+    "sourceManifest": "content/yijing/source-manifest.json",
+    "schoolRegistry": "content/yijing/school-registry.json",
+    "chunkIndex": "data/hexagram-commentary/chunk-index.jsonl"
+  },
+  "corpus": {
+    "sourceDirectories": 11,
+    "rawChunkFiles": 704,
+    "ingestionEligibleChunks": 698,
+    "rejectedChunks": 6,
+    "fileFormat": "UTF-8 plain text",
+    "namingConvention": "hex_01.txt through hex_64.txt",
+    "sourceLocator": "source-relative file path plus SHA-256",
+    "rawTextDistribution": "local-only-git-ignored"
+  },
+  "sourceCountsBySchool": {
+    "buddhist": 1,
+    "confucian": 2,
+    "daoist": 2,
+    "gene-keys": 2,
+    "human-design": 1,
+    "psychological": 3
+  },
+  "rightsStatusCounts": {
+    "review-required": 7,
+    "user-supplied-internal": 4
+  },
+  "displayPolicyCounts": {
+    "summary-only": 11
+  },
+  "sourceRoles": {
+    "direct-commentary": 6,
+    "secondary-analysis": 1,
+    "translation": 4
+  },
+  "languages": {
+    "en": 11
+  },
+  "labelNormalizations": [
+    {
+      "input": "buddhism",
+      "output": "buddhist"
+    },
+    {
+      "input": "confucianism",
+      "output": "confucian"
+    },
+    {
+      "input": "daoism",
+      "output": "daoist"
+    },
+    {
+      "input": "gene-keys",
+      "output": "gene-keys"
+    },
+    {
+      "input": "human-design",
+      "output": "human-design"
+    },
+    {
+      "input": "psychology",
+      "output": "psychological"
+    }
+  ],
+  "unknownLabelsRejected": [],
+  "duplicateChunks": [],
+  "ambiguousChunks": [
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 1,
+      "chunkId": "buddhist_1_cleary:hex-01:22ff68125dab",
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 61 rather than Hexagram 1."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 5,
+      "chunkId": "buddhist_1_cleary:hex-05:479a1364627c",
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 25 rather than Hexagram 5."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 6,
+      "chunkId": "buddhist_1_cleary:hex-06:9992b35fbc0c",
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 56 rather than Hexagram 6."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 7,
+      "chunkId": "buddhist_1_cleary:hex-07:363f344c9d7d",
+      "issues": [
+        "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 57 rather than Hexagram 7."
+      ]
+    },
+    {
+      "sourceId": "buddhist_1_cleary",
+      "hexagramNumber": 17,
+      "chunkId": "buddhist_1_cleary:hex-17:d00381c43ee3",
+      "issues": [
+        "The downloaded legacy chunk contains only a chapter heading and page number."
+      ]
+    },
+    {
+      "sourceId": "confucian_2_legge",
+      "hexagramNumber": 64,
+      "chunkId": "confucian_2_legge:hex-64:4f0634434d8c",
+      "issues": [
+        "The downloaded legacy chunk is an extreme size outlier and appears to include post-hexagram material."
+      ]
+    }
+  ],
+  "transitionSources": [],
+  "yilinExcluded": true,
+  "notes": [
+    "The raw corpus remains in its documented location and was not moved or renamed.",
+    "Raw chunks are whole-hexagram files; section and line coverage are detected without rewriting the originals.",
+    "The canonical hexagram identity registry remains src/domain/astrology/hexagrams.ts."
+  ]
+}

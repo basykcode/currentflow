@@ -109,10 +109,23 @@ Current does not generate interpretive forecasts, recommended actions, personal 
 medical guidance from these factors. Those surfaces remain explicitly unavailable until a separate,
 verified and reviewable model is connected.
 
-Hexagram commentary tabs likewise remain unavailable until their pre-chunked source texts are
-reviewed and summarized. Named classical systems without accepted source data appear as
-`source-needed`; no transformation or commentary is returned until the relevant rule/table and
-source boundary are accepted.
+Hexagram commentary tabs display source-grounded editorial drafts. These are static interpretive
+syntheses, not calculations, forecasts, translations, or personal readings. Every available record
+retains evidence, source, rights, and review metadata; every automated result is labeled draft-only
+pending human review. No source passage is shipped to the browser. Eleven sources have complete
+King Wen 1-64 file coverage, including Richard John Lynn's translation of Wang Bi's *Classic of
+Changes*. Six inherited chunk anomalies are quarantined, producing five unavailable Buddhist cells.
+
+Selected line changes also show an original draft paraphrase of the corresponding source-to-result
+entry in the _Jiaoshi Yilin_. The target hexagram is computed first from the canonical bottom-to-top
+line registry; the Forest entry is joined afterward by its verified route and never determines the
+calculation. All 384 records retain locator, passage-hash, rights, and review metadata, and no source
+verse or note is shipped.
+
+Named classical systems without accepted source data appear as `source-needed`; no transformation
+or commentary is returned until the relevant rule, table, and source boundary are accepted.
+Absolute Shadow remains a visible advanced placeholder only; no transformation is returned until
+its rule is defined and accepted.
 
 ## Known verification risk
 

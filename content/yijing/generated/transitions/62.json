@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 62,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-62-55",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 55,
+      "changingLine": 1,
+      "theme": "Venom Leaves Solitude",
+      "summary": "The raised head of a poisonous snake compresses violence into a single image whose consequence is three households deprived of their partners.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "62-55",
+        "resolvedLocator": "62-55",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "21b5fe8af315aad8143c5672d2180a4bc86c21fd7d53b3b595d1b784ff9c4a11"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-62-32",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 32,
+      "changingLine": 2,
+      "theme": "Wise Counsel Admits Light",
+      "summary": "Capable assistants serve like doors and windows for authority, admitting clarity and translating benevolent action into widespread material well-being.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "62-32",
+        "resolvedLocator": "62-32",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2a573b837b65692680ba52e2859e65f85baf7e609a510e1cf3e1f6fb1cda33f9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-62-16",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 16,
+      "changingLine": 3,
+      "theme": "Greed Spoils the Gathering",
+      "summary": "Downcast participants avoid honest recognition while excessive appetite removes both profit and pleasure, leaving wine sour and food unfit.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "62-16",
+        "resolvedLocator": "62-16",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b60cf6f49cf034dee96e0dc9f0447e6a2c51e6c4366f38c3e77aacc0a53f8d95"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-62-15",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 15,
+      "changingLine": 4,
+      "theme": "Entrusted Senses Fail",
+      "summary": "Loss of hearing and smell prevents responsible attention, so sacred vessels placed in one’s care are allowed to fall into disorder.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "62-15",
+        "resolvedLocator": "62-15",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2da06d9e2800f7038dd4fbe365c4449f0e723bf1fc4fd509f69ec6db98795a82"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-62-31",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 31,
+      "changingLine": 5,
+      "theme": "Storehouses Full",
+      "summary": "An exceptional harvest fills the granary and supplies rich ceremonial grain, joining material abundance with the capacity to offer thanks.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "62-31",
+        "resolvedLocator": "62-31",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f6635b65cbb7e62e5f118aeaa73bc70f8782d45db81a2db9dc8ccd5e47712a1d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-62-56",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 56,
+      "changingLine": 6,
+      "theme": "Urgent Service Restores",
+      "summary": "A hurried royal summons reverses ordinary dress and order, yet service to a renewed eastern court allows the country to rest and recover.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "62-56",
+        "resolvedLocator": "62-56",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3a6427c81316e6a82620c18567ee65067fafe45823145ddf463ab34766d2cf8b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 28,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 28,
+      "schoolId": "daoist",
+      "essence": "Extraordinary but measured action at a critical threshold gives Preponderance of the Great a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Preponderance of the Great, the central situation is an excessive load bending the supporting structure, and the commentarial evidence repeatedly emphasizes excess, inside, and along. The main danger is maintaining ordinary methods after they cease to fit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is extraordinary but measured action at a critical threshold, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-28:a1530b46984d"
+          ]
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-28:59a21df7d45d"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-28:a1530b46984d",
+            "daoist_2_wang_bi:hex-28:59a21df7d45d"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-28:a1530b46984d",
+            "daoist_2_wang_bi:hex-28:59a21df7d45d"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-28:a1530b46984d",
+            "daoist_2_wang_bi:hex-28:59a21df7d45d"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-28:a1530b46984d",
+            "daoist_2_wang_bi:hex-28:59a21df7d45d"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-28:a1530b46984d",
+            "daoist_2_wang_bi:hex-28:59a21df7d45d"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "c78d5b8b2ea52f4447e32ac101283921c1ac03a06886d62bfcbf33ec5f0c2c3a"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 28,
+      "schoolId": "buddhist",
+      "essence": "Extraordinary but measured action at a critical threshold gives Preponderance of the Great a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Preponderance of the Great, the central situation is an excessive load bending the supporting structure, and the commentarial evidence repeatedly emphasizes buddhism, flexibility, and position. The main danger is maintaining ordinary methods after they cease to fit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is extraordinary but measured action at a critical threshold, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "title": "The Buddhist I Ching",
+          "contributors": [
+            "Chih-hsu Ou-i",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "buddhist_1_cleary:hex-28:da9e4bcaae9e"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-28:da9e4bcaae9e"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-28:da9e4bcaae9e"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-28:da9e4bcaae9e"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-28:da9e4bcaae9e"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-28:da9e4bcaae9e"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "284694bbac3626a117f7452274c2083ac034f765fe182814c0f2068f359deba3"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 28,
+      "schoolId": "confucian",
+      "essence": "Extraordinary but measured action at a critical threshold gives Preponderance of the Great a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Preponderance of the Great, the central situation is an excessive load bending the supporting structure, and the commentarial evidence repeatedly emphasizes predominance, predominates, and ridgepole. The main danger is maintaining ordinary methods after they cease to fit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is extraordinary but measured action at a critical threshold, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-28:b3dff4e2ce22"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-28:8dc0dfe19b05"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-28:b3dff4e2ce22",
+            "confucian_2_legge:hex-28:8dc0dfe19b05"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-28:b3dff4e2ce22",
+            "confucian_2_legge:hex-28:8dc0dfe19b05"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-28:b3dff4e2ce22",
+            "confucian_2_legge:hex-28:8dc0dfe19b05"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-28:b3dff4e2ce22",
+            "confucian_2_legge:hex-28:8dc0dfe19b05"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-28:b3dff4e2ce22",
+            "confucian_2_legge:hex-28:8dc0dfe19b05"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "7fcf9840e4eae60444e285dab1da0fb6ac9b5585631673f78d92f1063b6071c3"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 28,
+      "schoolId": "psychological",
+      "essence": "Psychologically, Preponderance of the Great asks how extraordinary but measured action at a critical threshold can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Preponderance of the Great describes an excessive load bending the supporting structure as an experience that organizes attention, expectation, and response. The source perspectives highlight without, finally, and movement, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through maintaining ordinary methods after they cease to fit; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering extraordinary but measured action at a critical threshold. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-28:38cc10310390"
+          ]
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-28:9deb1f3aff0d"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-28:cc441433fb0d"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-28:38cc10310390",
+            "psychological_2_balkin:hex-28:9deb1f3aff0d",
+            "psychological_3_dening:hex-28:cc441433fb0d"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-28:38cc10310390",
+            "psychological_2_balkin:hex-28:9deb1f3aff0d",
+            "psychological_3_dening:hex-28:cc441433fb0d"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-28:38cc10310390",
+            "psychological_2_balkin:hex-28:9deb1f3aff0d",
+            "psychological_3_dening:hex-28:cc441433fb0d"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-28:38cc10310390",
+            "psychological_2_balkin:hex-28:9deb1f3aff0d",
+            "psychological_3_dening:hex-28:cc441433fb0d"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-28:38cc10310390",
+            "psychological_2_balkin:hex-28:9deb1f3aff0d",
+            "psychological_3_dening:hex-28:cc441433fb0d"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "2c43f4316df2401cfb384e47515ecd77dff9e705f9da098222bc6b8a583099a7"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 28,
+      "schoolId": "human-design",
+      "essence": "Gate 28 frames extraordinary but measured action at a critical threshold as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 28 treats an excessive load bending the supporting structure as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Spleen Center, the Knowing Circuit, Channel 28-38, harmonic Gate 38, and emphasizes awareness, circuit, and individual in describing how its energy operates. Distortion can appear through maintaining ordinary methods after they cease to fit; differentiated expression develops as extraordinary but measured action at a critical threshold. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-28:89c3913d7026"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-28:89c3913d7026"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-28:89c3913d7026"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-28:89c3913d7026"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-28:89c3913d7026"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-28:89c3913d7026"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "c28270ff40a65b4bc8f68ddadac6881c0fdb9e408994a765b516b318607063fd"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 28,
+      "schoolId": "gene-keys",
+      "essence": "Purposelessness opens toward Totality, with Immortality held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 28 as a passage from Purposelessness through Totality toward Immortality. Its constricted pattern can be contemplated through maintaining ordinary methods after they cease to fit, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in an excessive load bending the supporting structure, expressed here as extraordinary but measured action at a critical threshold. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Immortality remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-28:6918b9e1d1c7"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-28:d27d8fa1661c"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-28:6918b9e1d1c7",
+            "gene_keys_2_rudd:hex-28:d27d8fa1661c"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-28:6918b9e1d1c7",
+            "gene_keys_2_rudd:hex-28:d27d8fa1661c"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-28:6918b9e1d1c7",
+            "gene_keys_2_rudd:hex-28:d27d8fa1661c"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-28:6918b9e1d1c7",
+            "gene_keys_2_rudd:hex-28:d27d8fa1661c"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-28:6918b9e1d1c7",
+            "gene_keys_2_rudd:hex-28:d27d8fa1661c"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "7e9bf7b2fe8ff991bce4c0bc5ed18e440fa8ff53835ec318464262b3ef7b46eb"
+      }
+    }
+  ]
+}

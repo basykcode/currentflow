@@ -1,0 +1,454 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at_utc": "2026-07-30T00:35:54Z",
+  "purpose": "Local source corpus prepared for source-grounded hexagram OLTR and commentary-summary work. It is not connected to the runtime UI.",
+  "layout": {
+    "encoding": "UTF-8",
+    "order": "King Wen 1-64",
+    "path_pattern": "chunked/{source_id}/hex_{hexagram:02d}.txt",
+    "chunk_index": "chunk-index.jsonl"
+  },
+  "distribution_policy": {
+    "chunk_text": "local-only-git-ignored",
+    "metadata_and_hashes": "trackable",
+    "reason": "The corpus contains copyrighted, user-provided books and legacy full-text chunks whose redistribution rights have not been cleared."
+  },
+  "reference_corpus": {
+    "repository_url": "https://github.com/BenKalish42/current-almanac",
+    "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+    "imported_source_count": 7
+  },
+  "summary": {
+    "source_records": 11,
+    "chunked_sources": 11,
+    "blocked_sources": 0,
+    "chunk_files": 704,
+    "ingestion_eligible_chunks": 698,
+    "needs_review_chunks": 6
+  },
+  "sources": [
+    {
+      "source_id": "buddhist_1_cleary",
+      "lens": "buddhism",
+      "source_sequence": 1,
+      "title": "The Buddhist I Ching",
+      "contributors": [
+        "Chih-hsu Ou-i",
+        "Thomas Cleary (translator)"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "needs-review",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 59,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/buddhist_1_cleary/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "d415845aafdca42469c8471899f48190ce60b56eafc6925146de39dd716f7aac",
+      "total_characters": 268701,
+      "minimum_chunk_characters": 16,
+      "maximum_chunk_characters": 8181,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/buddhist_1_cleary",
+        "imported_byte_for_byte": true
+      },
+      "issues": [
+        {
+          "hexagram": 1,
+          "issues": [
+            "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 61 rather than Hexagram 1."
+          ]
+        },
+        {
+          "hexagram": 5,
+          "issues": [
+            "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 25 rather than Hexagram 5."
+          ]
+        },
+        {
+          "hexagram": 6,
+          "issues": [
+            "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 56 rather than Hexagram 6."
+          ]
+        },
+        {
+          "hexagram": 7,
+          "issues": [
+            "The downloaded legacy chunk is misidentified: its heading and content belong to Hexagram 57 rather than Hexagram 7."
+          ]
+        },
+        {
+          "hexagram": 17,
+          "issues": [
+            "The downloaded legacy chunk contains only a chapter heading and page number."
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "confucian_1_cleary",
+      "lens": "confucianism",
+      "source_sequence": 1,
+      "title": "I Ching: The Book of Change",
+      "contributors": [
+        "Thomas Cleary (translator)"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/confucian_1_cleary/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "5bcd38d505df724e8ceb53c0c5f251972f269952abe8509f7edb840947acaa15",
+      "total_characters": 134297,
+      "minimum_chunk_characters": 1324,
+      "maximum_chunk_characters": 14551,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/confucian_1_cleary",
+        "imported_byte_for_byte": true
+      },
+      "issues": []
+    },
+    {
+      "source_id": "confucian_2_legge",
+      "lens": "confucianism",
+      "source_sequence": 2,
+      "title": "I Ching: The Book of Changes",
+      "contributors": [
+        "James Legge (translator)"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "needs-review",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 63,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/confucian_2_legge/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "72e0f3e425e86da064c39ea34323db546964ac8072a91f87b13e503cdd9b0f10",
+      "total_characters": 716032,
+      "minimum_chunk_characters": 2799,
+      "maximum_chunk_characters": 426428,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/confucian_2_legge",
+        "imported_byte_for_byte": true
+      },
+      "issues": [
+        {
+          "hexagram": 64,
+          "issues": [
+            "The downloaded legacy chunk is an extreme size outlier and appears to include post-hexagram material."
+          ]
+        }
+      ]
+    },
+    {
+      "source_id": "daoist_1_cleary",
+      "lens": "daoism",
+      "source_sequence": 1,
+      "title": "The Taoist I Ching",
+      "contributors": [
+        "Liu I-ming",
+        "Thomas Cleary (translator)"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/daoist_1_cleary/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "b2fa7c506971872dd0051e72e2b03fec8eb27f8380c827ae3f05c6747728bea4",
+      "total_characters": 504473,
+      "minimum_chunk_characters": 5496,
+      "maximum_chunk_characters": 11091,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/daoist_1_cleary",
+        "imported_byte_for_byte": true
+      },
+      "issues": []
+    },
+    {
+      "source_id": "gene_keys_1_rudd",
+      "lens": "gene-keys",
+      "source_sequence": 1,
+      "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+      "contributors": [
+        "Richard Rudd"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/gene_keys_1_rudd/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "834a3a8b5559dac17b75c1d64a2d22fa187dd57a4553d106d757ab21cb577a82",
+      "total_characters": 1645336,
+      "minimum_chunk_characters": 17986,
+      "maximum_chunk_characters": 89448,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/gene_keys_1_rudd",
+        "imported_byte_for_byte": true
+      },
+      "issues": []
+    },
+    {
+      "source_id": "human_design_1_ra",
+      "lens": "human-design",
+      "source_sequence": 1,
+      "title": "The Complete Rave I'Ching",
+      "contributors": [
+        "Ra Uru Hu"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/human_design_1_ra/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "a611ff5c078f5833a44ba54072a71c80904c38f0e9b7d8fdc4bf0f054f75466d",
+      "total_characters": 271807,
+      "minimum_chunk_characters": 3435,
+      "maximum_chunk_characters": 5394,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/human_design_1_ra",
+        "imported_byte_for_byte": true
+      },
+      "issues": []
+    },
+    {
+      "source_id": "psychological_1_wilhelm",
+      "lens": "psychology",
+      "source_sequence": 1,
+      "title": "The I Ching or Book of Changes",
+      "contributors": [
+        "Richard Wilhelm",
+        "Cary F. Baynes (translator)"
+      ],
+      "format": "legacy-text-chunks",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/psychological_1_wilhelm/hex_{hexagram:02d}.txt",
+      "extraction_method": "Byte-for-byte import from the public reference corpus.",
+      "input_sha256": null,
+      "chunk_bundle_sha256": "667b9913f49f735268ea7e26b5920af98e34fee58c255d83ec0c7a7c6b4e9351",
+      "total_characters": 574652,
+      "minimum_chunk_characters": 5246,
+      "maximum_chunk_characters": 53864,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "repository_url": "https://github.com/BenKalish42/current-almanac",
+        "repository_commit": "ed959364eba06e2d41d51f7655e381a7bf97fd19",
+        "repository_path": "data/chunked/psychological_1_wilhelm",
+        "imported_byte_for_byte": true
+      },
+      "issues": []
+    },
+    {
+      "source_id": "daoist_2_wang_bi",
+      "lens": "daoism",
+      "source_sequence": 2,
+      "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+      "contributors": [
+        "Wang Bi",
+        "Richard John Lynn (translator)"
+      ],
+      "format": "epub",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/daoist_2_wang_bi/hex_{hexagram:02d}.txt",
+      "extraction_method": "EPUB spine traversal; direct body sections split at the explicit 'HEXAGRAM N' markers in the four hexagram-commentary XHTML files.",
+      "input_sha256": "4ca45dfbeed387116f19c9e3f1f5a73bc37388646ed901b3129bcd45f9afd556",
+      "chunk_bundle_sha256": "1b15461cd5a6b56240f9afac46b0a46488b039270db1b6d7452ad42d9c0fdb1a",
+      "total_characters": 835475,
+      "minimum_chunk_characters": 6813,
+      "maximum_chunk_characters": 28716,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "provided_by": "workspace user",
+        "source_filename_recorded": false,
+        "local_path_recorded": false
+      },
+      "issues": []
+    },
+    {
+      "source_id": "psychological_2_balkin",
+      "lens": "psychology",
+      "source_sequence": 2,
+      "title": "The Laws of Change: I Ching and the Philosophy of Life",
+      "contributors": [
+        "Jack M. Balkin"
+      ],
+      "format": "epub",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/psychological_2_balkin/hex_{hexagram:02d}.txt",
+      "extraction_method": "EPUB spine traversal; one XHTML chapter whose first heading identifies each hexagram.",
+      "input_sha256": "60b4ce71653ae6df3e00cb9cb561049f9a0c4a7e7b8f7d094bef1776fe578f1b",
+      "chunk_bundle_sha256": "8465f2abd738fcd1f4fab9a19767b2c6ef7f9dfe3584a34af18c6ac85481ecf9",
+      "total_characters": 884322,
+      "minimum_chunk_characters": 9923,
+      "maximum_chunk_characters": 18664,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "provided_by": "workspace user",
+        "source_filename_recorded": false,
+        "local_path_recorded": false
+      },
+      "issues": []
+    },
+    {
+      "source_id": "psychological_3_dening",
+      "lens": "psychology",
+      "source_sequence": 3,
+      "title": "The Everyday I Ching",
+      "contributors": [
+        "Sarah Dening"
+      ],
+      "format": "pdf",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/psychological_3_dening/hex_{hexagram:02d}.txt",
+      "extraction_method": "PDF outline boundaries; text extracted from each numbered bookmark up to the next bookmark.",
+      "input_sha256": "bbb614d342ef4943bf1922b35a9bb7f552743bf24e71b7e300fa753293a803e6",
+      "chunk_bundle_sha256": "37d0bd1b8b0816a61d1d6da1c797f72fa103cb19bbb2d95ed42474486aee29ec",
+      "total_characters": 210836,
+      "minimum_chunk_characters": 2760,
+      "maximum_chunk_characters": 3949,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "provided_by": "workspace user",
+        "source_filename_recorded": false,
+        "local_path_recorded": false
+      },
+      "issues": []
+    },
+    {
+      "source_id": "gene_keys_2_rudd",
+      "lens": "gene-keys",
+      "source_sequence": 2,
+      "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+      "contributors": [
+        "Richard Rudd"
+      ],
+      "format": "epub",
+      "status": "ready",
+      "hexagram_mappable": true,
+      "chunk_count": 64,
+      "ready_chunk_count": 64,
+      "coverage": {
+        "scheme": "King Wen",
+        "first": 1,
+        "last": 64
+      },
+      "path_pattern": "chunked/gene_keys_2_rudd/hex_{hexagram:02d}.txt",
+      "extraction_method": "EPUB spine traversal; one XHTML chapter headed 'Gene Key N' for each numbered key.",
+      "input_sha256": "492ea164d3027de80a9e12475f5108cfc97c29ef38b1178f9fffa318fc552f3a",
+      "chunk_bundle_sha256": "7d8dbfa79ff20c461715fe351d05853042d1a699aaeeb9c48a09b5ea5893bca0",
+      "total_characters": 986916,
+      "minimum_chunk_characters": 9672,
+      "maximum_chunk_characters": 29829,
+      "rights_status": "user-provided-local-review-required",
+      "distribution": "local-only",
+      "provenance": {
+        "provided_by": "workspace user",
+        "source_filename_recorded": false,
+        "local_path_recorded": false
+      },
+      "issues": []
+    }
+  ]
+}

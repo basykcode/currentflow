@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 48,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-48-05",
+      "sourceHexagramNumber": 48,
+      "targetHexagramNumber": 5,
+      "changingLine": 1,
+      "theme": "Every Land Opens",
+      "summary": "Skilled guidance makes passage possible across the whole realm, leading toward a country where joy and wealth can establish a lasting home.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "48-5",
+        "resolvedLocator": "48-5",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "eaa9b9651fb406ae710afbad6a4d307b95ab4d3fc8493288ffd2d6d2c156adb7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-48-39",
+      "sourceHexagramNumber": 48,
+      "targetHexagramNumber": 39,
+      "changingLine": 2,
+      "theme": "Practice Meets Its Mark",
+      "summary": "Young nobles train with simple weapons and consistently reach their targets, linking disciplined skill with the household’s growing resources.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "48-39",
+        "resolvedLocator": "48-39",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "fb7c01bf648f7eb124cdc4cd98e6c8c2c7a45a047e5fec47ba4bbf3a4e59a342"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-48-29",
+      "sourceHexagramNumber": 48,
+      "targetHexagramNumber": 29,
+      "changingLine": 3,
+      "theme": "Appetite Enters the Snare",
+      "summary": "An irresistible scent draws the rat into a deliberately prepared trap, where desire narrows attention until escape is no longer possible.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "48-29",
+        "resolvedLocator": "48-29",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0fdefcb0be8e58c81b0f86c369180af48eb4e914931cabe81e4539ab3e80c3f8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-48-28",
+      "sourceHexagramNumber": 48,
+      "targetHexagramNumber": 28,
+      "changingLine": 4,
+      "theme": "Leadership Enters the Battle",
+      "summary": "The legendary archer aims at a celestial threat while formal alarms fail, so the general and soldiers personally enter a deadly field.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "48-28",
+        "resolvedLocator": "48-28",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ed5792e66d1eaa5a380ce9310cc76e1414eb72bc5b8021204d3dfee37fe93b9b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-48-46",
+      "sourceHexagramNumber": 48,
+      "targetHexagramNumber": 46,
+      "changingLine": 5,
+      "theme": "Founding Work Lasts",
+      "summary": "Careful planning establishes a capital whose order supports many generations, allowing benefit to endure across centuries without the place being brought low.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "48-46",
+        "resolvedLocator": "48-46",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a477e47c002d845871da607e519541f70dd1d7aff06e509831d8e88e98d2c14a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-48-57",
+      "sourceHexagramNumber": 48,
+      "targetHexagramNumber": 57,
+      "changingLine": 6,
+      "theme": "Season Fills the Stores",
+      "summary": "Spring growth extends through summer branching as living beings reproduce, converting seasonal vitality into abundance stored for later use.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "48-57",
+        "resolvedLocator": "48-57",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f851c2b72fbb79aebdbedc9faafed02106b9a998f53373048a4e9a5303d1643a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

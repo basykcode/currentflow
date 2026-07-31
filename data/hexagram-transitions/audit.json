@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at_utc": "2026-07-30T23:38:31Z",
+  "passed": true,
+  "source_id": "transition_1_jiaoshi_yilin_gait",
+  "source_sha256": "36edbf053c4f739564b161eecc41a5f50c0e39b40e12ca126522651270a5e946",
+  "checks": [
+    {
+      "name": "source-identity",
+      "passed": true,
+      "detail": "EPUB package title and front-matter edition identity match Christopher Gait's Forest of Changes."
+    },
+    {
+      "name": "matrix-completeness",
+      "passed": true,
+      "detail": "Exactly one record exists for every 64×64 source-target locator."
+    },
+    {
+      "name": "line-change-selection",
+      "passed": true,
+      "detail": "All 384 one-line targets were derived from the canonical bottom-to-top line registry."
+    },
+    {
+      "name": "cross-reference-resolution",
+      "passed": true,
+      "detail": "Resolved 20 matrix cross-references, including 4 selected one-line transitions."
+    },
+    {
+      "name": "distribution-boundary",
+      "passed": true,
+      "detail": "Protected verses and notes are written only beneath the Git-ignored internal research boundary."
+    }
+  ],
+  "counts": {
+    "matrix_records": 4096,
+    "matrix_cross_references": 20,
+    "footnotes_indexed": 2322,
+    "selected_line_transitions": 384,
+    "selected_cross_references": 4,
+    "selected_unresolved": 0
+  },
+  "known_source_cautions": [
+    "The translator describes the work as a first complete Western-language translation rather than a critical academic variorum.",
+    "The source contains extensive duplicate verses and explicit cross-references; a repeated image is not treated as unique evidence.",
+    "Traditional attribution to Jiao Yanshou is disputed within the supplied edition."
+  ]
+}

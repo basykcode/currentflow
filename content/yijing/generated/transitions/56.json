@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 56,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-56-30",
+      "sourceHexagramNumber": 56,
+      "targetHexagramNumber": 30,
+      "changingLine": 1,
+      "theme": "Stricken Midway",
+      "summary": "Perception, speech, and coordinated movement fail together, leaving the traveler incapacitated on the ground before the course can be completed.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "56-30",
+        "resolvedLocator": "56-30",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "32d36134783d7db9ad3c4c5788f82004bb4083275ff9a76903f688f010afba40"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-56-50",
+      "sourceHexagramNumber": 56,
+      "targetHexagramNumber": 50,
+      "changingLine": 2,
+      "theme": "Cultivation Precedes Commission",
+      "summary": "Personal virtue matures while waiting for office, then a royal encounter reveals capability and leads to teaching authority and a lasting fief.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "56-50",
+        "resolvedLocator": "56-50",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4ac9d4e673b4352b683eccbb6c785a0f839ca93b24ee08f70cb047288a38d017"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-56-35",
+      "sourceHexagramNumber": 56,
+      "targetHexagramNumber": 35,
+      "changingLine": 3,
+      "theme": "Fragile Shelter in the Wind",
+      "summary": "Small birds build carefully from slender materials, but even a mild breeze unsettles the nest and colder conditions turn instability into constant anxiety.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "56-35",
+        "resolvedLocator": "56-35",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ae49be711edb1ec8fec1e709bd859ca5a08f45198442b99d5c6a2f7f02016cc5"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-56-52",
+      "sourceHexagramNumber": 56,
+      "targetHexagramNumber": 52,
+      "changingLine": 4,
+      "theme": "Harmonious Lineage",
+      "summary": "A well-matched couple cares for one another, and their mutual harmony extends into many descendants and durable family joy.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "56-52",
+        "resolvedLocator": "56-52",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d25987118f3b458264d80a2197445061bd254e552e7685bc60b4e0e8383bccd4"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-56-33",
+      "sourceHexagramNumber": 56,
+      "targetHexagramNumber": 33,
+      "changingLine": 5,
+      "theme": "Stolen Authority Turns Violent",
+      "summary": "An apparition claims imperial clothing without merit and gathers destructive forces, while a supernatural warning precedes the injury that follows.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "56-33",
+        "resolvedLocator": "56-33",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "795e79d5ca9cb0c4afde15ae46936cb1aea371f2fef4d8ca6f8bae7738f675f0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-56-62",
+      "sourceHexagramNumber": 56,
+      "targetHexagramNumber": 62,
+      "changingLine": 6,
+      "theme": "Recognition Resolves Confusion",
+      "summary": "A splendid but solitary night journey meets a superior whose steady presence clarifies uncertainty and releases accumulated worry.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "56-62",
+        "resolvedLocator": "56-62",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "27ac2cfd1736bce0fd6b7baadde1b23d5181885dd0f6c35c1d2b61ea13105e54"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

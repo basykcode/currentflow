@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 55,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 55,
+      "schoolId": "daoist",
+      "essence": "Decisive stewardship of a brief, illuminated moment gives Abundance a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Abundance, the central situation is abundance peaking under conditions of intensity, and the commentarial evidence repeatedly emphasizes illumination, action, and gradual. The main danger is fullness becoming confusion, excess, or fear of decline, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is decisive stewardship of a brief, illuminated moment, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-55:93e38b28db2e"
+          ]
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-55:53875484f910"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-55:93e38b28db2e",
+            "daoist_2_wang_bi:hex-55:53875484f910"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-55:93e38b28db2e",
+            "daoist_2_wang_bi:hex-55:53875484f910"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-55:93e38b28db2e",
+            "daoist_2_wang_bi:hex-55:53875484f910"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-55:93e38b28db2e",
+            "daoist_2_wang_bi:hex-55:53875484f910"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-55:93e38b28db2e",
+            "daoist_2_wang_bi:hex-55:53875484f910"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "68882de9893fa974e0bcab376d050343ad3f2a7f9803b7c99b134619df23e8c2"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 55,
+      "schoolId": "buddhist",
+      "essence": "Decisive stewardship of a brief, illuminated moment gives Abundance a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Abundance, the central situation is abundance peaking under conditions of intensity, and the commentarial evidence repeatedly emphasizes right, action, and meeting. The main danger is fullness becoming confusion, excess, or fear of decline, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is decisive stewardship of a brief, illuminated moment, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "title": "The Buddhist I Ching",
+          "contributors": [
+            "Chih-hsu Ou-i",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "buddhist_1_cleary:hex-55:2d9e0102b6a8"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-55:2d9e0102b6a8"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-55:2d9e0102b6a8"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-55:2d9e0102b6a8"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-55:2d9e0102b6a8"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-55:2d9e0102b6a8"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "a6d37da2160a3265fa6fc3d8d2e81f89e052e404a6621ce82412ef1953b6786b"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 55,
+      "schoolId": "confucian",
+      "essence": "Decisive stewardship of a brief, illuminated moment gives Abundance a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Abundance, the central situation is abundance peaking under conditions of intensity, and the commentarial evidence repeatedly emphasizes abundance, midpoint, and kings. The main danger is fullness becoming confusion, excess, or fear of decline, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is decisive stewardship of a brief, illuminated moment, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-55:14a901a12157"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-55:a7d75d6eba0a"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-55:14a901a12157",
+            "confucian_2_legge:hex-55:a7d75d6eba0a"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-55:14a901a12157",
+            "confucian_2_legge:hex-55:a7d75d6eba0a"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-55:14a901a12157",
+            "confucian_2_legge:hex-55:a7d75d6eba0a"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-55:14a901a12157",
+            "confucian_2_legge:hex-55:a7d75d6eba0a"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-55:14a901a12157",
+            "confucian_2_legge:hex-55:a7d75d6eba0a"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "325729d15dfb47f494d1a212cef9215f51209fe6e3f505e1eca97ebd543bb723"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 55,
+      "schoolId": "psychological",
+      "essence": "Psychologically, Abundance asks how decisive stewardship of a brief, illuminated moment can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Abundance describes abundance peaking under conditions of intensity as an experience that organizes attention, expectation, and response. The source perspectives highlight abundance, attains, and midday, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through fullness becoming confusion, excess, or fear of decline; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering decisive stewardship of a brief, illuminated moment. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-55:1f1b6d4c5b31"
+          ]
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-55:f6ea0ead197f"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-55:523fa07c2823"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-55:1f1b6d4c5b31",
+            "psychological_2_balkin:hex-55:f6ea0ead197f",
+            "psychological_3_dening:hex-55:523fa07c2823"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-55:1f1b6d4c5b31",
+            "psychological_2_balkin:hex-55:f6ea0ead197f",
+            "psychological_3_dening:hex-55:523fa07c2823"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-55:1f1b6d4c5b31",
+            "psychological_2_balkin:hex-55:f6ea0ead197f",
+            "psychological_3_dening:hex-55:523fa07c2823"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-55:1f1b6d4c5b31",
+            "psychological_2_balkin:hex-55:f6ea0ead197f",
+            "psychological_3_dening:hex-55:523fa07c2823"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-55:1f1b6d4c5b31",
+            "psychological_2_balkin:hex-55:f6ea0ead197f",
+            "psychological_3_dening:hex-55:523fa07c2823"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "55c14a88971839acee6cfc55e0d5902ddaed9dceb39ed9b20bc79eef88a387b6"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 55,
+      "schoolId": "human-design",
+      "essence": "Gate 55 frames decisive stewardship of a brief, illuminated moment as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 55 treats abundance peaking under conditions of intensity as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Solar Center, the Knowing Circuit, Channel 55-39, harmonic Gate 39, and emphasizes spirit, abundance, and potential in describing how its energy operates. Distortion can appear through fullness becoming confusion, excess, or fear of decline; differentiated expression develops as decisive stewardship of a brief, illuminated moment. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-55:f01aacdb8347"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-55:f01aacdb8347"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-55:f01aacdb8347"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-55:f01aacdb8347"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-55:f01aacdb8347"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-55:f01aacdb8347"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "acace8cd3573977991087af3d81bec0252284442436d29f67ccc49a136ae0893"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 55,
+      "schoolId": "gene-keys",
+      "essence": "Victimisation opens toward Freedom, with Freedom held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 55 as a passage from Victimisation through Freedom toward Freedom. Its constricted pattern can be contemplated through fullness becoming confusion, excess, or fear of decline, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in abundance peaking under conditions of intensity, expressed here as decisive stewardship of a brief, illuminated moment. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Freedom remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-55:1d64243ab57b"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-55:bdc86337dc83"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-55:1d64243ab57b",
+            "gene_keys_2_rudd:hex-55:bdc86337dc83"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-55:1d64243ab57b",
+            "gene_keys_2_rudd:hex-55:bdc86337dc83"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-55:1d64243ab57b",
+            "gene_keys_2_rudd:hex-55:bdc86337dc83"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-55:1d64243ab57b",
+            "gene_keys_2_rudd:hex-55:bdc86337dc83"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-55:1d64243ab57b",
+            "gene_keys_2_rudd:hex-55:bdc86337dc83"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "2d181fded47862613e74ddbe39bb412b7ca43f382113d4818adb0be06293a976"
+      }
+    }
+  ]
+}

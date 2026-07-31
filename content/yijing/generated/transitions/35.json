@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 35,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-35-21",
+      "sourceHexagramNumber": 35,
+      "targetHexagramNumber": 21,
+      "changingLine": 1,
+      "theme": "The Base Controls the Crown",
+      "summary": "An overgrown tail cannot be directed by the smaller body above it, portraying subordinate power that has become stronger than its nominal ruler.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "35-21",
+        "resolvedLocator": "35-21",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "e601c8786350676ced7dd6628e51e43216dbe502846efc4a218556481e127393"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-35-64",
+      "sourceHexagramNumber": 35,
+      "targetHexagramNumber": 64,
+      "changingLine": 2,
+      "theme": "Defense Without Coherence",
+      "summary": "An army gathered to protect the capital instead wanders without root or direction, increasing the danger and distress of those it was meant to secure.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "35-64",
+        "resolvedLocator": "35-64",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "736255c9d388cf98ddd353400eb9d6faf1937b38c1b1a31526f15d809fbcc23a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-35-56",
+      "sourceHexagramNumber": 35,
+      "targetHexagramNumber": 56,
+      "changingLine": 3,
+      "theme": "Direction Reversed",
+      "summary": "The traveler mistakes east for west and loses every cardinal bearing, straying far enough that both route and official identity fall away.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "35-56",
+        "resolvedLocator": "35-56",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "e857d8d4f72dc1bf3e4a08b8d90dd1de8b3a1bba231b78372d2dd3f3bfef76e2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-35-23",
+      "sourceHexagramNumber": 35,
+      "targetHexagramNumber": 23,
+      "changingLine": 4,
+      "theme": "Mandate Establishes Renown",
+      "summary": "A sacred birth founds a dynasty whose reputation spreads outward and whose achievement endures across the whole realm.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "35-23",
+        "resolvedLocator": "35-23",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "403e14e4f25da4cbe60a24ef26fa5b0d6d2be950c0ab3b1dde928269e28b2615"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-35-12",
+      "sourceHexagramNumber": 35,
+      "targetHexagramNumber": 12,
+      "changingLine": 5,
+      "theme": "Cold Enters the Heart",
+      "summary": "Northern wind, snow, and gathering ice externalize an inner condition of grief, leaving the mind troubled and unable to find warmth.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "35-12",
+        "resolvedLocator": "35-12",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0f0b57c59d23e0b5876d4cba534589ecb4a4cbd61c8321b20d90d5ffabc186ee"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-35-16",
+      "sourceHexagramNumber": 35,
+      "targetHexagramNumber": 16,
+      "changingLine": 6,
+      "theme": "Consumption Ruins Production",
+      "summary": "Insects devour the leaves required for silk, so the cloth cannot be completed and scarcity raises its value beyond ordinary reach.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "35-16",
+        "resolvedLocator": "35-16",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "42765881ed6f09e851d5cf4a27f9f49a922049a17dcf966dfa8cd98d32470609"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

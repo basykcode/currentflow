@@ -1,0 +1,517 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 6,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 6,
+      "schoolId": "daoist",
+      "essence": "Clear boundaries, mediation, and timely withdrawal gives Conflict a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Conflict, the central situation is divergent claims hardening into conflict, and the commentarial evidence repeatedly emphasizes contention, danger, and beneficial. The main danger is pursuing vindication beyond the useful limit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is clear boundaries, mediation, and timely withdrawal, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-06:ef9a6bc14a44"
+          ]
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-06:0c3bd5e4263c"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-06:ef9a6bc14a44",
+            "daoist_2_wang_bi:hex-06:0c3bd5e4263c"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-06:ef9a6bc14a44",
+            "daoist_2_wang_bi:hex-06:0c3bd5e4263c"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-06:ef9a6bc14a44",
+            "daoist_2_wang_bi:hex-06:0c3bd5e4263c"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-06:ef9a6bc14a44",
+            "daoist_2_wang_bi:hex-06:0c3bd5e4263c"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-06:ef9a6bc14a44",
+            "daoist_2_wang_bi:hex-06:0c3bd5e4263c"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "5d55bc58b24a2feb2695e084c6eca13c4583cf4438d60a23874d7b64c209a260"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 6,
+      "schoolId": "buddhist",
+      "essence": "",
+      "summary": "",
+      "evidenceMode": "insufficient",
+      "sourcesUsed": [],
+      "sentenceSupport": [],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 0,
+        "directSourceCount": 0,
+        "chunkCount": 0
+      },
+      "rights": {
+        "publicationEligibility": "blocked",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "blocked",
+        "issues": [
+          "No eligible evidence remains for this cell; quarantined source record(s): buddhist_1_cleary."
+        ]
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "0c874fe90149b7edb9e5700689423be587b152030bb8ab6ce6ab41de4e6f3a78"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 6,
+      "schoolId": "confucian",
+      "essence": "Clear boundaries, mediation, and timely withdrawal gives Conflict a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Conflict, the central situation is divergent claims hardening into conflict, and the commentarial evidence repeatedly emphasizes contention, balance, and worthwhile. The main danger is pursuing vindication beyond the useful limit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is clear boundaries, mediation, and timely withdrawal, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-06:f195abf7bc25"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-06:8a7796e454ca"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-06:f195abf7bc25",
+            "confucian_2_legge:hex-06:8a7796e454ca"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-06:f195abf7bc25",
+            "confucian_2_legge:hex-06:8a7796e454ca"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-06:f195abf7bc25",
+            "confucian_2_legge:hex-06:8a7796e454ca"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-06:f195abf7bc25",
+            "confucian_2_legge:hex-06:8a7796e454ca"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-06:f195abf7bc25",
+            "confucian_2_legge:hex-06:8a7796e454ca"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "59266f198de79489cea5352c5d0c95ab71069ced38c2c1c04c802dfe595ae02d"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 6,
+      "schoolId": "psychological",
+      "essence": "Psychologically, Conflict asks how clear boundaries, mediation, and timely withdrawal can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Conflict describes divergent claims hardening into conflict as an experience that organizes attention, expectation, and response. The source perspectives highlight conflict, brings, and cautious, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through pursuing vindication beyond the useful limit; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering clear boundaries, mediation, and timely withdrawal. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-06:1ba3e39dedfc"
+          ]
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-06:1905fb6259db"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-06:b25c0ea598eb"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-06:1ba3e39dedfc",
+            "psychological_2_balkin:hex-06:1905fb6259db",
+            "psychological_3_dening:hex-06:b25c0ea598eb"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-06:1ba3e39dedfc",
+            "psychological_2_balkin:hex-06:1905fb6259db",
+            "psychological_3_dening:hex-06:b25c0ea598eb"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-06:1ba3e39dedfc",
+            "psychological_2_balkin:hex-06:1905fb6259db",
+            "psychological_3_dening:hex-06:b25c0ea598eb"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-06:1ba3e39dedfc",
+            "psychological_2_balkin:hex-06:1905fb6259db",
+            "psychological_3_dening:hex-06:b25c0ea598eb"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-06:1ba3e39dedfc",
+            "psychological_2_balkin:hex-06:1905fb6259db",
+            "psychological_3_dening:hex-06:b25c0ea598eb"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "a3a69a2ae2ebd93d15776b19d3569ef15d66f17e22a7475eac7045abc8c4ab0b"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 6,
+      "schoolId": "human-design",
+      "essence": "Gate 6 frames clear boundaries, mediation, and timely withdrawal as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 6 treats divergent claims hardening into conflict as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Solar Center, the Defence Circuit, Channel 59-6, harmonic Gate 59, and emphasizes awareness, defense, and genetic in describing how its energy operates. Distortion can appear through pursuing vindication beyond the useful limit; differentiated expression develops as clear boundaries, mediation, and timely withdrawal. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-06:5d595fff3183"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-06:5d595fff3183"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-06:5d595fff3183"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-06:5d595fff3183"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-06:5d595fff3183"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-06:5d595fff3183"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "33adaf0f82ee4c3ed717bf60fb04f8e2dd212ac83109f748d78ac135068a1ce4"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 6,
+      "schoolId": "gene-keys",
+      "essence": "Conflict opens toward Diplomacy, with Peace held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 6 as a passage from Conflict through Diplomacy toward Peace. Its constricted pattern can be contemplated through pursuing vindication beyond the useful limit, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in divergent claims hardening into conflict, expressed here as clear boundaries, mediation, and timely withdrawal. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Peace remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-06:5b7fe713e5d8"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-06:230cc050ea7c"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-06:5b7fe713e5d8",
+            "gene_keys_2_rudd:hex-06:230cc050ea7c"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-06:5b7fe713e5d8",
+            "gene_keys_2_rudd:hex-06:230cc050ea7c"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-06:5b7fe713e5d8",
+            "gene_keys_2_rudd:hex-06:230cc050ea7c"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-06:5b7fe713e5d8",
+            "gene_keys_2_rudd:hex-06:230cc050ea7c"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-06:5b7fe713e5d8",
+            "gene_keys_2_rudd:hex-06:230cc050ea7c"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "18caff0352979229e6e54b3a838abd4ab3b4d498094508d9ecce1e5de835ec35"
+      }
+    }
+  ]
+}

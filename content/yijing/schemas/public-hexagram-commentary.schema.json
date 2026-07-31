@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://current-flow.local/schemas/public-hexagram-commentary.schema.json",
+  "title": "Public hexagram commentary bundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "contentVersion", "hexagramNumber", "summaries"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "contentVersion": { "type": "string", "minLength": 1 },
+    "hexagramNumber": { "type": "integer", "minimum": 1, "maximum": 64 },
+    "summaries": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "$ref": "#/$defs/summary" }
+    }
+  },
+  "$defs": {
+    "summary": {
+      "type": "object",
+      "required": [
+        "schemaVersion",
+        "contentVersion",
+        "hexagramNumber",
+        "schoolId",
+        "essence",
+        "summary",
+        "evidenceMode",
+        "sourcesUsed",
+        "sentenceSupport",
+        "coverage",
+        "rights",
+        "review",
+        "generation"
+      ],
+      "properties": {
+        "schemaVersion": { "const": "1.0.0" },
+        "contentVersion": { "type": "string" },
+        "hexagramNumber": { "type": "integer", "minimum": 1, "maximum": 64 },
+        "schoolId": {
+          "enum": ["daoist", "buddhist", "confucian", "psychological", "human-design", "gene-keys"]
+        },
+        "essence": { "type": "string" },
+        "summary": { "type": "string" },
+        "sourceTensionNote": { "type": "string" },
+        "evidenceMode": {
+          "enum": ["multi-source-direct", "single-source-direct", "direct-plus-framework", "framework-applied", "insufficient"]
+        },
+        "sourcesUsed": { "type": "array", "items": { "type": "object" } },
+        "sentenceSupport": { "type": "array", "items": { "type": "object" } },
+        "coverage": { "type": "object" },
+        "rights": {
+          "type": "object",
+          "required": ["publicationEligibility", "quotationIncluded"],
+          "properties": {
+            "publicationEligibility": { "enum": ["publishable", "draft-only", "internal-only", "blocked"] },
+            "quotationIncluded": { "const": false }
+          }
+        },
+        "review": {
+          "type": "object",
+          "required": ["status", "issues"],
+          "properties": {
+            "status": { "enum": ["generated", "qa-passed", "human-approved", "needs-revision", "blocked"] },
+            "issues": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "generation": { "type": "object" }
+      }
+    }
+  }
+}

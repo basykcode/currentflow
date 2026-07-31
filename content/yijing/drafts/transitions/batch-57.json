@@ -1,0 +1,439 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "batchStart": 57,
+  "transitions": [
+    {
+      "transitionId": "forest-57-09",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 9,
+      "changingLine": 1,
+      "sourcePassageSha256": "9ac03ae92798e6d42e48ebe08de2f42074ab39cf68019906f38717ef3c497eb3",
+      "theme": "Perception Completely Blocked",
+      "summary": "With sight and hearing both obstructed, movement loses every orienting signal and falls directly into a depth covered by compounded misfortune."
+    },
+    {
+      "transitionId": "forest-57-53",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 53,
+      "changingLine": 2,
+      "sourcePassageSha256": "7f811148998dd583c72df530327d5702e323c9796bbe43cae5b30f01dc03c947",
+      "theme": "Narrow Concern Blocks Vision",
+      "summary": "A self-defeating viewpoint hides the larger sky while attention remains trapped in small concerns, allowing favorable opportunity to escape unnoticed."
+    },
+    {
+      "transitionId": "forest-57-59",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 59,
+      "changingLine": 3,
+      "sourcePassageSha256": "a9d6a378d91387036901e337fbf11da719b5b070a511b9e56a7e6eabbc5d6af0",
+      "theme": "Purification Before Rule",
+      "summary": "Before assuming authority, the culture hero journeys to a sacred mountain and bathes at dawn, making clarified character the preparation for governance."
+    },
+    {
+      "transitionId": "forest-57-44",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 44,
+      "changingLine": 4,
+      "sourcePassageSha256": "4bd68bf68f039f5001586408bf633e397c58bcc0fa7fc7a89d61fad72252da51",
+      "theme": "Expansive Skillful Commerce",
+      "summary": "A dragon-borne journey meets profitable opportunity, successful capture, and a widening market whose activity settles into durable civic peace."
+    },
+    {
+      "transitionId": "forest-57-18",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 18,
+      "changingLine": 5,
+      "sourcePassageSha256": "982ea85aeb96898d40e72b132b83563a3d45c3ba76e169228fe14dde8b653123",
+      "theme": "Disorder Enters the Ruler’s House",
+      "summary": "Authority fails when reckless intimacy and family chaos reach the political center, culminating in a concealed attack and the ruler’s death."
+    },
+    {
+      "transitionId": "forest-57-48",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 48,
+      "changingLine": 6,
+      "sourcePassageSha256": "ff6d54d89e11ee577dd45c6239cf0d0a58f74cb728258db71f45953bce2af58e",
+      "theme": "Bridges Washed Away",
+      "summary": "Mountain floods remove the structures that connect the road, trapping the traveler where forceful water has replaced passage with misery."
+    },
+    {
+      "transitionId": "forest-58-47",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 47,
+      "changingLine": 1,
+      "sourcePassageSha256": "10ceec81c40e000a5814bc94c06ef387d1f50b0cbba96068e2fa7ba73d521eba",
+      "theme": "One House Left Exposed",
+      "summary": "Fire surrounds the mountain while needed moisture fails to arrive, leaving an isolated household without the communal protection its neighbors require."
+    },
+    {
+      "transitionId": "forest-58-17",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 17,
+      "changingLine": 2,
+      "sourcePassageSha256": "f230104d6ec64009990deabbb80c96b6fb0bd6a7d9e4ab1689f9133acf3003d9",
+      "theme": "Fear Prevents Resistance",
+      "summary": "Age, weakness, and comparison magnify perceived danger until the threatened creatures surrender their capacity to contend before any fight begins."
+    },
+    {
+      "transitionId": "forest-58-43",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 43,
+      "changingLine": 3,
+      "sourcePassageSha256": "28060b16ab0fcf51b4cce381777f83e566ab61ca87a7e5c36202daef1bb43fd2",
+      "theme": "Intimacy in a Narrow Place",
+      "summary": "Kin and a well-matched young pair meet within a confined lane, where shared music turns close quarters into sociable connection."
+    },
+    {
+      "transitionId": "forest-58-60",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 60,
+      "changingLine": 4,
+      "sourcePassageSha256": "4ec873637efe320ea8dad1cc6dcff689a0cb439e21419c82e685baf4581c86fc",
+      "theme": "Brief Life Leaves Grief",
+      "summary": "An early death transforms companionship into absence, leaving the surviving wife to carry the sorrow of a partnership abruptly cut short."
+    },
+    {
+      "transitionId": "forest-58-54",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 54,
+      "changingLine": 5,
+      "sourcePassageSha256": "190d5ca471bc9743bc2c5ec599f123dfddeb056beca2e7ff51e611249b5ae5bf",
+      "theme": "Cultivated Threat Returns",
+      "summary": "Raising predators creates danger close to home and courts self-destruction, though the corrupt closing lines leave the final outcome uncertain rather than complete."
+    },
+    {
+      "transitionId": "forest-58-10",
+      "sourceHexagramNumber": 58,
+      "targetHexagramNumber": 10,
+      "changingLine": 6,
+      "sourcePassageSha256": "74451a00508c1eb87b8d640bc926462441d8af3588881b62deb083f432309d93",
+      "theme": "Rain Ruins Poor Soil",
+      "summary": "A weak field produces a thin and irregular crop, then excessive rain rots even that small yield while containers fill uselessly with water."
+    },
+    {
+      "transitionId": "forest-59-61",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 61,
+      "changingLine": 1,
+      "sourcePassageSha256": "353c0e2681f651664c0c1e7679bf31e6a07bde480f2c653591a7f3f58e0e19ed",
+      "theme": "Words Without Trust",
+      "summary": "Force cannot move the resistant sheep, and speech cannot move those who disbelieve it; frustration twists inward until failed influence becomes personal danger."
+    },
+    {
+      "transitionId": "forest-59-20",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 20,
+      "changingLine": 2,
+      "sourcePassageSha256": "48493f28b0f2c5dea711b59c73ca2e84bce5d998eb55734d8fb1dee99c617d2d",
+      "theme": "Union Without Capacity",
+      "summary": "Two impaired creatures join forces, but shared limitation cannot create the missing ability, so their combined desire still remains unrealized."
+    },
+    {
+      "transitionId": "forest-59-57",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 57,
+      "changingLine": 3,
+      "sourcePassageSha256": "05f27bb7d9c96a08cf4fa8b454528579354399ffe1d18b1815766f6a79d6abe1",
+      "theme": "Worth Without Standing",
+      "summary": "A capable and attractive suitor lacks wealth and reputation, so the family chooses a coarser match and lives with enduring regret."
+    },
+    {
+      "transitionId": "forest-59-06",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 6,
+      "changingLine": 4,
+      "sourcePassageSha256": "b0ecbe7cac1fc51d7db2cf3798a899c608d2708de3f560b0f0b0d990706989b1",
+      "theme": "Unnatural Sign and Invasion",
+      "summary": "An impossible birth at an astrologically charged hour signals a world out of order, followed by invasion and the flight of an uncertain ruler."
+    },
+    {
+      "transitionId": "forest-59-04",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 4,
+      "changingLine": 5,
+      "sourcePassageSha256": "721f79f15138f20e9ed6c660c2f1c2927f64cfc21f4960e9d127ea4b56dc2884",
+      "theme": "Misfortune Reverses",
+      "summary": "The direction of events turns from disaster toward favor, with blessing entering the household and previously obstructed action reaching completion."
+    },
+    {
+      "transitionId": "forest-59-29",
+      "sourceHexagramNumber": 59,
+      "targetHexagramNumber": 29,
+      "changingLine": 6,
+      "sourcePassageSha256": "72eb7dac65a782a42535dabe037749b89c8ea11d906f11bd0d87b43f6b687a63",
+      "theme": "Virtue Breaks Encirclement",
+      "summary": "A teacher survives repeated political confinement, and principled conduct ultimately proves stronger than the forces surrounding him and opens a way out."
+    },
+    {
+      "transitionId": "forest-60-29",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 29,
+      "changingLine": 1,
+      "sourcePassageSha256": "da01bf647e99d74484e5980e490bbd16660b84e56da0797d344f0f7ec355ad6f",
+      "theme": "Predators Block the Roads",
+      "summary": "Organized predators attack livestock and close the routes, harming cultivation and exchange together by making movement unsafe for every livelihood."
+    },
+    {
+      "transitionId": "forest-60-03",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 3,
+      "changingLine": 2,
+      "sourcePassageSha256": "2cc148d4749a1c2d3a6297103ee3adb48f10d32b18e901669568fbec2ae49e31",
+      "theme": "Longing Under Scarcity",
+      "summary": "Dreams repeatedly supply the meal that waking life withholds, while fear of insufficiency reflects a livelihood narrowly apportioned."
+    },
+    {
+      "transitionId": "forest-60-05",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 5,
+      "changingLine": 3,
+      "sourcePassageSha256": "443a0b9d2cf5ba66318a80a88ae654713bcb7ef6393297aab3827fbe464a7427",
+      "theme": "The Guest Displaces the Young",
+      "summary": "A foreign chick occupies another bird’s nest while inner and outer relationships rebel, and the original young are driven from their own shelter."
+    },
+    {
+      "transitionId": "forest-60-58",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 58,
+      "changingLine": 4,
+      "sourcePassageSha256": "856941c6eb1748c159286b76bd1013b9df0f2386e8600793f3bc927bd55c9d18",
+      "theme": "Mastery Makes Passage Safe",
+      "summary": "Renowned ministers guide a powerful chariot through every border and direction, making disciplined skill the condition for travel without disaster."
+    },
+    {
+      "transitionId": "forest-60-19",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 19,
+      "changingLine": 5,
+      "sourcePassageSha256": "60dc431fa726a1effe643d0b0733ebbc13695293c539968a2d7c4f2d38f86b3f",
+      "theme": "Vice Forfeits Protection",
+      "summary": "Waste, appetite, stinginess, and greed estrange a person from both celestial and earthly support until the household itself fills with hostile influences."
+    },
+    {
+      "transitionId": "forest-60-61",
+      "sourceHexagramNumber": 60,
+      "targetHexagramNumber": 61,
+      "changingLine": 6,
+      "sourcePassageSha256": "6557ccd1dd04ffd62e3ff66ed831899a82661e58207c4e779b61096df81042eb",
+      "theme": "Quickness Finds Abundance",
+      "summary": "Rivers and seas hold precious materials and large fish in plenty, but prosperity belongs to the person agile enough to recognize and gather them."
+    },
+    {
+      "transitionId": "forest-61-59",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 59,
+      "changingLine": 1,
+      "sourcePassageSha256": "b87eeecd99b84059f710408b314411177e5514e9f91ab8dab065b1d2a661bd8d",
+      "theme": "Years Out of Season",
+      "summary": "Repeatedly unfavorable timing accumulates trouble, loss, and worry across the years, leaving old age burdened with unresolved grief."
+    },
+    {
+      "transitionId": "forest-61-42",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 42,
+      "changingLine": 2,
+      "sourcePassageSha256": "6dc9cb8f60afb595da8a6fe3257116685d990c88ee3fbf0a37a1e7c9842b81be",
+      "theme": "Seeking Yet Remaining Alone",
+      "summary": "A lifelong search for partnership continues without fulfillment, and repeated hope does not alter the enduring solitary condition."
+    },
+    {
+      "transitionId": "forest-61-09",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 9,
+      "changingLine": 3,
+      "sourcePassageSha256": "b568e3a1c6ab02124bd88244a574553f04b1d19cac5a88f90ca07b15e461f18a",
+      "theme": "Illumined Ancestral Legacy",
+      "summary": "Solar birds rise over the eastern sea as descendants receive territory, linking cosmic brightness with a lineage of long-held position and resources."
+    },
+    {
+      "transitionId": "forest-61-10",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 10,
+      "changingLine": 4,
+      "sourcePassageSha256": "06e18d1ee2a438772a3e5534530ad61b3a36c188cf73fbb62a27423bbd28809f",
+      "theme": "Recognition at Dusk",
+      "summary": "Mutual regard becomes an approach and clasped hands, while fading light still permits the travelers to recognize an elder sister."
+    },
+    {
+      "transitionId": "forest-61-41",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 41,
+      "changingLine": 5,
+      "sourcePassageSha256": "55e6afc138cf903f8ba68abe98cd8106dee90dbb7502b3691b08c1a4948e1d52",
+      "theme": "Wisdom Withdraws",
+      "summary": "When the sage hides far from public life, auspicious creatures also disappear or depart, leaving disturbance to rise without restraint."
+    },
+    {
+      "transitionId": "forest-61-60",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 60,
+      "changingLine": 6,
+      "sourcePassageSha256": "c735a8ce725bbef65c80fb004a4e3c21fff6c15e2a896b014e855a0f2c56dcf0",
+      "theme": "Trade Without Possession",
+      "summary": "After an uncertain start, the road becomes visible, yet purchased animals and received goods immediately escape, leaving only emptiness, blame, and resentment."
+    },
+    {
+      "transitionId": "forest-62-55",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 55,
+      "changingLine": 1,
+      "sourcePassageSha256": "21b5fe8af315aad8143c5672d2180a4bc86c21fd7d53b3b595d1b784ff9c4a11",
+      "theme": "Venom Leaves Solitude",
+      "summary": "The raised head of a poisonous snake compresses violence into a single image whose consequence is three households deprived of their partners."
+    },
+    {
+      "transitionId": "forest-62-32",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 32,
+      "changingLine": 2,
+      "sourcePassageSha256": "2a573b837b65692680ba52e2859e65f85baf7e609a510e1cf3e1f6fb1cda33f9",
+      "theme": "Wise Counsel Admits Light",
+      "summary": "Capable assistants serve like doors and windows for authority, admitting clarity and translating benevolent action into widespread material well-being."
+    },
+    {
+      "transitionId": "forest-62-16",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 16,
+      "changingLine": 3,
+      "sourcePassageSha256": "b60cf6f49cf034dee96e0dc9f0447e6a2c51e6c4366f38c3e77aacc0a53f8d95",
+      "theme": "Greed Spoils the Gathering",
+      "summary": "Downcast participants avoid honest recognition while excessive appetite removes both profit and pleasure, leaving wine sour and food unfit."
+    },
+    {
+      "transitionId": "forest-62-15",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 15,
+      "changingLine": 4,
+      "sourcePassageSha256": "2da06d9e2800f7038dd4fbe365c4449f0e723bf1fc4fd509f69ec6db98795a82",
+      "theme": "Entrusted Senses Fail",
+      "summary": "Loss of hearing and smell prevents responsible attention, so sacred vessels placed in one’s care are allowed to fall into disorder."
+    },
+    {
+      "transitionId": "forest-62-31",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 31,
+      "changingLine": 5,
+      "sourcePassageSha256": "f6635b65cbb7e62e5f118aeaa73bc70f8782d45db81a2db9dc8ccd5e47712a1d",
+      "theme": "Storehouses Full",
+      "summary": "An exceptional harvest fills the granary and supplies rich ceremonial grain, joining material abundance with the capacity to offer thanks."
+    },
+    {
+      "transitionId": "forest-62-56",
+      "sourceHexagramNumber": 62,
+      "targetHexagramNumber": 56,
+      "changingLine": 6,
+      "sourcePassageSha256": "3a6427c81316e6a82620c18567ee65067fafe45823145ddf463ab34766d2cf8b",
+      "theme": "Urgent Service Restores",
+      "summary": "A hurried royal summons reverses ordinary dress and order, yet service to a renewed eastern court allows the country to rest and recover."
+    },
+    {
+      "transitionId": "forest-63-39",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 39,
+      "changingLine": 1,
+      "sourcePassageSha256": "6ea95046d04a46e182229a01e488d7e8a92714ba8c78d2287f46507b8753a111",
+      "theme": "Communion Beyond Trouble",
+      "summary": "Rare food and elixir accompany fellowship with immortals, presenting a sustained interval in which ordinary sorrow and disaster no longer intrude."
+    },
+    {
+      "transitionId": "forest-63-05",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 5,
+      "changingLine": 2,
+      "sourcePassageSha256": "29a2e2c92f20e4c03fac71b7ff2b47e8a72c7559437afc108f7dab99be592bcc",
+      "theme": "Darkness Reveals a Counselor",
+      "summary": "A radiant black dragon turns obscurity bright, and a royal hunt discovers the great person whose arrival will animate the armies."
+    },
+    {
+      "transitionId": "forest-63-03",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 3,
+      "changingLine": 3,
+      "sourcePassageSha256": "9f2f5ccdc5ccd6de8bfa091e9c45c75667090b8e4659af9b322010ad8de1cd62",
+      "theme": "Restraint Releases Disorder",
+      "summary": "A person without principle bursts outward when limits loosen, scattering the surrounding group and ultimately losing the family that provided belonging."
+    },
+    {
+      "transitionId": "forest-63-49",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 49,
+      "changingLine": 4,
+      "sourcePassageSha256": "7869c1c58aaf0a0fad2f804fbe9d0717af4483e76a28b4fb46ea1719223e614a",
+      "theme": "Humane Rule Nourishes Peace",
+      "summary": "Heavenly sweetness descends and the earth receives it, while benevolent rulers convert that reciprocity into recurring years of public peace."
+    },
+    {
+      "transitionId": "forest-63-36",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 36,
+      "changingLine": 5,
+      "sourcePassageSha256": "6708ecd2e0df9c19de342f1cfb5e64b0a5d5c263ea26ae2e6422f95944c842ac",
+      "theme": "Baited Appetite",
+      "summary": "Fish and turtles follow attractive food into hooks and nets, where unexamined appetite converts an apparent gain into capture and death."
+    },
+    {
+      "transitionId": "forest-63-37",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 37,
+      "changingLine": 6,
+      "sourcePassageSha256": "703162320838ad03d5ac1a40a56852b8a6771ded7d3344c136d67ffecbdfef89",
+      "theme": "War Written in the Sky",
+      "summary": "Fierce planets, wandering constellations, weapons, and glaring tigers accumulate into a landscape charged with confrontation before battle begins."
+    },
+    {
+      "transitionId": "forest-64-38",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 38,
+      "changingLine": 1,
+      "sourcePassageSha256": "ea5b61edcf7333d6730da349c2321c0fac144465e21537df27c6a7e8b865f09e",
+      "theme": "Invaders Meet Mobilized Power",
+      "summary": "An assault on the capital challenges dynastic supremacy, but full military mobilization reverses the attack and defeats the opposing ruler."
+    },
+    {
+      "transitionId": "forest-64-35",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 35,
+      "changingLine": 2,
+      "sourcePassageSha256": "010481e4944b585bde96874f2d86afe0b07801f730546e30214d67bb789553a8",
+      "theme": "Escape Amid Predation and Drought",
+      "summary": "Birds flee harmful shadow while a thief watches vulnerable women for advantage; drought and illness widen the atmosphere of exploitation and distress."
+    },
+    {
+      "transitionId": "forest-64-50",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 50,
+      "changingLine": 3,
+      "sourcePassageSha256": "9e79c40ec57d253e4d6faa9e2d8e195808da68f827871e30dcfa1aa95ded6296",
+      "theme": "Hospitality Becomes Deluge",
+      "summary": "Dark clouds gather around thirsty powers and a formally offered drink, but measured hospitality expands beyond proportion into unending rain."
+    },
+    {
+      "transitionId": "forest-64-04",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 4,
+      "changingLine": 4,
+      "sourcePassageSha256": "dcb390eb2a89c3091dcd25020d7a887c24b1082918e1a61fcbdc397bc25be83c",
+      "theme": "Frozen Emptiness at the Gate",
+      "summary": "Severe cold, sorrow, and missing offerings deprive the household of warmth and nourishment, allowing an unsettled spirit to haunt the threshold."
+    },
+    {
+      "transitionId": "forest-64-06",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 6,
+      "changingLine": 5,
+      "sourcePassageSha256": "94afb4fe177408c0b63bc7bc8c67e5d06a0dd1afe163d42a1f6bfba22d4910a9",
+      "theme": "Paired Omens Bring Peace",
+      "summary": "Joined creatures arrive in pairs as signs of expanded perception and influence, bringing civic harmony upward into the hall and intimacy into the bedchamber."
+    },
+    {
+      "transitionId": "forest-64-40",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 40,
+      "changingLine": 6,
+      "sourcePassageSha256": "aae79de62d982da34b0dc8a68577cad97b1685ca1935f62f66b31811c36ee19b",
+      "theme": "Repairing the Breach",
+      "summary": "Water breaks through its barrier and creates urgent distress, while a practical planting is used to reinforce the damaged place and contain further harm."
+    }
+  ]
+}

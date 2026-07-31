@@ -52,6 +52,10 @@ Jiaoshi Yilin is a directed `(fromHexagram, toHexagram)` transition record. It m
 static endpoint commentary, reconstructed from memory, or treated as available because a target
 hexagram exists.
 
+The Base single-line selector joins its calculated result to a 384-route Forest subset only after
+both ordered endpoints are known. Those original paraphrases remain visibly draft-only and do not
+claim the complete 64 × 64 Yilin module is available.
+
 No raw or normalized commentary evidence is bundled into the SPA. Any later commentary connection
 must use the public generated commentary contract, preserve its own content/provenance identifiers,
 and remain independent of structural calculation.

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 55,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-55-62",
+      "sourceHexagramNumber": 55,
+      "targetHexagramNumber": 62,
+      "changingLine": 1,
+      "theme": "Trap Fully Closed",
+      "summary": "Net and mechanism close together around struggling prey, and frantic movement cannot reopen any path once the capture is complete.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "55-62",
+        "resolvedLocator": "55-62",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ed68ece6826e978fe57efc9294a0f31c99cd3e1d22c2b307405a23091b8d922b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-55-34",
+      "sourceHexagramNumber": 55,
+      "targetHexagramNumber": 34,
+      "changingLine": 2,
+      "theme": "Faulty Offering and Footing",
+      "summary": "An improperly made sacrifice leaves the basket empty, while injured animals face a mountain ascent where weakened footing makes a fall likely.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "55-34",
+        "resolvedLocator": "55-34",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2d937fa561389bf76dac9ef4735828b04da9f674ea8330d1ca59a130817b538b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-55-51",
+      "sourceHexagramNumber": 55,
+      "targetHexagramNumber": 51,
+      "changingLine": 3,
+      "theme": "Enchantment Forgets the Roots",
+      "summary": "Pleasure and fascination draw a ruler eastward until ancestral and parental bonds fade from attention and the return is indefinitely delayed.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "55-51",
+        "resolvedLocator": "55-51",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "63b6e32243c9360759156e542be89da1b5edaaffb9899e40bcc864fe79e0cc64"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-55-36",
+      "sourceHexagramNumber": 55,
+      "targetHexagramNumber": 36,
+      "changingLine": 4,
+      "theme": "Reconciliation Pleases the Mother",
+      "summary": "An extraordinary bird enters a worthy country and settles conflict among siblings, restoring family harmony around the mother’s happiness.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "55-36",
+        "resolvedLocator": "55-36",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a0387d95d806fb72d656c4702e0df84c599c91837ed9c04dd9a59cfe0227d53f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-55-49",
+      "sourceHexagramNumber": 55,
+      "targetHexagramNumber": 49,
+      "changingLine": 5,
+      "theme": "Homeless Spirit Loses Favor",
+      "summary": "A wandering ghost survives in another temple by stealing neglected offerings, but hostile encounter removes even this precarious source of blessing.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "55-49",
+        "resolvedLocator": "55-49",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b78ca5605e34f786e4d73798cb2fcaf4e43cc8c62a20ca071193b2a1dc9e72f0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-55-30",
+      "sourceHexagramNumber": 55,
+      "targetHexagramNumber": 30,
+      "changingLine": 6,
+      "theme": "Weather Wastes the Crop",
+      "summary": "Frost and snow arrive outside the crop’s tolerance, destroying wheat, nullifying labor, and leaving the household without food.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "55-30",
+        "resolvedLocator": "55-30",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ab1e145af47de84f04421f74672bbd68893455786a284ecaaf620deb689b2e8c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

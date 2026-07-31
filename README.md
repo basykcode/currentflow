@@ -19,9 +19,12 @@ Every hexagram shown in Astrology, related relationships, or the library opens t
 workspace. It exposes verified Chinese identity and pinyin, upper/lower trigrams, compact structural
 transformations, and the official Gene Keys Shadow/Gift/Siddhi vocabulary. Its Advanced
 Transformation Lab adds provenance-aware symmetry, interior, all-destination, path, sequence, and
-structural analysis while keeping unconnected lineage sources visibly unavailable. The six future
-commentary lenses remain explicitly unavailable until their reviewed source texts and OLTRs are
-connected.
+structural analysis while keeping unconnected lineage sources visibly unavailable. Six lazy-loaded
+commentary lenses provide source-grounded draft OLTRs and summaries with evidence mode, source
+disclosure, and explicit unavailable states. They are original synthesis prose, visibly require
+human review, and never bundle protected source passages. Selecting a changing line reveals a
+linked preview of its relating hexagram plus a concise, draft-only description of that exact
+source-to-result route based on the _Jiaoshi Yilin_, with its source locator and review status.
 
 ## Local setup
 
@@ -105,10 +108,16 @@ are described in
 - `npm run lint` — run ESLint
 - `npm run format` — format source and documentation
 - `npm run test:unit` — run Vitest unit tests
-- `npm run check` — type-check, lint, unit test, and production build
+- `npm run check` — type-check, lint, unit tests, workspace tests, commentary and transition validation, and production build
 - `npm run workspace:doctor` / `workspace:status` — verify or inspect Codex worktree isolation
 - `npm run workspace:dev` — start Vite on the current chat's leased port
 - `npm run workspace:alchemy -- <action>` — manage this chat's isolated Alchemy stack and data tools
+- `npm run transitions:prepare -- --source <epub>` — rebuild local Forest transition evidence
+- `npm run transitions:build-public` / `transitions:validate` — build and validate 384 line-change summaries
+- `npm run commentary:prepare` — rebuild local normalized evidence, digests, packets, and coverage
+- `npm run commentary:generate-drafts` — generate resumable eight-hexagram draft batches
+- `npm run commentary:build-public` — build rights-safe public commentary JSON
+- `npm run commentary:validate` / `commentary:review` — validate all 384 cells and write review reports
 - `npm run alchemy:up` / `alchemy:down` — start or stop local Neo4j and API
 - `npm run alchemy:migrate` / `alchemy:seed` — apply graph migrations and seed fictional demo data
 - `npm run alchemy:check` — run backend formatting, lint, typing, tests, and contract checks
@@ -127,6 +136,9 @@ src/providers       swappable data adapters
 src/stores          shared preferences, identity, and transient inspector state
 src/views           route-level composition
 scripts/codex       per-chat worktree leases and isolated runtime commands
+content/yijing      school and Forest drafts, public bundles, registries, and reports
+scripts/transitions Forest matrix preparation, line-summary build, and QA commands
+scripts/commentary  evidence preparation, synthesis, public build, and QA commands
 docs                product, architecture, integration, and deployment notes
 public              local metadata assets
 ```
@@ -142,7 +154,12 @@ session handoffs preserve rationale and operational history without relying on c
 Astrology's global temporal facts are calculated locally. `lunar-javascript` supplies the four
 GanZhi pillars, a versioned 60 Jia Zi to 64 Da Gua table supplies their hexagrams, and a cited
 two-hour table supplies the organ period. Interpretive forecasts and activity recommendations remain
-explicitly unavailable. See [`docs/CALCULATION_SOURCES.md`](docs/CALCULATION_SOURCES.md) and
+explicitly unavailable. Hexagram school commentaries are static, source-grounded editorial drafts,
+and single-line changes can display static, source-grounded Forest summaries. Neither is a forecast
+or personal reading. See
+[`docs/HEXAGRAM_COMMENTARY_PIPELINE.md`](docs/HEXAGRAM_COMMENTARY_PIPELINE.md),
+[`docs/HEXAGRAM_TRANSITION_COMMENTARY.md`](docs/HEXAGRAM_TRANSITION_COMMENTARY.md),
+[`docs/CALCULATION_SOURCES.md`](docs/CALCULATION_SOURCES.md), and
 [`docs/DATA_INTEGRATION.md`](docs/DATA_INTEGRATION.md).
 
 Alchemy demo knowledge uses `demo`, `conflicted`, `incomplete`, and `unavailable` data statuses plus
@@ -168,5 +185,5 @@ git push -u origin master
 
 ## Next integration points
 
-Add cross-library solar-term boundary fixtures, introduce a separate personal BaZi contract, and
-connect constrained synthesis only after authoritative inputs and provenance are available.
+Human-review the generated hexagram commentary, repair the quarantined Buddhist records, add
+cross-library solar-term boundary fixtures, and introduce a separate personal BaZi contract.

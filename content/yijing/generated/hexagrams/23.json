@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 23,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 23,
+      "schoolId": "daoist",
+      "essence": "Protecting the essential through a season of loss gives Splitting Apart a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Splitting Apart, the central situation is support eroding until what is unsound falls away, and the commentarial evidence repeatedly emphasizes essence, principle, and stripping. The main danger is resisting an unavoidable stripping-down, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is protecting the essential through a season of loss, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-23:7a3cc91df4ec"
+          ]
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-23:d21dd6b8ceb0"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-23:7a3cc91df4ec",
+            "daoist_2_wang_bi:hex-23:d21dd6b8ceb0"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-23:7a3cc91df4ec",
+            "daoist_2_wang_bi:hex-23:d21dd6b8ceb0"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-23:7a3cc91df4ec",
+            "daoist_2_wang_bi:hex-23:d21dd6b8ceb0"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-23:7a3cc91df4ec",
+            "daoist_2_wang_bi:hex-23:d21dd6b8ceb0"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-23:7a3cc91df4ec",
+            "daoist_2_wang_bi:hex-23:d21dd6b8ceb0"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "6aee3f5fa949f49c5faf1fdf5c7f56ae1e7003e533d9a5687d14490faa431b0c"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 23,
+      "schoolId": "buddhist",
+      "essence": "Protecting the essential through a season of loss gives Splitting Apart a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Splitting Apart, the central situation is support eroding until what is unsound falls away, and the commentarial evidence repeatedly emphasizes refers, stripping, and terms. The main danger is resisting an unavoidable stripping-down, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is protecting the essential through a season of loss, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "title": "The Buddhist I Ching",
+          "contributors": [
+            "Chih-hsu Ou-i",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "buddhist_1_cleary:hex-23:cce23c9c5187"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-23:cce23c9c5187"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-23:cce23c9c5187"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-23:cce23c9c5187"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-23:cce23c9c5187"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-23:cce23c9c5187"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "7afaaf8f576d0dfeb3aa3d06340c56c1c8d580c812dc1e46d12fd5ee712cf89f"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 23,
+      "schoolId": "confucian",
+      "essence": "Protecting the essential through a season of loss gives Splitting Apart a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Splitting Apart, the central situation is support eroding until what is unsound falls away, and the commentarial evidence repeatedly emphasizes stripping, advantageous, and anywhere. The main danger is resisting an unavoidable stripping-down, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is protecting the essential through a season of loss, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-23:cf8882a2e15f"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-23:586876508145"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-23:cf8882a2e15f",
+            "confucian_2_legge:hex-23:586876508145"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-23:cf8882a2e15f",
+            "confucian_2_legge:hex-23:586876508145"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-23:cf8882a2e15f",
+            "confucian_2_legge:hex-23:586876508145"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-23:cf8882a2e15f",
+            "confucian_2_legge:hex-23:586876508145"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-23:cf8882a2e15f",
+            "confucian_2_legge:hex-23:586876508145"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "5c62d94a415eddc12d464d4253aef0857851950ffe77d5dfb6524b8f7215be94"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 23,
+      "schoolId": "psychological",
+      "essence": "Psychologically, Splitting Apart asks how protecting the essential through a season of loss can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Splitting Apart describes support eroding until what is unsound falls away as an experience that organizes attention, expectation, and response. The source perspectives highlight apart, decay, and light, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through resisting an unavoidable stripping-down; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering protecting the essential through a season of loss. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-23:59140e18eb8a"
+          ]
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-23:4204dc747cac"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-23:40ccf2330c5b"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-23:59140e18eb8a",
+            "psychological_2_balkin:hex-23:4204dc747cac",
+            "psychological_3_dening:hex-23:40ccf2330c5b"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-23:59140e18eb8a",
+            "psychological_2_balkin:hex-23:4204dc747cac",
+            "psychological_3_dening:hex-23:40ccf2330c5b"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-23:59140e18eb8a",
+            "psychological_2_balkin:hex-23:4204dc747cac",
+            "psychological_3_dening:hex-23:40ccf2330c5b"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-23:59140e18eb8a",
+            "psychological_2_balkin:hex-23:4204dc747cac",
+            "psychological_3_dening:hex-23:40ccf2330c5b"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-23:59140e18eb8a",
+            "psychological_2_balkin:hex-23:4204dc747cac",
+            "psychological_3_dening:hex-23:40ccf2330c5b"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "d79d43e46bbe75eb161e472d70399e479b59b5915c244d3cd3ea2d4e1226c216"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 23,
+      "schoolId": "human-design",
+      "essence": "Gate 23 frames protecting the essential through a season of loss as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 23 treats support eroding until what is unsound falls away as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Throat Center, the Knowing Circuit, Channel 43-23, harmonic Gate 43, and emphasizes insight, individual, and assimilation in describing how its energy operates. Distortion can appear through resisting an unavoidable stripping-down; differentiated expression develops as protecting the essential through a season of loss. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-23:713a9775715c"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-23:713a9775715c"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-23:713a9775715c"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-23:713a9775715c"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-23:713a9775715c"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-23:713a9775715c"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "9d69c6ba1b53d81a32c06f3d19663746bc692891a78c099f8df3a835463a3781"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 23,
+      "schoolId": "gene-keys",
+      "essence": "Complexity opens toward Simplicity, with Quintessence held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 23 as a passage from Complexity through Simplicity toward Quintessence. Its constricted pattern can be contemplated through resisting an unavoidable stripping-down, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in support eroding until what is unsound falls away, expressed here as protecting the essential through a season of loss. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Quintessence remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-23:2ba8cb53e626"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-23:9e4cd718a3c7"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-23:2ba8cb53e626",
+            "gene_keys_2_rudd:hex-23:9e4cd718a3c7"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-23:2ba8cb53e626",
+            "gene_keys_2_rudd:hex-23:9e4cd718a3c7"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-23:2ba8cb53e626",
+            "gene_keys_2_rudd:hex-23:9e4cd718a3c7"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-23:2ba8cb53e626",
+            "gene_keys_2_rudd:hex-23:9e4cd718a3c7"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-23:2ba8cb53e626",
+            "gene_keys_2_rudd:hex-23:9e4cd718a3c7"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "b3dd6066fb5bab603ecbdaebb9756a42458af4f7552ec34e38f1b2fc4bbc35f0"
+      }
+    }
+  ]
+}

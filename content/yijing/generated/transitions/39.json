@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 39,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-39-63",
+      "sourceHexagramNumber": 39,
+      "targetHexagramNumber": 63,
+      "changingLine": 1,
+      "theme": "Burdened Through Obstacles",
+      "summary": "Repeated streams and hills reduce strong cattle to a crawl and prevent vehicles from carrying full loads, leaving desired results beyond reach.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "39-63",
+        "resolvedLocator": "39-63",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "970dced40755dbe7b9d4fb353463f3f75b0d14882bf8a2b15888812171867172"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-39-48",
+      "sourceHexagramNumber": 39,
+      "targetHexagramNumber": 48,
+      "changingLine": 2,
+      "theme": "Purity Outside Office",
+      "summary": "A person leaves home and a disordered society behind, carrying necessities while refusing public position in order to preserve private integrity.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "39-48",
+        "resolvedLocator": "39-48",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "099fd8c09d0b9e365a2ca534b0d639a95d1c13e8dc6b3c6b3890a60d6fa9d6d1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-39-08",
+      "sourceHexagramNumber": 39,
+      "targetHexagramNumber": 8,
+      "changingLine": 3,
+      "theme": "Desire Entangles the Journey",
+      "summary": "A ruler’s transgressive relationship drives relentless travel and regret, binding movement to conduct that cannot settle into an honorable return.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "39-8",
+        "resolvedLocator": "39-8",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "600fc9bd4505300d331a72abd1f99e902848ba0bfde27a3c57dac141fb31b008"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-39-31",
+      "sourceHexagramNumber": 39,
+      "targetHexagramNumber": 31,
+      "changingLine": 4,
+      "theme": "Alignment Becomes Eclipse",
+      "summary": "Two great lights occupy the same path and blot one another out, while collapsing peaks transform stable heights into flooded valleys.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "39-31",
+        "resolvedLocator": "39-31",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "21d88128df8be1c942343e3e71212baefb8b1be793cb74b569a0d5ad80a91629"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-39-15",
+      "sourceHexagramNumber": 39,
+      "targetHexagramNumber": 15,
+      "changingLine": 5,
+      "theme": "Release Opens Every Gate",
+      "summary": "Heaven’s gate and the prison doors open together as restraints fall away, allowing the confined person to return home.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "39-15",
+        "resolvedLocator": "39-15",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "1fe0093a336ddbeaddc0f2a8e2aee77a432cae2a0fcfb9f70a1d50dffd3349de"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-39-53",
+      "sourceHexagramNumber": 39,
+      "targetHexagramNumber": 53,
+      "changingLine": 6,
+      "theme": "Prosperous Return",
+      "summary": "Circling phoenixes mark a realm free of calamity, where multiplied benefit accompanies a successful return to the place of origin.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "39-53",
+        "resolvedLocator": "39-53",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "8cf968a01e60ee659265b7d6bf2e7564b5d87f2498b1eb17e94de0ff4007ec31"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

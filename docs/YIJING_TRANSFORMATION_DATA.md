@@ -84,8 +84,10 @@ type YilinTransition = {
 
 The repository key is the ordered pair `(fromHexagram, toHexagram)`. A complete edition may contain
 up to 4,096 transitions; completeness and edition-specific omissions must be declared rather than
-silently assumed. Rights determine whether original Chinese may be displayed. No Yilin repository is
-currently connected, so destination filters report source unavailable.
+silently assumed. Rights determine whether original Chinese may be displayed. The Base selector
+connects a deliberately partial, draft-only repository for the 384 deterministic one-line routes.
+That subset does not satisfy the complete Lab module, so all-destination Yilin filters continue to
+report source unavailable.
 
 ### Reading conventions
 

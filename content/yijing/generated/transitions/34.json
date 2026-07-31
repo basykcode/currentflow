@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 34,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-34-32",
+      "sourceHexagramNumber": 34,
+      "targetHexagramNumber": 32,
+      "changingLine": 1,
+      "theme": "Jealousy Obscures Light",
+      "summary": "Even brilliant stars cannot penetrate a darkness generated within authority, where jealousy at the center throws public affairs into disorder.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "34-32",
+        "resolvedLocator": "34-32",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7f236152fe58200f5f683c2f6868f2bed57d8ffb90e0481e5b2318e9943c867b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-34-55",
+      "sourceHexagramNumber": 34,
+      "targetHexagramNumber": 55,
+      "changingLine": 2,
+      "theme": "Homecoming Through Flood",
+      "summary": "Rising water breaks its barrier and cuts family continuity short, yet chance prevents injury and permits a return to the safety of home.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "34-55",
+        "resolvedLocator": "34-55",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0505e557f63cf951d5bedf2e3d4ba2ed241c4363bfdbc3a6665e41c82548ae06"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-34-54",
+      "sourceHexagramNumber": 34,
+      "targetHexagramNumber": 54,
+      "changingLine": 3,
+      "theme": "Uncivil Standoff",
+      "summary": "Opponents dig in like hostile birds, and neither yields because the conflict lacks the civility or mediation required to resolve a territorial dispute.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "34-54",
+        "resolvedLocator": "34-54",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9088653e927b233d9dae6c862b3401927e85b64ad164f57a0ba6b8e178b1253a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-34-11",
+      "sourceHexagramNumber": 34,
+      "targetHexagramNumber": 11,
+      "changingLine": 4,
+      "theme": "Misfortune Governs the Hall",
+      "summary": "A center crowded with harmful influences openly targets good people and sends them toward an impossible road, institutionalizing persecution.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "34-11",
+        "resolvedLocator": "34-11",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "fb8e8dff578e2b06c4d571ec42a2088000ce1a46b28dfc07368970a2462893d4"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-34-43",
+      "sourceHexagramNumber": 34,
+      "targetHexagramNumber": 43,
+      "changingLine": 5,
+      "theme": "Fruit Ripens Gradually",
+      "summary": "Blossom becomes increasing fruit through steady growth and ripening, eventually offering shared sweetness, nourishment, and sustained material benefit.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "34-43",
+        "resolvedLocator": "34-43",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b9bbf038ebdbcb173792bb9ff8fa4825814968e6f340f529ff3705de90a35b77"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-34-14",
+      "sourceHexagramNumber": 34,
+      "targetHexagramNumber": 14,
+      "changingLine": 6,
+      "theme": "Fortune Extinguished",
+      "summary": "A celebrated figure’s vitality declines into premature age, instability, and blindness until the former flame of favorable conditions goes out.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "34-14",
+        "resolvedLocator": "34-14",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3bfae503424d9e0d836957b8c72c406b3ae11714d19e4bac68720a166ff429d2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

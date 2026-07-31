@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-v1",
+  "hexagramNumber": 40,
+  "summaries": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 40,
+      "schoolId": "daoist",
+      "essence": "Prompt simplification, pardon, and return to ordinary work gives Deliverance a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Deliverance, the central situation is tension releasing after difficulty, and the commentarial evidence repeatedly emphasizes energy, liberation, and brings. The main danger is prolonging blame after the knot has loosened, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is prompt simplification, pardon, and return to ordinary work, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "title": "The Taoist I Ching",
+          "contributors": [
+            "Liu I-ming",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_1_cleary:hex-40:d5e97b4b861b"
+          ]
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "title": "The Classic of Changes: A New Translation of the I Ching as Interpreted by Wang Bi",
+          "contributors": [
+            "Wang Bi",
+            "Richard John Lynn (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "daoist_2_wang_bi:hex-40:b0f3d1341df9"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-40:d5e97b4b861b",
+            "daoist_2_wang_bi:hex-40:b0f3d1341df9"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-40:d5e97b4b861b",
+            "daoist_2_wang_bi:hex-40:b0f3d1341df9"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-40:d5e97b4b861b",
+            "daoist_2_wang_bi:hex-40:b0f3d1341df9"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-40:d5e97b4b861b",
+            "daoist_2_wang_bi:hex-40:b0f3d1341df9"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "daoist_1_cleary:hex-40:d5e97b4b861b",
+            "daoist_2_wang_bi:hex-40:b0f3d1341df9"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "86abe016b81f9b7752cf0f27501eb8cc8459edd178f34dac71619995dd7da008"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 40,
+      "schoolId": "buddhist",
+      "essence": "Prompt simplification, pardon, and return to ordinary work gives Deliverance a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Deliverance, the central situation is tension releasing after difficulty, and the commentarial evidence repeatedly emphasizes blame, right, and balanced. The main danger is prolonging blame after the knot has loosened, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is prompt simplification, pardon, and return to ordinary work, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "title": "The Buddhist I Ching",
+          "contributors": [
+            "Chih-hsu Ou-i",
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "buddhist_1_cleary:hex-40:6affcb3a5ada"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-40:6affcb3a5ada"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-40:6affcb3a5ada"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-40:6affcb3a5ada"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-40:6affcb3a5ada"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "buddhist_1_cleary:hex-40:6affcb3a5ada"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "cffd738df443855d850b3295b63f75a0852b8244852c3339b927ae717ddec634"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 40,
+      "schoolId": "confucian",
+      "essence": "Prompt simplification, pardon, and return to ordinary work gives Deliverance a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Deliverance, the central situation is tension releasing after difficulty, and the commentarial evidence repeatedly emphasizes solution, anywhere, and auspicious. The main danger is prolonging blame after the knot has loosened, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is prompt simplification, pardon, and return to ordinary work, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "title": "I Ching: The Book of Change",
+          "contributors": [
+            "Thomas Cleary (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_1_cleary:hex-40:9dbbb8eef3f9"
+          ]
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "title": "I Ching: The Book of Changes",
+          "contributors": [
+            "James Legge (translator)"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "confucian_2_legge:hex-40:dcb93761cd29"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-40:9dbbb8eef3f9",
+            "confucian_2_legge:hex-40:dcb93761cd29"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-40:9dbbb8eef3f9",
+            "confucian_2_legge:hex-40:dcb93761cd29"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-40:9dbbb8eef3f9",
+            "confucian_2_legge:hex-40:dcb93761cd29"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-40:9dbbb8eef3f9",
+            "confucian_2_legge:hex-40:dcb93761cd29"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "confucian_1_cleary:hex-40:9dbbb8eef3f9",
+            "confucian_2_legge:hex-40:dcb93761cd29"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "2afc7b89f578ee42cfac08546a474d423c58a0ae8d682d2012b9ef5882d20930"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 40,
+      "schoolId": "psychological",
+      "essence": "Psychologically, Deliverance asks how prompt simplification, pardon, and return to ordinary work can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Deliverance describes tension releasing after difficulty as an experience that organizes attention, expectation, and response. The source perspectives highlight deliverance, danger, and movement, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through prolonging blame after the knot has loosened; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering prompt simplification, pardon, and return to ordinary work. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "title": "The I Ching or Book of Changes",
+          "contributors": [
+            "Richard Wilhelm",
+            "Cary F. Baynes (translator)"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_1_wilhelm:hex-40:e78347eabc2c"
+          ]
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "title": "The Laws of Change: I Ching and the Philosophy of Life",
+          "contributors": [
+            "Jack M. Balkin"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_2_balkin:hex-40:c84ee221bb6e"
+          ]
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "title": "The Everyday I Ching",
+          "contributors": [
+            "Sarah Dening"
+          ],
+          "contribution": "contrasting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "psychological_3_dening:hex-40:5cf4ab8114f1"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-40:e78347eabc2c",
+            "psychological_2_balkin:hex-40:c84ee221bb6e",
+            "psychological_3_dening:hex-40:5cf4ab8114f1"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-40:e78347eabc2c",
+            "psychological_2_balkin:hex-40:c84ee221bb6e",
+            "psychological_3_dening:hex-40:5cf4ab8114f1"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-40:e78347eabc2c",
+            "psychological_2_balkin:hex-40:c84ee221bb6e",
+            "psychological_3_dening:hex-40:5cf4ab8114f1"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-40:e78347eabc2c",
+            "psychological_2_balkin:hex-40:c84ee221bb6e",
+            "psychological_3_dening:hex-40:5cf4ab8114f1"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "psychological_1_wilhelm:hex-40:e78347eabc2c",
+            "psychological_2_balkin:hex-40:c84ee221bb6e",
+            "psychological_3_dening:hex-40:5cf4ab8114f1"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 3,
+        "contributingSourceCount": 3,
+        "directSourceCount": 3,
+        "chunkCount": 3
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "0b27136dede00c78b0db5e8c20a8b0235c4200401730c49f5d41d9dee0dbe117"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 40,
+      "schoolId": "human-design",
+      "essence": "Gate 40 frames prompt simplification, pardon, and return to ordinary work as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 40 treats tension releasing after difficulty as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Heart Center, the Ego Circuit, Channel 40-37, harmonic Gate 37, and emphasizes community, awareness, and center in describing how its energy operates. Distortion can appear through prolonging blame after the knot has loosened; differentiated expression develops as prompt simplification, pardon, and return to ordinary work. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "evidenceMode": "single-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "human_design_1_ra",
+          "title": "The Complete Rave I'Ching",
+          "contributors": [
+            "Ra Uru Hu"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "human_design_1_ra:hex-40:c5708c097258"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-40:c5708c097258"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-40:c5708c097258"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-40:c5708c097258"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-40:c5708c097258"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "human_design_1_ra:hex-40:c5708c097258"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 1,
+        "contributingSourceCount": 1,
+        "directSourceCount": 1,
+        "chunkCount": 1
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "41182c216f68e4502c39c979fe855e5b1b0e83f78a5a61fe6f3360963cf29f1b"
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-v1",
+      "hexagramNumber": 40,
+      "schoolId": "gene-keys",
+      "essence": "Exhaustion opens toward Resolve, with Divine Will held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 40 as a passage from Exhaustion through Resolve toward Divine Will. Its constricted pattern can be contemplated through prolonging blame after the knot has loosened, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in tension releasing after difficulty, expressed here as prompt simplification, pardon, and return to ordinary work. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Divine Will remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "evidenceMode": "multi-source-direct",
+      "sourcesUsed": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "title": "Gene Keys: Unlocking the Higher Purpose Hidden in Your DNA",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "primary",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_1_rudd:hex-40:e13a6a900a8c"
+          ]
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "title": "The 64 Ways: Personal Contemplations on the Gene Keys",
+          "contributors": [
+            "Richard Rudd"
+          ],
+          "contribution": "supporting",
+          "evidenceMode": "direct",
+          "locatorCount": 1,
+          "chunkIds": [
+            "gene_keys_2_rudd:hex-40:61fd1f8579e3"
+          ]
+        }
+      ],
+      "sentenceSupport": [
+        {
+          "sentenceIndex": 0,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-40:e13a6a900a8c",
+            "gene_keys_2_rudd:hex-40:61fd1f8579e3"
+          ]
+        },
+        {
+          "sentenceIndex": 1,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-40:e13a6a900a8c",
+            "gene_keys_2_rudd:hex-40:61fd1f8579e3"
+          ]
+        },
+        {
+          "sentenceIndex": 2,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-40:e13a6a900a8c",
+            "gene_keys_2_rudd:hex-40:61fd1f8579e3"
+          ]
+        },
+        {
+          "sentenceIndex": 3,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-40:e13a6a900a8c",
+            "gene_keys_2_rudd:hex-40:61fd1f8579e3"
+          ]
+        },
+        {
+          "sentenceIndex": 4,
+          "supportingChunkIds": [
+            "gene_keys_1_rudd:hex-40:e13a6a900a8c",
+            "gene_keys_2_rudd:hex-40:61fd1f8579e3"
+          ]
+        }
+      ],
+      "coverage": {
+        "registeredSourceCount": 2,
+        "contributingSourceCount": 2,
+        "directSourceCount": 2,
+        "chunkCount": 2
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      },
+      "generation": {
+        "generatorKind": "codex-assisted",
+        "promptVersion": "school-synthesis-v1",
+        "generatedAtIso": "2026-07-30T00:00:00Z",
+        "sourceDigest": "aaf3fe768533eea00f1d34838c191405ab6284fa9f7dd01edd2d1afab47a7a4c"
+      }
+    }
+  ]
+}

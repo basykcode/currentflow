@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 61,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-61-59",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 59,
+      "changingLine": 1,
+      "theme": "Years Out of Season",
+      "summary": "Repeatedly unfavorable timing accumulates trouble, loss, and worry across the years, leaving old age burdened with unresolved grief.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "61-59",
+        "resolvedLocator": "61-59",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b87eeecd99b84059f710408b314411177e5514e9f91ab8dab065b1d2a661bd8d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-61-42",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 42,
+      "changingLine": 2,
+      "theme": "Seeking Yet Remaining Alone",
+      "summary": "A lifelong search for partnership continues without fulfillment, and repeated hope does not alter the enduring solitary condition.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "61-42",
+        "resolvedLocator": "61-42",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6dc9cb8f60afb595da8a6fe3257116685d990c88ee3fbf0a37a1e7c9842b81be"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-61-09",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 9,
+      "changingLine": 3,
+      "theme": "Illumined Ancestral Legacy",
+      "summary": "Solar birds rise over the eastern sea as descendants receive territory, linking cosmic brightness with a lineage of long-held position and resources.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "61-9",
+        "resolvedLocator": "61-9",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b568e3a1c6ab02124bd88244a574553f04b1d19cac5a88f90ca07b15e461f18a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-61-10",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 10,
+      "changingLine": 4,
+      "theme": "Recognition at Dusk",
+      "summary": "Mutual regard becomes an approach and clasped hands, while fading light still permits the travelers to recognize an elder sister.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "61-10",
+        "resolvedLocator": "61-10",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "06e18d1ee2a438772a3e5534530ad61b3a36c188cf73fbb62a27423bbd28809f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-61-41",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 41,
+      "changingLine": 5,
+      "theme": "Wisdom Withdraws",
+      "summary": "When the sage hides far from public life, auspicious creatures also disappear or depart, leaving disturbance to rise without restraint.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "61-41",
+        "resolvedLocator": "61-41",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "55e6afc138cf903f8ba68abe98cd8106dee90dbb7502b3691b08c1a4948e1d52"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-61-60",
+      "sourceHexagramNumber": 61,
+      "targetHexagramNumber": 60,
+      "changingLine": 6,
+      "theme": "Trade Without Possession",
+      "summary": "After an uncertain start, the road becomes visible, yet purchased animals and received goods immediately escape, leaving only emptiness, blame, and resentment.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "61-60",
+        "resolvedLocator": "61-60",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c735a8ce725bbef65c80fb004a4e3c21fff6c15e2a896b014e855a0f2c56dcf0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 49,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-49-31",
+      "sourceHexagramNumber": 49,
+      "targetHexagramNumber": 31,
+      "changingLine": 1,
+      "theme": "Foundation Disabled",
+      "summary": "Broken heels make the legs useless and remove the possibility of settled life, while cruelty in the surrounding character offers no relief.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "49-31",
+        "resolvedLocator": "49-31",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "dd8ebfcf2d3ebd13c6403cf767d8eef0c7a8924b4acc8fc1fc9715ace20e6afd"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-49-43",
+      "sourceHexagramNumber": 49,
+      "targetHexagramNumber": 43,
+      "changingLine": 2,
+      "theme": "Talent Revealed Through Service",
+      "summary": "An exceptional horse reveals the charioteer’s mastery, just as effective assistance to authority becomes visible through achievement and receives lasting recognition.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "49-43",
+        "resolvedLocator": "49-43",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6de3b249fe5b0f512a5cc166c8461c22d1ea9e420fe7733c59d118b207419a65"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-49-17",
+      "sourceHexagramNumber": 49,
+      "targetHexagramNumber": 17,
+      "changingLine": 3,
+      "theme": "Tremor Before Joy",
+      "summary": "Involuntary bodily signs precede favorable news, and the benefit extends across generations as the whole family receives unusual favor.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "49-17",
+        "resolvedLocator": "49-17",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7f0c143e22a8df5bb9e91c90b67a9283115970ab72df7587749a1c13a41dda3f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-49-63",
+      "sourceHexagramNumber": 49,
+      "targetHexagramNumber": 63,
+      "changingLine": 4,
+      "theme": "Perspective Costs Effort",
+      "summary": "Climbing high provides a view of the wider world and clears the mind, but maintaining that distance requires persistent bodily labor.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "49-63",
+        "resolvedLocator": "49-63",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "71c177ad2b2684dc6e896f85601a02ee265547cba05db625b702aa1034f4c1d4"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-49-55",
+      "sourceHexagramNumber": 49,
+      "targetHexagramNumber": 55,
+      "changingLine": 5,
+      "theme": "Omen Absorbs the Harm",
+      "summary": "A bird dies upon entering the gate and becomes the visible sign of a disaster that passes without reaching the person.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "49-55",
+        "resolvedLocator": "49-55",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "919473430d39fc3dfbd57b578f6e842f9948d515efce2ad19c6bc47ba96226af"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-49-13",
+      "sourceHexagramNumber": 49,
+      "targetHexagramNumber": 13,
+      "changingLine": 6,
+      "theme": "Opportunity Amid Hardship",
+      "summary": "Poverty and illness do not prevent participation in the market; an opened pen reveals many substantial animals and a possible turn toward abundance.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "49-13",
+        "resolvedLocator": "49-13",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2227d1da8a2c1bc89ec5320b202cd4f6a33f33a0e2bfc2312433a78c867dcc8e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

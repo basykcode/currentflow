@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at_utc": "2026-07-30T23:38:31Z",
+  "purpose": "Local evidence for concise, original summaries of deterministic single-line hexagram transitions.",
+  "source": {
+    "source_id": "transition_1_jiaoshi_yilin_gait",
+    "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+    "alternate_title": "Jiaoshi Yilin",
+    "title_chinese": "焦氏易林",
+    "traditional_attribution": "Jiao Yanshou",
+    "attribution_status": "traditional-and-disputed",
+    "translator": "Christopher Gait",
+    "edition": "Version 2.1",
+    "copyright_years": "2016-2021",
+    "language": "en",
+    "format": "epub",
+    "input_sha256": "36edbf053c4f739564b161eecc41a5f50c0e39b40e12ca126522651270a5e946",
+    "source_filename_recorded": false,
+    "local_path_recorded": false,
+    "display_name": "Jiaoshi Yilin (焦氏易林)",
+    "rights_status": "user-supplied-internal",
+    "display_policy": "original-summary-only",
+    "quotation_policy": "none"
+  },
+  "matrix": {
+    "scheme": "King Wen source-to-result",
+    "source_hexagrams": 64,
+    "target_hexagrams": 64,
+    "transition_records": 4096,
+    "cross_reference_records": 20,
+    "selected_single_line_records": 384,
+    "selected_cross_reference_records": 4,
+    "tracked_index": "transition-index.jsonl",
+    "local_evidence": "content/yijing/internal/transitions/jiaoshi-yilin-line-transitions.json"
+  },
+  "provenance": {
+    "provided_by": "workspace user",
+    "epub_title_verified": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+    "extraction_method": "EPUB package-spine traversal with exact source-target locator parsing, footnote resolution, and recursive cross-reference resolution.",
+    "target_derivation": "Each target is recomputed from the canonical TypeScript trigram and hexagram registries by inverting exactly one bottom-to-top line."
+  }
+}

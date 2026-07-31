@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 23,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-23-27",
+      "sourceHexagramNumber": 23,
+      "targetHexagramNumber": 27,
+      "changingLine": 1,
+      "theme": "Petitions Meet Cruelty",
+      "summary": "Long attendance before authority yields neither response nor needed rain; refusal at the center hardens into cruelty and forfeits the people’s trust.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "23-27",
+        "resolvedLocator": "23-27",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3f1a62c193c568d8ce0ebff8193d503c4beb2fb3699ce6a2875a3147f3a8f7e7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-23-04",
+      "sourceHexagramNumber": 23,
+      "targetHexagramNumber": 4,
+      "changingLine": 2,
+      "theme": "Do Not Provoke Danger",
+      "summary": "Advice is ignored while a questionable bargain proceeds; the image of grasping a tiger warns that once danger is held, needless provocation magnifies it.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "23-4",
+        "resolvedLocator": "23-4",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d031b9efbd97a9d4d84abba8ff7265e9af059d9e38d067f4257ab8d9058a62b3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-23-52",
+      "sourceHexagramNumber": 23,
+      "targetHexagramNumber": 52,
+      "changingLine": 3,
+      "theme": "Conflict Breaks Communication",
+      "summary": "Two immense creatures battle at the margins as ruler and minister cease communicating, allowing external struggle to drive legitimate authority into exile.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "23-52",
+        "resolvedLocator": "23-52",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "eac5f3ca89616505adba764495a978d792bd4b88b2ebff0cdd190e78d846ed94"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-23-35",
+      "sourceHexagramNumber": 23,
+      "targetHexagramNumber": 35,
+      "changingLine": 4,
+      "theme": "Virtue Draws Allegiance",
+      "summary": "The achievements of exemplary rulers animate even the natural world, while distant peoples freely gather around governance they recognize as humane.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "23-35",
+        "resolvedLocator": "23-35",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "161c8324dea6230fec9b649c66eb9c9737363d8b6a1454647fad3449c93d4be8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-23-20",
+      "sourceHexagramNumber": 23,
+      "targetHexagramNumber": 20,
+      "changingLine": 5,
+      "theme": "Favor Confers Standing",
+      "summary": "Celestial and mythic favor bring rank, resources, and an honored dwelling, presenting recognition as a stable condition of protected dignity.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "23-20",
+        "resolvedLocator": "23-20",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "56409390c3eeae056a880a2f092c4627b4551ffd78ebb5634b18cc16f9ce900d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-23-02",
+      "sourceHexagramNumber": 23,
+      "targetHexagramNumber": 2,
+      "changingLine": 6,
+      "theme": "Fire Multiplies Harm",
+      "summary": "Wind drives flame through dry growth, combining several destructive forces at once and extending the injury beyond the immediate landscape to the next generation.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "23-2",
+        "resolvedLocator": "23-2",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "403a8713e39fdb0e0726c7b207ba4a92f94f5bbbfc0f24c5b7be78f3fbf353b7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

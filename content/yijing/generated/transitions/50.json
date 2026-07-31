@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 50,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-50-14",
+      "sourceHexagramNumber": 50,
+      "targetHexagramNumber": 14,
+      "changingLine": 1,
+      "theme": "Luxury Above Loyalty",
+      "summary": "Rich clothing and an elevated house please the ruler, while the source allusion leaves tension between elite comfort and the loyal subordinate who bears its cost.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "50-14",
+        "resolvedLocator": "50-14",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bbdea8d949fc100e4c9cd3f6722bd888fa01b181b044b8ed1c090a9f7d3e65b5"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-50-56",
+      "sourceHexagramNumber": 50,
+      "targetHexagramNumber": 56,
+      "changingLine": 2,
+      "theme": "Action Mismatched to Place",
+      "summary": "Fire is attempted in water and fishing on a summit, so neither activity can produce its intended result under conditions wholly unsuited to it.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "50-56",
+        "resolvedLocator": "50-56",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "003fa7d329ca0fe1927eb4e504698677aeaf0ecd23621db55027872b47748b44"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-50-64",
+      "sourceHexagramNumber": 50,
+      "targetHexagramNumber": 64,
+      "changingLine": 3,
+      "theme": "Pest Destroys Both Ends",
+      "summary": "A hidden agricultural thief damages both seed and mature crop, erasing the beginning and end of cultivation together and leaving no return.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "50-64",
+        "resolvedLocator": "50-64",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f98e78f7cddfa5ec796b048a5aaed48b27fd3a88ad50a306e41baebb02f9962d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-50-18",
+      "sourceHexagramNumber": 50,
+      "targetHexagramNumber": 18,
+      "changingLine": 4,
+      "theme": "Commerce Without Capital",
+      "summary": "A merchant pursues luxury goods without starting resources, yet eventually leaves the chase and returns to a peaceful household routine.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "50-18",
+        "resolvedLocator": "50-18",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a3c6547e88aeed10e5b93bd5c7c9fdc646f1bb57c9c6bef81a5188919222efee"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-50-44",
+      "sourceHexagramNumber": 50,
+      "targetHexagramNumber": 44,
+      "changingLine": 5,
+      "theme": "Preparation Meets Its Time",
+      "summary": "Long cultivation sharpens character and ability until the historical moment arrives, when disciplined service helps found a new order and earns responsibility.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "50-44",
+        "resolvedLocator": "50-44",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "fa4bd51c2f78004b2b0f745923260347c20b6970225bb71f48c9a26c02ce145b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-50-32",
+      "sourceHexagramNumber": 50,
+      "targetHexagramNumber": 32,
+      "changingLine": 6,
+      "theme": "Opposites Cancel",
+      "summary": "False speech creates a conflict in which neither side can prevail, like extreme cold and heat meeting only to extinguish one another.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "50-32",
+        "resolvedLocator": "50-32",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "414c3203bbca9a2051a014e9cbdf387a7100e30de8b35028d2b95b85e0765e19"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

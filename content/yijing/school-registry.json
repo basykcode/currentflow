@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0.0",
+  "schools": [
+    {
+      "id": "daoist",
+      "displayLabel": "Daoist",
+      "description": "Classical philosophical and internal-alchemical readings of configuration, timing, and transformation.",
+      "classification": "classical",
+      "defaultDisplayOrder": 1,
+      "sourceCount": 2,
+      "synthesisRubric": "prompts/schools/daoist.md",
+      "terminologyWarnings": [
+        "Do not attribute Liu Yiming's internal-alchemical vocabulary to Wang Bi.",
+        "Avoid generic flow, vibration, or cosmic-guidance language."
+      ],
+      "rightsPolicy": "Original summary prose only; no source quotation.",
+      "contentAvailability": "draft"
+    },
+    {
+      "id": "buddhist",
+      "displayLabel": "Buddhist",
+      "description": "Classical Buddhist-applied commentary on conditioning, attachment, awareness, and adaptive means.",
+      "classification": "classical",
+      "defaultDisplayOrder": 2,
+      "sourceCount": 1,
+      "synthesisRubric": "prompts/schools/buddhist.md",
+      "terminologyWarnings": [
+        "Distinguish direct Buddhist commentary from a framework application.",
+        "Do not present emptiness as nihilism or karma as punishment."
+      ],
+      "rightsPolicy": "Original summary prose only; no source quotation.",
+      "contentAvailability": "partial"
+    },
+    {
+      "id": "confucian",
+      "displayLabel": "Confucian",
+      "description": "Classical ethical and positional readings centered on cultivated character, relationship, role, and order.",
+      "classification": "classical",
+      "defaultDisplayOrder": 3,
+      "sourceCount": 2,
+      "synthesisRubric": "prompts/schools/confucian.md",
+      "terminologyWarnings": [
+        "Do not reduce cultivated order to obedience or moral condemnation.",
+        "Do not import Buddhist, Daoist, or psychological system language."
+      ],
+      "rightsPolicy": "Original summary prose only; no source quotation.",
+      "contentAvailability": "draft"
+    },
+    {
+      "id": "psychological",
+      "displayLabel": "Psychological",
+      "description": "Modern psychological and depth-psychological readings of attention, relationship, defense, and integration.",
+      "classification": "modern",
+      "defaultDisplayOrder": 4,
+      "sourceCount": 3,
+      "synthesisRubric": "prompts/schools/psychological.md",
+      "terminologyWarnings": [
+        "Use cautious descriptive language and never diagnose the user.",
+        "Do not present a modern psychological author as the ancient meaning."
+      ],
+      "rightsPolicy": "Original summary prose only; no source quotation.",
+      "contentAvailability": "draft"
+    },
+    {
+      "id": "human-design",
+      "displayLabel": "Human Design",
+      "description": "Modern Human Design Gate interpretation with explicit dependence on chart, line, channel, and activation context.",
+      "classification": "modern-system",
+      "defaultDisplayOrder": 5,
+      "sourceCount": 1,
+      "synthesisRubric": "prompts/schools/human-design.md",
+      "terminologyWarnings": [
+        "Do not claim the Gate is active without chart evidence.",
+        "Do not present Human Design mechanics as classical Yijing doctrine."
+      ],
+      "rightsPolicy": "Original summary prose only; no source quotation.",
+      "contentAvailability": "draft"
+    },
+    {
+      "id": "gene-keys",
+      "displayLabel": "Gene Keys",
+      "description": "Modern Gene Keys contemplation of constriction, latent capacity, and an aspirational horizon.",
+      "classification": "modern-system",
+      "defaultDisplayOrder": 6,
+      "sourceCount": 2,
+      "synthesisRubric": "prompts/schools/gene-keys.md",
+      "terminologyWarnings": [
+        "Do not reproduce distinctive source prose or promise spiritual attainment.",
+        "Do not import Human Design mechanics unless the source explicitly does so."
+      ],
+      "rightsPolicy": "Named spectrum terms may appear as metadata; paragraphs must be original prose.",
+      "contentAvailability": "draft"
+    }
+  ],
+  "aliases": {
+    "daoist": "daoist",
+    "daoism": "daoist",
+    "taoist": "daoist",
+    "xuanxue": "daoist",
+    "buddhist": "buddhist",
+    "buddhism": "buddhist",
+    "confucian": "confucian",
+    "confucianism": "confucian",
+    "psychological": "psychological",
+    "psychology": "psychological",
+    "jungian": "psychological",
+    "human-design": "human-design",
+    "hd": "human-design",
+    "humandesign": "human-design",
+    "gene-keys": "gene-keys",
+    "gk": "gene-keys"
+  }
+}

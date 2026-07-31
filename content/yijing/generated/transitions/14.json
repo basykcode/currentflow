@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 14,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-14-50",
+      "sourceHexagramNumber": 14,
+      "targetHexagramNumber": 50,
+      "changingLine": 1,
+      "theme": "Mutual Exhaustion",
+      "summary": "Contaminating ground damages both body and reputation, while evenly balanced opponents spend themselves without resolution and share the resulting loss.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "14-50",
+        "resolvedLocator": "14-50",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "8816faf0d9fe6596f30f780d00ca8b67362612d2865f1506c2e025d301aa6519"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-14-30",
+      "sourceHexagramNumber": 14,
+      "targetHexagramNumber": 30,
+      "changingLine": 2,
+      "theme": "Peace Through Integrity",
+      "summary": "Quiet conduct follows an ethically ordered path and avoids needless error, allowing favorable conditions to ripen without agitation.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "14-30",
+        "resolvedLocator": "14-30",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f137cbd2610bd9b985f856f9b70e757a592c0bd1950e86fe6c725605acafb802"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-14-38",
+      "sourceHexagramNumber": 14,
+      "targetHexagramNumber": 38,
+      "changingLine": 3,
+      "theme": "Safety in Restraint",
+      "summary": "Threats appear on every side, yet refusing premature movement preserves wholeness; remaining within known bounds becomes the available form of protection.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "14-38",
+        "resolvedLocator": "14-38",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "349366e660eef7a2faeee015ab69c359285e12be4136943128d1ec70e17c5b9a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-14-26",
+      "sourceHexagramNumber": 14,
+      "targetHexagramNumber": 26,
+      "changingLine": 4,
+      "theme": "Reciprocity With the Unseen",
+      "summary": "Carefully prepared offerings express reverence and establish continuity between present devotion and future generations, though the appended image warns that learning can still be delayed.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "14-26",
+        "resolvedLocator": "14-26",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "980c6ae0b909ce2dd5daab151a92128b73b1fd1eb02e1611ce077cb85e9486b1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-14-01",
+      "sourceHexagramNumber": 14,
+      "targetHexagramNumber": 1,
+      "changingLine": 5,
+      "theme": "Barren Excursion",
+      "summary": "A grand journey reaches an ancient but depleted place where earth has hardened and animals cannot graze, leaving movement without replenishment.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "14-1",
+        "resolvedLocator": "14-1",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d0a5e0807a7203f7699afc8534c42d36c1ae042987a8ab4dddf8530494cdff65"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-14-34",
+      "sourceHexagramNumber": 14,
+      "targetHexagramNumber": 34,
+      "changingLine": 6,
+      "theme": "Strength Confined",
+      "summary": "Accumulated bodily affliction drains vitality until even leaving the house is beyond reach, converting outward power into forced confinement.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "14-34",
+        "resolvedLocator": "14-34",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a1b9bc5896e94e1182a772a8acc9b17268acf071c6358bebd9a0f7daae4e7856"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

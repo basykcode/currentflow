@@ -3,6 +3,8 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 
 import HexagramGlyph from '@/components/astrology/HexagramGlyph.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
+import HexagramCommentaryPanel from '@/components/hexagrams/HexagramCommentaryPanel.vue'
+import HexagramTransitionInsight from '@/components/hexagrams/HexagramTransitionInsight.vue'
 import {
   createTransformationEngine,
   getRelatingResult,
@@ -14,18 +16,6 @@ import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
 import TransformationHexagramCard from './transformations/TransformationHexagramCard.vue'
 import TransformationLab from './transformations/TransformationLab.vue'
 
-type CommentaryKey =
-  'daoism' | 'confucianism' | 'buddhism' | 'psychology' | 'human-design' | 'gene-keys'
-
-const COMMENTARIES: readonly { key: CommentaryKey; label: string }[] = [
-  { key: 'daoism', label: 'Daoism' },
-  { key: 'confucianism', label: 'Confucianism' },
-  { key: 'buddhism', label: 'Buddhism' },
-  { key: 'psychology', label: 'Psychology' },
-  { key: 'human-design', label: 'Human Design' },
-  { key: 'gene-keys', label: 'Gene Keys' },
-]
-
 const LINE_NUMBERS: readonly LineNumber[] = [1, 2, 3, 4, 5, 6]
 
 const inspector = useHexagramInspectorStore()
@@ -35,7 +25,6 @@ const modalScroll = ref<HTMLElement | null>(null)
 const splitPinned = ref(false)
 const splitHovered = ref(false)
 const selectedLine = ref<LineNumber>(1)
-const activeCommentary = ref<CommentaryKey>('daoism')
 let previousFocus: HTMLElement | null = null
 let priorBodyOverflow = ''
 
@@ -46,18 +35,15 @@ const arrivalContext = computed(() =>
 )
 const baseTransformations = computed(() => {
   if (!hexagram.value) return []
-  const intrinsic = transformationEngine
-    .getIntrinsic(hexagram.value)
-    .filter((result) => result.definitionId !== 'trigram-exchange')
-  return [getRelatingResult(hexagram.value, [selectedLine.value]), ...intrinsic]
+  return transformationEngine.getIntrinsic(hexagram.value)
 })
+const lineTransformation = computed(() =>
+  hexagram.value ? getRelatingResult(hexagram.value, [selectedLine.value]) : null,
+)
 const labScreen = computed(() =>
   screen.value?.kind === 'transformation-lab' ? screen.value : null,
 )
 const splitVisible = computed(() => splitPinned.value || splitHovered.value)
-const commentaryLabel = computed(
-  () => COMMENTARIES.find((item) => item.key === activeCommentary.value)?.label ?? 'Commentary',
-)
 
 const selectTransformation = (result: TransformationResult) => {
   if (labScreen.value) {
@@ -223,7 +209,7 @@ onBeforeUnmount(() => {
                 <div class="panel-heading">
                   <p class="section-kicker">Computed structure</p>
                   <h2 id="transformations-title">Transformations</h2>
-                  <p>Four compact relationships, calculated directly from the six source lines.</p>
+                  <p>Four fixed relationships, calculated directly from the six source lines.</p>
                 </div>
 
                 <div class="transformation-list">
@@ -262,9 +248,27 @@ onBeforeUnmount(() => {
                     </button>
                   </div>
                   <p class="line-change-note">
-                    The selected line updates the compact Relating / Changed result above. The Lab
-                    supports any combination of lines.
+                    Select a line to preview its relating hexagram. Open the result to inspect it in
+                    this dialog; the Lab supports any combination of lines.
                   </p>
+                  <TransformationHexagramCard
+                    v-if="lineTransformation"
+                    compact
+                    :result="lineTransformation"
+                    :visited="
+                      lineTransformation.targetHexagramNumber !== undefined &&
+                      inspector.visitedHexagramNumbers.has(lineTransformation.targetHexagramNumber)
+                    "
+                    @select="selectTransformation"
+                  />
+                  <HexagramTransitionInsight
+                    v-if="
+                      lineTransformation && lineTransformation.targetHexagramNumber !== undefined
+                    "
+                    :source-hexagram-number="hexagram.number"
+                    :target-hexagram-number="lineTransformation.targetHexagramNumber"
+                    :changing-line="selectedLine"
+                  />
                 </section>
 
                 <button class="advanced-lab-button" type="button" @click="openTransformationLab">
@@ -362,48 +366,7 @@ onBeforeUnmount(() => {
                   {{ splitPinned ? 'Join trigrams' : 'Separate trigrams' }}
                 </button>
 
-                <section class="commentary-section" aria-labelledby="commentary-title">
-                  <div class="commentary-heading">
-                    <div>
-                      <p class="section-kicker">Interpretive lenses</p>
-                      <h2 id="commentary-title">Commentaries</h2>
-                    </div>
-                    <StatusBadge status="unavailable" label="Texts pending" />
-                  </div>
-
-                  <div class="commentary-tabs" role="tablist" aria-label="Commentary tradition">
-                    <button
-                      v-for="commentary in COMMENTARIES"
-                      :id="`commentary-tab-${commentary.key}`"
-                      :key="commentary.key"
-                      type="button"
-                      role="tab"
-                      :aria-selected="activeCommentary === commentary.key"
-                      :aria-controls="`commentary-panel-${commentary.key}`"
-                      :class="{ 'is-active': activeCommentary === commentary.key }"
-                      @click="activeCommentary = commentary.key"
-                    >
-                      {{ commentary.label }}
-                    </button>
-                  </div>
-
-                  <div
-                    :id="`commentary-panel-${activeCommentary}`"
-                    class="commentary-placeholder"
-                    role="tabpanel"
-                    :aria-labelledby="`commentary-tab-${activeCommentary}`"
-                  >
-                    <div>
-                      <p>{{ commentaryLabel }}</p>
-                      <h3>OLTR and source synthesis will appear here.</h3>
-                    </div>
-                    <p>
-                      This view is ready for the pre-chunked commentaries. It remains unavailable
-                      until those texts are reviewed and summarized without inventing an
-                      interpretation.
-                    </p>
-                  </div>
-                </section>
+                <HexagramCommentaryPanel :hexagram-number="hexagram.number" />
 
                 <div class="identity-provenance">
                   <StatusBadge :status="hexagram.status" label="Curated reference" />
@@ -578,8 +541,7 @@ onBeforeUnmount(() => {
   background: color-mix(in srgb, var(--paper-raised) 42%, transparent);
 }
 
-.panel-heading h2,
-.commentary-heading h2 {
+.panel-heading h2 {
   margin: 0.18rem 0 0.55rem;
   font-family: var(--font-serif);
   font-size: clamp(1.4rem, 2vw, 1.9rem);
@@ -614,8 +576,7 @@ onBeforeUnmount(() => {
 }
 
 .line-change-heading,
-.advanced-title-row,
-.commentary-heading {
+.advanced-title-row {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -881,77 +842,6 @@ onBeforeUnmount(() => {
   margin: -0.4rem auto 0;
 }
 
-.commentary-section {
-  margin-top: clamp(2rem, 4vw, 3.5rem);
-  border-top: 1px solid var(--line);
-  padding-top: 1.3rem;
-}
-
-.commentary-heading {
-  align-items: center;
-}
-
-.commentary-heading :deep(.status-label) {
-  padding: 0.24rem 0.5rem;
-  font-size: 0.54rem;
-}
-
-.commentary-tabs {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.45rem;
-  margin-top: 0.8rem;
-}
-
-.commentary-tabs button {
-  min-height: 2.75rem;
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  background: transparent;
-  padding: 0.5rem;
-  color: var(--ink-soft);
-  font-size: 0.7rem;
-}
-
-.commentary-tabs button:hover,
-.commentary-tabs button.is-active {
-  border-color: var(--jade);
-  background: var(--jade-wash);
-  color: var(--ink);
-}
-
-.commentary-placeholder {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: 1.5rem;
-  margin-top: 0.8rem;
-  border: 1px dashed var(--line);
-  border-radius: var(--radius-md);
-  padding: clamp(1rem, 2.4vw, 1.5rem);
-}
-
-.commentary-placeholder div p {
-  margin: 0 0 0.25rem;
-  color: var(--jade);
-  font-size: 0.62rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.commentary-placeholder h3 {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.commentary-placeholder > p {
-  margin: 0;
-  color: var(--ink-faint);
-  font-size: 0.7rem;
-}
-
 .identity-provenance {
   display: flex;
   align-items: center;
@@ -1151,10 +1041,6 @@ onBeforeUnmount(() => {
 
   .trigram-label small {
     font-size: 0.56rem;
-  }
-
-  .commentary-placeholder {
-    grid-template-columns: 1fr;
   }
 
   .gene-key-spectrum {

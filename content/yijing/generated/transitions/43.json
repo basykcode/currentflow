@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 43,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-43-28",
+      "sourceHexagramNumber": 43,
+      "targetHexagramNumber": 28,
+      "changingLine": 1,
+      "theme": "Mud Stops Exchange",
+      "summary": "Continuous rain makes every road impassable, preventing merchants from reaching the market and leaving trade without goods to circulate.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "43-28",
+        "resolvedLocator": "43-28",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6e2a112fa660221c3c150125af5d34e93e36f5b8c01f91426e00ef8574eb51a1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-43-49",
+      "sourceHexagramNumber": 43,
+      "targetHexagramNumber": 49,
+      "changingLine": 2,
+      "theme": "Hidden Danger Bites Deep",
+      "summary": "A river dense with venomous creatures injures hands and feet, and the twisting pain penetrates from the extremities toward the body’s center.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "43-49",
+        "resolvedLocator": "43-49",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f09b7b57671c5681008b593b6cde9514bada941484b696d394dbd1265827701e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-43-58",
+      "sourceHexagramNumber": 43,
+      "targetHexagramNumber": 58,
+      "changingLine": 3,
+      "theme": "Desire Bypasses Ritual",
+      "summary": "A marriage pursuit substitutes barter and emotion for mediation and ceremony, producing regret because immediate desire ignores the structures that protect relationship.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "43-58",
+        "resolvedLocator": "43-58",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f65f3f22b7908f7d5936affac3ba0cf8c50f4ce9f7e907df7975bcd1c86049e3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-43-05",
+      "sourceHexagramNumber": 43,
+      "targetHexagramNumber": 5,
+      "changingLine": 4,
+      "theme": "Drought Disperses Promise",
+      "summary": "Scorching pressure and scattering winds prevent the rain from gathering, so persistence cannot secure relief and the movement turns back toward shelter.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "43-5",
+        "resolvedLocator": "43-5",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6a97ba8d6efe0f51fb0b280eef49807a090e709328903faec4251bf5a5f8ff80"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-43-34",
+      "sourceHexagramNumber": 43,
+      "targetHexagramNumber": 34,
+      "changingLine": 5,
+      "theme": "Exhaustion Defeats the Team",
+      "summary": "Coordinated feet cannot compensate for the burden dragged behind them; repeated battle without rest exhausts the whole formation into defeat.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "43-34",
+        "resolvedLocator": "43-34",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7d5fc526ebc665dd5c1ffa01c99b698cec461e04525e5c16903cdc5ad22a76f5"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-43-01",
+      "sourceHexagramNumber": 43,
+      "targetHexagramNumber": 1,
+      "changingLine": 6,
+      "theme": "Plots Lose Their Purchase",
+      "summary": "Hostile rumor and intrigue fail to gain advantage because central favor rests elsewhere, allowing blessing to reach the intended recipients.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "43-1",
+        "resolvedLocator": "43-1",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "342286db89a7ebbcb135110341161f139d810e3f10b6dadfe127cea3a441f8ea"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

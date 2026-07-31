@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 46,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-46-11",
+      "sourceHexagramNumber": 46,
+      "targetHexagramNumber": 11,
+      "changingLine": 1,
+      "theme": "Ancestral Work Endures",
+      "summary": "A foundational ruler’s agricultural and civic achievements create a dwelling capable of long continuity and a humble reception of ceremonial honor.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "46-11",
+        "resolvedLocator": "46-11",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "12578931635d5046fb6dd7480ab41551f2002f682cb7a7a11a126bdb9bb41843"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-46-15",
+      "sourceHexagramNumber": 46,
+      "targetHexagramNumber": 15,
+      "changingLine": 2,
+      "theme": "Waiting Exhausts the Watcher",
+      "summary": "A long gaze into the distance yields no arrival, and the emissary’s unanswered expectation becomes physical weariness and worry.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "46-15",
+        "resolvedLocator": "46-15",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "66d0c7a3275ffbabbb242387c771baeb63d18cde36e27619456e8089519970d6"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-46-07",
+      "sourceHexagramNumber": 46,
+      "targetHexagramNumber": 7,
+      "changingLine": 3,
+      "theme": "Natural Nobility Takes Flight",
+      "summary": "Phoenixes mature quickly, cross great distance, and become leaders among birds, portraying innate distinction that realizes itself through movement.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "46-7",
+        "resolvedLocator": "46-7",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "a683180dc627c17aee6d39be35c51a9c2158980afe5106c83765e9bc0544ddaa"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-46-32",
+      "sourceHexagramNumber": 46,
+      "targetHexagramNumber": 32,
+      "changingLine": 4,
+      "theme": "Worthy Arrival Brings Plenty",
+      "summary": "A richly adorned bird travels north to meet a sage ruler, and the encounter coincides with harvest, gladness, and freedom from banditry.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "46-32",
+        "resolvedLocator": "46-32",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7c78f625b5648e533d0af8318eff64fe539411d546f9e9b2ecbc9c2e9fdfbfd8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-46-48",
+      "sourceHexagramNumber": 46,
+      "targetHexagramNumber": 48,
+      "changingLine": 5,
+      "theme": "Substance Beyond Appearance",
+      "summary": "Art can depict figures conventionally judged beautiful or ugly, but successful realization depends on underlying substance rather than surface classification.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "46-48",
+        "resolvedLocator": "46-48",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "61584336ffaacf1987d370e439a3f3ac6f59c46a45f42b7b4c9352127d6962fb"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-46-18",
+      "sourceHexagramNumber": 46,
+      "targetHexagramNumber": 18,
+      "changingLine": 6,
+      "theme": "Capacity Restored",
+      "summary": "Former limitations reverse as sight and movement return, enabling direct perception of the heavenly lights and an audience with authority.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "46-18",
+        "resolvedLocator": "46-18",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "87bd21a6564454dd940ff3b631f075b5bb10950900fd07de33c2311c6302e3ec"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

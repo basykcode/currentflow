@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 64,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-64-38",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 38,
+      "changingLine": 1,
+      "theme": "Invaders Meet Mobilized Power",
+      "summary": "An assault on the capital challenges dynastic supremacy, but full military mobilization reverses the attack and defeats the opposing ruler.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "64-38",
+        "resolvedLocator": "64-38",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ea5b61edcf7333d6730da349c2321c0fac144465e21537df27c6a7e8b865f09e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-64-35",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 35,
+      "changingLine": 2,
+      "theme": "Escape Amid Predation and Drought",
+      "summary": "Birds flee harmful shadow while a thief watches vulnerable women for advantage; drought and illness widen the atmosphere of exploitation and distress.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "64-35",
+        "resolvedLocator": "64-35",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "010481e4944b585bde96874f2d86afe0b07801f730546e30214d67bb789553a8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-64-50",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 50,
+      "changingLine": 3,
+      "theme": "Hospitality Becomes Deluge",
+      "summary": "Dark clouds gather around thirsty powers and a formally offered drink, but measured hospitality expands beyond proportion into unending rain.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "64-50",
+        "resolvedLocator": "64-50",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9e79c40ec57d253e4d6faa9e2d8e195808da68f827871e30dcfa1aa95ded6296"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-64-04",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 4,
+      "changingLine": 4,
+      "theme": "Frozen Emptiness at the Gate",
+      "summary": "Severe cold, sorrow, and missing offerings deprive the household of warmth and nourishment, allowing an unsettled spirit to haunt the threshold.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "64-4",
+        "resolvedLocator": "64-4",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "dcb390eb2a89c3091dcd25020d7a887c24b1082918e1a61fcbdc397bc25be83c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-64-06",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 6,
+      "changingLine": 5,
+      "theme": "Paired Omens Bring Peace",
+      "summary": "Joined creatures arrive in pairs as signs of expanded perception and influence, bringing civic harmony upward into the hall and intimacy into the bedchamber.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "64-6",
+        "resolvedLocator": "64-6",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "94afb4fe177408c0b63bc7bc8c67e5d06a0dd1afe163d42a1f6bfba22d4910a9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-64-40",
+      "sourceHexagramNumber": 64,
+      "targetHexagramNumber": 40,
+      "changingLine": 6,
+      "theme": "Repairing the Breach",
+      "summary": "Water breaks through its barrier and creates urgent distress, while a practical planting is used to reinforce the damaged place and contain further harm.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "64-40",
+        "resolvedLocator": "64-40",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "aae79de62d982da34b0dc8a68577cad97b1685ca1935f62f66b31811c36ee19b"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

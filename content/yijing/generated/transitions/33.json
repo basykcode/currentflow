@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 33,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-33-13",
+      "sourceHexagramNumber": 33,
+      "targetHexagramNumber": 13,
+      "changingLine": 1,
+      "theme": "Seeking What Is Absent",
+      "summary": "A full day is spent searching the marketplace for something that leaves no trace there, so sustained effort produces no gain.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "33-13",
+        "resolvedLocator": "33-13",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6f5546031ec5a405a825d329ade9b583c61d95ee99b2accdd021fd3859b585f8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-33-44",
+      "sourceHexagramNumber": 33,
+      "targetHexagramNumber": 44,
+      "changingLine": 2,
+      "theme": "Marriage Establishes a Line",
+      "summary": "A politically significant marriage and a well-placed fief establish conditions under which a clan’s prosperity extends through many generations.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "33-44",
+        "resolvedLocator": "33-44",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "efcdfe395541baa5421a82e207fbaff51580de8162da690c59e02f2dab62aadf"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-33-12",
+      "sourceHexagramNumber": 33,
+      "targetHexagramNumber": 12,
+      "changingLine": 3,
+      "theme": "Life Stranded by Drought",
+      "summary": "When a great body of water disappears, animals and plants lose their sustaining medium until only collapsed stalks, sand, and stone remain.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "33-12",
+        "resolvedLocator": "33-12",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7777fc86d6fa2b24853f14c47aef92b5ca85b3726f0a62ced9d4ebfb4410b143"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-33-53",
+      "sourceHexagramNumber": 33,
+      "targetHexagramNumber": 53,
+      "changingLine": 4,
+      "theme": "Trouble Enters the Gate",
+      "summary": "Rigidly maintaining position brings discomfort while difficulties cross the threshold, leaving the mind unable to settle into ease.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "33-53",
+        "resolvedLocator": "33-53",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "32e76bd02ef5e77b25bec3cf8cfd333c979969d1ccfcf9e1cf3ae46ede759ec2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-33-56",
+      "sourceHexagramNumber": 33,
+      "targetHexagramNumber": 56,
+      "changingLine": 5,
+      "theme": "Protected Despite Limitation",
+      "summary": "Movement is physically constrained, yet taboos remain intact and layered defenses create a secure enclosure beyond the reach of disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "33-56",
+        "resolvedLocator": "33-56",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "8a60d7ad9525f0e6c950752ba04431c24a46ae74013896641c8d6564fe10baac"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-33-31",
+      "sourceHexagramNumber": 33,
+      "targetHexagramNumber": 31,
+      "changingLine": 6,
+      "theme": "Safe Work Beyond the Walls",
+      "summary": "The farmer repeatedly travels into exposed country for stored grain and returns at dusk untouched by predators, completing necessary work safely.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "33-31",
+        "resolvedLocator": "33-31",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "328371928f2bc19dd3d2608f05731c4a572c855d277f5c658bc8187e67c329af"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

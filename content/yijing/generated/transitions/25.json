@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 25,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-25-12",
+      "sourceHexagramNumber": 25,
+      "targetHexagramNumber": 12,
+      "changingLine": 1,
+      "theme": "Ritual Ends Conflict",
+      "summary": "When higher sanction turns away from established power, movement shifts southward; measured ceremony restores public calm and brings armed struggle to a close.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "25-12",
+        "resolvedLocator": "25-12",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "163742857137a44d702b6dad62b491091e89f635e6af580a8c8c46f32bf72788"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-25-10",
+      "sourceHexagramNumber": 25,
+      "targetHexagramNumber": 10,
+      "changingLine": 2,
+      "theme": "Joy Receives Blessing",
+      "summary": "Shared wine, laughter, music, and dance create a ceremonial happiness that culminates in a humble reception of favor.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "25-10",
+        "resolvedLocator": "25-10",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2fd953666c126090e4236bc4ccaa54d736c5f16b8863a7696fa845bcdfc2301f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-25-13",
+      "sourceHexagramNumber": 25,
+      "targetHexagramNumber": 13,
+      "changingLine": 3,
+      "theme": "Boundaries Contain Overflow",
+      "summary": "Sound embankments keep water within limits, while full illumination sends the cicada back to its native concealment; containment and timely withdrawal preserve order.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "25-13",
+        "resolvedLocator": "25-13",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0dc41ddbfc1ccd0788780b7ed02b80aa673bdf851545cbea426b8d6f1e346783"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-25-42",
+      "sourceHexagramNumber": 25,
+      "targetHexagramNumber": 42,
+      "changingLine": 4,
+      "theme": "Chaos Followed by Favor",
+      "summary": "A ruler muddies the realm like a struggling fish, yet a royal departure toward delight meets a fortunate opening and an apparently blessed course.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "25-42",
+        "resolvedLocator": "25-42",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b100ede920e9969c4d735dc75ac2ea9a5f1a626013a242ddaddd176fbf84a7e9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-25-21",
+      "sourceHexagramNumber": 25,
+      "targetHexagramNumber": 21,
+      "changingLine": 5,
+      "theme": "New Life and Long Labor",
+      "summary": "A birth expands friendship and benefit under favorable sanction, while the appended journey introduces arduous service and a distant search for higher favor.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "25-21",
+        "resolvedLocator": "25-21",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "dc319a0fbf479a7335c4acee27765bb6328c24d3a74255da5d2d41a5d7d7a23e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-25-17",
+      "sourceHexagramNumber": 25,
+      "targetHexagramNumber": 17,
+      "changingLine": 6,
+      "theme": "Collapse Without Respite",
+      "summary": "A failing country loses the support that could stabilize it, leaving disturbance to repeat without an interval for recovery.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "25-17",
+        "resolvedLocator": "25-17",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "5a0e962b95614db630364940ef2e379a50c87045d7f6e7eb43455d2bab51fab3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

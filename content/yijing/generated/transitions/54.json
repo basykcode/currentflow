@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 54,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-54-40",
+      "sourceHexagramNumber": 54,
+      "targetHexagramNumber": 40,
+      "changingLine": 1,
+      "theme": "Herd Enters Danger",
+      "summary": "A line of sheep moves through empty marsh and mountain country until it encounters a legendary predator, ending orderly travel in injury.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "54-40",
+        "resolvedLocator": "54-40",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9172107f128e97cad33eed53bac8b8b609093516486534c2352b82bd7c7805a8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-54-51",
+      "sourceHexagramNumber": 54,
+      "targetHexagramNumber": 51,
+      "changingLine": 2,
+      "theme": "Danger Passes Beside",
+      "summary": "Fire remains behind and numerous attackers move past on the right, so overwhelming threats stay close without crossing into direct harm.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "54-51",
+        "resolvedLocator": "54-51",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "486ca85e4c62e8ff56776bcd4bc89d7b67e7a7ab49a8c6392cf7429275ee1810"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-54-34",
+      "sourceHexagramNumber": 54,
+      "targetHexagramNumber": 34,
+      "changingLine": 3,
+      "theme": "Late Recognition",
+      "summary": "A worthy elder survives long seclusion under a corrupt ruler until meeting sagely authority, when hidden capacity becomes exemplary public service.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "54-34",
+        "resolvedLocator": "54-34",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7562ae4c3fe1649a910eaea8043fb29332f716efd2e2f1b6f2658588ab78a403"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-54-19",
+      "sourceHexagramNumber": 54,
+      "targetHexagramNumber": 19,
+      "changingLine": 4,
+      "theme": "Integrity Leaves No Opening",
+      "summary": "Models of upright withdrawal avoid entanglement through cultivated character, leaving anticipated misfortune unable to find a place to enter.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "54-19",
+        "resolvedLocator": "54-19",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "53dfef6fb402e86c1cfcdc67e2ed6fa822d67978dfd723856b900c6d20b5aafb"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-54-58",
+      "sourceHexagramNumber": 54,
+      "targetHexagramNumber": 58,
+      "changingLine": 5,
+      "theme": "Anticipation Fails at the Cup",
+      "summary": "The drink remains just beyond reach, so initial delight turns into failure and expected gain disappears before it can be received.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "54-58",
+        "resolvedLocator": "54-58",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c69018bbf17a4f571b6a259ef6754ec18ef2092160805f6cf9594cbb656f4a7a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-54-38",
+      "sourceHexagramNumber": 54,
+      "targetHexagramNumber": 38,
+      "changingLine": 6,
+      "theme": "Faulty Offering and Footing",
+      "summary": "An improperly made sacrifice leaves the basket empty, while injured animals struggle on a steep ascent; flattery and slander further destabilize the climb.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "54-38",
+        "resolvedLocator": "54-38",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c4cb788a4cb0e0bec3ac6790eb65e786fc2915875e20dd96b1e83a38b93dad91"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

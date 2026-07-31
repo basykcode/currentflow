@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0.0",
+  "hexagramNumber": 62,
+  "records": [
+    {
+      "schoolId": "daoist",
+      "essence": "Careful attention, modest action, and exact proportion gives Preponderance of the Small a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Preponderance of the Small, the central situation is small matters carrying unusual consequence, and the commentarial evidence repeatedly emphasizes small, inwardly, and predominance. The main danger is ambition exceeding the scale the moment supports, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is careful attention, modest action, and exact proportion, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ]
+      ]
+    },
+    {
+      "schoolId": "buddhist",
+      "essence": "Careful attention, modest action, and exact proportion gives Preponderance of the Small a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In Preponderance of the Small, the central situation is small matters carrying unusual consequence, and the commentarial evidence repeatedly emphasizes excess, remedy, and exceedingly. The main danger is ambition exceeding the scale the moment supports, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is careful attention, modest action, and exact proportion, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "sources": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ]
+      ]
+    },
+    {
+      "schoolId": "confucian",
+      "essence": "Careful attention, modest action, and exact proportion gives Preponderance of the Small a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Preponderance of the Small, the central situation is small matters carrying unusual consequence, and the commentarial evidence repeatedly emphasizes small, matters, and auspicious. The main danger is ambition exceeding the scale the moment supports, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is careful attention, modest action, and exact proportion, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ]
+      ]
+    },
+    {
+      "schoolId": "psychological",
+      "essence": "Psychologically, Preponderance of the Small asks how careful attention, modest action, and exact proportion can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Preponderance of the Small describes small matters carrying unusual consequence as an experience that organizes attention, expectation, and response. The source perspectives highlight preponderance, small, and mortar, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through ambition exceeding the scale the moment supports; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering careful attention, modest action, and exact proportion. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "contribution": "supporting"
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "contribution": "contrasting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ]
+      ]
+    },
+    {
+      "schoolId": "human-design",
+      "essence": "Gate 62 frames careful attention, modest action, and exact proportion as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 62 treats small matters carrying unusual consequence as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Throat Center, the Understanding Circuit, Channel 62-17, harmonic Gate 17, and emphasizes center, throat, and detail in describing how its energy operates. Distortion can appear through ambition exceeding the scale the moment supports; differentiated expression develops as careful attention, modest action, and exact proportion. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "sources": [
+        {
+          "sourceId": "human_design_1_ra",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ]
+      ]
+    },
+    {
+      "schoolId": "gene-keys",
+      "essence": "Intellect opens toward Precision, with Impeccability held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 62 as a passage from Intellect through Precision toward Impeccability. Its constricted pattern can be contemplated through ambition exceeding the scale the moment supports, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in small matters carrying unusual consequence, expressed here as careful attention, modest action, and exact proportion. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Impeccability remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ]
+      ]
+    }
+  ]
+}

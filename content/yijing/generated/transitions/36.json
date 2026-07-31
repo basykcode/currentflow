@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 36,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-36-15",
+      "sourceHexagramNumber": 36,
+      "targetHexagramNumber": 15,
+      "changingLine": 1,
+      "theme": "No Human Dwelling",
+      "summary": "A den ruled by predators cannot support ordinary human life; remaining within it makes the danger structural rather than accidental.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "36-15",
+        "resolvedLocator": "36-15",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4b24cef043bb8e2b8f31b3675791b5b9094acc77bbd7d0a82f887f7d1a60ba6e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-36-11",
+      "sourceHexagramNumber": 36,
+      "targetHexagramNumber": 11,
+      "changingLine": 2,
+      "theme": "Alertness Prevents Harm",
+      "summary": "Danger presses close, but sustained watchfulness keeps the threatened bite from landing and allows resources to increase despite the pressure.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "36-11",
+        "resolvedLocator": "36-11",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "57ddf63729af1926c23eaa7b4474c97cdd72c833e74e48c302a8a1f9c5e50e0d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-36-24",
+      "sourceHexagramNumber": 36,
+      "targetHexagramNumber": 24,
+      "changingLine": 3,
+      "theme": "Slander Erases the Trail",
+      "summary": "Rumor and mutual deception obscure orientation until even the tracks beside the road disappear, leaving no reliable evidence of the way forward.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "36-24",
+        "resolvedLocator": "36-24",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "360d6decaaff83de125d29d8d895f4537f460dcfbeedae81a1c1ada2ba346e97"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-36-55",
+      "sourceHexagramNumber": 36,
+      "targetHexagramNumber": 55,
+      "changingLine": 4,
+      "theme": "Courses Reach Completion",
+      "summary": "Sun and moon follow dependable paths to their destinations, making regularity itself the image of peace, safety, and freedom from disruption.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "36-55",
+        "resolvedLocator": "36-55",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "05100aedf2b075fa5ab408274a8593850408ddd1ac272dacd5ca4dddee29ff08"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-36-63",
+      "sourceHexagramNumber": 36,
+      "targetHexagramNumber": 63,
+      "changingLine": 5,
+      "theme": "Flow Destroys Settlement",
+      "summary": "A lively stream becomes an unceasing southward flood that tears through villages and deprives the people of their homes.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "36-63",
+        "resolvedLocator": "36-63",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9f605f95ff7eb2c7c343411ae287ef35a0c0842e12532c8bc4ce02c5b42acba5"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-36-22",
+      "sourceHexagramNumber": 36,
+      "targetHexagramNumber": 22,
+      "changingLine": 6,
+      "theme": "Brightness Loses Its Way",
+      "summary": "A luminous spring rite cannot hold when active light becomes disoriented and defenseless, bringing decline and blame into the ceremonial order.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "36-22",
+        "resolvedLocator": "36-22",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "aa22493470e375123594a4c3a050d8e27c050db740e1f0f42bef3d777002afa6"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

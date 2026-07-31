@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 52,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-52-22",
+      "sourceHexagramNumber": 52,
+      "targetHexagramNumber": 22,
+      "changingLine": 1,
+      "theme": "Rain Sustains the Fields",
+      "summary": "Spring moisture and summer irrigation carry cultivation through the year, allowing every field to produce at an unusually generous scale.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "52-22",
+        "resolvedLocator": "52-22",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "14bdc5e06e4aea316c540ed56efb50780a016736b3b911f0fd0a312caf0c4c43"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-52-18",
+      "sourceHexagramNumber": 52,
+      "targetHexagramNumber": 18,
+      "changingLine": 2,
+      "theme": "Wisdom Shapes the Pattern",
+      "summary": "The culture hero’s extraordinary perception gives form to the eight figures and aligns humane influence with the time, linking insight, pattern, and enduring benefit.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "52-18",
+        "resolvedLocator": "52-18",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "b28f0f19869357c7ed86fb5946ca7e5a4e40c19ac6254fc0324acd989a85d8de"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-52-23",
+      "sourceHexagramNumber": 52,
+      "targetHexagramNumber": 23,
+      "changingLine": 3,
+      "theme": "One House Two Kitchens",
+      "summary": "Two women occupy the same dwelling but maintain separate hearths, and the divided domestic order expresses itself in disorder and recurring worry.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "52-23",
+        "resolvedLocator": "52-23",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f9a7448af24cced610753309829b27f345b760fa57d00d7cab736af63b3719e3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-52-56",
+      "sourceHexagramNumber": 52,
+      "targetHexagramNumber": 56,
+      "changingLine": 4,
+      "theme": "Uncultivated Power Inverts Order",
+      "summary": "Uncanny birds dance on the city wall while the people fear; without benevolence or cultivated character, established relations turn upside down.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "52-56",
+        "resolvedLocator": "52-56",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "1938b908e50bbf38b1f1d050abfdced9e38ec2e644cfd37e9e83234fc2742e7e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-52-53",
+      "sourceHexagramNumber": 52,
+      "targetHexagramNumber": 53,
+      "changingLine": 5,
+      "theme": "Joined Vision and Flight",
+      "summary": "Composite creatures symbolize perception and influence extending beyond ordinary limits, and their appearance accompanies peace above, below, and throughout the state.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "52-53",
+        "resolvedLocator": "52-53",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "21359121ac3c0403251537873bc03922c68a20dc2f10e7518aa5146f3f23f8e7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-52-15",
+      "sourceHexagramNumber": 52,
+      "targetHexagramNumber": 15,
+      "changingLine": 6,
+      "theme": "Offering Brings Rain",
+      "summary": "Millet, wine, and mountain worship establish reciprocal reverence; welcomed sacrifice is followed by nourishing rain, flourishing life, and unrealized calamity.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "52-15",
+        "resolvedLocator": "52-15",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "06fc1522208473cdfb958cc7939e7e9aac5ef7e87978cf490a34cae20dd1b2d7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

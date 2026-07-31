@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 30,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-30-56",
+      "sourceHexagramNumber": 30,
+      "targetHexagramNumber": 56,
+      "changingLine": 1,
+      "theme": "Accord Through Diplomacy",
+      "summary": "An elder travels east to negotiate peace and exchanges formal gifts through respected intermediaries, though a stray closing image introduces grief.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "30-56",
+        "resolvedLocator": "30-56",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "59edfd11cad47cb2e7375ffa76588cdb9cfcb560c31fbe25f0a11aaa92e7e0a1"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-30-14",
+      "sourceHexagramNumber": 30,
+      "targetHexagramNumber": 14,
+      "changingLine": 2,
+      "theme": "One Source Many Branches",
+      "summary": "A mature tree generates many saplings from one maternal root, and its dense summer foliage shows abundance sustained through shared origin.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "30-14",
+        "resolvedLocator": "30-14",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "20717c503cd7d5b4b34dee0d8d21957f25d0986abf09e922182a771ac676442a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-30-21",
+      "sourceHexagramNumber": 30,
+      "targetHexagramNumber": 21,
+      "changingLine": 3,
+      "theme": "Equity Fortifies",
+      "summary": "Balanced strength above and below supports fair government and public contentment, making the fortified community unattractive to attackers.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "30-21",
+        "resolvedLocator": "30-21",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f36d203d7c46fabbfcdae457ec618b3594c847790f2332a02939d85ed7ef0d43"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-30-22",
+      "sourceHexagramNumber": 30,
+      "targetHexagramNumber": 22,
+      "changingLine": 4,
+      "theme": "Treatment Cannot Reverse Fate",
+      "summary": "Expert help arrives from afar, yet the illness has passed beyond remedy and the state publicly acknowledges the ruler’s death.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "30-22",
+        "resolvedLocator": "30-22",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "f2b5829089dd313e5230f2e61f8994adfa915dc1031f62db3052c20dfde2e83d"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-30-13",
+      "sourceHexagramNumber": 30,
+      "targetHexagramNumber": 13,
+      "changingLine": 5,
+      "theme": "Representation Cannot Carry",
+      "summary": "A ceremonial imitation lacks the capacity of a real vehicle; when rulers rely on it for dangerous action, fear and inadequacy produce calamity.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "30-13",
+        "resolvedLocator": "30-13",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "e0eac24a73bd7c235a0df2dea6fbc5a769261ca70d957d0c40bae420077d5cd0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-30-55",
+      "sourceHexagramNumber": 30,
+      "targetHexagramNumber": 55,
+      "changingLine": 6,
+      "theme": "Fields Yield Fully",
+      "summary": "Multiple forms of benefit gather around fertile land and a thriving settlement, with grain and rice arriving from their proper fields.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "30-55",
+        "resolvedLocator": "30-55",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "fe265410e01aa4f3180aacdc34d37971cf6fb522d25c9d9607544b6cae6444f2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 47,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-47-58",
+      "sourceHexagramNumber": 47,
+      "targetHexagramNumber": 58,
+      "changingLine": 1,
+      "theme": "Omen Terrifies Authority",
+      "summary": "A fox occupies the city’s defensive wall and cries for days, making an uncanny disturbance in public space enough to frighten the ruler.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "47-58",
+        "resolvedLocator": "47-58",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "62a20906e62e2c633a3c3bdbebb4aacf352184812e9dc06d54f2357bd5bae873"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-47-45",
+      "sourceHexagramNumber": 47,
+      "targetHexagramNumber": 45,
+      "changingLine": 2,
+      "theme": "Violence Sweeps Through",
+      "summary": "A fierce neighboring force arrives like war clouds, departs with sudden recoil, and attacks in every direction without stable restraint.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "47-45",
+        "resolvedLocator": "47-45",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "50a56068408079e7bab5d5d7a95c18fb2a85811909199abde6781460a01e37ac"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-47-28",
+      "sourceHexagramNumber": 47,
+      "targetHexagramNumber": 28,
+      "changingLine": 3,
+      "theme": "Repeated Shock Before Victory",
+      "summary": "Blows arrive too quickly for recovery as battle spreads across the plain, yet the violent sequence ends with the opposing force overcome.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "47-28",
+        "resolvedLocator": "47-28",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "83a91df120484fca17d063df3eef53d00a0c0e15394e9f497603f781d9e626dd"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-47-29",
+      "sourceHexagramNumber": 47,
+      "targetHexagramNumber": 29,
+      "changingLine": 4,
+      "theme": "Following the Winding Course",
+      "summary": "A river’s indirect northward path crosses unfamiliar waste but still reaches the sea, allowing the principled traveler to pass without difficulty.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "47-29",
+        "resolvedLocator": "47-29",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "38c8ec7dfa269e239c36b949fbefc3f3e55c56dc49dafdd44bd7baa29ee85850"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-47-40",
+      "sourceHexagramNumber": 47,
+      "targetHexagramNumber": 40,
+      "changingLine": 5,
+      "theme": "Flood Ruins Sustenance",
+      "summary": "Unrestrained water leaves its banks, saturates every crop, and removes the people’s food while disease and disaster spread through the whole field.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "47-40",
+        "resolvedLocator": "47-40",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "31a7cc57c0b6d9e545523aaabe63a3158bfd22fea83b7908f7b907c4352343a9"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-47-06",
+      "sourceHexagramNumber": 47,
+      "targetHexagramNumber": 6,
+      "changingLine": 6,
+      "theme": "Desire Entangles the Journey",
+      "summary": "A ruler’s transgressive relationship drives relentless travel and regret, binding movement to conduct that cannot settle into an honorable return.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "47-6",
+        "resolvedLocator": "47-6",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c84fd0b7270768d500918b046f2cd5f34af75eb9358091e4ad7dcca5276bf7bc"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

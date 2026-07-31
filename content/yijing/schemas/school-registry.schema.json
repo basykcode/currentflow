@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://current-flow.local/schemas/yijing-school-registry.schema.json",
+  "title": "Yijing commentary school registry",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "schools", "aliases"],
+  "properties": {
+    "schemaVersion": { "const": "1.0.0" },
+    "schools": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "displayLabel",
+          "description",
+          "classification",
+          "defaultDisplayOrder",
+          "sourceCount",
+          "synthesisRubric",
+          "terminologyWarnings",
+          "rightsPolicy",
+          "contentAvailability"
+        ],
+        "properties": {
+          "id": {
+            "enum": ["daoist", "buddhist", "confucian", "psychological", "human-design", "gene-keys"]
+          },
+          "displayLabel": { "type": "string", "minLength": 1 },
+          "description": { "type": "string", "minLength": 1 },
+          "classification": { "enum": ["classical", "modern", "modern-system"] },
+          "defaultDisplayOrder": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "sourceCount": { "type": "integer", "minimum": 0 },
+          "synthesisRubric": { "type": "string", "pattern": "^prompts/schools/" },
+          "terminologyWarnings": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "rightsPolicy": { "type": "string", "minLength": 1 },
+          "contentAvailability": { "enum": ["draft", "partial", "unavailable"] }
+        }
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": ["daoist", "buddhist", "confucian", "psychological", "human-design", "gene-keys"]
+      }
+    }
+  }
+}

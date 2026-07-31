@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 28,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-28-43",
+      "sourceHexagramNumber": 28,
+      "targetHexagramNumber": 43,
+      "changingLine": 1,
+      "theme": "Fruitless Early Toil",
+      "summary": "Work begins before dawn beneath scattered stars, yet strenuous movement brings no recognized result and leaves only the bitterness of unrewarded effort.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "28-43",
+        "resolvedLocator": "28-43",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0e79e2232f2dcbe27cdc01b7feeff14dd493583aa9dfd2c4718beb7f38c0bf61"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-28-31",
+      "sourceHexagramNumber": 28,
+      "targetHexagramNumber": 31,
+      "changingLine": 2,
+      "theme": "Expectation Reverses",
+      "summary": "Affection and marriage plans become tied to hopes of wealth, but the anticipated gain reverses into impoverishment when relationship is treated as acquisition.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "28-31",
+        "resolvedLocator": "28-31",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "84e945341a33c9822e721289a5fa2730f92c8e20de61488117e6c7fae841884c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-28-47",
+      "sourceHexagramNumber": 28,
+      "targetHexagramNumber": 47,
+      "changingLine": 3,
+      "theme": "Welcome Brings Favor",
+      "summary": "Energetic travel toward a hospitable household is met with a warm garment and continuing good fortune, joining initiative with generous reception.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "28-47",
+        "resolvedLocator": "28-47",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "5f2d438fd2e4eca8c12178852459d9e565b847e99f4b93bf4b6dcc795017a000"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-28-48",
+      "sourceHexagramNumber": 28,
+      "targetHexagramNumber": 48,
+      "changingLine": 4,
+      "theme": "Virtue Violated",
+      "summary": "When altruism is attacked and ethical power injured, blessing withdraws and the institutions that anchor ancestry and territory are lost.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "28-48",
+        "resolvedLocator": "28-48",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4b72dcc874e943a5ed0f6e85c3d3a1da710f4a8e57798a1c340863eb7f42fa67"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-28-32",
+      "sourceHexagramNumber": 28,
+      "targetHexagramNumber": 32,
+      "changingLine": 5,
+      "theme": "Right Exchange Multiplies",
+      "summary": "Fairly conducted trade lets benefit compound, while new family life and an opened market extend prosperity through both kinship and exchange.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "28-32",
+        "resolvedLocator": "28-32",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "64882526c434b0d39e5381309e225ba31bdb316e485fc72b0a382ee98a8936bc"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-28-44",
+      "sourceHexagramNumber": 28,
+      "targetHexagramNumber": 44,
+      "changingLine": 6,
+      "theme": "Mockery Breeds Retaliation",
+      "summary": "Careless joking across a boundary becomes humiliation and punishment; an apparently minor offense awakens a stronger adversary and seeds later disaster.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "28-44",
+        "resolvedLocator": "28-44",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "372c1049934fb768f49fcdef66a31b0976d23fce8ca1560fa1a9b764237ed26a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

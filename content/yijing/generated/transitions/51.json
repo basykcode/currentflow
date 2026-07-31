@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 51,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-51-16",
+      "sourceHexagramNumber": 51,
+      "targetHexagramNumber": 16,
+      "changingLine": 1,
+      "theme": "War Written in the Sky",
+      "summary": "Fierce planets, wandering constellations, weapons, and glaring tigers accumulate into a landscape charged with confrontation before battle begins.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "51-16",
+        "resolvedLocator": "51-16",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "637f1f881da5b7180b3d94e98d544be0319572cecadc9d5a2be70d9a7fe72cf7"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-51-54",
+      "sourceHexagramNumber": 51,
+      "targetHexagramNumber": 54,
+      "changingLine": 2,
+      "theme": "Danger Passes Beside",
+      "summary": "Fire remains behind and numerous attackers move past on the right, so overwhelming threats stay close without crossing into direct harm.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "51-54",
+        "resolvedLocator": "51-54",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d619e5886299a162fcdbaa7c14eb819f5ebe344034dbc8a865037b3629baf109"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-51-55",
+      "sourceHexagramNumber": 51,
+      "targetHexagramNumber": 55,
+      "changingLine": 3,
+      "theme": "Force Without Civility",
+      "summary": "A distant people are portrayed solely through riding, archery, and invasion, making martial skill without shared ritual the source’s image of threat.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "51-55",
+        "resolvedLocator": "51-55",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d566b237b40752fb03654d41f7854140f3369670a35d16adc20df931154b0bc0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-51-24",
+      "sourceHexagramNumber": 51,
+      "targetHexagramNumber": 24,
+      "changingLine": 4,
+      "theme": "Value Squandered",
+      "summary": "Something precious is exchanged for what cannot justify its cost; concealment then deepens the error, turning poor judgment into escalating loss.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "51-24",
+        "resolvedLocator": "51-24",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "dbb7df1e55a7c03198b15f596d505db2062a41ee1227e5167cde5d26127bed06"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-51-17",
+      "sourceHexagramNumber": 51,
+      "targetHexagramNumber": 17,
+      "changingLine": 5,
+      "theme": "Waters Gather Wealth",
+      "summary": "Major rivers and the sea collect the realm’s resources like a vast storehouse, enabling people to assemble benefit and enlarge communal joy.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "51-17",
+        "resolvedLocator": "51-17",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c18b195257ebdbac931166d255eaad28933412bcf3b6480821c23498a8d67571"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-51-21",
+      "sourceHexagramNumber": 51,
+      "targetHexagramNumber": 21,
+      "changingLine": 6,
+      "theme": "Early Return From Error",
+      "summary": "The path has gone astray but not beyond recovery; awareness of danger halts movement by midday and turns thought toward return.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "51-21",
+        "resolvedLocator": "51-21",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9716bc55c07208342a399f2b5944bdc1b3a14fce824a5025668a55bdc8bbb351"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

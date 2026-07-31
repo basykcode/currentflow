@@ -1,0 +1,203 @@
+{
+  "schemaVersion": "1.0.0",
+  "hexagramNumber": 6,
+  "records": [
+    {
+      "schoolId": "daoist",
+      "essence": "Clear boundaries, mediation, and timely withdrawal gives Conflict a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In Conflict, the central situation is divergent claims hardening into conflict, and the commentarial evidence repeatedly emphasizes contention, danger, and beneficial. The main danger is pursuing vindication beyond the useful limit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is clear boundaries, mediation, and timely withdrawal, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ]
+      ]
+    },
+    {
+      "schoolId": "buddhist",
+      "essence": "",
+      "summary": "",
+      "sources": [],
+      "sentenceSources": [],
+      "insufficientReason": "No eligible evidence remains for this cell; quarantined source record(s): buddhist_1_cleary."
+    },
+    {
+      "schoolId": "confucian",
+      "essence": "Clear boundaries, mediation, and timely withdrawal gives Conflict a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In Conflict, the central situation is divergent claims hardening into conflict, and the commentarial evidence repeatedly emphasizes contention, balance, and worthwhile. The main danger is pursuing vindication beyond the useful limit, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is clear boundaries, mediation, and timely withdrawal, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ]
+      ]
+    },
+    {
+      "schoolId": "psychological",
+      "essence": "Psychologically, Conflict asks how clear boundaries, mediation, and timely withdrawal can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, Conflict describes divergent claims hardening into conflict as an experience that organizes attention, expectation, and response. The source perspectives highlight conflict, brings, and cautious, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through pursuing vindication beyond the useful limit; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering clear boundaries, mediation, and timely withdrawal. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "contribution": "supporting"
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "contribution": "contrasting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ]
+      ]
+    },
+    {
+      "schoolId": "human-design",
+      "essence": "Gate 6 frames clear boundaries, mediation, and timely withdrawal as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 6 treats divergent claims hardening into conflict as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Solar Center, the Defence Circuit, Channel 59-6, harmonic Gate 59, and emphasizes awareness, defense, and genetic in describing how its energy operates. Distortion can appear through pursuing vindication beyond the useful limit; differentiated expression develops as clear boundaries, mediation, and timely withdrawal. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "sources": [
+        {
+          "sourceId": "human_design_1_ra",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ]
+      ]
+    },
+    {
+      "schoolId": "gene-keys",
+      "essence": "Conflict opens toward Diplomacy, with Peace held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 6 as a passage from Conflict through Diplomacy toward Peace. Its constricted pattern can be contemplated through pursuing vindication beyond the useful limit, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in divergent claims hardening into conflict, expressed here as clear boundaries, mediation, and timely withdrawal. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Peace remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ]
+      ]
+    }
+  ]
+}

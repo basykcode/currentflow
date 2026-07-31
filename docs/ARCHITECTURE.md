@@ -48,6 +48,38 @@ exactly. Closing clears the stack and no state is persisted. Classical lineage m
 interfaces that remain `source-needed` until complete reviewed tables are connected. See
 [`YIJING_TRANSFORMATION_LAB.md`](YIJING_TRANSFORMATION_LAB.md).
 
+The line-change commentary boundary keeps protected evidence separate from the SPA.
+`scripts/transitions` verifies and indexes the complete Forest of Changes matrix, keeps verses and
+notes under `content/yijing/internal/transitions`, and builds only original draft paraphrases into
+`content/yijing/generated/transitions`. The typed
+`src/features/hexagram-transitions/repository.ts` lazy-loads one six-line bundle and
+`HexagramTransitionInsight.vue` renders the selected route directly beneath its computed
+transformation. The deterministic line result remains owned by the astrology domain; Forest prose
+never participates in the calculation.
+
+## Hexagram commentary evidence and runtime boundaries
+
+Commentary source preparation is isolated from the runtime under `data/hexagram-commentary`. A
+standalone script imports or extracts passages into one local UTF-8 file per source and King Wen
+number. The full `chunked/` tree is Git-ignored because the supplied and inherited commercial texts
+do not have an accepted redistribution basis.
+
+Trackable metadata remains beside the ignored corpus: `manifest.json` identifies every source and
+extraction method, `chunk-index.jsonl` binds each passage to its source ID, King Wen number, SHA-256,
+rights status, and ingestion eligibility, and `audit.json` records coverage and quarantines. The SPA
+does not import any of these files.
+
+The synthesis pipeline under `scripts/commentary` validates the tracked school/source registries,
+creates Git-ignored normalized chunks, per-source digests, and per-school packets, then joins
+tracked original-prose drafts to those packets. Only
+`content/yijing/generated/hexagrams/*.json` crosses into the SPA. Those files contain compact
+attribution and sentence-to-chunk support, never source passages.
+
+The runtime boundary is `src/features/hexagram-commentary/repository.ts`: it lazy-loads one public
+bundle by King Wen number, validates it, caches it, and returns typed unavailable state on failure.
+`HexagramCommentaryPanel.vue` owns presentation, tab keyboard behavior, remembered school, evidence
+and source disclosure, and responsive states. It makes no network calls.
+
 ## Special-message privacy boundary
 
 Special-message routes remain part of the static Vue deployment and make no runtime network calls.

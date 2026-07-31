@@ -1,0 +1,278 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatorVersion": "deterministic-editorial-v1",
+  "promptVersion": "school-synthesis-v1",
+  "generatedAtIso": "2026-07-30T00:00:00Z",
+  "batchSize": 8,
+  "completedBatchStarts": [
+    1,
+    9,
+    17,
+    25,
+    33,
+    41,
+    49,
+    57
+  ],
+  "draftFileCount": 64,
+  "draftHashes": [
+    {
+      "file": "content/yijing/drafts/hexagrams/01.json",
+      "sha256": "1560b1001c6c7a5296bd95eda2d761028b94d37de85c2e7fd68f3febdea4a7a8"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/02.json",
+      "sha256": "fd07c9a878a52bd1af6bd2646b0c546543891a40ba2690f3dbb4b3e31ed17f30"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/03.json",
+      "sha256": "7ddef7bd99a6702dcaf7b87806b89c90a52cf3329ea5ea5dae7b32b04806dd80"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/04.json",
+      "sha256": "8c4d17348b8afcf09f165789a70e863566bf821d59014cb2552ca4612c1150dd"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/05.json",
+      "sha256": "37dbd7257a518ca706b2eec7aa51624ff820fae701007bb8d8db7540ca2817a1"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/06.json",
+      "sha256": "8c19b40a61088ab4d0b2cff6b280c27b7ffe0b9bf2866e5bbc1e45bf7d11dc9d"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/07.json",
+      "sha256": "96bd3ed1d0a001755a38af6ce5daaa92573cd7d05a33b90e191b428bbb075378"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/08.json",
+      "sha256": "9e6f1cb0ca9d004296aef902bbc101643ef08287d51d3772fc8214f1fb2846f7"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/09.json",
+      "sha256": "d182b50a39c308b3a4390902c4011f68fc61c96ea53211d5d452cba309706b4a"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/10.json",
+      "sha256": "e40d336c641d94541b5b66d0b83cbbf3d4e4a008f85fbcf9cece9a63f0e22ccd"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/11.json",
+      "sha256": "6839f9ba2519e487d11a687ebc5c273fb702cdb971ab36dcd9db5e5541ccd535"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/12.json",
+      "sha256": "3c2587a173a68dc0a11f215440996c472e76a65c8a5c4c9fc4b4dc23590349e9"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/13.json",
+      "sha256": "4b2a91ffad8b6a1032efbe086acbfc0b78fbbe1bed58b9b0a317506a5c60480b"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/14.json",
+      "sha256": "7cd34462355a89fc1aa6e9741d0c7925f2362337baddc3aec74701ba5bfc41c7"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/15.json",
+      "sha256": "83529dd0e15c96ce7a8271018336cd6d66f450b692e351f436960c56c7a80860"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/16.json",
+      "sha256": "3f6f8a949b477ff842c71bbe18ad2f63c62f1685e820651f953b94106d4236ae"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/17.json",
+      "sha256": "b82aa2cf89827f89125057dc6b1dc976fab9f4d3613e2fdb8a492b7dadaf5bb9"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/18.json",
+      "sha256": "8304ff88853a81f4aaaaba62060919ec8b937d3beb3da210d7af1e145faa3a34"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/19.json",
+      "sha256": "bd831bdc3e45e0b65b5795838aa0bee24571b9a828abf75027c9dcd6f5ef2307"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/20.json",
+      "sha256": "f2ffe6c7e8bfb90c98fbe90e918cd9fbe67dbedbf7516b08de6018ede7991a84"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/21.json",
+      "sha256": "b8716a7771b63affb778dccb11bce31b2dfbd3700181e6bbf54685231c521321"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/22.json",
+      "sha256": "7d3032dee8ac762248bc09d4c7f4073f74e9882b6a44eab0ef340c36ed4d40ca"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/23.json",
+      "sha256": "e519e139771e88ef001ab580949bfb278100caa2926883bbcde937019629e9c2"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/24.json",
+      "sha256": "1594b3518aff4d960d85b6b846ac1f96d793b1e35a2e36b43fe9c026e6223bfb"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/25.json",
+      "sha256": "731476339c55a1ed75635eb8646683597976167f16561add74014683f92ce921"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/26.json",
+      "sha256": "c189bab1062dcbff8d1cc31214cae9e2f5f42e66caba4e5e4099d246bcb63ed7"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/27.json",
+      "sha256": "29d919d50b69b26ed861ebec8e638ad0724bd7197f28759bb574b865fb06aaab"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/28.json",
+      "sha256": "e3a5acbab02e0c6620e0eae504ecd06381b5269b1d1eb774f9eb9f85dd416a34"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/29.json",
+      "sha256": "ca4441320e25df89f649c53afb7362e77d3519f48765e4113cbfcd88527a4290"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/30.json",
+      "sha256": "500be7a8bd4fa0e1663bcd0b0e7340b213894206f9decb618c8d805b50cfb1f4"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/31.json",
+      "sha256": "3da099d1f1a0045c44d2a114219f856c242ee13927e3e6b6262b258e93ef3995"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/32.json",
+      "sha256": "b2eda1adc6d4fbcb4f272ebfba8e10d712a33e10b21ddb9c98241b57acd7af6b"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/33.json",
+      "sha256": "966bfe1d59e12296b2767afc602482733055777fa492d65ae2e550050a6a2a78"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/34.json",
+      "sha256": "17adababbf05eeab9368d0150cd65e03e508725d14521b9ebfbae216111ee10b"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/35.json",
+      "sha256": "efd9c302835dae01e70f8e09b602a7c375f9d93caa1544b111aebcd4eac40264"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/36.json",
+      "sha256": "4c682b86e5810103a0f359c7ec61779da2e80ace491311b219e68df8009f7f37"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/37.json",
+      "sha256": "1f8166bea07a098785ced1ef421b53e5302383eddd72afbcf44695815417743f"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/38.json",
+      "sha256": "82ea601d52d14b60c287264c2d9406e71b7b719c7204ec6f529be090c74c51ad"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/39.json",
+      "sha256": "ba820488bfccd76d724a2170c310a28f9962a2a0e77f690caa4b0f2c7bd62b94"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/40.json",
+      "sha256": "0ea3a9a568a98a3db23f3731ec126c4c83cf2df8b704400b9f4c6d94786b868b"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/41.json",
+      "sha256": "80dc1e796da892cc9a6889cd74146d261d59e5495da687290b240a31485f55a9"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/42.json",
+      "sha256": "46ff8858575cc21bd26ea05f568735ab68bd34a864c83ed0cee4a9e86a146b54"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/43.json",
+      "sha256": "4ae263bbdaaf00b8b41a1b94075e7dc84526656a18066864a310761eabff4572"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/44.json",
+      "sha256": "a5d0993d33e7b51dab7aa8965c853dd424e481072c03adff455bd0b56962ae24"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/45.json",
+      "sha256": "d630452e6f8582b968e612397de32693cd0d0656e8cc019c81d29765346d167a"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/46.json",
+      "sha256": "16fb5537d1e38e31a2e955e683e1c8f3f5317dcd8c4e505dff4b82e809366132"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/47.json",
+      "sha256": "1f92c7862a2c7dbe19da62eb397e173d744800c39d6fd68b5ea586421398c6d4"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/48.json",
+      "sha256": "698d61c60047bc1ab6d724dea983332937e149012dc6c47b2157ab68f5ac40c3"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/49.json",
+      "sha256": "f567437943ad66d26d2e03386279a9d88a2441de65110d7611209d848b19be7f"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/50.json",
+      "sha256": "bbeae37948fe0fd4eabb657fcbd92f99edf4933726b2c0fa834ff215bbb7cad1"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/51.json",
+      "sha256": "6b7ed417e89d25668ce3b7ce94283e7a63e3d58af94871cadede782059f24751"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/52.json",
+      "sha256": "220b0f33675c1e059257b4b0f142e7861eef567b855cd11c2abfcd5d0b5adaa5"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/53.json",
+      "sha256": "6f6afa49d0de3e19d9f47adf75f0ae422b2806feb2d02a444c50157cdf453849"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/54.json",
+      "sha256": "61e2ee74de824e20ad0c71973dcbe51bffa6b49f110a509be87c4bf4dba0a8b8"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/55.json",
+      "sha256": "8b492796119cc7c2dc79e3f6e3f3ef82a1382b6b386900e13245cee808b3fbbe"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/56.json",
+      "sha256": "48971ce86478ad6f68dbefbbd761823881f36d88b709e77886a8ce2d25f0219d"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/57.json",
+      "sha256": "94bdbb3fbb53c145f2a2851fb048a5561840c04310ff6c3b1f634a1c324148c7"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/58.json",
+      "sha256": "f5887ee9221b7f4191aed19598c32fa5afc584f57a19916c20e40fa2b5fc8e9b"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/59.json",
+      "sha256": "da338eba9821d086f8a91525e9f334ecdf12b23d91492fb1419f3f1b19d3db70"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/60.json",
+      "sha256": "264af570128ff0a4c9c9b090ce91f7e5d6d21d96082fd3c11ad98912d6eb1145"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/61.json",
+      "sha256": "636aeb67d53fca406c9c1f9d7fd2b4b0560c0e59fef3a22553b2dbf250f38df6"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/62.json",
+      "sha256": "0e1eec82c06656cb25cc5e1e4d61c560cb309f6d163a4824cacad5a0d41e5024"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/63.json",
+      "sha256": "1cfbc84d1f1b8d0c82c63632e46aff325127396e146a116142ac0dab523a4757"
+    },
+    {
+      "file": "content/yijing/drafts/hexagrams/64.json",
+      "sha256": "fd6f9055b3e6e35c7cc9cf4db1dc731cc9042c1d483d623206b7b422e3429948"
+    }
+  ],
+  "pilotHexagram": 5,
+  "publicationStatus": "draft-only"
+}

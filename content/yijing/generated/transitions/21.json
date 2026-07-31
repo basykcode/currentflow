@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 21,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-21-35",
+      "sourceHexagramNumber": 21,
+      "targetHexagramNumber": 35,
+      "changingLine": 1,
+      "theme": "Generations Gather",
+      "summary": "Elders rejoice as descendants assemble around them, and family continuity becomes the foundation for growing prosperity, honor, and shared blessing.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "21-35",
+        "resolvedLocator": "21-35",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ce82c1fad6d2d8f4034648e2eda3925590df492847071235a74419382408aa55"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-21-38",
+      "sourceHexagramNumber": 21,
+      "targetHexagramNumber": 38,
+      "changingLine": 2,
+      "theme": "Fantasy Rejects the Near",
+      "summary": "A neighbor is disregarded in pursuit of an idealized beauty, while contemptuous appearance-based judgment exposes the vanity within the preference.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "21-38",
+        "resolvedLocator": "21-38",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7d2086aa834824641e9170e5d6871d73c5d7ed34b562f79998004287a6cdf2a2"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-21-30",
+      "sourceHexagramNumber": 21,
+      "targetHexagramNumber": 30,
+      "changingLine": 3,
+      "theme": "Celebration Opens Favor",
+      "summary": "Birdsong, dance, and shared drink announce expanding joy, while seals and royal emblems portray recognition and blessing arriving together.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "21-30",
+        "resolvedLocator": "21-30",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "c184f0dd9dac2cab52e958a27e16a4888fb34f752d0eee8d31e7b7f438353286"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-21-27",
+      "sourceHexagramNumber": 21,
+      "targetHexagramNumber": 27,
+      "changingLine": 4,
+      "theme": "Vital Light Extinguished",
+      "summary": "When radiance, nourishment, and animating spirit all withdraw, the remaining condition is one of profound obscurity without a sustaining center.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "21-27",
+        "resolvedLocator": "21-27",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "bed6d0cda8b55332207eb26c5b2044ac64f89a0037d21b6aacb53a7833bc40dc"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-21-25",
+      "sourceHexagramNumber": 21,
+      "targetHexagramNumber": 25,
+      "changingLine": 5,
+      "theme": "Expectation Reverses",
+      "summary": "Affection and marriage plans become tied to hopes of wealth, but the anticipated gain reverses into impoverishment when relationship is treated as acquisition.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "21-25",
+        "resolvedLocator": "21-25",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "84e945341a33c9822e721289a5fa2730f92c8e20de61488117e6c7fae841884c"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-21-51",
+      "sourceHexagramNumber": 21,
+      "targetHexagramNumber": 51,
+      "changingLine": 6,
+      "theme": "Vehicle Comes Apart",
+      "summary": "Harness, horses, and wheels cease to function as one system, so rapid motion produces neither arrival nor safety and instead exposes the travelers to harm.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "21-51",
+        "resolvedLocator": "21-51",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "07c345826c7d6041c4e0fd2f71a7b62588a626e7824c7eba341a6c8f7ce6241f"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

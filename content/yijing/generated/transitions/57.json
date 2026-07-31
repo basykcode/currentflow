@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 57,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-57-09",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 9,
+      "changingLine": 1,
+      "theme": "Perception Completely Blocked",
+      "summary": "With sight and hearing both obstructed, movement loses every orienting signal and falls directly into a depth covered by compounded misfortune.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "57-9",
+        "resolvedLocator": "57-9",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9ac03ae92798e6d42e48ebe08de2f42074ab39cf68019906f38717ef3c497eb3"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-57-53",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 53,
+      "changingLine": 2,
+      "theme": "Narrow Concern Blocks Vision",
+      "summary": "A self-defeating viewpoint hides the larger sky while attention remains trapped in small concerns, allowing favorable opportunity to escape unnoticed.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "57-53",
+        "resolvedLocator": "57-53",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7f811148998dd583c72df530327d5702e323c9796bbe43cae5b30f01dc03c947"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-57-59",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 59,
+      "changingLine": 3,
+      "theme": "Purification Before Rule",
+      "summary": "Before assuming authority, the culture hero journeys to a sacred mountain and bathes at dawn, making clarified character the preparation for governance.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "57-59",
+        "resolvedLocator": "57-63",
+        "crossReferenceChain": ["57-59"],
+        "sourcePassageSha256": "a9d6a378d91387036901e337fbf11da719b5b070a511b9e56a7e6eabbc5d6af0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-57-44",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 44,
+      "changingLine": 4,
+      "theme": "Expansive Skillful Commerce",
+      "summary": "A dragon-borne journey meets profitable opportunity, successful capture, and a widening market whose activity settles into durable civic peace.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "57-44",
+        "resolvedLocator": "57-44",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "4bd68bf68f039f5001586408bf633e397c58bcc0fa7fc7a89d61fad72252da51"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-57-18",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 18,
+      "changingLine": 5,
+      "theme": "Disorder Enters the Ruler’s House",
+      "summary": "Authority fails when reckless intimacy and family chaos reach the political center, culminating in a concealed attack and the ruler’s death.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "57-18",
+        "resolvedLocator": "57-18",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "982ea85aeb96898d40e72b132b83563a3d45c3ba76e169228fe14dde8b653123"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-57-48",
+      "sourceHexagramNumber": 57,
+      "targetHexagramNumber": 48,
+      "changingLine": 6,
+      "theme": "Bridges Washed Away",
+      "summary": "Mountain floods remove the structures that connect the road, trapping the traveler where forceful water has replaced passage with misery.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "57-48",
+        "resolvedLocator": "57-48",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ff6d54d89e11ee577dd45c6239cf0d0a58f74cb728258db71f45953bce2af58e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

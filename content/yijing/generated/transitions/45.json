@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 45,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-45-17",
+      "sourceHexagramNumber": 45,
+      "targetHexagramNumber": 17,
+      "changingLine": 1,
+      "theme": "Loss at the Threshold",
+      "summary": "A figure of poverty repeatedly breaks the household’s vessels at its own gate until the family’s capacity to preserve anything is exhausted.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "45-17",
+        "resolvedLocator": "45-17",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6fb09eb3159460fbabeffc7ef687670f8f6f703628d35e9a4e4feb1a88cfbd8e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-45-47",
+      "sourceHexagramNumber": 45,
+      "targetHexagramNumber": 47,
+      "changingLine": 2,
+      "theme": "Terrain Forces Retreat",
+      "summary": "Mountains crowd nearly every measure of road until animals cannot advance, leaving return as the only response the path permits.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "45-47",
+        "resolvedLocator": "45-47",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "99d1e08746cdb32f3c51a4b33926eb5046afdbe9601554a449994d6becdc1db0"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-45-31",
+      "sourceHexagramNumber": 45,
+      "targetHexagramNumber": 31,
+      "changingLine": 3,
+      "theme": "Bridges Washed Away",
+      "summary": "Mountain floods remove the structures that connect the road, trapping the traveler where forceful water has replaced passage with misery.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "45-31",
+        "resolvedLocator": "45-31",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "ff6d54d89e11ee577dd45c6239cf0d0a58f74cb728258db71f45953bce2af58e"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-45-08",
+      "sourceHexagramNumber": 45,
+      "targetHexagramNumber": 8,
+      "changingLine": 4,
+      "theme": "Virtue Clears the Realm",
+      "summary": "Ethical governance distributes benefit in every direction, while wind and rain clear obstruction so the ruler can recognize distinguished service.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "45-8",
+        "resolvedLocator": "45-8",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2c3ab94bd4ae7a02a7d612c54089c8c26c2c10049af4e198fc2e2dfacd844ee8"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-45-16",
+      "sourceHexagramNumber": 45,
+      "targetHexagramNumber": 16,
+      "changingLine": 5,
+      "theme": "Bound Yet Escaping",
+      "summary": "An immobilized animal is exposed to a tiger and nearly becomes a sacrifice, but the danger remains incomplete and a sudden opening permits escape.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "45-16",
+        "resolvedLocator": "45-16",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "d2b3c0b175f8b8c970626b73d010ef90b64ba8c6e124df208c84db8ed038ed3a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-45-12",
+      "sourceHexagramNumber": 45,
+      "targetHexagramNumber": 12,
+      "changingLine": 6,
+      "theme": "Hiding Does Not Save",
+      "summary": "Fear drives deer into a concealed valley, yet the refuge lies within a predator’s range and cannot prevent their lives from being cut short.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "45-12",
+        "resolvedLocator": "45-12",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "efb0f084fe28e08facde4655a5757ca6ecf6c8cac555de5a2df1a921ae0cb950"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

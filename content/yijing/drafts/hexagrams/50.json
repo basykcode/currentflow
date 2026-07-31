@@ -1,0 +1,223 @@
+{
+  "schemaVersion": "1.0.0",
+  "hexagramNumber": 50,
+  "records": [
+    {
+      "schoolId": "daoist",
+      "essence": "Culture, refinement, and service through transformation gives The Cauldron a path beyond force, passivity, or premature certainty.",
+      "summary": "The Daoist lens attends to how force can accord with the configuration instead of contending with it. In The Cauldron, the central situation is raw material being transformed into shared nourishment, and the commentarial evidence repeatedly emphasizes following, illumination, and process. The main danger is a worthy vessel destabilized by poor handling, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is culture, refinement, and service through transformation, expressed through attention to sequence, relation, and the limits of the present position. Transformation comes through responsive timing: capacity remains available because it is neither suppressed nor spent against the grain.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "daoist_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "daoist_2_wang_bi",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ],
+        [
+          "daoist_1_cleary",
+          "daoist_2_wang_bi"
+        ]
+      ]
+    },
+    {
+      "schoolId": "buddhist",
+      "essence": "Culture, refinement, and service through transformation gives The Cauldron a path beyond force, passivity, or premature certainty.",
+      "summary": "The Buddhist lens reads the configuration as a discipline of lucid response rather than fixed identity. In The Cauldron, the central situation is raw material being transformed into shared nourishment, and the commentarial evidence repeatedly emphasizes mandate, cauldron, and knobs. The main danger is a worthy vessel destabilized by poor handling, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is culture, refinement, and service through transformation, expressed through attention to sequence, relation, and the limits of the present position. Transformation rests in meeting conditions without clinging to either resistance or immediate release, so attention can remain compassionate and exact.",
+      "sources": [
+        {
+          "sourceId": "buddhist_1_cleary",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ],
+        [
+          "buddhist_1_cleary"
+        ]
+      ]
+    },
+    {
+      "schoolId": "confucian",
+      "essence": "Culture, refinement, and service through transformation gives The Cauldron a path beyond force, passivity, or premature certainty.",
+      "summary": "The Confucian lens places the configuration within cultivated conduct, position, and responsibility. In The Cauldron, the central situation is raw material being transformed into shared nourishment, and the commentarial evidence repeatedly emphasizes cauldron, success, and action. The main danger is a worthy vessel destabilized by poor handling, especially when partial conditions are mistaken for permission to press ahead. Its constructive capacity is culture, refinement, and service through transformation, expressed through attention to sequence, relation, and the limits of the present position. Development therefore joins inward steadiness with outward appropriateness, making character visible through conduct suited to the moment.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "confucian_1_cleary",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "confucian_2_legge",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ],
+        [
+          "confucian_1_cleary",
+          "confucian_2_legge"
+        ]
+      ]
+    },
+    {
+      "schoolId": "psychological",
+      "essence": "Psychologically, The Cauldron asks how culture, refinement, and service through transformation can replace reactions shaped by immediate pressure.",
+      "summary": "Psychologically, The Cauldron describes raw material being transformed into shared nourishment as an experience that organizes attention, expectation, and response. The source perspectives highlight caldron, based, and changes, showing how the same situation can be interpreted from several emotional and relational angles. Strain develops through a worthy vessel destabilized by poor handling; urgency then narrows the range of meanings and actions that can be considered. Integration involves noticing the pattern without turning it into a diagnosis or a fixed identity, while recovering culture, refinement, and service through transformation. The result is not certainty about an outcome, but a more differentiated ability to choose, relate, and remain present within changing conditions.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "psychological_1_wilhelm",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "psychological_2_balkin",
+          "contribution": "supporting"
+        },
+        {
+          "sourceId": "psychological_3_dening",
+          "contribution": "contrasting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ],
+        [
+          "psychological_1_wilhelm",
+          "psychological_2_balkin",
+          "psychological_3_dening"
+        ]
+      ]
+    },
+    {
+      "schoolId": "human-design",
+      "essence": "Gate 50 frames culture, refinement, and service through transformation as a conditional potential requiring activation and whole-chart context.",
+      "summary": "Within Human Design, Gate 50 treats raw material being transformed into shared nourishment as a specific mechanical potential rather than a general personality description. The registered source connects this gate with the Spleen Center, the Defence Circuit, Channel 50-27, harmonic Gate 27, and emphasizes circuit, values, and awareness in describing how its energy operates. Distortion can appear through a worthy vessel destabilized by poor handling; differentiated expression develops as culture, refinement, and service through transformation. A gate-level account remains conditional: it does not establish that the gate, its harmonic, or a complete channel is active in any particular chart. Line, planetary, authority, definition, and whole-chart context are therefore required before this material can support an individualized interpretation.",
+      "sources": [
+        {
+          "sourceId": "human_design_1_ra",
+          "contribution": "primary"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ],
+        [
+          "human_design_1_ra"
+        ]
+      ]
+    },
+    {
+      "schoolId": "gene-keys",
+      "essence": "Corruption opens toward Equilibrium, with Harmony held as a contemplative horizon rather than a personal claim.",
+      "summary": "The Gene Keys lens names the movement of Key 50 as a passage from Corruption through Equilibrium toward Harmony. Its constricted pattern can be contemplated through a worthy vessel destabilized by poor handling, which can turn the situation into pressure or identification. The Gift describes a more spacious participation in raw material being transformed into shared nourishment, expressed here as culture, refinement, and service through transformation. The two registered sources contribute different scopes, with one elaborating the spectrum and the other bringing its themes into personal contemplation. Harmony remains the system's highest symbolic horizon; it is not a guaranteed attainment, prediction, or statement about anyone's present level of consciousness.",
+      "sourceTensionNote": "The registered sources share the hexagram focus but approach it through different historical, practical, or system-specific scopes; this synthesis preserves that distinction.",
+      "sources": [
+        {
+          "sourceId": "gene_keys_1_rudd",
+          "contribution": "primary"
+        },
+        {
+          "sourceId": "gene_keys_2_rudd",
+          "contribution": "supporting"
+        }
+      ],
+      "sentenceSources": [
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ],
+        [
+          "gene_keys_1_rudd",
+          "gene_keys_2_rudd"
+        ]
+      ]
+    }
+  ]
+}

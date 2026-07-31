@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 4,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-04-41",
+      "sourceHexagramNumber": 4,
+      "targetHexagramNumber": 41,
+      "changingLine": 1,
+      "theme": "Small Aid Endures",
+      "summary": "A little grain saves a starving traveler, and the timely gift establishes a bond of gratitude capable of returning help later.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "4-41",
+        "resolvedLocator": "4-41",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7399886a22f6bacbd9dcc56e3bc52deb2eca2fc7b34cea509be555b70e76af45"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-04-23",
+      "sourceHexagramNumber": 4,
+      "targetHexagramNumber": 23,
+      "changingLine": 2,
+      "theme": "Privilege Undone",
+      "summary": "Abuse of position exhausts favor until rank disappears and the former holder is reduced to ordinary service under others.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "4-23",
+        "resolvedLocator": "4-23",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "46e14d95074406a95dd7f8d1725cde2f7d44eaf8c3720615f5b7c1d28fe53508"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-04-18",
+      "sourceHexagramNumber": 4,
+      "targetHexagramNumber": 18,
+      "changingLine": 3,
+      "theme": "Pursuit Meets Deep Water",
+      "summary": "A fox chase reaches a barrier too deep to cross, and the desired capture remains beyond reach because the terrain itself blocks progress.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "4-18",
+        "resolvedLocator": "4-18",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "3709e28013a51599b0af95daa7b70834fcfdbe0e8540e48ae2330387149e92f4"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-04-64",
+      "sourceHexagramNumber": 4,
+      "targetHexagramNumber": 64,
+      "changingLine": 4,
+      "theme": "Resources Unfit for Use",
+      "summary": "The wild landscape contains animals but no cultivated community, and what is present cannot fulfill ceremonial need, leaving grief amid unusable abundance.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "4-64",
+        "resolvedLocator": "4-64",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "2ccb8de84efa1abe697a1619efed458b6eb1143e1cbd5a5d07f392ff9b1add96"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-04-59",
+      "sourceHexagramNumber": 4,
+      "targetHexagramNumber": 59,
+      "changingLine": 5,
+      "theme": "Fear Blocks the Road",
+      "summary": "Terror and obstruction reinforce one another until even a single step becomes impossible, turning anticipated danger into complete immobility.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "4-59",
+        "resolvedLocator": "4-59",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "0429e54879b2cd7012f0af3513700d3e1695706e5229067b83aa2da996f20c4a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-04-07",
+      "sourceHexagramNumber": 4,
+      "targetHexagramNumber": 7,
+      "changingLine": 6,
+      "theme": "Incomplete Yet Aligned",
+      "summary": "The young fox wets its tail before finishing the crossing, gaining no material advantage while still moving in accord with the larger way.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "4-7",
+        "resolvedLocator": "4-7",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "de630126bea5bf16c6bf04476e7a4e91bdbe4f25dd6ae57b182edc4eaed1ad30"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}

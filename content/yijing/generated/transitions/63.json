@@ -1,0 +1,181 @@
+{
+  "schemaVersion": "1.0.0",
+  "contentVersion": "2026.07.30-forest-line-transitions-v1",
+  "sourceHexagramNumber": 63,
+  "transitions": [
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-63-39",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 39,
+      "changingLine": 1,
+      "theme": "Communion Beyond Trouble",
+      "summary": "Rare food and elixir accompany fellowship with immortals, presenting a sustained interval in which ordinary sorrow and disaster no longer intrude.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "63-39",
+        "resolvedLocator": "63-39",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6ea95046d04a46e182229a01e488d7e8a92714ba8c78d2287f46507b8753a111"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-63-05",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 5,
+      "changingLine": 2,
+      "theme": "Darkness Reveals a Counselor",
+      "summary": "A radiant black dragon turns obscurity bright, and a royal hunt discovers the great person whose arrival will animate the armies.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "63-5",
+        "resolvedLocator": "63-5",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "29a2e2c92f20e4c03fac71b7ff2b47e8a72c7559437afc108f7dab99be592bcc"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-63-03",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 3,
+      "changingLine": 3,
+      "theme": "Restraint Releases Disorder",
+      "summary": "A person without principle bursts outward when limits loosen, scattering the surrounding group and ultimately losing the family that provided belonging.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "63-3",
+        "resolvedLocator": "63-3",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "9f2f5ccdc5ccd6de8bfa091e9c45c75667090b8e4659af9b322010ad8de1cd62"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-63-49",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 49,
+      "changingLine": 4,
+      "theme": "Humane Rule Nourishes Peace",
+      "summary": "Heavenly sweetness descends and the earth receives it, while benevolent rulers convert that reciprocity into recurring years of public peace.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "63-49",
+        "resolvedLocator": "63-49",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "7869c1c58aaf0a0fad2f804fbe9d0717af4483e76a28b4fb46ea1719223e614a"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-63-36",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 36,
+      "changingLine": 5,
+      "theme": "Baited Appetite",
+      "summary": "Fish and turtles follow attractive food into hooks and nets, where unexamined appetite converts an apparent gain into capture and death.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "63-36",
+        "resolvedLocator": "63-36",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "6708ecd2e0df9c19de342f1cfb5e64b0a5d5c263ea26ae2e6422f95944c842ac"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    },
+    {
+      "schemaVersion": "1.0.0",
+      "contentVersion": "2026.07.30-forest-line-transitions-v1",
+      "transitionId": "forest-63-37",
+      "sourceHexagramNumber": 63,
+      "targetHexagramNumber": 37,
+      "changingLine": 6,
+      "theme": "War Written in the Sky",
+      "summary": "Fierce planets, wandering constellations, weapons, and glaring tigers accumulate into a landscape charged with confrontation before battle begins.",
+      "evidenceMode": "single-source-direct",
+      "source": {
+        "sourceId": "transition_1_jiaoshi_yilin_gait",
+        "title": "The Forest of Changes: A Han Dynasty Extrapolation of the I Ching",
+        "titleChinese": "焦氏易林",
+        "translator": "Christopher Gait",
+        "sourceLocator": "63-37",
+        "resolvedLocator": "63-37",
+        "crossReferenceChain": [],
+        "sourcePassageSha256": "703162320838ad03d5ac1a40a56852b8a6771ded7d3344c136d67ffecbdfef89"
+      },
+      "rights": {
+        "publicationEligibility": "draft-only",
+        "quotationIncluded": false
+      },
+      "review": {
+        "status": "qa-passed",
+        "issues": []
+      }
+    }
+  ]
+}
