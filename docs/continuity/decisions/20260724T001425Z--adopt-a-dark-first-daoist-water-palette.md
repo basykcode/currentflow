@@ -75,7 +75,7 @@ The warm-paper visual palette, but not the broader visual-character principles.
 
 ## Superseded by
 
-None.
+The monochromatic Lake Yin palette decision dated 2026-08-22.
 
 ## Related files, issues, handoffs, and commits
 

@@ -7,22 +7,22 @@
     Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, 'Noto Serif CJK SC', 'Songti SC',
     serif;
 
-  --paper: #061522;
-  --paper-raised: #0a2132;
-  --paper-soft: #0d2a3d;
-  --ink: #e2f6ff;
-  --ink-soft: #b3d8e8;
-  --ink-faint: #789fb2;
-  --line: #1d4459;
-  --line-strong: #35667d;
-  --jade: #74cadc;
-  --jade-deep: #b8ebf3;
-  --jade-wash: #0d3347;
-  --cinnabar: #d98970;
-  --cinnabar-wash: #3a2528;
-  --shadow: 0 22px 70px rgb(0 7 15 / 46%);
-  --shadow-soft: 0 12px 36px rgb(0 7 15 / 32%);
-  --backdrop: rgb(1 8 15 / 78%);
+  --paper: #07162d;
+  --paper-raised: #0b2443;
+  --paper-soft: #102f55;
+  --ink: #e8f2ff;
+  --ink-soft: #bfd5f4;
+  --ink-faint: #8da8d2;
+  --line: #214b78;
+  --line-strong: #3a6da3;
+  --jade: #79b4ff;
+  --jade-deep: #c0dcff;
+  --jade-wash: #123662;
+  --cinnabar: #8ca9ff;
+  --cinnabar-wash: #1d3267;
+  --shadow: 0 22px 70px rgb(0 8 24 / 46%);
+  --shadow-soft: 0 12px 36px rgb(0 8 24 / 32%);
+  --backdrop: rgb(2 10 28 / 78%);
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -44,20 +44,20 @@
 
 :root[data-theme='light'] {
   color-scheme: light;
-  --paper: #e9f4f7;
-  --paper-raised: #f5fbfc;
-  --paper-soft: #dcecf1;
-  --ink: #0d2b3a;
-  --ink-soft: #3d6172;
-  --ink-faint: #4f7486;
-  --line: #bfd4dd;
-  --line-strong: #8fb1c0;
-  --jade: #1d7086;
-  --jade-deep: #114c61;
-  --jade-wash: #cce8ef;
-  --cinnabar: #a95745;
-  --cinnabar-wash: #f2ddd7;
-  --shadow: 0 18px 50px rgb(10 47 66 / 12%);
-  --shadow-soft: 0 12px 36px rgb(10 47 66 / 9%);
-  --backdrop: rgb(6 21 34 / 48%);
+  --paper: #edf4ff;
+  --paper-raised: #fbfdff;
+  --paper-soft: #dfeafb;
+  --ink: #102b4d;
+  --ink-soft: #3d5f88;
+  --ink-faint: #4d6d98;
+  --line: #c3d5ec;
+  --line-strong: #91add0;
+  --jade: #2468ac;
+  --jade-deep: #174b85;
+  --jade-wash: #d5e6fb;
+  --cinnabar: #3b62ae;
+  --cinnabar-wash: #dfe7fb;
+  --shadow: 0 18px 50px rgb(16 43 77 / 12%);
+  --shadow-soft: 0 12px 36px rgb(16 43 77 / 9%);
+  --backdrop: rgb(7 22 45 / 48%);
 }

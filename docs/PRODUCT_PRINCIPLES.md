@@ -19,7 +19,7 @@ Current is a situational-awareness instrument for timing. It makes global tempor
 
 Current should feel like a calm precision almanac: contemporary, spacious, legible, and grounded. It is not a generic SaaS dashboard, horoscope or wellness app, “new age” experience, or theatrical imitation of ancient China.
 
-The primary palette expresses the water element through deep navy fields, moonlit pale-blue text,
-translucent blue-green surfaces, and restrained wave-like depth. Dark is the default experience;
-the light alternative should feel like morning mist rather than paper. Cinnabar remains a rare,
-small-scale seal accent rather than a competing field color.
+The primary palette expresses the quiet Lake Yin quality through deep navy fields, moonlit pale-blue
+text, layered lake-blue surfaces, and restrained wave-like depth. Dark is the default experience;
+the light alternative should feel like morning mist rather than paper. Interactive, status, and
+feature accents remain within the blue family rather than introducing orange or teal competition.

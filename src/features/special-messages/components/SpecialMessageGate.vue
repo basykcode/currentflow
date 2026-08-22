@@ -146,7 +146,7 @@ button:disabled {
 
 .gate-error {
   margin: 0;
-  color: #ffd0ca;
+  color: #cbdcff;
   font-size: 0.76rem;
 }
 </style>

@@ -55,14 +55,29 @@ export type TemporalScope = 'year' | 'month' | 'day' | 'hour'
 export type TemporalHexagram = {
   scope: TemporalScope
   label: string
+  timeBoundsLabel: string
   hexagram: Hexagram
   ganZhi?: string
   status: DataStatus
   sourceLabel: string
 }
 
+export type OrganKey =
+  | 'gallbladder'
+  | 'liver'
+  | 'lung'
+  | 'large-intestine'
+  | 'stomach'
+  | 'spleen'
+  | 'heart'
+  | 'small-intestine'
+  | 'bladder'
+  | 'kidney'
+  | 'pericardium'
+  | 'san-jiao'
+
 export type OrganMoment = {
-  key: string
+  key: OrganKey
   nameEnglish: string
   nameChinese?: string
   timeRangeLabel: string

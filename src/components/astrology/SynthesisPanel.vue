@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { CurrentFlowSnapshot, ExecutionFriction } from '@/domain/astrology/types'
-import StatusBadge from '@/components/common/StatusBadge.vue'
 
 import RelatedHexagramCard from './RelatedHexagramCard.vue'
 
@@ -21,7 +20,7 @@ const frictionLabel: Record<ExecutionFriction, string> = {
       <p class="eyebrow">OLTR · One Line To Remember</p>
       <h2 id="oltr-heading">{{ snapshot.synthesis.oltr }}</h2>
       <div class="synthesis-status">
-        <StatusBadge :status="snapshot.synthesis.status" :label="snapshot.synthesis.status" />
+        <span class="status-text">{{ snapshot.synthesis.status }}</span>
         <span>{{ snapshot.synthesis.sourceLabel }}</span>
       </div>
     </div>
@@ -134,6 +133,14 @@ const frictionLabel: Record<ExecutionFriction, string> = {
   margin-top: 1rem;
   color: var(--ink-faint);
   font-size: 0.68rem;
+}
+
+.status-text {
+  color: var(--ink-faint);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .synthesis-grid {

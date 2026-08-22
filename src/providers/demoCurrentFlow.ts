@@ -21,6 +21,7 @@ const makeTemporal = (
 ): TemporalHexagram => ({
   scope,
   label,
+  timeBoundsLabel: 'Exact bounds unavailable in interface fixture',
   hexagram,
   ganZhi,
   status: 'demo',

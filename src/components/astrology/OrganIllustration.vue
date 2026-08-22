@@ -1,125 +1,93 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
+import type { OrganKey } from '@/domain/astrology/types'
+
+import { ORGAN_ICONS } from './organIcons'
+
 const props = withDefaults(
   defineProps<{
-    organKey?: string
+    organKey?: OrganKey
   }>(),
   { organKey: 'heart' },
 )
 
-const periodOrder = [
-  'gallbladder',
-  'liver',
-  'lung',
-  'large-intestine',
-  'stomach',
-  'spleen',
-  'heart',
-  'small-intestine',
-  'bladder',
-  'kidney',
-  'pericardium',
-  'san-jiao',
-] as const
-
-const activeRotation = computed(() => {
-  const index = periodOrder.findIndex((key) => key === props.organKey)
-  return `rotate(${Math.max(index, 0) * 30} 110 110)`
-})
+const icon = computed(() => ORGAN_ICONS[props.organKey])
 </script>
 
 <template>
   <div class="organ-illustration" aria-hidden="true" :data-organ="organKey">
-    <svg viewBox="0 0 220 220">
-      <circle class="orbit orbit-outer" cx="110" cy="110" r="82" />
-      <circle class="orbit orbit-inner" cx="110" cy="110" r="56" />
-      <g class="clock-marks">
-        <circle
-          v-for="index in 12"
-          :key="index"
-          cx="110"
-          cy="28"
-          r="2.4"
-          :transform="`rotate(${(index - 1) * 30} 110 110)`"
-        />
-      </g>
-      <path class="current-line" d="M22 118c34-28 62-28 88 0s54 28 88 0" />
-      <path class="center-mark" d="M110 73 136 110 110 147 84 110Z" />
-      <path class="inner-line" d="m91 110 13 13 27-31" />
-      <g class="active-period" :transform="activeRotation">
-        <circle cx="110" cy="28" r="8" />
-        <circle class="active-core" cx="110" cy="28" r="3" />
-      </g>
-      <circle class="accent" cx="45" cy="160" r="5" />
+    <svg viewBox="0 0 120 120">
+      <circle class="halo" cx="60" cy="60" r="52" />
+      <path
+        v-for="(path, index) in icon.silhouette"
+        :key="`silhouette-${index}`"
+        class="silhouette"
+        :d="path"
+      />
+      <path
+        v-for="(path, index) in icon.details"
+        :key="`detail-${index}`"
+        class="detail"
+        :d="path"
+      />
+      <path class="water-line water-line--upper" d="M20 103c13-8 27-8 40 0s27 8 40 0" />
+      <path class="water-line" d="M28 110c10-5 21-5 32 0s21 5 32 0" />
     </svg>
   </div>
 </template>
 
 <style scoped>
 .organ-illustration {
-  width: min(100%, 14rem);
+  width: min(100%, 13rem);
   aspect-ratio: 1;
   color: var(--jade);
 }
 
 svg {
+  display: block;
   width: 100%;
   height: 100%;
+  overflow: visible;
 }
 
-.orbit,
-.current-line,
-.inner-line {
-  fill: none;
-  stroke: currentColor;
-}
-
-.orbit {
-  opacity: 0.22;
+.halo {
+  fill: color-mix(in srgb, var(--jade-wash) 66%, transparent);
+  stroke: color-mix(in srgb, var(--jade) 24%, transparent);
   stroke-dasharray: 2 7;
-  stroke-linecap: round;
 }
 
-.orbit-inner {
-  opacity: 0.12;
+.silhouette,
+.detail,
+.water-line {
+  vector-effect: non-scaling-stroke;
 }
 
-.current-line {
-  opacity: 0.42;
+.silhouette {
+  fill: color-mix(in srgb, var(--jade-wash) 78%, transparent);
+  stroke: currentColor;
   stroke-linecap: round;
+  stroke-linejoin: round;
   stroke-width: 2;
 }
 
-.center-mark {
-  fill: var(--jade-wash);
-  stroke: var(--jade-deep);
-  stroke-width: 2;
-}
-
-.inner-line {
+.detail {
+  fill: none;
   stroke: var(--jade-deep);
   stroke-linecap: round;
-  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
 }
 
-.accent {
-  fill: var(--cinnabar);
-}
-
-.clock-marks {
-  fill: currentColor;
-  opacity: 0.35;
-}
-
-.active-period {
-  fill: var(--paper-raised);
+.water-line {
+  fill: none;
+  opacity: 0.5;
   stroke: var(--cinnabar);
-  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-width: 1.4;
 }
 
-.active-core {
-  fill: var(--cinnabar);
-  stroke: none;
+.water-line--upper {
+  opacity: 0.28;
 }
 </style>

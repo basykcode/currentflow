@@ -205,15 +205,15 @@ const clearLocalData = () => {
   margin-bottom: 0.7rem;
   border: 1px solid var(--line);
   border-radius: 0.4rem;
-  background: #e9f4f7;
+  background: #edf4ff;
 }
 
 .swatch[data-theme-preview='dark'] {
-  background: #061522;
+  background: #07162d;
 }
 
 .swatch[data-theme-preview='system'] {
-  background: linear-gradient(90deg, #e9f4f7 50%, #061522 50%);
+  background: linear-gradient(90deg, #edf4ff 50%, #07162d 50%);
 }
 
 .theme-options strong {

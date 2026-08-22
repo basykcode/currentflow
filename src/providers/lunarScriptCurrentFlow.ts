@@ -8,11 +8,19 @@ import type { CurrentFlowContext, CurrentFlowProvider } from '@/domain/astrology
 import { getStructuralRelationships } from '@/domain/astrology/relationships'
 import type { CurrentFlowSnapshot, TemporalHexagram, TemporalScope } from '@/domain/astrology/types'
 
+import { getTemporalBounds } from './lunarScriptTemporalBounds'
+
 const TEMPORAL_SOURCE = 'lunar-javascript 1.7.7 · 60 Jia Zi to 64 Da Gua'
 
-const makeTemporal = (scope: TemporalScope, label: string, ganZhi: string): TemporalHexagram => ({
+const makeTemporal = (
+  scope: TemporalScope,
+  label: string,
+  ganZhi: string,
+  timeBoundsLabel: string,
+): TemporalHexagram => ({
   scope,
   label,
+  timeBoundsLabel,
   hexagram: resolveJiaZiHexagram(ganZhi),
   ganZhi: describeGanZhi(ganZhi),
   status: 'computed',
@@ -35,10 +43,11 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
     const monthGanZhi = lunar.getMonthInGanZhiExact()
     const dayGanZhi = lunar.getDayInGanZhiExact2()
     const hourGanZhi = lunar.getTimeInGanZhi()
-    const year = makeTemporal('year', 'Li Chun year pillar', yearGanZhi)
-    const month = makeTemporal('month', 'Solar-term month pillar', monthGanZhi)
-    const day = makeTemporal('day', 'Civil-day pillar · sect 2', dayGanZhi)
-    const hour = makeTemporal('hour', 'Two-hour pillar', hourGanZhi)
+    const bounds = getTemporalBounds(lunar, civil)
+    const year = makeTemporal('year', 'Li Chun year pillar', yearGanZhi, bounds.year)
+    const month = makeTemporal('month', 'Solar-term month pillar', monthGanZhi, bounds.month)
+    const day = makeTemporal('day', 'Civil-day pillar · sect 2', dayGanZhi, bounds.day)
+    const hour = makeTemporal('hour', 'Two-hour pillar', hourGanZhi, bounds.hour)
     const organ = getOrganMoment(civil.hour)
 
     const fallbackNote = civil.usedTimezoneFallback

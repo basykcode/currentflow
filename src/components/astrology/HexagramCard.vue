@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import StatusBadge from '@/components/common/StatusBadge.vue'
 import type { TemporalHexagram } from '@/domain/astrology/types'
 import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
 
@@ -33,6 +32,11 @@ const inspect = () => inspector.open(props.item.hexagram)
       <span v-if="item.ganZhi" class="ganzhi">{{ item.ganZhi }}</span>
     </div>
 
+    <p class="time-bounds">
+      <span>Exact bounds</span>
+      {{ item.timeBoundsLabel }}
+    </p>
+
     <div class="glyph-wrap">
       <HexagramGlyph
         :lines="item.hexagram.linesBottomToTop"
@@ -50,7 +54,7 @@ const inspect = () => inspector.open(props.item.hexagram)
     </div>
 
     <div class="provenance">
-      <StatusBadge :status="item.status" :label="item.status" />
+      <span class="status-text">{{ item.status }}</span>
       <span>{{ item.sourceLabel }}</span>
     </div>
   </article>
@@ -61,6 +65,8 @@ const inspect = () => inspector.open(props.item.hexagram)
   display: flex;
   flex-direction: column;
   min-height: 23rem;
+  min-width: 0;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--paper-raised);
@@ -91,6 +97,10 @@ const inspect = () => inspector.open(props.item.hexagram)
   gap: 1rem;
 }
 
+.card-heading > * {
+  min-width: 0;
+}
+
 .scope {
   margin-bottom: 0.15rem;
   color: var(--jade);
@@ -108,7 +118,27 @@ const inspect = () => inspector.open(props.item.hexagram)
 }
 
 .ganzhi {
+  max-width: 52%;
+  overflow-wrap: anywhere;
   text-align: right;
+}
+
+.time-bounds {
+  margin: 0.75rem 0 0;
+  color: var(--ink-faint);
+  font-size: 0.65rem;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.time-bounds span {
+  display: block;
+  margin-bottom: 0.12rem;
+  color: var(--jade);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .glyph-wrap {
@@ -129,6 +159,11 @@ const inspect = () => inspector.open(props.item.hexagram)
   align-items: center;
   gap: 0.8rem;
   margin-bottom: 1rem;
+  min-width: 0;
+}
+
+.hexagram-name > div {
+  min-width: 0;
 }
 
 .number {
@@ -148,6 +183,7 @@ h2 {
   font-family: var(--font-serif);
   font-size: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 500;
+  overflow-wrap: break-word;
 }
 
 .hexagram-name p {
@@ -167,10 +203,18 @@ h2 {
   line-height: 1.3;
 }
 
-.provenance :deep(.status-label) {
+.provenance > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.status-text {
   flex: 0 0 auto;
-  padding: 0.22rem 0.45rem;
+  color: var(--jade);
   font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 @media (max-width: 720px) {

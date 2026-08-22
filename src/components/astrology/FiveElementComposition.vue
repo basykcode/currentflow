@@ -34,7 +34,7 @@ defineProps<{
   display: grid;
   grid-template-areas:
     'year day day month'
-    '. organ hour .';
+    'organ organ hour hour';
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.05fr) minmax(0, 1.05fr) minmax(0, 0.9fr);
   gap: clamp(0.75rem, 2vw, 1.35rem);
   align-items: start;
@@ -71,6 +71,24 @@ defineProps<{
 
 .cell-hour :deep(.hexagram-card) {
   min-height: 20rem;
+}
+
+.cell-year :deep(.hexagram-name),
+.cell-month :deep(.hexagram-name) {
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.cell-year :deep(.number),
+.cell-month :deep(.number) {
+  width: 2rem;
+  height: 2rem;
+  font-size: 0.82rem;
+}
+
+.cell-year :deep(h2),
+.cell-month :deep(h2) {
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
 }
 
 @media (max-width: 940px) {

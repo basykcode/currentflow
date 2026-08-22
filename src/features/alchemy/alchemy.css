@@ -2,7 +2,7 @@
   width: min(calc(100% - 2rem), 1540px);
   margin-inline: auto;
   padding-block: clamp(2rem, 4vw, 4.5rem) var(--space-9);
-  --alchemy-accent: #8bc7cf;
+  --alchemy-accent: #82b8f4;
   --alchemy-accent-soft: color-mix(in srgb, var(--alchemy-accent) 13%, transparent);
   --alchemy-index: color-mix(in srgb, var(--ink-faint) 62%, transparent);
 }
