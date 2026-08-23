@@ -58,15 +58,25 @@ function removeTemporaryRepository(container) {
   fs.rmSync(resolved, { recursive: true, force: true })
 }
 
-test('SessionStart fails closed in the primary checkout', () => {
-  const fixture = temporaryRepository({ linked: false })
+test('SessionStart continues in the primary checkout with coordination-only context', () => {
+  const fixture = temporaryRepository({ linked: false, dirty: true })
   try {
+    const branchBefore = git(fixture.worktree, ['branch', '--show-current'])
+    const statusBefore = git(fixture.worktree, ['status', '--porcelain=v1'])
     const result = handleSessionStart({
       session_id: 'primary-test-session',
       cwd: fixture.worktree,
     })
-    assert.equal(result.continue, false)
-    assert.match(result.stopReason, /primary checkout/)
+    assert.equal(result.continue, true)
+    assert.equal('stopReason' in result, false)
+    assert.match(result.systemMessage, /read-only coordination/)
+    assert.match(result.hookSpecificOutput.additionalContext, /COORDINATION-ONLY/)
+    assert.match(result.hookSpecificOutput.additionalContext, /environment=worktree/)
+    assert.match(result.hookSpecificOutput.additionalContext, /starting branch master/)
+    assert.match(result.hookSpecificOutput.additionalContext, /full current user request/)
+    assert.equal(git(fixture.worktree, ['branch', '--show-current']), branchBefore)
+    assert.equal(git(fixture.worktree, ['status', '--porcelain=v1']), statusBefore)
+    assert.equal(fs.existsSync(path.join(fixture.worktree, '.git', 'codex')), false)
   } finally {
     removeTemporaryRepository(fixture.container)
   }
@@ -111,6 +121,22 @@ test('SessionStart rejects an unclaimed dirty linked checkout', () => {
     assert.equal(result.continue, false)
     assert.match(result.stopReason, /already dirty/)
     assert.equal(git(fixture.worktree, ['branch', '--show-current']), '')
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
+test('SessionStart rejects a branch mismatch in a leased linked checkout', () => {
+  const fixture = temporaryRepository({ linked: true })
+  try {
+    const sessionId = 'branch-mismatch-session'
+    const claimed = handleSessionStart({ session_id: sessionId, cwd: fixture.worktree })
+    assert.equal(claimed.continue, true)
+
+    git(fixture.worktree, ['switch', '-c', 'feature/unexpected-switch'])
+    const result = handleSessionStart({ session_id: sessionId, cwd: fixture.worktree })
+    assert.equal(result.continue, false)
+    assert.match(result.stopReason, /worktree now has feature\/unexpected-switch checked out/)
   } finally {
     removeTemporaryRepository(fixture.container)
   }

@@ -4,8 +4,9 @@ Current Flow uses one Codex chat per linked Git worktree, branch, lease, and run
 branch alone is not isolation: every chat pointed at the same checkout still shares its files,
 index, checked-out `HEAD`, build outputs, and untracked data.
 
-The repository's primary checkout is therefore coordination-only. All implementation, review, and
-integration work happens in a Codex-managed worktree.
+The repository's primary checkout is therefore a read-only coordinator. It may inspect project
+state and create or coordinate app tasks, but every project mutation happens in an app-managed
+worktree worker.
 
 ## One-time activation
 
@@ -14,29 +15,45 @@ After this system is integrated into the branch used to start new work:
 1. Open the Current Flow project in the Codex desktop app.
 2. Review and trust [`.codex/hooks.json`](../.codex/hooks.json) when Codex prompts. In the CLI,
    `/hooks` shows the pending project hook.
-3. Keep the primary checkout free of implementation work. It can remain available for human Git
-   inspection, but Codex sessions started as **Local** are stopped by the project hook.
+3. Keep the primary checkout free of implementation work. A Codex task opened there continues as a
+   coordination-only task so it can automatically dispatch implementation requests without touching
+   the primary project or Git state.
 
 The hook and this document must exist on the branch selected as a new worktree's starting point. Use
 `master` after the isolation change is integrated; a historical branch that predates the change
 cannot enforce it.
 
-## Start every coding chat
+## Default flow: ask once, then automatic worker dispatch
 
-1. Create a new **Codex** chat from the Current Flow project.
-2. Select **Worktree** under the composer, not Local or a permanent worktree shared by other chats.
-3. Select a clean `master` as the starting branch. Do not select the option that carries Local
-   unstaged changes into the worktree.
-4. Submit the task. On startup, the hook:
-   - rejects the primary checkout;
+1. Create a brand-new Codex task in the saved Current Flow project and submit only the actual work
+   request. Do not add worktree boilerplate.
+2. If the app opens the task in the primary checkout, `SessionStart` continues it with mandatory
+   coordination-only context. The coordinator may perform read-only inspection, but it cannot change
+   project files, Git state, dependencies, generated output, or project runtimes.
+3. For an implementation request, the coordinator resolves the saved Current Flow Git project with
+   the app's `list_projects` capability and creates a separate task with the app's `create_thread`
+   capability. The target is `environment.type=worktree`, with `startingState.type=branch` and
+   `branchName=master`; it never imports the primary working tree.
+4. The coordinator forwards the user's complete current request and the necessary repository
+   constraints to that worker. It never asks the user to restate or copy the request, never directs
+   the user to a composer control, and returns the created-task UI directive so the worker is
+   directly available in the app.
+5. On worker startup, the hook:
    - rejects a dirty worktree that has no owner;
-   - creates `codex/chat-<session-id>` when Codex supplied a detached worktree;
-   - records an exclusive chat/worktree/branch lease in the repository's local Git metadata; and
+   - creates `codex/chat-<session-id>` when the app supplied a clean detached worktree;
+   - rejects an existing lease owned by another task and a branch that no longer matches its lease;
+   - records an exclusive task/worktree/branch lease in the repository's local Git metadata; and
    - assigns a unique Vite, API, Neo4j, and Docker Compose namespace.
-5. Install dependencies in that worktree if needed with `npm ci`.
-6. Run `npm run workspace:doctor`. Do not edit until it reports `Workspace isolation: OK`.
+6. The worker installs dependencies if needed with `npm ci`, then runs
+   `npm run workspace:doctor`. It does not edit until the command reports
+   `Workspace isolation: OK`.
 
-Never use **Hand off to Local** for an implementation chat. Resume the existing chat so Codex returns
+If a brand-new task already opens in its own app-managed linked worktree, it is already the worker;
+the primary-coordinator dispatch step is skipped. Ordinary tasks never require Create Permanent
+Worktree. Multiple requests can run concurrently because each dispatched worker receives its own
+managed worktree, branch lease, and runtime namespace.
+
+Never hand an implementation task to the primary checkout. Resume the existing task so Codex returns
 to its associated worktree.
 
 ## Runtime commands
@@ -88,8 +105,8 @@ worktree installs or creates its own disposable runtime state.
 4. Archive the Codex chat after its branch is safely published or otherwise preserved. Codex manages
    cleanup and snapshots for its managed worktrees.
 
-For a deliberately permanent worktree, release its lease only after the owning chat is finished and
-the worktree is clean:
+Permanent worktrees are not part of the ordinary task flow. For a deliberately permanent worktree,
+release its lease only after the owning task is finished and the worktree is clean:
 
 ```powershell
 npm run workspace:release -- --confirm
@@ -104,9 +121,10 @@ node scripts/codex/workspace.mjs prune --confirm
 
 ## Existing mixed primary checkout
 
-The checkout that existed before this system may still contain several workstreams. Freeze it:
+The checkout that existed before this system may still contain several workstreams. Freeze its
+project state while allowing read-only coordination:
 
-- do not start new work there;
+- do not perform project mutations there;
 - do not stash, broadly stage, or switch branches to make it look clean;
 - inventory ownership by path;
 - rescue and verify one workstream at a time into a dedicated worktree/branch; and

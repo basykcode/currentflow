@@ -1,6 +1,6 @@
 # Decision: Isolate every Codex chat by worktree, lease, and runtime
 
-- Status: accepted
+- Status: superseded
 - Date (UTC): 2026-07-30
 - Scope: development operations and concurrent Codex work
 
@@ -89,7 +89,7 @@ the repository-wide isolation mechanism it did not define.
 
 ## Superseded by
 
-None.
+[Automatically dispatch primary tasks to managed worktree workers](20260822T235412Z--automatically-dispatch-primary-tasks-to-managed-worktrees.md).
 
 ## Related files, issues, handoffs, and commits
 

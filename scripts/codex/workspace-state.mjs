@@ -180,23 +180,33 @@ function hookOutput({ continueRun = true, message, context }) {
 }
 
 export function handleSessionStart(input, cwd = input.cwd ?? process.cwd()) {
+  const inspected = inspectWorkspace(cwd)
+
+  if (inspected.isPrimary) {
+    const decision = evaluateClaim({
+      isPrimary: true,
+      isDirty: inspected.isDirty,
+      branch: inspected.branch,
+      lease: null,
+      sessionId: input.session_id,
+    })
+    return hookOutput({
+      message: decision.reason,
+      context: [
+        'COORDINATION-ONLY: never create, edit, delete, move, install, build, test, generate, or otherwise mutate project files, Git state, or project runtimes in this primary checkout.',
+        'Read-only inspection and app-level task coordination are allowed.',
+        'For every implementation request, automatically create a new task for the saved Current Flow Git project with environment=worktree and starting branch master; forward the full current user request and necessary repository context.',
+        'Do not ask the user to restate, copy, or paste the request, and do not send them to a Worktree button or require a permanent worktree.',
+        'Return the created-task UI directive after dispatch.',
+      ].join(' '),
+    })
+  }
+
   if (typeof input.session_id !== 'string' || input.session_id.length === 0) {
     return hookOutput({
       continueRun: false,
       message:
         'Current Flow could not identify this Codex chat, so it cannot assign an isolated workspace.',
-    })
-  }
-
-  const inspected = inspectWorkspace(cwd)
-
-  if (inspected.isPrimary) {
-    return hookOutput({
-      continueRun: false,
-      message:
-        'Current Flow protects the primary checkout from Codex edits. Start a new Codex chat, select Worktree, and base it on a clean master branch.',
-      context:
-        'Stop here. This repository requires one Codex chat per linked worktree and branch. Do not edit or run mutating commands in the primary checkout.',
     })
   }
 

@@ -88,9 +88,9 @@ export function runtimeForLease(lease) {
 export function evaluateClaim({ isPrimary, isDirty, branch, lease, sessionId }) {
   if (isPrimary) {
     return {
-      action: 'block-primary',
+      action: 'coordinate-primary',
       reason:
-        'This is the primary checkout. Current Flow reserves it for human coordination; start this task as a Codex Worktree chat.',
+        'This is the primary checkout. Current Flow reserves it for read-only coordination and automatic worktree-worker dispatch.',
     }
   }
 

@@ -36,7 +36,9 @@ function printRuntime(lease) {
 function requireLease({ allowDirty = true } = {}) {
   const inspected = inspectWorkspace()
   if (inspected.isPrimary) {
-    throw new Error('The primary checkout is coordination-only. Start a Codex Worktree chat.')
+    throw new Error(
+      'The primary checkout is read-only and coordination-only. Dispatch implementation work to an app-managed worktree task.',
+    )
   }
 
   const lease = leaseForWorkspace(inspected)
