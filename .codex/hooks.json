@@ -1,5 +1,5 @@
 {
-  "description": "Enforce one Current Flow Codex chat per branch and linked worktree.",
+  "description": "Dispatch primary Current Flow tasks and enforce one worker chat per branch and linked worktree.",
   "hooks": {
     "SessionStart": [
       {
@@ -9,7 +9,7 @@
             "type": "command",
             "command": "node \"$(git rev-parse --show-toplevel)/scripts/codex/session-start.mjs\"",
             "commandWindows": "powershell -NoProfile -ExecutionPolicy Bypass -Command \"$root = git rev-parse --show-toplevel; node (Join-Path $root 'scripts/codex/session-start.mjs')\"",
-            "statusMessage": "Claiming an isolated Current Flow workspace",
+            "statusMessage": "Preparing the Current Flow task workspace",
             "timeout": 10,
             "additionalContextLimit": 1000
           }

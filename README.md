@@ -39,10 +39,11 @@ npm run dev
 The development server prints the local URL. No service credentials or environment variables are
 required for Alchemy demo mode.
 
-Concurrent Codex work must start with the desktop app's **Worktree** option. Each chat receives an
-exclusive branch, lease, and runtime namespace; Local is coordination-only. Follow
-[`docs/CODEX_PARALLEL_WORK.md`](docs/CODEX_PARALLEL_WORK.md) and run
-`npm run workspace:doctor` before editing.
+For concurrent Codex work, create a new task in the saved Current Flow project and enter the actual
+request once. A task opened in the primary checkout remains read-only and automatically dispatches
+the request to an app-managed worktree worker based on clean `master`. Each worker receives an
+exclusive branch, lease, and runtime namespace and runs `npm run workspace:doctor` before editing.
+Follow [`docs/CODEX_PARALLEL_WORK.md`](docs/CODEX_PARALLEL_WORK.md).
 
 ## Alchemy frontend
 

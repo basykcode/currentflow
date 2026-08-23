@@ -45,7 +45,7 @@ test('runtime slots are unique and produce isolated ports and Compose names', ()
   assert.notEqual(first.composeProjectName, second.composeProjectName)
 })
 
-test('claim evaluation blocks shared or contaminated workspaces', () => {
+test('claim evaluation identifies the primary checkout as a coordinator', () => {
   assert.equal(
     evaluateClaim({
       isPrimary: true,
@@ -54,8 +54,11 @@ test('claim evaluation blocks shared or contaminated workspaces', () => {
       lease: null,
       sessionId: 'one',
     }).action,
-    'block-primary',
+    'coordinate-primary',
   )
+})
+
+test('claim evaluation blocks shared or contaminated workspaces', () => {
   assert.equal(
     evaluateClaim({
       isPrimary: false,

@@ -47,9 +47,9 @@ Independent tasks use independent branches or worktrees and independent handoff 
 workers never append to a shared log or concurrently rewrite project state without exclusive
 ownership. Feature work remains labeled unmerged until integration reconciles it.
 
-For Codex, a branch is not sufficient: every active chat uses its own linked worktree and lease.
-Follow [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md); the primary checkout is
-coordination-only.
+For Codex, a branch is not sufficient: every active worker uses its own linked worktree and lease.
+Follow [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md); a task in the read-only primary
+checkout automatically dispatches implementation requests to app-managed worktree workers.
 
 ## Superseding decisions
 

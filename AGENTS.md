@@ -82,9 +82,26 @@ Authority, from intent to implementation:
 
 ### Codex chat isolation
 
-- The primary checkout (where `.git` is a directory) is coordination-only. Do not make tracked or
-  untracked project changes there. Start implementation chats with the Codex desktop app's
-  **Worktree** option from a clean integration branch.
+- The primary checkout (where `.git` is a directory) is a strictly read-only coordinator. Codex may
+  inspect it and use app-level task-management tools, but must not create, edit, delete, move,
+  install, build, test, generate, or otherwise mutate project files, Git state, or project runtimes
+  there.
+- When the current user request requires implementation or any other project mutation and the task
+  is in the primary checkout, dispatch it automatically. Use the Codex app's `list_projects`
+  capability to resolve the saved Current Flow Git project, then use its `create_thread` capability with
+  `target.type=project`, `environment.type=worktree`, and `startingState.type=branch` with
+  `branchName=master`. Never use the primary working tree as the starting state.
+- Forward the user's full current request to the created task, together with the necessary Current
+  Flow context: this is an automatically dispatched worker based on clean `master`, it must obey
+  this `AGENTS.md`, claim its SessionStart lease, and run `npm run workspace:doctor` before tracked
+  changes. Do not ask the user to restate, copy, or paste the request. Do not tell them to find a
+  Worktree composer control, and do not require Create Permanent Worktree for ordinary tasks.
+- After task creation succeeds, return the app's created-task UI directive using the actual result:
+  `::created-thread{threadId="..."}` when a ready task returns `threadId`, or
+  `::created-thread{clientThreadId="..."}` while managed-worktree setup returns `clientThreadId`.
+  Do not invent either identifier.
+- A task already running in its own leased, app-managed linked worktree is the worker. It proceeds
+  normally and must not dispatch another worker merely because the request involves implementation.
 - One chat owns one linked worktree and one branch. Never reuse a worktree for another active chat,
   hand implementation work back to Local, or switch the worktree's branch.
 - The project `SessionStart` hook is an isolation boundary. Do not disable or bypass it. It assigns
