@@ -2,12 +2,17 @@
 
 ## Last reconciled
 
-- UTC date: 2026-07-31
-- Branch represented: local `master` with the Advanced Yijing Transformation Lab, Forest
-  line-change commentary, and six-school hexagram commentary integrated
-- Commit inspected: `8b14fc8`
-- `master` enforces one Codex chat per linked worktree, branch, lease, and runtime namespace at
-  `6ed5351`, with the continuity record at `828c400`.
+- UTC date: 2026-08-23
+- Branch represented: `codex/chat-01a02bf0beb1`, a dedicated integration branch based on local
+  `master` with automatic primary-task dispatch merged and local `master` activation still pending
+- Commit inspected: `79720a8`
+- Local and remote-tracking `master` remain at `b5426ca`; that published line includes the Lake Yin
+  interface at `66119dc` and its publication record.
+- The integration branch merges automatic primary-coordinator dispatch feature `5cbdbe9` at
+  `79720a8`. Local `master` cannot be advanced while it remains checked out in the protected primary
+  coordination checkout.
+- The retained worker-isolation foundation entered `master` at `6ed5351`, with the continuity record
+  at `828c400`.
 - `master` merges the Advanced Yijing Transformation Lab at `267cbd0`.
 - `master` merges the restored line-change result experience, 384 Forest transition summaries, and
   six-school commentary corpus at `8b14fc8`.
@@ -51,10 +56,12 @@ The integrated product is a static Vue 3/Vite/TypeScript SPA. Framework-independ
 focused presentation in `src/components`; and lazy route composition in `src/views`.
 `CurrentFlowProvider` is the stable Astrology data seam.
 
-Concurrent Codex work is isolated by a trusted project `SessionStart` hook, a local atomic lease
-registry in shared Git metadata, one linked worktree and branch per chat, copied-by-value ignored
-inputs, and lease-specific Vite/Alchemy runtime namespaces. The primary checkout is
-coordination-only. See [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md).
+Concurrent Codex implementation uses a read-only primary coordinator and app-managed worktree
+workers. A trusted project `SessionStart` hook lets primary tasks continue only for read-only
+inspection and app-level coordination; mutation requests are automatically forwarded in full to a
+new managed worktree based on committed `master`. Each worker then receives one branch and lease in
+the local atomic registry under shared Git metadata, copied-by-value ignored inputs, and isolated
+Vite/Alchemy runtime namespaces. See [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md).
 
 The framework-independent hexagram reference boundary now owns the complete identity catalog,
 trigrams, Gene Keys keyword mapping, three library orderings, and pure structural transformations.
@@ -89,9 +96,9 @@ is the only Alchemy state in Pinia.
 - Responsive application shell with desktop and mobile navigation.
 - Routes for Astrology, Alchemy, Intelligence, Settings, a complete Hexagram Library, an encrypted
   VH special message, and not-found handling; Other Tools is a two-level navigation menu.
-- Functional Astrology view with selected-timezone time, automatic refresh, five-element
-  composition, reusable accessible hexagram glyphs, structural relationships, and visible
-  provenance.
+- Functional Astrology view with a slow-dissolving four-second Yin clock, selected-timezone time,
+  exact timezone-labelled year/month/day/hour validity bounds, five-element composition, reusable
+  accessible hexagram glyphs, structural relationships, and visible provenance.
 - `LunarScriptCurrentFlowProvider` supplies exact-boundary year/month GanZhi, sect-2 day GanZhi, and
   two-hour GanZhi through `lunar-javascript` 1.7.7.
 - The complete 60 Jia Zi to 64 Da Gua table resolves all four pillars to King Wen hexagrams; the
@@ -117,20 +124,21 @@ is the only Alchemy state in Pinia.
   explicitly unavailable because their evidence is quarantined; Absolute Shadow remains unavailable
   until reviewed deterministic rules arrive.
 - A cited twelve-window meridian-clock table selects the active organ period from civil time in the
-  snapshot timezone.
+  snapshot timezone and pairs it with a distinct theme-aware organ illustration.
 - Local light/dark/system theme, functional timezone preference, optional location label, and local
   reset.
-- The visual system is dark-first and water-themed: deep navy fields, moon-blue text, mist-blue
-  Light mode, restrained cinnabar accents, and one-time legacy preference migration that preserves
-  timezone/location.
+- The visual system uses a monochromatic Lake Yin blue family across dark and light themes, with
+  deep lake navy, moon-blue text, clear-water interaction blue, and a softer periwinkle secondary
+  accent. Status still uses text and shape rather than hue alone.
 - Interpretive synthesis and execution guidance are explicitly unavailable; no forecast is inferred.
 - Disabled, nonconnected shells for authentication, Intelligence, and future tools; Alchemy has
   explicit demo and connected API modes.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- One hundred eight frontend unit tests cover Astrology calculations, the complete hexagram catalog
-  and transforms, commentary/transition repositories and rendering,
+- One hundred twenty-two application tests cover Astrology calculations and temporal bounds, the
+  Yin clock and organ illustrations, the complete hexagram catalog and transforms,
+  commentary/transition repositories and rendering,
   inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
   timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
   navigation; Cloudflare Pages build preparation and local metadata assets remain.
@@ -226,9 +234,13 @@ The integrated release-aware Alchemy foundation additionally provides:
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
 - Node baseline is `22.18.0`; `npm run check` is required before completion.
-- Concurrent Codex implementation starts only in a clean linked worktree. One chat owns one
-  worktree/branch lease; feature chats do not switch branches, use stash as task state, hand work to
-  Local, or rewrite canonical project state.
+- The primary checkout is read-only for Codex: it may inspect and coordinate app tasks but may not
+  mutate project files, Git state, dependencies, generated output, tests/builds, or runtimes. It
+  automatically dispatches each mutation request once, in full, to an app-managed worktree based on
+  committed `master`.
+- Every worker starts in a clean linked worktree and owns one worktree/branch lease. Worker tasks do
+  not redispatch, switch branches, use stash as task state, hand work to the primary checkout, or
+  rewrite canonical project state unless explicitly authorized as an integration task.
 - Production branch is `master`; Vite base is `/`; static output is `dist`.
 
 ## Key accepted decisions
@@ -236,6 +248,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Preserve deterministic authority through provider and provenance contracts](decisions/20260723T233411Z--preserve-deterministic-authority-through-provider-and-provenance-contracts.md)
 - [Calculate temporal facts with declared source boundaries](decisions/20260723T235840Z--calculate-temporal-facts-with-declared-source-boundaries.md)
 - [Adopt a dark-first Daoist water palette](decisions/20260724T001425Z--adopt-a-dark-first-daoist-water-palette.md)
+- [Adopt a monochromatic Lake Yin palette](decisions/20260822T015903Z--adopt-monochromatic-lake-yin-palette.md)
 - [Ship the alpha as a static client-side Vue SPA](decisions/20260723T233411Z--ship-alpha-as-static-client-side-vue-spa.md)
 - [Establish a provenance-first Alchemy graph service](decisions/20260724T005309Z--establish-provenance-first-alchemy-graph-service.md)
 - [Separate the Alchemy frontend domain from transport](decisions/20260724T010602Z--separate-alchemy-domain-from-transport.md)
@@ -246,7 +259,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
 - [Project English-first multilingual Alchemy names](decisions/20260727T013844Z--project-english-first-multilingual-alchemy-names.md)
-- [Isolate every Codex chat by worktree, lease, and runtime](decisions/20260730T020000Z--isolate-every-codex-chat-by-worktree-lease-and-runtime.md)
+- [Automatically dispatch primary tasks to managed worktree workers](decisions/20260822T235412Z--automatically-dispatch-primary-tasks-to-managed-worktrees.md)
 - [Keep Transformation Lab state local and lineage data source-gated](decisions/20260730T233100Z--transformation-lab-modal-state-and-source-gates.md)
 - [Keep proprietary hexagram commentary local and provenance-indexed](decisions/20260730T000122Z--keep-proprietary-hexagram-commentary-local-and-provenance-indexed.md)
 - [Ship only derived, auditable hexagram commentary drafts](decisions/20260730T011500Z--ship-only-derived-auditable-hexagram-commentary-drafts.md)
@@ -272,7 +285,9 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Publish English-first multilingual Alchemy names | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
 | `master`                   | Isolate concurrent Codex chats                   | Integrated at `6ed5351` with continuity at `828c400`; included in the current publication                      | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
 | `master`                   | Add the Advanced Yijing Transformation Lab       | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized           | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
-| `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                       | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
+| `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                      | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
+| `master`                   | Adopt the Lake Yin live-flow interface           | Feature `66119dc` and publication record `b5426ca` are published to `origin/master`                            | [Publication handoff](handoffs/20260822T140829Z--codex-alchemy-lake-yin--publish-lake-yin-interface.md)              |
+| `codex/chat-01a02bf0beb1`  | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8`; verified integration is awaiting safe local `master` activation         | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
 
 ## Known issues and risks
 
