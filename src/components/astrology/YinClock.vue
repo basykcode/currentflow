@@ -9,22 +9,30 @@ const sampledAt = ref(new Date())
 let alignmentTimer: number | undefined
 let clockTimer: number | undefined
 
-const timeLabel = computed(() =>
-  new Intl.DateTimeFormat(undefined, {
+const timeParts = computed(() => {
+  const parts = new Intl.DateTimeFormat(undefined, {
     timeZone: props.timezone,
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
     hourCycle: 'h23',
-  }).format(sampledAt.value),
-)
+  }).formatToParts(sampledAt.value)
+  const value = (type: Intl.DateTimeFormatPartTypes) =>
+    parts.find((part) => part.type === type)?.value ?? ''
+
+  return {
+    primary: `${value('hour')}:${value('minute')}`,
+    seconds: `:${value('second')}`,
+  }
+})
+
+const timeLabel = computed(() => `${timeParts.value.primary}${timeParts.value.seconds}`)
 
 const dateLabel = computed(() =>
   new Intl.DateTimeFormat(undefined, {
     timeZone: props.timezone,
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
+    weekday: 'short',
+    month: 'short',
     day: 'numeric',
   }).format(sampledAt.value),
 )
@@ -50,59 +58,71 @@ onBeforeUnmount(() => {
 
 <template>
   <div class="yin-clock" :aria-label="`${dateLabel}, ${timeLabel}, ${timezone}`">
-    <p class="yin-clock__date">{{ dateLabel }}</p>
     <div class="yin-clock__time" aria-hidden="true">
-      <span class="yin-clock__tilde">~</span>
       <Transition name="yin-clock-dissolve" mode="out-in">
-        <time :key="timeLabel" :datetime="sampledAt.toISOString()">{{ timeLabel }}</time>
+        <time :key="timeLabel" :datetime="sampledAt.toISOString()">
+          <span>{{ timeParts.primary }}</span
+          ><small>{{ timeParts.seconds }}</small>
+        </time>
       </Transition>
-      <span class="yin-clock__tilde">~</span>
     </div>
-    <p class="yin-clock__timezone">{{ timezone }}</p>
+    <p class="yin-clock__metadata">
+      <span>{{ dateLabel }}</span>
+      <span aria-hidden="true"> · </span>
+      <span class="yin-clock__timezone" :title="timezone">{{ timezone }}</span>
+    </p>
   </div>
 </template>
 
 <style scoped>
 .yin-clock {
   display: grid;
-  justify-items: end;
-  min-width: min(100%, 27rem);
+  justify-items: center;
+  min-width: 0;
 }
 
-.yin-clock__date,
-.yin-clock__timezone {
+.yin-clock__metadata {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  max-width: 100%;
   margin: 0;
   color: var(--ink-faint);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
+  font-size: clamp(0.64rem, 2.3vw, 0.78rem);
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+.yin-clock__timezone {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .yin-clock__time {
-  display: grid;
-  grid-template-columns: 1.5rem minmax(8ch, auto) 1.5rem;
-  align-items: center;
-  gap: clamp(0.35rem, 1vw, 0.8rem);
   color: var(--ink);
   font-family: var(--font-serif);
-  font-size: clamp(2.45rem, 6vw, 5.35rem);
+  font-size: clamp(2.05rem, 8vw, 4rem);
   font-variant-numeric: tabular-nums;
   font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
   white-space: nowrap;
 }
 
 .yin-clock__time time {
-  display: block;
-  min-width: 8ch;
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 5.7ch;
   text-align: center;
 }
 
-.yin-clock__tilde {
+.yin-clock__time small {
   color: var(--jade);
-  font-size: 0.58em;
+  font-family: var(--font-sans);
+  font-size: 0.36em;
   font-weight: 400;
-  text-align: center;
+  letter-spacing: 0;
 }
 
 .yin-clock-dissolve-enter-active,
@@ -118,13 +138,13 @@ onBeforeUnmount(() => {
   filter: blur(5px);
 }
 
-@media (max-width: 680px) {
-  .yin-clock {
-    justify-items: start;
+@media (max-width: 767px) and (max-height: 720px) {
+  .yin-clock__time {
+    font-size: clamp(1.8rem, 7.6vw, 2.2rem);
   }
 
-  .yin-clock__time {
-    grid-template-columns: 1.1rem minmax(8ch, auto) 1.1rem;
+  .yin-clock__metadata {
+    font-size: 0.61rem;
   }
 }
 </style>

@@ -23,4 +23,17 @@ describe('YinClock', () => {
 
     wrapper.unmount()
   })
+
+  it('presents a compact metadata line without decorative tildes or live announcements', () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-22T14:25:40.000Z'))
+    const wrapper = mount(YinClock, { props: { timezone: 'America/Los_Angeles' } })
+
+    expect(wrapper.get('.yin-clock__metadata').text()).toContain('America/Los_Angeles')
+    expect(wrapper.text()).not.toContain('~')
+    expect(wrapper.attributes('aria-live')).toBeUndefined()
+    expect(wrapper.get('time').text()).toMatch(/^\d{2}:\d{2}:\d{2}$/)
+
+    wrapper.unmount()
+  })
 })

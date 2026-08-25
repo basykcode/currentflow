@@ -2,15 +2,26 @@ import { Solar } from 'lunar-javascript'
 
 import { getZonedCivilTime } from '@/domain/astrology/civilTime'
 import { describeGanZhi } from '@/domain/astrology/ganZhi'
-import { resolveJiaZiHexagram } from '@/domain/astrology/jiaZiHexagrams'
+import {
+  resolveJiaZiHexagram,
+  TEMPORAL_HEXAGRAM_MAPPING_VERSION,
+} from '@/domain/astrology/jiaZiHexagrams'
 import { getOrganMoment } from '@/domain/astrology/organClock'
 import type { CurrentFlowContext, CurrentFlowProvider } from '@/domain/astrology/provider'
 import { getStructuralRelationships } from '@/domain/astrology/relationships'
 import type { CurrentFlowSnapshot, TemporalHexagram, TemporalScope } from '@/domain/astrology/types'
+import {
+  createGuidanceBundle,
+  createUnavailableGuidanceBundle,
+  isGuidanceExpired,
+  resolveTemporalSemantics,
+  toGuidanceSemanticInput,
+} from '@/domain/guidance'
+import type { GuidanceBundle } from '@/domain/guidance/types'
 
-import { getTemporalBounds } from './lunarScriptTemporalBounds'
+import { getTemporalBounds, getTemporalSemanticBoundaries } from './lunarScriptTemporalBounds'
 
-const TEMPORAL_SOURCE = 'lunar-javascript 1.7.7 · 60 Jia Zi to 64 Da Gua'
+const TEMPORAL_SOURCE = 'lunar-javascript 1.7.7 · 六十甲子配卦 · canonical King Wen IDs'
 
 const makeTemporal = (
   scope: TemporalScope,
@@ -22,12 +33,18 @@ const makeTemporal = (
   label,
   timeBoundsLabel,
   hexagram: resolveJiaZiHexagram(ganZhi),
+  ganZhiRaw: ganZhi,
   ganZhi: describeGanZhi(ganZhi),
+  numberingSystem: 'king-wen',
+  mappingSystem: 'liu-shi-jiazi-peigua',
+  mappingVersion: TEMPORAL_HEXAGRAM_MAPPING_VERSION,
   status: 'computed',
   sourceLabel: TEMPORAL_SOURCE,
 })
 
 export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
+  private guidanceCache: GuidanceBundle | undefined
+
   getSnapshot(at: Date, context: CurrentFlowContext = {}): Promise<CurrentFlowSnapshot> {
     const civil = getZonedCivilTime(at, context.timezone)
     const lunar = Solar.fromYmdHms(
@@ -48,7 +65,33 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
     const month = makeTemporal('month', 'Solar-term month pillar', monthGanZhi, bounds.month)
     const day = makeTemporal('day', 'Civil-day pillar · sect 2', dayGanZhi, bounds.day)
     const hour = makeTemporal('hour', 'Two-hour pillar', hourGanZhi, bounds.hour)
-    const organ = getOrganMoment(civil.hour)
+    const organ = getOrganMoment(civil.hour, civil.minute)
+    const temporal = { year, month, day, hour }
+    const semanticResolution = resolveTemporalSemantics({ temporal })
+    const semanticBoundaries = getTemporalSemanticBoundaries(at, lunar, civil)
+    const guidanceId = `${semanticResolution.resolutionId}-${civil.timezone}`
+    if (
+      !this.guidanceCache ||
+      this.guidanceCache.synthesisId !== guidanceId ||
+      isGuidanceExpired(this.guidanceCache, at)
+    ) {
+      this.guidanceCache =
+        semanticResolution.status === 'available'
+          ? createGuidanceBundle(
+              toGuidanceSemanticInput(semanticResolution, {
+                synthesisId: guidanceId,
+                validFromUtc: at.toISOString(),
+                boundaries: semanticBoundaries,
+              }),
+            )
+          : createUnavailableGuidanceBundle({
+              synthesisId: guidanceId,
+              validFromUtc: at.toISOString(),
+              boundaries: semanticBoundaries,
+              reason: semanticResolution.reason,
+              sourceLabel: 'Current Semantic Layer v1 · partial 13-profile registry',
+            })
+    }
 
     const fallbackNote = civil.usedTimezoneFallback
       ? `The requested timezone “${context.timezone}” was invalid; ${civil.timezone} was used.`
@@ -59,37 +102,35 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
       timezone: civil.timezone,
       ...(context.locationLabel ? { locationLabel: context.locationLabel } : {}),
       status: 'computed',
-      temporal: { year, month, day, hour },
+      temporal,
       organ: {
         ...organ,
         timeRangeLabel: `${organ.timeRangeLabel} · ${civil.timezone}`,
       },
-      synthesis: {
-        status: 'unavailable',
-        sourceLabel: 'No verified interpretive synthesis model is connected',
-        oltr: 'The verified temporal factors are available without an interpretive forecast.',
-        recommendedIntention:
-          'Use the calculated pillars as context while keeping decisions grounded in present evidence.',
-        recommendedExecution: [],
-        relatedHexagrams: getStructuralRelationships(day.hexagram),
-      },
+      guidance: this.guidanceCache,
+      relatedHexagrams: getStructuralRelationships(day.hexagram),
       provenance: {
         providerId: 'lunar-script-current-flow',
-        modelVersion: '1.0.0',
+        modelVersion: '1.1.0',
+        mappingVersion: TEMPORAL_HEXAGRAM_MAPPING_VERSION,
         factors: [
           `Year ${yearGanZhi} (${lunar.getYearShengXiaoExact()})`,
           `Month ${monthGanZhi}`,
           `Day ${dayGanZhi}`,
           `Hour ${hourGanZhi}`,
           `Organ clock civil hour ${civil.hour.toString().padStart(2, '0')}`,
+          `Chu-Zheng-Ke ${organ.chuZhengKe?.nameChinese ?? 'unavailable'} (${organ.chuZhengKe?.timeRangeLabel ?? 'unavailable'})`,
         ],
         notes: [
           fallbackNote,
           'Year and month boundaries use exact solar-term transition times from lunar-javascript.',
           'The day pillar uses sect 2: the 23:00–23:59 Zi hour remains on the civil day.',
-          'Hexagrams are resolved through the documented 60 Jia Zi to 64 Da Gua lookup table.',
+          `Hexagrams use ${TEMPORAL_HEXAGRAM_MAPPING_VERSION}; all stored and displayed identities are canonical King Wen IDs.`,
           'The organ clock is a traditional educational framework, not medical advice.',
-          'Interpretive intentions and execution recommendations are intentionally unavailable.',
+          'Chu-Zheng-Ke names use the Shixian 96-ke civil-time convention; cultivation phase language is a Current Flow product formalization, not a received traditional interpretation.',
+          semanticResolution.status === 'available'
+            ? `Current Semantic Layer v1 resolved ${semanticResolution.coverage} profile coverage; missing profiles: ${semanticResolution.missingProfileNumbers.length > 0 ? semanticResolution.missingProfileNumbers.join(', ') : 'none'}.`
+            : semanticResolution.reason,
         ],
       },
     })

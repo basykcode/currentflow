@@ -33,6 +33,36 @@
 - Use explicit unavailable records when evidence is missing or quarantined; never infer replacement text.
 - Run `npm run commentary:validate` after changing commentary data, loaders, or rendering.
 
+## Current Flow glance rules
+
+- Mobile home communicates the complete Current at a glance; Day remains the featured temporal
+  hexagram in the Year / Day / Month hierarchy.
+- Compact cards project existing snapshot data and never own calculation, mapping, timezone, or
+  organ-clock logic.
+- Keep exact bounds, engine versions, and technical provenance in an accessible details surface,
+  not inside first-glance cards.
+- Use dynamic viewport units and safe-area insets for the mobile instrument panel. Never clip
+  content, disable global scrolling, or reduce accessible targets to fake first-viewport fit.
+- Preserve natural scrolling for large text, visible focus, reduced motion, and both themes.
+
+## Guidance output rules
+
+- Keep `src/domain/guidance` downstream of resolved semantic input; never infer guidance directly
+  from raw dates, GanZhi, organ periods, hexagram numbers, Vue state, or freeform model output.
+- OLTR, Intention, and Execution must consume the same versioned `GuidanceSynthesis` and pass their
+  validators plus `validateGuidanceBundle()` before display.
+- Use only the controlled intention lexicon and low-risk action library. Preserve qualitative effort,
+  categorical evidence weight, explicit provenance, safety exclusions, and deterministic fallbacks.
+- Changing intention may reselect Execution only. It must not change the temporal field, Primary
+  Current, OLTR, evidence, versions, or validity window.
+- Keep classical identity/commentary separate from `semantic-resolver` operational profiles. Current
+  vectors are product formalizations, never claims that the received Yi Jing assigns an action.
+- Require an eligible day profile; preserve partial lesser-scale coverage, missing profile numbers,
+  and conflicts rather than deriving replacements from titles, commentaries, or a model.
+- Treat `spec-reviewed` as product-specification review, not human editorial approval. Never add a
+  reviewer identity that did not perform the review.
+- Demo semantics remain visibly demo-labeled Current formalizations.
+
 ## Project continuity protocol
 
 This protocol is mandatory for every substantial Codex task. The repository is the durable project

@@ -27,9 +27,12 @@ month `乙未`, day `戊戌`, and hour `戊午`.
 ## GanZhi to hexagram
 
 `lunar-javascript` calculates GanZhi but does not assign an I Ching hexagram to each pillar.
-Current applies the complete lookup in Howard Choy's
-[`60 Jia Zi to 64 Da Gua`](https://howardchoy.wordpress.com/wp-content/uploads/2011/05/60jiazito64dagua.pdf)
-table. The lookup is versioned source data, not a formula inferred by the application.
+Current applies `liu-shi-jiazi-peigua-king-wen-v1`, the explicit sixty-entry `六十甲子配卦`
+projection documented in [`SIXTY_JIAZI_HEXAGRAM_MAPPING.md`](SIXTY_JIAZI_HEXAGRAM_MAPPING.md).
+Howard Choy's source table retains all 64 gua through four dual-assignment Jiazi; the selected
+Current Flow projection uses 復, 革, 姤, and 蒙 at those positions, so the four unassigned pure gua
+are 乾 1, 坤 2, 坎 29, and 離 30. The lookup is versioned source data, not a formula inferred by the
+application.
 
 The King Wen hexagram catalog stores every figure bottom-line first. Trigram composition supplies
 the six line polarities; presentation alone reverses them for top-to-bottom screen rendering.
@@ -40,6 +43,10 @@ where translations differ. These identity fields are curated references rather t
 
 Golden case: `丙午` (Yang Fire Horse) maps to Hexagram 28, `大過` / `Dà Guò` /
 Preponderance of the Great.
+
+Every temporal item stores the mapping system, mapping version, and canonical King Wen numbering.
+The conversion boundary distinguishes King Wen IDs, bottom-line-LSB Fu Xi binary indexes, and
+one-based XKDG Luo Pan positions; an ambiguous “hexagram number” is not accepted.
 
 ## Organ clock
 
@@ -65,6 +72,34 @@ The sequence is:
 Selection uses civil clock time in the snapshot timezone. It does not correct for apparent solar
 time or longitude because Current does not request coordinates. This is a traditional educational
 framework, not a diagnostic or treatment claim.
+
+### Chu / Zheng / Ke subdivision
+
+The Shixian 96-ke convention divides a day into 96 equal `刻`, making one ke 15 minutes and each
+two-hour branch period eight ke. Current divides the first civil hour into four `初` intervals and
+the second into four `正` intervals:
+
+| Offset in period | Name   | Pinyin       | Current English timing label   |
+| ---------------- | ------ | ------------ | ------------------------------ |
+| 00–15 minutes    | 初初刻 | Chū Chū Kè   | Initial half · opening quarter |
+| 15–30 minutes    | 初一刻 | Chū Yī Kè    | Initial half · first quarter   |
+| 30–45 minutes    | 初二刻 | Chū Èr Kè    | Initial half · second quarter  |
+| 45–60 minutes    | 初三刻 | Chū Sān Kè   | Initial half · third quarter   |
+| 60–75 minutes    | 正初刻 | Zhèng Chū Kè | Second half · opening quarter  |
+| 75–90 minutes    | 正一刻 | Zhèng Yī Kè  | Second half · first quarter    |
+| 90–105 minutes   | 正二刻 | Zhèng Èr Kè  | Second half · second quarter   |
+| 105–120 minutes  | 正三刻 | Zhèng Sān Kè | Second half · third quarter    |
+
+The [National Astronomical Observatory of Japan's calendar office](https://eco.mtk.nao.ac.jp/koyomi/wiki/BBFEB9EF2FC4EABBFECBA1A4C8C9D4C4EABBFECBA1.html)
+documents the two-hour branch period, its `初` beginning and `正` midpoint, and the Shixian choice of
+96 ke. A historical overview republished by
+[China Daily](https://ent.chinadaily.com.cn/a/201907/26/WS5d3a5399a3106bab40a029b1.html)
+documents the resulting eight 15-minute ke per branch period.
+
+The app's eight cultivation labels—Arriving, Gathering, Deepening, Cresting, Fullness, Circulating,
+Integrating, and Releasing—and their short cues are `current-formalization`, versioned as
+`Current Flow cultivation phase model v1`. They are a product-scale envelope over elapsed position,
+not a received interpretation of 初 / 正 / 刻, an energetic measurement, or medical guidance.
 
 ## Structural relationships and Transformation Lab
 
@@ -105,16 +140,19 @@ No proprietary commentary or profile calculation is reproduced or inferred.
 
 ## Deliberately unavailable
 
-Current does not generate interpretive forecasts, recommended actions, personal BaZi synthesis, or
-medical guidance from these factors. Those surfaces remain explicitly unavailable until a separate,
-verified and reviewable model is connected.
+Current does not infer forecasts, personal BaZi synthesis, or medical guidance directly from these
+factors. The separate Temporal Semantic Resolver maps only 13 eligible hexagram identities into
+Current operational vectors and keeps that product ontology distinct from classical sources. When
+the operative day is covered, the deterministic Guidance Output Layer can render OLTR, controlled
+Intention, and low-risk Execution; uncovered days return an explicit unavailable bundle. Lesser
+missing scale profiles remain visible as partial coverage and are never inferred.
 
 Hexagram commentary tabs display source-grounded editorial drafts. These are static interpretive
 syntheses, not calculations, forecasts, translations, or personal readings. Every available record
 retains evidence, source, rights, and review metadata; every automated result is labeled draft-only
 pending human review. No source passage is shipped to the browser. Eleven sources have complete
-King Wen 1-64 file coverage, including Richard John Lynn's translation of Wang Bi's *Classic of
-Changes*. Six inherited chunk anomalies are quarantined, producing five unavailable Buddhist cells.
+King Wen 1-64 file coverage, including Richard John Lynn's translation of Wang Bi's _Classic of
+Changes_. Six inherited chunk anomalies are quarantined, producing five unavailable Buddhist cells.
 
 Selected line changes also show an original draft paraphrase of the corresponding source-to-result
 entry in the _Jiaoshi Yilin_. The target hexagram is computed first from the canonical bottom-to-top

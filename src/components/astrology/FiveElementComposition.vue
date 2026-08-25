@@ -7,172 +7,71 @@ import OrganCard from './OrganCard.vue'
 defineProps<{
   snapshot: CurrentFlowSnapshot
 }>()
+
+const emit = defineEmits<{
+  openOrganDetails: []
+}>()
 </script>
 
 <template>
-  <section class="five-elements" aria-label="Five temporal elements">
-    <div class="cell cell-year">
-      <HexagramCard :item="snapshot.temporal.year" />
+  <div class="five-elements" aria-label="Current temporal signature">
+    <div class="temporal-row" data-glance-row="temporal">
+      <div class="cell cell-year" data-glance-item="year">
+        <HexagramCard :item="snapshot.temporal.year" density="glance-compact" />
+      </div>
+      <div class="cell cell-day" data-glance-item="day">
+        <HexagramCard :item="snapshot.temporal.day" density="glance-featured" />
+      </div>
+      <div class="cell cell-month" data-glance-item="month">
+        <HexagramCard :item="snapshot.temporal.month" density="glance-compact" />
+      </div>
     </div>
-    <div class="cell cell-day">
-      <HexagramCard :item="snapshot.temporal.day" featured />
+
+    <div class="active-row" data-glance-row="active">
+      <div class="cell cell-organ" data-glance-item="organ">
+        <OrganCard :organ="snapshot.organ" density="glance" @select="emit('openOrganDetails')" />
+      </div>
+      <div class="cell cell-hour" data-glance-item="hour">
+        <HexagramCard :item="snapshot.temporal.hour" density="glance-regular" />
+      </div>
     </div>
-    <div class="cell cell-month">
-      <HexagramCard :item="snapshot.temporal.month" />
-    </div>
-    <div class="cell cell-organ">
-      <OrganCard :organ="snapshot.organ" />
-    </div>
-    <div class="cell cell-hour">
-      <HexagramCard :item="snapshot.temporal.hour" />
-    </div>
-  </section>
+  </div>
 </template>
 
 <style scoped>
 .five-elements {
   display: grid;
-  grid-template-areas:
-    'year day day month'
-    'organ organ hour hour';
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.05fr) minmax(0, 1.05fr) minmax(0, 0.9fr);
-  gap: clamp(0.75rem, 2vw, 1.35rem);
-  align-items: start;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--glance-gap, 0.55rem);
+  min-width: 0;
+  min-height: 0;
 }
 
-.cell-year {
-  grid-area: year;
+.temporal-row,
+.active-row {
+  display: grid;
+  gap: var(--glance-gap, 0.55rem);
+  min-width: 0;
+  min-height: 0;
 }
 
-.cell-day {
-  grid-area: day;
+.temporal-row {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) minmax(0, 1fr);
 }
 
-.cell-month {
-  grid-area: month;
+.active-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.cell-organ {
-  grid-area: organ;
+.cell {
+  display: grid;
+  min-width: 0;
+  min-height: 0;
 }
 
-.cell-hour {
-  grid-area: hour;
-}
-
-.cell-day :deep(.hexagram-card) {
-  width: min(100%, 30rem);
-  margin-inline: auto;
-}
-
-.cell-organ {
-  align-self: stretch;
-}
-
-.cell-hour :deep(.hexagram-card) {
-  min-height: 20rem;
-}
-
-.cell-year :deep(.hexagram-name),
-.cell-month :deep(.hexagram-name) {
-  align-items: flex-start;
-  gap: 0.5rem;
-}
-
-.cell-year :deep(.number),
-.cell-month :deep(.number) {
-  width: 2rem;
-  height: 2rem;
-  font-size: 0.82rem;
-}
-
-.cell-year :deep(h2),
-.cell-month :deep(h2) {
-  font-size: clamp(1rem, 1.5vw, 1.22rem);
-}
-
-@media (max-width: 940px) {
+@media (min-width: 768px) {
   .five-elements {
-    grid-template-areas:
-      'day day'
-      'year month'
-      'organ organ'
-      'hour hour';
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .cell-day :deep(.hexagram-card),
-  .cell-hour :deep(.hexagram-card) {
-    width: min(100%, 36rem);
-    margin-inline: auto;
-  }
-}
-
-@media (max-width: 600px) {
-  .five-elements {
-    grid-template-areas:
-      'day day'
-      'year month'
-      'organ organ'
-      'hour hour';
-    gap: 0.65rem;
-  }
-
-  .cell-year :deep(.hexagram-card),
-  .cell-month :deep(.hexagram-card) {
-    min-height: 18rem;
-    padding: 0.9rem;
-  }
-
-  .cell-year :deep(.card-heading),
-  .cell-month :deep(.card-heading) {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .cell-year :deep(.ganzhi),
-  .cell-month :deep(.ganzhi) {
-    text-align: left;
-  }
-
-  .cell-year :deep(.glyph-wrap),
-  .cell-month :deep(.glyph-wrap) {
-    min-height: 7.5rem;
-  }
-
-  .cell-year :deep(.hexagram-glyph),
-  .cell-month :deep(.hexagram-glyph) {
-    max-width: 5.5rem;
-  }
-
-  .cell-year :deep(.hexagram-name),
-  .cell-month :deep(.hexagram-name) {
-    align-items: flex-start;
-    gap: 0.45rem;
-  }
-
-  .cell-year :deep(.number),
-  .cell-month :deep(.number) {
-    width: 1.9rem;
-    height: 1.9rem;
-    font-size: 0.78rem;
-  }
-
-  .cell-year :deep(h2),
-  .cell-month :deep(h2) {
-    font-size: 1rem;
-  }
-
-  .cell-year :deep(.hexagram-name p),
-  .cell-month :deep(.hexagram-name p) {
-    font-size: 0.78rem;
-  }
-
-  .cell-year :deep(.provenance),
-  .cell-month :deep(.provenance) {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-rows: repeat(2, minmax(14rem, 1fr));
   }
 }
 </style>

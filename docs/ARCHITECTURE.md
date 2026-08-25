@@ -17,6 +17,42 @@ Current is a client-side Vue 3 application organized around explicit domain boun
 
 The Astrology view requests a `CurrentFlowSnapshot` from a provider. It does not calculate calendrical facts or embed fixture data. Components render status and provenance supplied by the domain object.
 
+The snapshot carries temporal facts, Organ Hour, a `GuidanceBundle`, deterministic structural
+relationships, and provider provenance as separate fields. Every Temporal Hexagram carries a full
+canonical `HexagramReference`—including tone-marked pinyin and curated Gene Key spectrum—plus its
+explicit `六十甲子配卦` mapping version; Fu Xi binary and XKDG Luo Pan positions
+are normalized only at a typed domain boundary. The pure Temporal Semantic Resolver
+under `src/domain/guidance/semantic-resolver` composes only eligible Current operational profiles;
+an operative day outside its initial 13-profile registry remains explicitly unavailable. Its output
+passes through the Guidance Output Layer, which owns controlled OLTR rendering, intention and
+execution selection, validity, versions, and cross-output validation. Neither layer reads
+commentary or calls a model. See
+[`TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md`](TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md) and
+[`GUIDANCE_OUTPUT_ARCHITECTURE.md`](GUIDANCE_OUTPUT_ARCHITECTURE.md).
+
+The top of the Astrology route is composed by `CurrentFlowGlance`: a presentation-only projection
+of that snapshot into compact temporal-card densities, the `Internal State` presentation of Organ
+Hour, and the bundle OLTR or unavailable state. The canonical glyph, organ illustration, and
+app-level inspector remain shared.
+A pure Ganzhi identity helper selects one of 60 local animal-element illustrations for a separate
+presentation row immediately below each stem-branch label and immediately above each temporal
+glyph; this presentation does not participate in the calendar or hexagram calculation. Compact
+stem-branch labels omit the redundant polarity word while the domain identity retains it. Exact
+pillar bounds, engine and mapping labels, status, and provider notes move into an adjacent
+`CalculationProvenanceDetails` disclosure; the glance does not discard or recalculate them. See
+[`CURRENT_FLOW_GLANCE_LAYOUT.md`](CURRENT_FLOW_GLANCE_LAYOUT.md) and
+[`ZODIAC_ART_ASSETS.md`](ZODIAC_ART_ASSETS.md).
+
+The same glance projection renders the current 15-minute Chu / Zheng / Ke subdivision supplied by
+the provider's pure Organ Clock domain helper. Historical interval identity and civil bounds are
+kept separate from the eight-phase cultivation cue, which is labeled as a Current Flow product
+formalization and carries its own source status.
+
+All five glance cards share one inner-geometry contract: equal responsive padding, a fixed heading
+row, a flexible middle visual row, and bottom-anchored identity text. Temporal glyph bars remain
+percentage-based so the compact, featured, and regular figures scale with identical color, spacing,
+and proportional weight.
+
 ## Runtime behavior
 
 The default demo build makes no runtime network calls. Theme, timezone preference, and an optional

@@ -1,9 +1,16 @@
 import { Solar, type LunarDate, type SolarDate } from 'lunar-javascript'
 
-import type { ZonedCivilTime } from '@/domain/astrology/civilTime'
+import {
+  type CivilWallTime,
+  type ZonedCivilTime,
+  zonedWallTimeToUtc,
+} from '@/domain/astrology/civilTime'
 import type { TemporalScope } from '@/domain/astrology/types'
+import type { SemanticBoundary } from '@/domain/guidance/types'
 
-type WallTime = Pick<ZonedCivilTime, 'year' | 'month' | 'day' | 'hour' | 'minute' | 'second'>
+import { getNextEarthlyBranchBoundaryUtc } from './guidanceBoundary'
+
+type WallTime = CivilWallTime
 
 const pad = (value: number) => value.toString().padStart(2, '0')
 
@@ -12,7 +19,14 @@ const formatWallTime = (value: WallTime) =>
 
 const shiftWallTime = (value: WallTime, hours: number): WallTime => {
   const shifted = new Date(
-    Date.UTC(value.year, value.month - 1, value.day, value.hour + hours, value.minute, value.second),
+    Date.UTC(
+      value.year,
+      value.month - 1,
+      value.day,
+      value.hour + hours,
+      value.minute,
+      value.second,
+    ),
   )
 
   return {
@@ -62,11 +76,7 @@ const getMonthBounds = (lunar: LunarDate, civil: ZonedCivilTime) => {
     throw new Error('Unable to bracket the current pillar with exact solar-term boundaries.')
   }
 
-  return formatBounds(
-    previous.getSolar().toYmdHms(),
-    next.getSolar().toYmdHms(),
-    civil.timezone,
-  )
+  return formatBounds(previous.getSolar().toYmdHms(), next.getSolar().toYmdHms(), civil.timezone)
 }
 
 const getDayBounds = (civil: ZonedCivilTime) => {
@@ -91,3 +101,45 @@ export const getTemporalBounds = (
   day: getDayBounds(civil),
   hour: getHourBounds(civil),
 })
+
+const parseWallTime = (value: string): WallTime => {
+  const match = value.match(/^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})$/)
+  if (!match) throw new Error(`Invalid lunar-javascript wall time: ${value}.`)
+  const [, year, month, day, hour, minute, second] = match
+  return {
+    year: Number(year),
+    month: Number(month),
+    day: Number(day),
+    hour: Number(hour),
+    minute: Number(minute),
+    second: Number(second),
+  }
+}
+
+export const getTemporalSemanticBoundaries = (
+  at: Date,
+  lunar: LunarDate,
+  civil: ZonedCivilTime,
+): readonly SemanticBoundary[] => {
+  const startOfDay: WallTime = { ...civil, hour: 0, minute: 0, second: 0 }
+  const nextDay = shiftWallTime(startOfDay, 24)
+  const nextSolarTerm = lunar.getNextJie()
+  if (!nextSolarTerm) {
+    throw new Error('Unable to resolve the next exact solar-term boundary.')
+  }
+
+  return Object.freeze([
+    {
+      atUtc: getNextEarthlyBranchBoundaryUtc(at, civil.timezone),
+      reason: 'earthly-branch-hour-change',
+    },
+    {
+      atUtc: zonedWallTimeToUtc(nextDay, civil.timezone),
+      reason: 'semantic-classification-change',
+    },
+    {
+      atUtc: zonedWallTimeToUtc(parseWallTime(nextSolarTerm.getSolar().toYmdHms()), civil.timezone),
+      reason: 'solar-term-boundary',
+    },
+  ])
+}

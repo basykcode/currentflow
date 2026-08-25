@@ -1,4 +1,4 @@
-import type { OrganMoment } from './types'
+import type { ChuZhengKeMoment, OrganMoment } from './types'
 
 type OrganPeriodDefinition = Omit<OrganMoment, 'status' | 'sourceLabel'>
 
@@ -77,7 +77,91 @@ const ORGAN_PERIODS: readonly OrganPeriodDefinition[] = [
   },
 ]
 
-export const getOrganMoment = (civilHour: number): OrganMoment => {
+const KE_NAMES = [
+  { character: '初', pinyin: 'Chū', english: 'opening quarter' },
+  { character: '一', pinyin: 'Yī', english: 'first quarter' },
+  { character: '二', pinyin: 'Èr', english: 'second quarter' },
+  { character: '三', pinyin: 'Sān', english: 'third quarter' },
+] as const
+
+const CULTIVATION_PHASES = [
+  {
+    phase: 'Arriving',
+    guidance: 'Energy begins to gather. Arrive, breathe, and notice what is present.',
+  },
+  {
+    phase: 'Gathering',
+    guidance: 'Energy is building. Choose the thread worth strengthening.',
+  },
+  {
+    phase: 'Deepening',
+    guidance: 'Energy is still building. Settle into one useful act without forcing.',
+  },
+  {
+    phase: 'Cresting',
+    guidance: 'Energy approaches its first crest. Complete the essential movement.',
+  },
+  {
+    phase: 'Fullness',
+    guidance: 'Energy enters full expression. Hold steady and notice what is sufficient.',
+  },
+  {
+    phase: 'Circulating',
+    guidance: 'Energy is available. Circulate it through deliberate, unhurried action.',
+  },
+  {
+    phase: 'Integrating',
+    guidance: 'Energy begins to turn inward. Consolidate what this period has opened.',
+  },
+  {
+    phase: 'Releasing',
+    guidance: 'Energy prepares to hand off. Release excess and leave a clean transition.',
+  },
+] as const
+
+const formatCivilTime = (hour: number, minute: number) =>
+  `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`
+
+export const getChuZhengKeMoment = (civilHour: number, civilMinute: number): ChuZhengKeMoment => {
+  if (!Number.isInteger(civilHour) || civilHour < 0 || civilHour > 23) {
+    throw new Error(`Civil hour must be an integer from 0 through 23; received ${civilHour}.`)
+  }
+  if (!Number.isInteger(civilMinute) || civilMinute < 0 || civilMinute > 59) {
+    throw new Error(`Civil minute must be an integer from 0 through 59; received ${civilMinute}.`)
+  }
+
+  const segment = civilHour % 2 === 1 ? 'chu' : 'zheng'
+  const keIndex = Math.floor(civilMinute / 15) as ChuZhengKeMoment['keIndex']
+  const ke = KE_NAMES[keIndex]
+  const cultivationIndex = keIndex + (segment === 'zheng' ? 4 : 0)
+  const cultivation = CULTIVATION_PHASES[cultivationIndex]
+  if (!ke || !cultivation) throw new Error('No Chu-Zheng-Ke definition exists for this civil time.')
+
+  const segmentIdentity =
+    segment === 'chu'
+      ? { character: '初', pinyin: 'Chū', english: 'Initial half' }
+      : { character: '正', pinyin: 'Zhèng', english: 'Second half' }
+  const startMinute = keIndex * 15
+  const endMinute = startMinute + 15
+  const endHour = endMinute === 60 ? (civilHour + 1) % 24 : civilHour
+
+  return {
+    segment,
+    keIndex,
+    nameChinese: `${segmentIdentity.character}${ke.character}刻`,
+    namePinyin: `${segmentIdentity.pinyin} ${ke.pinyin} Kè`,
+    meaningEnglish: `${segmentIdentity.english} · ${ke.english}`,
+    timeRangeLabel: `${formatCivilTime(civilHour, startMinute)}–${formatCivilTime(endHour, endMinute % 60)}`,
+    cultivationPhase: cultivation.phase,
+    cultivationGuidance: cultivation.guidance,
+    status: 'computed',
+    sourceLabel: 'Shixian 96-ke convention · civil time',
+    cultivationStatus: 'current-formalization',
+    cultivationSourceLabel: 'Current Flow cultivation phase model v1 · product formalization',
+  }
+}
+
+export const getOrganMoment = (civilHour: number, civilMinute = 0): OrganMoment => {
   if (!Number.isInteger(civilHour) || civilHour < 0 || civilHour > 23) {
     throw new Error(`Civil hour must be an integer from 0 through 23; received ${civilHour}.`)
   }
@@ -92,6 +176,7 @@ export const getOrganMoment = (civilHour: number): OrganMoment => {
 
   return {
     ...period,
+    chuZhengKe: getChuZhengKeMoment(civilHour, civilMinute),
     status: 'computed',
     sourceLabel: 'Traditional two-hour meridian clock · civil time',
   }

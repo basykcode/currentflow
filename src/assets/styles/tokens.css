@@ -40,6 +40,8 @@
   --content: 1180px;
   --reading: 760px;
   --header-height: 76px;
+  --app-header-content-height: var(--header-height);
+  --app-header-total-height: calc(var(--app-header-content-height) + env(safe-area-inset-top));
 }
 
 :root[data-theme='light'] {
@@ -60,4 +62,10 @@
   --shadow: 0 18px 50px rgb(16 43 77 / 12%);
   --shadow-soft: 0 12px 36px rgb(16 43 77 / 9%);
   --backdrop: rgb(7 22 45 / 48%);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-height: 64px;
+  }
 }

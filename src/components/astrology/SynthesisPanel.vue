@@ -1,62 +1,25 @@
 <script setup lang="ts">
-import type { CurrentFlowSnapshot, ExecutionFriction } from '@/domain/astrology/types'
+import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
 
+import GuidanceOutputPanel from './GuidanceOutputPanel.vue'
 import RelatedHexagramCard from './RelatedHexagramCard.vue'
 
-defineProps<{
-  snapshot: CurrentFlowSnapshot
-}>()
-
-const frictionLabel: Record<ExecutionFriction, string> = {
-  lower: 'Lower friction',
-  neutral: 'Neutral friction',
-  higher: 'Higher friction',
-}
+withDefaults(
+  defineProps<{
+    snapshot: CurrentFlowSnapshot
+    showOltr?: boolean
+    showProvenance?: boolean
+  }>(),
+  {
+    showOltr: true,
+    showProvenance: true,
+  },
+)
 </script>
 
 <template>
-  <section class="synthesis" aria-labelledby="oltr-heading">
-    <div class="oltr-block">
-      <p class="eyebrow">OLTR · One Line To Remember</p>
-      <h2 id="oltr-heading">{{ snapshot.synthesis.oltr }}</h2>
-      <div class="synthesis-status">
-        <span class="status-text">{{ snapshot.synthesis.status }}</span>
-        <span>{{ snapshot.synthesis.sourceLabel }}</span>
-      </div>
-    </div>
-
-    <div class="synthesis-grid">
-      <section class="intention panel" aria-labelledby="intention-heading">
-        <p class="section-number">01</p>
-        <p class="eyebrow">Internal orientation</p>
-        <h3 id="intention-heading">Recommended Intention</h3>
-        <p>{{ snapshot.synthesis.recommendedIntention }}</p>
-      </section>
-
-      <section class="execution panel" aria-labelledby="execution-heading">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Available movements</p>
-            <h3 id="execution-heading">Recommended Execution</h3>
-          </div>
-          <p class="section-number">02</p>
-        </div>
-        <ul>
-          <li v-for="item in snapshot.synthesis.recommendedExecution" :key="item.label">
-            <div>
-              <strong>{{ item.label }}</strong>
-              <p v-if="item.rationale">{{ item.rationale }}</p>
-            </div>
-            <span class="friction" :data-friction="item.friction">
-              {{ frictionLabel[item.friction] }}
-            </span>
-          </li>
-        </ul>
-        <p v-if="snapshot.synthesis.recommendedExecution.length === 0" class="empty-guidance">
-          No activity recommendations are generated without a verified synthesis model.
-        </p>
-      </section>
-    </div>
+  <section class="synthesis" aria-label="Current guidance and related hexagrams">
+    <GuidanceOutputPanel :bundle="snapshot.guidance" :show-oltr="showOltr" />
 
     <section class="related" aria-labelledby="related-heading">
       <div class="section-heading">
@@ -70,7 +33,7 @@ const frictionLabel: Record<ExecutionFriction, string> = {
       </div>
       <div class="related-grid">
         <RelatedHexagramCard
-          v-for="item in snapshot.synthesis.relatedHexagrams"
+          v-for="item in snapshot.relatedHexagrams"
           :key="`${item.hexagram.number ?? 'unknown'}-${item.relationshipLabel}`"
           :item="item"
         />
@@ -89,7 +52,7 @@ const frictionLabel: Record<ExecutionFriction, string> = {
       </button>
     </section>
 
-    <details class="provenance-details">
+    <details v-if="showProvenance" class="provenance-details">
       <summary>Calculation provenance and limits</summary>
       <div>
         <p>
@@ -109,72 +72,12 @@ const frictionLabel: Record<ExecutionFriction, string> = {
   margin-top: clamp(4rem, 9vw, 8rem);
 }
 
-.oltr-block {
-  max-width: 58rem;
-  margin-inline: auto;
-  padding-inline: 1rem;
-  text-align: center;
-}
-
-.oltr-block h2 {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(2rem, 5.4vw, 4.5rem);
-  font-weight: 400;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
-}
-
-.synthesis-status {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 1rem;
-  color: var(--ink-faint);
-  font-size: 0.68rem;
-}
-
-.status-text {
-  color: var(--ink-faint);
-  font-size: 0.6rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.synthesis-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 1rem;
-  margin-top: clamp(3rem, 7vw, 6rem);
-}
-
-.intention,
-.execution {
-  padding: clamp(1.25rem, 3vw, 2rem);
-}
-
-.section-number {
-  margin: 0 0 3rem;
-  color: var(--cinnabar);
-  font-family: var(--font-serif);
-  font-size: 0.8rem;
-}
-
 h3 {
   margin-bottom: 1rem;
   font-family: var(--font-serif);
   font-size: clamp(1.5rem, 3vw, 2.2rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-}
-
-.intention > p:last-child {
-  max-width: 35ch;
-  margin: 2.5rem 0 0;
-  color: var(--ink-soft);
-  font-size: 1.05rem;
 }
 
 .section-heading {
@@ -184,63 +87,10 @@ h3 {
   gap: 1rem;
 }
 
-.execution .section-number {
-  margin: 0;
-}
-
-.execution ul,
 .provenance-details ul {
   margin: 1rem 0 0;
   padding: 0;
   list-style: none;
-}
-
-.execution li {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-  border-top: 1px solid var(--line);
-  padding-block: 1rem;
-}
-
-.execution strong {
-  font-size: 0.93rem;
-  font-weight: 600;
-}
-
-.execution li p {
-  max-width: 47ch;
-  margin: 0.3rem 0 0;
-  color: var(--ink-faint);
-  font-size: 0.78rem;
-}
-
-.empty-guidance {
-  border-top: 1px solid var(--line);
-  margin: 1rem 0 0;
-  padding-top: 1rem;
-  color: var(--ink-faint);
-  font-size: 0.78rem;
-}
-
-.friction {
-  flex: 0 0 auto;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 0.25rem 0.55rem;
-  color: var(--ink-soft);
-  font-size: 0.65rem;
-}
-
-.friction[data-friction='lower'] {
-  border-color: color-mix(in srgb, var(--jade) 40%, var(--line));
-  color: var(--jade);
-}
-
-.friction[data-friction='higher'] {
-  border-style: dashed;
-  color: var(--cinnabar);
 }
 
 .related {
@@ -308,21 +158,12 @@ h3 {
 }
 
 @media (max-width: 800px) {
-  .synthesis-grid {
-    grid-template-columns: 1fr;
-  }
-
   .related-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
-  .oltr-block {
-    padding-inline: 0.4rem;
-  }
-
-  .execution li,
   .future-depth,
   .related .section-heading {
     align-items: flex-start;

@@ -1,0 +1,193 @@
+# Current Flow glance layout
+
+## Product goal
+
+The Astrology home opens as a compact instrument panel. Its leading flow communicates the section,
+local time, Year/Day/Month temporal hexagrams, active Internal State, Hour hexagram, and complete
+One Line to Remember in a stable order. Detail remains available through the existing hexagram
+inspector and the adjacent calculation disclosure. The page scrolls naturally when distinct glyph,
+animal, language, and spectrum rows exceed the current viewport.
+
+## Component structure
+
+Before this refactor, the route composed the page directly:
+
+```text
+App
+├─ AppHeader
+├─ AstrologyView
+│  ├─ oversized route header
+│  │  └─ YinClock
+│  ├─ FiveElementComposition
+│  │  ├─ HexagramCard × 4
+│  │  │  └─ HexagramGlyph
+│  │  └─ OrganCard
+│  │     └─ OrganIllustration
+│  └─ SynthesisPanel
+│     └─ OLTR and deeper synthesis
+└─ HexagramInspector
+```
+
+The route now keeps the same data and interaction boundaries while delegating the first viewport:
+
+```text
+App
+├─ AppHeader
+├─ AstrologyView
+│  ├─ CurrentFlowGlance
+│  │  ├─ compact section label
+│  │  ├─ YinClock
+│  │  ├─ FiveElementComposition
+│  │  │  ├─ HexagramCard density variants × 4
+│  │  │  │  ├─ GanZhi zodiac-element illustration
+│  │  │  │  ├─ canonical HexagramGlyph
+│  │  │  │  └─ canonical identity and Gene Key spectrum
+│  │  │  └─ OrganCard glance variant
+│  │  │     ├─ centered OrganIllustration
+│  │  │     └─ computed Chu / Zheng / Ke and Current cultivation cue
+│  │  └─ CurrentFlowOltr
+│  ├─ CalculationProvenanceDetails
+│  └─ SynthesisPanel without its duplicate OLTR/provenance blocks
+└─ HexagramInspector
+```
+
+`AstrologyView` still requests one canonical `CurrentFlowSnapshot` from `CurrentFlowProvider`.
+Presentation components select fields from that snapshot; they do not calculate or remap them.
+
+## Glance order contract
+
+The mobile DOM and visual order is:
+
+1. `The Current Flow` section heading and compact local clock.
+2. Year / Day / Month.
+3. Internal State / Hour hexagram.
+4. One Line to Remember.
+
+The temporal row uses `1fr 2fr 1fr`, making Day exactly half of the usable row width before gaps.
+The active row uses two equal `minmax(0, 1fr)` tracks. Day uses the strongest border/surface and the
+largest glyph. The two rows use equal-height tracks; the former oversized temporal row no longer
+stretches the instrument panel to the full mobile viewport.
+
+The page does not hide overflow, clamp the OLTR, or disable scrolling. The distinct visual and
+identity rows, an unusually long sentence, or increased user text size may naturally extend the
+document.
+
+## Density variants
+
+`HexagramCard` accepts four presentation densities:
+
+- `glance-compact`: Year and Month.
+- `glance-featured`: Day.
+- `glance-regular`: Hour.
+- `standard`: retained detailed-card presentation.
+
+All densities receive the same `TemporalHexagram`, whose hexagram is a canonical
+`HexagramReference`. The glance densities render scope, compact Ganzhi, canonical
+`HexagramGlyph`, number, English title, Chinese title with tone-marked pinyin, and its curated Gene
+Key Shadow / Gift / Siddhi vocabulary. Long titles and complete spectrum terms wrap naturally.
+
+Each live Ganzhi also resolves to one of 60 user-supplied animal-element illustrations. The
+web-sized transparent artwork occupies its own normal-flow row immediately before the canonical
+glyph so the visual order mirrors the card's stem-branch identity above and hexagram identity below.
+It is not a watermark and does not share or reduce the glyph's sizing box. The visible Ganzhi text
+names only the element and animal because stem polarity is redundant in this compact label; the raw
+stem-branch value and polarity remain available in the domain model and calculation details.
+`OrganCard` similarly adds a `glance` density while reusing `OrganIllustration` and the canonical
+`OrganMoment`.
+
+All glance glyphs use the same color, aspect ratio, trigram gap, line gap, and percentage-based line
+thickness. Line bars occupy 36% of their proportional row, giving every figure a slightly stronger
+weight without introducing fixed pixel thickness. Only width changes: Day is exactly 1.6 times the
+compact Year/Month width and Hour is exactly 1.25 times that width. This keeps the complete geometry
+proportional instead of allowing minimum pixel thicknesses to make smaller figures appear heavier.
+
+The Gene Key terms retain the canonical Shadow / Gift / Siddhi document order. The flex lines wrap
+in the reverse cross-axis direction, so a multi-line compact card places Shadow on its lowest line
+while a card with enough width keeps all three terms in their ordinary single-line order.
+
+## Internal State quarter
+
+The glance card presents the Organ Clock as `Internal State`. It uses one centered column: the label,
+illustration, Chu / Zheng / Ke block, organ name, Chinese name, and time range are all centered. The
+illustration and current quarter sit in the available middle space, while the organ identity and
+two-hour range remain the lower anchor.
+The live provider divides the current two-hour branch period into eight 15-minute intervals under
+the selected Shixian 96-ke convention: four `初` intervals followed by four `正` intervals.
+
+The Chinese interval name, tone-marked pinyin, English timing meaning, and exact civil bounds are
+computed facts. The companion Arriving / Gathering / Deepening / Cresting / Fullness / Circulating /
+Integrating / Releasing cultivation envelope is explicitly a Current Flow product formalization,
+not a claimed traditional interpretation. Both boundaries remain visible in `Calculated From`.
+
+## Technical metadata and provenance
+
+Exact bounds, full pillar labels, calculation status, source/library and mapping labels, organ
+source, provider version, factors, day-boundary convention, and calculation limits do not render
+inside glance cards. They remain available immediately below the first viewport in the
+`Calculated From` disclosure. Selecting Internal State opens and focuses that disclosure.
+
+Hexagram cards continue to open the single app-level `HexagramInspector`; no modal or selection
+state is duplicated.
+
+## Responsive strategy
+
+- Mobile allows the instrument panel to take its content height instead of stretching cards to fill
+  the remaining dynamic viewport.
+- The app-header total combines its accessible content height with `env(safe-area-inset-top)`.
+- The glance bottom padding includes `env(safe-area-inset-bottom)`.
+- Grid children use `min-width: 0` and `min-height: 0` so tracks can shrink without overflow.
+- Every glance card uses the same responsive padding on all four sides. Its heading is the first
+  grid row, its bottom-most text is the final grid row, and all expandable height is isolated in the
+  middle visual stage. This keeps the visible top and bottom gaps equal even when equal-height rows
+  stretch a card with shorter content.
+- Shared custom properties control gaps, padding, radii, glyph sizes, metadata, titles, organ art,
+  and OLTR type.
+- Mobile heights at or below 720 CSS pixels use one compact-height rule set with modestly smaller
+  spacing and artwork.
+- Tablet and desktop preserve the same hierarchy and exact column proportions, with matching
+  14-rem minimum row heights and the existing maximum page width. They are not forced into one
+  viewport.
+
+## Clock and header
+
+The clock keeps its existing four-second sampling cadence and dissolve behavior. Presentation is
+compact: primary `HH:mm`, subordinate seconds, and one date/timezone line with tabular numerals. The
+clock has no live region, so updates do not continuously interrupt assistive technology.
+
+The mobile app-header content remains 64 CSS pixels high and its menu target remains at least 44 by
+44 CSS pixels. Its sticky navigation and safe-area padding are unchanged in behavior.
+
+## Accessibility
+
+- `The Current Flow` is the route's level-one heading; glance cards retain subordinate headings.
+- Every card has a full-card native button target with an explicit accessible name.
+- Enter and Space activate temporal cards and Internal State; focus returns to the triggering temporal
+  card after the inspector closes.
+- Existing global focus rings, reduced-motion handling, and theme contrast remain active.
+- Hexagram glyphs keep their line-by-line accessible descriptions.
+- Decorative zodiac art remains hidden from assistive technology because the adjacent Ganzhi label
+  already names the element and animal.
+- Each frequency-band icon has an adjacent visually hidden Shadow, Gift, or Siddhi label; meaning
+  is never conveyed by the geometric mark or blue shade alone.
+- Clock changes have no `aria-live` announcement.
+- Default text size targets first-viewport fit; larger text is allowed to grow and scroll naturally.
+
+## Verification viewports
+
+The required default-text mobile viewports are:
+
+- 375 × 667
+- 390 × 844
+- 393 × 852
+- 430 × 932
+
+At each size, verify that the document and cards have no horizontal overflow, the canonical glyph
+retains its configured geometry below a separate visible animal row, all glyphs share color and
+proportional line spacing, Day remains twice the card width of Year/Month, and Organ/Hour card widths
+are equal. Also inspect the centered Organ illustration and quarter copy, a tablet and desktop, both
+themes, a long timezone, long canonical titles and spectrum terms, keyboard activation, focus
+visibility, and the calculation disclosure.
+
+In development, `/?text-scale=large` raises the root font size to 150% so natural-scroll and
+non-clipping behavior can be inspected without changing a browser or operating-system preference.
+The fixture is guarded by `import.meta.env.DEV` and is absent from production behavior.

@@ -69,6 +69,7 @@ watch(
   z-index: 50;
   border-bottom: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
   background: color-mix(in srgb, var(--paper) 93%, transparent);
+  padding-top: env(safe-area-inset-top);
   backdrop-filter: blur(16px);
 }
 
@@ -76,7 +77,7 @@ watch(
   display: flex;
   align-items: center;
   width: min(calc(100% - 2rem), 1380px);
-  height: var(--header-height);
+  height: var(--app-header-content-height);
   margin-inline: auto;
 }
 
@@ -154,7 +155,6 @@ watch(
 @media (max-width: 900px) {
   .header-inner {
     width: min(calc(100% - 1.25rem), 1380px);
-    height: 64px;
   }
 
   .desktop-nav {
