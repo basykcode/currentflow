@@ -1,26 +1,32 @@
+<script setup lang="ts">
+import currentFlowLogoUrl from '@/assets/brand/current-flow-logo.png'
+</script>
+
 <template>
-  <svg class="brand-mark" viewBox="0 0 44 32" role="img" aria-label="Current flowing line mark">
-    <path d="M3 9c7-6 13-6 19 0s12 6 19 0" />
-    <path d="M3 22c7-6 13-6 19 0s12 6 19 0" />
-    <circle cx="4" cy="28" r="2" />
-  </svg>
+  <img
+    class="brand-mark"
+    :src="currentFlowLogoUrl"
+    alt=""
+    aria-hidden="true"
+    width="512"
+    height="502"
+    draggable="false"
+  />
 </template>
 
 <style scoped>
 .brand-mark {
-  width: 2.4rem;
+  display: block;
+  width: 2.9rem;
   height: auto;
-  overflow: visible;
+  max-height: calc(var(--app-header-content-height) - 1rem);
+  object-fit: contain;
+  user-select: none;
 }
 
-path {
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-width: 2.4;
-}
-
-circle {
-  fill: var(--cinnabar);
+@media (max-width: 900px) {
+  .brand-mark {
+    width: 2.65rem;
+  }
 }
 </style>
