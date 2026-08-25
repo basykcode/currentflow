@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const props = defineProps<{
   timezone: string
+  compact?: boolean
 }>()
 
 const sampledAt = ref(new Date())
@@ -14,7 +15,6 @@ const timeParts = computed(() => {
     timeZone: props.timezone,
     hour: '2-digit',
     minute: '2-digit',
-    second: '2-digit',
     hourCycle: 'h23',
   }).formatToParts(sampledAt.value)
   const value = (type: Intl.DateTimeFormatPartTypes) =>
@@ -22,11 +22,10 @@ const timeParts = computed(() => {
 
   return {
     primary: `${value('hour')}:${value('minute')}`,
-    seconds: `:${value('second')}`,
   }
 })
 
-const timeLabel = computed(() => `${timeParts.value.primary}${timeParts.value.seconds}`)
+const timeLabel = computed(() => timeParts.value.primary)
 
 const dateLabel = computed(() =>
   new Intl.DateTimeFormat(undefined, {
@@ -43,11 +42,11 @@ const sampleTime = () => {
 
 onMounted(() => {
   sampleTime()
-  const millisecondsToNextFourSecondBoundary = 4_000 - (Date.now() % 4_000)
+  const millisecondsToNextMinuteBoundary = 60_000 - (Date.now() % 60_000)
   alignmentTimer = window.setTimeout(() => {
     sampleTime()
-    clockTimer = window.setInterval(sampleTime, 4_000)
-  }, millisecondsToNextFourSecondBoundary)
+    clockTimer = window.setInterval(sampleTime, 60_000)
+  }, millisecondsToNextMinuteBoundary)
 })
 
 onBeforeUnmount(() => {
@@ -57,12 +56,15 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="yin-clock" :aria-label="`${dateLabel}, ${timeLabel}, ${timezone}`">
+  <div
+    class="yin-clock"
+    :class="{ 'yin-clock--compact': compact }"
+    :aria-label="`${dateLabel}, ${timeLabel}, ${timezone}`"
+  >
     <div class="yin-clock__time" aria-hidden="true">
       <Transition name="yin-clock-dissolve" mode="out-in">
         <time :key="timeLabel" :datetime="sampledAt.toISOString()">
-          <span>{{ timeParts.primary }}</span
-          ><small>{{ timeParts.seconds }}</small>
+          <span>{{ timeParts.primary }}</span>
         </time>
       </Transition>
     </div>
@@ -77,6 +79,8 @@ onBeforeUnmount(() => {
 <style scoped>
 .yin-clock {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
   justify-items: center;
   min-width: 0;
 }
@@ -86,6 +90,7 @@ onBeforeUnmount(() => {
   align-items: baseline;
   justify-content: center;
   max-width: 100%;
+  width: 100%;
   margin: 0;
   color: var(--ink-faint);
   font-size: clamp(0.64rem, 2.3vw, 0.78rem);
@@ -117,12 +122,12 @@ onBeforeUnmount(() => {
   text-align: center;
 }
 
-.yin-clock__time small {
-  color: var(--jade);
-  font-family: var(--font-sans);
-  font-size: 0.36em;
-  font-weight: 400;
-  letter-spacing: 0;
+.yin-clock--compact .yin-clock__time {
+  font-size: clamp(1.8rem, 7.6vw, 2.2rem);
+}
+
+.yin-clock--compact .yin-clock__metadata {
+  font-size: 0.61rem;
 }
 
 .yin-clock-dissolve-enter-active,

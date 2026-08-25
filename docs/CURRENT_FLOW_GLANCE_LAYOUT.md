@@ -149,12 +149,27 @@ state is duplicated.
 
 ## Clock and header
 
-The clock keeps its existing four-second sampling cadence and dissolve behavior. Presentation is
-compact: primary `HH:mm`, subordinate seconds, and one date/timezone line with tabular numerals. The
-clock has no live region, so updates do not continuously interrupt assistive technology.
+The clock samples on minute wall-clock boundaries and retains its dissolve behavior. Presentation is
+compact: primary `HH:mm` and one date/timezone line with tabular numerals. Home intentionally shows
+no seconds, and the clock has no live region, so updates do not continuously interrupt assistive
+technology.
 
 The mobile app-header content remains 64 CSS pixels high and its menu target remains at least 44 by
 44 CSS pixels. Its sticky navigation and safe-area padding are unchanged in behavior.
+
+## Staged celestial header
+
+`CelestialCurrentHeader` is the proposed replacement for the current centered glance header once an
+authoritative Global Conditions source is approved. It uses the same heading and `YinClock` in the
+middle, with clickable Lunar Current and Solar Current clusters in shrink-safe outer columns. At
+mobile widths each outer cluster stacks its ring and exactly three semantic values; compact-height
+rules reduce ring size and collapse only date/timezone metadata.
+
+The production glance remains on its current header because the repository has no continuous lunar
+elongation or solar-longitude owner. The development-only
+`/__dev/celestial-instruments` route verifies the proposed responsive composition without presenting
+fixtures as live calculations. See
+[`CELESTIAL_CURRENT_INSTRUMENTS.md`](CELESTIAL_CURRENT_INSTRUMENTS.md).
 
 ## Accessibility
 
@@ -192,3 +207,7 @@ visibility, and the calculation disclosure.
 In development, `/?text-scale=large` raises the root font size to 150% so natural-scroll and
 non-clipping behavior can be inspected without changing a browser or operating-system preference.
 The fixture is guarded by `import.meta.env.DEV` and is absent from production behavior.
+
+Celestial instrument review adds tablet, laptop, and wide-desktop inspection plus the same mobile
+matrix, both themes, 150% text, reduced motion, whole-cluster focus, and the shared details shell.
+The gallery is development-only and makes no remote asset requests.

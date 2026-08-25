@@ -143,6 +143,21 @@ No proprietary commentary or profile calculation is reproduced or inferred.
 
 ## Deliberately unavailable
 
+### Celestial Current astronomy
+
+Current does not yet calculate or receive lunar elongation, illumination, lunation progress,
+waxing/waning direction, or continuous solar longitude. `lunar-javascript` is authoritative here for
+the documented GanZhi and Jie-boundary uses only; those fields are not treated as substitutes for an
+ephemeris.
+
+The staged Celestial Current presenters therefore require explicit astronomical source fields and
+render unavailable when they are absent. They never infer Moon phase from Chinese lunar day, season
+from browser month, or Branch from Gregorian month. The reviewed 24-term display table, Chinese
+season boundaries, Branch-sector geometry, Cantong qi glosses, and ring layout are presentation and
+cross-check data—not an astronomical engine. Production integration is blocked pending the source
+decision recorded in
+[`CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md`](CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md).
+
 Current does not infer forecasts, personal BaZi synthesis, or medical guidance directly from these
 factors. The separate Temporal Semantic Resolver maps only 13 eligible hexagram identities into
 Current operational vectors and keeps that product ontology distinct from classical sources. When

@@ -55,6 +55,16 @@
   content, disable global scrolling, or reduce accessible targets to fake first-viewport fit.
 - Preserve natural scrolling for large text, visible focus, reduced motion, and both themes.
 
+## Celestial Current instrument rules
+
+- Consume one authoritative Global Conditions snapshot; never calculate or imitate astronomy in Vue.
+- Show Chinese informational labels as characters, tone-marked Pinyin, and English. Dense ring symbols
+  may remain Chinese-only only when the active state is decoded beside the ring.
+- Keep percentages, degrees, countdowns, numerical progress, and seconds out of Home.
+- Reuse `CurrentTaijiMark`, `MoonPhaseGlyph`, and shared ring geometry; do not create parallel symbols.
+- Keep rings static, separate marker position from Taiji self-rotation, respect reduced motion, and
+  preserve the accessible first-viewport glance layout.
+
 ## Guidance output rules
 
 - Keep `src/domain/guidance` downstream of resolved semantic input; never infer guidance directly

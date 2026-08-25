@@ -43,6 +43,16 @@ pillar bounds, engine and mapping labels, status, and provider notes move into a
 [`CURRENT_FLOW_GLANCE_LAYOUT.md`](CURRENT_FLOW_GLANCE_LAYOUT.md) and
 [`ZODIAC_ART_ASSETS.md`](ZODIAC_ART_ASSETS.md).
 
+Celestial Current is staged as a separate presentation boundary under
+`src/domain/current-flow/celestial-instruments` and focused astrology components. Its presenters
+accept Lunar and Seasonal source records from one future `GlobalConditionsSnapshot`; they own
+display mapping and conflict checks, not astronomy. `CelestialCurrentHeader` composes Moon, central
+minute clock, and Sun, while `CelestialCurrentDetails` exposes technical values and methodology.
+Because no authoritative Global Conditions owner exists in this repository, these components are
+not wired into production `CurrentFlowGlance`; only the development fixture route exercises them.
+See [`CELESTIAL_CURRENT_REPOSITORY_ASSESSMENT.md`](CELESTIAL_CURRENT_REPOSITORY_ASSESSMENT.md) and
+[`CELESTIAL_CURRENT_INSTRUMENTS.md`](CELESTIAL_CURRENT_INSTRUMENTS.md).
+
 The framework-independent `src/domain/time/chu-zheng-ke` package classifies exact Macro/Micro phase
 from a normalized coordinate supplied by the same Shíchen resolver that owns Organ/Branch identity.
 `useShichenPhaseClock` performs minute-aligned live sampling or respects a frozen selected instant.

@@ -3,14 +3,17 @@ withDefaults(
   defineProps<{
     decorative?: boolean
     label?: string
+    size?: 'timeline' | 'celestial'
   }>(),
-  { decorative: true, label: 'Present transformation' },
+  { decorative: true, label: 'Present transformation', size: 'timeline' },
 )
 </script>
 
 <template>
   <span
     class="current-taiji-mark"
+    :class="`current-taiji-mark--${size}`"
+    :data-taiji-size="size"
     :aria-hidden="decorative ? 'true' : undefined"
     :aria-label="decorative ? undefined : label"
     :role="decorative ? undefined : 'img'"
