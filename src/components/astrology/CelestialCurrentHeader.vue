@@ -50,7 +50,17 @@ const emit = defineEmits<{
     />
 
     <div class="celestial-current-header__center">
-      <h1 id="current-flow-heading">{{ sectionLabel }}</h1>
+      <h1 id="current-flow-heading" :aria-label="sectionLabel">
+        <template v-if="sectionLabel === 'The Current Flow'">
+          <span class="current-flow-title__current">The Current</span>
+          <span class="current-flow-title__flow">
+            <i aria-hidden="true" data-current-flow-tilde>~</i>
+            <span>Flow</span>
+            <i aria-hidden="true" data-current-flow-tilde>~</i>
+          </span>
+        </template>
+        <span v-else>{{ sectionLabel }}</span>
+      </h1>
       <YinClock
         :timezone="timezone"
         :compact="compact"
@@ -103,13 +113,31 @@ const emit = defineEmits<{
 }
 
 h1 {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.2em;
   margin: 0;
   font-family: var(--font-serif);
   font-size: clamp(1.35rem, 3vw, 1.9rem);
-  font-weight: 500;
+  font-weight: 600;
+  font-variation-settings: var(--font-serif-variation-settings);
   letter-spacing: -0.025em;
   line-height: 1;
-  text-wrap: balance;
+  white-space: nowrap;
+}
+
+.current-flow-title__flow {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.18em;
+}
+
+.current-flow-title__flow i {
+  color: var(--cinnabar);
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 600;
 }
 
 .celestial-current-header--compact {
@@ -121,6 +149,8 @@ h1 {
 }
 
 .celestial-current-header--compact h1 {
+  display: grid;
+  gap: 0;
   font-size: clamp(1.05rem, 4.7vw, 1.38rem);
 }
 
@@ -144,6 +174,8 @@ h1 {
   }
 
   h1 {
+    display: grid;
+    gap: 0;
     font-size: clamp(1.05rem, 4.7vw, 1.38rem);
   }
 }

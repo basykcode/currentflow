@@ -90,6 +90,7 @@ watch(
   font-family: var(--font-serif);
   font-size: 1.08rem;
   font-weight: 600;
+  font-variation-settings: var(--font-serif-variation-settings);
   letter-spacing: -0.02em;
   text-decoration: none;
 }

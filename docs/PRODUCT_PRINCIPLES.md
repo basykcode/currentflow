@@ -23,3 +23,7 @@ The primary palette expresses the quiet Lake Yin quality through deep navy field
 text, layered lake-blue surfaces, and restrained wave-like depth. Dark is the default experience;
 the light alternative should feel like morning mist rather than paper. Interactive, status, and
 feature accents remain within the blue family rather than introducing orange or teal competition.
+
+The display voice uses the locally bundled Fraunces variable family at maximum Softness and Wonky
+settings. It replaces the previous system-serif token throughout the application while retaining
+language-appropriate serif fallbacks for glyphs Fraunces does not cover.

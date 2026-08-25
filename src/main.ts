@@ -1,6 +1,8 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import '@fontsource-variable/fraunces/full.css'
+
 import App from './App.vue'
 import { router } from './app/router'
 import './assets/styles/base.css'
