@@ -2,15 +2,18 @@
 
 ## Last reconciled
 
-- UTC date: 2026-08-23
-- Branch represented: `codex/chat-01a02bf0beb1`, a dedicated integration branch based on local
-  `master` with automatic primary-task dispatch merged and local `master` activation still pending
-- Commit inspected: `79720a8`
-- Local and remote-tracking `master` remain at `b5426ca`; that published line includes the Lake Yin
-  interface at `66119dc` and its publication record.
-- The integration branch merges automatic primary-coordinator dispatch feature `5cbdbe9` at
-  `79720a8`. Local `master` cannot be advanced while it remains checked out in the protected primary
-  coordination checkout.
+- UTC date: 2026-08-25
+- Branch represented: `codex/chat-01a02bf0beb1`, the dedicated integration branch used to merge the
+  complete current Astrology lane from exact source head `23b3a9c`
+- Integration merge inspected: `74be6c8`; it joins prior local `master` at `ddb58c2` with the complete
+  13-commit Astrology ancestry at `23b3a9c`.
+- Local `master` is advanced to this verified integration's final continuity commit after the
+  reconciliation is committed. `origin/master` remains at `b5426ca`; nothing in this integration is
+  published or deployed.
+- Automatic primary-coordinator dispatch feature `5cbdbe9`, its merge at `79720a8`, and continuity
+  reconciliation at `ddb58c2` are ancestors of both integration parents and therefore remain intact.
+- The published remote line at `b5426ca` includes the Lake Yin interface at `66119dc` and its
+  publication record.
 - The retained worker-isolation foundation entered `master` at `6ed5351`, with the continuity record
   at `828c400`.
 - `master` merges the Advanced Yijing Transformation Lab at `267cbd0`.
@@ -56,6 +59,13 @@ The integrated product is a static Vue 3/Vite/TypeScript SPA. Framework-independ
 focused presentation in `src/components`; and lazy route composition in `src/views`.
 `CurrentFlowProvider` is the stable Astrology data seam.
 
+The Astrology domain now combines three separate deterministic boundaries. `lunar-javascript`
+remains the sole authority for Chinese calendar facts, the versioned Current semantic resolver maps
+eligible temporal states to explicit guidance or unavailable records, and the local Astronomy Engine
+adapter computes solar and lunar instrument geometry without runtime network access. The canonical
+local-civil Shichen coordinate is shared by Organ System presentation, Chu-Zheng-Ke phase calculation,
+boundaries, and diagnostics so those consumers cannot drift onto separate clocks.
+
 Concurrent Codex implementation uses a read-only primary coordinator and app-managed worktree
 workers. A trusted project `SessionStart` hook lets primary tasks continue only for read-only
 inspection and app-level coordination; mutation requests are automatically forwarded in full to a
@@ -96,13 +106,28 @@ is the only Alchemy state in Pinia.
 - Responsive application shell with desktop and mobile navigation.
 - Routes for Astrology, Alchemy, Intelligence, Settings, a complete Hexagram Library, an encrypted
   VH special message, and not-found handling; Other Tools is a two-level navigation menu.
-- Functional Astrology view with a slow-dissolving four-second Yin clock, selected-timezone time,
-  exact timezone-labelled year/month/day/hour validity bounds, five-element composition, reusable
-  accessible hexagram glyphs, structural relationships, and visible provenance.
+- Functional Astrology view with a first-viewport Current Flow instrument panel, segmented
+  four-second Yin clock, selected-timezone time, exact timezone-labelled year/month/day/hour validity
+  bounds, five-element composition, reusable accessible hexagram glyphs, structural relationships,
+  and visible provenance.
 - `LunarScriptCurrentFlowProvider` supplies exact-boundary year/month GanZhi, sect-2 day GanZhi, and
-  two-hour GanZhi through `lunar-javascript` 1.7.7.
-- The complete 60 Jia Zi to 64 Da Gua table resolves all four pillars to King Wen hexagrams; the
-  2026 Yang Fire Horse golden case resolves to Hexagram 28.
+  two-hour GanZhi through `lunar-javascript` 1.7.7, and it shares one authoritative local-civil
+  Shichen coordinate with the Organ System and temporal phase layers.
+- The versioned `liu-shi-jiazi-peigua-king-wen-v1` 60 Jia Zi projection resolves all four pillars to
+  King Wen hexagrams, preserves its documented omissions, and includes reviewed corrections for
+  Geng Yin, Jia Wu, and Geng Shen; the 2026 Yang Fire Horse golden case resolves to Hexagram 28.
+- A versioned deterministic Current semantic resolver combines eligible pillar, element, organ, and
+  temporal facts into provenance-bearing guidance for its reviewed 13-profile MVP coverage. States
+  outside that coverage remain explicitly partial or unavailable; no LLM or runtime service is used.
+- The Organ System card and timeline derive canonical Shichen identity, Chinese/Pinyin/phase labels,
+  Macro maturity, observational Micro position, boundaries, and DST diagnostics from civil time in
+  the selected IANA timezone. Compact phase labels are Chu, Zheng, and Ci, and redundant zodiac-animal
+  Hour labeling is omitted from the Organ card.
+- The Celestial Current instruments use local `astronomy-engine` 2.1.19 calculations for Moon and
+  Sun geometry, keep `lunar-javascript` as the traditional-calendar authority, perform no runtime
+  network calls, and label their results computed rather than independently verified.
+- Sixty local AVIF zodiac-element illustrations sit behind the temporal hexagram spectrum, with
+  canonical identity text and explicit source status retained above the art.
 - Every visible Astrology or related-relationship hexagram opens a shared responsive inspector with
   Chinese characters, tone-marked pinyin, an English display title, labeled upper/lower trigrams,
   four compact base relationships, and visible source status.
@@ -123,25 +148,29 @@ is the only Alchemy state in Pinia.
   source-grounded draft summaries and OLTRs across all 64 figures. Five Buddhist records are
   explicitly unavailable because their evidence is quarantined; Absolute Shadow remains unavailable
   until reviewed deterministic rules arrive.
-- A cited twelve-window meridian-clock table selects the active organ period from civil time in the
-  snapshot timezone and pairs it with a distinct theme-aware organ illustration.
+- A cited twelve-window meridian-clock table pairs the canonical Shichen-derived organ period with a
+  distinct theme-aware organ illustration.
 - Local light/dark/system theme, functional timezone preference, optional location label, and local
   reset.
 - The visual system uses a monochromatic Lake Yin blue family across dark and light themes, with
   deep lake navy, moon-blue text, clear-water interaction blue, and a softer periwinkle secondary
   accent. Status still uses text and shape rather than hue alone.
-- Interpretive synthesis and execution guidance are explicitly unavailable; no forecast is inferred.
+- Current Flow titles use the locally bundled Fraunces 5.3.0 variable display serif under its local
+  OFL license, while dense data and controls retain the established supporting type system. The
+  official borderless Current Flow logo is bundled locally.
+- Deterministic situational guidance is available only for reviewed semantic profiles; personal
+  divination, diagnosis, forecasts, and execution instructions remain unavailable.
 - Disabled, nonconnected shells for authentication, Intelligence, and future tools; Alchemy has
   explicit demo and connected API modes.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- One hundred twenty-two application tests cover Astrology calculations and temporal bounds, the
-  Yin clock and organ illustrations, the complete hexagram catalog and transforms,
-  commentary/transition repositories and rendering,
-  inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
+- Three hundred ninety-three application tests cover Astrology calculations, semantic guidance,
+  Shichen/Chu-Zheng-Ke boundaries, Celestial Current geometry, Current Flow and Organ System
+  presentation, the complete hexagram catalog and transforms, commentary/transition repositories and
+  rendering, inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
   timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
-  navigation; Cloudflare Pages build preparation and local metadata assets remain.
+  navigation; 11 additional workspace tests cover worktree isolation guardrails.
 
 ## Current Alchemy capabilities
 
@@ -229,8 +258,8 @@ The integrated release-aware Alchemy foundation additionally provides:
   listener; prefer provider dashboards, GitHub CI, remote builds, and user-scoped tools.
 - The year pillar changes at exact Li Chun, the month at exact solar-term transition, and the sect-2
   day remains on the civil day during 23:00–23:59.
-- Organ-clock selection uses civil time in the chosen IANA timezone and makes no apparent-solar-time
-  correction.
+- Organ System, Shichen phase, and guidance-boundary selection use one civil-time coordinate in the
+  chosen IANA timezone and make no apparent-solar-time correction.
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
 - Node baseline is `22.18.0`; `npm run check` is required before completion.
@@ -260,6 +289,15 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
 - [Project English-first multilingual Alchemy names](decisions/20260727T013844Z--project-english-first-multilingual-alchemy-names.md)
 - [Automatically dispatch primary tasks to managed worktree workers](decisions/20260822T235412Z--automatically-dispatch-primary-tasks-to-managed-worktrees.md)
+- [Make mobile Current Flow a first-viewport instrument panel](decisions/20260822T214607Z--make-mobile-current-flow-a-first-viewport-instrument-panel.md)
+- [Gate guidance output on versioned semantic input](decisions/20260822T222049Z--gate-guidance-output-on-versioned-semantic-input.md)
+- [Adopt a versioned Current semantic resolver](decisions/20260822T225700Z--adopt-versioned-current-semantic-resolver.md)
+- [Adopt a versioned 60 Jia Zi King Wen projection](decisions/20260822T231835Z--adopt-versioned-sixty-jiazi-king-wen-projection.md)
+- [Derive Macro and Micro from the authoritative Shichen coordinate](decisions/20260825T201505Z--derive-macro-micro-from-authoritative-shichen-coordinate.md)
+- [Gate Celestial Current on authoritative astronomy](decisions/20260825T213400Z--gate-celestial-current-on-authoritative-astronomy.md)
+- [Adopt a segmented four-second clock dissolve](decisions/20260825T215745Z--adopt-segmented-four-second-clock-dissolve.md)
+- [Adopt the local Astronomy Engine celestial provider](decisions/20260825T222827Z--adopt-local-astronomy-engine-celestial-provider.md)
+- [Adopt Fraunces as the Current Flow display serif](decisions/20260825T233014Z--adopt-fraunces-display-serif.md)
 - [Keep Transformation Lab state local and lineage data source-gated](decisions/20260730T233100Z--transformation-lab-modal-state-and-source-gates.md)
 - [Keep proprietary hexagram commentary local and provenance-indexed](decisions/20260730T000122Z--keep-proprietary-hexagram-commentary-local-and-provenance-indexed.md)
 - [Ship only derived, auditable hexagram commentary drafts](decisions/20260730T011500Z--ship-only-derived-auditable-hexagram-commentary-drafts.md)
@@ -287,16 +325,23 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Add the Advanced Yijing Transformation Lab       | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized           | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
 | `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                      | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
 | `master`                   | Adopt the Lake Yin live-flow interface           | Feature `66119dc` and publication record `b5426ca` are published to `origin/master`                            | [Publication handoff](handoffs/20260822T140829Z--codex-alchemy-lake-yin--publish-lake-yin-interface.md)              |
-| `codex/chat-01a02bf0beb1`  | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8`; verified integration is awaiting safe local `master` activation         | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
+| `master`                   | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8` with continuity at `ddb58c2`; active in the local integration line       | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
+| `master`                   | Integrate the complete current Astrology lane    | Source head `23b3a9c` merged without conflict at `74be6c8`; full integrated check passed; publication pending  | [Integration handoff](handoffs/20260825T235522Z--codex-chat-01a02bf0beb1--integrate-complete-astrology-lane.md)      |
 
 ## Known issues and risks
 
 - Exact solar-term transition results inherit `lunar-javascript`; edge dates need cross-library
   golden fixtures before high-assurance natal or electional use.
-- The 60 Jia Zi mapping is implemented from a documented practitioner table; its lineage and
-  translations should receive subject-matter review before stronger authority claims.
+- The versioned 60 Jia Zi mapping is implemented from a documented practitioner table with explicit
+  corrections and omissions; its lineage, corrections, and translations should receive
+  subject-matter review before stronger authority claims.
 - Organ-clock selection is civil-time educational context, not apparent-solar-time correction or a
   medical claim.
+- Celestial Current values are locally computed and source-labelled, but remain `computed` rather
+  than `verified` until an independent golden ephemeris confirms the selected reference instants and
+  production viewport behavior.
+- The Current semantic resolver intentionally covers only 13 reviewed profiles. Partial or
+  unavailable output is expected outside that MVP until additional profiles receive review.
 - A portable disposable Neo4j 5.26.28 runtime verified the new migrations locally without changing
   the workstation. GitHub `Alchemy API` run `30223980968` passed backend quality, a clean Neo4j
   integration test, graph audit, and the production container build for `b32f2d5`.
@@ -362,11 +407,15 @@ The integrated release-aware Alchemy foundation additionally provides:
 7. Domain-review the 200 derived formula English titles, 92 public formula-only material
    translations, the non-public excipient, and prepared-material boundaries; promote reviewed names
    and add explicit equivalence mappings without collapsing source wording.
-8. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
-   mapping before stronger authority claims.
-9. Add condition, compound, and target sources such as Disease Ontology only after the live
-   herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
-   deployment requirements.
+8. Independently verify the selected Celestial Current reference instants against a golden ephemeris
+   before promoting astronomy results from computed to verified.
+9. Review and expand the Current semantic resolver beyond its 13-profile MVP without inferring
+   unsupported guidance.
+10. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+    mapping before stronger authority claims.
+11. Add condition, compound, and target sources such as Disease Ontology only after the live
+    herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
+    deployment requirements.
 
 Exact next useful action for Alchemy: domain-review the derived formula/material English names and
 generated Pinyin, promote accepted records to human-reviewed, and add explicit identity mappings
