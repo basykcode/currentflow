@@ -32,6 +32,9 @@ describe('LunarCurrentInstrument', () => {
     expect(wrapper.findAll('[data-active="true"]')).toHaveLength(1)
     expect(wrapper.get('.celestial-marker-orbit').attributes('style')).toContain('rotate(225deg)')
     expect(wrapper.findAll('[data-primary-value]')).toHaveLength(4)
+    expect(wrapper.get('.celestial-instrument-text').classes()).toContain(
+      'celestial-instrument-text--left',
+    )
     expect(wrapper.get('[data-primary-value="period-bounds"]').text()).toBe('Aug 27–Sep 1')
     expect(wrapper.get('[data-primary-value="period-bounds"]').attributes('title')).toContain(
       'GMT−07:00',
@@ -72,6 +75,9 @@ describe('SolarCurrentInstrument', () => {
     expect(wrapper.findAll('[data-active="true"]')).toHaveLength(1)
     expect(wrapper.get('.celestial-marker-orbit').attributes('style')).toContain('rotate(240deg)')
     expect(wrapper.findAll('[data-primary-value]')).toHaveLength(4)
+    expect(wrapper.get('.celestial-instrument-text').classes()).toContain(
+      'celestial-instrument-text--right',
+    )
     expect(wrapper.get('[data-primary-value="period-bounds"]').text()).toBe('Aug 22–Sep 7')
     expect(wrapper.text()).not.toContain('%')
     expect(wrapper.text()).not.toMatch(/\d+°/)

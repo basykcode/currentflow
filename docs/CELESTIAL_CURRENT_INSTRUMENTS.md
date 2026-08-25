@@ -85,10 +85,13 @@ never on Home.
 ## Responsive strategy
 
 Every supported width aligns the Moon ring outward-left with its text to the right and the Sun ring
-outward-right with its text to the left. The same inward-reading arrangement remains horizontal in
-the compact three-column header below 768 CSS pixels. At short mobile heights, ring diameter and
-gaps reduce modestly and nonessential metadata may compact. Text is not clamped; large text may
-cause natural page scrolling. Safe-area behavior remains owned by the existing page and app frame.
+outward-right with its text to the left. Lunar rows share a left edge; Solar rows and every wrapped
+Solar subline share a right edge. The Yin/Yang movement row is unbreakable and scales against its
+available text column so even the longest reviewed state remains on one line at the 320 CSS pixel
+minimum. The same inward-reading arrangement remains horizontal in the compact three-column header
+below 768 CSS pixels. At short mobile heights, ring diameter and gaps reduce modestly and
+nonessential metadata may compact. Other text is not clamped; large text may cause natural page
+scrolling. Safe-area behavior remains owned by the existing page and app frame.
 
 ## Unavailable states
 

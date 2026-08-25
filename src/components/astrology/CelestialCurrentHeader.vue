@@ -126,7 +126,7 @@ h1 {
 
 @media (max-width: 767px) {
   .celestial-current-header {
-    --celestial-instrument-size: clamp(3.15rem, 14vw, 3.9rem);
+    --celestial-instrument-size: clamp(50px, 14vw, 62px);
 
     grid-template-columns: minmax(0, 1fr) minmax(7.3rem, 1.08fr) minmax(0, 1fr);
     gap: clamp(0.18rem, 1.3vw, 0.45rem);
@@ -150,7 +150,7 @@ h1 {
 
 @media (max-width: 767px) and (max-height: 720px) {
   .celestial-current-header {
-    --celestial-instrument-size: clamp(3rem, 13vw, 3.5rem);
+    --celestial-instrument-size: clamp(48px, 13vw, 56px);
   }
 
   .celestial-current-header__center {
@@ -159,6 +159,16 @@ h1 {
 
   .celestial-current-header__center :deep(.yin-clock__metadata) {
     display: none;
+  }
+}
+
+@media (max-width: 359px) {
+  .celestial-current-header,
+  .celestial-current-header--compact {
+    --celestial-instrument-size: clamp(40px, 13vw, 44px);
+
+    grid-template-columns: minmax(0, 1fr) minmax(110px, 1.08fr) minmax(0, 1fr);
+    gap: 2px;
   }
 }
 </style>

@@ -95,6 +95,7 @@ const accessibleLabel = computed(() => {
     </span>
 
     <CelestialInstrumentText
+      alignment="right"
       :line-one="seasonLine"
       :period-label="period.compactLabel"
       :period-title="period.accessibleLabel"

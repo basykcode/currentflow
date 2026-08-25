@@ -1,24 +1,28 @@
 <script setup lang="ts">
 import ChineseTermInline from '@/components/common/ChineseTermInline.vue'
 
-defineProps<{
-  lineOne: string
-  periodLabel: string
-  periodTitle: string
-  periodStartUtc?: string | undefined
-  periodEndUtc?: string | undefined
-  lineTwo: {
-    readonly characters: string
-    readonly pinyin: string
-    readonly english: string
-  } | null
-  lineTwoFallback: string
-  lineThree: string
-}>()
+withDefaults(
+  defineProps<{
+    lineOne: string
+    periodLabel: string
+    periodTitle: string
+    periodStartUtc?: string | undefined
+    periodEndUtc?: string | undefined
+    lineTwo: {
+      readonly characters: string
+      readonly pinyin: string
+      readonly english: string
+    } | null
+    lineTwoFallback: string
+    lineThree: string
+    alignment?: 'left' | 'right'
+  }>(),
+  { alignment: 'left' },
+)
 </script>
 
 <template>
-  <span class="celestial-instrument-text">
+  <span class="celestial-instrument-text" :class="`celestial-instrument-text--${alignment}`">
     <span class="instrument-value" data-primary-value="phase-or-season">{{ lineOne }}</span>
     <span
       class="instrument-value instrument-value--bounds"
@@ -40,18 +44,35 @@ defineProps<{
       <span v-else>{{ lineTwoFallback }}</span>
     </span>
     <span class="instrument-value instrument-value--movement" data-primary-value="movement">
-      {{ lineThree }}
+      <span class="instrument-value__single-line">{{ lineThree }}</span>
     </span>
   </span>
 </template>
 
 <style scoped>
 .celestial-instrument-text {
+  container-type: inline-size;
   display: grid;
   gap: 0.22rem;
   min-width: 0;
   color: var(--ink-soft);
   line-height: 1.18;
+}
+
+.celestial-instrument-text--right {
+  text-align: right;
+}
+
+.celestial-instrument-text--right :deep(.chinese-term-inline) {
+  justify-content: flex-end;
+}
+
+.celestial-instrument-text--left .instrument-value--movement {
+  justify-self: start;
+}
+
+.celestial-instrument-text--right .instrument-value--movement {
+  justify-self: end;
 }
 
 .instrument-value {
@@ -76,10 +97,13 @@ defineProps<{
 }
 
 .instrument-value--movement {
+  width: max-content;
   color: var(--jade-deep);
   font-size: clamp(0.58rem, 0.95vw, 0.7rem);
   font-weight: 700;
   letter-spacing: 0.015em;
+  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 @media (max-width: 767px) {
@@ -87,8 +111,7 @@ defineProps<{
     gap: 0.12rem;
   }
 
-  .instrument-value,
-  .instrument-value--movement {
+  .instrument-value {
     font-size: max(0.54rem, 2.05vw);
   }
 
@@ -98,6 +121,11 @@ defineProps<{
 
   .instrument-value--bounds {
     font-size: max(0.49rem, 1.86vw);
+  }
+
+  .instrument-value--movement {
+    font-size: clamp(5.1px, 11.1cqi, 0.7rem);
+    letter-spacing: -0.025em;
   }
 }
 </style>

@@ -95,6 +95,7 @@ const accessibleLabel = computed(() => {
     </CelestialCycleRing>
 
     <CelestialInstrumentText
+      alignment="left"
       :line-one="viewModel.phaseName"
       :period-label="period.compactLabel"
       :period-title="period.accessibleLabel"

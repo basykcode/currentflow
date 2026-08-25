@@ -32,8 +32,10 @@ without animation.
 The four semantic values are never line-clamped or hidden. At enlarged text, content wraps and the
 document scrolls naturally. Grid children use shrink-safe tracks, and compact outer clusters keep
 the Moon ring outward with text to its right and the Sun ring outward with text to its left. Compact
-height behavior may hide only nonessential metadata, never the title, segmented clock, or eight
-instrument values.
+Solar sublines use a common right edge, while Lunar rows use a common left edge. The short reviewed
+Yin/Yang movement state is the one deliberate no-wrap row; its type scales with the available copy
+column instead of overflowing or disappearing. Compact-height behavior may hide only nonessential
+metadata, never the title, segmented clock, or eight instrument values.
 
 The component does not set page overflow, so browser zoom cannot trap or clip the document. Existing
 app safe-area padding and the global minimum width continue to apply.
