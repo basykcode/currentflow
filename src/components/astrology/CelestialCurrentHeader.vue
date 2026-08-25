@@ -124,6 +124,10 @@ h1 {
     align-self: start;
   }
 
+  .celestial-current-header__center :deep(.yin-clock__time) {
+    font-size: clamp(1.55rem, 7vw, 1.75rem);
+  }
+
   h1 {
     font-size: clamp(1.05rem, 4.7vw, 1.38rem);
   }

@@ -134,7 +134,7 @@ describe('celestial composition and details', () => {
     expect(wrapper.findAll('[data-celestial-instrument]')).toHaveLength(2)
     expect(wrapper.get('h1').text()).toBe('The Current Flow')
     expect(wrapper.find('.yin-clock').exists()).toBe(true)
-    expect(wrapper.get('.yin-clock__time').text()).toMatch(/^\d{2}:\d{2}$/)
+    expect(wrapper.get('.yin-clock__time').text()).toMatch(/^\d{2}:\d{2}:\d{2}$/)
     wrapper.unmount()
     vi.useRealTimers()
   })

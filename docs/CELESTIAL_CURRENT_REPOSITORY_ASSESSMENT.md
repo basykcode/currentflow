@@ -30,7 +30,8 @@ for the continuous astronomical values required by these instruments.
 ## Reusable architecture found
 
 - `CurrentFlowGlance` is the first-glance composition boundary.
-- `YinClock` is the central clock and now presents minute precision without visible seconds.
+- `YinClock` is the central clock and presents independently dissolving hours, minutes, and seconds
+  on a four-second wall-clock cadence.
 - `CurrentTaijiMark` is the canonical present marker and is reused by both rings.
 - `ChineseTermInline` provides the required character, Pinyin, and English pattern.
 - `CalculationProvenanceDetails` is specific to the existing Current Flow snapshot. No Lunar or

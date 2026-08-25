@@ -43,8 +43,9 @@ Each whole cluster is one button and displays exactly three primary values.
 - Moon: astronomical phase; Cantong qi character/Pinyin/gloss; lunar Yin/Yang movement.
 - Sun: Chinese season; Solar Term character/Pinyin/contextual English; annual Yin/Yang movement.
 
-The Sun has a subordinate active-Branch decode next to its ring. Home does not expose percentages,
-degrees, numerical progress, countdowns, elapsed/remaining time, or seconds.
+The Sun has a subordinate active-Branch decode next to its ring. The celestial instrument values do
+not expose percentages, degrees, numerical progress, countdowns, or elapsed/remaining time. The
+central clock separately presents anchored hours, minutes, and four-second-cadence seconds.
 
 ## Layout and visual hierarchy
 

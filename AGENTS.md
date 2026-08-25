@@ -60,7 +60,8 @@
 - Consume one authoritative Global Conditions snapshot; never calculate or imitate astronomy in Vue.
 - Show Chinese informational labels as characters, tone-marked Pinyin, and English. Dense ring symbols
   may remain Chinese-only only when the active state is decoded beside the ring.
-- Keep percentages, degrees, countdowns, numerical progress, and seconds out of Home.
+- Keep percentages, degrees, countdowns, and numerical progress out of the celestial instrument
+  values. The central clock may show anchored `HH:mm:ss` with its reviewed four-second cadence.
 - Reuse `CurrentTaijiMark`, `MoonPhaseGlyph`, and shared ring geometry; do not create parallel symbols.
 - Keep rings static, separate marker position from Taiji self-rotation, respect reduced motion, and
   preserve the accessible first-viewport glance layout.

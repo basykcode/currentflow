@@ -149,10 +149,12 @@ state is duplicated.
 
 ## Clock and header
 
-The clock samples on minute wall-clock boundaries and retains its dissolve behavior. Presentation is
-compact: primary `HH:mm` and one date/timezone line with tabular numerals. Home intentionally shows
-no seconds, and the clock has no live region, so updates do not continuously interrupt assistive
-technology.
+The clock presents `HH:mm:ss` as three independently keyed sections. Seconds target regular
+four-second wall-clock boundaries. Each change begins a 1.5-second dissolve before its target and
+finishes at the boundary; minute and hour sections join the same dissolve only when their values
+change. The two blue colons never transition, providing stable visual anchors. A visibility resume
+resynchronizes to wall-clock time. The clock has no live region, so updates do not continuously
+interrupt assistive technology.
 
 The mobile app-header content remains 64 CSS pixels high and its menu target remains at least 44 by
 44 CSS pixels. Its sticky navigation and safe-area padding are unchanged in behavior.

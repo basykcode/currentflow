@@ -31,7 +31,7 @@ without animation.
 The three semantic values are never line-clamped or hidden. At enlarged text, content wraps and the
 document scrolls naturally. Grid children use shrink-safe tracks, and the outer clusters switch to a
 stacked compact presentation at mobile widths. Compact-height behavior may hide only nonessential
-clock date/timezone metadata, never the title, minute clock, or six instrument values.
+clock date/timezone metadata, never the title, segmented clock, or six instrument values.
 
 The component does not set page overflow, so browser zoom cannot trap or clip the document. Existing
 app safe-area padding and the global minimum width continue to apply.
