@@ -1,5 +1,6 @@
 import { createGuidanceBundle } from '@/domain/guidance/guidanceEngine'
 import { INTENTION_LEXICON } from '@/domain/guidance/intention/lexicon'
+import { resolveHourMaturity } from '@/domain/guidance/semantic-resolver/hourMaturity'
 import { getResponseRelationDefinition } from '@/domain/guidance/synthesis/responseRelation'
 import { TEMPORAL_SEMANTICS_VERSION } from '@/domain/guidance/synthesis/semanticVersion'
 
@@ -29,11 +30,15 @@ export const createDemoGuidance = (at: Date) =>
         strategicVectors: ['advance', 'adapt'],
         somaticVectors: ['maintain-rhythm'],
       },
-      hourModifier: {
+      hourTheme: {
         label: 'Keep movement responsive',
         strategicVectors: ['adapt', 'clarify'],
         somaticVectors: ['allow-space'],
       },
+      hourMaturity: resolveHourMaturity('follow', {
+        macroHour: 'chu',
+        macroSemantic: 'entering',
+      }),
       backgroundThemes: [
         {
           kind: 'solar',
@@ -62,7 +67,11 @@ export const createDemoGuidance = (at: Date) =>
     },
     evidence: [
       {
-        source: { id: 'demo-guidance-semantics', label: 'Guidance interface fixture' },
+        source: {
+          id: 'demo-guidance-semantics',
+          label: 'Guidance interface fixture',
+          kind: 'other',
+        },
         semanticClaim: 'A supported opening is available for measured movement.',
         weight: 'primary',
         provenance: {

@@ -1,5 +1,8 @@
 import type { CurrentFlowProvider } from '@/domain/astrology/provider'
+import { getZonedCivilTime } from '@/domain/astrology/civilTime'
 import { getHexagram } from '@/domain/astrology/hexagrams'
+import { getOrganMoment } from '@/domain/astrology/organClock'
+import { resolveLocalCivilShichenPhase } from '@/domain/astrology/shichenPhaseCoordinate'
 import type {
   CurrentFlowSnapshot,
   HexagramReference,
@@ -39,6 +42,8 @@ const INFLUENCE = getHexagram(31)
 export class DemoCurrentFlowProvider implements CurrentFlowProvider {
   async getSnapshot(at: Date): Promise<CurrentFlowSnapshot> {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Browser local time'
+    const phase = resolveLocalCivilShichenPhase(at, timezone)
+    const organClock = getOrganMoment(getZonedCivilTime(at, timezone).hour)
 
     return Promise.resolve({
       generatedAtIso: at.toISOString(),
@@ -51,10 +56,11 @@ export class DemoCurrentFlowProvider implements CurrentFlowProvider {
         hour: makeTemporal('hour', 'Hour field', HOUR, '丁酉'),
       },
       organ: {
-        key: 'heart',
-        nameEnglish: 'Heart period',
-        nameChinese: '心',
-        timeRangeLabel: 'Demo window · 11:00–13:00',
+        ...organClock,
+        timeRangeLabel: `Demo window · ${organClock.timeRangeLabel}`,
+        shichen: phase.shichen,
+        nextShichen: phase.nextShichen,
+        hourPhase: phase.hourPhase,
         status: 'demo',
         sourceLabel: 'Interface fixture · organ clock not connected',
       },

@@ -24,6 +24,20 @@ const matchesTheme = (definition: IntentionDefinition, theme: SemanticTheme) =>
 const matchesWuYunLiuQi = (definition: IntentionDefinition, themes: readonly BackgroundTheme[]) =>
   themes.some((theme) => theme.kind === 'wu-yun-liu-qi' && matchesTheme(definition, theme))
 
+const matchesMaturity = (definition: IntentionDefinition, synthesis: GuidanceSynthesis) => {
+  const text = [
+    definition.englishLabel,
+    definition.shortDefinition,
+    ...definition.strategicVectors,
+    ...definition.somaticVectors,
+  ]
+    .join(' ')
+    .toLowerCase()
+  return synthesis.operativeWork.hourMaturity.value.supportedVerbs.some((verb) =>
+    text.includes(verb),
+  )
+}
+
 const rankIntention = (
   definition: IntentionDefinition,
   synthesis: GuidanceSynthesis,
@@ -38,9 +52,9 @@ const rankIntention = (
     score += 20
     reasons.push('Matches the day operative work.')
   }
-  if (matchesTheme(definition, synthesis.operativeWork.hourModifier.value)) {
+  if (matchesTheme(definition, synthesis.operativeWork.hourTheme.value)) {
     score += 15
-    reasons.push('Matches the hour modulation.')
+    reasons.push('Matches the hour theme.')
   }
   if (definition.compatibleLunarModes.includes(synthesis.field.lunarMode.value)) {
     score += 10
@@ -56,6 +70,10 @@ const rankIntention = (
   if (matchesWuYunLiuQi(definition, synthesis.operativeWork.backgroundThemes.value)) {
     score += 10
     reasons.push('Matches the Wu Yun Liu Qi background signal.')
+  }
+  if (matchesMaturity(definition, synthesis)) {
+    score += 5
+    reasons.push(`Fits the ${synthesis.operativeWork.hourMaturity.value.semantic} Hour maturity.`)
   }
   return { definition, score, reasons }
 }

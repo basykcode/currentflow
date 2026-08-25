@@ -13,6 +13,7 @@ The Temporal Semantic Resolver v1 now owns that missing conversion:
 ```text
 lunar-javascript + reviewed Jia Zi mapping
   -> year / month / day / hour hexagram identities
+  + authoritative Macro Hour maturity
   -> Temporal Semantic Resolver v1
   -> GuidanceSemanticInput adapter
   -> Guidance Synthesis
@@ -152,8 +153,22 @@ title, commentary, neighboring hexagram, or generated meaning.
 
 The live provider now publishes guidance only for dates whose operative day is in the 13-profile
 registry. Other dates retain the existing explicit unavailable bundle. Both available and
-unavailable bundles expire at the earliest exact Earthly Branch hour, civil-day, or solar-term
-boundary and remain cache-stable between boundaries.
+unavailable bundles expire at the earliest exact Macro Hour, Shíchen, civil-day, or solar-term
+boundary and remain cache-stable between boundaries. Micro Hour is absent from resolver identity,
+evidence, and validity.
+
+## Macro Hour maturity
+
+The resolver input includes only `macroHour` and `macroSemantic` from the authoritative
+`HourPhase`; no Micro field exists. Resolution identity includes Chū or Zhèng. `HourMaturity`
+records relation-compatible supported verbs, discouraged escalation verbs, methodology version,
+and evidence kind `macro-hour`.
+
+Chū favors proportionate entry, orientation, or light establishment within the response already
+selected by the Day/Hour composition. Zhèng favors continuation, stability, or consolidation. The
+modifier cannot change the primary Day work, Hour Hexagram, response relation, effort level, safety
+rules, or forbidden verb policy. OLTR and candidate selectors use it only as deterministic scoring
+among already-valid options.
 
 ## Guidance adapter
 
@@ -164,6 +179,7 @@ strategic/somatic vectors, preferred/forbidden verbs, and compatible intention I
 input. Guidance Synthesis verifies that the supplied relation agrees with the controlled condition
 and selects intentions only from the resolver-approved set.
 
-The adapter generates short controlled labels for display and legacy scoring. These labels do not
+The adapter exposes `operativeWork.dayTheme`, `hourTheme`, and `hourMaturity`. It generates short
+controlled labels for display and legacy scoring. These labels do not
 create new semantic state. An LLM is neither called nor required; future language assistance may
 only phrase an already selected, validated result under the existing output validators.

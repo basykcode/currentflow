@@ -7,8 +7,7 @@ import {
 } from '@/domain/astrology/civilTime'
 import type { TemporalScope } from '@/domain/astrology/types'
 import type { SemanticBoundary } from '@/domain/guidance/types'
-
-import { getNextEarthlyBranchBoundaryUtc } from './guidanceBoundary'
+import type { HourPhase } from '@/domain/time/chu-zheng-ke'
 
 type WallTime = CivilWallTime
 
@@ -117,9 +116,9 @@ const parseWallTime = (value: string): WallTime => {
 }
 
 export const getTemporalSemanticBoundaries = (
-  at: Date,
   lunar: LunarDate,
   civil: ZonedCivilTime,
+  hourPhase: HourPhase,
 ): readonly SemanticBoundary[] => {
   const startOfDay: WallTime = { ...civil, hour: 0, minute: 0, second: 0 }
   const nextDay = shiftWallTime(startOfDay, 24)
@@ -128,10 +127,20 @@ export const getTemporalSemanticBoundaries = (
     throw new Error('Unable to resolve the next exact solar-term boundary.')
   }
 
+  const macroBoundary =
+    hourPhase.nextMacroBoundaryUtc === hourPhase.nextShichenBoundaryUtc
+      ? []
+      : [
+          {
+            atUtc: hourPhase.nextMacroBoundaryUtc,
+            reason: 'macro-hour-change' as const,
+          },
+        ]
+
   return Object.freeze([
     {
-      atUtc: getNextEarthlyBranchBoundaryUtc(at, civil.timezone),
-      reason: 'earthly-branch-hour-change',
+      atUtc: hourPhase.nextShichenBoundaryUtc,
+      reason: 'shichen-change',
     },
     {
       atUtc: zonedWallTimeToUtc(nextDay, civil.timezone),
@@ -141,5 +150,6 @@ export const getTemporalSemanticBoundaries = (
       atUtc: zonedWallTimeToUtc(parseWallTime(nextSolarTerm.getSolar().toYmdHms()), civil.timezone),
       reason: 'solar-term-boundary',
     },
+    ...macroBoundary,
   ])
 }

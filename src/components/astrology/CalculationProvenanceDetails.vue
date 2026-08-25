@@ -1,11 +1,22 @@
 <script setup lang="ts">
-import { nextTick, ref } from 'vue'
+import { computed, nextTick, ref } from 'vue'
 
 import type { CurrentFlowSnapshot, TemporalHexagram } from '@/domain/astrology/types'
+import {
+  MACRO_PRESENTATION,
+  MICRO_PRESENTATION,
+  type TemporalClockEvent,
+} from '@/domain/time/chu-zheng-ke'
 
-const props = defineProps<{
-  snapshot: CurrentFlowSnapshot
-}>()
+import ShichenFlowTimeline from './ShichenFlowTimeline.vue'
+
+const props = withDefaults(
+  defineProps<{
+    snapshot: CurrentFlowSnapshot
+    lastTemporalEvent?: TemporalClockEvent
+  }>(),
+  { lastTemporalEvent: 'minute-passage' },
+)
 
 const disclosure = ref<HTMLDetailsElement | null>(null)
 const summary = ref<HTMLElement | null>(null)
@@ -19,6 +30,20 @@ const temporalItems = () => [
 const itemKey = (item: TemporalHexagram) => `${item.scope}-${item.hexagram.number ?? 'unknown'}`
 const mappingSystemLabel = (item: TemporalHexagram) =>
   item.mappingSystem === 'liu-shi-jiazi-peigua' ? '六十甲子配卦' : 'Interface fixture'
+const isDevelopment = import.meta.env.DEV
+const organName = computed(() => props.snapshot.organ.nameEnglish.replace(/ period$/i, ''))
+const elementLabel = computed(
+  () => props.snapshot.organ.element[0]?.toUpperCase() + props.snapshot.organ.element.slice(1),
+)
+const macro = computed(() => MACRO_PRESENTATION[props.snapshot.organ.hourPhase.macroHour])
+const micro = computed(() => MICRO_PRESENTATION[props.snapshot.organ.hourPhase.microHour])
+const accessibleSummary = computed(
+  () =>
+    `${organName.value} Organ System, ${props.snapshot.organ.shichen.animalEnglish} Shíchen. ` +
+    `Macro Hour: ${macro.value.pinyin}, ${macro.value.english}. ` +
+    `Micro Hour: Phase ${props.snapshot.organ.hourPhase.microHour}, ${micro.value.english}. ` +
+    `Next: ${props.snapshot.organ.nextShichen.animalEnglish} Shíchen.`,
+)
 
 const open = async () => {
   if (!disclosure.value) return
@@ -84,15 +109,29 @@ defineExpose({ open })
 
         <article class="organ-details">
           <header>
-            <p>Organ hour</p>
+            <p>Organ System · Shíchen temporal flow</p>
             <span>{{ snapshot.organ.status }}</span>
           </header>
           <h3>
-            {{ snapshot.organ.nameEnglish }}
+            {{ organName }} · {{ elementLabel }}
             <span v-if="snapshot.organ.nameChinese" lang="zh-Hant">
               {{ snapshot.organ.nameChinese }}
             </span>
           </h3>
+          <p class="organ-shichen-summary">
+            <span lang="zh-Hant">{{ snapshot.organ.shichen.branchChinese }}</span>
+            {{ snapshot.organ.shichen.branchPinyin }} ·
+            {{ snapshot.organ.shichen.animalEnglish }} Hour → next
+            <span lang="zh-Hant">{{ snapshot.organ.nextShichen.branchChinese }}</span>
+            {{ snapshot.organ.nextShichen.animalEnglish }} Hour
+          </p>
+          <ShichenFlowTimeline
+            :phase="snapshot.organ.hourPhase"
+            :next-shichen="snapshot.organ.nextShichen"
+            :accessible-summary="accessibleSummary"
+            density="detailed"
+            :last-event="lastTemporalEvent"
+          />
           <dl>
             <div>
               <dt>Active range</dt>
@@ -102,39 +141,135 @@ defineExpose({ open })
               <dt>Source</dt>
               <dd>{{ snapshot.organ.sourceLabel }}</dd>
             </div>
-            <template v-if="snapshot.organ.chuZhengKe">
-              <div>
-                <dt>Chu · Zheng · Ke</dt>
-                <dd>
-                  {{ snapshot.organ.chuZhengKe.nameChinese }} ·
-                  {{ snapshot.organ.chuZhengKe.namePinyin }} ·
-                  {{ snapshot.organ.chuZhengKe.meaningEnglish }} ·
-                  {{ snapshot.organ.chuZhengKe.timeRangeLabel }}
-                </dd>
-              </div>
-              <div>
-                <dt>Quarter source</dt>
-                <dd>
-                  {{ snapshot.organ.chuZhengKe.status }} ·
-                  {{ snapshot.organ.chuZhengKe.sourceLabel }}
-                </dd>
-              </div>
-              <div>
-                <dt>Cultivation cue</dt>
-                <dd>
-                  {{ snapshot.organ.chuZhengKe.cultivationPhase }} ·
-                  {{ snapshot.organ.chuZhengKe.cultivationGuidance }}
-                </dd>
-              </div>
-              <div>
-                <dt>Cultivation source</dt>
-                <dd>
-                  {{ snapshot.organ.chuZhengKe.cultivationStatus }} ·
-                  {{ snapshot.organ.chuZhengKe.cultivationSourceLabel }}
-                </dd>
-              </div>
-            </template>
+            <div>
+              <dt>Macro Hour</dt>
+              <dd>
+                <span lang="zh-Hant">{{ snapshot.organ.hourPhase.chineseMacroLabel }}</span>
+                {{ macro.pinyin }} · {{ macro.english }}
+              </dd>
+            </div>
+            <div>
+              <dt>Micro Hour</dt>
+              <dd>
+                Phase {{ snapshot.organ.hourPhase.microHour }} ·
+                <span lang="zh-Hant">{{ snapshot.organ.hourPhase.chineseKeLabel }}</span> ·
+                {{ micro.english }}
+              </dd>
+            </div>
+            <div>
+              <dt>Selected model</dt>
+              <dd>
+                96-kè Chū–Zhèng–Kè model · {{ snapshot.organ.hourPhase.methodologyId }} · version
+                {{ snapshot.organ.hourPhase.methodologyVersion }}
+              </dd>
+            </div>
+            <div>
+              <dt>Active time basis</dt>
+              <dd>{{ snapshot.organ.hourPhase.timeBasis }}</dd>
+            </div>
+            <div>
+              <dt>Authoritative Shíchen bounds</dt>
+              <dd>
+                {{ snapshot.organ.hourPhase.shichenStartUtc }} →
+                {{ snapshot.organ.hourPhase.shichenEndUtc }}
+              </dd>
+            </div>
+            <div>
+              <dt>Guidance boundary</dt>
+              <dd>
+                Macro Hour affects maturity and guidance validity. Micro Hour is observational and
+                does not independently change guidance in v1.
+              </dd>
+            </div>
+            <div>
+              <dt>Warnings</dt>
+              <dd>
+                {{
+                  snapshot.organ.hourPhase.warnings.length > 0
+                    ? snapshot.organ.hourPhase.warnings.join(' ')
+                    : 'No active time-basis warning.'
+                }}
+              </dd>
+            </div>
           </dl>
+
+          <section
+            v-if="isDevelopment"
+            class="temporal-debug"
+            aria-label="Development temporal debug"
+          >
+            <h4>Development temporal debug</h4>
+            <dl>
+              <div>
+                <dt>Shíchen ID</dt>
+                <dd>{{ snapshot.organ.shichen.id }}</dd>
+              </div>
+              <div>
+                <dt>Shíchen UTC</dt>
+                <dd>
+                  {{ snapshot.organ.hourPhase.shichenStartUtc }} →
+                  {{ snapshot.organ.hourPhase.shichenEndUtc }}
+                </dd>
+              </div>
+              <div>
+                <dt>Time basis</dt>
+                <dd>{{ snapshot.organ.hourPhase.timeBasis }}</dd>
+              </div>
+              <div>
+                <dt>Elapsed basis</dt>
+                <dd>{{ snapshot.organ.hourPhase.shichenElapsedBasisMinutes }}</dd>
+              </div>
+              <div>
+                <dt>Elapsed whole</dt>
+                <dd>{{ snapshot.organ.hourPhase.shichenElapsedWholeMinutes }}</dd>
+              </div>
+              <div>
+                <dt>Macro</dt>
+                <dd>
+                  {{ snapshot.organ.hourPhase.macroHour }} ·
+                  {{ snapshot.organ.hourPhase.macroSemantic }}
+                </dd>
+              </div>
+              <div>
+                <dt>Micro</dt>
+                <dd>
+                  {{ snapshot.organ.hourPhase.microHour }} ·
+                  {{ snapshot.organ.hourPhase.chineseKeLabel }}
+                </dd>
+              </div>
+              <div>
+                <dt>Timeline position</dt>
+                <dd>{{ snapshot.organ.hourPhase.timelinePosition }}</dd>
+              </div>
+              <div>
+                <dt>Next minute</dt>
+                <dd>{{ snapshot.organ.hourPhase.nextMinuteBoundaryUtc }}</dd>
+              </div>
+              <div>
+                <dt>Next Micro</dt>
+                <dd>{{ snapshot.organ.hourPhase.nextMicroBoundaryUtc }}</dd>
+              </div>
+              <div>
+                <dt>Next Macro</dt>
+                <dd>{{ snapshot.organ.hourPhase.nextMacroBoundaryUtc }}</dd>
+              </div>
+              <div>
+                <dt>Next Shíchen</dt>
+                <dd>{{ snapshot.organ.hourPhase.nextShichenBoundaryUtc }}</dd>
+              </div>
+              <div>
+                <dt>Last event</dt>
+                <dd>{{ lastTemporalEvent ?? 'minute-passage' }}</dd>
+              </div>
+              <div>
+                <dt>Guidance validity</dt>
+                <dd>
+                  {{ snapshot.guidance.validityWindow.validUntilUtc }} ·
+                  {{ snapshot.guidance.validityWindow.boundaryReason }}
+                </dd>
+              </div>
+            </dl>
+          </section>
         </article>
 
         <article class="provider-details">
@@ -274,6 +409,12 @@ h3 span {
   font-size: 0.82em;
 }
 
+.organ-shichen-summary {
+  margin: 0.35rem 0 1rem;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
 dl {
   display: grid;
   gap: 0.55rem;
@@ -316,9 +457,26 @@ li + li {
   margin-top: 0.35rem;
 }
 
+.temporal-debug {
+  margin-top: 1rem;
+  border-top: 1px solid var(--line);
+  padding-top: 0.9rem;
+}
+
+.temporal-debug dl {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem 1rem;
+}
+
+.temporal-debug dd {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.66rem;
+}
+
 @media (max-width: 640px) {
   .temporal-details,
-  .provider-grid {
+  .provider-grid,
+  .temporal-debug dl {
     grid-template-columns: 1fr;
   }
 }

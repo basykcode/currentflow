@@ -40,7 +40,8 @@ Temporal Semantic Resolver v1
 ```
 
 The input is already semantic. It includes a controlled `GuidanceCondition`, directions, texture,
-lunar mode, field relationship, image family, operative themes, categorical evidence weight,
+lunar mode, field relationship, image family, day/hour themes, subordinate Macro Hour maturity,
+categorical evidence weight,
 provenance, and candidate validity boundaries. The guidance engine never receives raw dates,
 GanZhi strings, hexagram numbers, organ periods, or source passages and therefore cannot silently
 become a calendar or hexagram interpretation engine.
@@ -104,9 +105,15 @@ categorical weight, and provenance record.
 The demo provider supplies a curated, visibly demo-labeled semantic fixture so the complete output
 and interaction path remains testable. The active LunarScript provider calls the Temporal Semantic
 Resolver. It supplies available guidance when the operative day has an eligible profile and an
-unavailable bundle otherwise. It caches either result until the earliest known hour, civil-day, or
-solar-term semantic boundary, so guidance identity does not churn every minute or remain stale
-across a pillar change.
+unavailable bundle otherwise. It caches either result until the earliest known Macro, Shíchen,
+civil-day, or solar-term semantic boundary, so guidance identity does not churn every minute or
+remain stale across a pillar change. A Micro Hour update changes presentation but not the semantic
+resolution ID, evidence, validity, or cached bundle.
+
+`operativeWork` separates `dayTheme`, `hourTheme`, and `hourMaturity`. Maturity evidence is typed as
+`macro-hour`; no `micro-hour` evidence kind exists. OLTR, Intention, and Execution may use Macro as a
+tie-breaker among already valid relation/effort-compatible candidates. It cannot change the Hour
+Hexagram, response relation, effort level, primary Day work, or safety policy.
 
 `CurrentFlowGlance` renders the bundle OLTR or its unavailable state. `GuidanceOutputPanel` renders
 the selected controlled intention and bounded action. A user may choose one of the ranked intention

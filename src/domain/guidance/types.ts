@@ -2,6 +2,17 @@ import type {
   EffortLevel as ResolverEffortLevel,
   ResponseRelation as ResolverResponseRelation,
 } from './semantic-resolver/types'
+import type {
+  HourMaturity,
+  SemanticEvidenceInput,
+  SemanticEvidenceSourceKind,
+} from './hourMaturityTypes'
+
+export type {
+  HourMaturity,
+  SemanticEvidenceInput,
+  SemanticEvidenceSourceKind,
+} from './hourMaturityTypes'
 
 export type EffortLevel = ResolverEffortLevel
 export type ResponseRelation = ResolverResponseRelation
@@ -72,7 +83,7 @@ export type EvidenceWeight = 'primary' | 'supporting' | 'contextual'
 export type EvidenceStatus = 'computed' | 'curated' | 'demo' | 'unavailable'
 
 export type GuidanceEvidence = Readonly<{
-  source: Versioned<Readonly<{ id: string; label: string }>>
+  source: Versioned<Readonly<{ id: string; label: string; kind: SemanticEvidenceSourceKind }>>
   semanticClaim: Versioned<string>
   weight: Versioned<EvidenceWeight>
   provenance: Versioned<
@@ -99,7 +110,8 @@ export type GuidanceSynthesis = Readonly<{
   }>
   operativeWork: Readonly<{
     dayTheme: Versioned<SemanticTheme>
-    hourModifier: Versioned<SemanticTheme>
+    hourTheme: Versioned<SemanticTheme>
+    hourMaturity: Versioned<HourMaturity>
     backgroundThemes: Versioned<readonly BackgroundTheme[]>
   }>
   response: Readonly<{
@@ -120,6 +132,8 @@ export type GuidanceSynthesis = Readonly<{
 
 export type SemanticBoundaryReason =
   | 'earthly-branch-hour-change'
+  | 'macro-hour-change'
+  | 'shichen-change'
   | 'lunar-node-change'
   | 'solar-term-boundary'
   | 'wu-yun-liu-qi-period-boundary'
@@ -160,7 +174,8 @@ export type GuidanceSemanticInput = Readonly<{
   }>
   operativeWork: Readonly<{
     dayTheme: SemanticThemeInput
-    hourModifier: SemanticThemeInput
+    hourTheme: SemanticThemeInput
+    hourMaturity: HourMaturity
     backgroundThemes: readonly BackgroundThemeInput[]
   }>
   resolvedResponse: Readonly<{
@@ -172,17 +187,7 @@ export type GuidanceSemanticInput = Readonly<{
     supportedVerbs: readonly string[]
     forbiddenVerbs: readonly string[]
   }>
-  evidence: readonly Readonly<{
-    source: Readonly<{ id: string; label: string }>
-    semanticClaim: string
-    weight: EvidenceWeight
-    provenance: Readonly<{
-      status: EvidenceStatus
-      sourceLabel: string
-      methodologyId: string
-      sourceIds: readonly string[]
-    }>
-  }>[]
+  evidence: readonly SemanticEvidenceInput[]
   validFromUtc: string
   boundaries: readonly SemanticBoundary[]
 }>

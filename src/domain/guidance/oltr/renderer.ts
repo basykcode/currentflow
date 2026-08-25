@@ -44,6 +44,7 @@ const scoreCandidate = (
   const imageFamily = synthesis.field.dominantImageFamily.value
   const validation = validateOltr(text, synthesis.response.supportedVerbs.value)
   const wordCount = countOltrWords(text)
+  const responseVerb = response.text.match(/^([A-Za-z]+)/)?.[1]?.toLowerCase()
 
   if (field.conditions.includes(condition)) score += 30
   if (response.relations.includes(relation)) score += 20
@@ -53,6 +54,18 @@ const scoreCandidate = (
   if (validation.valid) score += 10
   if (field.imageFamilies.includes(imageFamily)) score += 5
   if (!containsUnsafeGuidance(text)) score += 5
+  if (
+    responseVerb &&
+    synthesis.operativeWork.hourMaturity.value.supportedVerbs.includes(responseVerb)
+  ) {
+    score += 12
+  }
+  if (
+    responseVerb &&
+    synthesis.operativeWork.hourMaturity.value.discouragedVerbs.includes(responseVerb)
+  ) {
+    score -= 12
+  }
 
   return score
 }

@@ -55,12 +55,15 @@ describe('LunarScriptCurrentFlowProvider', () => {
     )
     expect(snapshot.organ.key).toBe('heart')
     expect(snapshot.organ.timeRangeLabel).toContain('11:00–13:00')
-    expect(snapshot.organ.chuZhengKe).toMatchObject({
-      nameChinese: '正初刻',
-      namePinyin: 'Zhèng Chū Kè',
-      timeRangeLabel: '12:00–12:15',
-      cultivationPhase: 'Fullness',
-      cultivationStatus: 'current-formalization',
+    expect(snapshot.organ).toMatchObject({
+      element: 'fire',
+      shichen: { id: 'wu', branchChinese: '午', animalEnglish: 'Horse' },
+      hourPhase: {
+        macroHour: 'zheng',
+        macroSemantic: 'established',
+        microHour: 0,
+        chineseKeLabel: '初刻',
+      },
     })
     expect(snapshot.guidance.status).toBe('unavailable')
     expect(snapshot.guidance.executions).toHaveLength(0)
@@ -76,10 +79,10 @@ describe('LunarScriptCurrentFlowProvider', () => {
 
     expect(snapshot.organ.key).toBe('gallbladder')
     expect(snapshot.organ.timeRangeLabel).toContain('23:00–01:00')
-    expect(snapshot.organ.chuZhengKe).toMatchObject({
-      nameChinese: '正二刻',
-      timeRangeLabel: '00:30–00:45',
-      cultivationPhase: 'Integrating',
+    expect(snapshot.organ.hourPhase).toMatchObject({
+      macroHour: 'zheng',
+      microHour: 2,
+      chineseKeLabel: '二刻',
     })
     expect(snapshot.temporal.hour.timeBoundsLabel).toBe(
       '2026-07-22 23:00:00 → 2026-07-23 01:00:00 · America/New_York',
@@ -132,6 +135,48 @@ describe('LunarScriptCurrentFlowProvider', () => {
     expect(nextMinute.guidance).toBe(first.guidance)
   })
 
+  it('regenerates guidance at Macro, not Micro, while preserving immediate Hour identity', async () => {
+    const provider = new LunarScriptCurrentFlowProvider()
+    const chu = await provider.getSnapshot(new Date('2026-07-07T15:59:00.000Z'), {
+      timezone: 'America/New_York',
+    })
+    const zheng = await provider.getSnapshot(new Date('2026-07-07T16:00:00.000Z'), {
+      timezone: 'America/New_York',
+    })
+    const micro = await provider.getSnapshot(new Date('2026-07-07T16:15:00.000Z'), {
+      timezone: 'America/New_York',
+    })
+    const nextShichen = await provider.getSnapshot(new Date('2026-07-07T17:00:00.000Z'), {
+      timezone: 'America/New_York',
+    })
+
+    expect(chu.guidance.status).toBe('available')
+    expect(zheng.guidance.status).toBe('available')
+    expect(chu.organ.hourPhase).toMatchObject({ macroHour: 'chu', microHour: 3 })
+    expect(zheng.organ.hourPhase).toMatchObject({ macroHour: 'zheng', microHour: 0 })
+    expect(micro.organ.hourPhase).toMatchObject({ macroHour: 'zheng', microHour: 1 })
+    expect(zheng.organ.key).toBe(chu.organ.key)
+    expect(zheng.organ.shichen.id).toBe(chu.organ.shichen.id)
+    expect(zheng.temporal.hour.ganZhiRaw).toBe(chu.temporal.hour.ganZhiRaw)
+    expect(zheng.temporal.hour.hexagram.number).toBe(chu.temporal.hour.hexagram.number)
+    expect(zheng.guidance).not.toBe(chu.guidance)
+    expect(zheng.guidance.synthesisId).not.toBe(chu.guidance.synthesisId)
+    expect(micro.guidance).toBe(zheng.guidance)
+    expect(zheng.guidance.validityWindow).toMatchObject({
+      validUntilUtc: '2026-07-07T17:00:00.000Z',
+      boundaryReason: 'shichen-change',
+    })
+    if (zheng.guidance.status !== 'available') throw new Error('Expected available guidance.')
+    expect(
+      zheng.guidance.synthesis.evidence.value.some(
+        (item) => item.source.value.kind === 'macro-hour',
+      ),
+    ).toBe(true)
+    expect(nextShichen.organ.key).not.toBe(zheng.organ.key)
+    expect(nextShichen.organ.hourPhase).toMatchObject({ macroHour: 'chu', microHour: 0 })
+    expect(nextShichen.guidance).not.toBe(zheng.guidance)
+  })
+
   it('reuses guidance until the next semantic boundary', async () => {
     const provider = new LunarScriptCurrentFlowProvider()
     const first = await provider.getSnapshot(new Date('2026-07-23T16:00:00.000Z'), {
@@ -142,6 +187,6 @@ describe('LunarScriptCurrentFlowProvider', () => {
     })
 
     expect(nextMinute.guidance).toBe(first.guidance)
-    expect(first.guidance.validityWindow.boundaryReason).toBe('earthly-branch-hour-change')
+    expect(first.guidance.validityWindow.boundaryReason).toBe('shichen-change')
   })
 })

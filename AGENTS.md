@@ -33,6 +33,16 @@
 - Use explicit unavailable records when evidence is missing or quarantined; never infer replacement text.
 - Run `npm run commentary:validate` after changing commentary data, loaders, or rendering.
 
+## Chū–Zhèng–Kè temporal rules
+
+- Derive Chū, Zhèng, and Kè only from the authoritative normalized Shíchen coordinate; never mix
+  local-civil, local-mean-solar, apparent-solar, or raw browser time fields.
+- Macro Hour modifies maturity, not Organ/Branch/pillar/Hour Hexagram identity or supported effort.
+- Micro Hour is observational in v1 and never enters guidance evidence, identity, or validity.
+- Refresh guidance at Macro and Shíchen boundaries, not every Kè.
+- Keep the timeline free of percentages, countdowns, elapsed/remaining minutes, and seconds; respect
+  reduced motion without removing textual or structural state.
+
 ## Current Flow glance rules
 
 - Mobile home communicates the complete Current at a glance; Day remains the featured temporal

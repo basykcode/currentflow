@@ -1,12 +1,17 @@
 <script setup lang="ts">
 import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
+import type { TemporalClockEvent } from '@/domain/time/chu-zheng-ke'
 
 import HexagramCard from './HexagramCard.vue'
 import OrganCard from './OrganCard.vue'
 
-defineProps<{
-  snapshot: CurrentFlowSnapshot
-}>()
+withDefaults(
+  defineProps<{
+    snapshot: CurrentFlowSnapshot
+    lastTemporalEvent?: TemporalClockEvent
+  }>(),
+  { lastTemporalEvent: 'minute-passage' },
+)
 
 const emit = defineEmits<{
   openOrganDetails: []
@@ -29,7 +34,12 @@ const emit = defineEmits<{
 
     <div class="active-row" data-glance-row="active">
       <div class="cell cell-organ" data-glance-item="organ">
-        <OrganCard :organ="snapshot.organ" density="glance" @select="emit('openOrganDetails')" />
+        <OrganCard
+          :organ="snapshot.organ"
+          density="glance"
+          :last-event="lastTemporalEvent"
+          @select="emit('openOrganDetails')"
+        />
       </div>
       <div class="cell cell-hour" data-glance-item="hour">
         <HexagramCard :item="snapshot.temporal.hour" density="glance-regular" />

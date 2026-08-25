@@ -1,4 +1,7 @@
 import type { TemporalHexagram, TemporalScope } from '@/domain/astrology/types'
+import type { HourPhase } from '@/domain/time/chu-zheng-ke'
+
+import type { HourMaturity } from '../hourMaturityTypes'
 
 export type FieldDirection =
   | 'emerge'
@@ -117,6 +120,7 @@ export type TemporalSemanticEvidence = Readonly<{
 
 export type TemporalSemanticResolverInput = Readonly<{
   temporal: Readonly<Record<TemporalScope, TemporalHexagram>>
+  hourPhase: Pick<HourPhase, 'macroHour' | 'macroSemantic'>
 }>
 
 export type TemporalSemanticMethodVersions = Readonly<{
@@ -126,6 +130,7 @@ export type TemporalSemanticMethodVersions = Readonly<{
   responseRelations: string
   effort: string
   vectors: string
+  hourMaturity: string
 }>
 
 export type AvailableTemporalSemanticResolution = Readonly<{
@@ -141,6 +146,7 @@ export type AvailableTemporalSemanticResolution = Readonly<{
     relation: ResponseRelation
     effortLevel: EffortLevel
   }>
+  hourMaturity: HourMaturity
   field: Readonly<{
     primaryDirection: FieldDirection
     secondaryDirection: FieldDirection

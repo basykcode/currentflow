@@ -6,6 +6,7 @@ import {
   createGuidanceBundle,
   isGuidanceExpired,
   renderOltr,
+  resolveHourMaturity,
   resolveGuidanceSynthesis,
   selectGuidanceIntention,
   validateExecution,
@@ -51,6 +52,31 @@ describe('Guidance Output Layer', () => {
     expect(result.valid).toBe(true)
     expect(bundle.oltr.text.match(/;/g)).toHaveLength(1)
     expect(bundle.oltr.text.match(/[.!?]/g)).toHaveLength(1)
+  })
+
+  it('uses Macro maturity as a subordinate onset-versus-continuation modifier', () => {
+    const chuInput = createGuidanceFixture('emergence')
+    const zhengInput = {
+      ...chuInput,
+      synthesisId: `${chuInput.synthesisId}-zheng`,
+      operativeWork: {
+        ...chuInput.operativeWork,
+        hourMaturity: resolveHourMaturity('follow', {
+          macroHour: 'zheng',
+          macroSemantic: 'established',
+        }),
+      },
+    }
+    const chu = createGuidanceBundle(chuInput)
+    const zheng = createGuidanceBundle(zhengInput)
+
+    expect(chu.synthesis.response.relation.value).toBe('follow')
+    expect(zheng.synthesis.response.relation.value).toBe('follow')
+    expect(zheng.synthesis.response.effortLevel.value).toBe(
+      chu.synthesis.response.effortLevel.value,
+    )
+    expect(chu.oltr.text).toMatch(/; follow /i)
+    expect(zheng.oltr.text).toMatch(/; continue /i)
   })
 
   it('rejects pronouns, malformed sentence structure, excess words, and unsafe language', () => {
@@ -254,5 +280,20 @@ describe('Guidance Output Layer', () => {
     expect(bundle.validityWindow.boundaryReason).toBe('semantic-classification-change')
     expect(isGuidanceExpired(bundle, new Date('2026-08-22T13:14:59.999Z'))).toBe(false)
     expect(isGuidanceExpired(bundle, new Date('2026-08-22T13:15:00.000Z'))).toBe(true)
+  })
+
+  it('treats Macro Hour, but not a Micro interval, as a validity boundary', () => {
+    const bundle = createGuidanceBundle({
+      ...createGuidanceFixture('emergence'),
+      boundaries: [
+        { atUtc: '2026-08-22T13:00:00.000Z', reason: 'macro-hour-change' },
+        { atUtc: '2026-08-22T14:00:00.000Z', reason: 'shichen-change' },
+      ],
+    })
+
+    expect(bundle.validityWindow).toMatchObject({
+      validUntilUtc: '2026-08-22T13:00:00.000Z',
+      boundaryReason: 'macro-hour-change',
+    })
   })
 })

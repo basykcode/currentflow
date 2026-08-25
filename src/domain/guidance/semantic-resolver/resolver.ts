@@ -2,6 +2,7 @@ import type { TemporalScope } from '@/domain/astrology/types'
 
 import { composeTemporalSemantics } from './composition'
 import { createTemporalSemanticEvidence } from './evidence'
+import { resolveHourMaturity } from './hourMaturity'
 import { getHexagramSemanticRecord } from './hexagrams/registry'
 import type {
   ResolvedTemporalScale,
@@ -18,7 +19,7 @@ import { TEMPORAL_SCALE_ORDER, orderResolvedScales } from './weighting'
 const semanticResolutionId = (input: TemporalSemanticResolverInput) =>
   `temporal-semantic-${TEMPORAL_SCALE_ORDER.map(
     (scope) => `${scope}-${input.temporal[scope].hexagram.number ?? 'unavailable'}`,
-  ).join('-')}`
+  ).join('-')}-macro-${input.hourPhase.macroHour}`
 
 const resolvedScale = (
   scope: TemporalScope,
@@ -74,6 +75,7 @@ export const resolveTemporalSemantics = (
   }
 
   const composition = composeTemporalSemantics(availableScales)
+  const hourMaturity = resolveHourMaturity(composition.relation, input.hourPhase)
   const hour = availableScales.find((scale) => scale.scope === 'hour')
   const backgrounds = availableScales.filter(
     (scale) => scale.scope === 'month' || scale.scope === 'year',
@@ -91,6 +93,7 @@ export const resolveTemporalSemantics = (
       relation: composition.relation,
       effortLevel: composition.effortLevel,
     }),
+    hourMaturity,
     field: Object.freeze({
       primaryDirection: composition.primaryDirection,
       secondaryDirection: composition.secondaryDirection,

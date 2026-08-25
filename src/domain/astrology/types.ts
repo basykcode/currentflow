@@ -1,4 +1,7 @@
 import type { GuidanceBundle } from '@/domain/guidance/types'
+import type { HourPhase } from '@/domain/time/chu-zheng-ke'
+
+import type { ShichenIdentity } from './shichen'
 
 export type DataStatus = 'demo' | 'computed' | 'curated' | 'unavailable'
 
@@ -84,27 +87,17 @@ export type OrganKey =
   | 'pericardium'
   | 'san-jiao'
 
-export type ChuZhengKeMoment = {
-  segment: 'chu' | 'zheng'
-  keIndex: 0 | 1 | 2 | 3
-  nameChinese: string
-  namePinyin: string
-  meaningEnglish: string
-  timeRangeLabel: string
-  cultivationPhase: string
-  cultivationGuidance: string
-  status: Extract<DataStatus, 'computed'>
-  sourceLabel: string
-  cultivationStatus: 'current-formalization'
-  cultivationSourceLabel: string
-}
+export type FiveElement = 'wood' | 'fire' | 'earth' | 'metal' | 'water'
 
 export type OrganMoment = {
   key: OrganKey
   nameEnglish: string
   nameChinese?: string
+  element: FiveElement
   timeRangeLabel: string
-  chuZhengKe?: ChuZhengKeMoment
+  shichen: ShichenIdentity
+  nextShichen: ShichenIdentity
+  hourPhase: HourPhase
   status: DataStatus
   sourceLabel: string
 }

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
+import type { TemporalClockEvent } from '@/domain/time/chu-zheng-ke'
 
 import CurrentFlowOltr from './CurrentFlowOltr.vue'
 import FiveElementComposition from './FiveElementComposition.vue'
@@ -10,8 +11,9 @@ withDefaults(
     snapshot: CurrentFlowSnapshot
     timezone: string
     sectionLabel?: string
+    lastTemporalEvent?: TemporalClockEvent
   }>(),
-  { sectionLabel: 'The Current Flow' },
+  { sectionLabel: 'The Current Flow', lastTemporalEvent: 'minute-passage' },
 )
 
 const emit = defineEmits<{
@@ -30,6 +32,7 @@ const emit = defineEmits<{
       class="glance-signature"
       data-glance-section="signature"
       :snapshot="snapshot"
+      :last-temporal-event="lastTemporalEvent"
       @open-organ-details="emit('openOrganDetails')"
     />
 

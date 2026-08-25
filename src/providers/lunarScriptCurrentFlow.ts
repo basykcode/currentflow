@@ -9,6 +9,7 @@ import {
 import { getOrganMoment } from '@/domain/astrology/organClock'
 import type { CurrentFlowContext, CurrentFlowProvider } from '@/domain/astrology/provider'
 import { getStructuralRelationships } from '@/domain/astrology/relationships'
+import { resolveLocalCivilShichenPhase } from '@/domain/astrology/shichenPhaseCoordinate'
 import type { CurrentFlowSnapshot, TemporalHexagram, TemporalScope } from '@/domain/astrology/types'
 import {
   createGuidanceBundle,
@@ -65,10 +66,17 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
     const month = makeTemporal('month', 'Solar-term month pillar', monthGanZhi, bounds.month)
     const day = makeTemporal('day', 'Civil-day pillar · sect 2', dayGanZhi, bounds.day)
     const hour = makeTemporal('hour', 'Two-hour pillar', hourGanZhi, bounds.hour)
-    const organ = getOrganMoment(civil.hour, civil.minute)
+    const organClock = getOrganMoment(civil.hour)
+    const shichenPhase = resolveLocalCivilShichenPhase(at, civil.timezone)
+    const organ = {
+      ...organClock,
+      shichen: shichenPhase.shichen,
+      nextShichen: shichenPhase.nextShichen,
+      hourPhase: shichenPhase.hourPhase,
+    }
     const temporal = { year, month, day, hour }
-    const semanticResolution = resolveTemporalSemantics({ temporal })
-    const semanticBoundaries = getTemporalSemanticBoundaries(at, lunar, civil)
+    const semanticResolution = resolveTemporalSemantics({ temporal, hourPhase: organ.hourPhase })
+    const semanticBoundaries = getTemporalSemanticBoundaries(lunar, civil, organ.hourPhase)
     const guidanceId = `${semanticResolution.resolutionId}-${civil.timezone}`
     if (
       !this.guidanceCache ||
@@ -111,7 +119,7 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
       relatedHexagrams: getStructuralRelationships(day.hexagram),
       provenance: {
         providerId: 'lunar-script-current-flow',
-        modelVersion: '1.1.0',
+        modelVersion: '1.2.0',
         mappingVersion: TEMPORAL_HEXAGRAM_MAPPING_VERSION,
         factors: [
           `Year ${yearGanZhi} (${lunar.getYearShengXiaoExact()})`,
@@ -119,7 +127,7 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
           `Day ${dayGanZhi}`,
           `Hour ${hourGanZhi}`,
           `Organ clock civil hour ${civil.hour.toString().padStart(2, '0')}`,
-          `Chu-Zheng-Ke ${organ.chuZhengKe?.nameChinese ?? 'unavailable'} (${organ.chuZhengKe?.timeRangeLabel ?? 'unavailable'})`,
+          `Chū–Zhèng–Kè ${organ.hourPhase.chineseMacroLabel} · ${organ.hourPhase.chineseKeLabel}`,
         ],
         notes: [
           fallbackNote,
@@ -127,7 +135,8 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
           'The day pillar uses sect 2: the 23:00–23:59 Zi hour remains on the civil day.',
           `Hexagrams use ${TEMPORAL_HEXAGRAM_MAPPING_VERSION}; all stored and displayed identities are canonical King Wen IDs.`,
           'The organ clock is a traditional educational framework, not medical advice.',
-          'Chu-Zheng-Ke names use the Shixian 96-ke civil-time convention; cultivation phase language is a Current Flow product formalization, not a received traditional interpretation.',
+          'Chū–Zhèng–Kè uses the selected 96-kè model in the same local-civil coordinate as the active Shíchen.',
+          'Macro Hour modifies Current guidance maturity; Micro Hour is observational and does not independently change guidance in v1.',
           semanticResolution.status === 'available'
             ? `Current Semantic Layer v1 resolved ${semanticResolution.coverage} profile coverage; missing profiles: ${semanticResolution.missingProfileNumbers.length > 0 ? semanticResolution.missingProfileNumbers.join(', ') : 'none'}.`
             : semanticResolution.reason,

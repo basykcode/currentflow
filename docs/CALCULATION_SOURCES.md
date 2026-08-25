@@ -73,22 +73,23 @@ Selection uses civil clock time in the snapshot timezone. It does not correct fo
 time or longitude because Current does not request coordinates. This is a traditional educational
 framework, not a diagnostic or treatment claim.
 
-### Chu / Zheng / Ke subdivision
+### Chū / Zhèng / Kè subdivision
 
-The Shixian 96-ke convention divides a day into 96 equal `刻`, making one ke 15 minutes and each
-two-hour branch period eight ke. Current divides the first civil hour into four `初` intervals and
-the second into four `正` intervals:
+Current selects the Shixian 96-kè convention, which divides a day into 96 equal `刻`, making one Kè
+15 basis minutes and each two-hour Branch period eight Kè. This is a selected historical model, not
+a claim that one convention governed every period of Chinese history. The first Macro Hour is `初`
+Chū / Entering and the second is `正` Zhèng / Established:
 
-| Offset in period | Name   | Pinyin       | Current English timing label   |
-| ---------------- | ------ | ------------ | ------------------------------ |
-| 00–15 minutes    | 初初刻 | Chū Chū Kè   | Initial half · opening quarter |
-| 15–30 minutes    | 初一刻 | Chū Yī Kè    | Initial half · first quarter   |
-| 30–45 minutes    | 初二刻 | Chū Èr Kè    | Initial half · second quarter  |
-| 45–60 minutes    | 初三刻 | Chū Sān Kè   | Initial half · third quarter   |
-| 60–75 minutes    | 正初刻 | Zhèng Chū Kè | Second half · opening quarter  |
-| 75–90 minutes    | 正一刻 | Zhèng Yī Kè  | Second half · first quarter    |
-| 90–105 minutes   | 正二刻 | Zhèng Èr Kè  | Second half · second quarter   |
-| 105–120 minutes  | 正三刻 | Zhèng Sān Kè | Second half · third quarter    |
+| Offset in Shíchen | Macro    |   Micro | Historical Kè | Product meaning                |
+| ----------------- | -------- | ------: | ------------- | ------------------------------ |
+| 00–15             | 初 Chū   | Phase 0 | 初刻          | First Kè of current Macro Hour |
+| 15–30             | 初 Chū   | Phase 1 | 一刻          | Second Kè                      |
+| 30–45             | 初 Chū   | Phase 2 | 二刻          | Third Kè                       |
+| 45–60             | 初 Chū   | Phase 3 | 三刻          | Fourth Kè                      |
+| 60–75             | 正 Zhèng | Phase 0 | 初刻          | First Kè of current Macro Hour |
+| 75–90             | 正 Zhèng | Phase 1 | 一刻          | Second Kè                      |
+| 90–105            | 正 Zhèng | Phase 2 | 二刻          | Third Kè                       |
+| 105–120           | 正 Zhèng | Phase 3 | 三刻          | Fourth Kè                      |
 
 The [National Astronomical Observatory of Japan's calendar office](https://eco.mtk.nao.ac.jp/koyomi/wiki/BBFEB9EF2FC4EABBFECBA1A4C8C9D4C4EABBFECBA1.html)
 documents the two-hour branch period, its `初` beginning and `正` midpoint, and the Shixian choice of
@@ -96,10 +97,12 @@ documents the two-hour branch period, its `初` beginning and `正` midpoint, an
 [China Daily](https://ent.chinadaily.com.cn/a/201907/26/WS5d3a5399a3106bab40a029b1.html)
 documents the resulting eight 15-minute ke per branch period.
 
-The app's eight cultivation labels—Arriving, Gathering, Deepening, Cresting, Fullness, Circulating,
-Integrating, and Releasing—and their short cues are `current-formalization`, versioned as
-`Current Flow cultivation phase model v1`. They are a product-scale envelope over elapsed position,
-not a received interpretation of 初 / 正 / 刻, an energetic measurement, or medical guidance.
+Phase derives from the same normalized local-civil coordinate that selects the Organ System,
+Earthly Branch, hour pillar, and Hour Hexagram. Boundaries are projected through the IANA timezone
+engine rather than assumed to be fixed UTC durations near DST. Macro Hour is a subordinate Current
+guidance-maturity input. Micro Hour is observational only and has no independent energetic,
+cultivation, intention, execution, or medical meaning. See
+[`CHU_ZHENG_KE_CLOCK.md`](CHU_ZHENG_KE_CLOCK.md).
 
 ## Structural relationships and Transformation Lab
 

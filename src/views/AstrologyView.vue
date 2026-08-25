@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, ref } from 'vue'
 
 import CalculationProvenanceDetails from '@/components/astrology/CalculationProvenanceDetails.vue'
 import CurrentFlowGlance from '@/components/astrology/CurrentFlowGlance.vue'
 import SynthesisPanel from '@/components/astrology/SynthesisPanel.vue'
+import { useShichenPhaseClock } from '@/composables/useShichenPhaseClock'
 import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
 import { currentFlowProvider } from '@/providers/currentFlow'
 import { usePreferencesStore } from '@/stores/preferences'
@@ -13,7 +14,7 @@ const snapshot = ref<CurrentFlowSnapshot | null>(null)
 const calculationDetails = ref<{ open: () => Promise<void> } | null>(null)
 const loading = ref(true)
 const errorMessage = ref('')
-let clockTimer: number | undefined
+const selectedInstant = ref<Date | null>(null)
 
 const flowPresentation = {
   sectionLabel: 'The Current Flow',
@@ -23,35 +24,31 @@ const timezoneLabel = computed(
   () => snapshot.value?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
 )
 
-const refresh = async () => {
-  loading.value = true
-  errorMessage.value = ''
-  try {
-    snapshot.value = await currentFlowProvider.getSnapshot(new Date(), {
+const phaseClock = useShichenPhaseClock({
+  selectedInstant,
+  load: (instant) =>
+    currentFlowProvider.getSnapshot(instant, {
       timezone: preferences.timezone,
       ...(preferences.locationLabel ? { locationLabel: preferences.locationLabel } : {}),
-    })
-  } catch {
-    errorMessage.value = 'The snapshot is unavailable. No temporal data has been inferred.'
-  } finally {
+    }),
+  toClockState: (nextSnapshot) => ({
+    shichenId: nextSnapshot.organ.shichen.id,
+    hourPhase: nextSnapshot.organ.hourPhase,
+  }),
+  onValue: (nextSnapshot) => {
+    snapshot.value = nextSnapshot
     loading.value = false
-  }
-}
+    errorMessage.value = ''
+  },
+  onError: () => {
+    errorMessage.value = 'The snapshot is unavailable. No temporal data has been inferred.'
+    loading.value = false
+  },
+})
 
 const openOrganDetails = () => {
   void calculationDetails.value?.open()
 }
-
-onMounted(() => {
-  void refresh()
-  clockTimer = window.setInterval(() => {
-    void refresh()
-  }, 60_000)
-})
-
-onBeforeUnmount(() => {
-  if (clockTimer) window.clearInterval(clockTimer)
-})
 </script>
 
 <template>
@@ -65,9 +62,14 @@ onBeforeUnmount(() => {
         :snapshot="snapshot"
         :timezone="timezoneLabel"
         :section-label="flowPresentation.sectionLabel"
+        :last-temporal-event="phaseClock.lastEvent.value"
         @open-organ-details="openOrganDetails"
       />
-      <CalculationProvenanceDetails ref="calculationDetails" :snapshot="snapshot" />
+      <CalculationProvenanceDetails
+        ref="calculationDetails"
+        :snapshot="snapshot"
+        :last-temporal-event="phaseClock.lastEvent.value"
+      />
       <SynthesisPanel :snapshot="snapshot" :show-oltr="false" :show-provenance="false" />
     </template>
   </div>

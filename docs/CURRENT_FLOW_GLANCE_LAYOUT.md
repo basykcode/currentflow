@@ -3,7 +3,7 @@
 ## Product goal
 
 The Astrology home opens as a compact instrument panel. Its leading flow communicates the section,
-local time, Year/Day/Month temporal hexagrams, active Internal State, Hour hexagram, and complete
+local time, Year/Day/Month temporal hexagrams, active Organ System, Hour hexagram, and complete
 One Line to Remember in a stable order. Detail remains available through the existing hexagram
 inspector and the adjacent calculation disclosure. The page scrolls naturally when distinct glyph,
 animal, language, and spectrum rows exceed the current viewport.
@@ -43,8 +43,9 @@ App
 │  │  │  │  ├─ canonical HexagramGlyph
 │  │  │  │  └─ canonical identity and Gene Key spectrum
 │  │  │  └─ OrganCard glance variant
-│  │  │     ├─ centered OrganIllustration
-│  │  │     └─ computed Chu / Zheng / Ke and Current cultivation cue
+│  │  │     ├─ compact Organ/element and Branch/animal identity
+│  │  │     ├─ computed Macro and observational Micro rows
+│  │  │     └─ compact ShíchenFlowTimeline with shared Taiji marker
 │  │  └─ CurrentFlowOltr
 │  ├─ CalculationProvenanceDetails
 │  └─ SynthesisPanel without its duplicate OLTR/provenance blocks
@@ -60,7 +61,7 @@ The mobile DOM and visual order is:
 
 1. `The Current Flow` section heading and compact local clock.
 2. Year / Day / Month.
-3. Internal State / Hour hexagram.
+3. Organ System / Hour hexagram.
 4. One Line to Remember.
 
 The temporal row uses `1fr 2fr 1fr`, making Day exactly half of the usable row width before gaps.
@@ -105,26 +106,24 @@ The Gene Key terms retain the canonical Shadow / Gift / Siddhi document order. T
 in the reverse cross-axis direction, so a multi-line compact card places Shadow on its lowest line
 while a card with enough width keeps all three terms in their ordinary single-line order.
 
-## Internal State quarter
+## Organ System temporal flow
 
-The glance card presents the Organ Clock as `Internal State`. It uses one centered column: the label,
-illustration, Chu / Zheng / Ke block, organ name, Chinese name, and time range are all centered. The
-illustration and current quarter sit in the available middle space, while the organ identity and
-two-hour range remain the lower anchor.
-The live provider divides the current two-hour branch period into eight 15-minute intervals under
-the selected Shixian 96-ke convention: four `初` intervals followed by four `正` intervals.
+The home label is `ORGAN SYSTEM`; the underlying Organ Hour domain remains unchanged. One centered
+column presents Organ/element, Branch/animal, Macro Hour, Micro Hour, the compact complete-Shíchen
+timeline, and the two-hour range. The timeline has three major nodes, six minor nodes, eight Kè
+segments, and a slowly rotating Taiji present marker. Its final node is `NEXT`.
 
-The Chinese interval name, tone-marked pinyin, English timing meaning, and exact civil bounds are
-computed facts. The companion Arriving / Gathering / Deepening / Cresting / Fullness / Circulating /
-Integrating / Releasing cultivation envelope is explicitly a Current Flow product formalization,
-not a claimed traditional interpretation. Both boundaries remain visible in `Calculated From`.
+Chū / Entering and Zhèng / Established are subordinate guidance maturity. Phase 0–3 and the Kè
+labels are observational. No independent Micro interpretation is displayed. The detailed timeline,
+96-kè methodology, local-civil basis, exact UTC bounds, warnings, and semantic-boundary explanation
+remain visible in `Calculated From`.
 
 ## Technical metadata and provenance
 
 Exact bounds, full pillar labels, calculation status, source/library and mapping labels, organ
 source, provider version, factors, day-boundary convention, and calculation limits do not render
 inside glance cards. They remain available immediately below the first viewport in the
-`Calculated From` disclosure. Selecting Internal State opens and focuses that disclosure.
+`Calculated From` disclosure. Selecting Organ System opens and focuses that disclosure.
 
 Hexagram cards continue to open the single app-level `HexagramInspector`; no modal or selection
 state is duplicated.
@@ -161,7 +160,7 @@ The mobile app-header content remains 64 CSS pixels high and its menu target rem
 
 - `The Current Flow` is the route's level-one heading; glance cards retain subordinate headings.
 - Every card has a full-card native button target with an explicit accessible name.
-- Enter and Space activate temporal cards and Internal State; focus returns to the triggering temporal
+- Enter and Space activate temporal cards and Organ System; focus returns to the triggering temporal
   card after the inspector closes.
 - Existing global focus rings, reduced-motion handling, and theme contrast remain active.
 - Hexagram glyphs keep their line-by-line accessible descriptions.
@@ -169,7 +168,9 @@ The mobile app-header content remains 64 CSS pixels high and its menu target rem
   already names the element and animal.
 - Each frequency-band icon has an adjacent visually hidden Shadow, Gift, or Siddhi label; meaning
   is never conveyed by the geometric mark or blue shade alone.
-- Clock changes have no `aria-live` announcement.
+- Clock changes have no `aria-live` announcement. The timeline has one concise Organ/Shíchen/Macro/
+  Micro/next summary and hides redundant SVG internals.
+- Reduced motion disables Taiji rotation and marker interpolation while preserving state.
 - Default text size targets first-viewport fit; larger text is allowed to grow and scroll naturally.
 
 ## Verification viewports
@@ -184,7 +185,7 @@ The required default-text mobile viewports are:
 At each size, verify that the document and cards have no horizontal overflow, the canonical glyph
 retains its configured geometry below a separate visible animal row, all glyphs share color and
 proportional line spacing, Day remains twice the card width of Year/Month, and Organ/Hour card widths
-are equal. Also inspect the centered Organ illustration and quarter copy, a tablet and desktop, both
+are equal. Also inspect the compact timeline and unclipped marker, a tablet and desktop, both
 themes, a long timezone, long canonical titles and spectrum terms, keyboard activation, focus
 visibility, and the calculation disclosure.
 

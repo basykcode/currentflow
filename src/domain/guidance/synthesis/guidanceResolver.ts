@@ -35,7 +35,8 @@ export const resolveGuidanceSynthesis = (input: GuidanceSemanticInput): Guidance
     },
     operativeWork: {
       dayTheme: versioned(input.operativeWork.dayTheme, semanticVersion),
-      hourModifier: versioned(input.operativeWork.hourModifier, semanticVersion),
+      hourTheme: versioned(input.operativeWork.hourTheme, semanticVersion),
+      hourMaturity: versioned(input.operativeWork.hourMaturity, semanticVersion),
       backgroundThemes: versioned(input.operativeWork.backgroundThemes, semanticVersion),
     },
     response: {

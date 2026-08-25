@@ -9,6 +9,7 @@ import { getHexagramSemanticRecords } from '../hexagrams/registry'
 import { validateHexagramSemanticProfiles } from '../hexagrams/validation'
 import { resolveTemporalSemantics } from '../resolver'
 import type { HexagramSemanticProfile, ResolvedTemporalScale } from '../types'
+import type { MacroHour } from '@/domain/time/chu-zheng-ke'
 import { HEXAGRAM_SEMANTIC_PROFILE_VERSION } from '../versions'
 
 const temporal = (scope: TemporalScope, hexagramNumber: number): TemporalHexagram => ({
@@ -23,12 +24,22 @@ const temporal = (scope: TemporalScope, hexagramNumber: number): TemporalHexagra
   sourceLabel: 'Deterministic temporal test fixture',
 })
 
-const input = (year: number, month: number, day: number, hour: number) => ({
+const input = (
+  year: number,
+  month: number,
+  day: number,
+  hour: number,
+  macroHour: MacroHour = 'chu',
+) => ({
   temporal: {
     year: temporal('year', year),
     month: temporal('month', month),
     day: temporal('day', day),
     hour: temporal('hour', hour),
+  },
+  hourPhase: {
+    macroHour,
+    macroSemantic: macroHour === 'chu' ? ('entering' as const) : ('established' as const),
   },
 })
 
@@ -108,10 +119,50 @@ describe('Temporal Semantic Resolver v1', () => {
       validFromUtc: '2026-08-22T12:00:00.000Z',
       boundaries: [{ atUtc: '2026-08-22T14:00:00.000Z', reason: 'earthly-branch-hour-change' }],
     })
-    expect(semanticInput.evidence.at(-1)).toMatchObject({
+    expect(
+      semanticInput.evidence.find((item) => item.source.kind === 'coverage-gap'),
+    ).toMatchObject({
       semanticClaim: 'No v1 operational profile for Hexagram 15, 11, 10',
       provenance: { status: 'unavailable' },
     })
+  })
+
+  it('changes only subordinate maturity when Macro Hour changes', () => {
+    const chu = resolveTemporalSemantics(input(1, 53, 28, 57, 'chu'))
+    const zheng = resolveTemporalSemantics(input(1, 53, 28, 57, 'zheng'))
+    expect(chu.status).toBe('available')
+    expect(zheng.status).toBe('available')
+    if (chu.status !== 'available' || zheng.status !== 'available') {
+      throw new Error('Expected available semantics.')
+    }
+
+    expect(zheng.resolutionId).not.toBe(chu.resolutionId)
+    expect(zheng.primaryCurrent).toEqual(chu.primaryCurrent)
+    expect(zheng.field).toEqual(chu.field)
+    expect(chu.hourMaturity).toMatchObject({ macroHour: 'chu', semantic: 'entering' })
+    expect(zheng.hourMaturity).toMatchObject({ macroHour: 'zheng', semantic: 'established' })
+    expect(chu.hourMaturity.supportedVerbs).toContain('set')
+    expect(zheng.hourMaturity.supportedVerbs).toContain('steady')
+  })
+
+  it('carries Macro evidence into guidance without a Micro evidence kind', () => {
+    const resolution = resolveTemporalSemantics(input(1, 53, 28, 57))
+    expect(resolution.status).toBe('available')
+    if (resolution.status !== 'available') throw new Error('Expected available semantics.')
+    const bundle = createGuidanceBundle(
+      toGuidanceSemanticInput(resolution, {
+        validFromUtc: '2026-08-22T12:00:00.000Z',
+        boundaries: [{ atUtc: '2026-08-22T13:00:00.000Z', reason: 'macro-hour-change' }],
+      }),
+    )
+
+    expect(
+      bundle.synthesis.evidence.value.some((item) => item.source.value.kind === 'macro-hour'),
+    ).toBe(true)
+    expect(bundle.synthesis.evidence.value.map((item) => item.source.value.kind)).not.toContain(
+      'micro-hour',
+    )
+    expect(bundle.synthesis.operativeWork.hourMaturity.value.macroHour).toBe('chu')
   })
 
   it('adapts a resolved field into one coherent validated guidance bundle', () => {

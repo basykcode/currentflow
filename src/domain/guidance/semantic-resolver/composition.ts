@@ -246,6 +246,7 @@ export const toGuidanceSemanticInput = (
       source: {
         id: item.id,
         label: `${item.scope} Hexagram ${item.hexagramNumber} Current semantic profile`,
+        kind: 'temporal-hexagram' as const,
       },
       semanticClaim: `${item.scope} contribution · ${item.contributions.movement.join(' / ')} · ${item.contributions.strategicVectors.join(' / ')}`,
       weight: item.weight,
@@ -266,6 +267,7 @@ export const toGuidanceSemanticInput = (
             source: {
               id: `${resolution.resolutionId}-coverage-gap`,
               label: 'Current semantic registry coverage gap',
+              kind: 'coverage-gap' as const,
             },
             semanticClaim: `No v1 operational profile for Hexagram ${resolution.missingProfileNumbers.join(', ')}`,
             weight: 'contextual' as const,
@@ -303,13 +305,14 @@ export const toGuidanceSemanticInput = (
     }),
     operativeWork: Object.freeze({
       dayTheme: themeForScale(resolution.scales.day),
-      hourModifier: resolution.scales.hour
+      hourTheme: resolution.scales.hour
         ? themeForScale(resolution.scales.hour)
         : {
             label: 'Hour semantic profile unavailable in the v1 registry',
             strategicVectors: [] as const,
             somaticVectors: [] as const,
           },
+      hourMaturity: resolution.hourMaturity,
       backgroundThemes,
     }),
     resolvedResponse: Object.freeze({
@@ -323,7 +326,7 @@ export const toGuidanceSemanticInput = (
       supportedVerbs,
       forbiddenVerbs,
     }),
-    evidence,
+    evidence: Object.freeze([...evidence, ...resolution.hourMaturity.evidence]),
     validFromUtc: context.validFromUtc,
     boundaries: context.boundaries,
   })

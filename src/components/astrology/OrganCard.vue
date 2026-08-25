@@ -2,15 +2,22 @@
 import { computed } from 'vue'
 
 import type { OrganMoment } from '@/domain/astrology/types'
+import {
+  MACRO_PRESENTATION,
+  MICRO_PRESENTATION,
+  type TemporalClockEvent,
+} from '@/domain/time/chu-zheng-ke'
 
 import OrganIllustration from './OrganIllustration.vue'
+import ShichenFlowTimeline from './ShichenFlowTimeline.vue'
 
 const props = withDefaults(
   defineProps<{
     organ: OrganMoment
     density?: 'glance' | 'standard'
+    lastEvent?: TemporalClockEvent
   }>(),
-  { density: 'standard' },
+  { density: 'standard', lastEvent: 'minute-passage' },
 )
 
 const emit = defineEmits<{
@@ -18,60 +25,90 @@ const emit = defineEmits<{
 }>()
 
 const compactTimeRange = computed(() => props.organ.timeRangeLabel.split('·')[0]?.trim())
+const organName = computed(() => props.organ.nameEnglish.replace(/ period$/i, ''))
+const elementLabel = computed(
+  () => props.organ.element[0]?.toUpperCase() + props.organ.element.slice(1),
+)
+const macro = computed(() => MACRO_PRESENTATION[props.organ.hourPhase.macroHour])
+const micro = computed(() => MICRO_PRESENTATION[props.organ.hourPhase.microHour])
+const accessibleSummary = computed(
+  () =>
+    `${organName.value} Organ System, ${props.organ.shichen.animalEnglish} Shíchen. ` +
+    `Macro Hour: ${macro.value.pinyin}, ${macro.value.english}. ` +
+    `Micro Hour: Phase ${props.organ.hourPhase.microHour}, ${micro.value.english}. ` +
+    `Next: ${props.organ.nextShichen.animalEnglish} Shíchen.`,
+)
 </script>
 
 <template>
-  <article class="organ-card" :class="`organ-card--${density}`" :data-density="density">
+  <article
+    class="organ-card"
+    :class="`organ-card--${density}`"
+    :data-density="density"
+    :aria-label="accessibleSummary"
+  >
     <button
       class="card-action"
       type="button"
-      :aria-label="`Open details for ${organ.nameEnglish}, active ${compactTimeRange}`"
+      :aria-label="`Open Organ System details for ${organName}, active ${compactTimeRange}`"
       @click="emit('select')"
       @keydown.enter="emit('select')"
       @keydown.space.prevent="emit('select')"
     ></button>
+
     <div class="organ-copy">
       <p class="scope">
-        {{ density === 'glance' ? 'Internal State' : 'Organ hour · active period' }}
+        {{ density === 'glance' ? 'Organ System' : 'Organ hour · active period' }}
       </p>
-      <div v-if="density === 'glance'" class="organ-glance-focus">
+
+      <div class="organ-identity">
         <OrganIllustration :organ-key="organ.key" />
-        <div v-if="organ.chuZhengKe" class="chu-zheng-ke">
-          <p class="chu-zheng-ke__eyebrow">Chu · Zheng · Ke</p>
-          <p class="chu-zheng-ke__name">
-            <span lang="zh-Hant">{{ organ.chuZhengKe.nameChinese }}</span>
-            <span aria-hidden="true"> ~ </span>
-            <span lang="zh-Latn-pinyin">{{ organ.chuZhengKe.namePinyin }}</span>
-          </p>
-          <p class="chu-zheng-ke__bounds">
-            {{ organ.chuZhengKe.timeRangeLabel }} · {{ organ.chuZhengKe.meaningEnglish }}
-          </p>
-          <p class="chu-zheng-ke__cultivation">
-            <strong>{{ organ.chuZhengKe.cultivationPhase }}</strong>
-            <span>{{ organ.chuZhengKe.cultivationGuidance }}</span>
+        <div>
+          <h2>{{ organName }} <span aria-hidden="true">·</span> {{ elementLabel }}</h2>
+          <p class="shichen-identity">
+            <span lang="zh-Hant">{{ organ.shichen.branchChinese }}</span>
+            {{ organ.shichen.animalEnglish }} Hour
           </p>
         </div>
       </div>
-      <h2>{{ organ.nameEnglish }}</h2>
-      <p v-if="organ.nameChinese" class="chinese" lang="zh">{{ organ.nameChinese }}</p>
-      <p class="time-range">
-        {{ density === 'glance' ? compactTimeRange : organ.timeRangeLabel }}
-      </p>
+
+      <dl class="phase-rows">
+        <div>
+          <dt>Macro Hour</dt>
+          <dd>
+            <span lang="zh-Hant">{{ organ.hourPhase.chineseMacroLabel }}</span>
+            {{ macro.pinyin }} <span aria-hidden="true">·</span> {{ macro.english }}
+          </dd>
+        </div>
+        <div>
+          <dt>Micro Hour</dt>
+          <dd>
+            Phase {{ organ.hourPhase.microHour }} <span aria-hidden="true">·</span>
+            <span lang="zh-Hant">{{ organ.hourPhase.chineseKeLabel }}</span>
+          </dd>
+        </div>
+      </dl>
+
+      <ShichenFlowTimeline
+        :phase="organ.hourPhase"
+        :next-shichen="organ.nextShichen"
+        :accessible-summary="accessibleSummary"
+        :density="density === 'glance' ? 'compact' : 'detailed'"
+        :last-event="lastEvent"
+      />
+
+      <p class="time-range">{{ density === 'glance' ? compactTimeRange : organ.timeRangeLabel }}</p>
       <div v-if="density !== 'glance'" class="provenance">
         <span class="status-text">{{ organ.status }}</span>
         <span>{{ organ.sourceLabel }}</span>
       </div>
     </div>
-    <OrganIllustration v-if="density !== 'glance'" :organ-key="organ.key" />
   </article>
 </template>
 
 <style scoped>
 .organ-card {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(9rem, 0.75fr);
-  min-height: 20rem;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -94,13 +131,13 @@ const compactTimeRange = computed(() => props.organ.timeRangeLabel.split('·')[0
 }
 
 .organ-copy {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 0.7rem;
   min-width: 0;
 }
 
 .scope {
-  margin-bottom: 0.65rem;
+  margin: 0;
   color: var(--jade);
   font-size: 0.7rem;
   font-weight: 800;
@@ -108,24 +145,61 @@ const compactTimeRange = computed(() => props.organ.timeRangeLabel.split('·')[0
   text-transform: uppercase;
 }
 
+.organ-identity {
+  display: grid;
+  grid-template-columns: minmax(4rem, 6rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 0.8rem;
+}
+
 h2 {
-  margin-bottom: 0.1rem;
+  margin: 0;
   font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  font-size: clamp(1.35rem, 4vw, 2.25rem);
   font-weight: 500;
+  line-height: 1.05;
   overflow-wrap: anywhere;
 }
 
-.chinese {
+.shichen-identity,
+.time-range {
+  margin: 0.2rem 0 0;
   color: var(--ink-soft);
-  font-size: 1rem;
+  font-size: 0.8rem;
+}
+
+.phase-rows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.phase-rows div {
+  min-width: 0;
+  border-left: 2px solid var(--line);
+  padding-left: 0.55rem;
+}
+
+.phase-rows dt {
+  color: var(--ink-faint);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.phase-rows dd {
+  margin: 0.18rem 0 0;
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: 0.82rem;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
 }
 
 .time-range {
-  margin: auto 0 1rem;
-  color: var(--ink-soft);
-  font-size: 0.86rem;
-  overflow-wrap: anywhere;
+  text-align: center;
 }
 
 .provenance {
@@ -148,18 +222,7 @@ h2 {
   text-transform: uppercase;
 }
 
-.provenance > span {
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-.organ-illustration {
-  align-self: center;
-  justify-self: end;
-}
-
 .organ-card--glance {
-  grid-template-columns: minmax(0, 1fr);
   min-height: 0;
   border-radius: var(--glance-card-radius, var(--radius-md));
   padding: var(--glance-card-padding, 0.65rem);
@@ -168,120 +231,85 @@ h2 {
 }
 
 .organ-card--glance .organ-copy {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr) auto auto auto;
+  grid-template-rows: auto auto auto minmax(2rem, auto) auto;
+  align-content: space-between;
   height: 100%;
-  justify-items: center;
+  gap: clamp(0.16rem, 0.55vw, 0.32rem);
 }
 
 .organ-card--glance .scope {
-  margin: 0 0 0.2rem;
   font-size: var(--glance-scope-size, 0.59rem);
   line-height: 1.15;
-  text-align: center;
 }
 
-.organ-card--glance h2 {
-  margin: 0;
-  font-size: var(--glance-organ-title-size, 0.94rem);
-  line-height: 1.05;
-  text-align: center;
-}
-
-.organ-card--glance .chinese {
-  margin: 0.08rem 0 0;
-  font-size: var(--glance-chinese-size, 0.66rem);
-  line-height: 1;
-  text-align: center;
-}
-
-.organ-card--glance .time-range {
-  margin: 0.3rem 0 0;
-  font-size: var(--glance-meta-size, 0.64rem);
-  line-height: 1.15;
-  text-align: center;
+.organ-card--glance .organ-identity {
+  grid-template-columns: auto;
+  justify-items: center;
+  gap: 0.05rem;
 }
 
 .organ-card--glance .organ-illustration {
-  width: min(100%, var(--glance-organ-size, 7.5rem));
-  align-self: auto;
-  justify-self: auto;
+  width: clamp(2.4rem, 7vw, 4.2rem);
 }
 
-.organ-glance-focus {
-  display: flex;
-  min-height: 0;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: clamp(0.25rem, 0.9vw, 0.5rem);
-  padding: clamp(0.25rem, 1vw, 0.6rem) 0.15rem;
-  text-align: center;
+.organ-card--glance h2 {
+  font-size: var(--glance-organ-title-size, 0.94rem);
+  line-height: 1.05;
 }
 
-.chu-zheng-ke {
-  display: grid;
-  justify-items: center;
-  max-width: 30rem;
-  color: var(--ink-soft);
-}
-
-.chu-zheng-ke p {
-  margin: 0;
-}
-
-.chu-zheng-ke__eyebrow {
-  color: var(--jade);
-  font-size: clamp(0.48rem, 1.15vw, 0.62rem);
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  line-height: 1.15;
-  text-transform: uppercase;
-}
-
-.chu-zheng-ke__name {
-  margin-top: 0.12rem !important;
-  color: var(--ink);
-  font-family: var(--font-serif);
-  font-size: clamp(0.72rem, 1.8vw, 1rem);
+.organ-card--glance .shichen-identity {
+  margin-top: 0.1rem;
+  font-size: var(--glance-meta-size, 0.64rem);
   line-height: 1.1;
 }
 
-.chu-zheng-ke__bounds {
-  margin-top: 0.14rem !important;
-  color: var(--ink-faint);
-  font-size: clamp(0.48rem, 1.12vw, 0.65rem);
-  line-height: 1.2;
+.organ-card--glance .phase-rows {
+  width: 100%;
+  gap: 0.2rem;
 }
 
-.chu-zheng-ke__cultivation {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.12rem 0.3rem;
-  margin-top: 0.28rem !important;
-  font-size: clamp(0.52rem, 1.2vw, 0.68rem);
-  line-height: 1.25;
-  text-wrap: balance;
+.organ-card--glance .phase-rows div {
+  border-left: 0;
+  padding: 0;
 }
 
-.chu-zheng-ke__cultivation strong {
-  color: var(--jade);
-  font-weight: 800;
+.organ-card--glance .phase-rows div + div {
+  border-left: 1px solid var(--line);
 }
 
-.chu-zheng-ke__cultivation span {
-  color: var(--ink-soft);
+.organ-card--glance .phase-rows dt {
+  font-size: clamp(0.48rem, 1.05vw, 0.58rem);
+}
+
+.organ-card--glance .phase-rows dd {
+  margin-top: 0.08rem;
+  font-size: clamp(0.6rem, 1.35vw, 0.75rem);
+}
+
+.organ-card--glance .time-range {
+  margin: 0;
+  font-size: var(--glance-meta-size, 0.64rem);
+  line-height: 1.1;
+}
+
+@media (max-width: 380px), (max-height: 720px) {
+  .organ-card--glance .organ-illustration {
+    width: 2.35rem;
+  }
+
+  .organ-card--glance .organ-copy {
+    gap: 0.08rem;
+  }
+
+  .organ-card--glance .phase-rows dd {
+    font-size: 0.54rem;
+  }
 }
 
 @media (max-width: 500px) {
-  .organ-card:not(.organ-card--glance) {
-    grid-template-columns: 1fr 7rem;
-    min-height: 17rem;
-  }
-
-  .organ-card:not(.organ-card--glance) .time-range {
-    margin-top: 1.5rem;
+  .organ-card:not(.organ-card--glance) .organ-identity,
+  .phase-rows {
+    grid-template-columns: 1fr;
   }
 }
 </style>

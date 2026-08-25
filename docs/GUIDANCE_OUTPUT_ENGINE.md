@@ -17,7 +17,8 @@ dependency, reads no browser state, and does not calculate astrology.
 `resolveGuidanceSynthesis()` accepts `GuidanceSemanticInput`, not a `CurrentFlowSnapshot`. The live
 input is produced by the Temporal Semantic Resolver adapter when an eligible operative day profile
 exists. The input
-contains a semantic condition, field description, day work, hour modulation, background signals,
+contains a semantic condition, field description, day work, hour theme, Macro Hour maturity,
+background signals,
 evidence, and future boundaries. The resolver selects one response relation, qualitative effort,
 supported and forbidden verbs, strategic and somatic vectors, and categorical completion,
 initiation, containment, and release profiles.
@@ -41,7 +42,9 @@ numeric pseudo-precision is produced.
 3. reject every hard validation failure;
 4. score remaining candidates and select deterministically.
 
-The score totals 100:
+The base score totals 100. A relation-compatible Macro maturity verb adds a 12-point deterministic
+preference and a discouraged escalation verb subtracts 12; hard validators and the response
+relation still control eligibility:
 
 | Criterion          | Weight |
 | ------------------ | -----: |
@@ -52,6 +55,10 @@ The score totals 100:
 | Grammar            |     10 |
 | Metaphor coherence |      5 |
 | Safety             |      5 |
+
+Chū can prefer onset-compatible response verbs such as `follow`, `set`, or `observe`; Zhèng can
+prefer continuation-compatible verbs such as `continue`, `steady`, or `hold`. Neither introduces a
+new response relation or raises effort.
 
 Hard validation requires exactly one sentence, exactly one semicolon, 14–26 words, one final
 period, a present-tense field clause, and an imperative response clause. It rejects first- and
@@ -82,6 +89,7 @@ Selection weights are:
 | Lunar tempo                     |     10 |
 | Solar direction                 |     10 |
 | Wu Yun Liu Qi background        |     10 |
+| Macro maturity tie-breaker      |      5 |
 
 Compatibility is validated before ranking. The selector returns one primary intention and at most
 two alternatives whose labels and leading strategic/somatic signatures are meaningfully distinct.
@@ -106,6 +114,7 @@ The validator rejects an action when it:
 
 Selection is deterministic. A requested category re-ranks only already-valid actions; it cannot
 make an incompatible action eligible.
+Macro maturity adds only a five-point tie-breaker among those valid actions.
 
 ## Cross-output validation
 
@@ -122,7 +131,9 @@ execution claim and supplies an explicit reason and source boundary.
 `resolveValidityWindow()` chooses the earliest candidate boundary after `validFromUtc`. Supported
 reasons are:
 
-- Earthly Branch hour change;
+- Shíchen change;
+- Macro Hour change when it precedes the Shíchen end;
+- legacy Earthly Branch hour change records;
 - lunar node change;
 - solar-term boundary;
 - Wu Yun Liu Qi period boundary;
@@ -133,6 +144,7 @@ execution library, and validator versions. `isGuidanceExpired()` treats the boun
 expired. The active provider caches its bundle until expiration instead of regenerating it on the
 page’s minute refresh. The temporal-semantics version is the connected resolver version; exact
 profile and registry versions remain in synthesis evidence.
+Micro Hour boundaries are intentionally absent, so ordinary Kè passage reuses the same bundle.
 
 ## Frontend behavior
 

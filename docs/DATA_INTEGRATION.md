@@ -10,10 +10,11 @@ implementation.
   GanZhi pillars, then the versioned `六十甲子配卦` King Wen lookup for hexagrams. Each temporal item
   and snapshot stores `liu-shi-jiazi-peigua-king-wen-v1`; external Fu Xi binary or XKDG Luo Pan
   positions cross an explicit normalization boundary.
-- **Organ-clock engine:** a pure domain table selects the documented two-hour period from civil time
-  in the snapshot timezone, then resolves its current 15-minute Chu / Zheng / Ke interval under the
-  selected Shixian 96-ke convention. A separate, explicitly versioned Current formalization supplies
-  the cultivation phase cue.
+- **Organ-clock engine:** a pure domain table and shared Shíchen index select the documented two-hour
+  period from the snapshot's IANA local-civil coordinate. The same resolver supplies a normalized
+  120-basis-minute coordinate and exact observed boundaries to the pure Chū–Zhèng–Kè phase engine.
+  Macro maturity enters guidance; observational Micro does not. DST gaps/repeats use the existing
+  IANA projection policy rather than fixed UTC arithmetic.
 - **Structural relationships:** pure line transformations calculate intrinsic, symmetry, interior,
   moving-line destination/path, and anatomy results with explicit provenance.
 - **Hexagram reference library:** a local 64-entry catalog supplies received Chinese names,

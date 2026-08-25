@@ -17,6 +17,15 @@ type RankedExecution = Readonly<{
 const overlaps = <T>(left: readonly T[], right: readonly T[]) =>
   left.some((value) => right.includes(value))
 
+const matchesMaturity = (definition: ExecutionDefinition, synthesis: GuidanceSynthesis) => {
+  const text = [definition.text, ...definition.strategicVectors, ...definition.somaticVectors]
+    .join(' ')
+    .toLowerCase()
+  return synthesis.operativeWork.hourMaturity.value.supportedVerbs.some((verb) =>
+    text.includes(verb),
+  )
+}
+
 const rankExecution = (
   definition: ExecutionDefinition,
   synthesis: GuidanceSynthesis,
@@ -40,6 +49,10 @@ const rankExecution = (
   if (overlaps(definition.somaticVectors, synthesis.response.somaticVectors.value)) {
     score += 10
     reasons.push('Matches the somatic response.')
+  }
+  if (matchesMaturity(definition, synthesis)) {
+    score += 5
+    reasons.push(`Fits the ${synthesis.operativeWork.hourMaturity.value.semantic} Hour maturity.`)
   }
   if (preferredCategory && definition.category === preferredCategory) {
     score += 100

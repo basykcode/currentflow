@@ -59,7 +59,9 @@ describe('CurrentFlowGlance', () => {
     expect(wrapper.get('[data-glance-item="hour"] .hexagram-title').text()).toBe(
       snapshot.temporal.hour.hexagram.nameEnglish,
     )
-    expect(wrapper.get('[data-glance-item="organ"]').text()).toContain(snapshot.organ.nameEnglish)
+    expect(wrapper.get('[data-glance-item="organ"]').text()).toContain(
+      snapshot.organ.nameEnglish.replace(/ period$/i, ''),
+    )
     expect(snapshot.guidance.status).toBe('available')
     if (snapshot.guidance.status !== 'available') throw new Error('Expected demo guidance.')
     expect(wrapper.get('[data-glance-section="oltr"]').text()).toContain(
@@ -186,18 +188,21 @@ describe('CurrentFlowGlance', () => {
     }
 
     const organCard = wrapper.get('[data-glance-item="organ"]')
-    expect(organCard.get('.scope').text()).toBe('Internal State')
-    expect(organCard.get('.organ-glance-focus .organ-illustration').attributes('data-organ')).toBe(
+    expect(organCard.get('.scope').text()).toBe('Organ System')
+    expect(organCard.get('.organ-identity .organ-illustration').attributes('data-organ')).toBe(
       snapshot.organ.key,
     )
-    expect(organCard.get('.chu-zheng-ke__name').text()).toBe('正初刻 ~ Zhèng Chū Kè')
-    expect(organCard.get('.chu-zheng-ke__bounds').text()).toBe(
-      '16:00–16:15 · Second half · opening quarter',
-    )
-    expect(organCard.get('.chu-zheng-ke__cultivation').text()).toContain('Fullness')
-    expect(organCard.get('.chu-zheng-ke__cultivation').text()).toContain(
-      'Energy enters full expression.',
-    )
+    expect(organCard.get('h2').text()).toContain('Bladder · Water')
+    expect(organCard.get('.shichen-identity').text()).toContain('申 Monkey Hour')
+    expect(organCard.get('.phase-rows').text()).toContain('正 Zhèng · Established')
+    expect(organCard.get('.phase-rows').text()).toContain('Phase 0 ·')
+    expect(organCard.get('.phase-rows').text()).toContain('初刻')
+    expect(organCard.findAll('[data-node-kind="major"]')).toHaveLength(3)
+    expect(organCard.findAll('[data-node-kind="minor"]')).toHaveLength(6)
+    expect(organCard.findAll('[data-segment]')).toHaveLength(8)
+    expect(organCard.text()).toContain('NEXT')
+    expect(organCard.text()).not.toContain('END')
+    expect(organCard.text()).not.toContain('Cultivation')
     expect(organCard.get('.organ-copy').element.lastElementChild?.classList).toContain('time-range')
 
     for (const scope of ['year', 'day', 'month', 'hour']) {
@@ -242,8 +247,10 @@ describe('CalculationProvenanceDetails', () => {
     expect(wrapper.text()).toContain(snapshot.provenance.mappingVersion)
     expect(wrapper.text()).toContain('King Wen · canonical 1–64 ID')
     expect(wrapper.text()).toContain(snapshot.organ.sourceLabel)
-    expect(wrapper.text()).toContain(snapshot.organ.chuZhengKe?.sourceLabel)
-    expect(wrapper.text()).toContain(snapshot.organ.chuZhengKe?.cultivationSourceLabel)
+    expect(wrapper.text()).toContain(snapshot.organ.hourPhase.methodologyId)
+    expect(wrapper.text()).toContain(snapshot.organ.hourPhase.timeBasis)
+    expect(wrapper.text()).toContain('Micro Hour is observational')
+    expect(wrapper.text()).not.toContain('cultivation phase model')
     expect(wrapper.text()).toContain(snapshot.provenance.providerId)
     expect(wrapper.findAll('.temporal-details article')).toHaveLength(4)
   })

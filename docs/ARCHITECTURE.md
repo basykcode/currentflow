@@ -31,9 +31,9 @@ commentary or calls a model. See
 [`GUIDANCE_OUTPUT_ARCHITECTURE.md`](GUIDANCE_OUTPUT_ARCHITECTURE.md).
 
 The top of the Astrology route is composed by `CurrentFlowGlance`: a presentation-only projection
-of that snapshot into compact temporal-card densities, the `Internal State` presentation of Organ
-Hour, and the bundle OLTR or unavailable state. The canonical glyph, organ illustration, and
-app-level inspector remain shared.
+of that snapshot into compact temporal-card densities, the `Organ System` presentation of Organ
+Hour, and the bundle OLTR or unavailable state. The canonical glyph, organ illustration, Taiji
+marker, and app-level inspector remain shared.
 A pure Ganzhi identity helper selects one of 60 local animal-element illustrations for a separate
 presentation row immediately below each stem-branch label and immediately above each temporal
 glyph; this presentation does not participate in the calendar or hexagram calculation. Compact
@@ -43,10 +43,13 @@ pillar bounds, engine and mapping labels, status, and provider notes move into a
 [`CURRENT_FLOW_GLANCE_LAYOUT.md`](CURRENT_FLOW_GLANCE_LAYOUT.md) and
 [`ZODIAC_ART_ASSETS.md`](ZODIAC_ART_ASSETS.md).
 
-The same glance projection renders the current 15-minute Chu / Zheng / Ke subdivision supplied by
-the provider's pure Organ Clock domain helper. Historical interval identity and civil bounds are
-kept separate from the eight-phase cultivation cue, which is labeled as a Current Flow product
-formalization and carries its own source status.
+The framework-independent `src/domain/time/chu-zheng-ke` package classifies exact Macro/Micro phase
+from a normalized coordinate supplied by the same Shíchen resolver that owns Organ/Branch identity.
+`useShichenPhaseClock` performs minute-aligned live sampling or respects a frozen selected instant.
+Macro maturity extends the Temporal Semantic Resolver and validity window without changing Hour
+identity or effort; Micro remains presentation-only. `ShichenFlowTimeline` renders the typed phase
+and contains no calculation ownership. See [`CHU_ZHENG_KE_CLOCK.md`](CHU_ZHENG_KE_CLOCK.md) and
+[`ORGAN_SYSTEM_TEMPORAL_FLOW_UI.md`](ORGAN_SYSTEM_TEMPORAL_FLOW_UI.md).
 
 All five glance cards share one inner-geometry contract: equal responsive padding, a fixed heading
 row, a flexible middle visual row, and bottom-anchored identity text. Temporal glyph bars remain
