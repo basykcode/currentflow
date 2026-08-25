@@ -12,6 +12,6 @@ describe('BrandMark', () => {
     expect(logo.attributes('alt')).toBe('')
     expect(logo.attributes('aria-hidden')).toBe('true')
     expect(logo.attributes('width')).toBe('512')
-    expect(logo.attributes('height')).toBe('502')
+    expect(logo.attributes('height')).toBe('512')
   })
 })

@@ -9,7 +9,7 @@ import currentFlowLogoUrl from '@/assets/brand/current-flow-logo.png'
     alt=""
     aria-hidden="true"
     width="512"
-    height="502"
+    height="512"
     draggable="false"
   />
 </template>
@@ -20,6 +20,8 @@ import currentFlowLogoUrl from '@/assets/brand/current-flow-logo.png'
   width: 2.9rem;
   height: auto;
   max-height: calc(var(--app-header-content-height) - 1rem);
+  border-radius: 50%;
+  clip-path: circle(49% at center);
   object-fit: contain;
   user-select: none;
 }
