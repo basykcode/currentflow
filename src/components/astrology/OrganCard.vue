@@ -33,9 +33,9 @@ const macro = computed(() => MACRO_PRESENTATION[props.organ.hourPhase.macroHour]
 const micro = computed(() => MICRO_PRESENTATION[props.organ.hourPhase.microHour])
 const accessibleSummary = computed(
   () =>
-    `${organName.value} Organ System, ${props.organ.shichen.animalEnglish} Shíchen. ` +
+    `${organName.value} Organ System. ` +
     `Macro Hour: ${macro.value.pinyin}, ${macro.value.english}. ` +
-    `Micro Hour: Phase ${props.organ.hourPhase.microHour}, ${micro.value.english}. ` +
+    `Micro Hour: ${micro.value.pinyin}, Phase ${props.organ.hourPhase.microHour}, ${micro.value.english}. ` +
     `Next: ${props.organ.nextShichen.animalEnglish} Shíchen.`,
 )
 </script>
@@ -65,10 +65,6 @@ const accessibleSummary = computed(
         <OrganIllustration :organ-key="organ.key" />
         <div>
           <h2>{{ organName }} <span aria-hidden="true">·</span> {{ elementLabel }}</h2>
-          <p class="shichen-identity">
-            <span lang="zh-Hant">{{ organ.shichen.branchChinese }}</span>
-            {{ organ.shichen.animalEnglish }} Hour
-          </p>
         </div>
       </div>
 
@@ -83,8 +79,9 @@ const accessibleSummary = computed(
         <div>
           <dt>Micro Hour</dt>
           <dd>
-            Phase {{ organ.hourPhase.microHour }} <span aria-hidden="true">·</span>
             <span lang="zh-Hant">{{ organ.hourPhase.chineseKeLabel }}</span>
+            {{ micro.pinyin }} <span aria-hidden="true">·</span> Phase
+            {{ organ.hourPhase.microHour }}
           </dd>
         </div>
       </dl>
@@ -161,7 +158,6 @@ h2 {
   overflow-wrap: anywhere;
 }
 
-.shichen-identity,
 .time-range {
   margin: 0.2rem 0 0;
   color: var(--ink-soft);
@@ -255,12 +251,6 @@ h2 {
 .organ-card--glance h2 {
   font-size: var(--glance-organ-title-size, 0.94rem);
   line-height: 1.05;
-}
-
-.organ-card--glance .shichen-identity {
-  margin-top: 0.1rem;
-  font-size: var(--glance-meta-size, 0.64rem);
-  line-height: 1.1;
 }
 
 .organ-card--glance .phase-rows {

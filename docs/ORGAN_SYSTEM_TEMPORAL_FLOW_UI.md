@@ -6,18 +6,22 @@ The lower-left home card retains the existing Organ Hour domain and full-card de
 but its glance label is `ORGAN SYSTEM`. Its visual hierarchy is:
 
 1. Organ and element;
-2. Earthly Branch and animal Shíchen;
-3. Macro Hour (`初 Chū · Entering` or `正 Zhèng · Established`);
-4. Micro Hour (`Phase 0–3` with its Kè label);
-5. the complete Shíchen timeline;
-6. the active two-hour civil range.
+2. Macro Hour (`初 Chū · Entering` or `正 Zhèng · Established`);
+3. Micro Hour (for example, `初刻 Chū Kè · Phase 0`);
+4. the complete Shíchen timeline;
+5. the active two-hour civil range.
+
+The adjacent Hour card already identifies the Branch/animal Hour, so the Organ System card does not
+repeat that visible line. The underlying Shíchen identity remains part of the typed Organ state,
+calculation details, and timeline transition. The compact card's accessible summary likewise avoids
+repeating the current animal Hour while retaining the next-Shíchen transition.
 
 The paired Organ System and Hour Hexagram remain equal-width grid columns.
 
 ## Compact and detailed densities
 
 `ShichenFlowTimeline` has `compact` and `detailed` densities. The compact home card shows three
-major labels—`初`, `正`, and `NEXT`—and no explanatory paragraphs. The calculation disclosure uses
+major labels—`初`, `正`, and `次`—and no explanatory paragraphs. The calculation disclosure uses
 the detailed density, lists all eight Kè, names the next Branch, and shows model, time basis, exact
 UTC bounds, warnings, and guidance-boundary behavior.
 
@@ -32,7 +36,9 @@ The original dependency-free SVG contains:
 - an active-segment difference in stroke width and fill/stroke geometry;
 - one shared `CurrentTaijiMark` present marker.
 
-The last node is `NEXT`, never `END`, because it represents transformation into the next Shíchen.
+The last node is `次` (_cì_, next), never `END`, because it represents transformation into the next
+Shíchen. In detailed density, the upcoming Branch appears immediately before `次` while the
+character itself remains geometrically anchored beneath the final major node.
 Timeline position remains internal; no percentage, elapsed/remaining minute, countdown, or seconds
 are displayed.
 
@@ -69,5 +75,7 @@ per-minute live region; Micro passage does not repeatedly interrupt screen reade
 
 The timeline uses a stable viewBox, responsive width, inset terminal nodes, and a clipped-safe HTML
 marker overlay. Compact typography and art reduce further below 380px or 720px viewport height.
+The three structural labels are positioned at the same 4%, 50%, and 96% coordinates as their major
+nodes, so inherited card text alignment cannot shift `初` onto the first minor Kè boundary.
 The document remains naturally scrollable rather than hiding content. Verification targets are
 375×667, 390×844, 393×852, 430×932, tablet, and desktop.

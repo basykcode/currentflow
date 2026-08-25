@@ -38,7 +38,7 @@ earlier existing semantic boundary and excludes Micro.
 ## UI and scheduler fixtures
 
 Component tests assert `ORGAN SYSTEM`, Organ/element, Branch/animal, Macro/Micro labels, three major
-nodes, six minor nodes, eight segments, `NEXT`, shared Taiji use, whole-minute marker targets,
+nodes, six minor nodes, eight segments, `次`, shared Taiji use, whole-minute marker targets,
 initial/reset transition policy, detailed eight-Kè structure, accessible summary, and absence of
 progress/countdown language. Scheduler tests cover exact alignment, recursive sampling, and frozen
 selected instants.

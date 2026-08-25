@@ -11,12 +11,23 @@ export const MACRO_PRESENTATION = Object.freeze({
 })
 
 export const MICRO_PRESENTATION: Readonly<
-  Record<MicroHour, Readonly<{ chinese: '初刻' | '一刻' | '二刻' | '三刻'; english: string }>>
+  Record<
+    MicroHour,
+    Readonly<{
+      chinese: '初刻' | '一刻' | '二刻' | '三刻'
+      pinyin: 'Chū Kè' | 'Yī Kè' | 'Èr Kè' | 'Sān Kè'
+      english: string
+    }>
+  >
 > = Object.freeze({
-  0: Object.freeze({ chinese: '初刻', english: 'First Kè of current Macro Hour' }),
-  1: Object.freeze({ chinese: '一刻', english: 'Second Kè' }),
-  2: Object.freeze({ chinese: '二刻', english: 'Third Kè' }),
-  3: Object.freeze({ chinese: '三刻', english: 'Fourth Kè' }),
+  0: Object.freeze({
+    chinese: '初刻',
+    pinyin: 'Chū Kè',
+    english: 'First Kè of current Macro Hour',
+  }),
+  1: Object.freeze({ chinese: '一刻', pinyin: 'Yī Kè', english: 'Second Kè' }),
+  2: Object.freeze({ chinese: '二刻', pinyin: 'Èr Kè', english: 'Third Kè' }),
+  3: Object.freeze({ chinese: '三刻', pinyin: 'Sān Kè', english: 'Fourth Kè' }),
 })
 
 export const macroLabel = (macroHour: MacroHour) => MACRO_PRESENTATION[macroHour]

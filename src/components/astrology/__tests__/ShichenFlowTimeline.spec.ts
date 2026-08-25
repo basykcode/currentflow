@@ -47,8 +47,11 @@ describe('ShichenFlowTimeline', () => {
     expect(wrapper.findAllComponents(CurrentTaijiMark)).toHaveLength(1)
     expect(wrapper.get('[data-marker-position]').attributes('data-marker-position')).toBe('90')
     expect(wrapper.get('figcaption').text()).toBe(summary)
-    expect(wrapper.text()).toContain('NEXT')
+    expect(wrapper.get('[data-timeline-label="chu"]').text()).toBe('初')
+    expect(wrapper.get('[data-timeline-label="zheng"]').text()).toBe('正')
+    expect(wrapper.get('[data-timeline-label="next"]').text()).toBe('次')
     expect(wrapper.text()).not.toMatch(/END|percent|countdown|seconds/i)
+    expect(wrapper.text()).not.toContain('NEXT')
     expect(wrapper.classes()).not.toContain('shichen-timeline--transition-ready')
   })
 
@@ -105,6 +108,6 @@ describe('ShichenFlowTimeline', () => {
 
     expect(wrapper.findAll('.ke-legend li')).toHaveLength(8)
     expect(wrapper.text()).toContain('Established · fourth Kè')
-    expect(wrapper.text()).toContain('NEXT · 未')
+    expect(wrapper.get('[data-timeline-label="next"]').text()).toBe('未 · 次')
   })
 })

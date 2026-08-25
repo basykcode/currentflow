@@ -30,9 +30,6 @@ const activeSegment = computed(() =>
   Math.min(7, Math.floor(props.phase.shichenElapsedWholeMinutes / 15)),
 )
 const transitionEnabled = computed(() => mounted.value && props.lastEvent !== 'shichen-change')
-const nextLabel = computed(() =>
-  props.density === 'detailed' ? `NEXT · ${props.nextShichen.branchChinese}` : 'NEXT',
-)
 
 onMounted(() => {
   window.requestAnimationFrame(() => {
@@ -89,9 +86,18 @@ onMounted(() => {
     </div>
 
     <div class="timeline-labels" aria-hidden="true">
-      <span lang="zh-Hant">初</span>
-      <span lang="zh-Hant">正</span>
-      <span>{{ nextLabel }}</span>
+      <span class="timeline-label timeline-label--chu" data-timeline-label="chu" lang="zh-Hant">
+        初
+      </span>
+      <span class="timeline-label timeline-label--zheng" data-timeline-label="zheng" lang="zh-Hant">
+        正
+      </span>
+      <span class="timeline-label timeline-label--next" data-timeline-label="next">
+        <span v-if="density === 'detailed'" class="timeline-label__next-branch" lang="zh-Hant">
+          {{ nextShichen.branchChinese }} ·
+        </span>
+        <span lang="zh-Hant">次</span>
+      </span>
     </div>
 
     <ol v-if="density === 'detailed'" class="ke-legend" aria-label="Eight Kè structure">
@@ -183,8 +189,8 @@ svg {
 }
 
 .timeline-labels {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  position: relative;
+  height: 0.55rem;
   margin-top: -0.22rem;
   color: var(--ink-faint);
   font-size: 0.55rem;
@@ -193,12 +199,29 @@ svg {
   line-height: 1;
 }
 
-.timeline-labels span:nth-child(2) {
-  text-align: center;
+.timeline-label {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
 }
 
-.timeline-labels span:last-child {
-  text-align: right;
+.timeline-label--chu {
+  left: 4%;
+}
+
+.timeline-label--zheng {
+  left: 50%;
+}
+
+.timeline-label--next {
+  left: 96%;
+}
+
+.timeline-label__next-branch {
+  position: absolute;
+  top: 0;
+  right: calc(100% + 0.28em);
 }
 
 .shichen-timeline--detailed .timeline-stage {

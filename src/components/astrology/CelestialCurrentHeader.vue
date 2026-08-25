@@ -130,6 +130,7 @@ h1 {
 .current-flow-title__flow {
   display: inline-flex;
   align-items: baseline;
+  justify-self: center;
   gap: 0.18em;
 }
 

@@ -41,7 +41,7 @@ const accessibleSummary = computed(
   () =>
     `${organName.value} Organ System, ${props.snapshot.organ.shichen.animalEnglish} Shíchen. ` +
     `Macro Hour: ${macro.value.pinyin}, ${macro.value.english}. ` +
-    `Micro Hour: Phase ${props.snapshot.organ.hourPhase.microHour}, ${micro.value.english}. ` +
+    `Micro Hour: ${micro.value.pinyin}, Phase ${props.snapshot.organ.hourPhase.microHour}, ${micro.value.english}. ` +
     `Next: ${props.snapshot.organ.nextShichen.animalEnglish} Shíchen.`,
 )
 
@@ -151,8 +151,8 @@ defineExpose({ open })
             <div>
               <dt>Micro Hour</dt>
               <dd>
-                Phase {{ snapshot.organ.hourPhase.microHour }} ·
-                <span lang="zh-Hant">{{ snapshot.organ.hourPhase.chineseKeLabel }}</span> ·
+                <span lang="zh-Hant">{{ snapshot.organ.hourPhase.chineseKeLabel }}</span>
+                {{ micro.pinyin }} · Phase {{ snapshot.organ.hourPhase.microHour }} ·
                 {{ micro.english }}
               </dd>
             </div>

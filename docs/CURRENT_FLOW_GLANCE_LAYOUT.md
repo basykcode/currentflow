@@ -109,12 +109,14 @@ while a card with enough width keeps all three terms in their ordinary single-li
 ## Organ System temporal flow
 
 The home label is `ORGAN SYSTEM`; the underlying Organ Hour domain remains unchanged. One centered
-column presents Organ/element, Branch/animal, Macro Hour, Micro Hour, the compact complete-Shíchen
-timeline, and the two-hour range. The timeline has three major nodes, six minor nodes, eight Kè
-segments, and a slowly rotating Taiji present marker. Its final node is `NEXT`.
+column presents Organ/element, Macro Hour, Micro Hour, the compact complete-Shíchen timeline, and the
+two-hour range. The redundant Branch/animal Hour line remains available in the adjacent Hour card
+and is not repeated here. The timeline has three major nodes, six minor nodes, eight Kè segments,
+and a slowly rotating Taiji present marker. Its final node is `次` (_cì_, next).
 
-Chū / Entering and Zhèng / Established are subordinate guidance maturity. Phase 0–3 and the Kè
-labels are observational. No independent Micro interpretation is displayed. The detailed timeline,
+Chū / Entering and Zhèng / Established are subordinate guidance maturity. Micro Hour follows the
+same Chinese → Pinyin → English-product-label order: for example, `初刻 Chū Kè · Phase 0`. Phase 0–3
+and the Kè labels are observational. No independent Micro interpretation is displayed. The detailed timeline,
 96-kè methodology, local-civil basis, exact UTC bounds, warnings, and semantic-boundary explanation
 remain visible in `Calculated From`.
 
