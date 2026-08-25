@@ -57,8 +57,11 @@ no runtime astronomy network request.
   console warnings or errors.
 - Production 150% text passed at both available browser surfaces with natural vertical scrolling
   and no horizontal clipping/overlap. Reduced-motion media behavior and explicit mode passed
-  automated coverage. The previously staged component passed the documented exact 375×667 through
-  1728×1000 matrix; this browser session exposed 417×801 and 1280×720 for production inspection.
+  automated coverage.
+- The real production route passed an exact 375×667, 390×844, 393×852, 430×932, 768×1024,
+  1366×768, and 1728×1000 iframe viewport matrix. All seven had two instruments, clock and OLTR,
+  no horizontal overflow, no instrument/clock or header/card overlap, and markers contained within
+  their rings.
 
 ## Validation status and discrepancy
 

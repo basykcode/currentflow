@@ -78,10 +78,12 @@ inspected; the console contained no application warning or error.
 At 150% root text, the same production Home passed on 417×801 and 1280×720 with no horizontal
 overflow or instrument/clock overlap; natural vertical scrolling was available. Reduced-motion
 behavior is enforced by both the system media query and the explicit component mode and is covered
-by automated tests. The staged header's prior exact matrix (375×667, 390×844, 393×852, 430×932,
-768×1024, 1366×768, and 1728×1000) remains documented in its originating handoff; the current
-in-app browser exposed the two production viewport sizes above rather than arbitrary viewport
-resizing.
+by automated tests.
+
+The real production route also passed an exact same-origin iframe viewport matrix at 375×667,
+390×844, 393×852, 430×932, 768×1024, 1366×768, and 1728×1000. Every viewport reported its exact
+requested inner dimensions, two instruments, a visible clock and OLTR, no horizontal overflow, no
+Moon/clock or Sun/clock overlap, no header/card overlap, and both Taiji markers inside their rings.
 
 ## Verification commands
 
