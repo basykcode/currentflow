@@ -1,3 +1,20 @@
+# Celestial Current source decision
+
+Decision:
+Use local `astronomy-engine` adapter.
+
+Resolution commit:
+`a23078d2e7310c7122668424bf76fe42c2619d0d`
+
+Status:
+Resolved
+
+The record below is retained as the historical pre-decision gate. See
+`docs/CELESTIAL_EPHEMERIS_PROVIDER.md` and `docs/CELESTIAL_CURRENT_VALIDATION.md` for the accepted
+boundary and current validation status.
+
+## Historical gate
+
 MANUAL PRODUCT OR TECHNICAL DECISION REQUIRED
 
 Blocker: The repository has no Global Conditions Engine and no authoritative continuous Moon or Sun astronomical source.
