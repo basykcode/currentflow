@@ -16,8 +16,15 @@ withDefaults(
     sectionLabel?: string
     selectedTimeJump?: boolean
     compact?: boolean
+    instantUtc?: string | undefined
+    liveClock?: boolean
   }>(),
-  { sectionLabel: 'The Current Flow', selectedTimeJump: false, compact: false },
+  {
+    sectionLabel: 'The Current Flow',
+    selectedTimeJump: false,
+    compact: false,
+    liveClock: true,
+  },
 )
 
 const emit = defineEmits<{
@@ -43,7 +50,12 @@ const emit = defineEmits<{
 
     <div class="celestial-current-header__center">
       <h1 id="current-flow-heading">{{ sectionLabel }}</h1>
-      <YinClock :timezone="timezone" :compact="compact" />
+      <YinClock
+        :timezone="timezone"
+        :compact="compact"
+        :instant-utc="instantUtc"
+        :live="liveClock"
+      />
     </div>
 
     <SolarCurrentInstrument

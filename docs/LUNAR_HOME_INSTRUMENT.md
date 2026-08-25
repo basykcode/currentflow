@@ -46,8 +46,9 @@ The marker orbit and Taiji self-rotation use separate elements. Ordinary source 
 interpolate over the shortest angular path. Initial render and selected/simulated time jumps place
 the marker directly at the supplied target. Reduced motion disables interpolation and self-rotation.
 
-The intended production cadence is hourly plus relevant source boundaries and visibility resume,
-but no scheduler is connected until the authoritative Global Conditions owner is selected.
+The production cadence is hourly plus an exact major lunar event when sooner, with recalculation on
+visibility resume. Selected/simulated instants bypass the live presentation cache and render
+immediately without interpolation.
 
 ## Methodology IDs
 
@@ -56,3 +57,6 @@ but no scheduler is connected until the authoritative Global Conditions owner is
 - labels: `moon-home-cantongqi-labels:v1`
 - movement: `moon-home-yinyang-movement:v1`
 - marker geometry: `celestial-marker-geometry:top-clockwise-v1`
+- ephemeris: `celestial-ephemeris:astronomy-engine-v1`
+- lunar events: `lunar-events:search-moon-phase-v1`
+- traditional date: `chinese-lunar-date:lunar-javascript-asia-shanghai-v1`

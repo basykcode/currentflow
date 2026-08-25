@@ -90,4 +90,27 @@ describe('YinClock', () => {
 
     wrapper.unmount()
   })
+
+  it('freezes an explicit selected instant without scheduling live updates', async () => {
+    vi.useFakeTimers()
+    vi.setSystemTime(new Date('2026-08-22T14:25:40.000Z'))
+    const wrapper = mount(YinClock, {
+      props: {
+        timezone: 'Asia/Shanghai',
+        instantUtc: '1999-12-31T23:44:30.000Z',
+        live: false,
+      },
+    })
+
+    expect(wrapper.get('.yin-clock').attributes('data-clock-mode')).toBe('selected')
+    expect(wrapper.get('.yin-clock').attributes('data-authoritative-instant')).toBe(
+      '1999-12-31T23:44:30.000Z',
+    )
+    expect(wrapper.get('time').attributes('datetime')).toBe('1999-12-31T23:44:30.000Z')
+    expect(wrapper.get('time').text()).toBe('07:44:30')
+
+    await vi.advanceTimersByTimeAsync(60_000)
+    expect(wrapper.get('time').text()).toBe('07:44:30')
+    wrapper.unmount()
+  })
 })

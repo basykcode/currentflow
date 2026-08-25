@@ -1,32 +1,68 @@
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+
 import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
+import {
+  presentLunarHomeInstrument,
+  presentSolarHomeInstrument,
+  type CelestialCurrentSnapshot,
+  type CelestialDetailsTarget,
+} from '@/domain/current-flow/celestial-instruments'
 import type { TemporalClockEvent } from '@/domain/time/chu-zheng-ke'
 
+import CelestialCurrentDetails from './CelestialCurrentDetails.vue'
+import CelestialCurrentHeader from './CelestialCurrentHeader.vue'
 import CurrentFlowOltr from './CurrentFlowOltr.vue'
 import FiveElementComposition from './FiveElementComposition.vue'
-import YinClock from './YinClock.vue'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     snapshot: CurrentFlowSnapshot
+    celestial?: CelestialCurrentSnapshot | undefined
     timezone: string
     sectionLabel?: string
     lastTemporalEvent?: TemporalClockEvent
+    selectedTimeJump?: boolean
   }>(),
-  { sectionLabel: 'The Current Flow', lastTemporalEvent: 'minute-passage' },
+  {
+    sectionLabel: 'The Current Flow',
+    lastTemporalEvent: 'minute-passage',
+    selectedTimeJump: false,
+  },
 )
 
 const emit = defineEmits<{
   openOrganDetails: []
 }>()
+
+const details = ref<{ open: (target: CelestialDetailsTarget) => Promise<void> } | null>(null)
+const lunar = computed(() => props.celestial?.lunarHome ?? presentLunarHomeInstrument(null))
+const solar = computed(() => props.celestial?.solarHome ?? presentSolarHomeInstrument(null))
+const openDetails = (target: CelestialDetailsTarget) => {
+  void details.value?.open(target)
+}
 </script>
 
 <template>
-  <section class="current-flow-glance" aria-labelledby="current-flow-heading">
-    <header class="glance-header" data-glance-section="header">
-      <h1 id="current-flow-heading">{{ sectionLabel }}</h1>
-      <YinClock :timezone="timezone" />
-    </header>
+  <section
+    class="current-flow-glance"
+    aria-labelledby="current-flow-heading"
+    :data-moment-signature-instant="snapshot.generatedAtIso"
+    :data-celestial-instant="celestial?.instantUtc"
+  >
+    <CelestialCurrentHeader
+      class="glance-header"
+      data-glance-section="header"
+      :lunar="lunar"
+      :solar="solar"
+      :timezone="timezone"
+      :section-label="sectionLabel"
+      :selected-time-jump="selectedTimeJump"
+      :instant-utc="snapshot.generatedAtIso"
+      :live-clock="!selectedTimeJump"
+      @open-lunar-details="openDetails(lunar.detailsTarget)"
+      @open-solar-details="openDetails(solar.detailsTarget)"
+    />
 
     <FiveElementComposition
       class="glance-signature"
@@ -37,6 +73,14 @@ const emit = defineEmits<{
     />
 
     <CurrentFlowOltr data-glance-section="oltr" :bundle="snapshot.guidance" />
+
+    <CelestialCurrentDetails
+      ref="details"
+      :lunar="lunar"
+      :solar="solar"
+      :snapshot="celestial"
+      @retry="() => undefined"
+    />
   </section>
 </template>
 
@@ -69,20 +113,7 @@ const emit = defineEmits<{
 }
 
 .glance-header {
-  display: grid;
-  justify-items: center;
-  gap: clamp(0.2rem, 0.7dvh, 0.45rem);
   min-width: 0;
-  text-align: center;
-}
-
-h1 {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(1.35rem, 4.8vw, 1.9rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
-  line-height: 1;
 }
 
 .glance-signature {
@@ -112,13 +143,6 @@ h1 {
     padding-block: 0.35rem max(0.55rem, env(safe-area-inset-bottom));
   }
 
-  .glance-header {
-    gap: 0.12rem;
-  }
-
-  h1 {
-    font-size: clamp(1.2rem, 5.2vw, 1.42rem);
-  }
 }
 
 @media (min-width: 768px) {

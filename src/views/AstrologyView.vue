@@ -6,11 +6,14 @@ import CurrentFlowGlance from '@/components/astrology/CurrentFlowGlance.vue'
 import SynthesisPanel from '@/components/astrology/SynthesisPanel.vue'
 import { useShichenPhaseClock } from '@/composables/useShichenPhaseClock'
 import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
+import type { CelestialCurrentSnapshot } from '@/domain/current-flow/celestial-instruments'
+import { celestialCurrentProvider } from '@/providers/localDeterministicCelestialCurrent'
 import { currentFlowProvider } from '@/providers/currentFlow'
 import { usePreferencesStore } from '@/stores/preferences'
 
 const preferences = usePreferencesStore()
 const snapshot = ref<CurrentFlowSnapshot | null>(null)
+const celestial = ref<CelestialCurrentSnapshot | null>(null)
 const calculationDetails = ref<{ open: () => Promise<void> } | null>(null)
 const loading = ref(true)
 const errorMessage = ref('')
@@ -26,17 +29,33 @@ const timezoneLabel = computed(
 
 const phaseClock = useShichenPhaseClock({
   selectedInstant,
-  load: (instant) =>
-    currentFlowProvider.getSnapshot(instant, {
+  load: async (instant) => {
+    const currentFlow = await currentFlowProvider.getSnapshot(instant, {
       timezone: preferences.timezone,
       ...(preferences.locationLabel ? { locationLabel: preferences.locationLabel } : {}),
-    }),
-  toClockState: (nextSnapshot) => ({
-    shichenId: nextSnapshot.organ.shichen.id,
-    hourPhase: nextSnapshot.organ.hourPhase,
+    })
+    const celestialCurrent = celestialCurrentProvider.calculate(instant, {
+      mode: selectedInstant.value ? 'selected' : 'live',
+    })
+    if (
+      currentFlow.generatedAtIso !== celestialCurrent.instantUtc ||
+      currentFlow.generatedAtIso !== instant.toISOString()
+    ) {
+      throw new Error('Temporal and celestial snapshots did not use the same instant.')
+    }
+    return Object.freeze({ currentFlow, celestialCurrent })
+  },
+  toClockState: ({ currentFlow }) => ({
+    shichenId: currentFlow.organ.shichen.id,
+    hourPhase: currentFlow.organ.hourPhase,
   }),
-  onValue: (nextSnapshot) => {
-    snapshot.value = nextSnapshot
+  nextSampleAt: ({ celestialCurrent }) =>
+    celestialCurrent.nextRecommendedUpdateUtc
+      ? new Date(celestialCurrent.nextRecommendedUpdateUtc)
+      : null,
+  onValue: ({ currentFlow, celestialCurrent }) => {
+    snapshot.value = currentFlow
+    celestial.value = celestialCurrent
     loading.value = false
     errorMessage.value = ''
   },
@@ -57,12 +76,14 @@ const openOrganDetails = () => {
     <div v-else-if="loading && !snapshot" class="loading-state" aria-live="polite">
       Calculating the current temporal factors…
     </div>
-    <template v-else-if="snapshot">
+    <template v-else-if="snapshot && celestial">
       <CurrentFlowGlance
         :snapshot="snapshot"
+        :celestial="celestial"
         :timezone="timezoneLabel"
         :section-label="flowPresentation.sectionLabel"
         :last-temporal-event="phaseClock.lastEvent.value"
+        :selected-time-jump="selectedInstant !== null"
         @open-organ-details="openOrganDetails"
       />
       <CalculationProvenanceDetails

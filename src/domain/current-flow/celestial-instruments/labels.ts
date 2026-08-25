@@ -1,5 +1,6 @@
 import { CELESTIAL_INSTRUMENT_METHODOLOGY } from './methodology'
 import type {
+  AnnualYinYangMovement,
   BranchMonthDefinition,
   CantongQiDisplayDefinition,
   CantongQiNodeId,
@@ -126,3 +127,40 @@ const SOLAR_TERM_BY_ID = new Map(
 )
 
 export const getSolarTermDisplayDefinition = (id: string) => SOLAR_TERM_BY_ID.get(id) ?? null
+
+const SOLAR_TERM_BY_LONGITUDE = new Map(
+  SOLAR_TERM_DISPLAY_DEFINITIONS.map((definition) => [definition.solarLongitudeDegrees, definition]),
+)
+
+export const getSolarTermDisplayDefinitionByLongitude = (solarLongitudeDegrees: number) =>
+  SOLAR_TERM_BY_LONGITUDE.get(((solarLongitudeDegrees % 360) + 360) % 360) ?? null
+
+const ANNUAL_MOVEMENT_BY_TERM = Object.freeze({
+  dongzhi: 'Yang Returning',
+  xiaohan: 'Yang Returning',
+  dahan: 'Yang Returning',
+  lichun: 'Yang Emerging',
+  yushui: 'Yang Emerging',
+  jingzhe: 'Yang Emerging',
+  chunfen: 'Yang Growing',
+  qingming: 'Yang Growing',
+  guyu: 'Yang Growing',
+  lixia: 'Yang Growing',
+  xiaoman: 'Yang Growing',
+  mangzhong: 'Yang Growing',
+  xiazhi: 'Yang Full',
+  xiaoshu: 'Yang Full',
+  dashu: 'Yang Full',
+  liqiu: 'Yin Emerging',
+  chushu: 'Yang Descending',
+  bailu: 'Yang Descending',
+  qiufen: 'Yin Growing',
+  hanlu: 'Yin Growing',
+  shuangjiang: 'Yin Growing',
+  lidong: 'Yin Full',
+  xiaoxue: 'Yin Full',
+  daxue: 'Yin Full',
+} as const satisfies Readonly<Record<string, AnnualYinYangMovement>>)
+
+export const resolveAnnualYinYangMovement = (solarTermId: string) =>
+  ANNUAL_MOVEMENT_BY_TERM[solarTermId as keyof typeof ANNUAL_MOVEMENT_BY_TERM] ?? null

@@ -1,14 +1,12 @@
-export type InstrumentDataStatus = 'verified' | 'computed' | 'partial' | 'unavailable'
+import type {
+  LunarAstronomySnapshot,
+  LunarPhaseName,
+  SolarAstronomySnapshot,
+} from '@/domain/astronomy/types'
 
-export type LunarPhaseName =
-  | 'New Moon'
-  | 'Waxing Crescent'
-  | 'First Quarter'
-  | 'Waxing Gibbous'
-  | 'Full Moon'
-  | 'Waning Gibbous'
-  | 'Third Quarter'
-  | 'Waning Crescent'
+export type { LunarPhaseName } from '@/domain/astronomy/types'
+
+export type InstrumentDataStatus = 'verified' | 'computed' | 'partial' | 'unavailable'
 
 export type CantongQiNodeId =
   | 'zhen-emergence'
@@ -114,6 +112,17 @@ export interface GlobalConditionsSnapshot {
   readonly seasonal: SeasonalCurrentSource
 }
 
+export interface ChineseLunarCalendarSnapshot {
+  readonly referenceTimeZone: 'Asia/Shanghai'
+  readonly lunarYear: number
+  readonly lunarMonth: number
+  readonly lunarDay: number
+  readonly isLeapMonth: boolean
+  readonly monthLength: 29 | 30
+  readonly monthPillarBranch: EarthlyBranchCharacter
+  readonly methodologyId: string
+}
+
 export interface LunarHomeInstrumentViewModel {
   readonly status: InstrumentDataStatus
   readonly phaseName: LunarPhaseName | 'Lunar data unavailable'
@@ -157,7 +166,31 @@ export interface SolarHomeInstrumentViewModel {
 export type CelestialDetailsTarget =
   LunarHomeInstrumentViewModel['detailsTarget'] | SolarHomeInstrumentViewModel['detailsTarget']
 
+export interface CelestialCurrentSnapshot {
+  readonly instantUtc: string
+  readonly astronomy: {
+    readonly lunar: LunarAstronomySnapshot | null
+    readonly solar: SolarAstronomySnapshot | null
+  }
+  readonly chineseCalendar: ChineseLunarCalendarSnapshot | null
+  readonly globalConditions: GlobalConditionsSnapshot
+  readonly lunarHome: LunarHomeInstrumentViewModel
+  readonly solarHome: SolarHomeInstrumentViewModel
+  readonly methodology: {
+    readonly astronomyProviderId: 'astronomy-engine'
+    readonly astronomyProviderVersion: string
+    readonly chineseCalendarProviderId: 'lunar-javascript'
+    readonly chineseCalendarProviderVersion: '1.7.7'
+    readonly snapshotVersion: string
+  }
+  readonly status: InstrumentDataStatus
+  readonly warnings: readonly string[]
+  readonly nextRecommendedUpdateUtc: string | null
+}
+
 export class CelestialPresenterConflictError extends Error {
+  readonly code = 'celestial-presenter-failure' as const
+
   constructor(message: string) {
     super(message)
     this.name = 'CelestialPresenterConflictError'

@@ -141,22 +141,28 @@ only the three short frequency-band terms published on the corresponding
 entry stores a direct official source URL, carries `curated` status, and makes no runtime request.
 No proprietary commentary or profile calculation is reproduced or inferred.
 
+## Celestial Current astronomy
+
+Current uses the local pinned `astronomy-engine` 2.1.19 package (MIT) for lunar elongation,
+illumination, searched New Moon/quarter events, true-ecliptic-of-date solar longitude, and searched
+Solar Term crossings. The pure adapter is documented in
+[`CELESTIAL_EPHEMERIS_PROVIDER.md`](CELESTIAL_EPHEMERIS_PROVIDER.md). It runs in the lazy-loaded
+Astrology client route and makes no remote astronomy request.
+
+The existing `lunar-javascript` 1.7.7 dependency remains authoritative for the traditional Chinese
+lunar date and exact Month Pillar. Celestial classification projects the same absolute instant onto
+an explicit `Asia/Shanghai` civil basis, then uses the traditional lunar day for the six reviewed
+Cantong qi nodes. It is not treated as an ephemeris: Moon phase is never inferred from lunar day,
+season is never inferred from browser month, and Branch is never inferred from Gregorian month.
+
+The reviewed 24-term display table, Chinese season boundaries, Branch-sector geometry, Cantong qi
+glosses, annual movement labels, and ring layout are presentation, semantic, and cross-check data—not
+physical astronomy. Exact values, searched events, method identifiers, versions, warnings, and
+availability remain visible in details. The provider status is `computed`; independent golden
+ephemeris fixtures remain pending as recorded in
+[`CELESTIAL_CURRENT_VALIDATION.md`](CELESTIAL_CURRENT_VALIDATION.md).
+
 ## Deliberately unavailable
-
-### Celestial Current astronomy
-
-Current does not yet calculate or receive lunar elongation, illumination, lunation progress,
-waxing/waning direction, or continuous solar longitude. `lunar-javascript` is authoritative here for
-the documented GanZhi and Jie-boundary uses only; those fields are not treated as substitutes for an
-ephemeris.
-
-The staged Celestial Current presenters therefore require explicit astronomical source fields and
-render unavailable when they are absent. They never infer Moon phase from Chinese lunar day, season
-from browser month, or Branch from Gregorian month. The reviewed 24-term display table, Chinese
-season boundaries, Branch-sector geometry, Cantong qi glosses, and ring layout are presentation and
-cross-check data—not an astronomical engine. Production integration is blocked pending the source
-decision recorded in
-[`CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md`](CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md).
 
 Current does not infer forecasts, personal BaZi synthesis, or medical guidance directly from these
 factors. The separate Temporal Semantic Resolver maps only 13 eligible hexagram identities into
@@ -185,7 +191,9 @@ its rule is defined and accepted.
 
 ## Known verification risk
 
-Exact solar-term boundaries inherit `lunar-javascript` data and implementation behavior. Boundary
-dates should receive additional cross-library golden fixtures before they are treated as
-high-assurance natal or electional calculations. Away from a transition, the selected convention is
-unambiguous.
+Physical Solar Term crossings now come from `astronomy-engine`; traditional Month Pillars remain
+under `lunar-javascript`. Their ephemerides can place a few exact Jie transitions minutes apart.
+Current reports the narrow discrepancy and preserves each authority instead of rounding one into
+the other. Independent cross-library golden fixtures are still required before these boundaries are
+treated as high-assurance natal or electional calculations. Away from a transition, the selected
+conventions agree.

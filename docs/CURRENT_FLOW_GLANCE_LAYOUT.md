@@ -159,18 +159,17 @@ interrupt assistive technology.
 The mobile app-header content remains 64 CSS pixels high and its menu target remains at least 44 by
 44 CSS pixels. Its sticky navigation and safe-area padding are unchanged in behavior.
 
-## Staged celestial header
+## Production celestial header
 
-`CelestialCurrentHeader` is the proposed replacement for the current centered glance header once an
-authoritative Global Conditions source is approved. It uses the same heading and `YinClock` in the
-middle, with clickable Lunar Current and Solar Current clusters in shrink-safe outer columns. At
-mobile widths each outer cluster stacks its ring and exactly three semantic values; compact-height
-rules reduce ring size and collapse only date/timezone metadata.
+`CelestialCurrentHeader` is active in production `CurrentFlowGlance`. It uses the same heading and
+`YinClock` in the middle, with clickable Lunar Current and Solar Current clusters in shrink-safe
+outer columns. At mobile widths each outer cluster stacks its ring and exactly three semantic
+values; compact-height rules reduce ring size and collapse only date/timezone metadata.
 
-The production glance remains on its current header because the repository has no continuous lunar
-elongation or solar-longitude owner. The development-only
-`/__dev/celestial-instruments` route verifies the proposed responsive composition without presenting
-fixtures as live calculations. See
+The physical calculations come from the local pinned ephemeris provider and share one instant with
+the existing temporal snapshot and clock. The development-only `/__dev/celestial-instruments` route
+remains available for fixture-based responsive composition review, but does not feed production.
+See
 [`CELESTIAL_CURRENT_INSTRUMENTS.md`](CELESTIAL_CURRENT_INSTRUMENTS.md).
 
 ## Accessibility
@@ -212,4 +211,5 @@ The fixture is guarded by `import.meta.env.DEV` and is absent from production be
 
 Celestial instrument review adds tablet, laptop, and wide-desktop inspection plus the same mobile
 matrix, both themes, 150% text, reduced motion, whole-cluster focus, and the shared details shell.
-The gallery is development-only and makes no remote asset requests.
+The gallery is development-only and makes no remote asset requests; the production instruments
+also make zero runtime astronomy requests.

@@ -11,6 +11,7 @@ export type ShichenPhaseClockOptions<T> = Readonly<{
   load: (instant: Date) => Promise<T>
   toClockState: (value: T) => ShichenClockState
   onValue: (value: T, event: TemporalClockEvent) => void
+  nextSampleAt?: (value: T) => Date | null
   onError?: (error: unknown) => void
   liveNow?: () => Date
 }>
@@ -28,6 +29,7 @@ export const useShichenPhaseClock = <T>(options: ShichenPhaseClockOptions<T>) =>
   let timer: number | undefined
   let mounted = false
   let requestId = 0
+  let recommendedSampleAt: Date | null = null
 
   const clearTimer = () => {
     if (timer !== undefined) window.clearTimeout(timer)
@@ -38,9 +40,15 @@ export const useShichenPhaseClock = <T>(options: ShichenPhaseClockOptions<T>) =>
     clearTimer()
     if (!mounted || options.selectedInstant.value || document.hidden) return
     const now = liveNow()
+    const nextMinuteDelay = millisecondsUntilNextMinute(now)
+    const recommendedDelay = recommendedSampleAt
+      ? recommendedSampleAt.getTime() - now.getTime()
+      : Number.POSITIVE_INFINITY
+    const delay =
+      recommendedDelay > 0 ? Math.min(nextMinuteDelay, recommendedDelay) : nextMinuteDelay
     timer = window.setTimeout(() => {
       void sample(liveNow())
-    }, millisecondsUntilNextMinute(now))
+    }, delay)
   }
 
   const sample = async (instant: Date) => {
@@ -54,6 +62,7 @@ export const useShichenPhaseClock = <T>(options: ShichenPhaseClockOptions<T>) =>
         : 'minute-passage'
       previousState = nextState
       lastEvent.value = event
+      recommendedSampleAt = options.nextSampleAt?.(value) ?? null
       options.onValue(value, event)
     } catch (error) {
       if (mounted && activeRequest === requestId) options.onError?.(error)

@@ -4,10 +4,12 @@ Current is a client-side Vue 3 application organized around explicit domain boun
 
 ## Layers
 
-- `src/domain`: framework-independent contracts for astrology snapshots, authentication, and settings.
+- `src/domain`: framework-independent contracts and calculations for astrology snapshots,
+  physical astronomy, authentication, and settings.
 - `src/providers`: swappable adapters that satisfy domain interfaces. The alpha selects
-  `LunarScriptCurrentFlowProvider` in one place and retains the demo adapter only as a testable
-  fixture.
+  `LunarScriptCurrentFlowProvider` for temporal conditions and
+  `LocalDeterministicCelestialCurrentProvider` for celestial conditions, while retaining demo data
+  only as testable fixtures.
 - `src/stores`: Pinia state reserved for cross-route preferences, the future identity scaffold, and
   transient app-level UI selection such as the open hexagram inspector.
 - `src/components`: focused presentation grouped by product area or shared role.
@@ -43,13 +45,15 @@ pillar bounds, engine and mapping labels, status, and provider notes move into a
 [`CURRENT_FLOW_GLANCE_LAYOUT.md`](CURRENT_FLOW_GLANCE_LAYOUT.md) and
 [`ZODIAC_ART_ASSETS.md`](ZODIAC_ART_ASSETS.md).
 
-Celestial Current is staged as a separate presentation boundary under
-`src/domain/current-flow/celestial-instruments` and focused astrology components. Its presenters
-accept Lunar and Seasonal source records from one future `GlobalConditionsSnapshot`; they own
-display mapping and conflict checks, not astronomy. `CelestialCurrentHeader` composes Moon, central
-minute clock, and Sun, while `CelestialCurrentDetails` exposes technical values and methodology.
-Because no authoritative Global Conditions owner exists in this repository, these components are
-not wired into production `CurrentFlowGlance`; only the development fixture route exercises them.
+Celestial Current uses a separate physical-astronomy boundary under `src/domain/astronomy`, a
+combined production adapter in `src/providers/localDeterministicCelestialCurrent.ts`, and focused
+presentation contracts under `src/domain/current-flow/celestial-instruments`. The pure adapter uses
+pinned local `astronomy-engine` for Moon/Sun conditions and exact events; the existing
+`lunar-javascript` authority supplies traditional calendar classification on an `Asia/Shanghai`
+basis. Presenters own display mapping and conflict checks, not astronomy.
+`CelestialCurrentHeader` composes Moon, the segmented clock, and Sun in production
+`CurrentFlowGlance`, while `CelestialCurrentDetails` exposes technical values and methodology. Both
+celestial and temporal snapshots are calculated from the same authoritative instant.
 See [`CELESTIAL_CURRENT_REPOSITORY_ASSESSMENT.md`](CELESTIAL_CURRENT_REPOSITORY_ASSESSMENT.md) and
 [`CELESTIAL_CURRENT_INSTRUMENTS.md`](CELESTIAL_CURRENT_INSTRUMENTS.md).
 
@@ -69,10 +73,12 @@ and proportional weight.
 ## Runtime behavior
 
 The default demo build makes no runtime network calls. Theme, timezone preference, and an optional
-location label are device-local. The active Astrology provider projects an instant into the selected
+location label are device-local. The temporal provider projects an instant into the selected
 timezone, delegates GanZhi calculation to `lunar-javascript`, then applies pure domain lookups and
-transformations. A production build can independently select the documented Alchemy HTTP provider;
-the Astrology view remains unaware of either integration.
+transformations. The celestial provider performs local physical astronomy for the same instant and
+uses `Asia/Shanghai` only for its traditional lunar-date classification. A production build can
+independently select the documented Alchemy HTTP provider; the Astrology view remains unaware of
+that integration.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.
 

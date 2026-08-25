@@ -1,14 +1,23 @@
 <script setup lang="ts">
-import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
-const props = defineProps<{
-  timezone: string
-  compact?: boolean
-}>()
+const props = withDefaults(
+  defineProps<{
+    timezone: string
+    compact?: boolean
+    instantUtc?: string | undefined
+    live?: boolean
+  }>(),
+  { compact: false, live: true },
+)
 
 const SAMPLE_INTERVAL_MS = 4_000
 const DISSOLVE_DURATION_MS = 1_500
-const sampledAt = ref(new Date())
+const explicitInstant = () => {
+  const parsed = props.instantUtc ? new Date(props.instantUtc) : new Date()
+  return Number.isNaN(parsed.getTime()) ? new Date() : parsed
+}
+const sampledAt = ref(explicitInstant())
 const activeDissolveDurationMs = ref(DISSOLVE_DURATION_MS)
 let alignmentTimer: number | undefined
 
@@ -44,7 +53,7 @@ const dateLabel = computed(() =>
 )
 
 const sampleTime = () => {
-  sampledAt.value = new Date()
+  sampledAt.value = props.live ? new Date() : explicitInstant()
 }
 
 function scheduleDissolveForBoundary(boundaryMs: number) {
@@ -67,10 +76,16 @@ function scheduleDissolveForBoundary(boundaryMs: number) {
 function restartClock() {
   if (alignmentTimer !== undefined) window.clearTimeout(alignmentTimer)
   sampleTime()
+  if (!props.live) return
   const nextBoundaryMs =
     Math.floor(Date.now() / SAMPLE_INTERVAL_MS) * SAMPLE_INTERVAL_MS + SAMPLE_INTERVAL_MS
   scheduleDissolveForBoundary(nextBoundaryMs)
 }
+
+watch(
+  () => [props.instantUtc, props.live] as const,
+  () => restartClock(),
+)
 
 const handleVisibilityChange = () => {
   if (document.visibilityState === 'visible') restartClock()
@@ -95,6 +110,8 @@ onBeforeUnmount(() => {
     :style="{ '--yin-clock-dissolve-duration': `${activeDissolveDurationMs}ms` }"
     :data-sample-interval-ms="SAMPLE_INTERVAL_MS"
     :data-dissolve-duration-ms="DISSOLVE_DURATION_MS"
+    :data-authoritative-instant="instantUtc"
+    :data-clock-mode="live ? 'live' : 'selected'"
   >
     <div class="yin-clock__time" aria-hidden="true">
       <time :datetime="sampledAt.toISOString()">

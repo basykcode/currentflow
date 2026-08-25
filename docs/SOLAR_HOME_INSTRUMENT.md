@@ -13,8 +13,9 @@ days.
 ## Twenty-four-term table and Chinese seasons
 
 The reviewed display registry contains all 24 Solar Terms at their standard 15-degree longitudes.
-It is a label table, not an astronomical calculator. The presenter selects a label by the source's
-term ID and cross-checks supplied classification against continuous longitude.
+It is a label table, not an astronomical calculator. The provider selects a term from exact
+`astronomy-engine` longitude/crossing results; the presenter resolves the reviewed label and
+cross-checks supplied classification against continuous longitude.
 
 Chinese season boundaries are:
 
@@ -34,9 +35,11 @@ by width and color. Starting with the Zǐ boundary at 255° solar longitude, sec
 `子 Zǐ`, `丑 Chǒu`, `寅 Yín`, `卯 Mǎo`, `辰 Chén`, `巳 Sì`, `午 Wǔ`, `未 Wèi`,
 `申 Shēn`, `酉 Yǒu`, `戌 Xū`, `亥 Hài`.
 
-The active Branch must come from the Seasonal Current source. The presenter's independently reviewed
-geometry cross-check throws a conflict if the supplied Branch disagrees with longitude; it does not
-silently replace source data.
+The active Branch comes from the Seasonal Current source's physical longitude. The presenter's
+independently reviewed geometry cross-check throws a typed conflict if supplied Branch and
+longitude disagree; it does not silently replace source data. The existing Month Pillar Branch is
+also cross-checked and any narrow exact-boundary disagreement is reported without changing either
+authority.
 
 ## Orientation and marker
 
@@ -52,8 +55,9 @@ season name, or marker angle.
 Initial and selected/simulated renders jump directly to the source target. Ordinary live updates may
 use shortest-path interpolation. Reduced motion disables interpolation and self-rotation.
 
-The intended production cadence is daily plus Solar Term/season boundaries and visibility resume,
-but no cadence is connected until the authoritative Global Conditions owner is selected.
+The production cadence is the next `Asia/Shanghai` midnight or exact Solar Term, whichever is
+sooner, with recalculation on visibility resume. Selected/simulated instants bypass the live
+presentation cache and render immediately without interpolation.
 
 ## Methodology IDs
 
@@ -62,3 +66,6 @@ but no cadence is connected until the authoritative Global Conditions owner is s
 - term display table: `solar-term-display-labels:current-en-v1`
 - season boundaries: `chinese-solar-season-boundaries:v1`
 - marker geometry: `celestial-marker-geometry:top-clockwise-v1`
+- ephemeris: `celestial-ephemeris:astronomy-engine-v1`
+- event search: `solar-term-events:search-sun-longitude-v1`
+- annual movement: `solar-home-yinyang-movement-by-term:v1`

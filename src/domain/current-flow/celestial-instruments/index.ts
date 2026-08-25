@@ -1,4 +1,5 @@
 export * from './geometry'
+export * from './chineseCalendar'
 export * from './fixtures'
 export * from './labels'
 export * from './lunarHomePresenter'

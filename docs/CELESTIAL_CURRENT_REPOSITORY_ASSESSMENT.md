@@ -2,14 +2,16 @@
 
 ## Conclusion
 
-The repository does not currently contain the Global Conditions Engine required by the Celestial
-Current specification. It also does not contain authoritative lunar elongation, illumination,
-lunation progress, waxing/waning state, or continuous solar longitude. This is a core integration
-blocker, not an optional detail-field gap.
+The prior source-selection gate is resolved. Current Flow will use a local, pinned
+`astronomy-engine` adapter as the authoritative physical-astronomy source for lunar elongation,
+illumination, phase events, true ecliptic-of-date solar longitude, and exact Solar Term crossings.
+`lunar-javascript` adapter remains the sole authority for the traditional Chinese lunar date and
+Cantong qi lunar-day node on the canonical `Asia/Shanghai` calendar basis.
 
-The safe presentation work is implemented behind typed source contracts and explicit unavailable
-states. Production Home integration remains intentionally unwired so the UI cannot imply that
-calendar labels or browser dates are astronomical calculations.
+The existing typed source contracts, fail-closed presenters, and unavailable states remain the
+integration boundary. Physical astronomy stays framework-independent and local: no remote
+astronomy API, API key, runtime astronomy request, Vue calculation, or fixture-backed production
+value is permitted.
 
 ## Repository evidence inspected
 
@@ -24,8 +26,8 @@ calendar labels or browser dates are astronomical calculations.
 
 The active `LunarScriptCurrentFlowProvider` owns Four Pillars, exact solar-term month boundaries,
 Organ/Shíchen classification, Chū–Zhèng–Kè phase, structural hexagrams, and guidance projection. Its
-dependency exposes GanZhi and Jie-boundary functions used here, but the app has no reviewed contract
-for the continuous astronomical values required by these instruments.
+dependency exposes GanZhi and Jie-boundary functions used here. Those calendrical results remain
+independent from the new continuous physical-astronomy adapter.
 
 ## Reusable architecture found
 
@@ -34,20 +36,27 @@ for the continuous astronomical values required by these instruments.
   on a four-second wall-clock cadence.
 - `CurrentTaijiMark` is the canonical present marker and is reused by both rings.
 - `ChineseTermInline` provides the required character, Pinyin, and English pattern.
-- `CalculationProvenanceDetails` is specific to the existing Current Flow snapshot. No Lunar or
-  Seasonal details section exists, so a focused `CelestialCurrentDetails` shell is staged for the
-  future Global Conditions data.
+- `CelestialCurrentDetails` is the focused production details surface for Moon/Sun event data,
+  traditional-calendar classification, methodology, warnings, and visual mappings.
 
-## Safe implementation boundary
+## Implemented boundary
 
 `src/domain/current-flow/celestial-instruments` defines the required upstream source seam,
 presentation-only view models, reviewed display tables, pure geometry, conflict checks, and
 development fixtures. The Vue components consume only those view models; they do not calculate
 astronomy.
 
-The development route `/__dev/celestial-instruments` exercises the implementation with values that
-are explicitly marked as fixtures. It is excluded from production route registration and
-navigation.
+`src/domain/astronomy` now owns the pinned local ephemeris adapter and typed physical snapshot.
+`src/providers/localDeterministicCelestialCurrent.ts` combines its results with
+`lunar-javascript` calendar classification, contains the bounded live caches, and isolates Moon,
+Sun, and calendar failures. `AstrologyView` supplies the same instant to temporal and celestial
+providers and activates both instruments through production `CurrentFlowGlance`.
 
-See `CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md` for the one decision required before production
-integration.
+The development route `/__dev/celestial-instruments` still exercises the UI with values explicitly
+marked as fixtures. It is excluded from production route registration and navigation and is not a
+production fallback.
+
+See [`CELESTIAL_EPHEMERIS_PROVIDER.md`](CELESTIAL_EPHEMERIS_PROVIDER.md) for the accepted provider
+and [`CELESTIAL_CURRENT_VALIDATION.md`](CELESTIAL_CURRENT_VALIDATION.md) for the current
+`computed` validation status. The historical manual gate is preserved as resolved in
+[`CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md`](CELESTIAL_CURRENT_MANUAL_INPUT_REQUIRED.md).

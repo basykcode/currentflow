@@ -5,6 +5,7 @@ import ChineseTermInline from '@/components/common/ChineseTermInline.vue'
 import {
   CELESTIAL_INSTRUMENT_METHODOLOGY,
   type CelestialDetailsTarget,
+  type CelestialCurrentSnapshot,
   type LunarHomeInstrumentViewModel,
   type SolarHomeInstrumentViewModel,
 } from '@/domain/current-flow/celestial-instruments'
@@ -12,6 +13,7 @@ import {
 const props = defineProps<{
   lunar: LunarHomeInstrumentViewModel
   solar: SolarHomeInstrumentViewModel
+  snapshot?: CelestialCurrentSnapshot | undefined
 }>()
 
 const emit = defineEmits<{
@@ -34,6 +36,13 @@ const formatDegrees = (degrees: number | null) =>
 
 const formatFraction = (fraction: number | null) =>
   fraction === null ? 'Unavailable' : `${Math.round(fraction * 100)}%`
+
+const formatInstant = (instantUtc: string | undefined) =>
+  instantUtc ? new Date(instantUtc).toLocaleString(undefined, { timeZone: 'UTC' }) + ' UTC' : 'Unavailable'
+
+const lunarAstronomy = computed(() => props.snapshot?.astronomy.lunar ?? null)
+const solarAstronomy = computed(() => props.snapshot?.astronomy.solar ?? null)
+const chineseCalendar = computed(() => props.snapshot?.chineseCalendar ?? null)
 
 const open = async (nextTarget: CelestialDetailsTarget) => {
   returnFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null
@@ -119,6 +128,29 @@ defineExpose({ open, close })
             </dd>
           </div>
           <div>
+            <dt>Traditional lunar date</dt>
+            <dd v-if="chineseCalendar">
+              {{ chineseCalendar.lunarYear }} · month {{ chineseCalendar.lunarMonth }} · day
+              {{ chineseCalendar.lunarDay }}{{ chineseCalendar.isLeapMonth ? ' · leap month' : '' }}
+            </dd>
+            <dd v-else>Unavailable</dd>
+          </div>
+          <div>
+            <dt>Previous New Moon</dt>
+            <dd>{{ formatInstant(lunarAstronomy?.previousNewMoonUtc) }}</dd>
+          </div>
+          <div>
+            <dt>Next New Moon</dt>
+            <dd>{{ formatInstant(lunarAstronomy?.nextNewMoonUtc) }}</dd>
+          </div>
+          <div>
+            <dt>Next quarter</dt>
+            <dd>
+              {{ lunarAstronomy?.nextQuarter.quarter ?? 'Unavailable' }} ·
+              {{ formatInstant(lunarAstronomy?.nextQuarter.instantUtc) }}
+            </dd>
+          </div>
+          <div>
             <dt>Current Flow semantic movement</dt>
             <dd>{{ lunar.yinYangMovement ?? 'Unavailable' }}</dd>
           </div>
@@ -128,6 +160,10 @@ defineExpose({ open, close })
           <article>
             <h3>Astronomical calculation</h3>
             <p>{{ lunar.methodology.astronomyMethodId }}</p>
+            <p v-if="snapshot">
+              {{ snapshot.methodology.astronomyProviderId }}
+              {{ snapshot.methodology.astronomyProviderVersion }}
+            </p>
           </article>
           <article>
             <h3>Chinese calendar classification</h3>
@@ -180,12 +216,28 @@ defineExpose({ open, close })
             <dt>Current Flow semantic movement</dt>
             <dd>{{ solar.yinYangMovement ?? 'Unavailable' }}</dd>
           </div>
+          <div>
+            <dt>Previous term began</dt>
+            <dd>{{ formatInstant(solarAstronomy?.previousSolarTerm.instantUtc) }}</dd>
+          </div>
+          <div>
+            <dt>Current term began</dt>
+            <dd>{{ formatInstant(solarAstronomy?.currentSolarTerm.instantUtc) }}</dd>
+          </div>
+          <div>
+            <dt>Next term begins</dt>
+            <dd>{{ formatInstant(solarAstronomy?.nextSolarTerm.instantUtc) }}</dd>
+          </div>
         </dl>
 
         <div class="methodology-grid">
           <article>
             <h3>Astronomical calculation</h3>
             <p>{{ solar.methodology.astronomyMethodId }}</p>
+            <p v-if="snapshot">
+              {{ snapshot.methodology.astronomyProviderId }}
+              {{ snapshot.methodology.astronomyProviderVersion }}
+            </p>
           </article>
           <article>
             <h3>Chinese calendar classification</h3>

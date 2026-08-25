@@ -6,6 +6,7 @@ import type { CurrentFlowSnapshot } from '@/domain/astrology/types'
 import { DemoCurrentFlowProvider } from '@/providers/demoCurrentFlow'
 import { createDemoGuidance } from '@/providers/demoGuidance'
 import { LunarScriptCurrentFlowProvider } from '@/providers/lunarScriptCurrentFlow'
+import { LocalDeterministicCelestialCurrentProvider } from '@/providers/localDeterministicCelestialCurrent'
 import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
 
 import CalculationProvenanceDetails from '../CalculationProvenanceDetails.vue'
@@ -212,6 +213,58 @@ describe('CurrentFlowGlance', () => {
       ).toContain('gene-key-spectrum')
     }
 
+    wrapper.unmount()
+  })
+
+  it('renders real production celestial instruments from the same selected instant', async () => {
+    const instant = new Date('2026-08-25T12:00:00.000Z')
+    const snapshot = await new LunarScriptCurrentFlowProvider().getSnapshot(instant, {
+      timezone: 'America/Los_Angeles',
+    })
+    const celestial = new LocalDeterministicCelestialCurrentProvider().calculate(instant, {
+      mode: 'selected',
+    })
+    const pinia = createPinia()
+    const wrapper = mount(CurrentFlowGlance, {
+      props: {
+        snapshot,
+        celestial,
+        timezone: snapshot.timezone,
+        selectedTimeJump: true,
+      },
+      global: { plugins: [pinia] },
+    })
+
+    expect(wrapper.findAll('[data-celestial-instrument]')).toHaveLength(2)
+    expect(wrapper.get('[data-celestial-instrument="lunar"]').text()).toContain('Waxing Gibbous')
+    expect(wrapper.get('[data-celestial-instrument="solar"]').text()).toContain('Autumn')
+    expect(wrapper.text()).not.toContain('Development fixture')
+    expect(wrapper.text()).not.toContain('data unavailable')
+    expect(wrapper.attributes('data-moment-signature-instant')).toBe(instant.toISOString())
+    expect(wrapper.attributes('data-celestial-instant')).toBe(instant.toISOString())
+    expect(wrapper.get('.yin-clock').attributes('data-authoritative-instant')).toBe(
+      instant.toISOString(),
+    )
+    expect(wrapper.get('.yin-clock').attributes('data-clock-mode')).toBe('selected')
+    expect(wrapper.get('time').attributes('datetime')).toBe(instant.toISOString())
+    expect(wrapper.find('[data-glance-item="year"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-item="day"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-item="month"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-item="organ"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-item="hour"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-section="oltr"]').exists()).toBe(true)
+
+    await wrapper.get('[data-celestial-instrument="lunar"]').trigger('click')
+    const lunarDetails = wrapper.get('[role="dialog"]').text()
+    expect(lunarDetails).toContain('Lunar Current details')
+    expect(lunarDetails).toContain('Previous New Moon')
+    expect(lunarDetails).not.toContain('Previous term began')
+    await wrapper.get('[aria-label="Close celestial details"]').trigger('click')
+    await wrapper.get('[data-celestial-instrument="solar"]').trigger('click')
+    const solarDetails = wrapper.get('[role="dialog"]').text()
+    expect(solarDetails).toContain('Seasonal Current details')
+    expect(solarDetails).toContain('Previous term began')
+    expect(solarDetails).not.toContain('Previous New Moon')
     wrapper.unmount()
   })
 })

@@ -7,4 +7,7 @@ export const CELESTIAL_INSTRUMENT_METHODOLOGY = Object.freeze({
   lunarLabels: 'moon-home-cantongqi-labels:v1',
   lunarMovement: 'moon-home-yinyang-movement:v1',
   markerGeometry: 'celestial-marker-geometry:top-clockwise-v1',
+  annualMovement: 'solar-home-yinyang-movement-by-term:v1',
+  chineseLunarDate: 'chinese-lunar-date:lunar-javascript-asia-shanghai-v1',
+  celestialSnapshot: 'celestial-current-snapshot:v1',
 } as const)

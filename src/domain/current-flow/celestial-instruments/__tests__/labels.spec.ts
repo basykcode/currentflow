@@ -4,6 +4,7 @@ import {
   CANTONG_QI_DISPLAY_DEFINITIONS,
   EARTHLY_BRANCH_MONTH_DEFINITIONS,
   SOLAR_TERM_DISPLAY_DEFINITIONS,
+  resolveAnnualYinYangMovement,
 } from '../labels'
 
 describe('celestial display registries', () => {
@@ -80,5 +81,20 @@ describe('celestial display registries', () => {
         solarLongitudeDegrees: 150,
       }),
     )
+  })
+
+  it('projects the reviewed annual movement examples through one versioned term mapping', () => {
+    expect(resolveAnnualYinYangMovement('dongzhi')).toBe('Yang Returning')
+    expect(resolveAnnualYinYangMovement('lichun')).toBe('Yang Emerging')
+    expect(resolveAnnualYinYangMovement('chunfen')).toBe('Yang Growing')
+    expect(resolveAnnualYinYangMovement('lixia')).toBe('Yang Growing')
+    expect(resolveAnnualYinYangMovement('xiazhi')).toBe('Yang Full')
+    expect(resolveAnnualYinYangMovement('liqiu')).toBe('Yin Emerging')
+    expect(resolveAnnualYinYangMovement('chushu')).toBe('Yang Descending')
+    expect(resolveAnnualYinYangMovement('qiufen')).toBe('Yin Growing')
+    expect(resolveAnnualYinYangMovement('lidong')).toBe('Yin Full')
+    for (const term of SOLAR_TERM_DISPLAY_DEFINITIONS) {
+      expect(resolveAnnualYinYangMovement(term.id)).not.toBeNull()
+    }
   })
 })

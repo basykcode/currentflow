@@ -46,6 +46,7 @@
     "alchemy:types": "openapi-typescript contracts/alchemy-openapi.json -o src/features/alchemy/api/generated/schema.ts"
   },
   "dependencies": {
+    "astronomy-engine": "2.1.19",
     "lunar-javascript": "^1.7.7",
     "openapi-fetch": "^0.17.0",
     "pinia": "^3.0.3",

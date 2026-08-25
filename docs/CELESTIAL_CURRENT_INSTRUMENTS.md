@@ -3,13 +3,13 @@
 ## Product purpose
 
 Celestial Current turns the Home heading into a quiet orientation instrument: Lunar Current at the
-upper left, `The Current Flow` and its minute clock in the center, and Solar Current at the upper
+upper left, `The Current Flow` and its segmented clock in the center, and Solar Current at the upper
 right. It answers only where each cycle is and what kind of movement is occurring. Technical
 astronomy, calendar mechanics, and provenance belong in details.
 
-Production wiring is currently gated by the missing authoritative Global Conditions source. The
-components, view models, unavailable states, and development gallery are implemented without
-inventing that source.
+Production Home is active. A local combined provider supplies pinned physical astronomy and the
+existing traditional Chinese calendar classification to the staged presenters. The development
+gallery remains a fixture-only visual review surface and is not a production data source.
 
 ## Conceptual symmetry
 
@@ -27,10 +27,16 @@ surviving historical diagram.
 
 ## Data-source boundary
 
-`GlobalConditionsSnapshot` is the required upstream seam. `presentLunarHomeInstrument` and
+`CelestialCurrentSnapshot` is the production aggregate and its `GlobalConditionsSnapshot` is the
+presenter seam. `presentLunarHomeInstrument` and
 `presentSolarHomeInstrument` project reviewed source fields into Home view models. They fail closed
 when astronomy is absent, preserve source methodology and warnings, and reject inconsistent Solar
 season or Branch values rather than silently choosing one.
+
+`AstronomyEngineCelestialProvider` uses local `astronomy-engine` 2.1.19 for physical Moon/Sun
+conditions and exact event searches. `calculateChineseLunarCalendar` uses the existing
+`lunar-javascript` 1.7.7 authority after projecting the same instant into `Asia/Shanghai`. See
+[`CELESTIAL_EPHEMERIS_PROVIDER.md`](CELESTIAL_EPHEMERIS_PROVIDER.md).
 
 Vue owns display only. It does not derive phase from Chinese lunar day, season from browser month,
 Branch from Gregorian month, or Yin/Yang movement from marker angle. Development fixtures carry
@@ -58,13 +64,17 @@ Marker position and marker self-rotation are separate transform layers. The ring
 Ordinary target changes use a shortest-path unwrapped angle; selected or simulated time jumps can
 disable interpolation. The first render starts at the supplied target without sweeping from zero.
 
+`CurrentFlowGlance` renders this header in production. Its temporal snapshot, celestial snapshot,
+segmented clock, and selected-time presentation carry the same normalized instant.
+
 ## Interaction and details
 
 The Moon and Sun clusters emit typed requests for `lunar-current` and `seasonal-current` details.
 `CelestialCurrentDetails` is the lightweight common shell required because the repository has no
 reusable Lunar/Seasonal details surface. It separates astronomical calculation, Chinese calendar
 classification, Current Flow semantic gloss, and Current Flow visual mapping. Exact angles and
-fractions may appear there, never on Home.
+fractions, searched event times, calendar date, provider version, and methodology may appear there,
+never on Home.
 
 ## Responsive strategy
 
@@ -83,6 +93,17 @@ the existing page and app frame.
 
 The title and clock remain functional when either instrument is unavailable.
 
+## Live and selected-time behavior
+
+Live Home calculates on initial load and refreshes Lunar presentation no later than the next hour or
+major lunar event, and Solar presentation no later than the next `Asia/Shanghai` midnight or exact
+Solar Term. Small bounded caches retain event brackets and view models only until those boundaries.
+Visibility resume is handled by the shared live scheduler.
+
+Selected/simulated mode calculates immediately from the selected instant, bypasses presentation
+caches, freezes the clock at that instant, and suppresses marker interpolation. Neither mode makes
+an astronomy network request.
+
 ## Methodology registry
 
 - `home-celestial-instruments:v1`
@@ -93,3 +114,6 @@ The title and clock remain functional when either instrument is unavailable.
 - `moon-home-cantongqi-labels:v1`
 - `moon-home-yinyang-movement:v1`
 - `celestial-marker-geometry:top-clockwise-v1`
+- `celestial-ephemeris:astronomy-engine-v1`
+- `chinese-lunar-date:lunar-javascript-asia-shanghai-v1`
+- `celestial-current-snapshot:v1`

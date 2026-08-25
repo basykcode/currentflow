@@ -42,3 +42,8 @@ The lightweight details shell is a labelled modal dialog. Opening moves focus in
 Escape, the Close button, or backdrop click closes it and returns focus to the triggering cluster.
 Exact technical values are exposed as definition lists, with warnings and explicit unavailable
 labels. An unavailable instrument retains a retry event and does not substitute guessed content.
+
+Production Lunar details disclose traditional date and Moon-event timing; Solar details disclose
+previous/current/next Solar Term timing. The two lists remain scoped to their own instrument. In
+selected-time mode the segmented clock is frozen at the same authoritative instant as both
+instruments, preventing a visually plausible but semantically mismatched live-time announcement.
