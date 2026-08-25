@@ -1,0 +1,188 @@
+<script setup lang="ts">
+import { computed } from 'vue'
+
+import {
+  EARTHLY_BRANCH_MONTH_DEFINITIONS,
+  type CelestialRingLabel,
+  type SolarHomeInstrumentViewModel,
+} from '@/domain/current-flow/celestial-instruments'
+
+import CelestialCycleRing from './CelestialCycleRing.vue'
+import CelestialInstrumentText from './CelestialInstrumentText.vue'
+import SunDisk from './SunDisk.vue'
+import { formatCelestialPeriodBounds } from './celestialFormatting'
+
+const props = withDefaults(
+  defineProps<{
+    viewModel: SolarHomeInstrumentViewModel
+    alignment?: 'left' | 'right'
+    interpolateMarker?: boolean
+    reduceMotion?: boolean
+    compact?: boolean
+    timezone?: string
+  }>(),
+  {
+    alignment: 'right',
+    interpolateMarker: true,
+    reduceMotion: false,
+    compact: false,
+    timezone: 'UTC',
+  },
+)
+
+const emit = defineEmits<{
+  openDetails: []
+}>()
+
+const ringLabels: readonly CelestialRingLabel[] = EARTHLY_BRANCH_MONTH_DEFINITIONS.map(
+  ({ character, pinyin, animalEnglish }) => ({
+    character,
+    accessibleLabel: `${pinyin}, ${animalEnglish}`,
+  }),
+)
+
+const termLine = computed(() =>
+  props.viewModel.solarTerm
+    ? {
+        characters: props.viewModel.solarTerm.chineseTraditional,
+        pinyin: props.viewModel.solarTerm.pinyin,
+        english: props.viewModel.solarTerm.contextualEnglish,
+      }
+    : null,
+)
+
+const seasonLine = computed(() => props.viewModel.season ?? 'Seasonal data unavailable')
+const movementLine = computed(
+  () => props.viewModel.yinYangMovement ?? 'Annual movement unavailable',
+)
+const period = computed(() =>
+  formatCelestialPeriodBounds(props.viewModel.periodBounds, props.timezone),
+)
+
+const accessibleLabel = computed(() => {
+  if (props.viewModel.status === 'unavailable') {
+    return 'Solar Current. Seasonal data unavailable. Open details for methodology and availability.'
+  }
+  const term = props.viewModel.solarTerm
+    ? `${props.viewModel.solarTerm.pinyin}, ${props.viewModel.solarTerm.contextualEnglish}`
+    : 'Solar Term unavailable'
+  return `Solar Current. ${seasonLine.value}. Period ${period.value.accessibleLabel}. ${term}. ${movementLine.value}.`
+})
+</script>
+
+<template>
+  <button
+    class="celestial-instrument celestial-instrument--solar"
+    :class="[`celestial-instrument--${alignment}`, { 'celestial-instrument--compact': compact }]"
+    type="button"
+    :aria-label="accessibleLabel"
+    data-celestial-instrument="solar"
+    @click="emit('openDetails')"
+  >
+    <span class="solar-ring-wrap">
+      <CelestialCycleRing
+        :labels="ringLabels"
+        :ticks="24"
+        :cardinal-tick-indexes="[0, 6, 12, 18]"
+        :active-index="viewModel.branchMonth?.index ?? null"
+        :marker-angle-degrees="viewModel.markerAngleDegrees"
+        :interpolate-marker="interpolateMarker"
+        :reduce-motion="reduceMotion"
+        kind="solar"
+      >
+        <SunDisk :neutral="viewModel.status === 'unavailable'" decorative />
+      </CelestialCycleRing>
+    </span>
+
+    <CelestialInstrumentText
+      alignment="right"
+      :line-one="seasonLine"
+      :period-label="period.compactLabel"
+      :period-title="period.accessibleLabel"
+      :period-start-utc="viewModel.periodBounds?.startUtc"
+      :period-end-utc="viewModel.periodBounds?.endExclusiveUtc"
+      :line-two="termLine"
+      line-two-fallback="Solar Term unavailable"
+      :line-three="movementLine"
+    />
+  </button>
+</template>
+
+<style scoped>
+.celestial-instrument {
+  display: grid;
+  grid-template-columns: auto minmax(0, 10.5rem);
+  align-items: center;
+  gap: clamp(0.45rem, 1.2vw, 0.9rem);
+  width: 100%;
+  min-width: 0;
+  min-height: 2.75rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  padding: 0.25rem;
+  text-align: left;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.celestial-instrument:hover {
+  border-color: color-mix(in srgb, var(--jade) 40%, transparent);
+  background: color-mix(in srgb, var(--jade-wash) 35%, transparent);
+}
+
+.celestial-instrument:focus-visible {
+  border-color: var(--jade);
+  outline-offset: 2px;
+}
+
+.celestial-instrument--right {
+  grid-template-columns: minmax(0, 10.5rem) auto;
+  text-align: right;
+}
+
+.celestial-instrument--right .solar-ring-wrap {
+  order: 2;
+}
+
+.solar-ring-wrap {
+  display: grid;
+  justify-items: center;
+  min-width: 0;
+}
+
+.celestial-instrument--compact {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(0.18rem, 0.8vw, 0.35rem);
+  padding: 0.1rem 0;
+  text-align: left;
+}
+
+.celestial-instrument--compact.celestial-instrument--right {
+  grid-template-columns: minmax(0, 1fr) auto;
+  text-align: right;
+}
+
+.celestial-instrument--compact.celestial-instrument--right .solar-ring-wrap {
+  order: 2;
+}
+
+@media (max-width: 767px) {
+  .celestial-instrument {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(0.16rem, 0.8vw, 0.3rem);
+    padding: 0.1rem 0;
+    text-align: left;
+  }
+
+  .celestial-instrument--right {
+    grid-template-columns: minmax(0, 1fr) auto;
+    text-align: right;
+  }
+
+  .celestial-instrument--right .solar-ring-wrap {
+    order: 2;
+  }
+}
+</style>

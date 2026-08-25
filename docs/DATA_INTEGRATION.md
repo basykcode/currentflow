@@ -7,9 +7,14 @@ implementation.
 ## Active connections
 
 - **Temporal engine:** `LunarScriptCurrentFlowProvider` uses `lunar-javascript` for timezone-projected
-  GanZhi pillars, then the versioned 60 Jia Zi to 64 Da Gua lookup for hexagrams.
-- **Organ-clock engine:** a pure domain table selects the documented two-hour period from civil time
-  in the snapshot timezone.
+  GanZhi pillars, then the versioned `六十甲子配卦` King Wen lookup for hexagrams. Each temporal item
+  and snapshot stores `liu-shi-jiazi-peigua-king-wen-v1`; external Fu Xi binary or XKDG Luo Pan
+  positions cross an explicit normalization boundary.
+- **Organ-clock engine:** a pure domain table and shared Shíchen index select the documented two-hour
+  period from the snapshot's IANA local-civil coordinate. The same resolver supplies a normalized
+  120-basis-minute coordinate and exact observed boundaries to the pure Chū–Zhèng–Kè phase engine.
+  Macro maturity enters guidance; observational Micro does not. DST gaps/repeats use the existing
+  IANA projection policy rather than fixed UTC arithmetic.
 - **Structural relationships:** pure line transformations calculate intrinsic, symmetry, interior,
   moving-line destination/path, and anatomy results with explicit provenance.
 - **Hexagram reference library:** a local 64-entry catalog supplies received Chinese names,
@@ -28,7 +33,14 @@ Full sources and boundary conventions are in
 ## Planned connections
 
 - **Personal BaZi:** enters through a separate personal-context contract. Global temporal facts and personal facts remain separate before synthesis.
-- **AI synthesis:** receives only verified facts, curated passages, user-controlled context, and provenance. It may phrase OLTR, intention, execution, and explanations, but may not invent hexagrams, calendar facts, organ periods, or transformations.
+- **Temporal semantic resolver:** the first local implementation converts eligible year, month, day,
+  and hour hexagram identities into versioned Current operational vectors. Its initial registry has
+  13 product-specification-reviewed profiles; a missing operative day remains unavailable, while
+  missing lesser scales remain explicit partial coverage. See
+  [`TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md`](TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md).
+- **AI phrasing:** may later receive only an already selected and validated guidance bundle. It may
+  improve phrasing but may not calculate semantic state, invent hexagrams or calendar facts,
+  select relation/intention/execution, alter evidence, or bypass validators.
 - **Hexagram commentaries:** six Daoist, Buddhist, Confucian, Psychological, Human Design, and Gene
   Keys views lazy-load static derived drafts. Each record exposes evidence and review status.
   Missing eligible evidence remains `unavailable`; automated drafts are not forecasts or personal
@@ -55,7 +67,7 @@ source IDs and chunk hashes and remain drafts until human review.
 The current local preparation contains eleven 64-chunk source directories: seven imported
 byte-for-byte from pinned legacy repository commit `ed95936` and four newly extracted sources
 (`daoist_2_wang_bi`, `psychological_2_balkin`, `psychological_3_dening`, and
-`gene_keys_2_rudd`). The Wang Bi source is Richard John Lynn's *Classic of Changes* translation,
+`gene_keys_2_rudd`). The Wang Bi source is Richard John Lynn's _Classic of Changes_ translation,
 split at the EPUB's explicit `HEXAGRAM 1` through `HEXAGRAM 64` markers. Six malformed legacy
 records are quarantined by the current index.
 
@@ -86,9 +98,11 @@ Calendar conversion, stems and branches, hexagram construction, transformation r
 ## Provenance
 
 Every display datum carries a `DataStatus` and a source label. Snapshots add provider ID, model
-version, factor labels, and notes. The UI displays local status near each datum and exposes
-snapshot-level provenance below the synthesis. Calculated facts are labeled `computed`; interpretive
-synthesis remains `unavailable`.
+version, temporal mapping version, factor labels, and notes. The UI displays local status near each datum and exposes
+snapshot-level provenance below the guidance output. Calculated facts are labeled `computed`.
+Live guidance is available only when the Current semantic registry has an eligible operative day
+profile; otherwise the bundle remains explicitly `unavailable`. Current operational evidence and
+canonical identity provenance remain separate.
 
 ## Alchemy integration
 

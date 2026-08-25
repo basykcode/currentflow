@@ -2,6 +2,16 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import { alchemyChildRoutes } from '@/features/alchemy'
 
+const developmentRoutes = import.meta.env.DEV
+  ? [
+      {
+        path: '/__dev/celestial-instruments',
+        name: 'celestial-instrument-gallery',
+        component: () => import('@/views/CelestialInstrumentGalleryView.vue'),
+      },
+    ]
+  : []
+
 export const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   scrollBehavior: () => ({ top: 0 }),
@@ -43,6 +53,7 @@ export const router = createRouter({
       name: 'settings',
       component: () => import('@/views/SettingsView.vue'),
     },
+    ...developmentRoutes,
     {
       path: '/:pathMatch(.*)*',
       name: 'not-found',

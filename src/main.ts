@@ -1,10 +1,19 @@
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 
+import '@fontsource-variable/fraunces/full.css'
+
 import App from './App.vue'
 import { router } from './app/router'
 import './assets/styles/base.css'
 import { installAlchemyProvider } from './features/alchemy'
+
+if (
+  import.meta.env.DEV &&
+  new URLSearchParams(window.location.search).get('text-scale') === 'large'
+) {
+  document.documentElement.dataset['textScaleFixture'] = 'large'
+}
 
 const app = createApp(App)
 

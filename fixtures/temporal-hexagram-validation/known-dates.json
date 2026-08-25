@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "temporal-hexagram-validation-v1",
+  "mappingVersion": "liu-shi-jiazi-peigua-king-wen-v1",
+  "fixtures": [
+    {
+      "id": "2026-fire-horse-new-york-midday",
+      "input": {
+        "timestampUtc": "2026-07-23T16:00:00.000Z",
+        "timezone": "America/New_York"
+      },
+      "expected": {
+        "year": { "ganZhi": "丙午", "hexagramKingWenId": 28 },
+        "month": { "ganZhi": "乙未", "hexagramKingWenId": 48 },
+        "day": { "ganZhi": "戊戌", "hexagramKingWenId": 15 },
+        "hour": { "ganZhi": "戊午", "hexagramKingWenId": 50 }
+      },
+      "sources": [
+        {
+          "label": "Hong Kong Observatory Almanac 2026",
+          "url": "https://www.hko.gov.hk/tc/gts/astron2026/files/HKO_almanac_2026.pdf",
+          "verifies": "丙午 year, 戊戌 civil day, lunar date, and solar-term context"
+        },
+        {
+          "label": "Bazi2U Chinese Calendar — 2026-07-23",
+          "url": "https://bazi2u.com/en/calendar/2026-07-23",
+          "verifies": "丙午 year, 乙未 solar-term month, 戊戌 day, and two-hour Ganzhi table"
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "2026-fire-horse-los-angeles-geng-shen-hour",
+      "input": {
+        "timestampUtc": "2026-08-22T23:05:30.000Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "expected": {
+        "year": { "ganZhi": "丙午", "hexagramKingWenId": 28 },
+        "month": { "ganZhi": "丙申", "hexagramKingWenId": 40 },
+        "day": { "ganZhi": "戊辰", "hexagramKingWenId": 10 },
+        "hour": { "ganZhi": "庚申", "hexagramKingWenId": 4 }
+      },
+      "sources": [
+        {
+          "label": "Hong Kong Observatory Almanac 2026",
+          "url": "https://www.hko.gov.hk/tc/gts/astron2026/files/HKO_almanac_2026.pdf",
+          "verifies": "丙午 year, 戊辰 civil day, lunar date, and solar-term context"
+        },
+        {
+          "label": "Bazi2U Chinese Calendar — 2026-08-22",
+          "url": "https://bazi2u.com/en/calendar/2026-08-22",
+          "verifies": "丙午 year, 丙申 solar-term month, 戊辰 day, and 庚申 at 15:00-16:59"
+        }
+      ],
+      "confidence": "high"
+    }
+  ]
+}

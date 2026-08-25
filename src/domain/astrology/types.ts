@@ -1,3 +1,8 @@
+import type { GuidanceBundle } from '@/domain/guidance/types'
+import type { HourPhase } from '@/domain/time/chu-zheng-ke'
+
+import type { ShichenIdentity } from './shichen'
+
 export type DataStatus = 'demo' | 'computed' | 'curated' | 'unavailable'
 
 export type LinePolarity = 'yin' | 'yang'
@@ -52,12 +57,18 @@ export type HexagramReference = Hexagram & {
 
 export type TemporalScope = 'year' | 'month' | 'day' | 'hour'
 
+export type TemporalHexagramMappingSystem = 'liu-shi-jiazi-peigua' | 'demo-fixture'
+
 export type TemporalHexagram = {
   scope: TemporalScope
   label: string
   timeBoundsLabel: string
-  hexagram: Hexagram
+  hexagram: HexagramReference
+  ganZhiRaw?: string
   ganZhi?: string
+  numberingSystem: 'king-wen'
+  mappingSystem: TemporalHexagramMappingSystem
+  mappingVersion: string
   status: DataStatus
   sourceLabel: string
 }
@@ -76,21 +87,19 @@ export type OrganKey =
   | 'pericardium'
   | 'san-jiao'
 
+export type FiveElement = 'wood' | 'fire' | 'earth' | 'metal' | 'water'
+
 export type OrganMoment = {
   key: OrganKey
   nameEnglish: string
   nameChinese?: string
+  element: FiveElement
   timeRangeLabel: string
+  shichen: ShichenIdentity
+  nextShichen: ShichenIdentity
+  hourPhase: HourPhase
   status: DataStatus
   sourceLabel: string
-}
-
-export type ExecutionFriction = 'lower' | 'neutral' | 'higher'
-
-export type ExecutionItem = {
-  label: string
-  friction: ExecutionFriction
-  rationale?: string
 }
 
 export type RelatedHexagram = {
@@ -112,17 +121,12 @@ export type CurrentFlowSnapshot = {
     hour: TemporalHexagram
   }
   organ: OrganMoment
-  synthesis: {
-    status: DataStatus
-    sourceLabel: string
-    oltr: string
-    recommendedIntention: string
-    recommendedExecution: readonly ExecutionItem[]
-    relatedHexagrams: readonly RelatedHexagram[]
-  }
+  guidance: GuidanceBundle
+  relatedHexagrams: readonly RelatedHexagram[]
   provenance: {
     providerId: string
     modelVersion: string
+    mappingVersion: string
     factors: readonly string[]
     notes: readonly string[]
   }

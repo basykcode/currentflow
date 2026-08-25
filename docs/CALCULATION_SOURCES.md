@@ -27,9 +27,12 @@ month `乙未`, day `戊戌`, and hour `戊午`.
 ## GanZhi to hexagram
 
 `lunar-javascript` calculates GanZhi but does not assign an I Ching hexagram to each pillar.
-Current applies the complete lookup in Howard Choy's
-[`60 Jia Zi to 64 Da Gua`](https://howardchoy.wordpress.com/wp-content/uploads/2011/05/60jiazito64dagua.pdf)
-table. The lookup is versioned source data, not a formula inferred by the application.
+Current applies `liu-shi-jiazi-peigua-king-wen-v1`, the explicit sixty-entry `六十甲子配卦`
+projection documented in [`SIXTY_JIAZI_HEXAGRAM_MAPPING.md`](SIXTY_JIAZI_HEXAGRAM_MAPPING.md).
+Howard Choy's source table retains all 64 gua through four dual-assignment Jiazi; the selected
+Current Flow projection uses 復, 革, 姤, and 蒙 at those positions, so the four unassigned pure gua
+are 乾 1, 坤 2, 坎 29, and 離 30. The lookup is versioned source data, not a formula inferred by the
+application.
 
 The King Wen hexagram catalog stores every figure bottom-line first. Trigram composition supplies
 the six line polarities; presentation alone reverses them for top-to-bottom screen rendering.
@@ -40,6 +43,10 @@ where translations differ. These identity fields are curated references rather t
 
 Golden case: `丙午` (Yang Fire Horse) maps to Hexagram 28, `大過` / `Dà Guò` /
 Preponderance of the Great.
+
+Every temporal item stores the mapping system, mapping version, and canonical King Wen numbering.
+The conversion boundary distinguishes King Wen IDs, bottom-line-LSB Fu Xi binary indexes, and
+one-based XKDG Luo Pan positions; an ambiguous “hexagram number” is not accepted.
 
 ## Organ clock
 
@@ -65,6 +72,37 @@ The sequence is:
 Selection uses civil clock time in the snapshot timezone. It does not correct for apparent solar
 time or longitude because Current does not request coordinates. This is a traditional educational
 framework, not a diagnostic or treatment claim.
+
+### Chū / Zhèng / Kè subdivision
+
+Current selects the Shixian 96-kè convention, which divides a day into 96 equal `刻`, making one Kè
+15 basis minutes and each two-hour Branch period eight Kè. This is a selected historical model, not
+a claim that one convention governed every period of Chinese history. The first Macro Hour is `初`
+Chū / Entering and the second is `正` Zhèng / Established:
+
+| Offset in Shíchen | Macro    |   Micro | Historical Kè | Product meaning                |
+| ----------------- | -------- | ------: | ------------- | ------------------------------ |
+| 00–15             | 初 Chū   | Phase 0 | 初刻          | First Kè of current Macro Hour |
+| 15–30             | 初 Chū   | Phase 1 | 一刻          | Second Kè                      |
+| 30–45             | 初 Chū   | Phase 2 | 二刻          | Third Kè                       |
+| 45–60             | 初 Chū   | Phase 3 | 三刻          | Fourth Kè                      |
+| 60–75             | 正 Zhèng | Phase 0 | 初刻          | First Kè of current Macro Hour |
+| 75–90             | 正 Zhèng | Phase 1 | 一刻          | Second Kè                      |
+| 90–105            | 正 Zhèng | Phase 2 | 二刻          | Third Kè                       |
+| 105–120           | 正 Zhèng | Phase 3 | 三刻          | Fourth Kè                      |
+
+The [National Astronomical Observatory of Japan's calendar office](https://eco.mtk.nao.ac.jp/koyomi/wiki/BBFEB9EF2FC4EABBFECBA1A4C8C9D4C4EABBFECBA1.html)
+documents the two-hour branch period, its `初` beginning and `正` midpoint, and the Shixian choice of
+96 ke. A historical overview republished by
+[China Daily](https://ent.chinadaily.com.cn/a/201907/26/WS5d3a5399a3106bab40a029b1.html)
+documents the resulting eight 15-minute ke per branch period.
+
+Phase derives from the same normalized local-civil coordinate that selects the Organ System,
+Earthly Branch, hour pillar, and Hour Hexagram. Boundaries are projected through the IANA timezone
+engine rather than assumed to be fixed UTC durations near DST. Macro Hour is a subordinate Current
+guidance-maturity input. Micro Hour is observational only and has no independent energetic,
+cultivation, intention, execution, or medical meaning. See
+[`CHU_ZHENG_KE_CLOCK.md`](CHU_ZHENG_KE_CLOCK.md).
 
 ## Structural relationships and Transformation Lab
 
@@ -103,18 +141,49 @@ only the three short frequency-band terms published on the corresponding
 entry stores a direct official source URL, carries `curated` status, and makes no runtime request.
 No proprietary commentary or profile calculation is reproduced or inferred.
 
+## Celestial Current astronomy
+
+Current uses the local pinned `astronomy-engine` 2.1.19 package (MIT) for lunar elongation,
+illumination, searched New Moon/quarter events, true-ecliptic-of-date solar longitude, and searched
+Solar Term crossings. The pure adapter is documented in
+[`CELESTIAL_EPHEMERIS_PROVIDER.md`](CELESTIAL_EPHEMERIS_PROVIDER.md). It runs in the lazy-loaded
+Astrology client route and makes no remote astronomy request.
+
+The existing `lunar-javascript` 1.7.7 dependency remains authoritative for the traditional Chinese
+lunar date and exact Month Pillar. Celestial classification projects the same absolute instant onto
+an explicit `Asia/Shanghai` civil basis, then uses the traditional lunar day for the six reviewed
+Cantong qi nodes. The active node's range is bounded by exact `Asia/Shanghai` midnights and clips at
+day 29 for a short lunar month. It is not treated as an ephemeris: Moon phase is never inferred from
+lunar day, season is never inferred from browser month, and Branch is never inferred from Gregorian
+month.
+
+The reviewed 24-term display table, Chinese season boundaries, Branch-sector geometry, Cantong qi
+glosses, annual movement labels, and ring layout are presentation, semantic, and cross-check data—not
+physical astronomy. Exact values, searched events, method identifiers, versions, warnings, and
+availability remain visible in details. The provider status is `computed`; independent golden
+ephemeris fixtures remain pending as recorded in
+[`CELESTIAL_CURRENT_VALIDATION.md`](CELESTIAL_CURRENT_VALIDATION.md).
+
+Home receives explicit period bounds rather than deriving them in Vue: the Lunar side carries the
+traditional Cantong interval, while the Solar side carries the exact current-to-next Solar Term
+crossings from the ephemeris search. Compact labels are localized for display without changing the
+underlying absolute UTC instants.
+
 ## Deliberately unavailable
 
-Current does not generate interpretive forecasts, recommended actions, personal BaZi synthesis, or
-medical guidance from these factors. Those surfaces remain explicitly unavailable until a separate,
-verified and reviewable model is connected.
+Current does not infer forecasts, personal BaZi synthesis, or medical guidance directly from these
+factors. The separate Temporal Semantic Resolver maps only 13 eligible hexagram identities into
+Current operational vectors and keeps that product ontology distinct from classical sources. When
+the operative day is covered, the deterministic Guidance Output Layer can render OLTR, controlled
+Intention, and low-risk Execution; uncovered days return an explicit unavailable bundle. Lesser
+missing scale profiles remain visible as partial coverage and are never inferred.
 
 Hexagram commentary tabs display source-grounded editorial drafts. These are static interpretive
 syntheses, not calculations, forecasts, translations, or personal readings. Every available record
 retains evidence, source, rights, and review metadata; every automated result is labeled draft-only
 pending human review. No source passage is shipped to the browser. Eleven sources have complete
-King Wen 1-64 file coverage, including Richard John Lynn's translation of Wang Bi's *Classic of
-Changes*. Six inherited chunk anomalies are quarantined, producing five unavailable Buddhist cells.
+King Wen 1-64 file coverage, including Richard John Lynn's translation of Wang Bi's _Classic of
+Changes_. Six inherited chunk anomalies are quarantined, producing five unavailable Buddhist cells.
 
 Selected line changes also show an original draft paraphrase of the corresponding source-to-result
 entry in the _Jiaoshi Yilin_. The target hexagram is computed first from the canonical bottom-to-top
@@ -129,7 +198,9 @@ its rule is defined and accepted.
 
 ## Known verification risk
 
-Exact solar-term boundaries inherit `lunar-javascript` data and implementation behavior. Boundary
-dates should receive additional cross-library golden fixtures before they are treated as
-high-assurance natal or electional calculations. Away from a transition, the selected convention is
-unambiguous.
+Physical Solar Term crossings now come from `astronomy-engine`; traditional Month Pillars remain
+under `lunar-javascript`. Their ephemerides can place a few exact Jie transitions minutes apart.
+Current reports the narrow discrepancy and preserves each authority instead of rounding one into
+the other. Independent cross-library golden fixtures are still required before these boundaries are
+treated as high-assurance natal or electional calculations. Away from a transition, the selected
+conventions agree.

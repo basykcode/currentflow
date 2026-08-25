@@ -12,10 +12,15 @@ html {
   scroll-behavior: smooth;
 }
 
+:root[data-text-scale-fixture='large'] {
+  font-size: 150%;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  min-height: 100dvh;
   background:
     radial-gradient(
       circle at 12% -8%,
@@ -27,6 +32,8 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   font-size: 1rem;
+  font-optical-sizing: auto;
+  font-variation-settings: var(--font-serif-variation-settings);
   line-height: 1.55;
   text-rendering: optimizeLegibility;
 }

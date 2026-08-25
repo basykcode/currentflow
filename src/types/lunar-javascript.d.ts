@@ -5,6 +5,9 @@ declare module 'lunar-javascript' {
   }
 
   export interface LunarDate {
+    getYear(): number
+    getMonth(): number
+    getDay(): number
     getYearInGanZhiExact(): string
     getYearShengXiaoExact(): string
     getMonthInGanZhiExact(): string
@@ -13,6 +16,17 @@ declare module 'lunar-javascript' {
     getJieQiTable(): Record<string, SolarDate>
     getNextJie(wholeDay?: boolean): JieQi | null
     getPrevJie(wholeDay?: boolean): JieQi | null
+  }
+
+  export interface LunarMonthDate {
+    getDayCount(): number
+    getMonth(): number
+    getYear(): number
+    isLeap(): boolean
+  }
+
+  export interface LunarYearDate {
+    getMonth(lunarMonth: number): LunarMonthDate | null
   }
 
   export interface SolarDate {
@@ -29,5 +43,9 @@ declare module 'lunar-javascript' {
       minute: number,
       second: number,
     ): SolarDate
+  }
+
+  export const LunarYear: {
+    fromYear(year: number): LunarYearDate
   }
 }
