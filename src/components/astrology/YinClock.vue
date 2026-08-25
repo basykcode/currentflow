@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 
+import { formatGmtOffsetLabel } from './celestialFormatting'
+
 const props = withDefaults(
   defineProps<{
     timezone: string
@@ -51,6 +53,8 @@ const dateLabel = computed(() =>
     day: 'numeric',
   }).format(sampledAt.value),
 )
+
+const timezoneLabel = computed(() => formatGmtOffsetLabel(sampledAt.value, props.timezone))
 
 const sampleTime = () => {
   sampledAt.value = props.live ? new Date() : explicitInstant()
@@ -106,7 +110,7 @@ onBeforeUnmount(() => {
   <div
     class="yin-clock"
     :class="{ 'yin-clock--compact': compact }"
-    :aria-label="`${dateLabel}, ${timeLabel}, ${timezone}`"
+    :aria-label="`${dateLabel}, ${timeLabel}, ${timezoneLabel}`"
     :style="{ '--yin-clock-dissolve-duration': `${activeDissolveDurationMs}ms` }"
     :data-sample-interval-ms="SAMPLE_INTERVAL_MS"
     :data-dissolve-duration-ms="DISSOLVE_DURATION_MS"
@@ -144,8 +148,10 @@ onBeforeUnmount(() => {
     </div>
     <p class="yin-clock__metadata">
       <span>{{ dateLabel }}</span>
-      <span aria-hidden="true"> · </span>
-      <span class="yin-clock__timezone" :title="timezone">{{ timezone }}</span>
+      <span aria-hidden="true">·</span>
+      <span class="yin-clock__timezone" :title="`${timezone} · ${timezoneLabel}`">
+        {{ timezoneLabel }}
+      </span>
     </p>
   </div>
 </template>
@@ -163,6 +169,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: baseline;
   justify-content: center;
+  gap: 0.16rem;
   max-width: 100%;
   width: 100%;
   margin: 0;

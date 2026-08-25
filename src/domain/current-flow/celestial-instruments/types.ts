@@ -70,6 +70,12 @@ export interface CelestialRingLabel {
   readonly accessibleLabel: string
 }
 
+export interface CelestialPeriodBounds {
+  readonly startUtc: string
+  readonly endExclusiveUtc: string
+  readonly basisTimeZone: string
+}
+
 export interface LunarCurrentSource {
   readonly status: InstrumentDataStatus
   readonly phaseName: LunarPhaseName | null
@@ -78,6 +84,7 @@ export interface LunarCurrentSource {
   readonly illuminationFraction: number | null
   readonly waxing: boolean | null
   readonly cantongQiNodeId: CantongQiNodeId | null
+  readonly periodBounds: CelestialPeriodBounds | null
   readonly methodology: {
     readonly astronomyMethodId: string
     readonly calendarMethodId: string
@@ -93,6 +100,7 @@ export interface SeasonalCurrentSource {
   readonly season: ChineseSolarSeason | null
   readonly branchMonth: BranchMonthDefinition | null
   readonly yinYangMovement: AnnualYinYangMovement | null
+  readonly periodBounds: CelestialPeriodBounds | null
   readonly methodology: {
     readonly astronomyMethodId: string
     readonly solarTermTableVersion: string
@@ -102,10 +110,7 @@ export interface SeasonalCurrentSource {
   readonly warnings: readonly string[]
 }
 
-/**
- * Required upstream seam. This repository currently defines the contract but does not own an
- * astronomical implementation. Production callers must supply reviewed Global Conditions data.
- */
+/** Production presenter seam populated by the local deterministic celestial provider. */
 export interface GlobalConditionsSnapshot {
   readonly generatedAtIso: string
   readonly lunar: LunarCurrentSource
@@ -120,6 +125,7 @@ export interface ChineseLunarCalendarSnapshot {
   readonly isLeapMonth: boolean
   readonly monthLength: 29 | 30
   readonly monthPillarBranch: EarthlyBranchCharacter
+  readonly cantongQiPeriodBounds: CelestialPeriodBounds
   readonly methodologyId: string
 }
 
@@ -134,6 +140,7 @@ export interface LunarHomeInstrumentViewModel {
   readonly waxing: boolean | null
   readonly activeNodeIndex: 0 | 1 | 2 | 3 | 4 | 5 | null
   readonly markerAngleDegrees: number | null
+  readonly periodBounds: CelestialPeriodBounds | null
   readonly detailsTarget: { readonly kind: 'lunar-current' }
   readonly methodology: {
     readonly astronomyMethodId: string
@@ -152,6 +159,7 @@ export interface SolarHomeInstrumentViewModel {
   readonly solarLongitudeDegrees: number | null
   readonly branchMonth: BranchMonthDefinition | null
   readonly markerAngleDegrees: number | null
+  readonly periodBounds: CelestialPeriodBounds | null
   readonly detailsTarget: { readonly kind: 'seasonal-current' }
   readonly methodology: {
     readonly astronomyMethodId: string

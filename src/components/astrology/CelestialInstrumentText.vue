@@ -3,6 +3,10 @@ import ChineseTermInline from '@/components/common/ChineseTermInline.vue'
 
 defineProps<{
   lineOne: string
+  periodLabel: string
+  periodTitle: string
+  periodStartUtc?: string | undefined
+  periodEndUtc?: string | undefined
   lineTwo: {
     readonly characters: string
     readonly pinyin: string
@@ -16,6 +20,15 @@ defineProps<{
 <template>
   <span class="celestial-instrument-text">
     <span class="instrument-value" data-primary-value="phase-or-season">{{ lineOne }}</span>
+    <span
+      class="instrument-value instrument-value--bounds"
+      data-primary-value="period-bounds"
+      :data-period-start-utc="periodStartUtc"
+      :data-period-end-utc="periodEndUtc"
+      :title="periodTitle"
+    >
+      {{ periodLabel }}
+    </span>
     <span class="instrument-value" data-primary-value="traditional-state">
       <ChineseTermInline
         v-if="lineTwo"
@@ -55,6 +68,13 @@ defineProps<{
   font-weight: 600;
 }
 
+.instrument-value--bounds {
+  color: var(--ink-faint);
+  font-size: clamp(0.52rem, 0.83vw, 0.64rem);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
 .instrument-value--movement {
   color: var(--jade-deep);
   font-size: clamp(0.58rem, 0.95vw, 0.7rem);
@@ -69,11 +89,15 @@ defineProps<{
 
   .instrument-value,
   .instrument-value--movement {
-    font-size: max(0.56rem, 2.25vw);
+    font-size: max(0.54rem, 2.05vw);
   }
 
   .instrument-value:first-child {
-    font-size: max(0.62rem, 2.5vw);
+    font-size: max(0.6rem, 2.25vw);
+  }
+
+  .instrument-value--bounds {
+    font-size: max(0.49rem, 1.86vw);
   }
 }
 </style>

@@ -47,6 +47,11 @@ export const createCelestialDevelopmentFixture = (options?: {
     season: 'Autumn',
     branchMonth: EARTHLY_BRANCH_MONTH_DEFINITIONS[8],
     yinYangMovement: 'Yang Descending',
+    periodBounds: {
+      startUtc: '2026-08-23T02:18:58.000Z',
+      endExclusiveUtc: '2026-09-07T14:41:44.000Z',
+      basisTimeZone: 'UTC',
+    },
     methodology: fixtureSeasonalMethodology,
     warnings: ['Development fixture only; not production astronomical data.'],
   }
@@ -61,6 +66,11 @@ export const createCelestialDevelopmentFixture = (options?: {
       illuminationFraction: illuminationForElongation(elongationDegrees),
       waxing: ((elongationDegrees % 360) + 360) % 360 < 180,
       cantongQiNodeId: options?.cantongQiNodeId ?? 'xun-distribution',
+      periodBounds: {
+        startUtc: '2026-08-27T16:00:00.000Z',
+        endExclusiveUtc: '2026-09-01T16:00:00.000Z',
+        basisTimeZone: 'Asia/Shanghai',
+      },
       methodology: fixtureMethodology,
       warnings: ['Development fixture only; not production astronomical data.'],
     },

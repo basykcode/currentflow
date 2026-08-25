@@ -20,8 +20,10 @@ const lunar = presentLunarHomeInstrument(fixture.lunar)
 const solar = presentSolarHomeInstrument(fixture.seasonal)
 
 describe('LunarCurrentInstrument', () => {
-  it('renders the complete phase disk, six-sector ring, marker, and exactly three Home values', async () => {
-    const wrapper = mount(LunarCurrentInstrument, { props: { viewModel: lunar } })
+  it('renders the phase, bounds, traditional node, and movement beside the lunar ring', async () => {
+    const wrapper = mount(LunarCurrentInstrument, {
+      props: { viewModel: lunar, timezone: 'America/Los_Angeles' },
+    })
 
     expect(wrapper.find('.moon-base').exists()).toBe(true)
     expect(wrapper.find('.moon-illumination').exists()).toBe(true)
@@ -29,7 +31,11 @@ describe('LunarCurrentInstrument', () => {
     expect(wrapper.findAll('[data-ring-label]')).toHaveLength(6)
     expect(wrapper.findAll('[data-active="true"]')).toHaveLength(1)
     expect(wrapper.get('.celestial-marker-orbit').attributes('style')).toContain('rotate(225deg)')
-    expect(wrapper.findAll('[data-primary-value]')).toHaveLength(3)
+    expect(wrapper.findAll('[data-primary-value]')).toHaveLength(4)
+    expect(wrapper.get('[data-primary-value="period-bounds"]').text()).toBe('Aug 27–Sep 1')
+    expect(wrapper.get('[data-primary-value="period-bounds"]').attributes('title')).toContain(
+      'GMT−07:00',
+    )
     expect(wrapper.text()).not.toContain('%')
     expect(wrapper.text()).not.toMatch(/\d+°/)
     expect(wrapper.get('button').attributes('aria-label')).toContain(
@@ -54,8 +60,10 @@ describe('LunarCurrentInstrument', () => {
 })
 
 describe('SolarCurrentInstrument', () => {
-  it('renders the static Sun, twelve Branches, twenty-four ticks, and three Home values', async () => {
-    const wrapper = mount(SolarCurrentInstrument, { props: { viewModel: solar } })
+  it('renders the Sun, term bounds, twelve ring Branches, and no standalone Branch badge', async () => {
+    const wrapper = mount(SolarCurrentInstrument, {
+      props: { viewModel: solar, timezone: 'America/Los_Angeles' },
+    })
 
     expect(wrapper.find('.sun-surface').exists()).toBe(true)
     expect(wrapper.findAll('[data-ring-label]')).toHaveLength(12)
@@ -63,11 +71,12 @@ describe('SolarCurrentInstrument', () => {
     expect(wrapper.findAll('[data-cardinal="true"]')).toHaveLength(4)
     expect(wrapper.findAll('[data-active="true"]')).toHaveLength(1)
     expect(wrapper.get('.celestial-marker-orbit').attributes('style')).toContain('rotate(240deg)')
-    expect(wrapper.findAll('[data-primary-value]')).toHaveLength(3)
+    expect(wrapper.findAll('[data-primary-value]')).toHaveLength(4)
+    expect(wrapper.get('[data-primary-value="period-bounds"]').text()).toBe('Aug 22–Sep 7')
     expect(wrapper.text()).not.toContain('%')
     expect(wrapper.text()).not.toMatch(/\d+°/)
-    expect(wrapper.get('[data-active-branch]').text()).toContain('申 Shēn')
-    expect(wrapper.get('button').attributes('aria-label')).toContain('Active Branch Shēn')
+    expect(wrapper.find('[data-active-branch]').exists()).toBe(false)
+    expect(wrapper.get('button').attributes('aria-label')).not.toContain('Active Branch')
     expect(wrapper.find('.current-taiji-mark').exists()).toBe(true)
     expect(wrapper.find('[src^="http"], [href^="http"]').exists()).toBe(false)
 

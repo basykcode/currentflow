@@ -7,11 +7,13 @@ waxing/waning direction. A local SVG path creates the continuous terminator; a c
 restrained crater texture inside the disk. The Home lines are:
 
 1. astronomical phase;
-2. Cantong qi node as character, tone-marked Pinyin, and English gloss;
-3. the reviewed lunar Yin/Yang movement carried by that node.
+2. current Cantong qi period bounds;
+3. Cantong qi node as character, tone-marked Pinyin, and English gloss;
+4. the reviewed lunar Yin/Yang movement carried by that node.
 
-No percentage, lunar age, lunar date, exact angle, numerical progress, or event countdown appears
-on Home.
+The compact period row uses the selected display timezone. Its title and accessible name disclose
+the exact start and exclusive-end instant with the GMT offset at each boundary. No percentage,
+lunar age, lunar date, exact angle, numerical progress, or event countdown appears on Home.
 
 ## Six-sector Cantong qi ring
 
@@ -28,6 +30,11 @@ Clockwise from the first sector:
 
 The active node is supplied by the traditional calendar source. It is emphasized by shape,
 typographic weight, and color. The text beside the ring decodes it.
+
+Each node covers a five-day traditional lunar-date interval on the reviewed `Asia/Shanghai` calendar
+basis. The provider resolves the interval from exact local midnights; the final Kūn interval ends
+after day 29 in a short lunar month rather than inventing a day 30. These calendar bounds are
+classification boundaries, not astronomical Moon-phase events.
 
 ## Astronomical position versus traditional state
 

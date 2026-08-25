@@ -45,6 +45,7 @@ const emit = defineEmits<{
       :interpolate-marker="!selectedTimeJump"
       alignment="left"
       :compact="compact"
+      :timezone="timezone"
       @open-details="emit('openLunarDetails')"
     />
 
@@ -64,6 +65,7 @@ const emit = defineEmits<{
       :interpolate-marker="!selectedTimeJump"
       alignment="right"
       :compact="compact"
+      :timezone="timezone"
       @open-details="emit('openSolarDetails')"
     />
   </header>
@@ -111,7 +113,7 @@ h1 {
 }
 
 .celestial-current-header--compact {
-  --celestial-instrument-size: clamp(3.6rem, 18vw, 5.25rem);
+  --celestial-instrument-size: clamp(3.15rem, 14vw, 3.9rem);
 
   grid-template-columns: minmax(0, 1fr) minmax(7.3rem, 1.08fr) minmax(0, 1fr);
   gap: clamp(0.18rem, 1.3vw, 0.45rem);
@@ -124,7 +126,7 @@ h1 {
 
 @media (max-width: 767px) {
   .celestial-current-header {
-    --celestial-instrument-size: clamp(3.6rem, 18vw, 5.25rem);
+    --celestial-instrument-size: clamp(3.15rem, 14vw, 3.9rem);
 
     grid-template-columns: minmax(0, 1fr) minmax(7.3rem, 1.08fr) minmax(0, 1fr);
     gap: clamp(0.18rem, 1.3vw, 0.45rem);
@@ -134,6 +136,7 @@ h1 {
   .celestial-current-header__moon,
   .celestial-current-header__sun {
     align-self: start;
+    justify-self: stretch;
   }
 
   .celestial-current-header__center :deep(.yin-clock__time) {
@@ -147,7 +150,7 @@ h1 {
 
 @media (max-width: 767px) and (max-height: 720px) {
   .celestial-current-header {
-    --celestial-instrument-size: clamp(3.35rem, 16vw, 4.35rem);
+    --celestial-instrument-size: clamp(3rem, 13vw, 3.5rem);
   }
 
   .celestial-current-header__center {

@@ -152,8 +152,10 @@ Astrology client route and makes no remote astronomy request.
 The existing `lunar-javascript` 1.7.7 dependency remains authoritative for the traditional Chinese
 lunar date and exact Month Pillar. Celestial classification projects the same absolute instant onto
 an explicit `Asia/Shanghai` civil basis, then uses the traditional lunar day for the six reviewed
-Cantong qi nodes. It is not treated as an ephemeris: Moon phase is never inferred from lunar day,
-season is never inferred from browser month, and Branch is never inferred from Gregorian month.
+Cantong qi nodes. The active node's range is bounded by exact `Asia/Shanghai` midnights and clips at
+day 29 for a short lunar month. It is not treated as an ephemeris: Moon phase is never inferred from
+lunar day, season is never inferred from browser month, and Branch is never inferred from Gregorian
+month.
 
 The reviewed 24-term display table, Chinese season boundaries, Branch-sector geometry, Cantong qi
 glosses, annual movement labels, and ring layout are presentation, semantic, and cross-check data—not
@@ -161,6 +163,11 @@ physical astronomy. Exact values, searched events, method identifiers, versions,
 availability remain visible in details. The provider status is `computed`; independent golden
 ephemeris fixtures remain pending as recorded in
 [`CELESTIAL_CURRENT_VALIDATION.md`](CELESTIAL_CURRENT_VALIDATION.md).
+
+Home receives explicit period bounds rather than deriving them in Vue: the Lunar side carries the
+traditional Cantong interval, while the Solar side carries the exact current-to-next Solar Term
+crossings from the ephemeris search. Compact labels are localized for display without changing the
+underlying absolute UTC instants.
 
 ## Deliberately unavailable
 

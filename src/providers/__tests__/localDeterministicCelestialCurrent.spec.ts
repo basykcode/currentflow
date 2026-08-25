@@ -13,14 +13,22 @@ describe('LocalDeterministicCelestialCurrentProvider', () => {
     expect(snapshot.instantUtc).toBe('2026-08-25T12:00:00.000Z')
     expect(snapshot.status).toBe('computed')
     expect(snapshot.lunarHome.phaseName).toBe(snapshot.astronomy.lunar?.phaseName)
-    expect(snapshot.lunarHome.markerAngleDegrees).toBe(
-      snapshot.astronomy.lunar?.elongationDegrees,
-    )
+    expect(snapshot.lunarHome.markerAngleDegrees).toBe(snapshot.astronomy.lunar?.elongationDegrees)
     expect(snapshot.lunarHome.cantongQi?.character).toBe('乾')
+    expect(snapshot.lunarHome.periodBounds).toEqual({
+      startUtc: '2026-08-22T16:00:00.000Z',
+      endExclusiveUtc: '2026-08-27T16:00:00.000Z',
+      basisTimeZone: 'Asia/Shanghai',
+    })
     expect(snapshot.solarHome.solarTerm?.id).toBe('chushu')
     expect(snapshot.solarHome.season).toBe('Autumn')
     expect(snapshot.solarHome.branchMonth?.character).toBe('申')
     expect(snapshot.solarHome.yinYangMovement).toBe('Yang Descending')
+    expect(snapshot.solarHome.periodBounds).toEqual({
+      startUtc: snapshot.astronomy.solar?.currentSolarTerm.instantUtc,
+      endExclusiveUtc: snapshot.astronomy.solar?.nextSolarTerm.instantUtc,
+      basisTimeZone: 'UTC',
+    })
     expect(JSON.stringify(snapshot.lunarHome)).not.toContain('%')
     expect(JSON.stringify(snapshot.solarHome)).not.toContain('°')
   })
@@ -59,9 +67,7 @@ describe('LocalDeterministicCelestialCurrentProvider', () => {
 
   it('makes no astronomy network request', () => {
     const fetchSpy = vi.spyOn(globalThis, 'fetch')
-    new LocalDeterministicCelestialCurrentProvider().calculate(
-      new Date('2026-08-25T12:00:00Z'),
-    )
+    new LocalDeterministicCelestialCurrentProvider().calculate(new Date('2026-08-25T12:00:00Z'))
     expect(fetchSpy).not.toHaveBeenCalled()
     fetchSpy.mockRestore()
   })

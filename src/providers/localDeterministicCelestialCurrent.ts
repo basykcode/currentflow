@@ -42,8 +42,7 @@ type EphemerisAdapter = Readonly<{
   calculateSolar: (instantUtc: string) => SolarAstronomySnapshot
 }>
 
-const nextWholeHourMs = (instantMs: number) =>
-  Math.floor(instantMs / HOUR_MS) * HOUR_MS + HOUR_MS
+const nextWholeHourMs = (instantMs: number) => Math.floor(instantMs / HOUR_MS) * HOUR_MS + HOUR_MS
 
 const nextShanghaiMidnightMs = (instant: Date) => {
   const civil = getZonedCivilTime(instant, CHINESE_CALENDAR_REFERENCE_TIME_ZONE)
@@ -95,7 +94,8 @@ export class LocalDeterministicCelestialCurrentProvider {
     at: Date,
     options: Readonly<{ mode?: CelestialPresentationMode }> = {},
   ): CelestialCurrentSnapshot {
-    if (Number.isNaN(at.getTime())) throw new Error('A valid instant is required for Celestial Current.')
+    if (Number.isNaN(at.getTime()))
+      throw new Error('A valid instant is required for Celestial Current.')
     const instantUtc = at.toISOString()
     const instantMs = at.getTime()
     const mode = options.mode ?? 'live'
@@ -174,11 +174,10 @@ export class LocalDeterministicCelestialCurrentProvider {
       illuminationFraction: lunar?.illuminationFraction ?? null,
       waxing: lunar ? lunar.elongationDegrees < 180 : null,
       cantongQiNodeId: calendar ? resolveCantongQiNodeId(calendar.lunarDay) : null,
+      periodBounds: calendar?.cantongQiPeriodBounds ?? null,
       methodology: Object.freeze({
-        astronomyMethodId:
-          lunar?.methodology.ephemeris.methodId ?? UNAVAILABLE_METHOD,
-        calendarMethodId:
-          calendar?.methodologyId ?? UNAVAILABLE_METHOD,
+        astronomyMethodId: lunar?.methodology.ephemeris.methodId ?? UNAVAILABLE_METHOD,
+        calendarMethodId: calendar?.methodologyId ?? UNAVAILABLE_METHOD,
         cantongQiMethodId: CELESTIAL_INSTRUMENT_METHODOLOGY.lunarLabels,
       }),
       warnings: Object.freeze([...warnings]),
@@ -205,6 +204,13 @@ export class LocalDeterministicCelestialCurrentProvider {
       season: longitude === null ? null : resolveChineseSolarSeason(longitude),
       branchMonth,
       yinYangMovement: solarTermId ? resolveAnnualYinYangMovement(solarTermId) : null,
+      periodBounds: solar
+        ? Object.freeze({
+            startUtc: solar.currentSolarTerm.instantUtc,
+            endExclusiveUtc: solar.nextSolarTerm.instantUtc,
+            basisTimeZone: 'UTC',
+          })
+        : null,
       methodology: Object.freeze({
         astronomyMethodId: solar?.methodology.ephemeris.methodId ?? UNAVAILABLE_METHOD,
         solarTermTableVersion: CELESTIAL_INSTRUMENT_METHODOLOGY.solarTermDisplay,

@@ -1,21 +1,20 @@
 import { LunarYear, Solar } from 'lunar-javascript'
 
-import { getZonedCivilTime } from '@/domain/astrology/civilTime'
+import { getZonedCivilTime, zonedWallTimeToUtc } from '@/domain/astrology/civilTime'
 import { parseAbsoluteUtcInstant } from '@/domain/astronomy/normalization'
 
 import { CELESTIAL_INSTRUMENT_METHODOLOGY } from './methodology'
-import type {
-  CantongQiNodeId,
-  ChineseLunarCalendarSnapshot,
-  EarthlyBranchCharacter,
-} from './types'
+import type { CantongQiNodeId, ChineseLunarCalendarSnapshot, EarthlyBranchCharacter } from './types'
 
 export const CHINESE_CALENDAR_REFERENCE_TIME_ZONE = 'Asia/Shanghai' as const
 
 export class ChineseCalendarConversionError extends Error {
   readonly code = 'chinese-calendar-conversion-failure' as const
 
-  constructor(message: string, readonly cause?: unknown) {
+  constructor(
+    message: string,
+    readonly cause?: unknown,
+  ) {
     super(message)
     this.name = 'ChineseCalendarConversionError'
   }
@@ -23,6 +22,24 @@ export class ChineseCalendarConversionError extends Error {
 
 const isEarthlyBranch = (value: string): value is EarthlyBranchCharacter =>
   '子丑寅卯辰巳午未申酉戌亥'.includes(value)
+
+const shanghaiMidnightAfterDays = (
+  civil: Readonly<{ year: number; month: number; day: number }>,
+  offsetDays: number,
+) => {
+  const shifted = new Date(Date.UTC(civil.year, civil.month - 1, civil.day + offsetDays))
+  return zonedWallTimeToUtc(
+    {
+      year: shifted.getUTCFullYear(),
+      month: shifted.getUTCMonth() + 1,
+      day: shifted.getUTCDate(),
+      hour: 0,
+      minute: 0,
+      second: 0,
+    },
+    CHINESE_CALENDAR_REFERENCE_TIME_ZONE,
+  )
+}
 
 export const resolveCantongQiNodeId = (lunarDay: number): CantongQiNodeId => {
   if (!Number.isInteger(lunarDay) || lunarDay < 1 || lunarDay > 30) {
@@ -36,9 +53,7 @@ export const resolveCantongQiNodeId = (lunarDay: number): CantongQiNodeId => {
   return 'kun-concealment'
 }
 
-export const calculateChineseLunarCalendar = (
-  instantUtc: string,
-): ChineseLunarCalendarSnapshot => {
+export const calculateChineseLunarCalendar = (instantUtc: string): ChineseLunarCalendarSnapshot => {
   const { date } = parseAbsoluteUtcInstant(instantUtc)
   try {
     const civil = getZonedCivilTime(date, CHINESE_CALENDAR_REFERENCE_TIME_ZONE)
@@ -63,6 +78,8 @@ export const calculateChineseLunarCalendar = (
     if (!isEarthlyBranch(monthPillarBranch)) {
       throw new Error('lunar-javascript returned an unsupported Month Pillar Branch.')
     }
+    const cantongQiStartDay = Math.floor((lunarDay - 1) / 5) * 5 + 1
+    const cantongQiEndDay = Math.min(cantongQiStartDay + 4, monthLength)
 
     return Object.freeze({
       referenceTimeZone: CHINESE_CALENDAR_REFERENCE_TIME_ZONE,
@@ -72,6 +89,11 @@ export const calculateChineseLunarCalendar = (
       isLeapMonth: signedMonth < 0,
       monthLength,
       monthPillarBranch,
+      cantongQiPeriodBounds: Object.freeze({
+        startUtc: shanghaiMidnightAfterDays(civil, cantongQiStartDay - lunarDay),
+        endExclusiveUtc: shanghaiMidnightAfterDays(civil, cantongQiEndDay - lunarDay + 1),
+        basisTimeZone: CHINESE_CALENDAR_REFERENCE_TIME_ZONE,
+      }),
       methodologyId: CELESTIAL_INSTRUMENT_METHODOLOGY.chineseLunarDate,
     })
   } catch (error) {

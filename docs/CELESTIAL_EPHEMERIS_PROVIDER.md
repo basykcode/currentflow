@@ -42,7 +42,8 @@ from the lunar date and no traditional date is inferred from astronomical phase.
 
 The Cantong qi node is a reviewed six-part classification of traditional lunar days: 1–5 震, 6–10
 兌, 11–15 乾, 16–20 巽, 21–25 艮, and 26–30 坤. Its movement label is Current Flow semantic metadata,
-not a physical-astronomy result.
+not a physical-astronomy result. The provider resolves the active node's start and exclusive-end at
+`Asia/Shanghai` midnights, clipping the final interval after day 29 in a short lunar month.
 
 ## Combined production provider
 
@@ -55,6 +56,11 @@ Moon, Sun, and Chinese-calendar calculation failures are isolated. A working sid
 the failed side becomes explicitly unavailable, the combined status becomes `partial`, and raw
 dependency errors are never shown. Presenter conflicts use the typed
 `celestial-presenter-failure` identifier.
+
+The Lunar Home model carries the exact traditional-calendar interval for its Cantong qi node. The
+Solar Home model carries the exact searched instant of the current Solar Term through the exact
+searched instant of the next term. Presentation may localize those bounds, but it does not estimate
+or round their underlying UTC values.
 
 ## Status and methodology
 

@@ -10,6 +10,7 @@ import {
 import CelestialCycleRing from './CelestialCycleRing.vue'
 import CelestialInstrumentText from './CelestialInstrumentText.vue'
 import SunDisk from './SunDisk.vue'
+import { formatCelestialPeriodBounds } from './celestialFormatting'
 
 const props = withDefaults(
   defineProps<{
@@ -18,8 +19,15 @@ const props = withDefaults(
     interpolateMarker?: boolean
     reduceMotion?: boolean
     compact?: boolean
+    timezone?: string
   }>(),
-  { alignment: 'right', interpolateMarker: true, reduceMotion: false, compact: false },
+  {
+    alignment: 'right',
+    interpolateMarker: true,
+    reduceMotion: false,
+    compact: false,
+    timezone: 'UTC',
+  },
 )
 
 const emit = defineEmits<{
@@ -47,10 +55,8 @@ const seasonLine = computed(() => props.viewModel.season ?? 'Seasonal data unava
 const movementLine = computed(
   () => props.viewModel.yinYangMovement ?? 'Annual movement unavailable',
 )
-const branchDecode = computed(() =>
-  props.viewModel.branchMonth
-    ? `${props.viewModel.branchMonth.character} ${props.viewModel.branchMonth.pinyin}`
-    : 'Branch unavailable',
+const period = computed(() =>
+  formatCelestialPeriodBounds(props.viewModel.periodBounds, props.timezone),
 )
 
 const accessibleLabel = computed(() => {
@@ -60,10 +66,7 @@ const accessibleLabel = computed(() => {
   const term = props.viewModel.solarTerm
     ? `${props.viewModel.solarTerm.pinyin}, ${props.viewModel.solarTerm.contextualEnglish}`
     : 'Solar Term unavailable'
-  const branch = props.viewModel.branchMonth
-    ? `Active Branch ${props.viewModel.branchMonth.pinyin}`
-    : 'Active Branch unavailable'
-  return `Solar Current. ${seasonLine.value}. ${term}. ${movementLine.value}. ${branch}.`
+  return `Solar Current. ${seasonLine.value}. Period ${period.value.accessibleLabel}. ${term}. ${movementLine.value}.`
 })
 </script>
 
@@ -89,11 +92,14 @@ const accessibleLabel = computed(() => {
       >
         <SunDisk :neutral="viewModel.status === 'unavailable'" decorative />
       </CelestialCycleRing>
-      <span class="branch-decode" data-active-branch>{{ branchDecode }}</span>
     </span>
 
     <CelestialInstrumentText
       :line-one="seasonLine"
+      :period-label="period.compactLabel"
+      :period-title="period.accessibleLabel"
+      :period-start-utc="viewModel.periodBounds?.startUtc"
+      :period-end-utc="viewModel.periodBounds?.endExclusiveUtc"
       :line-two="termLine"
       line-two-fallback="Solar Term unavailable"
       :line-three="movementLine"
@@ -145,44 +151,37 @@ const accessibleLabel = computed(() => {
   min-width: 0;
 }
 
-.celestial-instrument--compact,
+.celestial-instrument--compact {
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: clamp(0.18rem, 0.8vw, 0.35rem);
+  padding: 0.1rem 0;
+  text-align: left;
+}
+
 .celestial-instrument--compact.celestial-instrument--right {
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  gap: 0.2rem;
-  padding: 0.1rem;
-  text-align: center;
+  grid-template-columns: minmax(0, 1fr) auto;
+  text-align: right;
 }
 
 .celestial-instrument--compact.celestial-instrument--right .solar-ring-wrap {
-  order: 0;
-}
-
-.branch-decode {
-  z-index: 1;
-  margin-top: -0.12rem;
-  border: 1px solid color-mix(in srgb, var(--line) 75%, transparent);
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--paper-raised) 88%, transparent);
-  padding: 0.08rem 0.35rem;
-  color: var(--ink-soft);
-  font-size: 0.56rem;
-  font-weight: 700;
-  line-height: 1.2;
+  order: 2;
 }
 
 @media (max-width: 767px) {
-  .celestial-instrument,
+  .celestial-instrument {
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: clamp(0.16rem, 0.8vw, 0.3rem);
+    padding: 0.1rem 0;
+    text-align: left;
+  }
+
   .celestial-instrument--right {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    gap: 0.2rem;
-    padding: 0.1rem;
-    text-align: center;
+    grid-template-columns: minmax(0, 1fr) auto;
+    text-align: right;
   }
 
   .celestial-instrument--right .solar-ring-wrap {
-    order: 0;
+    order: 2;
   }
 }
 </style>

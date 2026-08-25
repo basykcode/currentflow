@@ -3,9 +3,10 @@
 ## Display contract
 
 The Solar instrument uses a complete, static, locally rendered Sun disk. The Home lines are Chinese
-season, current Solar Term, and the reviewed annual Yin/Yang movement. The Solar Term always includes
-traditional characters, tone-marked Pinyin, and contextual English. A small subordinate badge
-decodes the active Branch without creating a fourth primary line.
+season, the current Solar Term's exact event-to-event date bounds, the current Solar Term, and the
+reviewed annual Yin/Yang movement. The Solar Term always includes traditional characters,
+tone-marked Pinyin, and contextual English. The compact bounds use the selected display timezone;
+the title and accessible name disclose exact instants and their GMT offsets.
 
 Home never displays solar longitude, term progress, percentages, boundary countdowns, or remaining
 days.
@@ -40,6 +41,10 @@ independently reviewed geometry cross-check throws a typed conflict if supplied 
 longitude disagree; it does not silently replace source data. The existing Month Pillar Branch is
 also cross-checked and any narrow exact-boundary disagreement is reported without changing either
 authority.
+
+The standalone active-Branch badge is deactivated on Home pending further product and source review.
+The ring still carries the active visual state, and the sourced and cross-checked Branch remains in
+technical details.
 
 ## Orientation and marker
 

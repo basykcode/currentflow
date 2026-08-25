@@ -44,19 +44,25 @@ explicit `development-fixture:not-production-*` methodology identifiers.
 
 ## Home information contract
 
-Each whole cluster is one button and displays exactly three primary values.
+Each whole cluster is one button and displays four compact values.
 
-- Moon: astronomical phase; Cantong qi character/Pinyin/gloss; lunar Yin/Yang movement.
-- Sun: Chinese season; Solar Term character/Pinyin/contextual English; annual Yin/Yang movement.
+- Moon: astronomical phase; the current Cantong qi period's date bounds; Cantong qi
+  character/Pinyin/gloss; lunar Yin/Yang movement.
+- Sun: Chinese season; the current Solar Term's date bounds; Solar Term
+  character/Pinyin/contextual English; annual Yin/Yang movement.
 
-The Sun has a subordinate active-Branch decode next to its ring. The celestial instrument values do
-not expose percentages, degrees, numerical progress, countdowns, or elapsed/remaining time. The
-central clock separately presents anchored hours, minutes, and four-second-cadence seconds.
+Compact date bounds are formatted in the selected display timezone. Their title and accessible name
+carry the exact start and exclusive-end time with the correct GMT offset at each boundary. The
+standalone active-Branch badge is deactivated on Home pending product and source review; the sourced
+Branch state remains represented by the ring, cross-checked by the presenter, and disclosed in
+details. The celestial instrument values do not expose percentages, degrees, numerical progress,
+countdowns, or elapsed/remaining time. The central clock separately presents anchored hours,
+minutes, and four-second-cadence seconds.
 
 ## Layout and visual hierarchy
 
 `CelestialCurrentHeader` uses a three-column CSS Grid (`moon center sun`). It never uses
-viewport-level absolute positioning. Celestial body, Taiji marker, three values, and ring characters
+viewport-level absolute positioning. Celestial body, Taiji marker, four values, and ring characters
 form the visual hierarchy in that order. Both bodies and their textures are local SVG; there are no
 remote assets or runtime image requests.
 
@@ -78,11 +84,11 @@ never on Home.
 
 ## Responsive strategy
 
-Desktop aligns Moon outward-left and Sun outward-right while their text extends inward. Below 768
-CSS pixels, each outer cluster stacks its ring and three values in a compact three-column header.
-At short mobile heights, ring diameter and gaps reduce modestly and date/timezone metadata collapses.
-Text is not clamped; large text may cause natural page scrolling. Safe-area behavior remains owned by
-the existing page and app frame.
+Every supported width aligns the Moon ring outward-left with its text to the right and the Sun ring
+outward-right with its text to the left. The same inward-reading arrangement remains horizontal in
+the compact three-column header below 768 CSS pixels. At short mobile heights, ring diameter and
+gaps reduce modestly and nonessential metadata may compact. Text is not clamped; large text may
+cause natural page scrolling. Safe-area behavior remains owned by the existing page and app frame.
 
 ## Unavailable states
 

@@ -163,8 +163,10 @@ The mobile app-header content remains 64 CSS pixels high and its menu target rem
 
 `CelestialCurrentHeader` is active in production `CurrentFlowGlance`. It uses the same heading and
 `YinClock` in the middle, with clickable Lunar Current and Solar Current clusters in shrink-safe
-outer columns. At mobile widths each outer cluster stacks its ring and exactly three semantic
-values; compact-height rules reduce ring size and collapse only date/timezone metadata.
+outer columns. At every width the Moon ring sits outward-left with its four semantic values to the
+right, while the Sun ring sits outward-right with its four values to the left. Compact-height rules
+reduce ring size and collapse only nonessential metadata. The clock presents the selected timezone
+as its derived GMT offset; the IANA identifier remains available in the metadata title.
 
 The physical calculations come from the local pinned ephemeris provider and share one instant with
 the existing temporal snapshot and clock. The development-only `/__dev/celestial-instruments` route

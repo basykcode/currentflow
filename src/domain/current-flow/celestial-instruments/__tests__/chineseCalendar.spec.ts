@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import {
-  calculateChineseLunarCalendar,
-  resolveCantongQiNodeId,
-} from '../chineseCalendar'
+import { calculateChineseLunarCalendar, resolveCantongQiNodeId } from '../chineseCalendar'
 
 describe('Asia/Shanghai Chinese lunar calendar adapter', () => {
   it('returns explicit lunar date, leap status, month length, and Month Pillar Branch', () => {
@@ -17,8 +14,21 @@ describe('Asia/Shanghai Chinese lunar calendar adapter', () => {
         isLeapMonth: false,
         monthLength: 29,
         monthPillarBranch: '申',
+        cantongQiPeriodBounds: {
+          startUtc: '2026-08-22T16:00:00.000Z',
+          endExclusiveUtc: '2026-08-27T16:00:00.000Z',
+          basisTimeZone: 'Asia/Shanghai',
+        },
       }),
     )
+  })
+
+  it('shortens the final Cantong qi interval to a 29-day lunar month', () => {
+    const calendar = calculateChineseLunarCalendar('2026-09-10T12:00:00Z')
+
+    expect(calendar.lunarDay).toBe(29)
+    expect(calendar.monthLength).toBe(29)
+    expect(calendar.cantongQiPeriodBounds.endExclusiveUtc).toBe('2026-09-10T16:00:00.000Z')
   })
 
   it('does not depend on the process or viewer timezone', () => {

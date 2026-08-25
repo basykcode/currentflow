@@ -35,6 +35,7 @@ export const presentLunarHomeInstrument = (
       waxing: null,
       activeNodeIndex: null,
       markerAngleDegrees: null,
+      periodBounds: null,
       detailsTarget: { kind: 'lunar-current' },
       methodology,
       warnings: Object.freeze([
@@ -61,6 +62,7 @@ export const presentLunarHomeInstrument = (
     waxing: source.waxing,
     activeNodeIndex: cantongQi?.index ?? null,
     markerAngleDegrees: lunarMarkerAngleDegrees(source.elongationDegrees),
+    periodBounds: source.periodBounds,
     detailsTarget: { kind: 'lunar-current' },
     methodology,
     warnings: Object.freeze([

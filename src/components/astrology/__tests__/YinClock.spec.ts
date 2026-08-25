@@ -80,13 +80,16 @@ describe('YinClock', () => {
     vi.setSystemTime(new Date('2026-08-22T14:25:40.000Z'))
     const wrapper = mount(YinClock, { props: { timezone: 'America/Los_Angeles' } })
 
-    expect(wrapper.get('.yin-clock__metadata').text()).toContain('America/Los_Angeles')
+    expect(wrapper.get('.yin-clock__metadata').text()).toContain('GMT−07:00')
+    expect(wrapper.get('.yin-clock__metadata').text()).not.toContain('America/Los_Angeles')
+    expect(wrapper.get('.yin-clock__timezone').attributes('title')).toContain('America/Los_Angeles')
     expect(wrapper.text()).not.toContain('~')
     expect(wrapper.attributes('aria-live')).toBeUndefined()
     expect(wrapper.get('time').text()).toMatch(/^\d{2}:\d{2}:\d{2}$/)
     expect(wrapper.findAll('[data-clock-segment]')).toHaveLength(3)
     expect(wrapper.findAll('.yin-clock__colon')).toHaveLength(2)
     expect(wrapper.get('.yin-clock').attributes('aria-label')).toContain('07:25:40')
+    expect(wrapper.get('.yin-clock').attributes('aria-label')).toContain('GMT−07:00')
 
     wrapper.unmount()
   })
@@ -108,6 +111,7 @@ describe('YinClock', () => {
     )
     expect(wrapper.get('time').attributes('datetime')).toBe('1999-12-31T23:44:30.000Z')
     expect(wrapper.get('time').text()).toBe('07:44:30')
+    expect(wrapper.get('.yin-clock__timezone').text()).toBe('GMT+08:00')
 
     await vi.advanceTimersByTimeAsync(60_000)
     expect(wrapper.get('time').text()).toBe('07:44:30')

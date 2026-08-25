@@ -37,6 +37,7 @@ export const presentSolarHomeInstrument = (
       solarLongitudeDegrees: null,
       branchMonth: null,
       markerAngleDegrees: null,
+      periodBounds: null,
       detailsTarget: { kind: 'seasonal-current' },
       methodology,
       warnings: Object.freeze([
@@ -76,6 +77,7 @@ export const presentSolarHomeInstrument = (
     solarLongitudeDegrees: source.solarLongitudeDegrees,
     branchMonth: source.branchMonth,
     markerAngleDegrees: solarMarkerAngleDegrees(source.solarLongitudeDegrees),
+    periodBounds: source.periodBounds,
     detailsTarget: { kind: 'seasonal-current' },
     methodology,
     warnings: Object.freeze([

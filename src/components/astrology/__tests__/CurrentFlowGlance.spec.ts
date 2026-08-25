@@ -125,7 +125,10 @@ describe('CurrentFlowGlance', () => {
     expect(wrapper.get('[data-glance-item="year"] .hexagram-title').text()).toBe(
       'Preponderance of the Great',
     )
-    expect(wrapper.get('.yin-clock__timezone').text()).toBe('America/Argentina/Buenos_Aires')
+    expect(wrapper.get('.yin-clock__timezone').text()).toBe('GMT−03:00')
+    expect(wrapper.get('.yin-clock__timezone').attributes('title')).toContain(
+      'America/Argentina/Buenos_Aires',
+    )
     expect(wrapper.get('[data-glance-section="oltr"] p').text()).toBe(longOltr)
 
     wrapper.unmount()
@@ -238,6 +241,17 @@ describe('CurrentFlowGlance', () => {
     expect(wrapper.findAll('[data-celestial-instrument]')).toHaveLength(2)
     expect(wrapper.get('[data-celestial-instrument="lunar"]').text()).toContain('Waxing Gibbous')
     expect(wrapper.get('[data-celestial-instrument="solar"]').text()).toContain('Autumn')
+    expect(
+      wrapper
+        .get('[data-celestial-instrument="lunar"] [data-primary-value="period-bounds"]')
+        .text(),
+    ).toBe('Aug 22–27')
+    expect(
+      wrapper
+        .get('[data-celestial-instrument="solar"] [data-primary-value="period-bounds"]')
+        .text(),
+    ).toBe('Aug 22–Sep 7')
+    expect(wrapper.find('[data-active-branch]').exists()).toBe(false)
     expect(wrapper.text()).not.toContain('Development fixture')
     expect(wrapper.text()).not.toContain('data unavailable')
     expect(wrapper.attributes('data-moment-signature-instant')).toBe(instant.toISOString())
