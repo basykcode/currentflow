@@ -1,4 +1,7 @@
+import { handlePromptLabRequest } from '../../../server/gene-keys-prompt-lab/worker.ts'
+
 const API_PREFIX = '/api/v1/'
+const PROMPT_LAB_PREFIX = '/api/gene-keys-lab/'
 const HEALTH_PATHS = new Set(['/api/v1/health/live', '/api/v1/health/ready'])
 const STORED_CACHE_CONTROL_HEADER = 'X-Current-Flow-Origin-Cache-Control'
 const HOP_BY_HOP_HEADERS = new Set([
@@ -81,6 +84,40 @@ function applyCors(response, request, env) {
   return response
 }
 
+function applyPromptLabCors(response, request, env) {
+  const origin = request.headers.get('Origin')
+  if (origin && allowedOrigins(env).has(origin)) {
+    response.headers.set('Access-Control-Allow-Origin', origin)
+    response.headers.set('Access-Control-Allow-Credentials', 'true')
+    const vary = response.headers.get('Vary')
+    response.headers.set('Vary', vary ? `${vary}, Origin` : 'Origin')
+  }
+  response.headers.set('X-Current-Flow-Gateway', 'cloudflare-worker')
+  response.headers.set('X-Current-Flow-Cache', 'BYPASS')
+  return response
+}
+
+function promptLabPreflight(request, env) {
+  const origin = request.headers.get('Origin')
+  if (!origin || !allowedOrigins(env).has(origin)) {
+    return new Response(null, { status: 403, headers: { 'Cache-Control': 'no-store' } })
+  }
+
+  return applyPromptLabCors(
+    new Response(null, {
+      status: 204,
+      headers: {
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Max-Age': '600',
+        'Cache-Control': 'no-store',
+      },
+    }),
+    request,
+    env,
+  )
+}
+
 function removeOriginSpecificHeaders(response) {
   response.headers.delete('Access-Control-Allow-Credentials')
   response.headers.delete('Access-Control-Allow-Origin')
@@ -104,6 +141,32 @@ function originHeaders(request, env, id) {
 export async function handleRequest(request, env, ctx, platform = {}) {
   const id = requestId(request)
   const incomingUrl = new URL(request.url)
+  if (incomingUrl.pathname.startsWith(PROMPT_LAB_PREFIX)) {
+    if (request.method === 'OPTIONS') {
+      return promptLabPreflight(request, env)
+    }
+
+    try {
+      const response = await handlePromptLabRequest({ request, env })
+      return applyPromptLabCors(response, request, env)
+    } catch {
+      return applyPromptLabCors(
+        new Response(
+          JSON.stringify({ error: 'The private workspace is temporarily unavailable.' }),
+          {
+            status: 503,
+            headers: {
+              'Cache-Control': 'no-store',
+              'Content-Type': 'application/json; charset=utf-8',
+            },
+          },
+        ),
+        request,
+        env,
+      )
+    }
+  }
+
   if (!incomingUrl.pathname.startsWith(API_PREFIX)) {
     return problem(
       404,

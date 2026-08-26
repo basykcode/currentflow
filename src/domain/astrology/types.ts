@@ -36,6 +36,7 @@ export type Trigram = {
 }
 
 export type GeneKeySpectrum = {
+  title: string
   shadow: string
   gift: string
   siddhi: string

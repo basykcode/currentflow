@@ -5,6 +5,15 @@
   "compatibility_date": "2026-08-26",
   "workers_dev": true,
   "preview_urls": true,
+  "ai": {
+    "binding": "AI"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "GENE_KEYS_SOURCES",
+      "id": "f071e11feaf34732af4dfe613846437a"
+    }
+  ],
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1

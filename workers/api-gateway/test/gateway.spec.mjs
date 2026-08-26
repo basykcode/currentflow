@@ -176,3 +176,44 @@ test('rejects paths outside the API boundary without contacting the origin', asy
   )
   assert.equal(response.status, 404)
 })
+
+test('serves credentialed Prompt Lab routes at the edge without contacting Render', async () => {
+  const env = {
+    ALLOWED_ORIGINS: 'https://current-flow.net,https://www.current-flow.net',
+    PROMPT_LAB_SESSION_SECRET: 'a-test-secret-that-is-longer-than-32-characters',
+  }
+  const origin = 'https://current-flow.net'
+  const platform = {
+    cache: new TestCache(),
+    async fetcher() {
+      assert.fail('Prompt Lab routes must not contact the Render origin')
+    },
+  }
+
+  const session = await handleRequest(
+    new Request('https://api.current-flow.net/api/gene-keys-lab/session', {
+      headers: { Origin: origin },
+    }),
+    env,
+    context(),
+    platform,
+  )
+  assert.equal(session.status, 200)
+  assert.equal(session.headers.get('Access-Control-Allow-Origin'), origin)
+  assert.equal(session.headers.get('Access-Control-Allow-Credentials'), 'true')
+  assert.equal(session.headers.get('X-Current-Flow-Cache'), 'BYPASS')
+  assert.deepEqual(await session.json(), { authenticated: false })
+
+  const preflight = await handleRequest(
+    new Request('https://api.current-flow.net/api/gene-keys-lab/generate', {
+      method: 'OPTIONS',
+      headers: { Origin: origin, 'Access-Control-Request-Method': 'POST' },
+    }),
+    env,
+    context(),
+    platform,
+  )
+  assert.equal(preflight.status, 204)
+  assert.equal(preflight.headers.get('Access-Control-Allow-Credentials'), 'true')
+  assert.match(preflight.headers.get('Access-Control-Allow-Methods'), /POST/)
+})

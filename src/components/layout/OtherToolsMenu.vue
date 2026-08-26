@@ -13,7 +13,7 @@ const menuView = ref<'root' | 'special-messages'>('root')
 const menuId = computed(() => `other-tools-menu-${props.mode}`)
 const isSpecialMessageRoute = computed(() => route.path.startsWith('/special-messages/'))
 const isOtherToolsRoute = computed(
-  () => isSpecialMessageRoute.value || route.path === '/tools/hexagrams',
+  () => isSpecialMessageRoute.value || route.path.startsWith('/tools/'),
 )
 
 function closeMenu() {
@@ -85,6 +85,13 @@ onBeforeUnmount(() => {
           <span>
             <strong>Hexagram Library</strong>
             <small>Browse and inspect all 64 figures</small>
+          </span>
+          <span aria-hidden="true">›</span>
+        </RouterLink>
+        <RouterLink class="menu-item prompt-lab-link" to="/tools/gene-keys-prompt-lab">
+          <span>
+            <strong>Gene Keys Prompt Lab</strong>
+            <small>Test OLTR and commentary prompts</small>
           </span>
           <span aria-hidden="true">›</span>
         </RouterLink>
@@ -221,19 +228,23 @@ onBeforeUnmount(() => {
 .message-link strong,
 .message-link small,
 .hexagram-link strong,
-.hexagram-link small {
+.hexagram-link small,
+.prompt-lab-link strong,
+.prompt-lab-link small {
   display: block;
 }
 
 .message-link strong,
-.hexagram-link strong {
+.hexagram-link strong,
+.prompt-lab-link strong {
   margin-bottom: 0.15rem;
   font-family: var(--font-serif);
   font-size: 1rem;
 }
 
 .message-link small,
-.hexagram-link small {
+.hexagram-link small,
+.prompt-lab-link small {
   color: var(--ink-soft);
   font-size: 0.68rem;
 }

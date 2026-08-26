@@ -20,6 +20,10 @@ async function mountMenu() {
         path: '/tools/hexagrams',
         component: { template: '<div>Hexagrams</div>' },
       },
+      {
+        path: '/tools/gene-keys-prompt-lab',
+        component: { template: '<div>Prompt Lab</div>' },
+      },
     ],
   })
 
@@ -49,6 +53,9 @@ describe('OtherToolsMenu', () => {
     const hexagramLink = wrapper.get('a.hexagram-link')
     expect(hexagramLink.text()).toContain('Hexagram Library')
     expect(hexagramLink.attributes('href')).toBe('/tools/hexagrams')
+    const promptLabLink = wrapper.get('a.prompt-lab-link')
+    expect(promptLabLink.text()).toContain('Gene Keys Prompt Lab')
+    expect(promptLabLink.attributes('href')).toBe('/tools/gene-keys-prompt-lab')
     expect(wrapper.get('button.menu-item').text()).toContain('Special Messages')
 
     await wrapper.get('button.menu-item').trigger('click')

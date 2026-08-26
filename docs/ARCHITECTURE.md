@@ -1,6 +1,8 @@
 # Architecture
 
-Current is a client-side Vue 3 application organized around explicit domain boundaries.
+Current is a Vue 3 application organized around explicit domain boundaries. Most routes remain a
+static client-side SPA; the private Gene Keys Prompt Lab adds narrowly scoped routes to the existing
+Cloudflare API gateway Worker for shared-password authorization and explicit AI generation.
 
 ## Layers
 
@@ -135,6 +137,33 @@ bundle by King Wen number, validates it, caches it, and returns typed unavailabl
 `HexagramCommentaryPanel.vue` owns presentation, tab keyboard behavior, remembered school, evidence
 and source disclosure, and responsive states. It makes no network calls.
 
+## Gene Keys Prompt Lab boundary
+
+The `/tools/gene-keys-prompt-lab` route is an internal language experiment workbench. It reuses the
+canonical Gene Keys registry under `src/domain/astrology` for all 64 chapter titles and
+Shadow/Gift/Siddhi metadata. The browser can choose _The Gene Keys_, _The 64 Ways_, both, or neither;
+it never downloads the selected chapter text.
+
+The existing Cloudflare Worker under `workers/api-gateway` handles `/api/gene-keys-lab/*` directly
+before its Render proxy boundary. A shared password stored as an encrypted Worker secret creates a
+12-hour HMAC-signed, HttpOnly, Secure, SameSite=Strict cookie on `api.current-flow.net`. The signing
+secret is independently stored as another Worker secret. Credentialed CORS is restricted to the
+declared Current Flow frontend origins, POST handlers reject other origins, every response bypasses
+the edge cache and requests no indexing, and neither credential is compiled into the browser bundle.
+
+The server reads only the requested key from a private Workers KV binding and sends that evidence,
+the canonical metadata, and the experimenter's prompt to the Workers AI binding. Output is forced
+into the OLTR/commentary shape, retained as `draft-only`, checked for exact eight-word source overlap,
+and retried once in more original language when needed. Raw evidence is never returned, logged by
+application code, or stored in experiment history. Cloudflare remains an external processor of the
+selected source chapter during generation and must be treated as part of the private evidence
+boundary.
+
+Successful experiments are stored only in versioned browser localStorage, capped at 200 entries,
+and can be exported as JSON. Each record contains settings, the prompt, generated prose, engine
+label, warnings, and review state—but not source passages. There is deliberately no remote history
+database or account synchronization.
+
 ## Special-message privacy boundary
 
 Special-message routes remain part of the static Vue deployment and make no runtime network calls.
@@ -178,11 +207,12 @@ migrations and approved foundation reconciliation as a pre-deploy phase; ordinar
 disposable and process-only. The bounded asynchronous driver does not make process liveness depend
 on immediate database connectivity, while readiness remains dependency-aware.
 
-The separate Cloudflare Worker under `workers/api-gateway` is the production HTTP ingress for
-`/api/v1/*`. It forwards an origin token, applies explicit public/private and bypass cache rules, and
-does not own Alchemy domain behavior. The backend separates domain models and deterministic
-analysis, application ports/services, a centralized Neo4j repository, offline ingestion adapters,
-and API transport.
+The separate Cloudflare Worker under `workers/api-gateway` is the production HTTP ingress for both
+`/api/v1/*` and `/api/gene-keys-lab/*`. Alchemy routes forward an origin token and apply explicit
+public/private and bypass cache rules; Prompt Lab routes are handled at the edge and always bypass
+the cache. The Worker does not own Alchemy domain behavior. The backend separates domain models and
+deterministic analysis, application ports/services, a centralized Neo4j repository, offline
+ingestion adapters, and API transport.
 
 The checked-in OpenAPI contract is the frontend integration seam. The browser never receives Neo4j
 or origin credentials or arbitrary Cypher access, and external source or future local-model calls do

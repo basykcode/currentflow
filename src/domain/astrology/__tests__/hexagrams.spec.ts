@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { describeGanZhi, resolveGanZhiZodiac } from '../ganZhi'
-import { GENE_KEY_COUNT } from '../geneKeys'
+import { GENE_KEY_COUNT, getGeneKeyReferences } from '../geneKeys'
 import { getHexagram, getHexagrams, KING_WEN_HEXAGRAM_COUNT } from '../hexagrams'
 import {
   JIA_ZI_MAPPING_COUNT,
@@ -15,6 +15,9 @@ describe('hexagram reference data', () => {
   it('contains the complete King Wen catalog and 60 Jia Zi mapping', () => {
     expect(KING_WEN_HEXAGRAM_COUNT).toBe(64)
     expect(GENE_KEY_COUNT).toBe(64)
+    const geneKeys = getGeneKeyReferences()
+    expect(geneKeys[0]?.title).toBe('From Entropy to Syntropy')
+    expect(geneKeys[63]?.title).toBe('The Aurora')
     expect(JIA_ZI_MAPPING_COUNT).toBe(60)
   })
 
@@ -148,6 +151,7 @@ describe('hexagram reference data', () => {
       expect(hexagram.lowerTrigram.linesBottomToTop).toEqual(hexagram.linesBottomToTop.slice(0, 3))
       expect(hexagram.upperTrigram.linesBottomToTop).toEqual(hexagram.linesBottomToTop.slice(3, 6))
       expect(hexagram.geneKey.shadow).not.toBe('')
+      expect(hexagram.geneKey.title).not.toBe('')
       expect(hexagram.geneKey.gift).not.toBe('')
       expect(hexagram.geneKey.siddhi).not.toBe('')
       expect(hexagram.geneKey.sourceUrl).toContain(`gene-key-${hexagram.number}`)
