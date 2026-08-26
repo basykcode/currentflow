@@ -152,11 +152,13 @@ state is duplicated.
 ## Clock and header
 
 The clock presents `HH:mm:ss` as three independently keyed sections. Seconds target regular
-four-second wall-clock boundaries. Each change begins a 1.5-second dissolve before its target and
-finishes at the boundary; minute and hour sections join the same dissolve only when their values
-change. The two blue colons never transition, providing stable visual anchors. A visibility resume
-resynchronizes to wall-clock time. The clock has no live region, so updates do not continuously
-interrupt assistive technology.
+four-second wall-clock boundaries. Each regular seconds change spends the full four-second interval
+dissolving toward its target, lands at the boundary, and hands immediately to the next dissolve;
+these cycles are contiguous and never overlap. Minute and hour sections remain static until their
+values change, then use the same four-second dissolve. A first render or visibility resume joins the
+current dissolve at its already-elapsed phase while retaining the canonical four-second duration, so
+the next target still lands on time. The two blue colons never transition, providing stable visual
+anchors. The clock has no live region, so updates do not continuously interrupt assistive technology.
 
 The mobile app-header content remains 64 CSS pixels high and its menu target remains at least 44 by
 44 CSS pixels. Its sticky navigation and safe-area padding are unchanged in behavior.

@@ -8,25 +8,40 @@ describe('YinClock', () => {
     vi.useRealTimers()
   })
 
-  it('starts each four-second dissolve 1.5 seconds before its target boundary', async () => {
+  it('hands continuous four-second dissolves directly from one target to the next', async () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-07-23T16:00:01.000Z'))
     const wrapper = mount(YinClock, { props: { timezone: 'UTC' } })
+    await vi.advanceTimersByTimeAsync(0)
 
-    expect(wrapper.get('time').text()).toBe('16:00:01')
+    expect(wrapper.get('time').text()).toBe('16:00:04')
     expect(wrapper.get('.yin-clock').attributes('data-sample-interval-ms')).toBe('4000')
-    expect(wrapper.get('.yin-clock').attributes('data-dissolve-duration-ms')).toBe('1500')
+    expect(wrapper.get('.yin-clock').attributes('data-dissolve-duration-ms')).toBe('4000')
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-duration: 4000ms',
+    )
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-delay: -1000ms',
+    )
+    expect(vi.getTimerCount()).toBe(1)
     const hoursElement = wrapper.get('[data-clock-segment="hours"] transition-stub > span').element
     const minutesElement = wrapper.get(
       '[data-clock-segment="minutes"] transition-stub > span',
     ).element
     const colonElements = wrapper.findAll('.yin-clock__colon').map((colon) => colon.element)
 
-    await vi.advanceTimersByTimeAsync(1_499)
-    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('01')
+    await vi.advanceTimersByTimeAsync(2_999)
+    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('04')
 
     await vi.advanceTimersByTimeAsync(1)
-    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('04')
+    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('08')
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-duration: 4000ms',
+    )
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-delay: 0ms',
+    )
+    expect(vi.getTimerCount()).toBe(1)
     expect(wrapper.get('[data-clock-segment="hours"]').attributes('data-value')).toBe('16')
     expect(wrapper.get('[data-clock-segment="minutes"]').attributes('data-value')).toBe('00')
     expect(wrapper.get('[data-clock-segment="hours"] transition-stub > span').element).toBe(
@@ -40,19 +55,26 @@ describe('YinClock', () => {
     )
 
     await vi.advanceTimersByTimeAsync(4_000)
-    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('08')
+    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('12')
+    expect(vi.getTimerCount()).toBe(1)
 
     wrapper.unmount()
+    expect(vi.getTimerCount()).toBe(0)
   })
 
   it('dissolves hours, minutes, and seconds together at an hour boundary', async () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-08-22T16:59:58.000Z'))
     const wrapper = mount(YinClock, { props: { timezone: 'UTC' } })
+    await vi.advanceTimersByTimeAsync(0)
 
-    expect(wrapper.get('time').text()).toBe('16:59:58')
-
-    await vi.advanceTimersByTimeAsync(500)
+    expect(wrapper.get('time').text()).toBe('17:00:00')
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-duration: 4000ms',
+    )
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-delay: -2000ms',
+    )
     expect(wrapper.get('[data-clock-segment="hours"]').attributes('data-value')).toBe('17')
     expect(wrapper.get('[data-clock-segment="minutes"]').attributes('data-value')).toBe('00')
     expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('00')
@@ -64,13 +86,22 @@ describe('YinClock', () => {
     vi.useFakeTimers()
     vi.setSystemTime(new Date('2026-08-22T16:00:01.000Z'))
     const wrapper = mount(YinClock, { props: { timezone: 'UTC' } })
+    await vi.advanceTimersByTimeAsync(0)
 
     vi.setSystemTime(new Date('2026-08-22T16:01:01.000Z'))
     await vi.runOnlyPendingTimersAsync()
+    await vi.advanceTimersByTimeAsync(0)
 
     expect(wrapper.get('[data-clock-segment="hours"]').attributes('data-value')).toBe('16')
     expect(wrapper.get('[data-clock-segment="minutes"]').attributes('data-value')).toBe('01')
-    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('02')
+    expect(wrapper.get('[data-clock-segment="seconds"]').attributes('data-value')).toBe('04')
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-duration: 4000ms',
+    )
+    expect(wrapper.get('.yin-clock').attributes('style')).toContain(
+      '--yin-clock-dissolve-delay: -1000ms',
+    )
+    expect(vi.getTimerCount()).toBe(1)
 
     wrapper.unmount()
   })

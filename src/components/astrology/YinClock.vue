@@ -14,13 +14,13 @@ const props = withDefaults(
 )
 
 const SAMPLE_INTERVAL_MS = 4_000
-const DISSOLVE_DURATION_MS = 1_500
+const DISSOLVE_DURATION_MS = SAMPLE_INTERVAL_MS
 const explicitInstant = () => {
   const parsed = props.instantUtc ? new Date(props.instantUtc) : new Date()
   return Number.isNaN(parsed.getTime()) ? new Date() : parsed
 }
 const sampledAt = ref(explicitInstant())
-const activeDissolveDurationMs = ref(DISSOLVE_DURATION_MS)
+const activeDissolveDelayMs = ref(0)
 let alignmentTimer: number | undefined
 
 const timeParts = computed(() => {
@@ -68,9 +68,9 @@ function scheduleDissolveForBoundary(boundaryMs: number) {
       restartClock()
       return
     }
-    activeDissolveDurationMs.value = Math.max(
+    activeDissolveDelayMs.value = -Math.max(
       0,
-      Math.min(DISSOLVE_DURATION_MS, boundaryMs - Date.now()),
+      Math.min(DISSOLVE_DURATION_MS, Date.now() - idealStartMs),
     )
     sampledAt.value = new Date(boundaryMs)
     scheduleDissolveForBoundary(boundaryMs + SAMPLE_INTERVAL_MS)
@@ -111,7 +111,10 @@ onBeforeUnmount(() => {
     class="yin-clock"
     :class="{ 'yin-clock--compact': compact }"
     :aria-label="`${dateLabel}, ${timeLabel}, ${timezoneLabel}`"
-    :style="{ '--yin-clock-dissolve-duration': `${activeDissolveDurationMs}ms` }"
+    :style="{
+      '--yin-clock-dissolve-duration': `${DISSOLVE_DURATION_MS}ms`,
+      '--yin-clock-dissolve-delay': `${activeDissolveDelayMs}ms`,
+    }"
     :data-sample-interval-ms="SAMPLE_INTERVAL_MS"
     :data-dissolve-duration-ms="DISSOLVE_DURATION_MS"
     :data-authoritative-instant="instantUtc"
@@ -229,8 +232,10 @@ onBeforeUnmount(() => {
 .yin-clock-dissolve-enter-active,
 .yin-clock-dissolve-leave-active {
   transition:
-    opacity var(--yin-clock-dissolve-duration, 1500ms) ease-in-out,
-    filter var(--yin-clock-dissolve-duration, 1500ms) ease-in-out;
+    opacity var(--yin-clock-dissolve-duration, 4000ms) ease-in-out
+      var(--yin-clock-dissolve-delay, 0ms),
+    filter var(--yin-clock-dissolve-duration, 4000ms) ease-in-out
+      var(--yin-clock-dissolve-delay, 0ms);
 }
 
 .yin-clock-dissolve-enter-from,

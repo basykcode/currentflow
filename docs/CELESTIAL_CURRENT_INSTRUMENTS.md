@@ -57,7 +57,9 @@ standalone active-Branch badge is deactivated on Home pending product and source
 Branch state remains represented by the ring, cross-checked by the presenter, and disclosed in
 details. The celestial instrument values do not expose percentages, degrees, numerical progress,
 countdowns, or elapsed/remaining time. The central clock separately presents anchored hours,
-minutes, and four-second-cadence seconds.
+minutes, and four-second-cadence seconds. Each seconds target dissolves for the full cadence and
+hands directly to the next target without overlapping cycles; unchanged hour and minute segments
+stay still.
 
 ## Layout and visual hierarchy
 
