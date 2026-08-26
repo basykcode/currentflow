@@ -29,7 +29,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  quality:
+  alchemy-quality:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -55,7 +55,7 @@ jobs:
       - run: uv run pytest -m "not integration"
       - run: uv run alchemy openapi export --check
 
-  neo4j-integration:
+  alchemy-neo4j-integration:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -94,7 +94,7 @@ jobs:
       - run: uv run pytest -m integration
       - run: uv run alchemy graph audit
 
-  container:
+  alchemy-container:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
