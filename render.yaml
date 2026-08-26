@@ -4,12 +4,13 @@ services:
   - type: web
     name: current-flow-alchemy-api
     runtime: docker
-    plan: free
+    plan: standard
     region: virginia
     branch: master
     autoDeployTrigger: checksPass
     dockerfilePath: ./services/alchemy-api/Dockerfile
     dockerContext: ./services/alchemy-api
+    preDeployCommand: sh deploy/predeploy.sh
     dockerCommand: sh deploy/start.sh
     healthCheckPath: /api/v1/health/ready
     domains:
@@ -26,6 +27,10 @@ services:
         value: 0.0.0.0
       - key: ALCHEMY_API_PORT
         value: '10000'
+      - key: WEB_CONCURRENCY
+        value: '1'
+      - key: ALCHEMY_GRACEFUL_SHUTDOWN_SECONDS
+        value: '30'
       - key: ALCHEMY_LOG_LEVEL
         value: INFO
       - key: ALCHEMY_ALLOWED_ORIGINS
@@ -36,6 +41,20 @@ services:
         value: '1'
       - key: ALCHEMY_DATA_ROOT
         value: /app/.cache/alchemy-data
+      - key: ALCHEMY_ORIGIN_TOKEN
+        sync: false
+      - key: ALCHEMY_MAX_REQUEST_BODY_BYTES
+        value: '1048576'
+      - key: NEO4J_MAX_CONNECTION_POOL_SIZE
+        value: '50'
+      - key: NEO4J_CONNECTION_ACQUISITION_TIMEOUT_SECONDS
+        value: '30'
+      - key: NEO4J_CONNECTION_TIMEOUT_SECONDS
+        value: '10'
+      - key: NEO4J_MAX_TRANSACTION_RETRY_TIME_SECONDS
+        value: '15'
+      - key: NEO4J_QUERY_TIMEOUT_SECONDS
+        value: '20'
       - key: NEO4J_URI
         sync: false
       - key: NEO4J_USERNAME

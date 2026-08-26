@@ -3,7 +3,8 @@
 - UTC timestamp: 2026-08-26T22:34:17Z
 - Branch/worktree: `codex/chat-01a02c2ef1c9` / app-managed linked worktree
 - Starting commit: `ddb58c291f9c97d2fa66f5e26c986bd02bd39b6a`
-- Status: implementation and local verification complete; production bindings and integration pending
+- Status: implementation and current-master reconciliation complete; production bindings and
+  protected publication pending
 
 ## Objective
 
@@ -15,13 +16,13 @@ every saved experiment with its complete settings.
 ## Work completed
 
 - Extended the canonical Gene Keys registry with all 64 chapter titles taken from the explicit
-  chapter headings in the supplied *Gene Keys* EPUB. No parallel key/title table was introduced.
+  chapter headings in the supplied _Gene Keys_ EPUB. No parallel key/title table was introduced.
 - Added the `/tools/gene-keys-prompt-lab` lazy route and Other Tools menu entry.
 - Built a responsive password gate, key and source controls, prompt composer, draft output surface,
   and a versioned device-local history capped at 200 complete experiments with JSON export.
-- Added Pages Function login, session, logout, and generation endpoints. The shared password and an
-  independent HMAC signing secret are server-only bindings; the session cookie is HttpOnly, Secure,
-  SameSite=Strict, and expires after 12 hours.
+- Added login, session, logout, and generation routes to the existing Cloudflare API gateway Worker.
+  The shared password and an independent HMAC signing secret are server-only bindings; the session
+  cookie is HttpOnly, Secure, SameSite=Strict, and expires after 12 hours.
 - Added a private Workers KV source boundary and Workers AI generation adapter. The browser sends
   only source IDs and never receives source passages.
 - Applied the existing OLTR/commentary rubric as the system contract, retained every result as
@@ -63,12 +64,24 @@ every saved experiment with its complete settings.
   no npm executable. Every command in that script was run directly through the bundled Node runtime
   with passing results.
 
+## Current-master reconciliation
+
+`master` advanced from this task's starting point to `a367578` with the complete Current Flow glance,
+pinned Node/npm toolchain, and production Cloudflare gateway. The current production topology no
+longer uses Pages Functions. The branch therefore merged `origin/master` and moved the Prompt Lab's
+server routes into the existing `current-flow-api-gateway` Worker without changing its Render-bound
+`/api/v1/*` behavior.
+
+The reconciled tree passed synchronized toolchain checks, strict type checking, zero-warning lint,
+51 Vitest files with 399 tests, 11 workspace tests, all six gateway tests, both corpus validators,
+the 128-source dry run, and a 481-module production build.
+
 ## Production steps still required
 
-1. Integrate the feature into the current `master`, which advanced to `a367578` after this worker was
-   created, and rerun the complete merged-tree release gate.
-2. In the existing Cloudflare Pages project, bind Workers AI as `AI`, bind a private KV namespace as
-   `GENE_KEYS_SOURCES`, and set encrypted `PROMPT_LAB_PASSWORD` and
+1. Publish the reconciled branch through the protected `master` pull-request flow and confirm all
+   required GitHub checks.
+2. In the existing `current-flow-api-gateway` Worker, bind Workers AI as `AI`, bind a private KV
+   namespace as `GENE_KEYS_SOURCES`, and set encrypted `PROMPT_LAB_PASSWORD` and
    `PROMPT_LAB_SESSION_SECRET` secrets for Production and Preview.
 3. Run the authenticated source-publish command from this trusted worktree, then revoke its
    short-lived KV-edit token.
@@ -77,17 +90,17 @@ every saved experiment with its complete settings.
 
 ## Exact next useful action
 
-Integrate the branch with current `master`, configure the four Cloudflare bindings/secrets without
-exposing them to source or logs, upload the verified 128-chapter set, and complete production smoke
-testing.
+Publish the reconciled branch through protected `master`, configure the four Cloudflare
+bindings/secrets without exposing them to source or logs, upload the verified 128-chapter set, and
+complete production smoke testing.
 
 ## Related files
 
 - `src/features/gene-keys-prompt-lab/`
 - `server/gene-keys-prompt-lab/`
-- `functions/api/gene-keys-lab/`
+- `workers/api-gateway/`
 - `scripts/gene-keys-prompt-lab/publish-sources.mjs`
-- `docs/continuity/decisions/20260826T222903Z--protect-gene-keys-prompt-lab-with-pages-functions.md`
+- `docs/continuity/decisions/20260826T222903Z--protect-gene-keys-prompt-lab-at-the-edge.md`
 - `docs/ARCHITECTURE.md`
 - `docs/DEPLOYMENT.md`
 - `docs/HEXAGRAM_COMMENTARY_RIGHTS.md`

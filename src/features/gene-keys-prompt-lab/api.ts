@@ -11,6 +11,9 @@ type ApiErrorBody = {
   error?: string
 }
 
+const API_ORIGIN = (import.meta.env.VITE_PROMPT_LAB_API_BASE_URL ?? '').replace(/\/$/u, '')
+const endpoint = (path: string) => `${API_ORIGIN}/api/gene-keys-lab/${path}`
+
 export class GeneKeysPromptLabApiError extends Error {
   readonly status: number
 
@@ -41,8 +44,8 @@ async function parseResponse<T>(response: Response): Promise<T> {
 }
 
 export async function getPromptLabSession(): Promise<boolean> {
-  const response = await fetch('/api/gene-keys-lab/session', {
-    credentials: 'same-origin',
+  const response = await fetch(endpoint('session'), {
+    credentials: 'include',
     headers: { Accept: 'application/json' },
   })
   const body = await parseResponse<SessionResponse>(response)
@@ -50,9 +53,9 @@ export async function getPromptLabSession(): Promise<boolean> {
 }
 
 export async function logInToPromptLab(password: string): Promise<void> {
-  const response = await fetch('/api/gene-keys-lab/login', {
+  const response = await fetch(endpoint('login'), {
     method: 'POST',
-    credentials: 'same-origin',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify({ password }),
   })
@@ -60,9 +63,9 @@ export async function logInToPromptLab(password: string): Promise<void> {
 }
 
 export async function logOutOfPromptLab(): Promise<void> {
-  const response = await fetch('/api/gene-keys-lab/logout', {
+  const response = await fetch(endpoint('logout'), {
     method: 'POST',
-    credentials: 'same-origin',
+    credentials: 'include',
     headers: { Accept: 'application/json' },
   })
   await parseResponse<SessionResponse>(response)
@@ -71,9 +74,9 @@ export async function logOutOfPromptLab(): Promise<void> {
 export async function generatePromptLabCommentary(
   request: GeneKeysPromptLabRequest,
 ): Promise<GeneKeysPromptLabGeneration> {
-  const response = await fetch('/api/gene-keys-lab/generate', {
+  const response = await fetch(endpoint('generate'), {
     method: 'POST',
-    credentials: 'same-origin',
+    credentials: 'include',
     headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
     body: JSON.stringify(request),
   })

@@ -3,36 +3,34 @@ name: Alchemy API
 on:
   push:
     branches: [master]
-    paths:
-      - 'services/alchemy-api/**'
-      - 'contracts/alchemy-openapi.json'
-      - 'compose.yaml'
-      - 'render.yaml'
-      - '.github/workflows/alchemy-api.yml'
   pull_request:
-    paths:
-      - 'services/alchemy-api/**'
-      - 'contracts/alchemy-openapi.json'
-      - 'compose.yaml'
-      - 'render.yaml'
-      - '.github/workflows/alchemy-api.yml'
 
 permissions:
   contents: read
 
+concurrency:
+  group: alchemy-api-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  quality:
+  alchemy-quality:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: services/alchemy-api
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.11.32'
           enable-cache: true
       - run: uv sync --frozen --all-groups
+      - name: Verify repository toolchain manifest
+        working-directory: .
+        run: python -c "import json; json.load(open('config/toolchain.json'))"
       - run: uv run ruff format --check .
       - run: uv run ruff check .
       - run: uv run mypy src
@@ -41,7 +39,7 @@ jobs:
       - run: uv run pytest -m "not integration"
       - run: uv run alchemy openapi export --check
 
-  neo4j-integration:
+  alchemy-neo4j-integration:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -69,6 +67,9 @@ jobs:
       ALCHEMY_RUN_INTEGRATION: '1'
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.11.32'
@@ -77,7 +78,7 @@ jobs:
       - run: uv run pytest -m integration
       - run: uv run alchemy graph audit
 
-  container:
+  alchemy-container:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

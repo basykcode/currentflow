@@ -4,8 +4,9 @@
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans',
     'Noto Sans CJK SC', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
   --font-serif:
-    Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino, 'Noto Serif CJK SC', 'Songti SC',
-    serif;
+    'Fraunces Variable', Iowan Old Style, Palatino Linotype, Book Antiqua, Palatino,
+    'Noto Serif CJK SC', 'Songti SC', serif;
+  --font-serif-variation-settings: 'SOFT' 100, 'WONK' 1;
 
   --paper: #07162d;
   --paper-raised: #0b2443;
@@ -40,6 +41,8 @@
   --content: 1180px;
   --reading: 760px;
   --header-height: 76px;
+  --app-header-content-height: var(--header-height);
+  --app-header-total-height: calc(var(--app-header-content-height) + env(safe-area-inset-top));
 }
 
 :root[data-theme='light'] {
@@ -60,4 +63,10 @@
   --shadow: 0 18px 50px rgb(16 43 77 / 12%);
   --shadow-soft: 0 12px 36px rgb(16 43 77 / 9%);
   --backdrop: rgb(7 22 45 / 48%);
+}
+
+@media (max-width: 900px) {
+  :root {
+    --header-height: 64px;
+  }
 }

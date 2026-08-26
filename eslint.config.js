@@ -8,13 +8,19 @@ export default tseslint.config(
   ...tseslint.configs.recommendedTypeChecked,
   ...eslintPluginVue.configs['flat/essential'],
   {
-    files: ['scripts/**/*.mjs'],
+    files: ['scripts/**/*.mjs', 'workers/**/*.mjs'],
     ...tseslint.configs.disableTypeChecked,
     languageOptions: {
       ...tseslint.configs.disableTypeChecked.languageOptions,
       globals: {
         Buffer: 'readonly',
+        Headers: 'readonly',
+        Request: 'readonly',
+        Response: 'readonly',
+        URL: 'readonly',
+        caches: 'readonly',
         console: 'readonly',
+        crypto: 'readonly',
         fetch: 'readonly',
         process: 'readonly',
       },

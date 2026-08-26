@@ -33,6 +33,57 @@
 - Use explicit unavailable records when evidence is missing or quarantined; never infer replacement text.
 - Run `npm run commentary:validate` after changing commentary data, loaders, or rendering.
 
+## Chū–Zhèng–Kè temporal rules
+
+- Derive Chū, Zhèng, and Kè only from the authoritative normalized Shíchen coordinate; never mix
+  local-civil, local-mean-solar, apparent-solar, or raw browser time fields.
+- Macro Hour modifies maturity, not Organ/Branch/pillar/Hour Hexagram identity or supported effort.
+- Micro Hour is observational in v1 and never enters guidance evidence, identity, or validity.
+- Refresh guidance at Macro and Shíchen boundaries, not every Kè.
+- Keep the timeline free of percentages, countdowns, elapsed/remaining minutes, and seconds; respect
+  reduced motion without removing textual or structural state.
+
+## Current Flow glance rules
+
+- Mobile home communicates the complete Current at a glance; Day remains the featured temporal
+  hexagram in the Year / Day / Month hierarchy.
+- Compact cards project existing snapshot data and never own calculation, mapping, timezone, or
+  organ-clock logic.
+- Keep exact bounds, engine versions, and technical provenance in an accessible details surface,
+  not inside first-glance cards.
+- Use dynamic viewport units and safe-area insets for the mobile instrument panel. Never clip
+  content, disable global scrolling, or reduce accessible targets to fake first-viewport fit.
+- Preserve natural scrolling for large text, visible focus, reduced motion, and both themes.
+
+## Celestial Current instrument rules
+
+- Consume one authoritative Global Conditions snapshot; never calculate or imitate astronomy in Vue.
+- Show Chinese informational labels as characters, tone-marked Pinyin, and English. Dense ring symbols
+  may remain Chinese-only only when the active state is decoded beside the ring.
+- Keep percentages, degrees, countdowns, and numerical progress out of the celestial instrument
+  values. The central clock may show anchored `HH:mm:ss` with its reviewed four-second cadence.
+- Reuse `CurrentTaijiMark`, `MoonPhaseGlyph`, and shared ring geometry; do not create parallel symbols.
+- Keep rings static, separate marker position from Taiji self-rotation, respect reduced motion, and
+  preserve the accessible first-viewport glance layout.
+
+## Guidance output rules
+
+- Keep `src/domain/guidance` downstream of resolved semantic input; never infer guidance directly
+  from raw dates, GanZhi, organ periods, hexagram numbers, Vue state, or freeform model output.
+- OLTR, Intention, and Execution must consume the same versioned `GuidanceSynthesis` and pass their
+  validators plus `validateGuidanceBundle()` before display.
+- Use only the controlled intention lexicon and low-risk action library. Preserve qualitative effort,
+  categorical evidence weight, explicit provenance, safety exclusions, and deterministic fallbacks.
+- Changing intention may reselect Execution only. It must not change the temporal field, Primary
+  Current, OLTR, evidence, versions, or validity window.
+- Keep classical identity/commentary separate from `semantic-resolver` operational profiles. Current
+  vectors are product formalizations, never claims that the received Yi Jing assigns an action.
+- Require an eligible day profile; preserve partial lesser-scale coverage, missing profile numbers,
+  and conflicts rather than deriving replacements from titles, commentaries, or a model.
+- Treat `spec-reviewed` as product-specification review, not human editorial approval. Never add a
+  reviewer identity that did not perform the review.
+- Demo semantics remain visibly demo-labeled Current formalizations.
+
 ## Project continuity protocol
 
 This protocol is mandatory for every substantial Codex task. The repository is the durable project

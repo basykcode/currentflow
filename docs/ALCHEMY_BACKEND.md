@@ -4,8 +4,8 @@
 
 `services/alchemy-api` is a separately deployable Python 3.12 service. FastAPI owns the HTTP
 contract, Neo4j is the only persistent database, and offline administration commands own all
-external source ingestion. Local Compose and CI use the pinned Community image; the hosted alpha
-uses managed AuraDB through the same driver and repository contract. The existing Vue application
+external source ingestion. Local Compose and CI use the pinned Community image; production uses
+AuraDB Professional through the same driver and repository contract. The existing Vue application
 remains a static frontend.
 
 Alchemy is educational and research-only. It retrieves sourced information, preserves source
@@ -15,8 +15,9 @@ safety, retain health data, or call an external inference service.
 
 ## Local setup
 
-Install Docker Desktop, Node 22.18, Python 3.12, and
-[`uv`](https://docs.astral.sh/uv/). From the repository root:
+Install Docker Desktop and the exact Node, npm, Python, and
+[`uv`](https://docs.astral.sh/uv/) versions declared in `config/toolchain.json`. From the repository
+root:
 
 ```powershell
 Copy-Item services/alchemy-api/.env.example .env
@@ -53,39 +54,48 @@ uv run alchemy data seed-demo
 uv run uvicorn current_alchemy.app:create_app --factory --host 0.0.0.0 --port 8000
 ```
 
-## Remote alpha operation
+## Production operation
 
-The no-admin remote deployment keeps the existing Docker boundary and uses AuraDB as managed Neo4j:
+The no-admin remote deployment keeps the existing Docker boundary and uses AuraDB Professional as
+managed Neo4j:
 
-- `render.yaml` defines the Render Free Docker web service, exact production CORS origins, custom
-  API domain, health check, and secret prompts.
-- `deploy/start.sh` runs checksum-protected migrations before every process start, applies the
-  idempotent synthetic seed only when `ALCHEMY_SEED_DEMO=1`, and binds Uvicorn to the provider's
-  assigned `PORT`.
+- `render.yaml` defines the Render Standard Docker web service, exact production CORS origins,
+  custom API domain, pre-deploy phase, health check, bounded Neo4j settings, and secret prompts.
+- `deploy/predeploy.sh` runs checksum-protected migrations and the approved idempotent foundation
+  reconciliation before activation. It refuses demo seeding in production.
+- `deploy/start.sh` is process-only and binds one Uvicorn worker to the provider's assigned `PORT`
+  with graceful shutdown.
 - Aura credentials exist only as Render secret environment variables. The frontend receives only
   `https://api.current-flow.net`.
+- The Cloudflare API Worker forwards an independently generated origin token and applies the public,
+  private, health, authorization, cookie, range, and explicit-bypass cache policy.
 - Self-hosted Neo4j ports remain loopback-only in Compose. Aura's managed TLS endpoint is never
   exposed through frontend configuration.
 
-The complete account, DNS, Cloudflare Pages, smoke-test, free-tier, and no-admin procedure is in
-[`DEPLOYMENT.md`](DEPLOYMENT.md).
+The complete account, DNS, gateway, smoke-test, scaling, rollback, and no-admin procedures are in
+[`DEPLOYMENT.md`](DEPLOYMENT.md) and [`PRODUCTION_OPERATIONS.md`](PRODUCTION_OPERATIONS.md).
 
 ## Request lifecycle
 
 1. FastAPI validates the route, query filters, or explicit Pydantic body.
-2. Request-ID middleware accepts a safe `X-Request-ID` or generates one and returns it.
+2. Production policy middleware accepts a safe `X-Request-ID` or generates one, enforces the request
+   size and optional gateway origin token, and returns the request ID.
 3. An application service calls the repository protocol or a pure deterministic analysis function.
 4. The Neo4j implementation selects only allowlisted labels, relationships, filters, and projections.
    User values are parameters; arbitrary Cypher is never accepted.
 5. Database records are converted into typed domain models before transport.
 6. Knowledge responses carry data status, sources, warnings, generation time, schema version, and
    algorithm version where applicable.
-7. Validation and application failures use one RFC 7807-inspired problem shape. Logs are structured
-   JSON and omit secrets and complete bodies.
+7. Public anonymous GET responses receive a short shared-cache policy and ETag. Health, errors,
+   non-GETs, authorization, and cookies are private or `no-store`.
+8. Validation and application failures use one RFC 7807-inspired problem shape. Logs are structured
+   JSON with request/query duration and outcome and omit secrets, complete bodies, Cypher, and query
+   parameters.
 
-The application lifespan creates the official asynchronous Neo4j driver, verifies connectivity
-before serving, and closes it during shutdown. Missing required database settings fail configuration
-at startup.
+The application lifespan creates the official asynchronous Neo4j driver with bounded pool,
+acquisition, connection, retry, and query deadlines, then closes it during shutdown. It does not
+make process liveness depend on connectivity at startup; `/health/ready` performs that check.
+Missing required database settings still fail configuration at startup.
 
 ## Architectural boundaries
 

@@ -1,19 +1,19 @@
-import { errorResponse, isSameOriginRequest, jsonResponse, readJsonBody } from './http'
+import { errorResponse, isAllowedOriginRequest, jsonResponse, readJsonBody } from './http.ts'
 import {
   createSessionToken,
   expiredSessionCookie,
   hasValidSession,
   passwordsMatch,
   sessionCookie,
-} from './session'
-import type { PagesFunctionContext, PromptLabEnv } from './types'
+} from './session.ts'
+import type { PromptLabEnv, WorkerContext } from './types.ts'
 
-export async function handleSession(context: PagesFunctionContext<PromptLabEnv>) {
+export async function handleSession(context: WorkerContext<PromptLabEnv>) {
   return jsonResponse({ authenticated: await hasValidSession(context.request, context.env) })
 }
 
-export async function handleLogin(context: PagesFunctionContext<PromptLabEnv>) {
-  if (!isSameOriginRequest(context.request)) {
+export async function handleLogin(context: WorkerContext<PromptLabEnv>) {
+  if (!isAllowedOriginRequest(context.request, context.env)) {
     return errorResponse('Cross-origin requests are not allowed.', 403)
   }
 
@@ -43,8 +43,8 @@ export async function handleLogin(context: PagesFunctionContext<PromptLabEnv>) {
   return jsonResponse({ authenticated: true }, 200, { 'Set-Cookie': sessionCookie(token) })
 }
 
-export function handleLogout(context: PagesFunctionContext<PromptLabEnv>) {
-  if (!isSameOriginRequest(context.request)) {
+export function handleLogout(context: WorkerContext<PromptLabEnv>) {
+  if (!isAllowedOriginRequest(context.request, context.env)) {
     return errorResponse('Cross-origin requests are not allowed.', 403)
   }
   return jsonResponse({ authenticated: false }, 200, { 'Set-Cookie': expiredSessionCookie() })

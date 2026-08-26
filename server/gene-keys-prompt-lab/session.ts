@@ -1,4 +1,4 @@
-import type { PromptLabEnv } from './types'
+import type { PromptLabEnv } from './types.ts'
 
 export const SESSION_COOKIE = '__Host-current-gene-keys-lab'
 const SESSION_LIFETIME_SECONDS = 12 * 60 * 60

@@ -1,5 +1,5 @@
-import { hasValidSession } from './session'
-import type { PagesFunctionContext, PromptLabEnv } from './types'
+import { hasValidSession } from './session.ts'
+import type { PromptLabEnv, WorkerContext } from './types.ts'
 
 const JSON_HEADERS = {
   'Cache-Control': 'no-store, private',
@@ -20,17 +20,23 @@ export function errorResponse(error: string, status: number) {
   return jsonResponse({ error }, status)
 }
 
-export function isSameOriginRequest(request: Request) {
+export function isAllowedOriginRequest(request: Request, env: PromptLabEnv) {
   const origin = request.headers.get('Origin')
   const fetchSite = request.headers.get('Sec-Fetch-Site')
+  const allowedOrigins = new Set(
+    (env.ALLOWED_ORIGINS ?? '')
+      .split(',')
+      .map((allowedOrigin) => allowedOrigin.trim())
+      .filter(Boolean),
+  )
   return (
-    (!fetchSite || fetchSite === 'same-origin' || fetchSite === 'none') &&
-    (!origin || origin === new URL(request.url).origin)
+    (!fetchSite || ['same-origin', 'same-site', 'none'].includes(fetchSite)) &&
+    (!origin || origin === new URL(request.url).origin || allowedOrigins.has(origin))
   )
 }
 
-export async function requireSession(context: PagesFunctionContext<PromptLabEnv>) {
-  if (!isSameOriginRequest(context.request)) {
+export async function requireSession(context: WorkerContext<PromptLabEnv>) {
+  if (!isAllowedOriginRequest(context.request, context.env)) {
     return errorResponse('Cross-origin requests are not allowed.', 403)
   }
   if (!(await hasValidSession(context.request, context.env))) {

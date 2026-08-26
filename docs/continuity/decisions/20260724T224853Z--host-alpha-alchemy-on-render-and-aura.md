@@ -103,7 +103,7 @@ None.
 
 ## Superseded by
 
-None.
+- [Adopt a production Render, AuraDB, and Cloudflare gateway topology](20260826T175411Z--adopt-production-render-aura-cloudflare-topology.md)
 
 ## Related files, issues, handoffs, and commits
 

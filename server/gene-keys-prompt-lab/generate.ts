@@ -1,4 +1,4 @@
-import { getGeneKeySpectrum } from '../../src/domain/astrology/geneKeys'
+import { getGeneKeySpectrum } from '../../src/domain/astrology/geneKeys.ts'
 import {
   GENE_KEYS_PROMPT_MAX_LENGTH,
   getEvidenceMode,
@@ -7,9 +7,9 @@ import {
   type GeneKeysPromptLabOutput,
   type GeneKeysPromptLabRequest,
   type GeneKeysSourceId,
-} from '../../src/features/gene-keys-prompt-lab/domain'
-import { errorResponse, jsonResponse, readJsonBody, requireSession } from './http'
-import type { PagesFunctionContext, PromptLabEnv, WorkersAiInput } from './types'
+} from '../../src/features/gene-keys-prompt-lab/domain.ts'
+import { errorResponse, jsonResponse, readJsonBody, requireSession } from './http.ts'
+import type { PromptLabEnv, WorkerContext, WorkersAiInput } from './types.ts'
 
 const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct-fast'
 const OUTPUT_SCHEMA = {
@@ -214,7 +214,7 @@ function getWarnings(output: GeneKeysPromptLabOutput, sourceCount: number) {
   return warnings
 }
 
-export async function handleGenerate(context: PagesFunctionContext<PromptLabEnv>) {
+export async function handleGenerate(context: WorkerContext<PromptLabEnv>) {
   const authorizationError = await requireSession(context)
   if (authorizationError) {
     return authorizationError

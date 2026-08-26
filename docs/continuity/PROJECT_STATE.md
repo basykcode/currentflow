@@ -2,15 +2,36 @@
 
 ## Last reconciled
 
-- UTC date: 2026-08-23
-- Branch represented: `codex/chat-01a02bf0beb1`, a dedicated integration branch based on local
-  `master` with automatic primary-task dispatch merged and local `master` activation still pending
-- Commit inspected: `79720a8`
-- Local and remote-tracking `master` remain at `b5426ca`; that published line includes the Lake Yin
-  interface at `66119dc` and its publication record.
-- The integration branch merges automatic primary-coordinator dispatch feature `5cbdbe9` at
-  `79720a8`. Local `master` cannot be advanced while it remains checked out in the protected primary
-  coordination checkout.
+- UTC date: 2026-08-26
+- Branch represented: protected `master` after the dedicated `codex/chat-01a02bf0beb1`
+  integration/deployment branch completed the production-scale Render, AuraDB, Cloudflare, and
+  GitHub foundation
+- Repository foundation `6ba6c42`, CI protection correction `dd8c695`, and gateway cache correction
+  `63913ec` are published through protected merges `2964dfc` and `a6b8ff7`; all four uniquely named
+  GitHub Actions production checks passed before both merges.
+- GitHub's default branch is `master`. Active ruleset `Protect master production` requires a reviewed,
+  up-to-date pull request, resolved conversations, and the four production checks; it blocks branch
+  deletion and force pushes while retaining repository-admin and explicit `basykcode` emergency
+  bypass actors. `main` remains intact.
+- Render service `current-flow-alchemy-api` is on Standard in Virginia and is connected to the
+  replacement AuraDB Professional instance. Deploy `dep-da7jhvjm6pss73fv7tq0` runs protected-origin
+  commit `2964dfc`; liveness, readiness, metadata, representative herb/formula reads, public cache
+  policy, ETags, and conditional 304 behavior are verified. The former AuraDB was not deleted.
+- Cloudflare Workers Paid is active. Separate `current-flow-api-gateway` builds only
+  `workers/api-gateway` from `master`; build `c545ee87-23c3-4c2d-baad-304cd9318f18` deployed active
+  version `3ae677b3`. Exact route `api.current-flow.net/*` is live. The API CNAME still targets Render
+  but is now proxied; the Worker forwards a secret origin token, direct application paths return 403,
+  and health remains available. Cache, bypass, CORS, 404, workers.dev, and live public behavior pass.
+- Integration merge inspected: `74be6c8`; it joins prior local `master` at `ddb58c2` with the complete
+  13-commit Astrology ancestry at `23b3a9c`.
+- Application release `30f81ed` and deployment lock repair `7502f31` are published to local and
+  GitHub `master`. Cloudflare build `c6f5d761-ae12-4ed6-af39-dc374339f190` succeeded, and the live
+  site serves the verified `index-BpluGeAb.js` entry bundle, Astrology chunk, and Fraunces fonts.
+- This reconciliation is the follow-up publication record on local and GitHub `master`.
+- Automatic primary-coordinator dispatch feature `5cbdbe9`, its merge at `79720a8`, and continuity
+  reconciliation at `ddb58c2` are ancestors of both integration parents and therefore remain intact.
+- The former published baseline at `b5426ca` includes the Lake Yin interface at `66119dc` and its
+  publication record.
 - The retained worker-isolation foundation entered `master` at `6ed5351`, with the continuity record
   at `828c400`.
 - `master` merges the Advanced Yijing Transformation Lab at `267cbd0`.
@@ -56,6 +77,13 @@ The integrated product is a static Vue 3/Vite/TypeScript SPA. Framework-independ
 focused presentation in `src/components`; and lazy route composition in `src/views`.
 `CurrentFlowProvider` is the stable Astrology data seam.
 
+The Astrology domain now combines three separate deterministic boundaries. `lunar-javascript`
+remains the sole authority for Chinese calendar facts, the versioned Current semantic resolver maps
+eligible temporal states to explicit guidance or unavailable records, and the local Astronomy Engine
+adapter computes solar and lunar instrument geometry without runtime network access. The canonical
+local-civil Shichen coordinate is shared by Organ System presentation, Chu-Zheng-Ke phase calculation,
+boundaries, and diagnostics so those consumers cannot drift onto separate clocks.
+
 Concurrent Codex implementation uses a read-only primary coordinator and app-managed worktree
 workers. A trusted project `SessionStart` hook lets primary tasks continue only for read-only
 inspection and app-level coordination; mutation requests are automatically forwarded in full to a
@@ -81,8 +109,12 @@ The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI se
 `services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
 only persistent database; external-source access is limited to explicit administration commands;
 and `contracts/alchemy-openapi.json` is the frontend seam. Local Compose/CI use the pinned Community
-image. The live alpha topology keeps the frontend on Cloudflare Pages, remotely builds the API
-Docker image on Render, and connects it to managed AuraDB. See
+image. The production foundation keeps the frontend on Cloudflare, builds the API container on a
+Standard Render service, and connects it to AuraDB Professional. It separates mutable pre-deploy
+work from disposable process startup, bounds request and Neo4j resource use, emits structured
+request/query telemetry, and supplies health, cache, and ETag contracts. A separate Cloudflare API
+gateway now fronts the public API, applies edge caching and bypass rules, normalizes CORS, and sends
+the secret required by protected non-health Render origin routes. See
 [`../ARCHITECTURE.md`](../ARCHITECTURE.md).
 
 The Alchemy frontend is isolated under `src/features/alchemy`. An injected provider boundary
@@ -96,13 +128,28 @@ is the only Alchemy state in Pinia.
 - Responsive application shell with desktop and mobile navigation.
 - Routes for Astrology, Alchemy, Intelligence, Settings, a complete Hexagram Library, an encrypted
   VH special message, and not-found handling; Other Tools is a two-level navigation menu.
-- Functional Astrology view with a slow-dissolving four-second Yin clock, selected-timezone time,
-  exact timezone-labelled year/month/day/hour validity bounds, five-element composition, reusable
-  accessible hexagram glyphs, structural relationships, and visible provenance.
+- Functional Astrology view with a first-viewport Current Flow instrument panel, segmented
+  four-second Yin clock, selected-timezone time, exact timezone-labelled year/month/day/hour validity
+  bounds, five-element composition, reusable accessible hexagram glyphs, structural relationships,
+  and visible provenance.
 - `LunarScriptCurrentFlowProvider` supplies exact-boundary year/month GanZhi, sect-2 day GanZhi, and
-  two-hour GanZhi through `lunar-javascript` 1.7.7.
-- The complete 60 Jia Zi to 64 Da Gua table resolves all four pillars to King Wen hexagrams; the
-  2026 Yang Fire Horse golden case resolves to Hexagram 28.
+  two-hour GanZhi through `lunar-javascript` 1.7.7, and it shares one authoritative local-civil
+  Shichen coordinate with the Organ System and temporal phase layers.
+- The versioned `liu-shi-jiazi-peigua-king-wen-v1` 60 Jia Zi projection resolves all four pillars to
+  King Wen hexagrams, preserves its documented omissions, and includes reviewed corrections for
+  Geng Yin, Jia Wu, and Geng Shen; the 2026 Yang Fire Horse golden case resolves to Hexagram 28.
+- A versioned deterministic Current semantic resolver combines eligible pillar, element, organ, and
+  temporal facts into provenance-bearing guidance for its reviewed 13-profile MVP coverage. States
+  outside that coverage remain explicitly partial or unavailable; no LLM or runtime service is used.
+- The Organ System card and timeline derive canonical Shichen identity, Chinese/Pinyin/phase labels,
+  Macro maturity, observational Micro position, boundaries, and DST diagnostics from civil time in
+  the selected IANA timezone. Compact phase labels are Chu, Zheng, and Ci, and redundant zodiac-animal
+  Hour labeling is omitted from the Organ card.
+- The Celestial Current instruments use local `astronomy-engine` 2.1.19 calculations for Moon and
+  Sun geometry, keep `lunar-javascript` as the traditional-calendar authority, perform no runtime
+  network calls, and label their results computed rather than independently verified.
+- Sixty local AVIF zodiac-element illustrations sit behind the temporal hexagram spectrum, with
+  canonical identity text and explicit source status retained above the art.
 - Every visible Astrology or related-relationship hexagram opens a shared responsive inspector with
   Chinese characters, tone-marked pinyin, an English display title, labeled upper/lower trigrams,
   four compact base relationships, and visible source status.
@@ -123,25 +170,29 @@ is the only Alchemy state in Pinia.
   source-grounded draft summaries and OLTRs across all 64 figures. Five Buddhist records are
   explicitly unavailable because their evidence is quarantined; Absolute Shadow remains unavailable
   until reviewed deterministic rules arrive.
-- A cited twelve-window meridian-clock table selects the active organ period from civil time in the
-  snapshot timezone and pairs it with a distinct theme-aware organ illustration.
+- A cited twelve-window meridian-clock table pairs the canonical Shichen-derived organ period with a
+  distinct theme-aware organ illustration.
 - Local light/dark/system theme, functional timezone preference, optional location label, and local
   reset.
 - The visual system uses a monochromatic Lake Yin blue family across dark and light themes, with
   deep lake navy, moon-blue text, clear-water interaction blue, and a softer periwinkle secondary
   accent. Status still uses text and shape rather than hue alone.
-- Interpretive synthesis and execution guidance are explicitly unavailable; no forecast is inferred.
+- Current Flow titles use the locally bundled Fraunces 5.3.0 variable display serif under its local
+  OFL license, while dense data and controls retain the established supporting type system. The
+  official borderless Current Flow logo is bundled locally.
+- Deterministic situational guidance is available only for reviewed semantic profiles; personal
+  divination, diagnosis, forecasts, and execution instructions remain unavailable.
 - Disabled, nonconnected shells for authentication, Intelligence, and future tools; Alchemy has
   explicit demo and connected API modes.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- One hundred twenty-two application tests cover Astrology calculations and temporal bounds, the
-  Yin clock and organ illustrations, the complete hexagram catalog and transforms,
-  commentary/transition repositories and rendering,
-  inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
+- Three hundred ninety-three application tests cover Astrology calculations, semantic guidance,
+  Shichen/Chu-Zheng-Ke boundaries, Celestial Current geometry, Current Flow and Organ System
+  presentation, the complete hexagram catalog and transforms, commentary/transition repositories and
+  rendering, inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
   timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
-  navigation; Cloudflare Pages build preparation and local metadata assets remain.
+  navigation; 11 additional workspace tests cover worktree isolation guardrails.
 
 ## Current Alchemy capabilities
 
@@ -157,8 +208,9 @@ is the only Alchemy state in Pinia.
   only explicitly supported metric units, and reports missing interactions as unknown.
 - Synthetic demo fixtures, administration CLI, generated OpenAPI, Compose definition, CI workflow,
   and focused backend/API/integration tests.
-- A Render Blueprint and provider-neutral production start script apply migrations before serving,
-  optionally seed visibly synthetic data, use exact CORS origins, and expose dependency-aware health.
+- A Render Blueprint separates migrations/foundation reconciliation into pre-deploy from the
+  stateless process-only start command, refuses production demo seeding, uses exact CORS origins,
+  and exposes dependency-independent liveness plus dependency-aware readiness.
 - A complete responsive Alchemy shell with Materia Medica, Formula Library, Formula Workbench, Text
   Library, and deliberately disabled Guided Inquiry routes.
 - Deterministic synthetic searches, sourced detail, explicit conflicts/incompleteness, relationship
@@ -229,11 +281,15 @@ The integrated release-aware Alchemy foundation additionally provides:
   listener; prefer provider dashboards, GitHub CI, remote builds, and user-scoped tools.
 - The year pillar changes at exact Li Chun, the month at exact solar-term transition, and the sect-2
   day remains on the civil day during 23:00–23:59.
-- Organ-clock selection uses civil time in the chosen IANA timezone and makes no apparent-solar-time
-  correction.
+- Organ System, Shichen phase, and guidance-boundary selection use one civil-time coordinate in the
+  chosen IANA timezone and make no apparent-solar-time correction.
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
-- Node baseline is `22.18.0`; `npm run check` is required before completion.
+- Production tooling is locked to Node 24.19.0, npm 11.17.0, Python 3.12.14, uv 0.11.32, Neo4j
+  Community 5.26.28, Neo4j Python driver 5.28.2, TypeScript 5.8.3, Vite 7.3.6, and Wrangler 4.126.0;
+  `npm run check` is required before completion.
+- npm and `package-lock.json` are the sole JavaScript package-manager contract. CI and Cloudflare use
+  reproducible npm installs; the competing pnpm lockfile is intentionally removed.
 - The primary checkout is read-only for Codex: it may inspect and coordinate app tasks but may not
   mutate project files, Git state, dependencies, generated output, tests/builds, or runtimes. It
   automatically dispatches each mutation request once, in full, to an app-managed worktree based on
@@ -255,11 +311,21 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Use dedicated Alchemy branches and CMP publication gates](decisions/20260724T014000Z--use-dedicated-alchemy-branches-and-cmp-publication-gates.md)
 - [Align the Alchemy HTTP contract with the frontend domain](decisions/20260724T204127Z--align-alchemy-http-contract-with-the-frontend-domain.md)
 - [Host the alpha Alchemy API on Render and its graph on AuraDB](decisions/20260724T224853Z--host-alpha-alchemy-on-render-and-aura.md)
+- [Adopt a production Render, AuraDB, and Cloudflare gateway topology](decisions/20260826T175411Z--adopt-production-render-aura-cloudflare-topology.md)
 - [Protect static special messages with browser-side encryption](decisions/20260725T215859Z--protect-static-special-messages-with-browser-side-encryption.md)
 - [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
 - [Project English-first multilingual Alchemy names](decisions/20260727T013844Z--project-english-first-multilingual-alchemy-names.md)
 - [Automatically dispatch primary tasks to managed worktree workers](decisions/20260822T235412Z--automatically-dispatch-primary-tasks-to-managed-worktrees.md)
+- [Make mobile Current Flow a first-viewport instrument panel](decisions/20260822T214607Z--make-mobile-current-flow-a-first-viewport-instrument-panel.md)
+- [Gate guidance output on versioned semantic input](decisions/20260822T222049Z--gate-guidance-output-on-versioned-semantic-input.md)
+- [Adopt a versioned Current semantic resolver](decisions/20260822T225700Z--adopt-versioned-current-semantic-resolver.md)
+- [Adopt a versioned 60 Jia Zi King Wen projection](decisions/20260822T231835Z--adopt-versioned-sixty-jiazi-king-wen-projection.md)
+- [Derive Macro and Micro from the authoritative Shichen coordinate](decisions/20260825T201505Z--derive-macro-micro-from-authoritative-shichen-coordinate.md)
+- [Gate Celestial Current on authoritative astronomy](decisions/20260825T213400Z--gate-celestial-current-on-authoritative-astronomy.md)
+- [Adopt a segmented four-second clock dissolve](decisions/20260825T215745Z--adopt-segmented-four-second-clock-dissolve.md)
+- [Adopt the local Astronomy Engine celestial provider](decisions/20260825T222827Z--adopt-local-astronomy-engine-celestial-provider.md)
+- [Adopt Fraunces as the Current Flow display serif](decisions/20260825T233014Z--adopt-fraunces-display-serif.md)
 - [Keep Transformation Lab state local and lineage data source-gated](decisions/20260730T233100Z--transformation-lab-modal-state-and-source-gates.md)
 - [Keep proprietary hexagram commentary local and provenance-indexed](decisions/20260730T000122Z--keep-proprietary-hexagram-commentary-local-and-provenance-indexed.md)
 - [Ship only derived, auditable hexagram commentary drafts](decisions/20260730T011500Z--ship-only-derived-auditable-hexagram-commentary-drafts.md)
@@ -287,16 +353,24 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Add the Advanced Yijing Transformation Lab       | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized           | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
 | `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                      | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
 | `master`                   | Adopt the Lake Yin live-flow interface           | Feature `66119dc` and publication record `b5426ca` are published to `origin/master`                            | [Publication handoff](handoffs/20260822T140829Z--codex-alchemy-lake-yin--publish-lake-yin-interface.md)              |
-| `codex/chat-01a02bf0beb1`  | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8`; verified integration is awaiting safe local `master` activation         | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
+| `master`                   | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8` with continuity at `ddb58c2`; active in the local integration line       | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
+| `master`                   | Publish the complete current Astrology lane      | Source `23b3a9c` merged at `74be6c8`; release `30f81ed` and lock repair `7502f31` are live on Cloudflare       | [Publication handoff](handoffs/20260826T001515Z--codex-chat-01a02bf0beb1--publish-complete-astrology-integration.md) |
+| `master`                   | Establish production-scale platform foundation   | Live through `a6b8ff7`: protected GitHub master, Render Standard/Aura Professional, and Cloudflare API gateway | [Production handoff](handoffs/20260826T180153Z--codex-chat-01a02bf0beb1--production-scale-foundation-and-cutover.md) |
 
 ## Known issues and risks
 
 - Exact solar-term transition results inherit `lunar-javascript`; edge dates need cross-library
   golden fixtures before high-assurance natal or electional use.
-- The 60 Jia Zi mapping is implemented from a documented practitioner table; its lineage and
-  translations should receive subject-matter review before stronger authority claims.
+- The versioned 60 Jia Zi mapping is implemented from a documented practitioner table with explicit
+  corrections and omissions; its lineage, corrections, and translations should receive
+  subject-matter review before stronger authority claims.
 - Organ-clock selection is civil-time educational context, not apparent-solar-time correction or a
   medical claim.
+- Celestial Current values are locally computed and source-labelled, but remain `computed` rather
+  than `verified` until an independent golden ephemeris confirms the selected reference instants and
+  production viewport behavior.
+- The Current semantic resolver intentionally covers only 13 reviewed profiles. Partial or
+  unavailable output is expected outside that MVP until additional profiles receive review.
 - A portable disposable Neo4j 5.26.28 runtime verified the new migrations locally without changing
   the workstation. GitHub `Alchemy API` run `30223980968` passed backend quality, a clean Neo4j
   integration test, graph audit, and the production container build for `b32f2d5`.
@@ -314,14 +388,14 @@ The integrated release-aware Alchemy foundation additionally provides:
   Duke passed checksum validation and offline dry-run mapping; PubChem is opt-in and cached; SymMap
   remains blocked pending rights review.
 - Alchemy auth, saved research workspaces, embeddings, and inference are inactive. The Render API is
-  publicly live at graph schema v2, Aura readiness succeeds, migrations `001`–`005` and the
-  official herb/formula release are present, synthetic public records are retired, and publication
-  checks pass. `api.current-flow.net` resolves, reports dependency readiness, and permits the exact
-  production browser origin. The live Cloudflare Pages Alchemy route reports
-  `current-alchemy-api`, API v1, graph schema v2, and no fixture fallback.
-- Render Free sleeps after idle and can cold-start for about a minute. AuraDB Free pauses after 72
-  inactive hours and deletes an instance left paused for more than 30 days. The selected topology is
-  an alpha host, not a production SLA.
+  live behind the origin-protected Cloudflare gateway at graph schema v2; Aura readiness succeeds,
+  migrations `001`–`005` and the official herb/formula release are present, synthetic public records
+  are retired, and publication checks pass. `api.current-flow.net` reports dependency readiness,
+  permits the exact production browser origins, preserves no-browser-cache policy on edge HIT, and
+  exposes no fixture fallback. Direct non-health origin requests are rejected.
+- Render is on the Standard 1 CPU / 2 GB service plan and the replacement graph is AuraDB
+  Professional in AWS `us-east-1`. The Cloudflare gateway is the production API path; changing its
+  origin secret requires Worker promotion before Render enforcement to avoid a 403 window.
 - Aura-generated database names are not necessarily `neo4j`. Render must receive the exact
   `NEO4J_DATABASE` value from Aura's downloaded credentials; it is distinct from the username.
 - Personal BaZi, divinatory synthesis, and execution recommendations are inactive. Structural
@@ -362,11 +436,17 @@ The integrated release-aware Alchemy foundation additionally provides:
 7. Domain-review the 200 derived formula English titles, 92 public formula-only material
    translations, the non-public excipient, and prepared-material boundaries; promote reviewed names
    and add explicit equivalence mappings without collapsing source wording.
-8. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
-   mapping before stronger authority claims.
-9. Add condition, compound, and target sources such as Disease Ontology only after the live
-   herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
-   deployment requirements.
+8. Independently verify the selected Celestial Current reference instants against a golden ephemeris
+   before promoting astronomy results from computed to verified.
+9. Review and expand the Current semantic resolver beyond its 13-profile MVP without inferring
+   unsupported guidance.
+10. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+    mapping before stronger authority claims.
+11. Add condition, compound, and target sources such as Disease Ontology only after the live
+    herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
+    deployment requirements.
+12. Observe the first production-day Render, AuraDB, and Cloudflare metrics; run the bounded load
+    smoke during low traffic and scale only at the thresholds in `PRODUCTION_OPERATIONS.md`.
 
 Exact next useful action for Alchemy: domain-review the derived formula/material English names and
 generated Pinyin, promote accepted records to human-reviewed, and add explicit identity mappings

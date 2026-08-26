@@ -4,7 +4,13 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "22.18.0"
+    "node": "24.19.0",
+    "npm": "11.17.0"
+  },
+  "packageManager": "npm@11.17.0",
+  "volta": {
+    "node": "24.19.0",
+    "npm": "11.17.0"
   },
   "scripts": {
     "dev": "vite",
@@ -14,7 +20,10 @@
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "test:unit": "vitest run",
-    "check": "npm run type-check && npm run lint && npm run test:unit && npm run workspace:test && npm run commentary:validate && npm run transitions:validate && npm run build",
+    "check": "npm run toolchain:check && npm run type-check && npm run lint && npm run test:unit && npm run workspace:test && npm run gateway:test && npm run commentary:validate && npm run transitions:validate && npm run build",
+    "toolchain:check": "node scripts/toolchain/verify.mjs",
+    "gateway:test": "node --test workers/api-gateway/test/*.spec.mjs",
+    "gateway:deploy": "wrangler deploy --config workers/api-gateway/wrangler.jsonc",
     "workspace:status": "node scripts/codex/workspace.mjs status",
     "workspace:doctor": "node scripts/codex/workspace.mjs doctor",
     "workspace:dev": "node scripts/codex/workspace.mjs dev",
@@ -48,28 +57,31 @@
     "alchemy:types": "openapi-typescript contracts/alchemy-openapi.json -o src/features/alchemy/api/generated/schema.ts"
   },
   "dependencies": {
-    "lunar-javascript": "^1.7.7",
-    "openapi-fetch": "^0.17.0",
-    "pinia": "^3.0.3",
-    "vue": "^3.5.17",
-    "vue-router": "^4.5.1"
+    "@fontsource-variable/fraunces": "5.3.0",
+    "astronomy-engine": "2.1.19",
+    "lunar-javascript": "1.7.7",
+    "openapi-fetch": "0.17.0",
+    "pinia": "3.0.4",
+    "vue": "3.5.40",
+    "vue-router": "4.6.4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.30.1",
-    "@tsconfig/node22": "^22.0.2",
-    "@types/node": "^22.16.0",
-    "@vitejs/plugin-vue": "^6.0.0",
-    "@vue/test-utils": "^2.4.6",
-    "@vue/tsconfig": "^0.7.0",
-    "eslint": "^9.30.1",
-    "eslint-plugin-vue": "^10.2.0",
-    "jsdom": "^26.1.0",
-    "openapi-typescript": "^7.13.0",
-    "prettier": "^3.6.2",
-    "typescript": "~5.8.3",
-    "typescript-eslint": "^8.35.1",
-    "vite": "^7.0.4",
-    "vitest": "^3.2.4",
-    "vue-tsc": "^3.0.1"
+    "@eslint/js": "9.39.5",
+    "@tsconfig/node22": "22.0.5",
+    "@types/node": "24.13.3",
+    "@vitejs/plugin-vue": "6.0.8",
+    "@vue/test-utils": "2.4.11",
+    "@vue/tsconfig": "0.7.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-vue": "10.10.0",
+    "jsdom": "26.1.0",
+    "openapi-typescript": "7.13.0",
+    "prettier": "3.9.6",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.65.0",
+    "vite": "7.3.6",
+    "vitest": "3.2.7",
+    "vue-tsc": "3.3.8",
+    "wrangler": "4.126.0"
   }
 }

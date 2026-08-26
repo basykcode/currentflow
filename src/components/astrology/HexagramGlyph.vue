@@ -108,7 +108,7 @@ const description = computed(() => `${props.label}: ${props.lines.join(', ')} fr
 .hexagram-line {
   display: flex;
   width: 100%;
-  height: clamp(4px, 30%, 10px);
+  height: 36%;
   gap: 18%;
 }
 

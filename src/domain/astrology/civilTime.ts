@@ -9,6 +9,11 @@ export type ZonedCivilTime = {
   usedTimezoneFallback: boolean
 }
 
+export type CivilWallTime = Pick<
+  ZonedCivilTime,
+  'year' | 'month' | 'day' | 'hour' | 'minute' | 'second'
+>
+
 const systemTimezone = () => Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC'
 
 const isSupportedTimezone = (timezone: string) => {
@@ -61,4 +66,24 @@ export const getZonedCivilTime = (instant: Date, requestedTimezone?: string): Zo
     timezone,
     usedTimezoneFallback: Boolean(requestedTimezone && requestedTimezone !== timezone),
   }
+}
+
+const wallTimeEpoch = (value: CivilWallTime) =>
+  Date.UTC(value.year, value.month - 1, value.day, value.hour, value.minute, value.second)
+
+export const zonedWallTimeToUtc = (value: CivilWallTime, timezone: string): string => {
+  if (!isSupportedTimezone(timezone)) throw new Error(`Unsupported IANA timezone: ${timezone}.`)
+  const target = wallTimeEpoch(value)
+  let candidate = target
+
+  for (let iteration = 0; iteration < 6; iteration += 1) {
+    const projected = getZonedCivilTime(new Date(candidate), timezone)
+    const delta = target - wallTimeEpoch(projected)
+    if (delta === 0) return new Date(candidate).toISOString()
+    candidate += delta
+  }
+
+  throw new Error(
+    `Unable to resolve ${JSON.stringify(value)} as an exact wall time in ${timezone}.`,
+  )
 }

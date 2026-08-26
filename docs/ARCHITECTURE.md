@@ -1,15 +1,17 @@
 # Architecture
 
 Current is a Vue 3 application organized around explicit domain boundaries. Most routes remain a
-static client-side SPA; the private Gene Keys Prompt Lab adds narrowly scoped Cloudflare Pages
-Functions for shared-password authorization and explicit AI generation.
+static client-side SPA; the private Gene Keys Prompt Lab adds narrowly scoped routes to the existing
+Cloudflare API gateway Worker for shared-password authorization and explicit AI generation.
 
 ## Layers
 
-- `src/domain`: framework-independent contracts for astrology snapshots, authentication, and settings.
+- `src/domain`: framework-independent contracts and calculations for astrology snapshots,
+  physical astronomy, authentication, and settings.
 - `src/providers`: swappable adapters that satisfy domain interfaces. The alpha selects
-  `LunarScriptCurrentFlowProvider` in one place and retains the demo adapter only as a testable
-  fixture.
+  `LunarScriptCurrentFlowProvider` for temporal conditions and
+  `LocalDeterministicCelestialCurrentProvider` for celestial conditions, while retaining demo data
+  only as testable fixtures.
 - `src/stores`: Pinia state reserved for cross-route preferences, the future identity scaffold, and
   transient app-level UI selection such as the open hexagram inspector.
 - `src/components`: focused presentation grouped by product area or shared role.
@@ -19,13 +21,66 @@ Functions for shared-password authorization and explicit AI generation.
 
 The Astrology view requests a `CurrentFlowSnapshot` from a provider. It does not calculate calendrical facts or embed fixture data. Components render status and provenance supplied by the domain object.
 
+The snapshot carries temporal facts, Organ Hour, a `GuidanceBundle`, deterministic structural
+relationships, and provider provenance as separate fields. Every Temporal Hexagram carries a full
+canonical `HexagramReference`—including tone-marked pinyin and curated Gene Key spectrum—plus its
+explicit `六十甲子配卦` mapping version; Fu Xi binary and XKDG Luo Pan positions
+are normalized only at a typed domain boundary. The pure Temporal Semantic Resolver
+under `src/domain/guidance/semantic-resolver` composes only eligible Current operational profiles;
+an operative day outside its initial 13-profile registry remains explicitly unavailable. Its output
+passes through the Guidance Output Layer, which owns controlled OLTR rendering, intention and
+execution selection, validity, versions, and cross-output validation. Neither layer reads
+commentary or calls a model. See
+[`TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md`](TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md) and
+[`GUIDANCE_OUTPUT_ARCHITECTURE.md`](GUIDANCE_OUTPUT_ARCHITECTURE.md).
+
+The top of the Astrology route is composed by `CurrentFlowGlance`: a presentation-only projection
+of that snapshot into compact temporal-card densities, the `Organ System` presentation of Organ
+Hour, and the bundle OLTR or unavailable state. The canonical glyph, organ illustration, Taiji
+marker, and app-level inspector remain shared.
+A pure Ganzhi identity helper selects one of 60 local animal-element illustrations for a separate
+presentation row immediately below each stem-branch label and immediately above each temporal
+glyph; this presentation does not participate in the calendar or hexagram calculation. Compact
+stem-branch labels omit the redundant polarity word while the domain identity retains it. Exact
+pillar bounds, engine and mapping labels, status, and provider notes move into an adjacent
+`CalculationProvenanceDetails` disclosure; the glance does not discard or recalculate them. See
+[`CURRENT_FLOW_GLANCE_LAYOUT.md`](CURRENT_FLOW_GLANCE_LAYOUT.md) and
+[`ZODIAC_ART_ASSETS.md`](ZODIAC_ART_ASSETS.md).
+
+Celestial Current uses a separate physical-astronomy boundary under `src/domain/astronomy`, a
+combined production adapter in `src/providers/localDeterministicCelestialCurrent.ts`, and focused
+presentation contracts under `src/domain/current-flow/celestial-instruments`. The pure adapter uses
+pinned local `astronomy-engine` for Moon/Sun conditions and exact events; the existing
+`lunar-javascript` authority supplies traditional calendar classification on an `Asia/Shanghai`
+basis. Presenters own display mapping and conflict checks, not astronomy.
+`CelestialCurrentHeader` composes Moon, the segmented clock, and Sun in production
+`CurrentFlowGlance`, while `CelestialCurrentDetails` exposes technical values and methodology. Both
+celestial and temporal snapshots are calculated from the same authoritative instant.
+See [`CELESTIAL_CURRENT_REPOSITORY_ASSESSMENT.md`](CELESTIAL_CURRENT_REPOSITORY_ASSESSMENT.md) and
+[`CELESTIAL_CURRENT_INSTRUMENTS.md`](CELESTIAL_CURRENT_INSTRUMENTS.md).
+
+The framework-independent `src/domain/time/chu-zheng-ke` package classifies exact Macro/Micro phase
+from a normalized coordinate supplied by the same Shíchen resolver that owns Organ/Branch identity.
+`useShichenPhaseClock` performs minute-aligned live sampling or respects a frozen selected instant.
+Macro maturity extends the Temporal Semantic Resolver and validity window without changing Hour
+identity or effort; Micro remains presentation-only. `ShichenFlowTimeline` renders the typed phase
+and contains no calculation ownership. See [`CHU_ZHENG_KE_CLOCK.md`](CHU_ZHENG_KE_CLOCK.md) and
+[`ORGAN_SYSTEM_TEMPORAL_FLOW_UI.md`](ORGAN_SYSTEM_TEMPORAL_FLOW_UI.md).
+
+All five glance cards share one inner-geometry contract: equal responsive padding, a fixed heading
+row, a flexible middle visual row, and bottom-anchored identity text. Temporal glyph bars remain
+percentage-based so the compact, featured, and regular figures scale with identical color, spacing,
+and proportional weight.
+
 ## Runtime behavior
 
 The default demo build makes no runtime network calls. Theme, timezone preference, and an optional
-location label are device-local. The active Astrology provider projects an instant into the selected
+location label are device-local. The temporal provider projects an instant into the selected
 timezone, delegates GanZhi calculation to `lunar-javascript`, then applies pure domain lookups and
-transformations. A production build can independently select the documented Alchemy HTTP provider;
-the Astrology view remains unaware of either integration.
+transformations. The celestial provider performs local physical astronomy for the same instant and
+uses `Asia/Shanghai` only for its traditional lunar-date classification. A production build can
+independently select the documented Alchemy HTTP provider; the Astrology view remains unaware of
+that integration.
 
 Route components are lazy-loaded. `App.vue` owns only the application frame and transition boundary; feature behavior remains in route views and focused components.
 
@@ -86,14 +141,15 @@ and source disclosure, and responsive states. It makes no network calls.
 
 The `/tools/gene-keys-prompt-lab` route is an internal language experiment workbench. It reuses the
 canonical Gene Keys registry under `src/domain/astrology` for all 64 chapter titles and
-Shadow/Gift/Siddhi metadata. The browser can choose *The Gene Keys*, *The 64 Ways*, both, or neither;
+Shadow/Gift/Siddhi metadata. The browser can choose _The Gene Keys_, _The 64 Ways_, both, or neither;
 it never downloads the selected chapter text.
 
-Cloudflare Pages Functions under `functions/api/gene-keys-lab` provide the only network boundary.
-A shared password stored as an encrypted Pages secret creates a 12-hour HMAC-signed, HttpOnly,
-Secure, SameSite=Strict session cookie. The signing secret is independently stored as another Pages
-secret. POST handlers reject cross-origin requests, all responses are non-cacheable and noindex,
-and neither credential is compiled into the browser bundle.
+The existing Cloudflare Worker under `workers/api-gateway` handles `/api/gene-keys-lab/*` directly
+before its Render proxy boundary. A shared password stored as an encrypted Worker secret creates a
+12-hour HMAC-signed, HttpOnly, Secure, SameSite=Strict cookie on `api.current-flow.net`. The signing
+secret is independently stored as another Worker secret. Credentialed CORS is restricted to the
+declared Current Flow frontend origins, POST handlers reject other origins, every response bypasses
+the edge cache and requests no indexing, and neither credential is compiled into the browser bundle.
 
 The server reads only the requested key from a private Workers KV binding and sends that evidence,
 the canonical metadata, and the experimenter's prompt to the Workers AI binding. Output is forced
@@ -145,11 +201,20 @@ and API failures remain visible and never silently substitute fixtures.
 
 Alchemy introduces a separate FastAPI service under `services/alchemy-api`; it does not convert the
 Vue application into a server-rendered app or move frontend code. Neo4j is the service's only
-persistent store: local Compose and CI use the pinned Community image, while the hosted alpha uses
-managed AuraDB through the same driver and repository contract. The backend separates domain models
-and deterministic analysis, application ports/services, a centralized Neo4j repository, offline
+persistent store: local Compose and CI use the pinned Community image, while production uses AuraDB
+Professional through the same driver and repository contract. Render runs checksum-protected
+migrations and approved foundation reconciliation as a pre-deploy phase; ordinary web startup is
+disposable and process-only. The bounded asynchronous driver does not make process liveness depend
+on immediate database connectivity, while readiness remains dependency-aware.
+
+The separate Cloudflare Worker under `workers/api-gateway` is the production HTTP ingress for both
+`/api/v1/*` and `/api/gene-keys-lab/*`. Alchemy routes forward an origin token and apply explicit
+public/private and bypass cache rules; Prompt Lab routes are handled at the edge and always bypass
+the cache. The Worker does not own Alchemy domain behavior. The backend separates domain models and
+deterministic analysis, application ports/services, a centralized Neo4j repository, offline
 ingestion adapters, and API transport.
 
 The checked-in OpenAPI contract is the frontend integration seam. The browser never receives Neo4j
-credentials or arbitrary Cypher access, and external source or future local-model calls do not occur
-inside ordinary knowledge requests. See [`ALCHEMY_BACKEND.md`](ALCHEMY_BACKEND.md).
+or origin credentials or arbitrary Cypher access, and external source or future local-model calls do
+not occur inside ordinary knowledge requests. See [`ALCHEMY_BACKEND.md`](ALCHEMY_BACKEND.md) and
+[`PRODUCTION_OPERATIONS.md`](PRODUCTION_OPERATIONS.md).

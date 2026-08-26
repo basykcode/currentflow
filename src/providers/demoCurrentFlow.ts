@@ -1,124 +1,94 @@
 import type { CurrentFlowProvider } from '@/domain/astrology/provider'
+import { getZonedCivilTime } from '@/domain/astrology/civilTime'
+import { getHexagram } from '@/domain/astrology/hexagrams'
+import { getOrganMoment } from '@/domain/astrology/organClock'
+import { resolveLocalCivilShichenPhase } from '@/domain/astrology/shichenPhaseCoordinate'
 import type {
   CurrentFlowSnapshot,
-  Hexagram,
+  HexagramReference,
   TemporalHexagram,
   TemporalScope,
 } from '@/domain/astrology/types'
 
-const makeHexagram = (
-  number: number,
-  nameEnglish: string,
-  nameChinese: string,
-  linesBottomToTop: Hexagram['linesBottomToTop'],
-): Hexagram => ({ number, nameEnglish, nameChinese, linesBottomToTop })
+import { createDemoGuidance } from './demoGuidance'
 
 const makeTemporal = (
   scope: TemporalScope,
   label: string,
-  hexagram: Hexagram,
-  ganZhi: string,
+  hexagram: HexagramReference,
+  ganZhiRaw: string,
 ): TemporalHexagram => ({
   scope,
   label,
   timeBoundsLabel: 'Exact bounds unavailable in interface fixture',
   hexagram,
-  ganZhi,
+  ganZhiRaw,
+  ganZhi: `Demo · ${ganZhiRaw}`,
+  numberingSystem: 'king-wen',
+  mappingSystem: 'demo-fixture',
+  mappingVersion: 'demo-temporal-fixture-v1',
   status: 'demo',
   sourceLabel: 'Interface fixture · not calculated',
 })
 
-const YEAR = makeHexagram(32, 'Duration', '恆', ['yang', 'yang', 'yin', 'yang', 'yin', 'yin'])
-const MONTH = makeHexagram(53, 'Development', '漸', ['yin', 'yin', 'yang', 'yang', 'yin', 'yang'])
-const DAY = makeHexagram(57, 'The Gentle', '巽', ['yin', 'yang', 'yang', 'yin', 'yang', 'yang'])
-const HOUR = makeHexagram(48, 'The Well', '井', ['yin', 'yang', 'yang', 'yin', 'yang', 'yin'])
-const INNER = makeHexagram(61, 'Inner Truth', '中孚', [
-  'yang',
-  'yang',
-  'yin',
-  'yin',
-  'yang',
-  'yang',
-])
-const LIMITATION = makeHexagram(60, 'Limitation', '節', [
-  'yang',
-  'yang',
-  'yin',
-  'yin',
-  'yang',
-  'yin',
-])
-const INFLUENCE = makeHexagram(31, 'Influence', '咸', ['yin', 'yin', 'yang', 'yang', 'yang', 'yin'])
+const YEAR = getHexagram(32)
+const MONTH = getHexagram(53)
+const DAY = getHexagram(57)
+const HOUR = getHexagram(48)
+const INNER = getHexagram(61)
+const LIMITATION = getHexagram(60)
+const INFLUENCE = getHexagram(31)
 
 export class DemoCurrentFlowProvider implements CurrentFlowProvider {
   async getSnapshot(at: Date): Promise<CurrentFlowSnapshot> {
     const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Browser local time'
+    const phase = resolveLocalCivilShichenPhase(at, timezone)
+    const organClock = getOrganMoment(getZonedCivilTime(at, timezone).hour)
 
     return Promise.resolve({
       generatedAtIso: at.toISOString(),
       timezone,
       status: 'demo',
       temporal: {
-        year: makeTemporal('year', 'Year field', YEAR, 'Demo · 庚子'),
-        month: makeTemporal('month', 'Month field', MONTH, 'Demo · 己卯'),
-        day: makeTemporal('day', 'Day field', DAY, 'Demo · 乙巳'),
-        hour: makeTemporal('hour', 'Hour field', HOUR, 'Demo · 丁酉'),
+        year: makeTemporal('year', 'Year field', YEAR, '庚子'),
+        month: makeTemporal('month', 'Month field', MONTH, '己卯'),
+        day: makeTemporal('day', 'Day field', DAY, '乙巳'),
+        hour: makeTemporal('hour', 'Hour field', HOUR, '丁酉'),
       },
       organ: {
-        key: 'heart',
-        nameEnglish: 'Heart period',
-        nameChinese: '心',
-        timeRangeLabel: 'Demo window · 11:00–13:00',
+        ...organClock,
+        timeRangeLabel: `Demo window · ${organClock.timeRangeLabel}`,
+        shichen: phase.shichen,
+        nextShichen: phase.nextShichen,
+        hourPhase: phase.hourPhase,
         status: 'demo',
         sourceLabel: 'Interface fixture · organ clock not connected',
       },
-      synthesis: {
-        status: 'demo',
-        sourceLabel: 'Curated interface fixture · not calculated',
-        oltr: 'A steady approach leaves room for the next useful opening to become visible.',
-        recommendedIntention:
-          'Hold the direction lightly enough to notice where conditions are already cooperating.',
-        recommendedExecution: [
-          {
-            label: 'Refine an existing draft',
-            friction: 'lower',
-            rationale: 'Conditions in this demo favor patient, incremental shaping.',
-          },
-          {
-            label: 'Routine correspondence',
-            friction: 'neutral',
-            rationale: 'Maintain course without forcing significance.',
-          },
-          {
-            label: 'Irreversible commitments',
-            friction: 'higher',
-            rationale: 'Leave a little more room for information to arrive.',
-          },
-        ],
-        relatedHexagrams: [
-          {
-            hexagram: INNER,
-            relationshipLabel: 'Inner pattern · demo',
-            status: 'demo',
-            sourceLabel: 'Interface fixture · not calculated',
-          },
-          {
-            hexagram: LIMITATION,
-            relationshipLabel: 'Boundary lens · demo',
-            status: 'demo',
-            sourceLabel: 'Interface fixture · not calculated',
-          },
-          {
-            hexagram: INFLUENCE,
-            relationshipLabel: 'Contrast · demo',
-            status: 'demo',
-            sourceLabel: 'Interface fixture · not calculated',
-          },
-        ],
-      },
+      guidance: createDemoGuidance(at),
+      relatedHexagrams: [
+        {
+          hexagram: INNER,
+          relationshipLabel: 'Inner pattern · demo',
+          status: 'demo',
+          sourceLabel: 'Interface fixture · not calculated',
+        },
+        {
+          hexagram: LIMITATION,
+          relationshipLabel: 'Boundary lens · demo',
+          status: 'demo',
+          sourceLabel: 'Interface fixture · not calculated',
+        },
+        {
+          hexagram: INFLUENCE,
+          relationshipLabel: 'Contrast · demo',
+          status: 'demo',
+          sourceLabel: 'Interface fixture · not calculated',
+        },
+      ],
       provenance: {
         providerId: 'demo-current-flow',
         modelVersion: 'fixture-0.1',
+        mappingVersion: 'demo-temporal-fixture-v1',
         factors: ['Curated layout fixture', 'Static line arrays', 'Example synthesis copy'],
         notes: [
           'No calendrical calculation was performed.',

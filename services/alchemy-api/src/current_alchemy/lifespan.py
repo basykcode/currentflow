@@ -1,5 +1,6 @@
-"""FastAPI lifespan management for the Neo4j async driver."""
+"""FastAPI lifespan management for the bounded Neo4j async driver."""
 
+import logging
 from collections.abc import AsyncIterator, Callable
 from contextlib import AbstractAsyncContextManager, asynccontextmanager
 
@@ -21,14 +22,25 @@ def neo4j_lifespan(
                 settings.neo4j_username,
                 settings.neo4j_password.get_secret_value(),
             ),
+            max_connection_pool_size=settings.neo4j_max_connection_pool_size,
+            connection_acquisition_timeout=(settings.neo4j_connection_acquisition_timeout_seconds),
+            connection_timeout=settings.neo4j_connection_timeout_seconds,
+            max_transaction_retry_time=settings.neo4j_max_transaction_retry_time_seconds,
+            keep_alive=True,
         )
-        try:
-            await driver.verify_connectivity()
-        except Exception:
-            await driver.close()
-            raise
         app.state.driver = driver
-        app.state.repository = Neo4jAlchemyRepository(driver, settings.neo4j_database)
+        app.state.repository = Neo4jAlchemyRepository(
+            driver,
+            settings.neo4j_database,
+            query_timeout_seconds=settings.neo4j_query_timeout_seconds,
+        )
+        logging.getLogger("current_alchemy.lifecycle").info(
+            "Neo4j driver initialized",
+            extra={
+                "pool_size": settings.neo4j_max_connection_pool_size,
+                "query_timeout_ms": round(settings.neo4j_query_timeout_seconds * 1000),
+            },
+        )
         try:
             yield
         finally:

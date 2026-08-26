@@ -19,16 +19,13 @@ export type WorkersAiInput = {
 export type PromptLabEnv = {
   AI: WorkersAi
   GENE_KEYS_SOURCES: KvNamespace
+  ALLOWED_ORIGINS?: string
   PROMPT_LAB_PASSWORD: string
   PROMPT_LAB_SESSION_SECRET: string
   PROMPT_LAB_MODEL?: string
 }
 
-export type PagesFunctionContext<Env> = {
+export type WorkerContext<Env> = {
   request: Request
   env: Env
 }
-
-export type PagesFunction<Env> = (
-  context: PagesFunctionContext<Env>,
-) => Response | Promise<Response>
