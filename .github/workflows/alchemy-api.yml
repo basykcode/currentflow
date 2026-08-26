@@ -20,6 +20,12 @@ jobs:
         working-directory: services/alchemy-api
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.19.0'
+          cache: npm
+      - run: npm install --global npm@11.17.0
+        working-directory: .
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12.14'
@@ -30,7 +36,14 @@ jobs:
       - run: uv sync --frozen --all-groups
       - name: Verify repository toolchain manifest
         working-directory: .
-        run: python -c "import json; json.load(open('config/toolchain.json'))"
+        run: npm run toolchain:check
+      - name: Verify exact Python runtime
+        working-directory: .
+        run: >-
+          python -c "import json, platform;
+          manifest=json.load(open('config/toolchain.json'));
+          expected=next(item['version'] for item in manifest['tools'] if item['tool']=='Python');
+          assert platform.python_version()==expected, (platform.python_version(), expected)"
       - run: uv run ruff format --check .
       - run: uv run ruff check .
       - run: uv run mypy src

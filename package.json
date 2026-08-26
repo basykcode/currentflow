@@ -20,10 +20,14 @@
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "test:unit": "vitest run",
-    "check": "npm run toolchain:check && npm run type-check && npm run lint && npm run test:unit && npm run workspace:test && npm run gateway:test && npm run commentary:validate && npm run transitions:validate && npm run build",
+    "check": "npm run toolchain:check && npm run toolchain:test && npm run type-check && npm run lint && npm run test:unit && npm run workspace:test && npm run gateway:check && npm run load:test && npm run commentary:validate && npm run transitions:validate && npm run build",
     "toolchain:check": "node scripts/toolchain/verify.mjs",
-    "gateway:test": "node --test workers/api-gateway/test/*.spec.mjs",
+    "toolchain:test": "node --test scripts/toolchain/*.spec.mjs",
+    "gateway:test": "vitest run --config workers/api-gateway/vitest.config.ts",
+    "gateway:build": "wrangler deploy --dry-run --config workers/api-gateway/wrangler.jsonc --outdir .wrangler/dry-run",
+    "gateway:check": "npm run gateway:test && npm run gateway:build",
     "gateway:deploy": "wrangler deploy --config workers/api-gateway/wrangler.jsonc",
+    "load:test": "node --test load-tests/test/*.spec.mjs",
     "workspace:status": "node scripts/codex/workspace.mjs status",
     "workspace:doctor": "node scripts/codex/workspace.mjs doctor",
     "workspace:dev": "node scripts/codex/workspace.mjs dev",
@@ -65,7 +69,7 @@
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",
-    "@tsconfig/node22": "22.0.5",
+    "@tsconfig/node24": "24.0.0",
     "@types/node": "24.13.3",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/test-utils": "2.4.11",
@@ -81,5 +85,11 @@
     "vitest": "3.2.7",
     "vue-tsc": "3.3.8",
     "wrangler": "4.126.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "esbuild@0.28.2": true,
+    "fsevents@2.3.3": true,
+    "workerd@1.20260825.1": true
   }
 }

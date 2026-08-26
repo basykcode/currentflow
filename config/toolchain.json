@@ -5,7 +5,14 @@
       "tool": "Node.js",
       "version": "24.19.0",
       "purpose": "Frontend builds, tests, and repository automation",
-      "enforcedBy": [".nvmrc", ".node-version", "package.json", "GitHub Actions"],
+      "enforcedBy": [
+        ".nvmrc",
+        ".node-version",
+        "package.json",
+        "tsconfig.node.json",
+        "workers/api-gateway/tsconfig.json",
+        "GitHub Actions"
+      ],
       "updatePolicy": "Reviewed LTS patch updates through pull requests"
     },
     {
@@ -67,6 +74,13 @@
       "purpose": "Reproducible API gateway validation and workers.dev deployment",
       "enforcedBy": ["package.json", "package-lock.json"],
       "updatePolicy": "Reviewed exact-version updates after gateway tests"
+    },
+    {
+      "tool": "k6",
+      "version": "1.0.0",
+      "purpose": "Guarded manual API load-test execution",
+      "enforcedBy": [".github/workflows/load-test.yml"],
+      "updatePolicy": "Reviewed exact Docker image updates after script validation"
     }
   ]
 }

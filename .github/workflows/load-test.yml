@@ -1,0 +1,54 @@
+name: Alchemy Load Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_url:
+        description: Explicit API origin, including scheme
+        required: true
+        type: string
+      profile:
+        description: Bounded workload profile
+        required: true
+        default: smoke
+        type: choice
+        options: [smoke, baseline, medium, burst, concurrency]
+      allow_remote:
+        description: Confirm that an external target is intentional
+        required: true
+        default: false
+        type: boolean
+      allow_production:
+        description: Confirm an approved production change window
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+concurrency:
+  group: alchemy-load-${{ inputs.target_url }}
+  cancel-in-progress: false
+
+jobs:
+  bounded-k6:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run exact k6 image
+        env:
+          TARGET_URL: ${{ inputs.target_url }}
+          LOAD_PROFILE: ${{ inputs.profile }}
+          ALLOW_REMOTE_LOAD: ${{ inputs.allow_remote && '1' || '0' }}
+          ALLOW_PRODUCTION_LOAD: ${{ inputs.allow_production && '1' || '0' }}
+        run: >-
+          docker run --rm
+          -v "$GITHUB_WORKSPACE:/work"
+          -w /work
+          -e TARGET_URL
+          -e LOAD_PROFILE
+          -e ALLOW_REMOTE_LOAD
+          -e ALLOW_PRODUCTION_LOAD
+          grafana/k6:1.0.0
+          run load-tests/alchemy.js

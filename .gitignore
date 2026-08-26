@@ -2,6 +2,8 @@ node_modules/
 dist/
 .vite/
 coverage/
+.wrangler/
+*.tsbuildinfo
 *.local
 .DS_Store
 .env
