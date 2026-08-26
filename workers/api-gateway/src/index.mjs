@@ -1,5 +1,6 @@
 const API_PREFIX = '/api/v1/'
 const HEALTH_PATHS = new Set(['/api/v1/health/live', '/api/v1/health/ready'])
+const STORED_CACHE_CONTROL_HEADER = 'X-Current-Flow-Origin-Cache-Control'
 const HOP_BY_HOP_HEADERS = new Set([
   'connection',
   'keep-alive',
@@ -135,6 +136,9 @@ export async function handleRequest(request, env, ctx, platform = {}) {
     const cached = await cache.match(cacheKey)
     if (cached) {
       const response = new Response(cached.body, cached)
+      const originCacheControl = response.headers.get(STORED_CACHE_CONTROL_HEADER)
+      if (originCacheControl) response.headers.set('Cache-Control', originCacheControl)
+      response.headers.delete(STORED_CACHE_CONTROL_HEADER)
       response.headers.set('X-Current-Flow-Cache', 'HIT')
       response.headers.set('X-Current-Flow-Gateway', 'cloudflare-worker')
       return applyCors(response, request, env)
@@ -165,6 +169,7 @@ export async function handleRequest(request, env, ctx, platform = {}) {
   removeOriginSpecificHeaders(response)
   response.headers.set('X-Current-Flow-Gateway', 'cloudflare-worker')
   response.headers.set('X-Current-Flow-Cache', cacheCandidate ? 'MISS' : 'BYPASS')
+  response.headers.delete(STORED_CACHE_CONTROL_HEADER)
   response.headers.delete('Server')
 
   const cacheControl = response.headers.get('Cache-Control') ?? ''
@@ -174,7 +179,9 @@ export async function handleRequest(request, env, ctx, platform = {}) {
     cacheControl.startsWith('public') &&
     !response.headers.has('Set-Cookie')
   ) {
-    ctx.waitUntil(cache.put(cacheKey, response.clone()))
+    const cachedResponse = response.clone()
+    cachedResponse.headers.set(STORED_CACHE_CONTROL_HEADER, cacheControl)
+    ctx.waitUntil(cache.put(cacheKey, cachedResponse))
   }
   return applyCors(response, request, env)
 }
