@@ -6,20 +6,20 @@
   "workers_dev": true,
   "preview_urls": true,
   "ai": {
-    "binding": "AI",
+    "binding": "AI"
   },
   "kv_namespaces": [
     {
       "binding": "GENE_KEYS_SOURCES",
-      "id": "f071e11feaf34732af4dfe613846437a",
-    },
+      "id": "f071e11feaf34732af4dfe613846437a"
+    }
   ],
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 1,
+    "head_sampling_rate": 1
   },
   "vars": {
     "ORIGIN_BASE_URL": "https://current-flow-alchemy-api.onrender.com",
-    "ALLOWED_ORIGINS": "https://current-flow.net,https://www.current-flow.net",
-  },
+    "ALLOWED_ORIGINS": "https://current-flow.net,https://www.current-flow.net"
+  }
 }
