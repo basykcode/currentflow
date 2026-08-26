@@ -4,8 +4,9 @@ import test from 'node:test'
 import { handleRequest } from '../src/index.mjs'
 
 class TestCache {
-  constructor() {
+  constructor({ rewriteCacheControl = false } = {}) {
     this.entries = new Map()
+    this.rewriteCacheControl = rewriteCacheControl
   }
 
   async match(request) {
@@ -13,7 +14,11 @@ class TestCache {
   }
 
   async put(request, response) {
-    this.entries.set(request.url, response.clone())
+    const cached = response.clone()
+    if (this.rewriteCacheControl) {
+      cached.headers.set('Cache-Control', 'public, max-age=14400')
+    }
+    this.entries.set(request.url, cached)
   }
 }
 
@@ -57,25 +62,28 @@ test('proxies public API GETs with request and origin tokens', async () => {
 })
 
 test('caches only eligible public GET responses', async () => {
-  const cache = new TestCache()
+  const cache = new TestCache({ rewriteCacheControl: true })
   let calls = 0
   const fetcher = async () => {
     calls += 1
     return Response.json({ calls }, { headers: { 'Cache-Control': 'public, max-age=60' } })
   }
 
+  let cachedResponse
   for (let index = 0; index < 2; index += 1) {
     const ctx = context()
-    const response = await handleRequest(
+    cachedResponse = await handleRequest(
       new Request('https://gateway.example/api/v1/herbs?limit=5'),
       { ORIGIN_BASE_URL: 'https://origin.example' },
       ctx,
       { cache, fetcher },
     )
     await Promise.all(ctx.pending)
-    assert.equal(response.status, 200)
+    assert.equal(cachedResponse.status, 200)
   }
   assert.equal(calls, 1)
+  assert.equal(cachedResponse.headers.get('Cache-Control'), 'public, max-age=60')
+  assert.equal(cachedResponse.headers.get('X-Current-Flow-Origin-Cache-Control'), null)
 
   const ctx = context()
   await handleRequest(
