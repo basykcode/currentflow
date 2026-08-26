@@ -28,11 +28,12 @@ source-to-result route based on the _Jiaoshi Yilin_, with its source locator and
 
 ## Local setup
 
-Use Node 22.18.0 and npm.
+Use Node 24.19.0 and npm 11.17.0 as declared in `config/toolchain.json`.
 
 ```bash
 nvm use
-npm install
+npm ci
+npm run toolchain:check
 npm run dev
 ```
 
@@ -64,7 +65,7 @@ Connected API mode uses:
 ```dotenv
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=http://localhost:8000
-VITE_ALCHEMY_REQUEST_TIMEOUT_MS=10000
+VITE_ALCHEMY_REQUEST_TIMEOUT_MS=30000
 ```
 
 API mode now uses the checked-in OpenAPI schema and `HttpAlchemyProvider`. Missing or invalid API
@@ -110,6 +111,9 @@ are described in
 - `npm run format` — format source and documentation
 - `npm run test:unit` — run Vitest unit tests
 - `npm run check` — type-check, lint, unit tests, workspace tests, commentary and transition validation, and production build
+- `npm run toolchain:check` — verify every exact runtime and package-manager declaration
+- `npm run gateway:check` — test and dry-build the strict-TypeScript API gateway
+- `npm run load:test` — validate bounded k6 profiles and production-target guards
 - `npm run workspace:doctor` / `workspace:status` — verify or inspect Codex worktree isolation
 - `npm run workspace:dev` — start Vite on the current chat's leased port
 - `npm run workspace:alchemy -- <action>` — manage this chat's isolated Alchemy stack and data tools
@@ -137,6 +141,9 @@ src/providers       swappable data adapters
 src/stores          shared preferences, identity, and transient inspector state
 src/views           route-level composition
 scripts/codex       per-chat worktree leases and isolated runtime commands
+config              canonical toolchain manifest
+workers/api-gateway separate Cloudflare API ingress and route policy
+load-tests          guarded k6 scale scenarios and policy tests
 content/yijing      school and Forest drafts, public bundles, registries, and reports
 scripts/transitions Forest matrix preparation, line-summary build, and QA commands
 scripts/commentary  evidence preparation, synthesis, public build, and QA commands
@@ -175,7 +182,11 @@ Cloudflare Pages builds `master` with `npm run build` and publishes `dist` at
 Alchemy API Docker image remotely on Render, and uses managed AuraDB for Neo4j. The checked-in
 `.env.production` selects the public API at `https://api.current-flow.net` for production builds;
 local development remains in deterministic demo mode unless explicitly configured otherwise.
-Account, secret, DNS, free-tier, and smoke-test steps are in `docs/DEPLOYMENT.md`.
+Account, secret, DNS, paid-plan, and smoke-test steps are in `docs/DEPLOYMENT.md`. The production
+scale boundary, capacity evidence requirements, and recovery path are in
+[`docs/PRODUCTION_SCALE_ARCHITECTURE.md`](docs/PRODUCTION_SCALE_ARCHITECTURE.md),
+[`docs/CAPACITY_BASELINE.md`](docs/CAPACITY_BASELINE.md), and
+[`docs/PRODUCTION_RECOVERY_RUNBOOK.md`](docs/PRODUCTION_RECOVERY_RUNBOOK.md).
 
 If no Git remote exists after the first commit:
 

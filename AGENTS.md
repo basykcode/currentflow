@@ -10,6 +10,21 @@
 - Update documentation when architecture or integration boundaries change.
 - Preserve accessibility, responsive behavior, and the product principles in `docs/PRODUCT_PRINCIPLES.md`.
 
+## Production foundation rules
+
+- `config/toolchain.json` is the canonical toolchain manifest. Automation uses `npm ci`; direct
+  dependency and runtime changes require synchronized exact pins and reviewed lockfiles.
+- `master` is the production branch. Keep frontend, backend, container, Render, and Cloudflare
+  release configuration aligned to it.
+- Migrations, foundation reconciliation, ingestion, and projection rebuilds never run in ordinary
+  web startup. API processes remain disposable and stateless.
+- Every API route has an explicit public/private/health/admin cache class. Private, authenticated,
+  cookie-bearing, and error responses are never edge-cached.
+- Neo4j queries use stable operation names, parameters, deterministic ordering, timeouts, and
+  bounded result counts. Review the aggregate connection budget before adding workers or instances.
+- Load-test and capacity claims name the dataset, commit, topology, workload, and observed provider
+  metrics. DAU alone is not evidence of capacity.
+
 ## Yijing transformation rules
 
 - Store and calculate hexagram lines bottom-to-top; resolve every target through the canonical

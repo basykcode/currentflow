@@ -92,6 +92,10 @@ prompts for new `sync: false` values during initial Blueprint creation.
 
 ## API gateway and custom domain
 
+The gateway route and protected origin are active. The following order is the reproducible initial
+cutover procedure; do not repeat DNS changes merely because they appear in this runbook. For later
+zero-downtime token rotation, use the secondary-token sequence in `EDGE_GATEWAY.md`.
+
 The Blueprint registers `api.current-flow.net` with the Render service. After the service has a live
 `onrender.com` URL:
 
@@ -105,15 +109,17 @@ The Blueprint registers `api.current-flow.net` with the Render service. After th
 3. In Render's **Settings → Custom Domains**, verify `api.current-flow.net` and wait for its TLS
    certificate to become valid.
 4. Confirm `https://api.current-flow.net/api/v1/health/ready` returns HTTP 200.
-5. Deploy `workers/api-gateway` to its workers.dev hostname. Add `ORIGIN_TOKEN` with Wrangler's
-   secret store; never place the value in `wrangler.jsonc`.
+5. Deploy `workers/api-gateway` to its workers.dev hostname. Add the canonical
+   `CURRENT_EDGE_ORIGIN_TOKEN` with Wrangler's secret store; the existing `ORIGIN_TOKEN` remains a
+   compatibility alias during rotation. Never place either value in `wrangler.jsonc`.
 6. Verify the workers.dev proxy and cache-bypass matrix in `PRODUCTION_OPERATIONS.md`.
 7. Add the path-scoped `api.current-flow.net/*` Worker route and change only the existing API
    record's proxy state when required. Keep its Render CNAME target recorded and unchanged so the
    cutover is reversible.
-8. After the gateway route is healthy, set the matching `ALCHEMY_ORIGIN_TOKEN` Render secret and
-   verify direct-origin application routes are rejected while provider health checks and gateway
-   traffic remain healthy.
+8. After the gateway route is healthy, set the matching canonical token (or retained
+   `ALCHEMY_ORIGIN_TOKEN` alias) and `ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN=1` in Render. Verify
+   direct-origin application routes are rejected while provider health checks and gateway traffic
+   remain healthy.
 
 Do not change the existing apex or `www` records. Render specifically requires DNS-only mode during
 domain verification. Do not route the production hostname through the Worker until workers.dev
@@ -126,13 +132,13 @@ The repository tracks these non-secret production build values in `.env.producti
 ```dotenv
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=https://api.current-flow.net
-VITE_ALCHEMY_REQUEST_TIMEOUT_MS=90000
+VITE_ALCHEMY_REQUEST_TIMEOUT_MS=30000
 ```
 
 Pushing `master` therefore gives Cloudflare Pages the connected API configuration without requiring
 dashboard variables. Vite values are public browser configuration, so only the data mode, public API
-URL, and timeout belong in this file. The 90-second timeout accommodates a free Render cold start;
-paid or always-on hosting can lower it later.
+URL, and timeout belong in this file. Render Standard is always on, so ordinary interactive reads use
+a bounded 30-second deadline; imports and projection rebuilds remain offline work.
 
 Cloudflare production environment variables may override these values when an operational
 change must be made without a source release. Never place Aura or Render credentials in either

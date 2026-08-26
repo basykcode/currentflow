@@ -86,11 +86,13 @@ The complete account, DNS, gateway, smoke-test, scaling, rollback, and no-admin 
 5. Database records are converted into typed domain models before transport.
 6. Knowledge responses carry data status, sources, warnings, generation time, schema version, and
    algorithm version where applicable.
-7. Public anonymous GET responses receive a short shared-cache policy and ETag. Health, errors,
-   non-GETs, authorization, and cookies are private or `no-store`.
+7. The deny-by-default endpoint registry assigns public-cacheable, public-uncacheable,
+   private-no-store, health, or administrative policy. Eligible anonymous GET responses receive a
+   class-specific shared-cache policy and ETag; health, errors, non-GETs, authorization, cookies,
+   `Set-Cookie`, private, and administrative responses are never publicly cached.
 8. Validation and application failures use one RFC 7807-inspired problem shape. Logs are structured
-   JSON with request/query duration and outcome and omit secrets, complete bodies, Cypher, and query
-   parameters.
+   JSON with endpoint templates, response/cache fields, request-correlated query operations/counts,
+   and duration while omitting secrets, complete bodies, Cypher, and parameters.
 
 The application lifespan creates the official asynchronous Neo4j driver with bounded pool,
 acquisition, connection, retry, and query deadlines, then closes it during shutdown. It does not
