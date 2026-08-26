@@ -84,6 +84,45 @@ const normalizeWords = (text: string) =>
     .replace(/’/gu, "'")
     .match(/[\p{L}\p{N}']+/gu) ?? []
 
+function hasSourceWindowWithInsertions(
+  outputWords: readonly string[],
+  sourceWindows: ReadonlySet<string>,
+  windowSize: number,
+  maxInsertedWords = 3,
+) {
+  const selected: string[] = []
+
+  const matchesWindow = (span: readonly string[], index: number): boolean => {
+    if (selected.length === windowSize) {
+      return sourceWindows.has(selected.join(' '))
+    }
+
+    const wordsStillNeeded = windowSize - selected.length
+    if (span.length - index < wordsStillNeeded) {
+      return false
+    }
+
+    selected.push(span[index] ?? '')
+    if (matchesWindow(span, index + 1)) {
+      return true
+    }
+    selected.pop()
+
+    return matchesWindow(span, index + 1)
+  }
+
+  for (let spanSize = windowSize; spanSize <= windowSize + maxInsertedWords; spanSize += 1) {
+    for (let index = 0; index <= outputWords.length - spanSize; index += 1) {
+      selected.length = 0
+      if (matchesWindow(outputWords.slice(index, index + spanSize), 0)) {
+        return true
+      }
+    }
+  }
+
+  return false
+}
+
 export function hasExactSourceOverlap(
   output: GeneKeysPromptLabOutput,
   sources: readonly { text: string }[],
@@ -102,12 +141,7 @@ export function hasExactSourceOverlap(
     }
   }
 
-  for (let index = 0; index <= outputWords.length - windowSize; index += 1) {
-    if (sourceWindows.has(outputWords.slice(index, index + windowSize).join(' '))) {
-      return true
-    }
-  }
-  return false
+  return hasSourceWindowWithInsertions(outputWords, sourceWindows, windowSize)
 }
 
 function parseAiOutput(value: unknown): GeneKeysPromptLabOutput | null {

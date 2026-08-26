@@ -39,6 +39,7 @@ describe('GeneKeysPromptLabView', () => {
   beforeEach(() => {
     localStorage.clear()
     mocks.generatePromptLabCommentary.mockReset().mockResolvedValue(generation)
+    mocks.logOutOfPromptLab.mockReset().mockResolvedValue(undefined)
     vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined)
     vi.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(
       '00000000-0000-4000-8000-000000000002',
@@ -77,5 +78,17 @@ describe('GeneKeysPromptLabView', () => {
     expect(wrapper.get<HTMLTextAreaElement>('#prompt-lab-prompt').element.value).toBe(
       'Try an original voice.',
     )
+  })
+
+  it('keeps the workspace unlocked when the server cannot end the session', async () => {
+    mocks.logOutOfPromptLab.mockRejectedValueOnce(new Error('Network unavailable'))
+    const wrapper = mount(GeneKeysPromptLabView)
+    await flushPromises()
+
+    await wrapper.get('button.quiet-button').trigger('click')
+    await flushPromises()
+
+    expect(wrapper.find('.prompt-lab-page').exists()).toBe(true)
+    expect(wrapper.get('[role="alert"]').text()).toContain('session remains active')
   })
 })

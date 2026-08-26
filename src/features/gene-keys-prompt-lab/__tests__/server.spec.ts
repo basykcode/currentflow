@@ -50,6 +50,22 @@ describe('Gene Keys prompt lab server boundary', () => {
     ).toBe(false)
   })
 
+  it('detects an eight-word source sequence split by inserted marker words', () => {
+    const source = {
+      text: 'A hidden current carries these eight exact words across the private chapter boundary.',
+    }
+
+    expect(
+      hasExactSourceOverlap(
+        {
+          oltr: 'A hidden current carries these eight exact marker words across.',
+          commentary: 'Original supporting language.',
+        },
+        [source],
+      ),
+    ).toBe(true)
+  })
+
   it('loads only selected source IDs and returns draft metadata without source text', async () => {
     const secret = 'another-long-local-test-secret'
     const token = await createSessionToken(secret)

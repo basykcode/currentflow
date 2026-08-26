@@ -70,12 +70,15 @@ function handleUnlocked() {
 }
 
 async function logOut() {
+  error.value = ''
   try {
     await logOutOfPromptLab()
-  } finally {
     authenticated.value = false
     generation.value = null
     activeHistoryId.value = null
+  } catch {
+    error.value =
+      'The server could not lock this workspace. Your session remains active; try again shortly.'
   }
 }
 
