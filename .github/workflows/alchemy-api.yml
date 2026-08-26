@@ -7,6 +7,7 @@ on:
       - 'services/alchemy-api/**'
       - 'contracts/alchemy-openapi.json'
       - 'compose.yaml'
+      - 'config/toolchain.json'
       - 'render.yaml'
       - '.github/workflows/alchemy-api.yml'
   pull_request:
@@ -14,11 +15,16 @@ on:
       - 'services/alchemy-api/**'
       - 'contracts/alchemy-openapi.json'
       - 'compose.yaml'
+      - 'config/toolchain.json'
       - 'render.yaml'
       - '.github/workflows/alchemy-api.yml'
 
 permissions:
   contents: read
+
+concurrency:
+  group: alchemy-api-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   quality:
@@ -28,11 +34,17 @@ jobs:
         working-directory: services/alchemy-api
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.11.32'
           enable-cache: true
       - run: uv sync --frozen --all-groups
+      - name: Verify repository toolchain manifest
+        working-directory: .
+        run: python -c "import json; json.load(open('config/toolchain.json'))"
       - run: uv run ruff format --check .
       - run: uv run ruff check .
       - run: uv run mypy src
@@ -69,6 +81,9 @@ jobs:
       ALCHEMY_RUN_INTEGRATION: '1'
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12.14'
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.11.32'

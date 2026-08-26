@@ -172,11 +172,19 @@ and API failures remain visible and never silently substitute fixtures.
 
 Alchemy introduces a separate FastAPI service under `services/alchemy-api`; it does not convert the
 Vue application into a server-rendered app or move frontend code. Neo4j is the service's only
-persistent store: local Compose and CI use the pinned Community image, while the hosted alpha uses
-managed AuraDB through the same driver and repository contract. The backend separates domain models
-and deterministic analysis, application ports/services, a centralized Neo4j repository, offline
-ingestion adapters, and API transport.
+persistent store: local Compose and CI use the pinned Community image, while production uses AuraDB
+Professional through the same driver and repository contract. Render runs checksum-protected
+migrations and approved foundation reconciliation as a pre-deploy phase; ordinary web startup is
+disposable and process-only. The bounded asynchronous driver does not make process liveness depend
+on immediate database connectivity, while readiness remains dependency-aware.
+
+The separate Cloudflare Worker under `workers/api-gateway` is the production HTTP ingress for
+`/api/v1/*`. It forwards an origin token, applies explicit public/private and bypass cache rules, and
+does not own Alchemy domain behavior. The backend separates domain models and deterministic
+analysis, application ports/services, a centralized Neo4j repository, offline ingestion adapters,
+and API transport.
 
 The checked-in OpenAPI contract is the frontend integration seam. The browser never receives Neo4j
-credentials or arbitrary Cypher access, and external source or future local-model calls do not occur
-inside ordinary knowledge requests. See [`ALCHEMY_BACKEND.md`](ALCHEMY_BACKEND.md).
+or origin credentials or arbitrary Cypher access, and external source or future local-model calls do
+not occur inside ordinary knowledge requests. See [`ALCHEMY_BACKEND.md`](ALCHEMY_BACKEND.md) and
+[`PRODUCTION_OPERATIONS.md`](PRODUCTION_OPERATIONS.md).

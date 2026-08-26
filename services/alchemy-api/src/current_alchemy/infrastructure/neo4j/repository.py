@@ -1,11 +1,15 @@
 """Neo4j implementation of the application repository port."""
 
 import json
+import logging
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import datetime
 from itertools import combinations
+from time import perf_counter
 from typing import Any, Final, cast
 
-from neo4j import AsyncDriver
+from neo4j import AsyncDriver, AsyncResult, AsyncSession, Query
 from neo4j.time import DateTime as Neo4jDateTime
 from pydantic.alias_generators import to_camel
 
@@ -384,11 +388,88 @@ def _source_citation(
     )
 
 
+class _TimedSession:
+    """Apply a server query deadline and emit duration without logging Cypher or parameters."""
+
+    def __init__(self, session: AsyncSession, query_timeout_seconds: float) -> None:
+        self._session = session
+        self._query_timeout_seconds = query_timeout_seconds
+
+    async def run(
+        self,
+        cypher: str,
+        parameters: dict[str, Any] | None = None,
+        **kwargs: Any,
+    ) -> AsyncResult:
+        started = perf_counter()
+        try:
+            query = Query(cypher, timeout=self._query_timeout_seconds)
+            if parameters is None:
+                result = await self._session.run(query, **kwargs)
+            else:
+                result = await self._session.run(query, parameters=parameters, **kwargs)
+        except Exception:
+            logging.getLogger("current_alchemy.neo4j.query").exception(
+                "Neo4j query failed",
+                extra={
+                    "duration_ms": round((perf_counter() - started) * 1000, 3),
+                    "outcome": "error",
+                },
+            )
+            raise
+        logging.getLogger("current_alchemy.neo4j.query").info(
+            "Neo4j query dispatched",
+            extra={
+                "duration_ms": round((perf_counter() - started) * 1000, 3),
+                "outcome": "success",
+            },
+        )
+        return result
+
+
+class _TimedDriver:
+    def __init__(self, driver: AsyncDriver, query_timeout_seconds: float) -> None:
+        self._driver = driver
+        self._query_timeout_seconds = query_timeout_seconds
+
+    @asynccontextmanager
+    async def session(self, *, database: str) -> AsyncIterator[_TimedSession]:
+        async with self._driver.session(database=database) as session:
+            yield _TimedSession(session, self._query_timeout_seconds)
+
+    async def verify_connectivity(self) -> None:
+        started = perf_counter()
+        try:
+            await self._driver.verify_connectivity()
+        except Exception:
+            logging.getLogger("current_alchemy.neo4j.query").warning(
+                "Neo4j connectivity check failed",
+                extra={
+                    "duration_ms": round((perf_counter() - started) * 1000, 3),
+                    "outcome": "error",
+                },
+            )
+            raise
+        logging.getLogger("current_alchemy.neo4j.query").info(
+            "Neo4j connectivity check completed",
+            extra={
+                "duration_ms": round((perf_counter() - started) * 1000, 3),
+                "outcome": "success",
+            },
+        )
+
+
 class Neo4jAlchemyRepository:
     """All runtime Cypher is centralized here and uses allowlisted schema identifiers."""
 
-    def __init__(self, driver: AsyncDriver, database: str) -> None:
-        self._driver = driver
+    def __init__(
+        self,
+        driver: AsyncDriver,
+        database: str,
+        *,
+        query_timeout_seconds: float = 20.0,
+    ) -> None:
+        self._driver = _TimedDriver(driver, query_timeout_seconds)
         self._database = database
 
     async def readiness(self) -> bool:

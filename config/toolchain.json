@@ -1,0 +1,72 @@
+{
+  "lastReviewed": "2026-08-26",
+  "tools": [
+    {
+      "tool": "Node.js",
+      "version": "24.19.0",
+      "purpose": "Frontend builds, tests, and repository automation",
+      "enforcedBy": [".nvmrc", ".node-version", "package.json", "GitHub Actions"],
+      "updatePolicy": "Reviewed LTS patch updates through pull requests"
+    },
+    {
+      "tool": "npm",
+      "version": "11.17.0",
+      "purpose": "Reproducible JavaScript dependency installation",
+      "enforcedBy": ["package.json", ".npmrc", "GitHub Actions"],
+      "updatePolicy": "Reviewed patch updates with a regenerated package-lock.json"
+    },
+    {
+      "tool": "Python",
+      "version": "3.12.14",
+      "purpose": "FastAPI runtime and backend tooling",
+      "enforcedBy": [
+        "services/alchemy-api/.python-version",
+        "services/alchemy-api/Dockerfile",
+        "services/alchemy-api/pyproject.toml"
+      ],
+      "updatePolicy": "Stay on Python 3.12 and take reviewed security patch releases"
+    },
+    {
+      "tool": "uv",
+      "version": "0.11.32",
+      "purpose": "Locked Python dependency installation",
+      "enforcedBy": ["services/alchemy-api/Dockerfile", "GitHub Actions"],
+      "updatePolicy": "Reviewed exact-version updates"
+    },
+    {
+      "tool": "Neo4j Community",
+      "version": "5.26.28-community",
+      "purpose": "Local and CI graph server compatible with AuraDB",
+      "enforcedBy": ["compose.yaml", "GitHub Actions"],
+      "updatePolicy": "Reviewed Neo4j 5 LTS updates after integration tests"
+    },
+    {
+      "tool": "Neo4j Python driver",
+      "version": "5.28.2",
+      "purpose": "Asynchronous AuraDB and Neo4j connectivity",
+      "enforcedBy": ["services/alchemy-api/pyproject.toml", "services/alchemy-api/uv.lock"],
+      "updatePolicy": "Reviewed exact-version updates after backend and integration tests"
+    },
+    {
+      "tool": "TypeScript",
+      "version": "5.8.3",
+      "purpose": "Strict frontend type checking",
+      "enforcedBy": ["package.json", "package-lock.json"],
+      "updatePolicy": "Reviewed exact-version updates"
+    },
+    {
+      "tool": "Vite",
+      "version": "7.3.6",
+      "purpose": "Frontend development and production builds",
+      "enforcedBy": ["package.json", "package-lock.json"],
+      "updatePolicy": "Reviewed exact-version updates"
+    },
+    {
+      "tool": "Cloudflare Wrangler",
+      "version": "4.126.0",
+      "purpose": "Reproducible API gateway validation and workers.dev deployment",
+      "enforcedBy": ["package.json", "package-lock.json"],
+      "updatePolicy": "Reviewed exact-version updates after gateway tests"
+    }
+  ]
+}

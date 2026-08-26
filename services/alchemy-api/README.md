@@ -9,7 +9,8 @@ prescribe, recommend doses, retain health data, or call an external inference se
 
 ## Direct local setup
 
-Install Python 3.12 and [uv](https://docs.astral.sh/uv/), then copy `.env.example` to `.env` and
+Install the exact Python and [uv](https://docs.astral.sh/uv/) versions in
+`../../config/toolchain.json`, then copy `.env.example` to `.env` and
 replace the local Neo4j password and PubChem contact placeholder.
 
 ```bash
@@ -22,6 +23,11 @@ uv run uvicorn current_alchemy.app:create_app --factory --host 0.0.0.0 --port 80
 
 The API documentation is at `http://localhost:8000/api/v1/docs`. The root Compose stack provides
 Neo4j Browser at `http://localhost:7474`.
+
+Production runs migrations and foundation reconciliation through `deploy/predeploy.sh`; the web
+process uses `deploy/start.sh` and never mutates the graph during ordinary startup. See
+`../../docs/PRODUCTION_OPERATIONS.md` for health, gateway, observability, load-smoke, scaling, and
+rollback procedures.
 
 ## Administration
 

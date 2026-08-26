@@ -18,6 +18,18 @@ class JsonFormatter(logging.Formatter):
         request_id = getattr(record, "request_id", None)
         if isinstance(request_id, str):
             payload["requestId"] = request_id
+        for attribute, key in (
+            ("method", "method"),
+            ("path", "path"),
+            ("status_code", "statusCode"),
+            ("duration_ms", "durationMs"),
+            ("outcome", "outcome"),
+            ("pool_size", "poolSize"),
+            ("query_timeout_ms", "queryTimeoutMs"),
+        ):
+            value = getattr(record, attribute, None)
+            if isinstance(value, str | int | float):
+                payload[key] = value
         if record.exc_info:
             payload["exception"] = self.formatException(record.exc_info)
         return json.dumps(payload, ensure_ascii=False)

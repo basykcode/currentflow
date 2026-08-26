@@ -1,3 +1,4 @@
+from collections.abc import AsyncIterator
 from typing import cast
 
 import httpx
@@ -23,6 +24,88 @@ async def test_liveness_readiness_meta_and_request_id(client: httpx.AsyncClient)
     assert meta.status_code == 200
     assert meta.json()["formulaAnalysisAlgorithmVersion"] == "alchemy-formula-analysis-v0"
     assert "external-ai" in meta.json()["featureFlags"]["disabled"]
+
+
+@pytest.mark.asyncio
+async def test_public_cache_etag_and_private_health_bypass(client: httpx.AsyncClient) -> None:
+    live = await client.get("/api/v1/health/live")
+    assert live.headers["Cache-Control"] == "no-store"
+
+    meta = await client.get("/api/v1/meta")
+    assert meta.headers["Cache-Control"].startswith("public, max-age=0, s-maxage=60")
+    assert meta.headers["ETag"]
+
+    unchanged = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": meta.headers["ETag"]},
+    )
+    assert unchanged.status_code == 304
+    assert unchanged.content == b""
+
+    private = await client.get(
+        "/api/v1/meta",
+        headers={"Authorization": "Bearer private"},
+    )
+    assert private.headers["Cache-Control"] == "private, no-store"
+    assert "ETag" not in private.headers
+
+
+@pytest.mark.asyncio
+async def test_request_size_limit_rejects_declared_oversize_body(
+    client: httpx.AsyncClient,
+) -> None:
+    response = await client.post(
+        "/api/v1/formulas/analyze",
+        content=b"x" * (1_048_576 + 1),
+        headers={"Content-Type": "application/json"},
+    )
+    assert response.status_code == 413
+    assert response.json()["code"] == "request_too_large"
+    assert response.headers["Cache-Control"] == "no-store"
+
+
+@pytest.mark.asyncio
+async def test_request_size_limit_rejects_chunked_oversize_body(
+    client: httpx.AsyncClient,
+) -> None:
+    async def chunks() -> AsyncIterator[bytes]:
+        yield b"x" * 700_000
+        yield b"y" * 700_000
+
+    response = await client.post(
+        "/api/v1/formulas/analyze",
+        content=chunks(),
+        headers={"Content-Type": "application/json"},
+    )
+    assert response.status_code == 413
+    assert response.json()["code"] == "request_too_large"
+
+
+@pytest.mark.asyncio
+async def test_production_origin_token_protects_application_routes() -> None:
+    settings = Settings(
+        NEO4J_URI="bolt://test.invalid:7687",
+        NEO4J_USERNAME="test",
+        NEO4J_PASSWORD="test-only",
+        PUBCHEM_USER_AGENT="CurrentAlchemy-tests/0.1",
+        ALCHEMY_ENV="production",
+        ALCHEMY_ORIGIN_TOKEN="origin-token-test-only",
+    )
+    api = create_app(settings=settings, repository=MemoryAlchemyRepository())
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=api),
+        base_url="http://test",
+    ) as protected_client:
+        assert (await protected_client.get("/api/v1/health/live")).status_code == 200
+        denied = await protected_client.get("/api/v1/meta")
+        allowed = await protected_client.get(
+            "/api/v1/meta",
+            headers={"X-Current-Flow-Origin-Token": "origin-token-test-only"},
+        )
+
+    assert denied.status_code == 403
+    assert denied.json()["code"] == "origin_access_denied"
+    assert allowed.status_code == 200
 
 
 @pytest.mark.asyncio

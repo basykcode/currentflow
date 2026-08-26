@@ -34,6 +34,10 @@ class Settings(BaseSettings):
     neo4j_username: str = Field(min_length=1, validation_alias="NEO4J_USERNAME")
     neo4j_password: SecretStr = Field(validation_alias="NEO4J_PASSWORD")
     neo4j_database: str = Field(default="neo4j", min_length=1, validation_alias="NEO4J_DATABASE")
+    alchemy_origin_token: SecretStr | None = Field(
+        default=None,
+        validation_alias="ALCHEMY_ORIGIN_TOKEN",
+    )
     pubchem_user_agent: str = Field(min_length=8, validation_alias="PUBCHEM_USER_AGENT")
     external_request_timeout_seconds: float = Field(
         default=20.0,
@@ -45,6 +49,42 @@ class Settings(BaseSettings):
         default=250,
         ge=200,
         validation_alias="EXTERNAL_REQUEST_MIN_INTERVAL_MS",
+    )
+    alchemy_max_request_body_bytes: int = Field(
+        default=1_048_576,
+        ge=1_024,
+        le=10 * 1024 * 1024,
+        validation_alias="ALCHEMY_MAX_REQUEST_BODY_BYTES",
+    )
+    neo4j_max_connection_pool_size: int = Field(
+        default=50,
+        ge=1,
+        le=200,
+        validation_alias="NEO4J_MAX_CONNECTION_POOL_SIZE",
+    )
+    neo4j_connection_acquisition_timeout_seconds: float = Field(
+        default=30.0,
+        gt=0,
+        le=120,
+        validation_alias="NEO4J_CONNECTION_ACQUISITION_TIMEOUT_SECONDS",
+    )
+    neo4j_connection_timeout_seconds: float = Field(
+        default=10.0,
+        gt=0,
+        le=60,
+        validation_alias="NEO4J_CONNECTION_TIMEOUT_SECONDS",
+    )
+    neo4j_max_transaction_retry_time_seconds: float = Field(
+        default=15.0,
+        ge=0,
+        le=120,
+        validation_alias="NEO4J_MAX_TRANSACTION_RETRY_TIME_SECONDS",
+    )
+    neo4j_query_timeout_seconds: float = Field(
+        default=20.0,
+        gt=0,
+        le=120,
+        validation_alias="NEO4J_QUERY_TIMEOUT_SECONDS",
     )
     alchemy_data_root: Path = Field(
         default=Path("var/alchemy-data"),
