@@ -2,17 +2,18 @@
 
 ## Last reconciled
 
-- UTC date: 2026-08-25
-- Branch represented: `codex/chat-01a02bf0beb1`, the dedicated integration branch used to merge the
-  complete current Astrology lane from exact source head `23b3a9c`
+- UTC date: 2026-08-26
+- Branch represented: `codex/chat-01a02bf0beb1`, the dedicated integration/publication branch used
+  to merge and release the complete current Astrology lane from exact source head `23b3a9c`
 - Integration merge inspected: `74be6c8`; it joins prior local `master` at `ddb58c2` with the complete
   13-commit Astrology ancestry at `23b3a9c`.
-- Local `master` is advanced to this verified integration's final continuity commit after the
-  reconciliation is committed. `origin/master` remains at `b5426ca`; nothing in this integration is
-  published or deployed.
+- Application release `30f81ed` and deployment lock repair `7502f31` are published to local and
+  GitHub `master`. Cloudflare build `c6f5d761-ae12-4ed6-af39-dc374339f190` succeeded, and the live
+  site serves the verified `index-BpluGeAb.js` entry bundle, Astrology chunk, and Fraunces fonts.
+- This reconciliation is the follow-up publication record on local and GitHub `master`.
 - Automatic primary-coordinator dispatch feature `5cbdbe9`, its merge at `79720a8`, and continuity
   reconciliation at `ddb58c2` are ancestors of both integration parents and therefore remain intact.
-- The published remote line at `b5426ca` includes the Lake Yin interface at `66119dc` and its
+- The former published baseline at `b5426ca` includes the Lake Yin interface at `66119dc` and its
   publication record.
 - The retained worker-isolation foundation entered `master` at `6ed5351`, with the continuity record
   at `828c400`.
@@ -263,6 +264,9 @@ The integrated release-aware Alchemy foundation additionally provides:
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
 - Node baseline is `22.18.0`; `npm run check` is required before completion.
+- Both npm and pnpm lockfiles are tracked. Dependency changes must update both: local verification
+  uses npm, while Cloudflare's Git build detects `pnpm-lock.yaml` and installs with pnpm 10.11.1 and
+  `--frozen-lockfile`.
 - The primary checkout is read-only for Codex: it may inspect and coordinate app tasks but may not
   mutate project files, Git state, dependencies, generated output, tests/builds, or runtimes. It
   automatically dispatches each mutation request once, in full, to an app-managed worktree based on
@@ -326,7 +330,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 | `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                      | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
 | `master`                   | Adopt the Lake Yin live-flow interface           | Feature `66119dc` and publication record `b5426ca` are published to `origin/master`                            | [Publication handoff](handoffs/20260822T140829Z--codex-alchemy-lake-yin--publish-lake-yin-interface.md)              |
 | `master`                   | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8` with continuity at `ddb58c2`; active in the local integration line       | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
-| `master`                   | Integrate the complete current Astrology lane    | Source head `23b3a9c` merged without conflict at `74be6c8`; full integrated check passed; publication pending  | [Integration handoff](handoffs/20260825T235522Z--codex-chat-01a02bf0beb1--integrate-complete-astrology-lane.md)      |
+| `master`                   | Publish the complete current Astrology lane      | Source `23b3a9c` merged at `74be6c8`; release `30f81ed` and lock repair `7502f31` are live on Cloudflare       | [Publication handoff](handoffs/20260826T001515Z--codex-chat-01a02bf0beb1--publish-complete-astrology-integration.md) |
 
 ## Known issues and risks
 
