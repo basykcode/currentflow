@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /special-messages/
+Disallow: /tools/gene-keys-prompt-lab
 
 Sitemap: https://current-flow.net/sitemap.xml
-

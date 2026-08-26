@@ -1,9 +1,12 @@
 # Deployment
 
-Current uses three independently deployable boundaries:
+Current uses three independently deployable boundaries, plus a private capability attached to the
+Pages project:
 
 ```text
-current-flow.net (Cloudflare Pages)
+current-flow.net (Cloudflare Pages SPA + scoped Pages Functions)
+        |-- Workers AI binding (Gene Keys Prompt Lab generation)
+        |-- private Workers KV binding (Gene Keys source chapters)
         |
         v
 api.current-flow.net (Render Docker web service)
@@ -18,7 +21,7 @@ Cloudflare dashboard.
 
 ## Why the alpha is not entirely on Cloudflare
 
-Cloudflare Pages remains a good fit for the static Vue application. Pages Functions run in the
+Cloudflare Pages remains a good fit for the Vue application. Its scoped Pages Functions run in the
 Workers runtime and cannot run the existing Python/FastAPI Docker image. Cloudflare Containers can
 run the image, but Containers require the Workers Paid plan and their local disk is ephemeral. A
 durable Neo4j database would still need a separate managed service.
@@ -128,6 +131,45 @@ Cloudflare Pages production environment variables may override these values when
 change must be made without a source release. Never place Aura or Render credentials in either
 location.
 
+## Configure the private Gene Keys Prompt Lab
+
+The Prompt Lab uses Pages Functions, Workers AI, and Workers KV without changing the Alchemy API.
+Configure these bindings for both Production and Preview in the existing Cloudflare Pages project:
+
+| Binding or secret | Kind | Required value |
+| --- | --- | --- |
+| `AI` | Workers AI binding | The account's Workers AI catalog |
+| `GENE_KEYS_SOURCES` | Workers KV binding | A private namespace created for the 128 Gene Key chapters |
+| `PROMPT_LAB_PASSWORD` | encrypted secret | The shared password supplied out of band by the owner |
+| `PROMPT_LAB_SESSION_SECRET` | encrypted secret | At least 32 random bytes, independently generated |
+| `PROMPT_LAB_MODEL` | plain variable, optional | Defaults to `@cf/meta/llama-3.1-8b-instruct-fast` |
+
+Never put either secret, a namespace identifier, or a Cloudflare API token in Git, Vite variables,
+chat, build logs, or continuity files. The password is server-only and the session secret must not be
+the password. After binding the namespace, upload the ignored local chunks from a trusted terminal:
+
+```bash
+CLOUDFLARE_ACCOUNT_ID=<account-id> \
+CLOUDFLARE_API_TOKEN=<short-lived-kv-edit-token> \
+GENE_KEYS_KV_NAMESPACE_ID=<namespace-id> \
+npm run prompt-lab:publish-sources
+```
+
+The upload command performs one explicit outbound request and never writes a source-bearing staging
+file. Revoke the short-lived API token after the upload. The namespace key contract is
+`v1/<gene-keys|64-ways>/hex_NN.txt`; changing it requires a coordinated server and upload migration.
+
+The login endpoint should also receive a Cloudflare rate-limiting rule before the shared URL is
+distributed broadly. The current shared-password gate is an internal-workspace boundary, not
+identity-aware authorization. A future multi-user service needs accounts, revocation, audit policy,
+and a server-side history store.
+
+Useful provider references:
+
+- [Pages Functions bindings](https://developers.cloudflare.com/pages/functions/bindings/)
+- [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
+- [Workers KV limits](https://developers.cloudflare.com/kv/platform/limits/)
+
 ## Production smoke check
 
 Run these from any ordinary terminal. They make outbound HTTPS requests only:
@@ -184,6 +226,7 @@ than `npm` if script execution policy blocks the `npm.ps1` shim.
 - Root directory: repository root
 - Node version: `22.18.0`
 
-Vite uses `/` as its base. There is deliberately no top-level `404.html`, redirect file, Worker,
-Function, or Wrangler configuration; Cloudflare Pages supplies SPA fallback when no top-level
-`404.html` exists.
+Vite uses `/` as its base. There is deliberately no top-level `404.html`, redirect file, standalone
+Worker, or Wrangler configuration; Cloudflare Pages supplies SPA fallback when no top-level
+`404.html` exists, while the tracked `functions/api/gene-keys-lab` directory is deployed as the
+Prompt Lab's narrow server boundary.

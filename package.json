@@ -36,6 +36,8 @@
     "commentary:validate": "node scripts/commentary/public.mjs validate-complete",
     "commentary:review": "node scripts/commentary/public.mjs review",
     "commentary:check": "npm run commentary:prepare && npm run commentary:generate-drafts && npm run commentary:build-public && npm run commentary:validate && npm run commentary:review",
+    "prompt-lab:verify-sources": "node scripts/gene-keys-prompt-lab/publish-sources.mjs --dry-run",
+    "prompt-lab:publish-sources": "node scripts/gene-keys-prompt-lab/publish-sources.mjs",
     "alchemy:up": "docker compose up -d --build neo4j alchemy-api",
     "alchemy:down": "docker compose down",
     "alchemy:logs": "docker compose logs -f alchemy-api neo4j",

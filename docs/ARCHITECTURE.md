@@ -1,6 +1,8 @@
 # Architecture
 
-Current is a client-side Vue 3 application organized around explicit domain boundaries.
+Current is a Vue 3 application organized around explicit domain boundaries. Most routes remain a
+static client-side SPA; the private Gene Keys Prompt Lab adds narrowly scoped Cloudflare Pages
+Functions for shared-password authorization and explicit AI generation.
 
 ## Layers
 
@@ -79,6 +81,32 @@ The runtime boundary is `src/features/hexagram-commentary/repository.ts`: it laz
 bundle by King Wen number, validates it, caches it, and returns typed unavailable state on failure.
 `HexagramCommentaryPanel.vue` owns presentation, tab keyboard behavior, remembered school, evidence
 and source disclosure, and responsive states. It makes no network calls.
+
+## Gene Keys Prompt Lab boundary
+
+The `/tools/gene-keys-prompt-lab` route is an internal language experiment workbench. It reuses the
+canonical Gene Keys registry under `src/domain/astrology` for all 64 chapter titles and
+Shadow/Gift/Siddhi metadata. The browser can choose *The Gene Keys*, *The 64 Ways*, both, or neither;
+it never downloads the selected chapter text.
+
+Cloudflare Pages Functions under `functions/api/gene-keys-lab` provide the only network boundary.
+A shared password stored as an encrypted Pages secret creates a 12-hour HMAC-signed, HttpOnly,
+Secure, SameSite=Strict session cookie. The signing secret is independently stored as another Pages
+secret. POST handlers reject cross-origin requests, all responses are non-cacheable and noindex,
+and neither credential is compiled into the browser bundle.
+
+The server reads only the requested key from a private Workers KV binding and sends that evidence,
+the canonical metadata, and the experimenter's prompt to the Workers AI binding. Output is forced
+into the OLTR/commentary shape, retained as `draft-only`, checked for exact eight-word source overlap,
+and retried once in more original language when needed. Raw evidence is never returned, logged by
+application code, or stored in experiment history. Cloudflare remains an external processor of the
+selected source chapter during generation and must be treated as part of the private evidence
+boundary.
+
+Successful experiments are stored only in versioned browser localStorage, capped at 200 entries,
+and can be exported as JSON. Each record contains settings, the prompt, generated prose, engine
+label, warnings, and review state—but not source passages. There is deliberately no remote history
+database or account synchronization.
 
 ## Special-message privacy boundary
 

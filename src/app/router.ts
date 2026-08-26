@@ -31,6 +31,14 @@ export const router = createRouter({
       component: () => import('@/views/HexagramLibraryView.vue'),
     },
     {
+      path: '/tools/gene-keys-prompt-lab',
+      name: 'gene-keys-prompt-lab',
+      component: () => import('@/features/gene-keys-prompt-lab/views/GeneKeysPromptLabView.vue'),
+      meta: {
+        robots: 'noindex',
+      },
+    },
+    {
       path: '/special-messages/vh',
       name: 'special-message-vh',
       component: () => import('@/features/special-messages/views/SpecialMessageView.vue'),
