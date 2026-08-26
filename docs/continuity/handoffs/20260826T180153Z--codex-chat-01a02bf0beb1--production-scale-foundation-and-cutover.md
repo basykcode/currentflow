@@ -8,8 +8,9 @@
   AuraDB Professional instance to Render, introduce and prove a Cloudflare API gateway, protect
   `master`, deploy, and verify the live Current Flow path without exposing secrets or deleting the
   former database.
-- Status: in progress; repository implementation and local release gates pass, but billing, secret,
-  GitHub-setting, push, deployment, gateway-route, and live verification actions are not yet applied
+- Status: in progress; the repository foundation is published, Render Standard and the replacement
+  Aura connection are live and verified, GitHub now defaults to protected `master`, and the
+  workers.dev gateway build plus production edge cutover remain to be completed
 
 ## Starting context
 
@@ -22,14 +23,15 @@
   exposed through `api.current-flow.net`, and still used the Free 0.1 CPU / 512 MB instance. It was
   crash-looping because the configured former Aura hostname no longer resolved. Public and direct
   liveness probes timed out.
-- The Render account/workspace subscription and web-service compute plan were separate. Standard
-  at $25/month, 1 CPU, and 2 GB RAM was selected in the service UI but not saved.
+- The Render account/workspace subscription and web-service compute plan were separate. The service
+  initially remained on Free despite the upgraded account plan.
 - The replacement Aura instance was running as AuraDB Professional with 2 GB memory, 1 CPU, and
   4 GB storage in AWS `us-east-1`. A secret-safe direct driver check returned `RETURN 1` and an empty
   node count before any production value changed.
 - Cloudflare Workers Paid was active. The existing `currentflow` Worker served the frontend on apex
   and `www`; it was not an API gateway. The API DNS record was a DNS-only CNAME to the Render origin.
-- No provider setting, secret, deployment, DNS record, GitHub setting, commit, or push had changed.
+- No provider setting, secret, deployment, DNS record, GitHub setting, commit, or push had changed at
+  the start of this task.
 - A source coordination task briefly produced an unverified production-foundation draft in this
   worktree. It stopped on request, reported every file and limitation, and left the draft intact.
   This integration task reviewed, corrected, extended, and verified that work rather than silently
@@ -57,6 +59,27 @@
   bounded errors. Its checked source cannot claim a production route.
 - Added the read-only bounded load-smoke harness, production runbook, scaling/rollback thresholds,
   architecture/deployment updates, and the accepted production topology decision.
+- Published the repository foundation and its three CI corrections through `66c4d31`. Local
+  `master`, the integration branch, and `origin/master` matched that commit before this progress
+  reconciliation.
+- Changed the GitHub default branch from `main` to `master` without deleting or modifying `main`.
+  Created active ruleset `Protect master production` with an emergency repository-admin bypass,
+  deletion and force-push protection, one reviewed pull request, resolved conversations,
+  up-to-date branches, and the four exact required Actions checks `frontend-quality`,
+  `alchemy-quality`, `alchemy-neo4j-integration`, and `alchemy-container`.
+- Upgraded the exact Render web service `current-flow-alchemy-api` to Standard (1 CPU / 2 GB) and
+  transmitted the replacement AuraDB values only through provider secret controls. Render deploy
+  `dep-da7j576417fc7396u5fg` ran the pre-deploy foundation reconciliation and then started commit
+  `7798a68` with one web worker, bounded Neo4j pool/timeouts, and successful connectivity.
+- Verified the direct Render origin after deployment: liveness, readiness, and metadata returned
+  HTTP 200; readiness reported Neo4j available; representative herb and formula endpoints returned
+  records with the intended public cache policy and ETags. The former AuraDB and credentials remain
+  untouched.
+- Confirmed Cloudflare Workers Paid and created the separate `current-flow-api-gateway` project with
+  repository root `workers/api-gateway`, production branch `master`, no preview-branch builds, and no
+  production custom route. Its mistaken initial `main` build was canceled before it could deploy
+  the gateway source. The existing frontend Worker and DNS-only API CNAME remain unchanged while the
+  first real `master` gateway build is prepared.
 
 ## Files or components changed
 
@@ -92,6 +115,13 @@
 - Prettier check for all task-owned JavaScript, JSON, YAML, Markdown, and Worker files plus
   `git diff --check` — passed. The unrelated repository-wide formatting backlog remains outside this
   task and was not rewritten.
+- GitHub Actions at `66c4d31` — passed all four uniquely named production checks plus the existing
+  Cloudflare frontend build.
+- Live Render verification after `dep-da7j576417fc7396u5fg` — `/api/v1/health/live`,
+  `/api/v1/health/ready`, `/api/v1/meta`, representative herb search, and representative formula
+  search all returned HTTP 200 with the expected health or cache contract.
+- GitHub settings reload — confirmed `master` as default and ruleset `Protect master production`
+  active with all four checks and the intended protections.
 
 ## Failed or rejected approaches worth remembering
 
@@ -106,36 +136,42 @@
 
 ## Known risks and assumptions
 
-- No live platform mutation has occurred yet. The Standard charge, credential transmission,
-  GitHub ruleset, push, deployment, and DNS/gateway changes remain future external side effects.
-- The first production pre-deploy will migrate and populate an empty Aura graph. A failed pre-deploy
-  should leave the existing live service in place, but the current live service is already unhealthy.
-- The Worker must be proven on workers.dev before any API route or proxy change.
+- The API still reaches Render directly through the pre-existing DNS-only CNAME. The Worker must be
+  proven on workers.dev before any proxy or route change.
+- Origin-token enforcement is intentionally not active yet. Enabling it before the Worker route
+  carries the matching secret would interrupt the current direct production path.
+- The latest live Render application commit is `7798a68`; the later `66c4d31` changes only CI job
+  display names. The next continuity push will trigger a fresh Render deployment from the current
+  `master` tree and must be verified before completion.
 - The former Aura database and credential set must not be deleted.
 
 ## Unresolved issues
 
-- Obtain action-time user confirmation for the $25/month Standard service selection, secret entry,
-  and GitHub ruleset permissions change.
-- Commit and push the verified foundation, observe real CI check names, apply default-branch/ruleset
-  settings, complete the Aura cutover, deploy/test the gateway, route production safely, and perform
-  full live verification.
-- Reconcile `PROJECT_STATE.md` and finalize this execution log with exact commits, deployment IDs,
-  before/after states, and rollbacks.
+- Trigger and verify the first real `master` deployment of `current-flow-api-gateway` on workers.dev.
+- Add a shared origin token through Cloudflare and Render secret controls, prove cache/auth/health
+  bypass behavior, and move `api.current-flow.net` through the Worker only after every workers.dev
+  check passes.
+- Verify the final GitHub, Render, Cloudflare, DNS, and live public state; then finalize this log with
+  exact build/deploy identifiers and rollback instructions.
 
 ## Uncommitted or unmerged state
 
-All work described above remains uncommitted on `codex/chat-01a02bf0beb1`; no push has occurred.
+Only this progress reconciliation is uncommitted. The implementation and CI corrections are
+published through `66c4d31`; no provider secret or secret-derived value is stored in Git.
 
 ## Exact next recommended action
 
-After explicit confirmation, save Render Standard and transmit only the four replacement Aura
-values to Render, then commit/push the verified repository foundation and observe the controlled
-deployment before advancing to the gateway route.
+Commit and publish this progress reconciliation to trigger the real Cloudflare gateway build from
+`master`, then verify its workers.dev health, representative API, cache, authorization, cookie,
+no-cache, and CORS behavior before changing production routing.
 
 ## Relevant files, commits, issues, or external references
 
 - Starting release `746ae3b0dc5540f5c2762c5fb2217e24d6259e1f`
+- Production foundation `6ba6c42106764241dbead97d4b7165597d9efce5`
+- Published repository head before this reconciliation `66c4d31ab11619152c3ea0394fc1aa5408433a28`
+- Render deployment `dep-da7j576417fc7396u5fg`
+- GitHub ruleset `Protect master production` (`21586803`)
 - [Production operations](../../PRODUCTION_OPERATIONS.md)
 - [Deployment guide](../../DEPLOYMENT.md)
 - [Canonical project state](../PROJECT_STATE.md)

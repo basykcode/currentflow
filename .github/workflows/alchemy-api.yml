@@ -3,23 +3,7 @@ name: Alchemy API
 on:
   push:
     branches: [master]
-    paths:
-      - 'services/alchemy-api/**'
-      - 'contracts/alchemy-openapi.json'
-      - 'compose.yaml'
-      - 'config/toolchain.json'
-      - 'render.yaml'
-      - 'workers/api-gateway/wrangler.jsonc'
-      - '.github/workflows/alchemy-api.yml'
   pull_request:
-    paths:
-      - 'services/alchemy-api/**'
-      - 'contracts/alchemy-openapi.json'
-      - 'compose.yaml'
-      - 'config/toolchain.json'
-      - 'render.yaml'
-      - 'workers/api-gateway/wrangler.jsonc'
-      - '.github/workflows/alchemy-api.yml'
 
 permissions:
   contents: read
