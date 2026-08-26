@@ -24,4 +24,4 @@ USER alchemy
 ENV PATH="/app/.venv/bin:${PATH}"
 
 EXPOSE 8000
-CMD ["uvicorn", "current_alchemy.app:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["sh", "deploy/start.sh"]

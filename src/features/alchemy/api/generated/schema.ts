@@ -837,13 +837,10 @@ export interface components {
       /** Algorithmversion */
       algorithmVersion?: string | null
       dataStatus: components['schemas']['DataStatus']
-      /**
-       * Generatedat
-       * Format: date-time
-       */
-      generatedAt?: string
+      /** Generatedat */
+      generatedAt?: string | null
       /** Requestid */
-      requestId: string
+      requestId?: string | null
       /** Schemaversion */
       schemaVersion: string
       /** Sources */
@@ -875,8 +872,19 @@ export interface components {
       featureFlags: components['schemas']['FeatureFlags']
       /** Formulaanalysisalgorithmversion */
       formulaAnalysisAlgorithmVersion: string
+      /** Gitsha */
+      gitSha: string
       /** Graphschemaversion */
       graphSchemaVersion: string
+      neo4jConfiguration: components['schemas']['Neo4jRuntimeConfiguration']
+      /** Neo4Jdriverversion */
+      neo4jDriverVersion: string
+      /** Processworkercount */
+      processWorkerCount: number
+      /** Projectionversions */
+      projectionVersions: string[]
+      /** Pythonversion */
+      pythonVersion: string
       /** Safetyboundarysummary */
       safetyBoundarySummary: string
       /** Servicename */
@@ -897,6 +905,23 @@ export interface components {
       sourceId: string
       /** Text */
       text: string
+    }
+    /** Neo4jRuntimeConfiguration */
+    Neo4jRuntimeConfiguration: {
+      /** Connectionacquisitiontimeoutseconds */
+      connectionAcquisitionTimeoutSeconds: number
+      /** Connectiontimeoutseconds */
+      connectionTimeoutSeconds: number
+      /** Livenesschecktimeoutseconds */
+      livenessCheckTimeoutSeconds: number
+      /** Maximumconnectionlifetimeseconds */
+      maximumConnectionLifetimeSeconds: number
+      /** Maximumconnectionpoolsize */
+      maximumConnectionPoolSize: number
+      /** Maximumtransactionretrytimeseconds */
+      maximumTransactionRetryTimeSeconds: number
+      /** Querytimeoutseconds */
+      queryTimeoutSeconds: number
     }
     /** NormalizedIngredient */
     NormalizedIngredient: {

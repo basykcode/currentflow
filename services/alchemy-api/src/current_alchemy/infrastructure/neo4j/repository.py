@@ -9,7 +9,7 @@ from itertools import combinations
 from time import perf_counter
 from typing import Any, Final, cast
 
-from neo4j import AsyncDriver, AsyncResult, AsyncSession, Query
+from neo4j import AsyncDriver, AsyncResult, AsyncSession, Query, Record, ResultSummary
 from neo4j.time import DateTime as Neo4jDateTime
 from pydantic.alias_generators import to_camel
 
@@ -49,6 +49,7 @@ from current_alchemy.domain.texts.models import (
 )
 from current_alchemy.infrastructure.neo4j.demo_data import DEMO_PAYLOAD, SEED_DEMO_CYPHER
 from current_alchemy.ingestion.models import IngestionBatch, NodeUpsert, RelationshipUpsert
+from current_alchemy.observability import current_request_id, record_query
 
 _LABELS: Final[dict[EntityType, str]] = {
     entity_type: entity_type.value
@@ -388,6 +389,64 @@ def _source_citation(
     )
 
 
+class _TimedResult:
+    """Log full result-consumption duration and returned record count exactly once."""
+
+    def __init__(self, result: AsyncResult, operation: str, started: float) -> None:
+        self._result = result
+        self._operation = operation
+        self._started = started
+        self._completed = False
+
+    def _complete(self, record_count: int, *, outcome: str = "success") -> None:
+        if self._completed:
+            return
+        self._completed = True
+        duration_ms = round((perf_counter() - self._started) * 1000, 3)
+        record_query(duration_ms)
+        logging.getLogger("current_alchemy.neo4j.query").info(
+            "Neo4j query completed",
+            extra={
+                "request_id": current_request_id(),
+                "operation": self._operation,
+                "duration_ms": duration_ms,
+                "record_count": record_count,
+                "outcome": outcome,
+            },
+        )
+
+    async def single(self, strict: bool = False) -> Record | None:
+        try:
+            record: Record | None
+            if strict:
+                record = await self._result.single(strict=True)
+            else:
+                record = await self._result.single(strict=False)
+        except Exception:
+            self._complete(0, outcome="error")
+            raise
+        self._complete(1 if record is not None else 0)
+        return record
+
+    async def data(self, *keys: str) -> list[dict[str, Any]]:
+        try:
+            records = await self._result.data(*keys)
+        except Exception:
+            self._complete(0, outcome="error")
+            raise
+        self._complete(len(records))
+        return records
+
+    async def consume(self) -> ResultSummary:
+        try:
+            summary = await self._result.consume()
+        except Exception:
+            self._complete(0, outcome="error")
+            raise
+        self._complete(0)
+        return summary
+
+
 class _TimedSession:
     """Apply a server query deadline and emit duration without logging Cypher or parameters."""
 
@@ -399,8 +458,10 @@ class _TimedSession:
         self,
         cypher: str,
         parameters: dict[str, Any] | None = None,
+        *,
+        operation: str,
         **kwargs: Any,
-    ) -> AsyncResult:
+    ) -> _TimedResult:
         started = perf_counter()
         try:
             query = Query(cypher, timeout=self._query_timeout_seconds)
@@ -412,19 +473,16 @@ class _TimedSession:
             logging.getLogger("current_alchemy.neo4j.query").exception(
                 "Neo4j query failed",
                 extra={
+                    "request_id": current_request_id(),
+                    "operation": operation,
                     "duration_ms": round((perf_counter() - started) * 1000, 3),
+                    "record_count": 0,
                     "outcome": "error",
                 },
             )
+            record_query(round((perf_counter() - started) * 1000, 3))
             raise
-        logging.getLogger("current_alchemy.neo4j.query").info(
-            "Neo4j query dispatched",
-            extra={
-                "duration_ms": round((perf_counter() - started) * 1000, 3),
-                "outcome": "success",
-            },
-        )
-        return result
+        return _TimedResult(result, operation, started)
 
 
 class _TimedDriver:
@@ -445,15 +503,24 @@ class _TimedDriver:
             logging.getLogger("current_alchemy.neo4j.query").warning(
                 "Neo4j connectivity check failed",
                 extra={
+                    "request_id": current_request_id(),
+                    "operation": "readiness.connectivity",
                     "duration_ms": round((perf_counter() - started) * 1000, 3),
+                    "record_count": 0,
                     "outcome": "error",
                 },
             )
+            record_query(round((perf_counter() - started) * 1000, 3))
             raise
+        duration_ms = round((perf_counter() - started) * 1000, 3)
+        record_query(duration_ms)
         logging.getLogger("current_alchemy.neo4j.query").info(
             "Neo4j connectivity check completed",
             extra={
-                "duration_ms": round((perf_counter() - started) * 1000, 3),
+                "request_id": current_request_id(),
+                "operation": "readiness.connectivity",
+                "duration_ms": duration_ms,
+                "record_count": 0,
                 "outcome": "success",
             },
         )
@@ -482,7 +549,10 @@ class Neo4jAlchemyRepository:
     async def active_source_count(self) -> int:
         async with self._driver.session(database=self._database) as session:
             record = await (
-                await session.run("MATCH (s:Source) WHERE s.active = true RETURN count(s) AS count")
+                await session.run(
+                    "MATCH (s:Source) WHERE s.active = true RETURN count(s) AS count",
+                    operation="sources.active_count",
+                )
             ).single()
         return int(record["count"]) if record else 0
 
@@ -537,7 +607,9 @@ class Neo4jAlchemyRepository:
                [n IN nodes[$offset..$offset + $limit] | properties(n)] AS items
         """
         async with self._driver.session(database=self._database) as session:
-            record = await (await session.run(cypher, parameters=params)).single()
+            record = await (
+                await session.run(cypher, parameters=params, operation="entities.list")
+            ).single()
         if record is None:
             return PageResult(items=[], total=0)
         raw_items = record["items"]
@@ -560,6 +632,7 @@ class Neo4jAlchemyRepository:
                        properties(source) AS source
                 ORDER BY claim.id
                 """,
+                operation="entities.claims",
                 entity_id=entity_id,
             )
             records = await result.data()
@@ -606,6 +679,7 @@ class Neo4jAlchemyRepository:
             record = await (
                 await session.run(
                     f"MATCH (n:{label} {{id: $id}}) RETURN properties(n) AS entity",
+                    operation="entities.detail",
                     id=entity_id,
                 )
             ).single()
@@ -631,6 +705,7 @@ class Neo4jAlchemyRepository:
                        [source IN sources[$offset..$offset + $limit] |
                          properties(source)] AS items
                 """,
+                operation="sources.list",
                 offset=offset,
                 limit=limit,
             )
@@ -645,6 +720,7 @@ class Neo4jAlchemyRepository:
             record = await (
                 await session.run(
                     "MATCH (source:Source {id: $id}) RETURN properties(source) AS source",
+                    operation="sources.detail",
                     id=source_id,
                 )
             ).single()
@@ -686,6 +762,7 @@ class Neo4jAlchemyRepository:
                        [document IN documents[$offset..$offset + $limit] |
                          properties(document)] AS items
                 """,
+                operation="documents.list",
                 offset=offset,
                 limit=limit,
             )
@@ -720,6 +797,7 @@ class Neo4jAlchemyRepository:
             record = await (
                 await session.run(
                     "MATCH (passage:Passage {id: $id}) RETURN properties(passage) AS passage",
+                    operation="passages.detail",
                     id=passage_id,
                 )
             ).single()
@@ -784,6 +862,7 @@ class Neo4jAlchemyRepository:
                     "offset": offset,
                     "limit": limit,
                 },
+                operation="passages.search",
             )
             record = await result.single()
         if record is None:
@@ -823,6 +902,7 @@ class Neo4jAlchemyRepository:
                            source_id: startNode(rel).id,
                            target_id: endNode(rel).id}}]] AS path_edges
                 """,
+                operation="graph.neighborhood",
                 id=entity_id,
                 limit=limit,
             )
@@ -963,7 +1043,9 @@ class Neo4jAlchemyRepository:
                      source_id: startNode(rel).id, target_id: endNode(rel).id}}] END AS path_edges
         """
         async with self._driver.session(database=self._database) as session:
-            records = await (await session.run(cypher, parameters=params)).data()
+            records = await (
+                await session.run(cypher, parameters=params, operation="graph.explore")
+            ).data()
         all_nodes: dict[str, GraphNode] = {}
         all_edges: dict[str, GraphEdge] = {}
         for record in records:
@@ -998,6 +1080,7 @@ class Neo4jAlchemyRepository:
         async with self._driver.session(database=self._database) as session:
             result = await session.run(
                 "MATCH (herb:HerbMaterial) WHERE herb.id IN $ids RETURN properties(herb) AS herb",
+                operation="herbs.analysis_profiles",
                 ids=sorted(herb_ids),
             )
             records = await result.data()
@@ -1034,6 +1117,7 @@ class Neo4jAlchemyRepository:
                     RETURN left.id AS left_id, right.id AS right_id, properties(rel) AS rel
                     ORDER BY left_id, right_id
                     """,
+                    operation="herbs.pair_signals",
                     ids=ids,
                 )
             ).data()
@@ -1087,6 +1171,7 @@ class Neo4jAlchemyRepository:
                 UNWIND coalesce(herb.unresolved_conflicts, []) AS conflict
                 RETURN DISTINCT conflict ORDER BY conflict
                 """,
+                operation="herbs.conflicts",
                 ids=sorted(herb_ids),
             )
             records = await result.data()
@@ -1121,6 +1206,7 @@ class Neo4jAlchemyRepository:
                 await session.run(
                     SEED_DEMO_CYPHER,
                     parameters=cast(dict[str, Any], DEMO_PAYLOAD),
+                    operation="demo.seed",
                 )
             ).consume()
         return {"sources": 1, "entities": 4, "passages": 1}
@@ -1134,6 +1220,7 @@ class Neo4jAlchemyRepository:
                     WHERE node.demo = true OR node.id STARTS WITH $prefix
                     RETURN count(node) AS deleted
                     """,
+                    operation="demo.reset_count",
                     prefix="demo:",
                 )
             ).single()
@@ -1144,6 +1231,7 @@ class Neo4jAlchemyRepository:
                     WHERE node.demo = true OR node.id STARTS WITH $prefix
                     DETACH DELETE node
                     """,
+                    operation="demo.reset_delete",
                     prefix="demo:",
                 )
             ).consume()
@@ -1160,12 +1248,13 @@ class Neo4jAlchemyRepository:
                            count(CASE WHEN node:Source THEN 1 END) AS sources,
                            count(CASE WHEN node.review_status IS NULL
                                       AND NOT node:AlchemyMigration THEN 1 END) AS missing_review
-                    """
+                    """,
+                    operation="audit.summary",
                 )
             ).single()
             issues: list[dict[str, object]] = []
             for code, critical, cypher in _AUDIT_QUERIES:
-                record = await (await session.run(cypher)).single()
+                record = await (await session.run(cypher, operation=f"audit.{code}")).single()
                 count = int(record["count"]) if record else 0
                 if count:
                     issues.append({"code": code, "count": count, "critical": critical})
@@ -1200,7 +1289,8 @@ class Neo4jAlchemyRepository:
                     WITH count(node) AS total_nodes
                     OPTIONAL MATCH ()-[relationship]->()
                     RETURN total_nodes, count(relationship) AS total_relationships
-                    """
+                    """,
+                    operation="graph.counts_summary",
                 )
             ).single()
             label_rows = await (
@@ -1210,7 +1300,8 @@ class Neo4jAlchemyRepository:
                     UNWIND labels(node) AS label
                     RETURN label, count(*) AS count
                     ORDER BY label
-                    """
+                    """,
+                    operation="graph.counts_labels",
                 )
             ).data()
             relationship_rows = await (
@@ -1219,7 +1310,8 @@ class Neo4jAlchemyRepository:
                     MATCH ()-[relationship]->()
                     RETURN type(relationship) AS type, count(*) AS count
                     ORDER BY type
-                    """
+                    """,
+                    operation="graph.counts_relationships",
                 )
             ).data()
         return {
@@ -1290,6 +1382,7 @@ class Neo4jAlchemyRepository:
                 record = await (
                     await session.run(
                         cypher,
+                        operation=f"foundation.status.{name}",
                         source_id=source_id,
                         release_id=release_id,
                     )
@@ -1379,7 +1472,11 @@ class Neo4jAlchemyRepository:
         async with self._driver.session(database=self._database) as session:
             for field, cypher in statements.items():
                 record = await (
-                    await session.run(cypher, parameters=cast(dict[str, Any], parameters))
+                    await session.run(
+                        cypher,
+                        parameters=cast(dict[str, Any], parameters),
+                        operation=f"foundation.reset.{field}",
+                    )
                 ).single()
                 counts[field] = int(record["count"]) if record else 0
         return counts
@@ -1411,6 +1508,7 @@ class Neo4jAlchemyRepository:
                        run.id AS import_run_id
                 ORDER BY source_id, release_id, source_record_id
                 """,
+                operation="provenance.detail",
                 entity_id=entity_id,
             )
             rows = await result.data()
@@ -1448,7 +1546,8 @@ class Neo4jAlchemyRepository:
                         AND license.derivative_database = 'allowed'
                         AND coalesce(record.row_production_eligible, true)
                     RETURN count(record) AS count
-                    """
+                    """,
+                    operation="projections.eligibility_records",
                 )
             ).single()
             entity_result = await (
@@ -1460,7 +1559,8 @@ class Neo4jAlchemyRepository:
                     SET entity.production_eligible = any(value IN eligibility WHERE value = true),
                         entity.projection_version = 'accepted-claims-v1'
                     RETURN count(entity) AS count
-                    """
+                    """,
+                    operation="projections.eligibility_entities",
                 )
             ).single()
             await (
@@ -1470,7 +1570,8 @@ class Neo4jAlchemyRepository:
                     SET projection.version = 'production-approved-v1',
                         projection.built_at = datetime(),
                         projection.review_status = 'machine_imported'
-                    """
+                    """,
+                    operation="projections.metadata",
                 )
             ).consume()
         return {
@@ -1509,6 +1610,7 @@ class Neo4jAlchemyRepository:
                             MERGE (node{labels} {{id: value.id}})
                             SET node += value.properties, node.id = value.id
                             """,
+                            operation=f"ingestion.nodes.{entity_type}",
                             values=values,
                         )
                     ).consume()
@@ -1533,6 +1635,7 @@ class Neo4jAlchemyRepository:
                             MERGE (source)-[relationship:{rel_type} {{id: value.id}}]->(target)
                             SET relationship += value.properties
                             """,
+                            operation=f"ingestion.relationships.{relationship_type}",
                             values=values,
                         )
                     ).consume()

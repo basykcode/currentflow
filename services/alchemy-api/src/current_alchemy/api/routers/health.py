@@ -1,5 +1,8 @@
 """Health and service metadata endpoints."""
 
+from importlib.metadata import version
+from platform import python_version
+
 from fastapi import APIRouter, Depends, Request
 from pydantic import Field
 
@@ -39,13 +42,29 @@ class FeatureFlags(ApiModel):
     disabled: list[str] = Field(default_factory=list)
 
 
+class Neo4jRuntimeConfiguration(ApiModel):
+    maximum_connection_pool_size: int
+    connection_acquisition_timeout_seconds: float
+    connection_timeout_seconds: float
+    maximum_connection_lifetime_seconds: float
+    liveness_check_timeout_seconds: float
+    maximum_transaction_retry_time_seconds: float
+    query_timeout_seconds: float
+
+
 class MetaResponse(ApiModel):
     service_name: str
     api_version: str
     application_version: str
+    git_sha: str
+    python_version: str
+    neo4j_driver_version: str = Field(serialization_alias="neo4jDriverVersion")
     graph_schema_version: str
+    projection_versions: list[str]
     formula_analysis_algorithm_version: str
     active_data_source_count: int
+    process_worker_count: int
+    neo4j_configuration: Neo4jRuntimeConfiguration = Field(serialization_alias="neo4jConfiguration")
     safety_boundary_summary: str
     feature_flags: FeatureFlags
 
@@ -88,14 +107,32 @@ async def meta(
     request: Request,
     repository: AlchemyRepository = Depends(get_repository),
 ) -> MetaResponse:
-    del request
+    settings = request.app.state.settings
     return MetaResponse(
         service_name=SERVICE_NAME,
         api_version=API_VERSION,
         application_version=__version__,
+        git_sha=settings.alchemy_git_sha,
+        python_version=python_version(),
+        neo4j_driver_version=version("neo4j"),
         graph_schema_version=GRAPH_SCHEMA_VERSION,
+        projection_versions=["production-approved-v1", "accepted-claims-v1"],
         formula_analysis_algorithm_version=FORMULA_ANALYSIS_VERSION,
         active_data_source_count=await repository.active_source_count(),
+        process_worker_count=settings.web_concurrency,
+        neo4j_configuration=Neo4jRuntimeConfiguration(
+            maximum_connection_pool_size=settings.neo4j_max_connection_pool_size,
+            connection_acquisition_timeout_seconds=(
+                settings.neo4j_connection_acquisition_timeout_seconds
+            ),
+            connection_timeout_seconds=settings.neo4j_connection_timeout_seconds,
+            maximum_connection_lifetime_seconds=(settings.neo4j_max_connection_lifetime_seconds),
+            liveness_check_timeout_seconds=settings.neo4j_liveness_check_timeout_seconds,
+            maximum_transaction_retry_time_seconds=(
+                settings.neo4j_max_transaction_retry_time_seconds
+            ),
+            query_timeout_seconds=settings.neo4j_query_timeout_seconds,
+        ),
         safety_boundary_summary=SAFETY_SUMMARY,
         feature_flags=FeatureFlags(
             enabled=[

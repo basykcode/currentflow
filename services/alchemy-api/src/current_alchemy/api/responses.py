@@ -14,13 +14,13 @@ def knowledge_meta(
     warnings: list[str] | None = None,
     algorithm_version: str | None = None,
 ) -> KnowledgeMeta:
+    del request
     standard_warnings = [
         SAFETY_SUMMARY,
         "Data may be incomplete.",
         "Absence of a known interaction does not establish safety.",
     ]
     return KnowledgeMeta(
-        request_id=str(request.state.request_id),
         data_status=data_status,
         sources=sources or [],
         warnings=list(dict.fromkeys([*standard_warnings, *(warnings or [])])),
