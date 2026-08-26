@@ -155,7 +155,7 @@ environments:
 | `PROMPT_LAB_SESSION_SECRET` | encrypted secret         | At least 32 random bytes, independently generated         |
 | `PROMPT_LAB_MODEL`          | plain variable, optional | Defaults to `@cf/meta/llama-3.1-8b-instruct-fast`         |
 
-Never put either secret, a namespace identifier, or a Cloudflare API token in Git, Vite variables,
+Never put either secret or a Cloudflare API token in Git, Vite variables,
 chat, build logs, or continuity files. The password is server-only and the session secret must not be
 the password. After binding the namespace, upload the ignored local chunks from a trusted terminal:
 
