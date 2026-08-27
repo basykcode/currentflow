@@ -1,7 +1,10 @@
 import type {
   EffortLevel as ResolverEffortLevel,
   ResponseRelation as ResolverResponseRelation,
+  SemanticConflict as ResolverSemanticConflict,
 } from './semantic-resolver/types'
+import type { FiveElement, OrganKey } from '@/domain/astrology/types'
+import type { MacroSemantic } from '@/domain/time/chu-zheng-ke'
 import type {
   HourMaturity,
   SemanticEvidenceInput,
@@ -16,6 +19,8 @@ export type {
 
 export type EffortLevel = ResolverEffortLevel
 export type ResponseRelation = ResolverResponseRelation
+export type GuidanceSemanticConflict = ResolverSemanticConflict
+export type GuidanceCoverage = 'complete' | 'partial'
 
 export type Versioned<T> = Readonly<{
   value: T
@@ -71,7 +76,19 @@ export type SemanticTheme = Readonly<{
   somaticVectors: readonly SomaticVector[]
 }>
 
-export type BackgroundThemeKind = 'solar' | 'wu-yun-liu-qi' | 'seasonal' | 'other'
+export type BackgroundThemeKind =
+  'temporal-year' | 'temporal-month' | 'lunar-current' | 'seasonal-current' | 'other'
+
+export type GuidanceElement = FiveElement
+
+export type ActiveOrganGuidance = Readonly<{
+  key: OrganKey
+  nameEnglish: string
+  nameChinese?: string
+  element: GuidanceElement
+  sourceLabel: string
+  methodologyId: string
+}>
 
 export type BackgroundTheme = SemanticTheme &
   Readonly<{
@@ -80,7 +97,8 @@ export type BackgroundTheme = SemanticTheme &
 
 export type EvidenceWeight = 'primary' | 'supporting' | 'contextual'
 
-export type EvidenceStatus = 'computed' | 'curated' | 'demo' | 'unavailable'
+export type EvidenceStatus =
+  'verified' | 'computed' | 'partial' | 'curated' | 'demo' | 'unavailable'
 
 export type GuidanceEvidence = Readonly<{
   source: Versioned<Readonly<{ id: string; label: string; kind: SemanticEvidenceSourceKind }>>
@@ -97,7 +115,13 @@ export type GuidanceEvidence = Readonly<{
 }>
 
 export type GuidanceSynthesis = Readonly<{
+  version: string
+  sourceSemanticVersion: string
+  environmentVersion: string
   id: Versioned<string>
+  coverage: Versioned<GuidanceCoverage>
+  missingProfileNumbers: Versioned<readonly number[]>
+  conflicts: Versioned<readonly GuidanceSemanticConflict[]>
   condition: Versioned<GuidanceCondition>
   field: Readonly<{
     primaryDirection: Versioned<GuidanceDirection>
@@ -113,6 +137,7 @@ export type GuidanceSynthesis = Readonly<{
     hourTheme: Versioned<SemanticTheme>
     hourMaturity: Versioned<HourMaturity>
     backgroundThemes: Versioned<readonly BackgroundTheme[]>
+    activeOrgan: Versioned<ActiveOrganGuidance>
   }>
   response: Readonly<{
     relation: Versioned<ResponseRelation>
@@ -136,7 +161,6 @@ export type SemanticBoundaryReason =
   | 'shichen-change'
   | 'lunar-node-change'
   | 'solar-term-boundary'
-  | 'wu-yun-liu-qi-period-boundary'
   | 'semantic-classification-change'
 
 export type SemanticBoundary = Readonly<{
@@ -153,9 +177,22 @@ export type GuidanceValidityWindow = Readonly<{
 export type SemanticThemeInput = SemanticTheme
 export type BackgroundThemeInput = BackgroundTheme
 
+export type GuidanceEnvironmentInput = Readonly<{
+  version: string
+  activeOrgan: ActiveOrganGuidance
+  lunarMode?: LunarMode
+  secondaryDirection?: GuidanceDirection
+  backgroundThemes?: readonly BackgroundThemeInput[]
+  evidence?: readonly SemanticEvidenceInput[]
+}>
+
 export type GuidanceSemanticInput = Readonly<{
   synthesisId: string
   semanticVersion: string
+  environmentVersion: string
+  coverage: GuidanceCoverage
+  missingProfileNumbers: readonly number[]
+  conflicts: readonly GuidanceSemanticConflict[]
   condition: GuidanceCondition
   primaryCurrent: Readonly<{
     id: string
@@ -177,6 +214,7 @@ export type GuidanceSemanticInput = Readonly<{
     hourTheme: SemanticThemeInput
     hourMaturity: HourMaturity
     backgroundThemes: readonly BackgroundThemeInput[]
+    activeOrgan: ActiveOrganGuidance
   }>
   resolvedResponse: Readonly<{
     relation: ResponseRelation
@@ -225,36 +263,52 @@ export type IntentionDefinition = Readonly<{
 
 export type IntentionSelection = Readonly<{
   definition: IntentionDefinition
-  rank: 'primary' | 'alternative'
+  rank: 1 | 2 | 3
   reasons: readonly string[]
 }>
 
-export type ExecutionCategory = 'somatic' | 'task' | 'environment' | 'pause'
+export type ElementalSpirit = Readonly<{
+  character: '魂' | '神' | '意' | '魄' | '志'
+  pinyin: 'Hún' | 'Shén' | 'Yì' | 'Pò' | 'Zhì'
+  classicalGloss: string
+  zangCorrespondence: Extract<OrganKey, 'liver' | 'heart' | 'spleen' | 'lung' | 'kidney'>
+}>
+
+export type ExecutionCategory = GuidanceElement
 
 export type ExecutionDefinition = Readonly<{
   id: string
   category: ExecutionCategory
-  text: string
-  observableEndpoint: string
-  actionCount: 1 | 2
-  effortLevel: EffortLevel
-  compatibleRelations: readonly ResponseRelation[]
-  compatibleDirections: readonly GuidanceDirection[]
-  compatibleIntentions: readonly string[]
-  strategicVectors: readonly StrategicVector[]
-  somaticVectors: readonly SomaticVector[]
-  risk: 'low'
+  elementCharacter: '木' | '火' | '土' | '金' | '水'
+  elementPinyin: 'Mù' | 'Huǒ' | 'Tǔ' | 'Jīn' | 'Shuǐ'
+  title: string
+  spirit: ElementalSpirit
+  description: string
+  taskDomains: readonly [string, string, string, string, string]
+  relationAffinities: readonly ResponseRelation[]
+  directionAffinities: readonly GuidanceDirection[]
+  intentionAffinities: readonly string[]
+  strategicVectorAffinities: readonly StrategicVector[]
+  somaticVectorAffinities: readonly SomaticVector[]
+  macroAffinities: readonly MacroSemantic[]
+  scope: 'ordinary-work-domain'
+  formalization: 'current'
+  sourceLabel: string
+  sourceUrls: readonly string[]
   version: string
 }>
 
 export type ExecutionSelection = Readonly<{
   definition: ExecutionDefinition
-  rank: 'primary' | 'alternative'
+  rank: 1 | 2 | 3
+  activeOrganMatch: boolean
+  inclusionBasis: 'semantic-rank' | 'active-organ-coverage'
   reasons: readonly string[]
 }>
 
 export type GuidanceBundleVersions = Readonly<{
   temporalSemantics: string
+  environment: string
   guidanceSynthesis: string
   oltrRenderer: string
   intentionLexicon: string
@@ -305,8 +359,11 @@ export type GuidanceValidationCode =
   | 'incompatible-direction'
   | 'incompatible-effort'
   | 'intention-conflict'
-  | 'execution-endpoint'
-  | 'execution-action-count'
+  | 'execution-cardinality'
+  | 'active-organ-coverage'
+  | 'coverage'
+  | 'version-mismatch'
+  | 'unavailable-structure'
   | 'repetition'
   | 'selection'
 

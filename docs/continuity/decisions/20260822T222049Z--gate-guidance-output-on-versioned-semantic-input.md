@@ -75,9 +75,12 @@ superseding the deterministic-authority decisions.
 
 ## Superseded by
 
-The active-provider unavailability clause is partially superseded by
+The active-provider unavailability clause is superseded by
 [Adopt a versioned Current temporal semantic resolver](20260822T225700Z--adopt-versioned-current-semantic-resolver.md)
-for the resolver's eligible 13-profile set. The semantic-input gate remains accepted.
+and [Complete runtime guidance and rank Elemental work domains](20260827T201839Z--complete-runtime-guidance-and-elemental-execution.md),
+which also supersedes the atomic Execution behavior. Defensive unavailability remains for malformed
+or unavailable upstream input and typed fail-closed construction. The semantic-input gate remains
+accepted.
 
 ## Related files, issues, handoffs, and commits
 

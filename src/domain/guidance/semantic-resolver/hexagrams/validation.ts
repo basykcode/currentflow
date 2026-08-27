@@ -151,5 +151,16 @@ export const validateHexagramSemanticProfiles = (
     }
   }
 
+  const missingNumbers = Array.from({ length: 64 }, (_, index) => index + 1).filter(
+    (number) => !seenNumbers.has(number),
+  )
+  if (missingNumbers.length > 0) {
+    issues.push({
+      hexagramNumber: 0,
+      field: 'registryCoverage',
+      message: `The semantic registry must cover canonical King Wen profiles 1–64; missing: ${missingNumbers.join(', ')}.`,
+    })
+  }
+
   return Object.freeze({ valid: issues.length === 0, issues })
 }

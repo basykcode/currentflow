@@ -172,11 +172,12 @@ underlying absolute UTC instants.
 ## Deliberately unavailable
 
 Current does not infer forecasts, personal BaZi synthesis, or medical guidance directly from these
-factors. The separate Temporal Semantic Resolver maps only 13 eligible hexagram identities into
-Current operational vectors and keeps that product ontology distinct from classical sources. When
-the operative day is covered, the deterministic Guidance Output Layer can render OLTR, controlled
-Intention, and low-risk Execution; uncovered days return an explicit unavailable bundle. Lesser
-missing scale profiles remain visible as partial coverage and are never inferred.
+factors. The separate Temporal Semantic Resolver maintains one Current operational profile for each
+of the 64 canonical hexagrams and keeps that product ontology distinct from classical sources. For
+valid canonical inputs, the deterministic Guidance Output Layer composes those profiles at runtime
+and returns a validated OLTR, exactly three controlled intentions, and three ranked Five Phase work
+domains. Malformed or unavailable upstream input and typed construction failures remain explicitly
+unavailable; no replacement state is inferred.
 
 Hexagram commentary tabs display source-grounded editorial drafts. These are static interpretive
 syntheses, not calculations, forecasts, translations, or personal readings. Every available record

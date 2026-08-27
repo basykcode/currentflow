@@ -1,7 +1,13 @@
 import type { MacroHour, MacroSemantic } from '@/domain/time/chu-zheng-ke'
 
 export type SemanticEvidenceSourceKind =
-  'temporal-hexagram' | 'coverage-gap' | 'macro-hour' | 'other'
+  | 'temporal-hexagram'
+  | 'coverage-gap'
+  | 'macro-hour'
+  | 'active-organ'
+  | 'lunar-current'
+  | 'seasonal-current'
+  | 'other'
 
 export type SemanticEvidenceInput = Readonly<{
   source: Readonly<{
@@ -12,7 +18,7 @@ export type SemanticEvidenceInput = Readonly<{
   semanticClaim: string
   weight: 'primary' | 'supporting' | 'contextual'
   provenance: Readonly<{
-    status: 'computed' | 'curated' | 'demo' | 'unavailable'
+    status: 'verified' | 'computed' | 'partial' | 'curated' | 'demo' | 'unavailable'
     sourceLabel: string
     methodologyId: string
     sourceIds: readonly string[]

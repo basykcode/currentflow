@@ -73,7 +73,9 @@ all deterministic-authority requirements remain accepted.
 
 ## Superseded by
 
-None.
+[Complete runtime guidance and rank Elemental work domains](20260827T201839Z--complete-runtime-guidance-and-elemental-execution.md)
+supersedes the 13-profile limitation and partial canonical coverage expectation. The deterministic
+semantic-input gate, source separation, precedence, provenance, and review policy remain accepted.
 
 ## Related files and documents
 

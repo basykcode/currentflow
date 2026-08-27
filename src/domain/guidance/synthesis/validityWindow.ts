@@ -1,9 +1,10 @@
 import type { GuidanceBundle, GuidanceValidityWindow, SemanticBoundary } from '../types'
+import { GuidanceConstructionError } from '../errors'
 
 const parseUtc = (value: string, label: string) => {
   const parsed = new Date(value)
   if (Number.isNaN(parsed.getTime()) || !value.endsWith('Z')) {
-    throw new Error(`${label} must be a valid UTC ISO timestamp.`)
+    throw new GuidanceConstructionError(`${label} must be a valid UTC ISO timestamp.`)
   }
   return parsed
 }
@@ -19,7 +20,9 @@ export const resolveValidityWindow = (
     .sort((left, right) => left.at.getTime() - right.at.getTime())[0]
 
   if (!nextBoundary) {
-    throw new Error('At least one semantic boundary after validFromUtc is required.')
+    throw new GuidanceConstructionError(
+      'At least one semantic boundary after validFromUtc is required.',
+    )
   }
 
   return Object.freeze({
@@ -31,5 +34,9 @@ export const resolveValidityWindow = (
 
 export const isGuidanceExpired = (bundle: GuidanceBundle, at: Date) => {
   if (Number.isNaN(at.getTime())) throw new Error('A valid instant is required.')
-  return at.getTime() >= new Date(bundle.validityWindow.validUntilUtc).getTime()
+  const instant = at.getTime()
+  return (
+    instant < new Date(bundle.validityWindow.validFromUtc).getTime() ||
+    instant >= new Date(bundle.validityWindow.validUntilUtc).getTime()
+  )
 }

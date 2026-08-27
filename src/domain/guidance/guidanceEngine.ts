@@ -1,6 +1,5 @@
 import type {
   AvailableGuidanceBundle,
-  ExecutionCategory,
   GuidanceBundle,
   GuidancePrimaryCurrent,
   GuidanceSemanticInput,
@@ -8,6 +7,7 @@ import type {
   UnavailableGuidanceBundle,
 } from './types'
 import { selectExecutions } from './execution/selector'
+import { GuidanceConstructionError } from './errors'
 import { selectIntentions } from './intention/selector'
 import { renderOltr } from './oltr/renderer'
 import { resolveGuidanceSynthesis } from './synthesis/guidanceResolver'
@@ -22,7 +22,7 @@ import { validateGuidanceBundle } from './validation/coherenceValidator'
 const assertValidBundle = (bundle: GuidanceBundle) => {
   const validation = validateGuidanceBundle(bundle)
   if (!validation.valid) {
-    throw new Error(
+    throw new GuidanceConstructionError(
       `Guidance bundle failed coherence validation: ${validation.issues.map((issue) => issue.message).join(' ')}`,
     )
   }
@@ -42,10 +42,14 @@ export const createGuidanceBundle = (input: GuidanceSemanticInput): AvailableGui
   const oltr = renderOltr(synthesis)
   const intentions = selectIntentions(synthesis)
   const selectedIntention = intentions[0]?.definition
-  if (!selectedIntention) throw new Error('Guidance requires a selected intention.')
+  if (!selectedIntention) {
+    throw new GuidanceConstructionError('Guidance requires a selected intention.')
+  }
   const executions = selectExecutions(synthesis, selectedIntention, oltr.text)
   const selectedExecution = executions[0]?.definition
-  if (!selectedExecution) throw new Error('Guidance requires a selected execution.')
+  if (!selectedExecution) {
+    throw new GuidanceConstructionError('Guidance requires a selected execution.')
+  }
 
   const bundle: AvailableGuidanceBundle = Object.freeze({
     status: 'available',
@@ -111,32 +115,12 @@ export const selectGuidanceIntention = (
   if (!selectedIntention) throw new Error(`Unknown ranked intention: ${intentionId}`)
   const executions = selectExecutions(bundle.synthesis, selectedIntention, bundle.oltr.text)
   const selectedExecution = executions[0]?.definition
-  if (!selectedExecution) throw new Error('Guidance requires a selected execution.')
+  if (!selectedExecution) {
+    throw new GuidanceConstructionError('Guidance requires a selected execution.')
+  }
   const updated: AvailableGuidanceBundle = Object.freeze({
     ...bundle,
     selectedIntention,
-    executions,
-    selectedExecution,
-  })
-  assertValidBundle(updated)
-  return updated
-}
-
-export const rerankGuidanceExecutions = (
-  bundle: GuidanceBundle,
-  preferredCategory?: ExecutionCategory,
-): GuidanceBundle => {
-  if (bundle.status === 'unavailable') return bundle
-  const executions = selectExecutions(
-    bundle.synthesis,
-    bundle.selectedIntention,
-    bundle.oltr.text,
-    preferredCategory,
-  )
-  const selectedExecution = executions[0]?.definition
-  if (!selectedExecution) throw new Error('Guidance requires a selected execution.')
-  const updated: AvailableGuidanceBundle = Object.freeze({
-    ...bundle,
     executions,
     selectedExecution,
   })

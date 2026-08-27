@@ -1,28 +1,40 @@
 import type { GuidanceEvidence, GuidanceSemanticInput, GuidanceSynthesis } from '../types'
+import { GuidanceConstructionError } from '../errors'
 import { resolveGuidanceProfiles } from './effortResolver'
 import { resolveResponseRelation } from './responseRelation'
 import { GUIDANCE_SYNTHESIS_VERSION, versioned } from './semanticVersion'
 
 const resolveEvidence = (input: GuidanceSemanticInput): readonly GuidanceEvidence[] =>
   input.evidence.map((item) => ({
-    source: versioned(item.source, input.semanticVersion),
-    semanticClaim: versioned(item.semanticClaim, input.semanticVersion),
-    weight: versioned(item.weight, input.semanticVersion),
-    provenance: versioned(item.provenance, input.semanticVersion),
+    source: versioned(item.source, GUIDANCE_SYNTHESIS_VERSION),
+    semanticClaim: versioned(item.semanticClaim, GUIDANCE_SYNTHESIS_VERSION),
+    weight: versioned(item.weight, GUIDANCE_SYNTHESIS_VERSION),
+    provenance: versioned(item.provenance, GUIDANCE_SYNTHESIS_VERSION),
   }))
 
 export const resolveGuidanceSynthesis = (input: GuidanceSemanticInput): GuidanceSynthesis => {
+  if (!input.semanticVersion || !input.environmentVersion) {
+    throw new GuidanceConstructionError(
+      'Guidance synthesis requires explicit semantic and environment versions.',
+    )
+  }
   const expectedRelation = resolveResponseRelation(input.condition)
   if (input.resolvedResponse.relation !== expectedRelation) {
-    throw new Error(
+    throw new GuidanceConstructionError(
       `Resolved response ${input.resolvedResponse.relation} is inconsistent with ${input.condition}.`,
     )
   }
   const profiles = resolveGuidanceProfiles(input.condition)
-  const semanticVersion = input.semanticVersion || GUIDANCE_SYNTHESIS_VERSION
+  const semanticVersion = input.semanticVersion
 
   return Object.freeze({
-    id: versioned(input.synthesisId, semanticVersion),
+    version: GUIDANCE_SYNTHESIS_VERSION,
+    sourceSemanticVersion: semanticVersion,
+    environmentVersion: input.environmentVersion,
+    id: versioned(input.synthesisId, GUIDANCE_SYNTHESIS_VERSION),
+    coverage: versioned(input.coverage, semanticVersion),
+    missingProfileNumbers: versioned(input.missingProfileNumbers, semanticVersion),
+    conflicts: versioned(input.conflicts, semanticVersion),
     condition: versioned(input.condition, semanticVersion),
     field: {
       primaryDirection: versioned(input.field.primaryDirection, semanticVersion),
@@ -37,7 +49,8 @@ export const resolveGuidanceSynthesis = (input: GuidanceSemanticInput): Guidance
       dayTheme: versioned(input.operativeWork.dayTheme, semanticVersion),
       hourTheme: versioned(input.operativeWork.hourTheme, semanticVersion),
       hourMaturity: versioned(input.operativeWork.hourMaturity, semanticVersion),
-      backgroundThemes: versioned(input.operativeWork.backgroundThemes, semanticVersion),
+      backgroundThemes: versioned(input.operativeWork.backgroundThemes, GUIDANCE_SYNTHESIS_VERSION),
+      activeOrgan: versioned(input.operativeWork.activeOrgan, input.environmentVersion),
     },
     response: {
       relation: versioned(input.resolvedResponse.relation, semanticVersion),
@@ -50,11 +63,11 @@ export const resolveGuidanceSynthesis = (input: GuidanceSemanticInput): Guidance
       ),
       supportedVerbs: versioned(input.resolvedResponse.supportedVerbs, semanticVersion),
       forbiddenVerbs: versioned(input.resolvedResponse.forbiddenVerbs, semanticVersion),
-      completion: versioned(profiles.completion, semanticVersion),
-      initiation: versioned(profiles.initiation, semanticVersion),
-      containment: versioned(profiles.containment, semanticVersion),
-      release: versioned(profiles.release, semanticVersion),
+      completion: versioned(profiles.completion, GUIDANCE_SYNTHESIS_VERSION),
+      initiation: versioned(profiles.initiation, GUIDANCE_SYNTHESIS_VERSION),
+      containment: versioned(profiles.containment, GUIDANCE_SYNTHESIS_VERSION),
+      release: versioned(profiles.release, GUIDANCE_SYNTHESIS_VERSION),
     },
-    evidence: versioned(resolveEvidence(input), semanticVersion),
+    evidence: versioned(resolveEvidence(input), GUIDANCE_SYNTHESIS_VERSION),
   })
 }

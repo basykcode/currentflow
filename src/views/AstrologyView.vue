@@ -30,11 +30,13 @@ const timezoneLabel = computed(
 const phaseClock = useShichenPhaseClock({
   selectedInstant,
   load: async (instant) => {
+    const celestialCurrent = celestialCurrentProvider.calculate(instant, {
+      mode: selectedInstant.value ? 'selected' : 'live',
+    })
     const currentFlow = await currentFlowProvider.getSnapshot(instant, {
       timezone: preferences.timezone,
       ...(preferences.locationLabel ? { locationLabel: preferences.locationLabel } : {}),
-    })
-    const celestialCurrent = celestialCurrentProvider.calculate(instant, {
+      globalConditions: celestialCurrent.globalConditions,
       mode: selectedInstant.value ? 'selected' : 'live',
     })
     if (
@@ -49,10 +51,15 @@ const phaseClock = useShichenPhaseClock({
     shichenId: currentFlow.organ.shichen.id,
     hourPhase: currentFlow.organ.hourPhase,
   }),
-  nextSampleAt: ({ celestialCurrent }) =>
-    celestialCurrent.nextRecommendedUpdateUtc
-      ? new Date(celestialCurrent.nextRecommendedUpdateUtc)
-      : null,
+  nextSampleAt: ({ currentFlow, celestialCurrent }) => {
+    const candidates = [
+      celestialCurrent.nextRecommendedUpdateUtc,
+      currentFlow.guidance.validityWindow.validUntilUtc,
+    ]
+      .filter((value): value is string => Boolean(value))
+      .map((value) => new Date(value))
+    return candidates.sort((left, right) => left.getTime() - right.getTime())[0] ?? null
+  },
   onValue: ({ currentFlow, celestialCurrent }) => {
     snapshot.value = currentFlow
     celestial.value = celestialCurrent

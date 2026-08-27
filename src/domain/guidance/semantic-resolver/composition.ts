@@ -7,6 +7,7 @@ import type {
   FieldRelationship,
   GuidanceCondition,
   GuidanceDirection,
+  GuidanceEnvironmentInput,
   GuidanceSemanticInput,
   ImageFamily,
   LunarMode,
@@ -214,6 +215,7 @@ export type GuidanceSemanticAdapterContext = Readonly<{
   validFromUtc: string
   boundaries: readonly SemanticBoundary[]
   status?: EvidenceStatus
+  environment: GuidanceEnvironmentInput
 }>
 
 export const toGuidanceSemanticInput = (
@@ -236,7 +238,7 @@ export const toGuidanceSemanticInput = (
   const backgroundThemes: readonly BackgroundTheme[] = resolution.scales.backgrounds.map(
     (scale) => ({
       ...themeForScale(scale),
-      kind: scale.scope === 'year' ? 'solar' : 'seasonal',
+      kind: scale.scope === 'year' ? 'temporal-year' : 'temporal-month',
     }),
   )
   const status = context.status ?? 'computed'
@@ -282,11 +284,16 @@ export const toGuidanceSemanticInput = (
           },
         ]
       : []),
+    ...(context.environment.evidence ?? []),
   ]
 
   return Object.freeze({
     synthesisId,
     semanticVersion: resolution.version,
+    environmentVersion: context.environment.version,
+    coverage: resolution.coverage,
+    missingProfileNumbers: resolution.missingProfileNumbers,
+    conflicts: resolution.conflicts,
     condition: CONDITION_BY_RELATION[relation],
     primaryCurrent: Object.freeze({
       id: `${synthesisId}-${relation}`,
@@ -296,9 +303,11 @@ export const toGuidanceSemanticInput = (
     }),
     field: Object.freeze({
       primaryDirection: DIRECTION_ADAPTER[resolution.field.primaryDirection],
-      secondaryDirection: DIRECTION_ADAPTER[resolution.field.secondaryDirection],
+      secondaryDirection:
+        context.environment.secondaryDirection ??
+        DIRECTION_ADAPTER[resolution.field.secondaryDirection],
       dominantTexture: TEXTURE_ADAPTER[resolution.field.dominantTexture],
-      lunarMode: LUNAR_ADAPTER[resolution.field.lunarMode],
+      lunarMode: context.environment.lunarMode ?? LUNAR_ADAPTER[resolution.field.lunarMode],
       fieldRelationship: RELATIONSHIP_BY_RELATION[relation],
       dominantImageFamily: IMAGE_ADAPTER[resolution.field.dominantImageFamily],
       tensionDescription: TENSION_BY_RELATION[relation],
@@ -313,7 +322,11 @@ export const toGuidanceSemanticInput = (
             somaticVectors: [] as const,
           },
       hourMaturity: resolution.hourMaturity,
-      backgroundThemes,
+      backgroundThemes: [
+        ...backgroundThemes,
+        ...(context.environment.backgroundThemes ?? []),
+      ],
+      activeOrgan: context.environment.activeOrgan,
     }),
     resolvedResponse: Object.freeze({
       relation,

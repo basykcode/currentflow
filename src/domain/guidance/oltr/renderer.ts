@@ -1,4 +1,5 @@
 import type { GuidanceSynthesis, OltrOutput, ResponseRelation } from '../types'
+import { GuidanceConstructionError } from '../errors'
 import { OLTR_RENDERER_VERSION } from '../synthesis/semanticVersion'
 import {
   CONTROLLED_OLTR_PHRASE_BANK,
@@ -53,6 +54,8 @@ const scoreCandidate = (
   else if (wordCount >= 14 && wordCount <= 26) score += 10
   if (validation.valid) score += 10
   if (field.imageFamilies.includes(imageFamily)) score += 5
+  if (field.textures?.includes(synthesis.field.dominantTexture.value)) score += 14
+  if (field.lunarModes?.includes(synthesis.field.lunarMode.value)) score += 10
   if (!containsUnsafeGuidance(text)) score += 5
   if (
     responseVerb &&
@@ -77,7 +80,14 @@ const createCandidates = (
   const condition = synthesis.condition.value
   const relation = synthesis.response.relation.value
   const effort = synthesis.response.effortLevel.value
-  const fields = phraseBank.fieldPhrases.filter((phrase) => phrase.conditions.includes(condition))
+  const texture = synthesis.field.dominantTexture.value
+  const lunarMode = synthesis.field.lunarMode.value
+  const fields = phraseBank.fieldPhrases.filter(
+    (phrase) =>
+      phrase.conditions.includes(condition) &&
+      (!phrase.textures || phrase.textures.includes(texture)) &&
+      (!phrase.lunarModes || phrase.lunarModes.includes(lunarMode)),
+  )
   const responses = phraseBank.responsePhrases.filter(
     (phrase) => phrase.relations.includes(relation) && phrase.effortLevels.includes(effort),
   )
@@ -106,7 +116,7 @@ export const renderOltr = (
   const validation = validateOltr(text, synthesis.response.supportedVerbs.value)
 
   if (!validation.valid) {
-    throw new Error(
+    throw new GuidanceConstructionError(
       `Deterministic OLTR rendering failed validation: ${validation.issues.map((issue) => issue.message).join(' ')}`,
     )
   }

@@ -25,12 +25,12 @@ The snapshot carries temporal facts, Organ Hour, a `GuidanceBundle`, determinist
 relationships, and provider provenance as separate fields. Every Temporal Hexagram carries a full
 canonical `HexagramReference`—including tone-marked pinyin and curated Gene Key spectrum—plus its
 explicit `六十甲子配卦` mapping version; Fu Xi binary and XKDG Luo Pan positions
-are normalized only at a typed domain boundary. The pure Temporal Semantic Resolver
-under `src/domain/guidance/semantic-resolver` composes only eligible Current operational profiles;
-an operative day outside its initial 13-profile registry remains explicitly unavailable. Its output
-passes through the Guidance Output Layer, which owns controlled OLTR rendering, intention and
-execution selection, validity, versions, and cross-output validation. Neither layer reads
-commentary or calls a model. See
+are normalized only at a typed domain boundary. The pure Temporal Semantic Resolver under
+`src/domain/guidance/semantic-resolver` composes a complete registry of 64 Current operational
+profiles at runtime. Its output joins the active Organ and reviewed categorical Global Conditions,
+then passes through the Guidance Output Layer, which owns controlled OLTR rendering, three ranked
+intentions, three ranked Five Phase work domains, validity, versions, and cross-output validation.
+Neither layer reads commentary, materializes temporal combinations, or calls a model. See
 [`TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md`](TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md) and
 [`GUIDANCE_OUTPUT_ARCHITECTURE.md`](GUIDANCE_OUTPUT_ARCHITECTURE.md).
 

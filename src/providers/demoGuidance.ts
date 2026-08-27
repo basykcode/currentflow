@@ -2,12 +2,19 @@ import { createGuidanceBundle } from '@/domain/guidance/guidanceEngine'
 import { INTENTION_LEXICON } from '@/domain/guidance/intention/lexicon'
 import { resolveHourMaturity } from '@/domain/guidance/semantic-resolver/hourMaturity'
 import { getResponseRelationDefinition } from '@/domain/guidance/synthesis/responseRelation'
-import { TEMPORAL_SEMANTICS_VERSION } from '@/domain/guidance/synthesis/semanticVersion'
+import {
+  GUIDANCE_ENVIRONMENT_VERSION,
+  TEMPORAL_SEMANTICS_VERSION,
+} from '@/domain/guidance/synthesis/semanticVersion'
 
 export const createDemoGuidance = (at: Date) =>
   createGuidanceBundle({
     synthesisId: `demo-guidance-${at.toISOString()}`,
     semanticVersion: TEMPORAL_SEMANTICS_VERSION,
+    environmentVersion: GUIDANCE_ENVIRONMENT_VERSION,
+    coverage: 'complete',
+    missingProfileNumbers: [],
+    conflicts: [],
     condition: 'emergence',
     primaryCurrent: {
       id: 'demo-emergence',
@@ -39,15 +46,23 @@ export const createDemoGuidance = (at: Date) =>
         macroHour: 'chu',
         macroSemantic: 'entering',
       }),
+      activeOrgan: {
+        key: 'liver',
+        nameEnglish: 'Liver',
+        nameChinese: '肝',
+        element: 'wood',
+        sourceLabel: 'Curated guidance interface fixture · not calculated',
+        methodologyId: GUIDANCE_ENVIRONMENT_VERSION,
+      },
       backgroundThemes: [
         {
-          kind: 'solar',
+          kind: 'other',
           label: 'Forward seasonal support',
           strategicVectors: ['advance'],
           somaticVectors: ['maintain-rhythm'],
         },
         {
-          kind: 'wu-yun-liu-qi',
+          kind: 'other',
           label: 'Adaptive circulation',
           strategicVectors: ['adapt'],
           somaticVectors: ['restore-circulation'],
