@@ -48,6 +48,47 @@ describe('HexagramInspector', () => {
     expect(wrapper.find('[role="dialog"]').exists()).toBe(false)
   })
 
+  it('searches the full catalog from the modal and preserves Back navigation', async () => {
+    const wrapper = mount(HexagramInspector, {
+      global: {
+        plugins: [createPinia()],
+        stubs: {
+          teleport: true,
+        },
+      },
+    })
+    const inspector = useHexagramInspectorStore()
+
+    inspector.open(5)
+    await nextTick()
+
+    const search = wrapper.get('.hexagram-search-input')
+    await search.trigger('focus')
+    await search.setValue('Purposelessness')
+
+    const results = wrapper.findAll('.search-result')
+    expect(results).toHaveLength(1)
+    expect(results[0]?.text()).toContain('Preponderance of the Great')
+    expect(results[0]?.text()).toContain('大過')
+    expect(results[0]?.text()).toContain('Dà Guò')
+    expect(results[0]?.text()).toContain('Purposelessness')
+    expect(results[0]?.text()).toContain('Totality')
+    expect(results[0]?.text()).toContain('Immortality')
+    expect(results[0]?.find('.hexagram-glyph').exists()).toBe(true)
+    expect(
+      results[0]?.findAll('.result-spectrum .visually-hidden').map((label) => label.text()),
+    ).toEqual(['Shadow:', 'Gift:', 'Siddhi:'])
+
+    await results[0]?.trigger('mousedown')
+
+    expect(inspector.hexagram?.number).toBe(28)
+    expect(wrapper.get('.hexagram-identity').text()).toContain('Preponderance of the Great')
+    expect(wrapper.get('.modal-back').text()).toContain('Back')
+
+    await wrapper.get('.modal-back').trigger('click')
+    expect(inspector.hexagram?.number).toBe(5)
+  })
+
   it('recomputes a selected changing line and switches to a transformation', async () => {
     const wrapper = mount(HexagramInspector, {
       global: {
