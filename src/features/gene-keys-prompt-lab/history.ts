@@ -1,99 +1,41 @@
 import {
-  isGeneKeysSourceId,
+  DEFAULT_GENE_KEYS_PROMPT_LAB_MODEL_ID,
+  isGeneKeysPromptLabModelId,
   type GeneKeysPromptLabGeneration,
+  type GeneKeysPromptLabModelId,
 } from '@/features/gene-keys-prompt-lab/domain'
 
-export const GENE_KEYS_PROMPT_LAB_HISTORY_KEY = 'current.gene-keys-prompt-lab.history.v1'
-const HISTORY_VERSION = 1
-const MAX_HISTORY_ENTRIES = 200
+export const GENE_KEYS_PROMPT_LAB_USER_KEY = 'current.gene-keys-prompt-lab.user.v1'
+export const GENE_KEYS_PROMPT_LAB_MODEL_KEY = 'current.gene-keys-prompt-lab.model.v1'
 
-export type GeneKeysPromptLabHistoryEntry = GeneKeysPromptLabGeneration & {
-  id: string
+export type GeneKeysPromptLabHistoryEntry = GeneKeysPromptLabGeneration
+
+export function loadPreferredUserId(storage: Storage = window.localStorage) {
+  return storage.getItem(GENE_KEYS_PROMPT_LAB_USER_KEY)
 }
 
-type StoredHistory = {
-  version: typeof HISTORY_VERSION
-  entries: GeneKeysPromptLabHistoryEntry[]
+export function savePreferredUserId(userId: string, storage: Storage = window.localStorage) {
+  storage.setItem(GENE_KEYS_PROMPT_LAB_USER_KEY, userId)
 }
 
-const isStringArray = (value: unknown): value is string[] =>
-  Array.isArray(value) && value.every((item) => typeof item === 'string')
-
-const isHistoryEntry = (value: unknown): value is GeneKeysPromptLabHistoryEntry => {
-  if (!value || typeof value !== 'object') {
-    return false
-  }
-
-  const entry = value as Partial<GeneKeysPromptLabHistoryEntry>
-  return (
-    typeof entry.id === 'string' &&
-    typeof entry.generatedAt === 'string' &&
-    Number.isInteger(entry.keyNumber) &&
-    typeof entry.keyNumber === 'number' &&
-    entry.keyNumber >= 1 &&
-    entry.keyNumber <= 64 &&
-    typeof entry.keyTitle === 'string' &&
-    Array.isArray(entry.sourceIds) &&
-    entry.sourceIds.every(isGeneKeysSourceId) &&
-    typeof entry.prompt === 'string' &&
-    Boolean(entry.output) &&
-    typeof entry.output?.oltr === 'string' &&
-    typeof entry.output?.commentary === 'string' &&
-    typeof entry.model === 'string' &&
-    entry.reviewStatus === 'draft-only' &&
-    ['prompt-only', 'one-source', 'two-source'].includes(entry.evidenceMode ?? '') &&
-    isStringArray(entry.warnings)
-  )
+export function loadPreferredModelId(storage: Storage = window.localStorage) {
+  const value = storage.getItem(GENE_KEYS_PROMPT_LAB_MODEL_KEY)
+  return isGeneKeysPromptLabModelId(value) ? value : DEFAULT_GENE_KEYS_PROMPT_LAB_MODEL_ID
 }
 
-export function loadPromptLabHistory(storage: Storage = window.localStorage) {
-  try {
-    const raw = storage.getItem(GENE_KEYS_PROMPT_LAB_HISTORY_KEY)
-    if (!raw) {
-      return []
-    }
-
-    const stored = JSON.parse(raw) as Partial<StoredHistory>
-    if (stored.version !== HISTORY_VERSION || !Array.isArray(stored.entries)) {
-      return []
-    }
-
-    return stored.entries.filter(isHistoryEntry).slice(0, MAX_HISTORY_ENTRIES)
-  } catch {
-    return []
-  }
-}
-
-function persist(entries: readonly GeneKeysPromptLabHistoryEntry[], storage: Storage) {
-  const stored: StoredHistory = {
-    version: HISTORY_VERSION,
-    entries: entries.slice(0, MAX_HISTORY_ENTRIES),
-  }
-  storage.setItem(GENE_KEYS_PROMPT_LAB_HISTORY_KEY, JSON.stringify(stored))
-}
-
-export function savePromptLabGeneration(
-  generation: GeneKeysPromptLabGeneration,
+export function savePreferredModelId(
+  modelId: GeneKeysPromptLabModelId,
   storage: Storage = window.localStorage,
 ) {
-  const entry: GeneKeysPromptLabHistoryEntry = {
-    id: globalThis.crypto.randomUUID(),
-    ...generation,
-  }
-  const entries = [entry, ...loadPromptLabHistory(storage)].slice(0, MAX_HISTORY_ENTRIES)
-  persist(entries, storage)
-  return entries
-}
-
-export function clearPromptLabHistory(storage: Storage = window.localStorage) {
-  storage.removeItem(GENE_KEYS_PROMPT_LAB_HISTORY_KEY)
+  storage.setItem(GENE_KEYS_PROMPT_LAB_MODEL_KEY, modelId)
 }
 
 export function exportPromptLabHistory(entries: readonly GeneKeysPromptLabHistoryEntry[]) {
   return JSON.stringify(
     {
       exportedAt: new Date().toISOString(),
-      version: HISTORY_VERSION,
+      version: 2,
+      storage: 'shared-server-history',
       entries,
     },
     null,

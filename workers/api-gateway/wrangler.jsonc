@@ -12,6 +12,10 @@
     {
       "binding": "GENE_KEYS_SOURCES",
       "id": "f071e11feaf34732af4dfe613846437a"
+    },
+    {
+      "binding": "PROMPT_LAB_STATE",
+      "id": "f071e11feaf34732af4dfe613846437a"
     }
   ],
   "observability": {

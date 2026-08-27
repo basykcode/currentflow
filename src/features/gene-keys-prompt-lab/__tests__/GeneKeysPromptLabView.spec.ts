@@ -4,6 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import GeneKeysPromptLabView from '@/features/gene-keys-prompt-lab/views/GeneKeysPromptLabView.vue'
 
 const generation = {
+  id: 'generation-1',
   generatedAt: '2026-08-26T23:00:00.000Z',
   keyNumber: 1,
   keyTitle: 'From Entropy to Syntropy',
@@ -15,6 +16,10 @@ const generation = {
       'A dense beginning can look inert before its pattern becomes visible. Receptive attention allows new form to gather without denying the pressure that preceded it. The movement is less an escape than a reorganization of what is already present. Beauty names the horizon where coherence can be recognized without being possessed.',
   },
   model: '@cf/meta/llama-3.1-8b-instruct-fast',
+  modelId: 'cloudflare-llama-3.1-8b-fast' as const,
+  modelLabel: 'Llama 3.1 8B · Fast',
+  modelProvider: 'Cloudflare Workers AI',
+  user: { id: 'ben-kind', name: 'Ben Kind', createdAt: '2026-08-27T00:00:00.000Z' },
   reviewStatus: 'draft-only' as const,
   evidenceMode: 'prompt-only' as const,
   warnings: ['Prompt-only experiment: this draft has no source-grounding claim.'],
@@ -22,6 +27,8 @@ const generation = {
 
 const mocks = vi.hoisted(() => ({
   getPromptLabSession: vi.fn().mockResolvedValue(true),
+  getPromptLabWorkspace: vi.fn(),
+  createPromptLabUser: vi.fn(),
   generatePromptLabCommentary: vi.fn(),
   logOutOfPromptLab: vi.fn().mockResolvedValue(undefined),
 }))
@@ -39,6 +46,18 @@ describe('GeneKeysPromptLabView', () => {
   beforeEach(() => {
     localStorage.clear()
     mocks.generatePromptLabCommentary.mockReset().mockResolvedValue(generation)
+    mocks.getPromptLabWorkspace.mockReset().mockResolvedValue({
+      users: [
+        { id: 'ben-kind', name: 'Ben Kind', createdAt: '2026-08-27T00:00:00.000Z' },
+        { id: 'anthony-love', name: 'Anthony Love', createdAt: '2026-08-27T00:00:00.000Z' },
+      ],
+      history: [],
+    })
+    mocks.createPromptLabUser.mockReset().mockResolvedValue({
+      id: 'new-user',
+      name: 'New User',
+      createdAt: '2026-08-27T01:00:00.000Z',
+    })
     mocks.logOutOfPromptLab.mockReset().mockResolvedValue(undefined)
     vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined)
     vi.spyOn(globalThis.crypto, 'randomUUID').mockReturnValue(
@@ -66,6 +85,8 @@ describe('GeneKeysPromptLabView', () => {
       keyNumber: 1,
       sourceIds: [],
       prompt: 'Try an original voice.',
+      userId: 'ben-kind',
+      modelId: 'cloudflare-llama-3.1-8b-fast',
     })
     expect(wrapper.get('.oltr-block').text()).toContain('Creative pressure becomes fresh form')
     expect(wrapper.findAll('.history-entry')).toHaveLength(1)
@@ -78,6 +99,19 @@ describe('GeneKeysPromptLabView', () => {
     expect(wrapper.get<HTMLTextAreaElement>('#prompt-lab-prompt').element.value).toBe(
       'Try an original voice.',
     )
+  })
+
+  it('adds a shared user and remembers the selection', async () => {
+    const wrapper = mount(GeneKeysPromptLabView)
+    await flushPromises()
+
+    await wrapper.get<HTMLSelectElement>('#prompt-lab-user').setValue('__add__')
+    await wrapper.get<HTMLInputElement>('#prompt-lab-new-user').setValue('New User')
+    await wrapper.get('form.add-user').trigger('submit')
+    await flushPromises()
+
+    expect(mocks.createPromptLabUser).toHaveBeenCalledWith('New User')
+    expect(wrapper.get<HTMLSelectElement>('#prompt-lab-user').element.value).toBe('new-user')
   })
 
   it('keeps the workspace unlocked when the server cannot end the session', async () => {

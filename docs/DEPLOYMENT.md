@@ -7,8 +7,8 @@ current-flow.net (Cloudflare frontend Worker)
         |
         v
 api.current-flow.net (Cloudflare API gateway Worker)
-        |-- Workers AI binding (Gene Keys Prompt Lab generation)
-        |-- private Workers KV binding (Gene Keys source chapters)
+        |-- Workers AI or OpenAI Responses API (selected Prompt Lab generation)
+        |-- private Workers KV binding (source chapters + global Prompt Lab state)
         |
         v
 current-flow-alchemy-api.onrender.com (Render Standard Docker web service)
@@ -143,16 +143,18 @@ location.
 ## Configure the private Gene Keys Prompt Lab
 
 The Prompt Lab is handled directly by the existing `current-flow-api-gateway` Worker before its
-Render proxy boundary. It uses Workers AI and Workers KV without sending source text or generated
-drafts to the Alchemy API. Configure these bindings for the gateway's Production and Preview
-environments:
+Render proxy boundary. It uses Workers AI or the OpenAI Responses API plus private Workers KV
+without sending source text or generated drafts to the Alchemy API. Configure these bindings for
+the gateway's Production and Preview environments:
 
 | Binding or secret           | Kind                     | Required value                                            |
 | --------------------------- | ------------------------ | --------------------------------------------------------- |
 | `AI`                        | Workers AI binding       | The account's Workers AI catalog                          |
 | `GENE_KEYS_SOURCES`         | Workers KV binding       | A private namespace created for the 128 Gene Key chapters |
+| `PROMPT_LAB_STATE`          | Workers KV binding       | Private global users and generated experiment records    |
 | `PROMPT_LAB_PASSWORD`       | encrypted secret         | The shared password supplied out of band by the owner     |
 | `PROMPT_LAB_SESSION_SECRET` | encrypted secret         | At least 32 random bytes, independently generated         |
+| `OPENAI_API_KEY`            | encrypted secret         | Project OpenAI key for the GPT-5.6 choices                |
 | `PROMPT_LAB_MODEL`          | plain variable, optional | Defaults to `@cf/meta/llama-3.1-8b-instruct-fast`         |
 
 Never put either secret or a Cloudflare API token in Git, Vite variables,
@@ -172,14 +174,17 @@ file. Revoke the short-lived API token after the upload. The namespace key contr
 
 The login endpoint should also receive a Cloudflare rate-limiting rule before the shared URL is
 distributed broadly. The current shared-password gate is an internal-workspace boundary, not
-identity-aware authorization. A future multi-user service needs accounts, revocation, audit policy,
-and a server-side history store.
+identity-aware authorization. Shared user names are attribution labels rather than verified
+accounts; a future multi-user service still needs revocation and audit policy. `PROMPT_LAB_STATE`
+may reuse the source namespace under the disjoint `state/v1/` prefix until retention or access
+policies require a separate store.
 
 Useful provider references:
 
 - [Workers bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/)
 - [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
 - [Workers KV limits](https://developers.cloudflare.com/kv/platform/limits/)
+- [OpenAI Responses API](https://developers.openai.com/api/reference/resources/responses/methods/create)
 
 ## Production smoke check
 
