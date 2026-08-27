@@ -1,7 +1,13 @@
 import type {
   GeneKeysPromptLabGeneration,
   GeneKeysPromptLabRequest,
+  GeneKeysPromptLabUser,
 } from '@/features/gene-keys-prompt-lab/domain'
+
+export type GeneKeysPromptLabWorkspace = {
+  users: GeneKeysPromptLabUser[]
+  history: GeneKeysPromptLabGeneration[]
+}
 
 type SessionResponse = {
   authenticated: boolean
@@ -81,4 +87,22 @@ export async function generatePromptLabCommentary(
     body: JSON.stringify(request),
   })
   return parseResponse<GeneKeysPromptLabGeneration>(response)
+}
+
+export async function getPromptLabWorkspace(): Promise<GeneKeysPromptLabWorkspace> {
+  const response = await fetch(endpoint('workspace'), {
+    credentials: 'include',
+    headers: { Accept: 'application/json' },
+  })
+  return parseResponse<GeneKeysPromptLabWorkspace>(response)
+}
+
+export async function createPromptLabUser(name: string): Promise<GeneKeysPromptLabUser> {
+  const response = await fetch(endpoint('users'), {
+    method: 'POST',
+    credentials: 'include',
+    headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+    body: JSON.stringify({ name }),
+  })
+  return parseResponse<GeneKeysPromptLabUser>(response)
 }

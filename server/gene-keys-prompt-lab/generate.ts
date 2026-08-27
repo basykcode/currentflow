@@ -1,7 +1,9 @@
 import { getGeneKeySpectrum } from '../../src/domain/astrology/geneKeys.ts'
 import {
   GENE_KEYS_PROMPT_MAX_LENGTH,
+  getGeneKeysPromptLabModel,
   getEvidenceMode,
+  isGeneKeysPromptLabModelId,
   isGeneKeysSourceId,
   type GeneKeysPromptLabGeneration,
   type GeneKeysPromptLabOutput,
@@ -9,9 +11,15 @@ import {
   type GeneKeysSourceId,
 } from '../../src/features/gene-keys-prompt-lab/domain.ts'
 import { errorResponse, jsonResponse, readJsonBody, requireSession } from './http.ts'
+import { findPromptLabUser, savePromptLabHistoryEntry } from './state.ts'
 import type { PromptLabEnv, WorkerContext, WorkersAiInput } from './types.ts'
 
 const DEFAULT_MODEL = '@cf/meta/llama-3.1-8b-instruct-fast'
+const OPENAI_MODEL_IDS = {
+  'openai-gpt-5.6-terra': 'gpt-5.6-terra',
+  'openai-gpt-5.6-luna': 'gpt-5.6-luna',
+  'openai-gpt-5.6-sol': 'gpt-5.6-sol',
+} as const
 const OUTPUT_SCHEMA = {
   type: 'object',
   properties: {
@@ -45,6 +53,10 @@ function validateRequest(value: unknown): GeneKeysPromptLabRequest | null {
     request.sourceIds.length > 2 ||
     !request.sourceIds.every(isGeneKeysSourceId) ||
     new Set(request.sourceIds).size !== request.sourceIds.length
+    || typeof request.userId !== 'string'
+    || !request.userId.trim()
+    || request.userId.length > 128
+    || !isGeneKeysPromptLabModelId(request.modelId)
   ) {
     return null
   }
@@ -53,6 +65,8 @@ function validateRequest(value: unknown): GeneKeysPromptLabRequest | null {
     keyNumber: request.keyNumber,
     prompt: request.prompt.trim(),
     sourceIds: [...request.sourceIds],
+    userId: request.userId,
+    modelId: request.modelId,
   }
 }
 
@@ -172,11 +186,11 @@ function parseAiOutput(value: unknown): GeneKeysPromptLabOutput | null {
   return { oltr: output.oltr.trim(), commentary: output.commentary.trim() }
 }
 
-function buildAiInput(
+function buildPrompt(
   request: GeneKeysPromptLabRequest,
   sources: readonly { label: string; text: string }[],
   retryForOriginality: boolean,
-): WorkersAiInput {
+): { instructions: string; input: string } {
   const key = getGeneKeySpectrum(request.keyNumber)
   const evidence = sources.length
     ? sources.map((source) => `--- ${source.label} ---\n${source.text}`).join('\n\n')
@@ -186,10 +200,7 @@ function buildAiInput(
     : ''
 
   return {
-    messages: [
-      {
-        role: 'system',
-        content: `You are the Current Flow language synthesis maestro. Return exactly two fields: oltr and commentary. Follow the experimenter's style instructions while preserving these non-negotiable editorial boundaries:
+    instructions: `You are the Current Flow language synthesis maestro. Return exactly two fields: oltr and commentary. Follow the experimenter's style instructions while preserving these non-negotiable editorial boundaries:
 - OLTR is a single 12–24 word orienting sentence.
 - Commentary is 90–140 words in 4–6 complete sentences.
 - Use wholly original prose and no quotation from the evidence.
@@ -198,10 +209,7 @@ function buildAiInput(
 - If sources differ, retain the tension instead of pretending they say the same thing.
 - If no source was selected, do not claim source grounding.
 Do not expose, summarize at length, or reproduce the supplied evidence. Output valid JSON only.${retryInstruction}`,
-      },
-      {
-        role: 'user',
-        content: `GENE KEY METADATA
+    input: `GENE KEY METADATA
 Number: ${request.keyNumber}
 Title: ${key.title}
 Shadow: ${key.shadow}
@@ -213,12 +221,65 @@ ${request.prompt}
 
 PRIVATE EVIDENCE
 ${evidence}`,
-      },
+  }
+}
+
+function buildWorkersAiInput(
+  request: GeneKeysPromptLabRequest,
+  sources: readonly { label: string; text: string }[],
+  retryForOriginality: boolean,
+): WorkersAiInput {
+  const prompt = buildPrompt(request, sources, retryForOriginality)
+  return {
+    messages: [
+      { role: 'system', content: prompt.instructions },
+      { role: 'user', content: prompt.input },
     ],
     response_format: { type: 'json_schema', json_schema: OUTPUT_SCHEMA },
     max_tokens: 620,
     temperature: 0.72,
   }
+}
+
+async function runOpenAi(
+  apiKey: string,
+  model: string,
+  request: GeneKeysPromptLabRequest,
+  sources: readonly { label: string; text: string }[],
+  retryForOriginality: boolean,
+) {
+  const prompt = buildPrompt(request, sources, retryForOriginality)
+  const response = await fetch('https://api.openai.com/v1/responses', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model,
+      instructions: prompt.instructions,
+      input: prompt.input,
+      max_output_tokens: 620,
+      reasoning: { effort: 'low' },
+      store: false,
+      text: {
+        format: {
+          type: 'json_schema',
+          name: 'current_flow_prompt_lab_output',
+          strict: true,
+          schema: OUTPUT_SCHEMA,
+        },
+      },
+    }),
+  })
+
+  if (!response.ok) throw new Error(`OpenAI request failed with ${response.status}.`)
+  const body = (await response.json()) as {
+    output?: Array<{ content?: Array<{ type?: string; text?: string }> }>
+  }
+  return body.output
+    ?.flatMap((item) => item.content ?? [])
+    .find((content) => content.type === 'output_text')?.text
 }
 
 const wordCount = (text: string) => text.trim().split(/\s+/u).filter(Boolean).length
@@ -275,14 +336,35 @@ export async function handleGenerate(context: WorkerContext<PromptLabEnv>) {
     return errorResponse(message, 503)
   }
 
-  const model = context.env.PROMPT_LAB_MODEL || DEFAULT_MODEL
+  const user = await findPromptLabUser(context.env, request.userId)
+  if (!user) {
+    return errorResponse('Choose a valid user before generating.', 400)
+  }
+
+  const modelOption = getGeneKeysPromptLabModel(request.modelId)
+  const openAiModel =
+    request.modelId in OPENAI_MODEL_IDS
+      ? OPENAI_MODEL_IDS[request.modelId as keyof typeof OPENAI_MODEL_IDS]
+      : null
+  const model = openAiModel ?? context.env.PROMPT_LAB_MODEL ?? DEFAULT_MODEL
+  if (openAiModel && !context.env.OPENAI_API_KEY) {
+    return errorResponse('The OpenAI models are not configured yet.', 503)
+  }
   let output: GeneKeysPromptLabOutput | null = null
   for (let attempt = 0; attempt < 2; attempt += 1) {
     try {
-      const aiResponse = await context.env.AI.run(
-        model,
-        buildAiInput(request, sources, attempt === 1),
-      )
+      const aiResponse = openAiModel
+        ? await runOpenAi(
+            context.env.OPENAI_API_KEY ?? '',
+            openAiModel,
+            request,
+            sources,
+            attempt === 1,
+          )
+        : await context.env.AI.run(
+            model,
+            buildWorkersAiInput(request, sources, attempt === 1),
+          )
       output = parseAiOutput(aiResponse)
     } catch {
       return errorResponse(
@@ -312,16 +394,26 @@ export async function handleGenerate(context: WorkerContext<PromptLabEnv>) {
 
   const key = getGeneKeySpectrum(request.keyNumber)
   const generation: GeneKeysPromptLabGeneration = {
+    id: crypto.randomUUID(),
     generatedAt: new Date().toISOString(),
     keyNumber: request.keyNumber,
     keyTitle: key.title,
     sourceIds: [...request.sourceIds],
     prompt: request.prompt,
     output,
+    user,
+    modelId: request.modelId,
     model,
+    modelLabel: modelOption.label,
+    modelProvider: modelOption.provider,
     reviewStatus: 'draft-only',
     evidenceMode: getEvidenceMode(request.sourceIds),
     warnings: getWarnings(output, sources.length),
+  }
+  try {
+    await savePromptLabHistoryEntry(context.env, generation)
+  } catch {
+    return errorResponse('The draft was generated, but shared history could not save it.', 503)
   }
   return jsonResponse(generation)
 }

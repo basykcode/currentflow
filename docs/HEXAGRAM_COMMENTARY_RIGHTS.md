@@ -33,15 +33,17 @@ metadata; they do not expose the passage.
 
 The internal Gene Keys Prompt Lab may place the two user-supplied Richard Rudd chunk sets in a
 private Cloudflare Workers KV namespace solely so a password-authorized server function can send the
-selected chapter to the configured Workers AI model. This is a private processing boundary, not a
-change in redistribution rights or publication eligibility.
+selected chapter to the explicitly selected Workers AI or OpenAI model. OpenAI requests disable
+provider-side response storage. This is a private processing boundary, not a change in redistribution
+rights or publication eligibility.
 
 The browser receives only original generated prose and compact settings. The function never returns
 the source passage, and successful output is checked for exact eight-word overlap and retried once
-before delivery. The public SPA bundle, Git history, localStorage archive, and exported experiment
-history contain no source text. Cloudflare nevertheless processes selected source text during each
-generation; operators must keep the namespace private, protect its credentials, and re-evaluate the
-provider boundary if the service or rights basis changes.
+before delivery. The public SPA bundle, Git history, shared history records, local browser
+preferences, and exported experiment history contain no source text. Cloudflare always processes
+the selected source text; OpenAI also processes it only when an OpenAI model is selected. Operators
+must keep both credentials private and re-evaluate either provider boundary if the service or rights
+basis changes.
 
 ## Editorial approval
 

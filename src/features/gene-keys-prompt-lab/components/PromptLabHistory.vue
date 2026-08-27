@@ -11,7 +11,7 @@ defineProps<{
 
 const emit = defineEmits<{
   load: [entry: GeneKeysPromptLabHistoryEntry]
-  clear: []
+  refresh: []
   export: []
 }>()
 
@@ -36,18 +36,18 @@ function formatDate(value: string) {
   <section class="history-panel" aria-labelledby="prompt-lab-history-title">
     <header class="history-header">
       <div>
-        <p class="eyebrow">Device-local archive</p>
-        <h2 id="prompt-lab-history-title">Saved iterations</h2>
-        <p>Each successful generation is saved in this browser. Select one to restore it fully.</p>
+        <p class="eyebrow">Shared archive</p>
+        <h2 id="prompt-lab-history-title">Global history</h2>
+        <p>Every successful generation is shared across browsers and users. Select one to restore it fully.</p>
       </div>
-      <div v-if="entries.length" class="history-actions">
+      <div class="history-actions">
+        <button class="quiet-button" type="button" @click="emit('refresh')">Refresh</button>
         <button class="quiet-button" type="button" @click="emit('export')">Export JSON</button>
-        <button class="quiet-button" type="button" @click="emit('clear')">Clear history</button>
       </div>
     </header>
 
     <p v-if="!entries.length" class="history-empty">
-      Your first generated experiment will appear here.
+      The first shared experiment will appear here.
     </p>
     <ol v-else class="history-list">
       <li v-for="entry in entries" :key="entry.id">
@@ -60,6 +60,7 @@ function formatDate(value: string) {
           <span class="history-key">Gene Key {{ entry.keyNumber }}</span>
           <strong>{{ entry.keyTitle }}</strong>
           <span>{{ formatSources(entry) }}</span>
+          <span>{{ entry.user.name }} · {{ entry.modelLabel }}</span>
           <time :datetime="entry.generatedAt">{{ formatDate(entry.generatedAt) }}</time>
           <small>{{ entry.prompt }}</small>
         </button>

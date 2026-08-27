@@ -152,17 +152,19 @@ declared Current Flow frontend origins, POST handlers reject other origins, ever
 the edge cache and requests no indexing, and neither credential is compiled into the browser bundle.
 
 The server reads only the requested key from a private Workers KV binding and sends that evidence,
-the canonical metadata, and the experimenter's prompt to the Workers AI binding. Output is forced
-into the OLTR/commentary shape, retained as `draft-only`, checked for exact eight-word source overlap,
-and retried once in more original language when needed. Raw evidence is never returned, logged by
-application code, or stored in experiment history. Cloudflare remains an external processor of the
-selected source chapter during generation and must be treated as part of the private evidence
+the canonical metadata, and the experimenter's prompt to the explicitly selected inference
+provider. The default Llama model stays on Workers AI; GPT-5.6 Sol, Terra, and Luna use OpenAI's
+Responses API with `store: false` and an encrypted server-side API key. Output is forced into the
+OLTR/commentary shape, retained as `draft-only`, checked for source overlap, and retried once in more
+original language when needed. Raw evidence is never returned or logged by application code.
+Cloudflare and, only when selected, OpenAI are external processors inside the private evidence
 boundary.
 
-Successful experiments are stored only in versioned browser localStorage, capped at 200 entries,
-and can be exported as JSON. Each record contains settings, the prompt, generated prose, engine
-label, warnings, and review state—but not source passages. There is deliberately no remote history
-database or account synchronization.
+Successful experiments are stored as individual records in the private `PROMPT_LAB_STATE` Workers
+KV binding and can be exported as JSON. The global archive contains user attribution, settings, the
+prompt, generated prose, engine label, warnings, and review state—but not source passages. The
+shared user catalog begins with Ben Kind and Anthony Love; password-authorized collaborators may add
+names. A browser remembers only its selected user and model IDs in localStorage.
 
 ## Special-message privacy boundary
 

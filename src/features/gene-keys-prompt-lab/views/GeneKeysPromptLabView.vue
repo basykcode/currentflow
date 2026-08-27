@@ -1,27 +1,34 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
 
 import StatusBadge from '@/components/common/StatusBadge.vue'
 import { getGeneKeyReferences } from '@/domain/astrology/geneKeys'
 import {
+  createPromptLabUser,
   generatePromptLabCommentary,
   GeneKeysPromptLabApiError,
   getPromptLabSession,
+  getPromptLabWorkspace,
   logOutOfPromptLab,
 } from '@/features/gene-keys-prompt-lab/api'
 import PromptLabGate from '@/features/gene-keys-prompt-lab/components/PromptLabGate.vue'
 import PromptLabHistory from '@/features/gene-keys-prompt-lab/components/PromptLabHistory.vue'
 import {
+  DEFAULT_GENE_KEYS_PROMPT_LAB_MODEL_ID,
+  GENE_KEYS_PROMPT_LAB_MODELS,
   GENE_KEYS_PROMPT_MAX_LENGTH,
   GENE_KEYS_SOURCE_OPTIONS,
   type GeneKeysPromptLabGeneration,
+  type GeneKeysPromptLabModelId,
+  type GeneKeysPromptLabUser,
   type GeneKeysSourceId,
 } from '@/features/gene-keys-prompt-lab/domain'
 import {
-  clearPromptLabHistory,
   exportPromptLabHistory,
-  loadPromptLabHistory,
-  savePromptLabGeneration,
+  loadPreferredModelId,
+  loadPreferredUserId,
+  savePreferredModelId,
+  savePreferredUserId,
   type GeneKeysPromptLabHistoryEntry,
 } from '@/features/gene-keys-prompt-lab/history'
 
@@ -30,6 +37,13 @@ const DEFAULT_PROMPT = `Write an OLTR and synthesized commentary for the selecte
 const geneKeys = getGeneKeyReferences()
 const sessionLoading = ref(true)
 const authenticated = ref(false)
+const users = ref<GeneKeysPromptLabUser[]>([])
+const selectedUserId = ref('')
+const userSelection = ref('')
+const addingUser = ref(false)
+const newUserName = ref('')
+const savingUser = ref(false)
+const selectedModelId = ref<GeneKeysPromptLabModelId>(DEFAULT_GENE_KEYS_PROMPT_LAB_MODEL_ID)
 const selectedKeyNumber = ref(1)
 const selectedSourceIds = ref<GeneKeysSourceId[]>(
   GENE_KEYS_SOURCE_OPTIONS.map((source) => source.id),
@@ -43,7 +57,11 @@ const activeHistoryId = ref<string | null>(null)
 
 const selectedKey = computed(() => geneKeys.find((key) => key.number === selectedKeyNumber.value))
 const canGenerate = computed(
-  () => authenticated.value && !generating.value && prompt.value.trim().length > 0,
+  () =>
+    authenticated.value &&
+    !generating.value &&
+    Boolean(selectedUserId.value) &&
+    prompt.value.trim().length > 0,
 )
 const sourceSummary = computed(() => {
   if (selectedSourceIds.value.length === 0) {
@@ -54,9 +72,10 @@ const sourceSummary = computed(() => {
 })
 
 onMounted(async () => {
-  history.value = loadPromptLabHistory()
+  selectedModelId.value = loadPreferredModelId()
   try {
     authenticated.value = await getPromptLabSession()
+    if (authenticated.value) await refreshWorkspace()
   } catch {
     authenticated.value = false
   } finally {
@@ -64,9 +83,75 @@ onMounted(async () => {
   }
 })
 
-function handleUnlocked() {
+async function handleUnlocked() {
   authenticated.value = true
   error.value = ''
+  await refreshWorkspace()
+}
+
+watch(selectedModelId, (modelId) => savePreferredModelId(modelId))
+
+async function refreshWorkspace() {
+  try {
+    const workspace = await getPromptLabWorkspace()
+    users.value = workspace.users
+    history.value = workspace.history
+    const rememberedUserId = loadPreferredUserId()
+    const candidateUserId = users.value.some((user) => user.id === selectedUserId.value)
+      ? selectedUserId.value
+      : rememberedUserId
+    selectedUserId.value =
+      users.value.find((user) => user.id === candidateUserId)?.id ??
+      users.value.find((user) => user.id === 'ben-kind')?.id ??
+      users.value[0]?.id ??
+      ''
+    userSelection.value = selectedUserId.value
+    if (selectedUserId.value) savePreferredUserId(selectedUserId.value)
+  } catch (reason) {
+    if (reason instanceof GeneKeysPromptLabApiError && reason.status === 401) {
+      authenticated.value = false
+    }
+    error.value = reason instanceof Error ? reason.message : 'Shared history could not be loaded.'
+  }
+}
+
+function handleUserSelection() {
+  if (userSelection.value === '__add__') {
+    addingUser.value = true
+    newUserName.value = ''
+    return
+  }
+  selectedUserId.value = userSelection.value
+  if (selectedUserId.value) savePreferredUserId(selectedUserId.value)
+}
+
+function cancelAddUser() {
+  addingUser.value = false
+  newUserName.value = ''
+  userSelection.value = selectedUserId.value
+}
+
+async function addUser() {
+  const name = newUserName.value.trim()
+  if (!name || savingUser.value) return
+
+  savingUser.value = true
+  error.value = ''
+  try {
+    const user = await createPromptLabUser(name)
+    if (!users.value.some((candidate) => candidate.id === user.id)) {
+      users.value = [...users.value, user].sort((left, right) => left.name.localeCompare(right.name))
+    }
+    selectedUserId.value = user.id
+    userSelection.value = user.id
+    savePreferredUserId(user.id)
+    addingUser.value = false
+    newUserName.value = ''
+  } catch (reason) {
+    error.value = reason instanceof Error ? reason.message : 'The user could not be added.'
+  } finally {
+    savingUser.value = false
+  }
 }
 
 async function logOut() {
@@ -97,14 +182,12 @@ async function generate() {
       keyNumber: selectedKeyNumber.value,
       sourceIds: [...selectedSourceIds.value],
       prompt: trimmedPrompt,
+      userId: selectedUserId.value,
+      modelId: selectedModelId.value,
     })
     generation.value = result
-    try {
-      history.value = savePromptLabGeneration(result)
-      activeHistoryId.value = history.value[0]?.id ?? null
-    } catch {
-      error.value = 'The draft was generated, but this browser could not save it locally.'
-    }
+    history.value = [result, ...history.value.filter((entry) => entry.id !== result.id)]
+    activeHistoryId.value = result.id
   } catch (reason) {
     if (reason instanceof GeneKeysPromptLabApiError && reason.status === 401) {
       authenticated.value = false
@@ -119,18 +202,13 @@ function loadEntry(entry: GeneKeysPromptLabHistoryEntry) {
   selectedKeyNumber.value = entry.keyNumber
   selectedSourceIds.value = [...entry.sourceIds]
   prompt.value = entry.prompt
+  selectedUserId.value = entry.user.id
+  userSelection.value = entry.user.id
+  selectedModelId.value = entry.modelId
+  savePreferredUserId(entry.user.id)
   generation.value = entry
   activeHistoryId.value = entry.id
   window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-
-function clearHistory() {
-  if (!window.confirm('Clear all saved prompt-lab iterations from this browser?')) {
-    return
-  }
-  clearPromptLabHistory()
-  history.value = []
-  activeHistoryId.value = null
 }
 
 function exportHistory() {
@@ -172,6 +250,48 @@ function exportHistory() {
         to this browser or saved in experiment history.
       </span>
     </div>
+
+    <section class="identity-bar panel" aria-label="Experiment identity and model">
+      <div class="identity-control">
+        <label for="prompt-lab-user">You are</label>
+        <select
+          id="prompt-lab-user"
+          v-model="userSelection"
+          class="control"
+          @change="handleUserSelection"
+        >
+          <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
+          <option value="__add__">+ Add user…</option>
+        </select>
+      </div>
+      <form v-if="addingUser" class="add-user" @submit.prevent="addUser">
+        <label for="prompt-lab-new-user">Add a shared user</label>
+        <div>
+          <input
+            id="prompt-lab-new-user"
+            v-model="newUserName"
+            class="control"
+            maxlength="80"
+            autocomplete="name"
+            :disabled="savingUser"
+            autofocus
+            required
+          />
+          <button type="submit" :disabled="savingUser || !newUserName.trim()">
+            {{ savingUser ? 'Saving…' : 'Add' }}
+          </button>
+          <button type="button" class="quiet-button" @click="cancelAddUser">Cancel</button>
+        </div>
+      </form>
+      <div class="identity-control model-control">
+        <label for="prompt-lab-model">Model</label>
+        <select id="prompt-lab-model" v-model="selectedModelId" class="control">
+          <option v-for="model in GENE_KEYS_PROMPT_LAB_MODELS" :key="model.id" :value="model.id">
+            {{ model.label }} · {{ model.provider }}
+          </option>
+        </select>
+      </div>
+    </section>
 
     <main class="lab-grid">
       <form class="composer panel" @submit.prevent="generate">
@@ -251,12 +371,16 @@ function exportHistory() {
 
           <dl class="result-meta">
             <div>
+              <dt>Generated by</dt>
+              <dd>{{ generation.user.name }}</dd>
+            </div>
+            <div>
               <dt>Evidence</dt>
               <dd>{{ generation.evidenceMode }}</dd>
             </div>
             <div>
               <dt>Engine</dt>
-              <dd>{{ generation.model }}</dd>
+              <dd>{{ generation.modelLabel }}</dd>
             </div>
             <div>
               <dt>Created</dt>
@@ -280,7 +404,7 @@ function exportHistory() {
       :entries="history"
       :active-id="activeHistoryId"
       @load="loadEntry"
-      @clear="clearHistory"
+      @refresh="refreshWorkspace"
       @export="exportHistory"
     />
   </div>
@@ -342,6 +466,48 @@ function exportHistory() {
 
 .boundary-note :deep(.status-label) {
   flex: 0 0 auto;
+}
+
+.identity-bar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  gap: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+}
+
+.identity-control,
+.add-user {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.identity-control label,
+.add-user label {
+  color: var(--jade);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.add-user {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+
+.add-user > div {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 0.5rem;
+}
+
+.add-user button[type='submit'] {
+  border-radius: var(--radius-sm);
+  background: var(--jade);
+  padding-inline: 1rem;
+  color: var(--paper);
+  font-weight: 800;
 }
 
 .lab-grid {
@@ -534,7 +700,7 @@ function exportHistory() {
 
 .result-meta {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.65rem;
   margin: 0;
   border-top: 1px solid var(--line);
@@ -617,6 +783,16 @@ function exportHistory() {
   .spectrum,
   .result-meta {
     grid-template-columns: 1fr;
+  }
+
+  .identity-bar,
+  .add-user > div {
+    grid-template-columns: 1fr;
+  }
+
+  .add-user {
+    grid-column: auto;
+    grid-row: auto;
   }
 }
 
