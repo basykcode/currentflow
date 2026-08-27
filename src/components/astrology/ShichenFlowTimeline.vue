@@ -224,6 +224,10 @@ svg {
   right: calc(100% + 0.28em);
 }
 
+.shichen-timeline--compact svg {
+  height: 1.5rem;
+}
+
 .shichen-timeline--detailed .timeline-stage {
   min-height: 2.15rem;
 }

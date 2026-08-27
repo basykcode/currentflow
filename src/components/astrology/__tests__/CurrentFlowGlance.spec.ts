@@ -26,7 +26,7 @@ const mountGlance = (snapshot: CurrentFlowSnapshot, timezone = 'America/Los_Ange
 }
 
 describe('CurrentFlowGlance', () => {
-  it('preserves the canonical snapshot and locked glance order', async () => {
+  it('preserves the canonical snapshot in the principal glance order', async () => {
     const snapshot = await getSnapshot()
     const wrapper = mountGlance(snapshot)
 
@@ -34,19 +34,25 @@ describe('CurrentFlowGlance', () => {
       wrapper
         .findAll('[data-glance-section]')
         .map((node) => node.attributes('data-glance-section')),
-    ).toEqual(['header', 'signature', 'oltr'])
+    ).toEqual(['header', 'oltr', 'principal'])
     expect(
       wrapper
-        .get('[data-glance-row="temporal"]')
+        .get('[data-glance-row="temporal-sandwich"]')
         .findAll('[data-glance-item]')
         .map((node) => node.attributes('data-glance-item')),
-    ).toEqual(['year', 'day', 'month'])
+    ).toEqual(['year', 'hour', 'day', 'month'])
     expect(
       wrapper
-        .get('[data-glance-row="active"]')
+        .get('[data-glance-row="active-guidance"]')
         .findAll('[data-glance-item]')
         .map((node) => node.attributes('data-glance-item')),
-    ).toEqual(['organ', 'hour'])
+    ).toEqual(['organ', 'intention', 'execution'])
+    expect(
+      wrapper.get('[data-glance-row="temporal-sandwich"]').attributes('data-column-ratio'),
+    ).toBe('1-2-1')
+    expect(wrapper.get('[data-glance-row="active-guidance"]').attributes('data-column-ratio')).toBe(
+      '1-1',
+    )
 
     expect(wrapper.get('[data-glance-item="year"] .hexagram-title').text()).toBe(
       snapshot.temporal.year.hexagram.nameEnglish,
@@ -73,11 +79,37 @@ describe('CurrentFlowGlance', () => {
       'glance-compact',
     )
     expect(wrapper.get('[data-glance-item="day"] .hexagram-card').attributes('data-density')).toBe(
-      'glance-featured',
+      'glance-regular',
     )
     expect(
       wrapper.get('[data-glance-item="month"] .hexagram-card').attributes('data-density'),
     ).toBe('glance-compact')
+    expect(wrapper.get('[data-glance-item="hour"] .hexagram-card').attributes('data-density')).toBe(
+      'glance-featured',
+    )
+    expect(wrapper.get('[data-glance-item="hour"] .hexagram-card').classes()).toContain(
+      'hexagram-card--visual-horizontal',
+    )
+    expect(wrapper.get('[data-glance-item="day"] .hexagram-card').classes()).toContain(
+      'hexagram-card--visual-horizontal',
+    )
+    expect(wrapper.get('[data-glance-item="year"] .hexagram-card').classes()).toContain(
+      'hexagram-card--visual-stacked',
+    )
+    expect(wrapper.get('[data-glance-item="month"] .hexagram-card').classes()).toContain(
+      'hexagram-card--visual-stacked',
+    )
+    for (const scope of ['hour', 'day']) {
+      const item = wrapper.get(`[data-glance-item="${scope}"]`)
+      expect(item.get('.card-heading .ganzhi').text().length).toBeGreaterThan(0)
+      expect(item.find('.zodiac-wrap .ganzhi').exists()).toBe(false)
+    }
+    expect(wrapper.get('[data-glance-item="intention"]').text()).toContain(
+      snapshot.guidance.selectedIntention.englishLabel,
+    )
+    expect(wrapper.findAll('[data-glance-item="execution"] li')).toHaveLength(
+      Math.min(snapshot.guidance.executions.length, 3),
+    )
     expect(wrapper.text()).not.toContain('Exact bounds')
     expect(wrapper.text()).not.toContain('Interface fixture · not calculated')
 
@@ -91,6 +123,15 @@ describe('CurrentFlowGlance', () => {
 
     await wrapper.get('[data-glance-item="day"] .card-action').trigger('keydown', { key: 'Enter' })
     expect(inspector.hexagram?.number).toBe(snapshot.temporal.day.hexagram.number)
+
+    await wrapper.get('[data-glance-item="hour"] .card-action').trigger('click')
+    expect(inspector.hexagram?.number).toBe(snapshot.temporal.hour.hexagram.number)
+
+    await wrapper.get('[data-glance-item="year"] .card-action').trigger('keydown', { key: 'Enter' })
+    expect(inspector.hexagram?.number).toBe(snapshot.temporal.year.hexagram.number)
+
+    await wrapper.get('[data-glance-item="month"] .card-action').trigger('click')
+    expect(inspector.hexagram?.number).toBe(snapshot.temporal.month.hexagram.number)
 
     await wrapper.get('[data-glance-item="organ"] .card-action').trigger('keydown', { key: ' ' })
     expect(wrapper.emitted('openOrganDetails')).toHaveLength(1)
@@ -147,7 +188,7 @@ describe('CurrentFlowGlance', () => {
     })
 
     expect(wrapper.get('h1').text()).toBe('Your Current Flow')
-    expect(wrapper.findAll('[data-glance-section="signature"]')).toHaveLength(1)
+    expect(wrapper.findAll('[data-glance-section="principal"]')).toHaveLength(1)
 
     wrapper.unmount()
   })

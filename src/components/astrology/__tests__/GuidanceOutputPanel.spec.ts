@@ -58,4 +58,76 @@ describe('GuidanceOutputPanel', () => {
     expect(wrapper.find('.intention-options').exists()).toBe(false)
     expect(wrapper.find('select').exists()).toBe(false)
   })
+
+  it('projects controlled intentions and up to three highest-ranked executions into the glance', () => {
+    const bundle = createDemoGuidance(at)
+    const wrapper = mount(GuidanceOutputPanel, {
+      props: { bundle, density: 'glance', showOltr: false },
+    })
+    const intentionButtons = wrapper.findAll('.intention-glance-options button')
+    const executionRecommendations = wrapper.findAll('.execution-glance-recommendation')
+
+    expect(intentionButtons).toHaveLength(bundle.intentions.length)
+    for (const selection of bundle.intentions) {
+      expect(wrapper.get('[data-glance-item="intention"]').text()).toContain(
+        selection.definition.character,
+      )
+      expect(wrapper.get('[data-glance-item="intention"]').text()).toContain(
+        selection.definition.pinyin,
+      )
+      expect(wrapper.get('[data-glance-item="intention"]').text()).toContain(
+        selection.definition.englishLabel,
+      )
+    }
+    expect(wrapper.findAll('[data-intention-layout="identity-title-row"]')).toHaveLength(
+      Math.min(bundle.intentions.length, 3),
+    )
+    expect(wrapper.get('[data-glance-item="intention"]').text()).not.toContain(
+      bundle.selectedIntention.shortDefinition,
+    )
+    expect(wrapper.text()).not.toContain(bundle.primaryCurrent.label.value)
+    expect(
+      wrapper.get('[data-glance-item="intention"] .glance-panel-heading .eyebrow').text(),
+    ).toBe('Intention')
+    expect(
+      wrapper.get('[data-glance-item="execution"] .glance-panel-heading .eyebrow').text(),
+    ).toBe('Execution')
+
+    expect(executionRecommendations).toHaveLength(Math.min(bundle.executions.length, 3))
+    for (const selection of bundle.executions.slice(0, 3)) {
+      expect(wrapper.text()).toContain(selection.definition.text)
+      const recommendation = executionRecommendations.find((item) =>
+        item.text().includes(selection.definition.text),
+      )
+      expect(recommendation?.attributes('aria-label')).toContain(
+        selection.definition.observableEndpoint,
+      )
+      expect(recommendation?.attributes('aria-label')).toContain(selection.reasons[0])
+    }
+  })
+
+  it('gives both glance regions an explicit unavailable state', () => {
+    const bundle = createUnavailableGuidanceBundle({
+      synthesisId: 'unavailable-glance-test',
+      validFromUtc: at.toISOString(),
+      boundaries: [
+        {
+          atUtc: new Date(at.getTime() + 60 * 60 * 1_000).toISOString(),
+          reason: 'earthly-branch-hour-change',
+        },
+      ],
+      reason: 'No reviewed day profile is connected.',
+      sourceLabel: 'Test unavailable source',
+    })
+    const wrapper = mount(GuidanceOutputPanel, {
+      props: { bundle, density: 'glance', showOltr: false },
+    })
+
+    expect(wrapper.get('[data-glance-item="intention"]').text()).toContain('Intention unavailable')
+    expect(wrapper.get('[data-glance-item="execution"]').text()).toContain(
+      'No execution recommendation',
+    )
+    expect(wrapper.findAll('button')).toHaveLength(0)
+    expect(wrapper.text()).toContain(bundle.reason)
+  })
 })

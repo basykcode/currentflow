@@ -12,8 +12,9 @@ const props = withDefaults(
   defineProps<{
     item: TemporalHexagram
     density?: 'glance-compact' | 'glance-featured' | 'glance-regular' | 'standard'
+    visualLayout?: 'stacked' | 'horizontal'
   }>(),
-  { density: 'standard' },
+  { density: 'standard', visualLayout: 'stacked' },
 )
 
 const inspector = useHexagramInspectorStore()
@@ -30,7 +31,11 @@ const compactGanZhi = computed(() => props.item.ganZhi?.split('·').at(-1)?.trim
 <template>
   <article
     class="hexagram-card"
-    :class="[`hexagram-card--${density}`, { 'hexagram-card--glance': isGlance }]"
+    :class="[
+      `hexagram-card--${density}`,
+      `hexagram-card--visual-${visualLayout}`,
+      { 'hexagram-card--glance': isGlance },
+    ]"
     :data-density="density"
   >
     <button
@@ -47,7 +52,7 @@ const compactGanZhi = computed(() => props.item.ganZhi?.split('·').at(-1)?.trim
         <p class="scope">{{ item.scope }}</p>
         <p v-if="!isGlance" class="scope-label">{{ item.label }}</p>
       </div>
-      <span v-if="item.ganZhi" class="ganzhi">
+      <span v-if="item.ganZhi && (isGlance || visualLayout !== 'horizontal')" class="ganzhi">
         {{ isGlance ? compactGanZhi : item.ganZhi }}
       </span>
     </div>
@@ -60,6 +65,9 @@ const compactGanZhi = computed(() => props.item.ganZhi?.split('·').at(-1)?.trim
     <div class="temporal-visuals">
       <div v-if="item.ganZhiRaw" class="zodiac-wrap">
         <ZodiacIllustration :gan-zhi="item.ganZhiRaw" />
+        <span v-if="item.ganZhi && visualLayout === 'horizontal' && !isGlance" class="ganzhi">
+          {{ item.ganZhi }}
+        </span>
       </div>
 
       <div class="glyph-wrap">
@@ -409,7 +417,7 @@ const compactGanZhi = computed(() => props.item.ganZhi?.split('·').at(-1)?.trim
 
 .hexagram-card--glance-compact {
   --hexagram-glance-glyph-size: var(--glance-compact-glyph-size, 5rem);
-  --zodiac-illustration-size: clamp(5rem, 13vw, 6.75rem);
+  --zodiac-illustration-size: var(--glance-compact-zodiac-size, clamp(5rem, 13vw, 6.75rem));
 }
 
 .hexagram-card--glance .hexagram-glyph {
@@ -476,9 +484,50 @@ const compactGanZhi = computed(() => props.item.ganZhi?.split('·').at(-1)?.trim
   padding: 0;
 }
 
+.hexagram-card--glance.hexagram-card--visual-horizontal .card-heading {
+  min-height: 1rem;
+}
+
+.hexagram-card--glance.hexagram-card--visual-horizontal {
+  --zodiac-illustration-size: var(--glance-horizontal-zodiac-size, clamp(3.6rem, 6vw, 4.6rem));
+}
+
+.hexagram-card--glance.hexagram-card--visual-horizontal .temporal-visuals {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(0.4rem, 1.5vw, 1rem);
+  padding-block: clamp(0.15rem, 0.45vw, 0.35rem);
+}
+
+.hexagram-card--glance.hexagram-card--visual-horizontal .zodiac-wrap {
+  gap: 0.12rem;
+}
+
+.hexagram-card--glance.hexagram-card--visual-horizontal .zodiac-wrap .ganzhi {
+  display: block;
+  max-width: 100%;
+  text-align: center;
+}
+
+.hexagram-card--glance.hexagram-card--visual-horizontal .hexagram-name {
+  justify-content: center;
+}
+
+.hexagram-card--glance.hexagram-card--visual-horizontal .gene-key-spectrum {
+  margin-top: 0.12rem;
+}
+
 @media (max-width: 720px) {
   .hexagram-card:not(.hexagram-card--glance) {
     min-height: 21rem;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 900px) {
+  .hexagram-card--glance .gene-key-spectrum {
+    gap: 0.1rem 0.32rem;
+    font-size: 0.55rem;
   }
 }
 </style>

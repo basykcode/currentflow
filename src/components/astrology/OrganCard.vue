@@ -245,12 +245,12 @@ h2 {
 }
 
 .organ-card--glance .organ-illustration {
-  width: clamp(2.4rem, 7vw, 4.2rem);
+  width: var(--glance-organ-size, clamp(2.4rem, 7vw, 4.2rem));
 }
 
 .organ-card--glance h2 {
   font-size: var(--glance-organ-title-size, 0.94rem);
-  line-height: 1.05;
+  line-height: 1.12;
 }
 
 .organ-card--glance .phase-rows {
@@ -300,6 +300,14 @@ h2 {
   .organ-card:not(.organ-card--glance) .organ-identity,
   .phase-rows {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 900px) {
+  .organ-card--glance .organ-identity {
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 0.3rem;
   }
 }
 </style>

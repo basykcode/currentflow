@@ -7,10 +7,12 @@ import RelatedHexagramCard from './RelatedHexagramCard.vue'
 withDefaults(
   defineProps<{
     snapshot: CurrentFlowSnapshot
+    showGuidance?: boolean
     showOltr?: boolean
     showProvenance?: boolean
   }>(),
   {
+    showGuidance: true,
     showOltr: true,
     showProvenance: true,
   },
@@ -18,8 +20,12 @@ withDefaults(
 </script>
 
 <template>
-  <section class="synthesis" aria-label="Current guidance and related hexagrams">
-    <GuidanceOutputPanel :bundle="snapshot.guidance" :show-oltr="showOltr" />
+  <section
+    class="synthesis"
+    :class="{ 'synthesis--depth-only': !showGuidance }"
+    aria-label="Current guidance and related hexagrams"
+  >
+    <GuidanceOutputPanel v-if="showGuidance" :bundle="snapshot.guidance" :show-oltr="showOltr" />
 
     <section class="related" aria-labelledby="related-heading">
       <div class="section-heading">
@@ -68,7 +74,7 @@ withDefaults(
 </template>
 
 <style scoped>
-.synthesis {
+.synthesis:not(.synthesis--depth-only) {
   margin-top: clamp(4rem, 9vw, 8rem);
 }
 
@@ -95,6 +101,10 @@ h3 {
 
 .related {
   margin-top: clamp(3.5rem, 8vw, 7rem);
+}
+
+.synthesis--depth-only .related {
+  margin-top: clamp(2.5rem, 6vw, 5rem);
 }
 
 .related .section-heading {

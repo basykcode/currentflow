@@ -171,13 +171,43 @@ h1 {
   }
 
   .celestial-current-header__center :deep(.yin-clock__time) {
-    font-size: clamp(1.55rem, 7vw, 1.75rem);
+    font-size: clamp(1.25rem, 5.7vw, 1.45rem);
+  }
+
+  .celestial-current-header__center :deep(.yin-clock__metadata) {
+    font-size: clamp(0.52rem, 2vw, 0.6rem);
+    line-height: 1.08;
   }
 
   h1 {
     display: grid;
     gap: 0;
-    font-size: clamp(1.05rem, 4.7vw, 1.38rem);
+    font-size: clamp(0.84rem, 3.75vw, 1.02rem);
+    line-height: 0.94;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 900px) {
+  .celestial-current-header {
+    --celestial-instrument-size: 4rem;
+
+    gap: 0.6rem;
+  }
+
+  .celestial-current-header__center {
+    gap: 0.12rem;
+  }
+
+  .celestial-current-header__center :deep(.yin-clock__time) {
+    font-size: 2rem;
+  }
+
+  .celestial-current-header__center :deep(.yin-clock__metadata) {
+    font-size: 0.64rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
   }
 }
 

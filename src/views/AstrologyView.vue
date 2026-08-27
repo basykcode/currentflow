@@ -91,7 +91,12 @@ const openOrganDetails = () => {
         :snapshot="snapshot"
         :last-temporal-event="phaseClock.lastEvent.value"
       />
-      <SynthesisPanel :snapshot="snapshot" :show-oltr="false" :show-provenance="false" />
+      <SynthesisPanel
+        :snapshot="snapshot"
+        :show-guidance="false"
+        :show-oltr="false"
+        :show-provenance="false"
+      />
     </template>
   </div>
 </template>

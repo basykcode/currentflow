@@ -33,15 +33,18 @@ commentary or calls a model. See
 [`GUIDANCE_OUTPUT_ARCHITECTURE.md`](GUIDANCE_OUTPUT_ARCHITECTURE.md).
 
 The top of the Astrology route is composed by `CurrentFlowGlance`: a presentation-only projection
-of that snapshot into compact temporal-card densities, the `Organ System` presentation of Organ
-Hour, and the bundle OLTR or unavailable state. The canonical glyph, organ illustration, Taiji
-marker, and app-level inspector remain shared.
-A pure Ganzhi identity helper selects one of 60 local animal-element illustrations for a separate
-presentation row immediately below each stem-branch label and immediately above each temporal
-glyph; this presentation does not participate in the calendar or hexagram calculation. Compact
-stem-branch labels omit the redundant polarity word while the domain identity retains it. Exact
-pillar bounds, engine and mapping labels, status, and provider notes move into an adjacent
-`CalculationProvenanceDetails` disclosure; the glance does not discard or recalculate them. See
+of that snapshot into a celestial header, full-width OLTR band, and one principal instrument. The
+upper temporal row is Year | Hour above Day | Month. The lower row pairs a 50% Organ System card
+with a 50% Intention/Execution stack of equal-height panels. The temporal row is an exact
+25% / 50% / 25% ratio and the active row an exact 50% / 50% ratio at every viewport width; neither
+row switches to a single-column responsive mode.
+The canonical glyph, organ illustration, Taiji marker, Guidance bundle, and app-level inspector
+remain shared. A pure Ganzhi identity helper selects one of 60 local animal-element illustrations;
+compact cards arrange that identity horizontally beside the canonical glyph without participating
+in calendar or hexagram calculation. Compact stem-branch labels omit the redundant polarity word
+while the domain identity retains it. Exact pillar bounds, engine and mapping labels, status, and
+provider notes remain in the adjacent `CalculationProvenanceDetails` disclosure; the glance does
+not discard or recalculate them. See
 [`CURRENT_FLOW_GLANCE_LAYOUT.md`](CURRENT_FLOW_GLANCE_LAYOUT.md) and
 [`ZODIAC_ART_ASSETS.md`](ZODIAC_ART_ASSETS.md).
 
@@ -65,10 +68,11 @@ identity or effort; Micro remains presentation-only. `ShichenFlowTimeline` rende
 and contains no calculation ownership. See [`CHU_ZHENG_KE_CLOCK.md`](CHU_ZHENG_KE_CLOCK.md) and
 [`ORGAN_SYSTEM_TEMPORAL_FLOW_UI.md`](ORGAN_SYSTEM_TEMPORAL_FLOW_UI.md).
 
-All five glance cards share one inner-geometry contract: equal responsive padding, a fixed heading
-row, a flexible middle visual row, and bottom-anchored identity text. Temporal glyph bars remain
+All glance cards share one inner-geometry contract: equal responsive padding, a fixed heading row,
+a flexible horizontal visual row, and bottom-centered identity text. Temporal glyph bars remain
 percentage-based so the compact, featured, and regular figures scale with identical color, spacing,
-and proportional weight.
+and proportional weight. The focused `PrincipalGlanceGrid` owns layout only; it does not duplicate
+temporal, Guidance, or inspector state.
 
 ## Runtime behavior
 

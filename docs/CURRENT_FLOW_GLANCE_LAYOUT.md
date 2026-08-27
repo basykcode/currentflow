@@ -2,11 +2,12 @@
 
 ## Product goal
 
-The Astrology home opens as a compact instrument panel. Its leading flow communicates the section,
-local time, Year/Day/Month temporal hexagrams, active Organ System, Hour hexagram, and complete
-One Line to Remember in a stable order. Detail remains available through the existing hexagram
-inspector and the adjacent calculation disclosure. The page scrolls naturally when distinct glyph,
-animal, language, and spectrum rows exceed the current viewport.
+The Astrology home opens as a compact instrument panel for a Western audience. A brief look leads
+with the celestial clock, complete One Line to Remember, four temporal hexagrams, active Organ
+System, and validated Intention and Execution. Year and Month visibly flank a central Hour/Day
+stack, while a balanced lower tier pairs Organ with Guidance. The default narrow first-glance
+composition fits the app viewport without suppressing natural scrolling or large-text expansion.
+Detail remains available through the existing hexagram inspector and calculation disclosure.
 
 ## Component structure
 
@@ -35,20 +36,23 @@ App
 ├─ AppHeader
 ├─ AstrologyView
 │  ├─ CurrentFlowGlance
-│  │  ├─ compact section label
-│  │  ├─ YinClock
-│  │  ├─ FiveElementComposition
-│  │  │  ├─ HexagramCard density variants × 4
-│  │  │  │  ├─ GanZhi zodiac-element illustration
-│  │  │  │  ├─ canonical HexagramGlyph
-│  │  │  │  └─ canonical identity and Gene Key spectrum
-│  │  │  └─ OrganCard glance variant
-│  │  │     ├─ compact Organ/element and Branch/animal identity
-│  │  │     ├─ computed Macro and observational Micro rows
-│  │  │     └─ compact ShíchenFlowTimeline with shared Taiji marker
-│  │  └─ CurrentFlowOltr
+│  │  ├─ CelestialCurrentHeader
+│  │  │  └─ YinClock
+│  │  ├─ CurrentFlowOltr
+│  │  └─ PrincipalGlanceGrid
+│  │     ├─ temporal sandwich
+│  │     │  ├─ HexagramCard Year
+│  │     │  ├─ Hour / Day vertical center stack
+│  │     │  └─ HexagramCard Month
+│  │     └─ equal active/guidance split
+│  │        ├─ OrganCard glance variant
+│  │        │  ├─ computed Macro and observational Micro rows
+│  │        │  └─ compact ShichenFlowTimeline with shared Taiji marker
+│  │        └─ GuidanceOutputPanel glance variant
+│  │           ├─ controlled ranked intentions
+│  │           └─ up to three validated executions
 │  ├─ CalculationProvenanceDetails
-│  └─ SynthesisPanel without its duplicate OLTR/provenance blocks
+│  └─ SynthesisPanel depth-only related/future content
 └─ HexagramInspector
 ```
 
@@ -57,29 +61,29 @@ Presentation components select fields from that snapshot; they do not calculate 
 
 ## Glance order contract
 
-The mobile DOM and visual order is:
+The DOM order starts with the celestial header, then the full-width `OLTR · One Line To Remember`
+band and principal instrument. The desktop instrument has two explicit rows:
 
-1. `The Current Flow` section heading and compact local clock.
-2. Year / Day / Month.
-3. Organ System / Hour hexagram.
-4. One Line to Remember.
+1. The temporal row uses Year | Hour above Day | Month. Year and Month have equal widths and equal
+   heights; each spans the complete height of the central Hour/Day stack.
+2. The active/guidance row uses two equal-width columns. Organ System occupies the left 50%; the
+   right 50% stacks Intention above Execution. The Organ card and complete Guidance stack have equal
+   outer heights. Intention takes only the height needed by its compact choices; Execution fills the
+   remainder and shares the lower edge of the row with Organ System.
 
-The temporal row uses `1fr 2fr 1fr`, making Day exactly half of the usable row width before gaps.
-The active row uses two equal `minmax(0, 1fr)` tracks. Day uses the strongest border/surface and the
-largest glyph. The two rows use equal-height tracks; the former oversized temporal row no longer
-stretches the instrument panel to the full mobile viewport.
-
-The page does not hide overflow, clamp the OLTR, or disable scrolling. The distinct visual and
-identity rows, an unusually long sentence, or increased user text size may naturally extend the
-document.
+The `1fr 2fr 1fr` and `1fr 1fr` ratios remain literal at narrow mobile widths; the rows do not
+collapse to single-column cards. The default text-size treatment compacts the celestial heading,
+clock, OLTR, and Guidance projection so the complete principal instrument fits the reviewed narrow
+viewport. The page does not hide overflow, truncate the OLTR, or disable scrolling. An unusually
+long sentence or increased user text size may naturally extend the document.
 
 ## Density variants
 
 `HexagramCard` accepts four presentation densities:
 
-- `glance-compact`: Year and Month.
-- `glance-featured`: Day.
-- `glance-regular`: Hour.
+- `glance-compact`: Year and Month in the outer temporal columns.
+- `glance-featured`: Hour in the principal instrument.
+- `glance-regular`: Day in the principal instrument.
 - `standard`: retained detailed-card presentation.
 
 All densities receive the same `TemporalHexagram`, whose hexagram is a canonical
@@ -87,20 +91,39 @@ All densities receive the same `TemporalHexagram`, whose hexagram is a canonical
 `HexagramGlyph`, number, English title, Chinese title with tone-marked pinyin, and its curated Gene
 Key Shadow / Gift / Siddhi vocabulary. Long titles and complete spectrum terms wrap naturally.
 
-Each live Ganzhi also resolves to one of 60 user-supplied animal-element illustrations. The
-web-sized transparent artwork occupies its own normal-flow row immediately before the canonical
-glyph so the visual order mirrors the card's stem-branch identity above and hexagram identity below.
-It is not a watermark and does not share or reduce the glyph's sizing box. The visible Ganzhi text
-names only the element and animal because stem polarity is redundant in this compact label; the raw
-stem-branch value and polarity remain available in the domain model and calculation details.
+Each live Ganzhi also resolves to one of 60 user-supplied animal-element illustrations. Every compact
+animal label sits directly beneath its temporal scope. Hour and Day place the illustration beside
+the canonical glyph in a compact horizontal row. Year and Month retain the earlier stacked
+illustration-then-glyph composition in their taller outer cards.
+The visible Ganzhi text names only the element and animal because stem polarity is redundant in
+this compact label; the raw stem-branch value and polarity remain available in the domain model and
+calculation details.
 `OrganCard` similarly adds a `glance` density while reusing `OrganIllustration` and the canonical
 `OrganMoment`.
 
 All glance glyphs use the same color, aspect ratio, trigram gap, line gap, and percentage-based line
-thickness. Line bars occupy 36% of their proportional row, giving every figure a slightly stronger
-weight without introducing fixed pixel thickness. Only width changes: Day is exactly 1.6 times the
-compact Year/Month width and Hour is exactly 1.25 times that width. This keeps the complete geometry
-proportional instead of allowing minimum pixel thicknesses to make smaller figures appear heavier.
+thickness. Their widths vary by density while the geometry remains proportional. Hour uses the
+largest current-priority size, Day uses the regular size, and secondary Year/Month use the compact
+size. Year and Month remain compact in glyph width while their cards stretch to match the central
+stack.
+
+## Guidance projection
+
+The principal instrument consumes the existing validated `GuidanceBundle`; it does not resolve
+semantics in Vue. The Intention panel shows every ranked controlled term supplied by the bundle, up
+to the domain maximum of three. Each option is one compact row with its Chinese character above
+tone-marked Pinyin at left and its English title at right. The selected definition is intentionally
+omitted from first glance and remains available in the full Guidance presentation. Choosing an
+alternative still delegates to the pure domain reselection function. When the domain supplies only
+one compatible intention, the glance shows one; presentation never invents filler terms.
+
+Execution shows the first three validated ranked selections supplied by the bundle, or fewer when
+the domain has fewer valid actions. First glance keeps the category and bounded action visible. Its
+accessible group name and hover title preserve the observable completion endpoint and highest-ranked
+rationale without making the narrow card excessively tall. The presentation never creates a third
+action to fill the grid. An unavailable bundle produces separate explicit unavailable states for
+Intention and Execution and no controls or recommendations. Primary Current status remains in the
+deeper provenance presentation rather than occupying the lower edge of the glance grid.
 
 The Gene Key terms retain the canonical Shadow / Gift / Siddhi document order. The flex lines wrap
 in the reverse cross-axis direction, so a multi-line compact card places Shadow on its lowest line
@@ -132,8 +155,11 @@ state is duplicated.
 
 ## Responsive strategy
 
-- Mobile allows the instrument panel to take its content height instead of stretching cards to fill
-  the remaining dynamic viewport.
+- Desktop and tablet widths preserve the Year | Hour/Day | Month temporal sandwich followed by the
+  50/50 Organ/Guidance tier. Track dimensions come from content rather than a forced viewport
+  height.
+- Mobile preserves both literal rows. Compact default typography and content projection target the
+  complete first-glance instrument in the reviewed viewport without fixed heights or clipping.
 - The app-header total combines its accessible content height with `env(safe-area-inset-top)`.
 - The glance bottom padding includes `env(safe-area-inset-bottom)`.
 - Grid children use `min-width: 0` and `min-height: 0` so tracks can shrink without overflow.
@@ -145,9 +171,8 @@ state is duplicated.
   and OLTR type.
 - Mobile heights at or below 720 CSS pixels use one compact-height rule set with modestly smaller
   spacing and artwork.
-- Tablet and desktop preserve the same hierarchy and exact column proportions, with matching
-  14-rem minimum row heights and the existing maximum page width. They are not forced into one
-  viewport.
+- Narrow mobile preserves both ratios and lets card content increase row height when wrapping is
+  required. Increased text size is allowed to expand the page and preserve natural scrolling.
 
 ## Clock and header
 
@@ -204,12 +229,15 @@ The required default-text mobile viewports are:
 - 393 × 852
 - 430 × 932
 
-At each size, verify that the document and cards have no horizontal overflow, the canonical glyph
-retains its configured geometry below a separate visible animal row, all glyphs share color and
-proportional line spacing, Day remains twice the card width of Year/Month, and Organ/Hour card widths
-are equal. Also inspect the compact timeline and unclipped marker, a tablet and desktop, both
-themes, a long timezone, long canonical titles and spectrum terms, keyboard activation, focus
-visibility, and the calculation disclosure.
+At each size, verify that the document and cards have no horizontal overflow, the horizontal
+animal/Ganzhi and glyph row remains legible, all glyphs share color and proportional line spacing,
+and both percentage rows remain intact. At the 412 × 790 in-app review size, verify the principal
+instrument ends within the viewport at default text size. Also inspect the compact timeline and unclipped marker,
+tablet and desktop layouts, both themes, a long timezone, long canonical titles and spectrum terms,
+keyboard activation, focus visibility, and the calculation disclosure. Desktop checks include
+1280 × 720, 1366 × 768, and 1440 × 900. At every width verify 25/50/25 temporal columns, 50/50
+Organ/Guidance columns, equal outer temporal heights, equal Organ/Guidance heights, and the compact
+Intention plus remainder-filling Execution stack.
 
 In development, `/?text-scale=large` raises the root font size to 150% so natural-scroll and
 non-clipping behavior can be inspected without changing a browser or operating-system preference.

@@ -41,9 +41,11 @@ describe('production Astrology Home', () => {
     expect(wrapper.get('h1').attributes('aria-label')).toBe('The Current Flow')
     expect(wrapper.get('h1').text()).toBe('The Current~Flow~')
     expect(wrapper.find('.yin-clock').exists()).toBe(true)
-    expect(wrapper.find('[data-glance-row="temporal"]').exists()).toBe(true)
-    expect(wrapper.find('[data-glance-row="active"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-section="principal"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-row="temporal-sandwich"]').exists()).toBe(true)
+    expect(wrapper.find('[data-glance-row="active-guidance"]').exists()).toBe(true)
     expect(wrapper.find('[data-glance-section="oltr"]').exists()).toBe(true)
+    expect(wrapper.findAll('.guidance-output')).toHaveLength(1)
     const glance = wrapper.get('[data-moment-signature-instant]')
     expect(glance.attributes('data-moment-signature-instant')).toBe(
       glance.attributes('data-celestial-instant'),

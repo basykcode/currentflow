@@ -115,12 +115,21 @@ resolution ID, evidence, validity, or cached bundle.
 tie-breaker among already valid relation/effort-compatible candidates. It cannot change the Hour
 Hexagram, response relation, effort level, primary Day work, or safety policy.
 
-`CurrentFlowGlance` renders the bundle OLTR or its unavailable state. `GuidanceOutputPanel` renders
-the selected controlled intention and bounded action. A user may choose one of the ranked intention
-alternatives or request an execution category. Those events call pure domain functions that return
-a newly validated bundle; the component does not interpret temporal fields or choose semantic state.
-Changing intention retains the original synthesis, Primary Current, OLTR, validity window, and
-versions, and reselects Execution only.
+`CurrentFlowGlance` renders the bundle OLTR or its unavailable state, then embeds the compact
+`GuidanceOutputPanel` projection in the principal instrument. The glance lists every supplied
+controlled intention (up to three) as a one-row character/Pinyin/English identity and omits the
+selected definition from this first-glance surface. It displays fewer when the domain supplies fewer
+and never creates filler output. Up to three already-validated, ranked executions retain their
+category and bounded action as visible text; their observable endpoint and selection rationale are
+preserved in the accessible name and hover title. Primary Current provenance remains in the deeper
+details presentation. Separate Intention and Execution unavailable states render when the semantic
+gate is closed. The full panel remains available for non-glance contexts.
+
+A user may choose one of the ranked intention alternatives or, in the full panel, request an
+execution category. Those events call pure domain functions that return a newly validated bundle;
+the component does not interpret temporal fields or choose semantic state. Changing intention
+retains the original synthesis, Primary Current, OLTR, validity window, and versions, and reselects
+Execution only.
 
 ## Integration contract for temporal semantics
 
