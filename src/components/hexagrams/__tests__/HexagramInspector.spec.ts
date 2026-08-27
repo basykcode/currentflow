@@ -75,6 +75,9 @@ describe('HexagramInspector', () => {
     expect(results[0]?.text()).toContain('Totality')
     expect(results[0]?.text()).toContain('Immortality')
     expect(results[0]?.find('.hexagram-glyph').exists()).toBe(true)
+    expect(
+      results[0]?.findAll('.result-spectrum .visually-hidden').map((label) => label.text()),
+    ).toEqual(['Shadow:', 'Gift:', 'Siddhi:'])
 
     await results[0]?.trigger('mousedown')
 

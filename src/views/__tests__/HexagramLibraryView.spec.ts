@@ -65,14 +65,19 @@ describe('HexagramLibraryView', () => {
     })
 
     const firstSpectrum = wrapper.findAll('.gene-key-spectrum')[0]
-    expect(firstSpectrum?.text()).toContain('ShadowEntropy')
-    expect(firstSpectrum?.text()).toContain('GiftFreshness')
-    expect(firstSpectrum?.text()).toContain('SiddhiBeauty')
+    expect(firstSpectrum?.text()).toContain('Shadow:Entropy')
+    expect(firstSpectrum?.text()).toContain('Gift:Freshness')
+    expect(firstSpectrum?.text()).toContain('Siddhi:Beauty')
     expect(
       firstSpectrum
         ?.findAll('.gene-key-frequency-icon')
         .map((icon) => icon.attributes('data-frequency-band')),
     ).toEqual(['shadow', 'gift', 'siddhi'])
+    expect(firstSpectrum?.findAll('.visually-hidden').map((label) => label.text())).toEqual([
+      'Shadow:',
+      'Gift:',
+      'Siddhi:',
+    ])
   })
 
   it('reports an empty result and restores all cards when the filter is cleared', async () => {

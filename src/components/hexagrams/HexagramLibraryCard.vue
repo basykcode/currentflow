@@ -33,17 +33,17 @@ const inspector = useHexagramInspectorStore()
     <ul class="gene-key-spectrum" :aria-label="`Gene Key ${hexagram.number} frequency spectrum`">
       <li class="gene-key-spectrum__shadow">
         <GeneKeyFrequencyIcon band="shadow" />
-        <span class="frequency-label">Shadow</span>
+        <span class="visually-hidden">Shadow:</span>
         <span>{{ hexagram.geneKey.shadow }}</span>
       </li>
       <li class="gene-key-spectrum__gift">
         <GeneKeyFrequencyIcon band="gift" />
-        <span class="frequency-label">Gift</span>
+        <span class="visually-hidden">Gift:</span>
         <span>{{ hexagram.geneKey.gift }}</span>
       </li>
       <li class="gene-key-spectrum__siddhi">
         <GeneKeyFrequencyIcon band="siddhi" />
-        <span class="frequency-label">Siddhi</span>
+        <span class="visually-hidden">Siddhi:</span>
         <span>{{ hexagram.geneKey.siddhi }}</span>
       </li>
     </ul>
@@ -118,29 +118,30 @@ const inspector = useHexagramInspectorStore()
 }
 
 .gene-key-spectrum {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  gap: 0.28rem;
-  margin: 0.7rem 0 0;
-  border-top: 1px solid var(--line);
-  padding: 0.65rem 0 0;
-  font-size: 0.58rem;
-  line-height: 1.25;
+  gap: 0.22rem 0.7rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.62rem;
+  line-height: 1.2;
   list-style: none;
-  text-align: left;
 }
 
 .gene-key-spectrum li {
-  display: grid;
-  grid-template-columns: 0.85rem 2.2rem minmax(0, 1fr);
-  align-items: baseline;
-  gap: 0.3rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
   min-width: 0;
+  white-space: nowrap;
 }
 
 .gene-key-spectrum :deep(.gene-key-frequency-icon) {
-  align-self: center;
-  font-size: 0.72rem;
+  font-size: 0.75rem;
 }
 
 .gene-key-spectrum__shadow {
@@ -155,11 +156,14 @@ const inspector = useHexagramInspectorStore()
   color: var(--ink);
 }
 
-.frequency-label {
-  font-size: 0.48rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 @media (max-width: 520px) {

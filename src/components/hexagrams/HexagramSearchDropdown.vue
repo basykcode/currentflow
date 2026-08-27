@@ -152,18 +152,18 @@ const handleFocusOut = (event: FocusEvent) => {
           <span class="result-spectrum" :aria-label="`Gene Key ${result.number} spectrum`">
             <span class="result-spectrum__shadow">
               <GeneKeyFrequencyIcon band="shadow" />
-              <span class="frequency-label">Shadow</span>
-              <span class="frequency-value">{{ result.geneKey.shadow }}</span>
+              <span class="visually-hidden">Shadow:</span>
+              <span>{{ result.geneKey.shadow }}</span>
             </span>
             <span class="result-spectrum__gift">
               <GeneKeyFrequencyIcon band="gift" />
-              <span class="frequency-label">Gift</span>
-              <span class="frequency-value">{{ result.geneKey.gift }}</span>
+              <span class="visually-hidden">Gift:</span>
+              <span>{{ result.geneKey.gift }}</span>
             </span>
             <span class="result-spectrum__siddhi">
               <GeneKeyFrequencyIcon band="siddhi" />
-              <span class="frequency-label">Siddhi</span>
-              <span class="frequency-value">{{ result.geneKey.siddhi }}</span>
+              <span class="visually-hidden">Siddhi:</span>
+              <span>{{ result.geneKey.siddhi }}</span>
             </span>
           </span>
         </li>
@@ -292,8 +292,7 @@ const handleFocusOut = (event: FocusEvent) => {
   font-size: 0.72rem;
 }
 
-.result-identity,
-.result-spectrum {
+.result-identity {
   display: grid;
   min-width: 0;
 }
@@ -314,34 +313,36 @@ const handleFocusOut = (event: FocusEvent) => {
 }
 
 .result-spectrum {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.55rem;
-  font-size: 0.58rem;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.22rem 0.7rem;
+  min-width: 0;
+  font-size: 0.62rem;
+  line-height: 1.2;
 }
 
 .result-spectrum > span {
-  display: grid;
-  grid-template-columns: 0.75rem minmax(0, 1fr);
-  grid-template-rows: auto auto;
+  display: inline-flex;
   align-items: center;
+  gap: 0.2rem;
   min-width: 0;
+  white-space: nowrap;
 }
 
 .result-spectrum :deep(.gene-key-frequency-icon) {
-  grid-row: span 2;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
 }
 
-.frequency-label {
-  font-size: 0.43rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.frequency-value {
-  min-width: 0;
-  overflow-wrap: anywhere;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 .result-spectrum__shadow {
@@ -388,9 +389,8 @@ const handleFocusOut = (event: FocusEvent) => {
 
 @media (max-width: 430px) {
   .result-spectrum {
-    grid-template-columns: 1fr;
-    gap: 0.38rem;
-    padding-block: 0.25rem 0.35rem;
+    gap: 0.3rem 0.7rem;
+    padding-block: 0.2rem 0.3rem;
   }
 }
 </style>
