@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import GeneKeyFrequencyIcon from '@/components/astrology/GeneKeyFrequencyIcon.vue'
 import HexagramGlyph from '@/components/astrology/HexagramGlyph.vue'
 import type { HexagramReference } from '@/domain/astrology/types'
 import { useHexagramInspectorStore } from '@/stores/hexagramInspector'
@@ -14,7 +15,7 @@ const inspector = useHexagramInspectorStore()
   <button
     class="library-card"
     type="button"
-    :aria-label="`Inspect Hexagram ${hexagram.number}, ${hexagram.nameEnglish}, ${hexagram.nameChinese}, ${hexagram.namePinyin}`"
+    :aria-label="`Inspect Hexagram ${hexagram.number}, ${hexagram.nameEnglish}, ${hexagram.nameChinese}, ${hexagram.namePinyin}. Gene Key spectrum: Shadow ${hexagram.geneKey.shadow}, Gift ${hexagram.geneKey.gift}, Siddhi ${hexagram.geneKey.siddhi}`"
     @click="inspector.open(props.hexagram)"
   >
     <span class="card-number">{{ hexagram.number.toString().padStart(2, '0') }}</span>
@@ -28,6 +29,24 @@ const inspector = useHexagramInspectorStore()
       <span lang="zh-Hant">{{ hexagram.nameChinese }}</span>
       <small>{{ hexagram.namePinyin }}</small>
     </span>
+
+    <ul class="gene-key-spectrum" :aria-label="`Gene Key ${hexagram.number} frequency spectrum`">
+      <li class="gene-key-spectrum__shadow">
+        <GeneKeyFrequencyIcon band="shadow" />
+        <span class="frequency-label">Shadow</span>
+        <span>{{ hexagram.geneKey.shadow }}</span>
+      </li>
+      <li class="gene-key-spectrum__gift">
+        <GeneKeyFrequencyIcon band="gift" />
+        <span class="frequency-label">Gift</span>
+        <span>{{ hexagram.geneKey.gift }}</span>
+      </li>
+      <li class="gene-key-spectrum__siddhi">
+        <GeneKeyFrequencyIcon band="siddhi" />
+        <span class="frequency-label">Siddhi</span>
+        <span>{{ hexagram.geneKey.siddhi }}</span>
+      </li>
+    </ul>
   </button>
 </template>
 
@@ -35,10 +54,10 @@ const inspector = useHexagramInspectorStore()
 .library-card {
   display: grid;
   position: relative;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: auto minmax(4rem, 1fr) auto auto;
   justify-items: center;
   min-width: 0;
-  min-height: 13.5rem;
+  min-height: 17.75rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
   background: color-mix(in srgb, var(--paper-raised) 88%, transparent);
@@ -98,9 +117,54 @@ const inspector = useHexagramInspectorStore()
   font-size: 0.59rem;
 }
 
+.gene-key-spectrum {
+  display: grid;
+  width: 100%;
+  gap: 0.28rem;
+  margin: 0.7rem 0 0;
+  border-top: 1px solid var(--line);
+  padding: 0.65rem 0 0;
+  font-size: 0.58rem;
+  line-height: 1.25;
+  list-style: none;
+  text-align: left;
+}
+
+.gene-key-spectrum li {
+  display: grid;
+  grid-template-columns: 0.85rem 2.2rem minmax(0, 1fr);
+  align-items: baseline;
+  gap: 0.3rem;
+  min-width: 0;
+}
+
+.gene-key-spectrum :deep(.gene-key-frequency-icon) {
+  align-self: center;
+  font-size: 0.72rem;
+}
+
+.gene-key-spectrum__shadow {
+  color: var(--ink-faint);
+}
+
+.gene-key-spectrum__gift {
+  color: var(--jade);
+}
+
+.gene-key-spectrum__siddhi {
+  color: var(--ink);
+}
+
+.frequency-label {
+  font-size: 0.48rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 @media (max-width: 520px) {
   .library-card {
-    min-height: 12rem;
+    min-height: 16.75rem;
   }
 
   .card-copy strong {

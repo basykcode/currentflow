@@ -180,6 +180,18 @@ export const useHexagramInspectorStore = defineStore('hexagram-inspector', () =>
     }
   }
 
+  const openHexagramFromSearch = (hexagramNumber: number, scrollTop = 0) => {
+    const current = screen.value
+    if (!current || selectedNumber.value === hexagramNumber) return
+    getHexagram(hexagramNumber)
+    history.value = [...history.value, { ...current, scrollTop }]
+    screen.value = {
+      kind: 'hexagram',
+      hexagramNumber,
+      scrollTop: 0,
+    }
+  }
+
   const close = () => {
     screen.value = null
     history.value = []
@@ -204,6 +216,7 @@ export const useHexagramInspectorStore = defineStore('hexagram-inspector', () =>
     returnToSourceHexagram,
     resetTransformationChain,
     openChainHexagram,
+    openHexagramFromSearch,
     close,
   }
 })

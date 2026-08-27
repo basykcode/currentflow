@@ -4,6 +4,7 @@ import { computed, nextTick, onBeforeUnmount, ref, watch } from 'vue'
 import HexagramGlyph from '@/components/astrology/HexagramGlyph.vue'
 import StatusBadge from '@/components/common/StatusBadge.vue'
 import HexagramCommentaryPanel from '@/components/hexagrams/HexagramCommentaryPanel.vue'
+import HexagramSearchDropdown from '@/components/hexagrams/HexagramSearchDropdown.vue'
 import HexagramTransitionInsight from '@/components/hexagrams/HexagramTransitionInsight.vue'
 import {
   createTransformationEngine,
@@ -66,6 +67,10 @@ const close = () => {
   inspector.close()
 }
 
+const selectSearchedHexagram = (hexagramNumber: number) => {
+  inspector.openHexagramFromSearch(hexagramNumber, modalScroll.value?.scrollTop ?? 0)
+}
+
 const handleKeydown = (event: KeyboardEvent) => {
   if (event.key === 'Escape') {
     event.preventDefault()
@@ -77,7 +82,7 @@ const handleKeydown = (event: KeyboardEvent) => {
 
   const focusable = [
     ...dialog.value.querySelectorAll<HTMLElement>(
-      'button:not(:disabled), a[href], select:not(:disabled), [tabindex]:not([tabindex="-1"])',
+      'button:not(:disabled), a[href], input:not(:disabled), select:not(:disabled), [tabindex]:not([tabindex="-1"])',
     ),
   ]
   if (focusable.length === 0) return
@@ -173,6 +178,10 @@ onBeforeUnmount(() => {
                 <span>King Wen {{ hexagram.number }} · {{ hexagram.namePinyin }}</span>
               </div>
             </div>
+            <HexagramSearchDropdown
+              :current-hexagram-number="hexagram.number"
+              @select="selectSearchedHexagram"
+            />
             <button
               class="inspector-close"
               type="button"
@@ -441,6 +450,7 @@ onBeforeUnmount(() => {
 }
 
 .inspector-header {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -449,6 +459,10 @@ onBeforeUnmount(() => {
   background: color-mix(in srgb, var(--paper-raised) 92%, transparent);
   padding: 0.65rem 0.8rem 0.65rem 1.25rem;
   backdrop-filter: blur(18px);
+}
+
+.inspector-header-context {
+  flex: 1 1 16rem;
 }
 
 .inspector-header p,
@@ -974,6 +988,9 @@ onBeforeUnmount(() => {
   }
 
   .inspector-dialog {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
     width: 100%;
     max-height: 100dvh;
     border: 0;
@@ -981,7 +998,20 @@ onBeforeUnmount(() => {
   }
 
   .inspector-scroll {
-    max-height: calc(100dvh - 4.2rem);
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .inspector-header {
+    z-index: 2;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+  }
+
+  .inspector-header-context {
+    max-width: calc(100% - 3.1rem);
   }
 
   .inspector-layout {
