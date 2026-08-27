@@ -12,6 +12,8 @@
 
 - Replaced the stale social metadata URL with a cache-safe `1200×630` PNG on the Lake Yin dark-blue field.
 - Composed the landscape card from the existing rights-cleared project artwork: Fire Horse on the left, the approved transparent Current Flow mark in the center, and the canonical Hexagram 28 display pattern on the right.
+- Refined the approved final composition against measured rendered-pixel bounds: the left edge, Horse-to-Taiji, Taiji-to-Hexagram, and right edge clearances are each exactly 113 pixels; all three visible subjects share the same bottom boundary at pixel 443.
+- Rendered Hexagram 28 in a `246×246` square footprint and expanded the Taiji field to six slightly stronger concentric rings that continue outward behind the two side symbols.
 - Added a `600×600` compact social image containing only the Current Flow mark on the same blue field. The landscape card also keeps the mark centered so square center-crops remain brand-safe.
 - Added complete Open Graph and Twitter image metadata, explicit dimensions, MIME types, descriptions, alt text, canonical URL, site name, locale, and dark theme color.
 - Replaced the linked legacy SVG tab icon with transparent PNG derivatives of the approved Current Flow mark at 16, 32, and 48 pixels.
@@ -32,6 +34,7 @@
 - Focused metadata tests passed: 3 of 3.
 - Isolated in-app-browser QA at `http://127.0.0.1:5178/` confirmed both Open Graph images, the Twitter image, all three favicon sizes, `#07162d` theme color, and the manifest link; browser warnings/errors: none.
 - Visual inspection passed for the original-resolution landscape and square images; all required subjects remain clear and the compact image contains only the centered logo.
+- The user visually approved the final equal-boundary, shared-baseline, expanded-ring composition before publication.
 - Full `npm run check` passed through a local npm-to-pnpm launcher shim because the bundled runtime exposes `pnpm` but no native `npm` binary:
   - toolchain declarations, strict TypeScript, and ESLint passed;
   - Vitest: 52 files and 406 tests passed;
