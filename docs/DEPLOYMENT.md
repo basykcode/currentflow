@@ -159,7 +159,7 @@ the gateway's Production and Preview environments:
 | --------------------------- | ------------------------ | --------------------------------------------------------- |
 | `AI`                        | Workers AI binding       | The account's Workers AI catalog                          |
 | `GENE_KEYS_SOURCES`         | Workers KV binding       | A private namespace created for the 128 Gene Key chapters |
-| `PROMPT_LAB_STATE`          | Workers KV binding       | Private global users and generated experiment records    |
+| `PROMPT_LAB_STATE`          | Workers KV binding       | Private global users and generated experiment records     |
 | `PROMPT_LAB_PASSWORD`       | encrypted secret         | The shared password supplied out of band by the owner     |
 | `PROMPT_LAB_SESSION_SECRET` | encrypted secret         | At least 32 random bytes, independently generated         |
 | `OPENAI_API_KEY`            | encrypted secret         | Project OpenAI key for the GPT-5.6 choices                |
@@ -246,7 +246,9 @@ Use the exact repository toolchain versions in `config/toolchain.json`. In Windo
 - Build command: `npm run build`
 - Build output directory: `dist`
 - Root directory: repository root
-- Node version: `24.19.0`
+- Node version: `22.22.2`
+- npm version: `11.4.2`; skip the platform's automatic dependency install and run exact npm for
+  `npm ci` before the build when activating this toolchain
 
 Vite uses `/` as its base. The existing `currentflow` Worker owns apex and `www`. The separate
 `current-flow-api-gateway` Worker owns the Alchemy proxy and the private `/api/gene-keys-lab/*`

@@ -27,19 +27,22 @@ Maintain one active environment named **Current Flow Cloud** with:
 | -------------------- | --------------------------------------------------- |
 | Repository           | `basykcode/currentflow`                             |
 | Image                | `universal`                                         |
-| Package version      | Node `24.19.0`                                      |
-| Package version      | Python `3.13.14`                                    |
+| Package version      | Node `22` (currently exact `22.22.2`)               |
+| Package version      | Python `3.13` (currently exact `3.13.13`)           |
 | Environment variable | `CURRENT_FLOW_CODEX_EXECUTION=cloud`                |
 | Setup script         | `bash scripts/codex/cloud-bootstrap.sh setup`       |
 | Maintenance script   | `bash scripts/codex/cloud-bootstrap.sh maintenance` |
 | Container caching    | enabled after the bootstrap is on default `master`  |
 | Secrets              | none for ordinary development                       |
 
-Use **Set package versions** in the environment editor for Node and Python; `.node-version` and
-`.python-version` are enforcement evidence, not a substitute for the Cloud runtime controls. The
-scripts enforce the pinned Node, npm, Python, and uv declarations; install JavaScript and Python
-locks reproducibly; persist the exact uv executable path into later agent shells; and run the Cloud
-evidence and workspace doctor. Setup must fail rather than use a different runtime or silently
+Use **Set package versions** in the environment editor for Node `22` and Python `3.13`. The configured
+universal image currently supplies exact Node `22.22.2`, npm `11.4.2`, Python `3.13.13`, and uv
+`0.7.22`. Those are the canonical development and production versions. The setup script verifies the
+native tools before dependency access and never installs a second Node, npm, Python, or uv runtime.
+`.node-version` and `.python-version` remain enforcement evidence, not substitutes for the Cloud
+runtime controls. GitHub Actions, Cloudflare builds, and the Render container carry the same exact
+declarations. If the Cloud image advances, update every declaration and lockfile together through a
+reviewed pull request. Setup must fail rather than improvise a different runtime or silently
 reconstruct protected inputs.
 
 Codex creates a cached base by checking out the repository default branch before running setup. Do

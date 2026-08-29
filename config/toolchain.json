@@ -3,7 +3,7 @@
   "tools": [
     {
       "tool": "Node.js",
-      "version": "24.19.0",
+      "version": "22.22.2",
       "purpose": "Frontend builds, tests, and repository automation",
       "enforcedBy": [
         ".nvmrc",
@@ -18,7 +18,7 @@
     },
     {
       "tool": "npm",
-      "version": "11.17.0",
+      "version": "11.4.2",
       "purpose": "Reproducible JavaScript dependency installation",
       "enforcedBy": [
         "package.json",
@@ -30,7 +30,7 @@
     },
     {
       "tool": "Python",
-      "version": "3.13.14",
+      "version": "3.13.13",
       "purpose": "FastAPI runtime and backend tooling",
       "enforcedBy": [
         "services/alchemy-api/.python-version",
@@ -42,7 +42,7 @@
     },
     {
       "tool": "uv",
-      "version": "0.11.32",
+      "version": "0.7.22",
       "purpose": "Locked Python dependency installation",
       "enforcedBy": [
         "services/alchemy-api/Dockerfile",

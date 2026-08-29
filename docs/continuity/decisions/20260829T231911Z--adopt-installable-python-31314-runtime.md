@@ -1,6 +1,6 @@
 # Decision: Adopt an installable Python 3.13.14 production runtime
 
-- Status: accepted
+- Status: superseded by [Align development and production with the native Codex toolchain](20260829T233942Z--align-dev-and-production-with-codex-native-toolchain.md)
 - Date (UTC): 2026-08-29
 - Scope: Alchemy API runtime, dependency lock, CI, container, Render release, and Codex Cloud
 

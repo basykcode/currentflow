@@ -11,9 +11,10 @@ integration, merge, push, and deployment are separate permissions.
 
 ## Cloud worker
 
-- Confirm the **Current Flow Cloud** environment pins Node 24.19.0 and Python 3.13.14, then runs the
-  tracked setup and maintenance scripts. Reset its cache whenever a runtime or package-manager pin
-  changes.
+- Confirm the **Current Flow Cloud** environment selects Node 22 and Python 3.13 and that its native
+  exact Node 22.22.2, npm 11.4.2, Python 3.13.13, and uv 0.7.22 versions match
+  `config/toolchain.json`; never install a second language runtime inside setup. Reset its cache
+  whenever a runtime or package-manager pin changes.
 - Run `npm run codex:doctor` before tracked changes. Stop if the checkout is not marked
   `CURRENT_FLOW_CODEX_EXECUTION=cloud` or the evidence boundary fails.
 - Start ordinary work from the explicitly selected GitHub `master` revision. Keep one scoped task on

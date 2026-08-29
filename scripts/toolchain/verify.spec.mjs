@@ -5,12 +5,12 @@ import { assertPythonRange, assertRuntimeVersion, isExactSpecifier } from './ver
 
 test('runtime mismatches fail with the tool name and exact versions', () => {
   assert.throws(
-    () => assertRuntimeVersion('Node.js', '24.18.0', '24.19.0'),
-    /Node\.js mismatch: expected 24\.19\.0, received 24\.18\.0/,
+    () => assertRuntimeVersion('Node.js', '22.22.1', '22.22.2'),
+    /Node\.js mismatch: expected 22\.22\.2, received 22\.22\.1/,
   )
   assert.throws(
-    () => assertRuntimeVersion('npm', '11.16.0', '11.17.0'),
-    /npm mismatch: expected 11\.17\.0, received 11\.16\.0/,
+    () => assertRuntimeVersion('npm', '11.4.1', '11.4.2'),
+    /npm mismatch: expected 11\.4\.2, received 11\.4\.1/,
   )
 })
 
@@ -22,9 +22,9 @@ test('direct dependency policy accepts only exact semantic versions', () => {
 })
 
 test('Python patch policy requires the exact lower bound', () => {
-  assert.doesNotThrow(() => assertPythonRange('requires-python = ">=3.13.14,<3.14"', '3.13.14'))
+  assert.doesNotThrow(() => assertPythonRange('requires-python = ">=3.13.13,<3.14"', '3.13.13'))
   assert.throws(
-    () => assertPythonRange('requires-python = ">=3.13,<3.14"', '3.13.14'),
+    () => assertPythonRange('requires-python = ">=3.13,<3.14"', '3.13.13'),
     /Python declaration mismatch/,
   )
 })

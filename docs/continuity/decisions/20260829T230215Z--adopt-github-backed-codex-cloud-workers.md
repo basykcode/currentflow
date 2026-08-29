@@ -31,11 +31,12 @@ enter GitHub or Codex Cloud.
 
 ## Decision
 
-Maintain one canonical **Current Flow Cloud** environment for `basykcode/currentflow`. It pins Node
-24.19.0 and Python 3.13.14 through the environment's package-version controls, sets the non-secret
-`CURRENT_FLOW_CODEX_EXECUTION=cloud` marker, runs the tracked setup and maintenance scripts, enables
-post-setup caching after the bootstrap reaches default `master`, and holds no ordinary production
-secret.
+Maintain one canonical **Current Flow Cloud** environment for `basykcode/currentflow`. It selects
+Node 22 and Python 3.13 through the environment's package-version controls and uses the exact native
+Node 22.22.2, npm 11.4.2, Python 3.13.13, and uv 0.7.22 tools across development and production. It
+sets the non-secret `CURRENT_FLOW_CODEX_EXECUTION=cloud` marker, runs the tracked setup and
+maintenance scripts, enables post-setup caching after the bootstrap reaches default `master`, and
+holds no ordinary production secret.
 
 The startup hook distinguishes Cloud explicitly rather than inferring it from `.git` shape. A Cloud
 task is already an isolated worker and never dispatches to desktop or uses the local lease registry.
@@ -107,4 +108,4 @@ desktop behavior defined below.
 - [`../../../AGENTS.md`](../../../AGENTS.md)
 - [`../../../scripts/codex/cloud-bootstrap.sh`](../../../scripts/codex/cloud-bootstrap.sh)
 - [`../../../scripts/codex/cloud-boundary.mjs`](../../../scripts/codex/cloud-boundary.mjs)
-- [Adopt an installable Python 3.13.14 production runtime](20260829T231911Z--adopt-installable-python-31314-runtime.md)
+- [Align development and production with the native Codex toolchain](20260829T233942Z--align-dev-and-production-with-codex-native-toolchain.md)

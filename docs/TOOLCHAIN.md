@@ -6,10 +6,10 @@ of a competing pnpm lock, and the running Node/npm versions.
 
 | Tool                     | Exact version     |
 | ------------------------ | ----------------- |
-| Node.js                  | 24.19.0           |
-| npm                      | 11.17.0           |
-| Python                   | 3.13.14           |
-| uv                       | 0.11.32           |
+| Node.js                  | 22.22.2           |
+| npm                      | 11.4.2            |
+| Python                   | 3.13.13           |
+| uv                       | 0.7.22            |
 | Neo4j Community local/CI | 5.26.28-community |
 | Neo4j Python driver      | 5.28.2            |
 | TypeScript               | 5.8.3             |
@@ -39,6 +39,10 @@ Docker uses the exact Python tag rather than a digest because the repository doe
 automated multi-architecture digest refresh and provenance workflow. Dependabot supplies reviewed
 base-image updates.
 
-Python 3.13.14 is intentional: unlike the source-only Python 3.12.14 security release, the pinned uv
-can install 3.13.14 reproducibly on Linux and Apple Silicon. Codex Cloud, GitHub Actions, the Render
-container, local backend tooling, the lockfile, and API metadata all use that same exact runtime.
+The four language/runtime entries are the exact versions provided by the configured Codex Cloud
+universal environment when its package selectors use Node `22` and Python `3.13`. Development does
+not replace them during setup. GitHub Actions and the Render container declare the same versions;
+Cloudflare reads exact Node from the root version files and must use exact npm during the release
+activation. Local tooling, lockfiles, and API metadata follow the same contract. If the managed Cloud
+image advances a patch, update the repository and production declarations together through a
+reviewed pull request instead of installing a second hidden runtime inside Cloud.

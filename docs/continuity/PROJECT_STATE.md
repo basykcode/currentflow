@@ -301,12 +301,13 @@ The integrated release-aware Alchemy foundation additionally provides:
   chosen IANA timezone and make no apparent-solar-time correction.
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
-- Production tooling is locked to Node 24.19.0, npm 11.17.0, Python 3.13.14, uv 0.11.32, Neo4j
+- Production tooling is locked to Node 22.22.2, npm 11.4.2, Python 3.13.13, uv 0.7.22, Neo4j
   Community 5.26.28, Neo4j Python driver 5.28.2, TypeScript 5.8.3, Vite 7.3.6, and Wrangler 4.126.0;
   `npm run check` is required before completion.
 - npm and `package-lock.json` are the sole JavaScript package-manager contract. uv and `uv.lock` are
-  the Python contract. CI, Codex Cloud, Cloudflare, and the Render container use exact runtimes and
-  `npm ci` / `uv sync --locked`; the competing pnpm lockfile is intentionally removed.
+  the Python contract. CI, Codex Cloud, Cloudflare, and the Render container must use the exact
+  synchronized runtimes and `npm ci` / `uv sync --locked`; the competing pnpm lockfile is
+  intentionally removed.
 - The primary checkout is read-only for Codex: it may inspect and coordinate app tasks but may not
   mutate project files, Git state, dependencies, generated output, tests/builds, or runtimes. It
   automatically dispatches each mutation request once, in full, to an app-managed worktree based on
@@ -336,7 +337,7 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Protect the Gene Keys Prompt Lab at the edge](decisions/20260826T222903Z--protect-gene-keys-prompt-lab-at-the-edge.md)
 - [Share Prompt Lab history and select the inference provider](decisions/20260827T170500Z--share-prompt-lab-history-and-select-inference-provider.md)
 - [Adopt GitHub-backed Codex Cloud workers](decisions/20260829T230215Z--adopt-github-backed-codex-cloud-workers.md)
-- [Adopt an installable Python 3.13.14 production runtime](decisions/20260829T231911Z--adopt-installable-python-31314-runtime.md)
+- [Align development and production with the native Codex toolchain](decisions/20260829T233942Z--align-dev-and-production-with-codex-native-toolchain.md)
 - [Protect static special messages with browser-side encryption](decisions/20260725T215859Z--protect-static-special-messages-with-browser-side-encryption.md)
 - [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
@@ -436,7 +437,7 @@ The integrated release-aware Alchemy foundation additionally provides:
   `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
 - The VH page intentionally contains encrypted Lorem Ipsum and no music asset yet. Its music controls
   remain visibly unavailable until the licensed track is supplied.
-- The Codex Cloud workflow and Python 3.13.14 Render runtime are integration candidates, not yet
+- The Codex Cloud workflow and Codex-native Python 3.13.13 Render runtime are integration candidates, not yet
   active production facts. Container CI, two independent Cloud pilots, protected merge approval,
   provider deployment, and live metadata/API smoke checks remain release gates.
 

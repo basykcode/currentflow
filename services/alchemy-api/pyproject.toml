@@ -3,7 +3,7 @@ name = "current-alchemy"
 version = "0.1.0"
 description = "Graph-backed research API for Current Alchemy"
 readme = "README.md"
-requires-python = ">=3.13.14,<3.14"
+requires-python = ">=3.13.13,<3.14"
 dependencies = [
   "duckdb==1.3.2",
   "fastapi==0.116.1",

@@ -15,15 +15,23 @@ function position(needle) {
 
 test('Cloud evidence boundary runs before dependency network access', () => {
   const boundary = position('node scripts/codex/cloud-boundary.mjs')
-  for (const networkStep of ['npm install --global', 'npm ci', 'python3 -m pip install']) {
+  for (const networkStep of ['npm ci', 'uv --directory services/alchemy-api sync']) {
     assert.ok(boundary < position(networkStep), `${networkStep} must follow the Cloud boundary`)
   }
 })
 
-test('Cloud bootstrap locks dependencies and persists the exact uv path', () => {
+test('Cloud bootstrap verifies the native Node and npm versions without replacing them', () => {
+  assert.doesNotMatch(script, /nvm install/)
+  assert.doesNotMatch(script, /npm install --global/)
+  assert.match(script, /Codex Cloud Node mismatch/)
+  assert.match(script, /npm --version/)
+})
+
+test('Cloud bootstrap verifies native Python and uv, then uses the locked dependencies', () => {
+  assert.doesNotMatch(script, /uv python install/)
+  assert.doesNotMatch(script, /pip install/)
   assert.match(script, /sync --locked --all-groups/)
   assert.doesNotMatch(script, /sync --frozen/)
-  assert.match(script, /\.bashrc/)
   assert.match(script, /platform\.python_version\(\)/)
-  assert.match(script, /npm --version/)
+  assert.match(script, /uv --version/)
 })

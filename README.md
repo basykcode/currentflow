@@ -28,7 +28,8 @@ source-to-result route based on the _Jiaoshi Yilin_, with its source locator and
 
 ## Local setup
 
-Use Node 24.19.0 and npm 11.17.0 as declared in `config/toolchain.json`.
+Use Node 22.22.2 and npm 11.4.2 as declared in `config/toolchain.json`. These are the native Codex
+Cloud versions used by development, CI, and production builds.
 
 ```bash
 nvm use

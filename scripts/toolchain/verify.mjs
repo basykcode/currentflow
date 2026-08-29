@@ -40,9 +40,10 @@ assert.deepEqual(packageJson.allowScripts, {
   'fsevents@2.3.3': true,
   'workerd@1.20260825.1': true,
 })
-assert.equal(packageJson.devDependencies['@tsconfig/node24'], '24.0.0')
-assert.match(await text('tsconfig.node.json'), /@tsconfig\/node24\/tsconfig\.json/)
-assert.match(await text('workers/api-gateway/tsconfig.json'), /@tsconfig\/node24\/tsconfig\.json/)
+assert.equal(packageJson.devDependencies['@tsconfig/node22'], '22.0.5')
+assert.equal(packageJson.devDependencies['@types/node'], '22.20.1')
+assert.match(await text('tsconfig.node.json'), /@tsconfig\/node22\/tsconfig\.json/)
+assert.match(await text('workers/api-gateway/tsconfig.json'), /@tsconfig\/node22\/tsconfig\.json/)
 assert.equal(packageJson.devDependencies.typescript, versions.TypeScript)
 assert.equal(packageJson.devDependencies.vite, versions.Vite)
 assert.equal(packageJson.devDependencies.wrangler, versions['Cloudflare Wrangler'])
