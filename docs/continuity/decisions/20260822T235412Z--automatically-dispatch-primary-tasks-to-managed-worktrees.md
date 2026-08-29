@@ -2,7 +2,7 @@
 
 - Status: accepted
 - Date (UTC): 2026-08-22
-- Scope: development operations and concurrent Codex work
+- Scope: local Codex desktop development operations and concurrent work
 
 ## Context
 
@@ -94,6 +94,12 @@ primary hard stop and manual task-start flow.
 ## Superseded by
 
 None.
+
+## Complemented by
+
+[GitHub-backed Codex Cloud workers](20260829T230215Z--adopt-github-backed-codex-cloud-workers.md)
+make isolated Cloud tasks the default from-anywhere path while retaining this automatic dispatch
+behavior for the local desktop primary checkout.
 
 ## Related files, issues, handoffs, and commits
 

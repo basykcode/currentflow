@@ -22,9 +22,9 @@ test('direct dependency policy accepts only exact semantic versions', () => {
 })
 
 test('Python patch policy requires the exact lower bound', () => {
-  assert.doesNotThrow(() => assertPythonRange('requires-python = ">=3.12.14,<3.13"', '3.12.14'))
+  assert.doesNotThrow(() => assertPythonRange('requires-python = ">=3.13.14,<3.14"', '3.13.14'))
   assert.throws(
-    () => assertPythonRange('requires-python = ">=3.12,<3.13"', '3.12.14'),
+    () => assertPythonRange('requires-python = ">=3.13,<3.14"', '3.13.14'),
     /Python declaration mismatch/,
   )
 })

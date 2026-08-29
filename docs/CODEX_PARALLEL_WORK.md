@@ -1,8 +1,14 @@
 # Isolated Codex work for Current Flow
 
-Current Flow uses one Codex chat per linked Git worktree, branch, lease, and runtime namespace. A
-branch alone is not isolation: every chat pointed at the same checkout still shares its files,
-index, checked-out `HEAD`, build outputs, and untracked data.
+Current Flow has two isolation boundaries. Codex Cloud is the default for from-anywhere parallel
+development: each task receives a disposable checkout and publishes durable work through a
+short-lived branch and protected pull request. Codex desktop remains the local fallback, with one
+chat per linked Git worktree, branch, lease, and runtime namespace.
+
+See [`CODEX_CLOUD.md`](CODEX_CLOUD.md) for Cloud environment configuration, concurrent task routing,
+integration, and release. The remainder of this document describes the desktop boundary. A branch
+alone is not local isolation: every chat pointed at the same checkout still shares its files, index,
+checked-out `HEAD`, build outputs, and untracked data.
 
 The repository's primary checkout is therefore a read-only coordinator. It may inspect project
 state and create or coordinate app tasks, but every project mutation happens in an app-managed
@@ -45,7 +51,7 @@ cannot enforce it.
    - records an exclusive task/worktree/branch lease in the repository's local Git metadata; and
    - assigns a unique Vite, API, Neo4j, and Docker Compose namespace.
 6. The worker installs dependencies if needed with `npm ci`, then runs
-   `npm run workspace:doctor`. It does not edit until the command reports
+   `npm run codex:doctor` (or the compatible `npm run workspace:doctor`). It does not edit until the command reports
    `Workspace isolation: OK`.
 
 If a brand-new task already opens in its own app-managed linked worktree, it is already the worker;
@@ -89,9 +95,10 @@ contains no source evidence or credentials.
 
 ## Local-only files
 
-[`.worktreeinclude`](../.worktreeinclude) tells the Codex desktop app to copy the ignored `.env` and
+[`.worktreeinclude`](../.worktreeinclude) tells only the Codex desktop app to copy ignored `.env` and
 local hexagram evidence directories into each managed worktree. These are snapshots copied by value:
-one chat cannot mutate another chat's copy, and changes do not synchronize back.
+one chat cannot mutate another chat's copy, and changes do not synchronize back. Cloud starts only
+from GitHub and must never receive these inputs.
 
 `node_modules`, build output, caches, `tmp/`, and Alchemy data are intentionally not copied. Each
 worktree installs or creates its own disposable runtime state.

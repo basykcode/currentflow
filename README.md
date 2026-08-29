@@ -40,11 +40,13 @@ npm run dev
 The development server prints the local URL. No service credentials or environment variables are
 required for Alchemy demo mode.
 
-For concurrent Codex work, create a new task in the saved Current Flow project and enter the actual
-request once. A task opened in the primary checkout remains read-only and automatically dispatches
-the request to an app-managed worktree worker based on clean `master`. Each worker receives an
-exclusive branch, lease, and runtime namespace and runs `npm run workspace:doctor` before editing.
-Follow [`docs/CODEX_PARALLEL_WORK.md`](docs/CODEX_PARALLEL_WORK.md).
+For development from any browser or phone, use the configured Current Flow Codex Cloud environment
+and start each independent task from explicit `master`. Parallel tasks use short-lived branches and
+protected pull requests, then converge through one serialized integration and release path. Local
+Codex desktop worktrees remain available for rights-protected evidence and machine-specific work.
+Every worker runs `npm run codex:doctor` before editing. Follow
+[`docs/CODEX_CLOUD.md`](docs/CODEX_CLOUD.md) and
+[`docs/CODEX_PARALLEL_WORK.md`](docs/CODEX_PARALLEL_WORK.md).
 
 ## Alchemy frontend
 
@@ -114,7 +116,10 @@ are described in
 - `npm run toolchain:check` — verify every exact runtime and package-manager declaration
 - `npm run gateway:check` — test and dry-build the strict-TypeScript API gateway
 - `npm run load:test` — validate bounded k6 profiles and production-target guards
-- `npm run workspace:doctor` / `workspace:status` — verify or inspect Codex worktree isolation
+- `npm run codex:doctor` — verify the active Codex Cloud or local-worktree boundary
+- `npm run cloud:boundary` — verify protected evidence and environment files remain out of Git
+- `npm run cloud:setup` / `cloud:maintenance` — reproduce the configured Codex Cloud environment
+- `npm run workspace:doctor` / `workspace:status` — local-compatible doctor and lease inspection
 - `npm run workspace:dev` — start Vite on the current chat's leased port
 - `npm run workspace:alchemy -- <action>` — manage this chat's isolated Alchemy stack and data tools
 - `npm run transitions:prepare -- --source <epub>` — rebuild local Forest transition evidence
@@ -140,7 +145,7 @@ src/features        vertically scoped product features, including Alchemy
 src/providers       swappable data adapters
 src/stores          shared preferences, identity, and transient inspector state
 src/views           route-level composition
-scripts/codex       per-chat worktree leases and isolated runtime commands
+scripts/codex       Cloud bootstrap/evidence checks plus local worktree isolation
 config              canonical toolchain manifest
 workers/api-gateway separate Cloudflare API ingress and route policy
 load-tests          guarded k6 scale scenarios and policy tests

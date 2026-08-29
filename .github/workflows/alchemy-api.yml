@@ -28,12 +28,12 @@ jobs:
         working-directory: .
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12.14'
+          python-version: '3.13.14'
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.11.32'
           enable-cache: true
-      - run: uv sync --frozen --all-groups
+      - run: uv sync --locked --all-groups
       - name: Verify repository toolchain manifest
         working-directory: .
         run: npm run toolchain:check
@@ -82,12 +82,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12.14'
+          python-version: '3.13.14'
       - uses: astral-sh/setup-uv@v6
         with:
           version: '0.11.32'
           enable-cache: true
-      - run: uv sync --frozen --all-groups
+      - run: uv sync --locked --all-groups
       - run: uv run pytest -m integration
       - run: uv run alchemy graph audit
 

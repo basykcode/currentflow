@@ -9,7 +9,8 @@ export function isExactSpecifier(specifier) {
 }
 
 export function assertPythonRange(pyproject, expectedVersion) {
-  const declaration = `requires-python = ">=${expectedVersion},<3.13"`
+  const [major, minor] = expectedVersion.split('.').map(Number)
+  const declaration = `requires-python = ">=${expectedVersion},<${major}.${minor + 1}"`
   if (!pyproject.includes(declaration)) {
     throw new Error(`Python declaration mismatch: expected ${declaration}`)
   }

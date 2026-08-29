@@ -2,7 +2,7 @@
 
 ## Scope
 
-`services/alchemy-api` is a separately deployable Python 3.12 service. FastAPI owns the HTTP
+`services/alchemy-api` is a separately deployable Python 3.13 service. FastAPI owns the HTTP
 contract, Neo4j is the only persistent database, and offline administration commands own all
 external source ingestion. Local Compose and CI use the pinned Community image; production uses
 AuraDB Professional through the same driver and repository contract. The existing Vue application
@@ -48,7 +48,7 @@ Direct service operation:
 ```powershell
 Set-Location services/alchemy-api
 Copy-Item .env.example .env
-uv sync --frozen
+uv sync --locked
 uv run alchemy db migrate
 uv run alchemy data seed-demo
 uv run uvicorn current_alchemy.app:create_app --factory --host 0.0.0.0 --port 8000

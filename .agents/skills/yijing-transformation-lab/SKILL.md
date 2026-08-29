@@ -72,7 +72,9 @@ description: Extend or review Current Flow's Yijing transformation domain engine
 3. Test source-table failures and source-needed modules.
 4. Test same-dialog Lab navigation, exact Back restoration, arrival context, chain behavior, close
    reset, and keyboard interaction.
-5. Run `npm run workspace:doctor`, focused tests, `npm run check`, and browser QA at desktop and
-   approximately 360px width.
+5. Run `npm run codex:doctor`, focused tests, `npm run check`, and browser QA at desktop and
+   approximately 360px width. When a Cloud task has no interactive browser, require component and
+   viewport-focused automated tests and record the browser pass as a separate local or preview QA
+   step rather than claiming it ran.
 6. Confirm no unexpected network request, predictive language, fabricated target, or raw protected
    source text appears.

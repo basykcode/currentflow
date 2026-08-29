@@ -47,9 +47,11 @@ Independent tasks use independent branches or worktrees and independent handoff 
 workers never append to a shared log or concurrently rewrite project state without exclusive
 ownership. Feature work remains labeled unmerged until integration reconciles it.
 
-For Codex, a branch is not sufficient: every active worker uses its own linked worktree and lease.
-Follow [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md); a task in the read-only primary
-checkout automatically dispatches implementation requests to app-managed worktree workers.
+For Codex, a branch is not sufficient when tasks share a local checkout. Cloud workers use isolated
+ephemeral checkouts and GitHub pull requests; desktop workers use linked worktrees and leases. Follow
+[`../CODEX_CLOUD.md`](../CODEX_CLOUD.md) and
+[`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md). A task in the read-only local primary
+checkout still dispatches implementation requests to app-managed worktree workers.
 
 ## Superseding decisions
 

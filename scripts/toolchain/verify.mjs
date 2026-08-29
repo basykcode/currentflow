@@ -17,6 +17,12 @@ const versions = Object.fromEntries(manifest.tools.map((item) => [item.tool, ite
 const packageJson = JSON.parse(await text('package.json'))
 const packageLock = JSON.parse(await text('package-lock.json'))
 const lockedRoot = packageLock.packages['']
+const alchemyWorkflow = await text('.github/workflows/alchemy-api.yml')
+const frontendWorkflow = await text('.github/workflows/frontend.yml')
+const pyproject = await text('services/alchemy-api/pyproject.toml')
+const pythonLock = await text('services/alchemy-api/uv.lock')
+const dockerfile = await text('services/alchemy-api/Dockerfile')
+const cloudGuide = await text('docs/CODEX_CLOUD.md')
 
 assert.equal(await text('.nvmrc'), versions['Node.js'])
 assert.equal(await text('.node-version'), versions['Node.js'])
@@ -43,6 +49,16 @@ assert.equal(packageJson.devDependencies.wrangler, versions['Cloudflare Wrangler
 assert.deepEqual(lockedRoot.dependencies, packageJson.dependencies)
 assert.deepEqual(lockedRoot.devDependencies, packageJson.devDependencies)
 assert.deepEqual(lockedRoot.engines, packageJson.engines)
+assert.match(
+  frontendWorkflow,
+  new RegExp(`node-version: '${versions['Node.js'].replaceAll('.', '\\.')}'`),
+)
+assert.match(frontendWorkflow, new RegExp(`npm@${versions.npm.replaceAll('.', '\\.')}`))
+assert.match(
+  alchemyWorkflow,
+  new RegExp(`node-version: '${versions['Node.js'].replaceAll('.', '\\.')}'`),
+)
+assert.match(alchemyWorkflow, new RegExp(`npm@${versions.npm.replaceAll('.', '\\.')}`))
 
 const npmExecutable = process.env.npm_execpath
 if (npmExecutable?.endsWith('npm-cli.js')) {
@@ -63,14 +79,34 @@ assert.ok(
 
 assert.equal(await text('services/alchemy-api/.python-version'), versions.Python)
 assert.match(
-  await text('services/alchemy-api/Dockerfile'),
+  dockerfile,
   new RegExp(`FROM python:${versions.Python.replaceAll('.', '\\.')}\\-slim-bookworm`),
 )
-assertPythonRange(await text('services/alchemy-api/pyproject.toml'), versions.Python)
+assertPythonRange(pyproject, versions.Python)
+assert.match(dockerfile, new RegExp(`ghcr\\.io/astral-sh/uv:${versions.uv.replaceAll('.', '\\.')}`))
+assert.match(dockerfile, /uv sync --locked --no-dev/)
+const [pythonMajor, pythonMinor] = versions.Python.split('.').map(Number)
 assert.match(
-  await text('services/alchemy-api/Dockerfile'),
-  new RegExp(`ghcr\\.io/astral-sh/uv:${versions.uv.replaceAll('.', '\\.')}`),
+  pythonLock,
+  new RegExp(
+    `requires-python = ">=${versions.Python.replaceAll('.', '\\.')}, <${pythonMajor}\\.${pythonMinor + 1}"`,
+  ),
 )
+assert.match(pyproject, new RegExp(`target-version = "py${pythonMajor}${pythonMinor}"`))
+assert.match(pyproject, new RegExp(`python_version = "${pythonMajor}\\.${pythonMinor}"`))
+assert.equal(
+  [...alchemyWorkflow.matchAll(/python-version: '([^']+)'/g)].every(
+    ([, version]) => version === versions.Python,
+  ),
+  true,
+)
+assert.equal([...alchemyWorkflow.matchAll(/python-version: /g)].length, 2)
+assert.deepEqual(
+  [...alchemyWorkflow.matchAll(/^\s+version: '([^']+)'$/gm)].map(([, version]) => version),
+  [versions.uv, versions.uv],
+)
+assert.ok(cloudGuide.includes(`Node \`${versions['Node.js']}\``))
+assert.ok(cloudGuide.includes(`Python \`${versions.Python}\``))
 
 assert.equal(packageLock.lockfileVersion, 3)
 assert.match(await text('.npmrc'), /(?:^|\n)engine-strict=true(?:\n|$)/)

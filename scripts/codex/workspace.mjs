@@ -2,9 +2,12 @@ import { spawn } from 'node:child_process'
 import fs from 'node:fs'
 import net from 'node:net'
 
+import { assertCloudBoundary } from './cloud-boundary.mjs'
+import { codexExecutionMode } from './execution-mode.mjs'
 import { normalizeWorktreePath, runtimeForLease, sessionToken } from './workspace-core.mjs'
 import {
   inspectWorkspace,
+  hasLocalWorkspaceRegistry,
   leaseForWorkspace,
   pruneMissingLeases,
   readRegistry,
@@ -101,6 +104,37 @@ function parseWorktreePaths(porcelain) {
 
 async function main() {
   const [command = 'doctor', ...args] = process.argv.slice(2)
+  const executionMode = codexExecutionMode()
+
+  if (executionMode === 'cloud') {
+    const inspected = inspectWorkspace()
+    if (hasLocalWorkspaceRegistry(inspected)) {
+      throw new Error(
+        'CURRENT_FLOW_CODEX_EXECUTION=cloud cannot override a checkout in the local managed-worktree registry.',
+      )
+    }
+    if (command === 'doctor' || command === 'env') {
+      assertCloudBoundary(inspected.repoRoot, { cloud: true })
+      process.stdout.write(
+        [
+          `mode=cloud`,
+          `branch=${inspected.branch ?? 'detached'}`,
+          `root=${inspected.repoRoot}`,
+        ].join('\n') + '\n',
+      )
+      if (command === 'doctor') process.stdout.write('Codex Cloud workspace: OK\n')
+      return
+    }
+    if (command === 'status') {
+      process.stdout.write(
+        'Codex Cloud workers are isolated per task and do not use local leases.\n',
+      )
+      return
+    }
+    throw new Error(
+      `workspace:${command} is local-only. Codex Cloud uses repository tests and GitHub Actions instead of shared desktop runtimes.`,
+    )
+  }
 
   if (command === 'status') {
     const inspected = inspectWorkspace()

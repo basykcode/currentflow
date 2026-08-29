@@ -1,5 +1,5 @@
 {
-  "lastReviewed": "2026-08-26",
+  "lastReviewed": "2026-08-29",
   "tools": [
     {
       "tool": "Node.js",
@@ -9,6 +9,7 @@
         ".nvmrc",
         ".node-version",
         "package.json",
+        "scripts/codex/cloud-bootstrap.sh",
         "tsconfig.node.json",
         "workers/api-gateway/tsconfig.json",
         "GitHub Actions"
@@ -19,25 +20,35 @@
       "tool": "npm",
       "version": "11.17.0",
       "purpose": "Reproducible JavaScript dependency installation",
-      "enforcedBy": ["package.json", ".npmrc", "GitHub Actions"],
+      "enforcedBy": [
+        "package.json",
+        ".npmrc",
+        "scripts/codex/cloud-bootstrap.sh",
+        "GitHub Actions"
+      ],
       "updatePolicy": "Reviewed patch updates with a regenerated package-lock.json"
     },
     {
       "tool": "Python",
-      "version": "3.12.14",
+      "version": "3.13.14",
       "purpose": "FastAPI runtime and backend tooling",
       "enforcedBy": [
         "services/alchemy-api/.python-version",
         "services/alchemy-api/Dockerfile",
-        "services/alchemy-api/pyproject.toml"
+        "services/alchemy-api/pyproject.toml",
+        "scripts/codex/cloud-bootstrap.sh"
       ],
-      "updatePolicy": "Stay on Python 3.12 and take reviewed security patch releases"
+      "updatePolicy": "Stay on an actively maintained, uv-installable Python line and take reviewed patch releases"
     },
     {
       "tool": "uv",
       "version": "0.11.32",
       "purpose": "Locked Python dependency installation",
-      "enforcedBy": ["services/alchemy-api/Dockerfile", "GitHub Actions"],
+      "enforcedBy": [
+        "services/alchemy-api/Dockerfile",
+        "scripts/codex/cloud-bootstrap.sh",
+        "GitHub Actions"
+      ],
       "updatePolicy": "Reviewed exact-version updates"
     },
     {

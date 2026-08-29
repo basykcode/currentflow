@@ -7,6 +7,10 @@ coverage/
 *.local
 .DS_Store
 .env
+.env.*
+!.env.example
+!.env.production
+!**/.env.example
 .venv/
 __pycache__/
 .pytest_cache/

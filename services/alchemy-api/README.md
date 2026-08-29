@@ -14,7 +14,7 @@ Install the exact Python and [uv](https://docs.astral.sh/uv/) versions in
 replace the local Neo4j password and PubChem contact placeholder.
 
 ```bash
-uv sync --frozen
+uv sync --locked
 uv run alchemy db verify
 uv run alchemy db migrate
 uv run alchemy data seed-demo

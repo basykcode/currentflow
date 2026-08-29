@@ -24,7 +24,7 @@ async def test_liveness_readiness_meta_and_request_id(client: httpx.AsyncClient)
     meta = await client.get("/api/v1/meta")
     assert meta.status_code == 200
     assert meta.json()["formulaAnalysisAlgorithmVersion"] == "alchemy-formula-analysis-v0"
-    assert meta.json()["pythonVersion"] == "3.12.14"
+    assert meta.json()["pythonVersion"] == "3.13.14"
     assert meta.json()["neo4jDriverVersion"] == "5.28.2"
     assert meta.json()["projectionVersions"] == ["production-approved-v1", "accepted-claims-v1"]
     assert meta.json()["processWorkerCount"] == 1

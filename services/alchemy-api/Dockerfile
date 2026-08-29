@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.7
 FROM ghcr.io/astral-sh/uv:0.11.32 AS uv
-FROM python:3.12.14-slim-bookworm
+FROM python:3.13.14-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -15,7 +15,7 @@ COPY src ./src
 COPY migrations ./migrations
 COPY data ./data
 COPY deploy ./deploy
-RUN uv sync --frozen --no-dev
+RUN uv sync --locked --no-dev
 
 RUN useradd --create-home --uid 10001 alchemy \
     && mkdir -p /app/.cache \

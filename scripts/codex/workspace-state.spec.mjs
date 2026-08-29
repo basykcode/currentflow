@@ -82,6 +82,65 @@ test('SessionStart continues in the primary checkout with coordination-only cont
   }
 })
 
+test('SessionStart recognizes an explicit isolated Codex Cloud worker without a local lease', () => {
+  const fixture = temporaryRepository({ linked: false, dirty: true })
+  try {
+    const branchBefore = git(fixture.worktree, ['branch', '--show-current'])
+    const statusBefore = git(fixture.worktree, ['status', '--porcelain=v1'])
+    const result = handleSessionStart(
+      { session_id: 'cloud-test-session', cwd: fixture.worktree },
+      fixture.worktree,
+      { CURRENT_FLOW_CODEX_EXECUTION: 'cloud' },
+    )
+    assert.equal(result.continue, true)
+    assert.match(result.systemMessage, /isolated Codex Cloud worker/)
+    assert.match(result.hookSpecificOutput.additionalContext, /CLOUD-WORKER/)
+    assert.match(result.hookSpecificOutput.additionalContext, /npm run codex:doctor/)
+    assert.equal(git(fixture.worktree, ['branch', '--show-current']), branchBefore)
+    assert.equal(git(fixture.worktree, ['status', '--porcelain=v1']), statusBefore)
+    assert.equal(fs.existsSync(path.join(fixture.worktree, '.git', 'codex')), false)
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
+test('SessionStart refuses a Cloud marker in a checkout owned by the local registry', () => {
+  const fixture = temporaryRepository({ linked: false })
+  try {
+    const inspected = inspectWorkspace(fixture.worktree)
+    const registryDirectory = path.join(inspected.commonGitDir, 'codex')
+    fs.mkdirSync(registryDirectory, { recursive: true })
+    fs.writeFileSync(
+      path.join(registryDirectory, 'current-flow-chat-leases.json'),
+      '{"version":1,"leases":{}}\n',
+    )
+    const result = handleSessionStart(
+      { session_id: 'false-cloud-session', cwd: fixture.worktree },
+      fixture.worktree,
+      { CURRENT_FLOW_CODEX_EXECUTION: 'cloud' },
+    )
+    assert.equal(result.continue, false)
+    assert.match(result.stopReason, /cannot override this checkout/)
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
+test('SessionStart fails closed for an unknown execution mode', () => {
+  const fixture = temporaryRepository({ linked: false })
+  try {
+    const result = handleSessionStart(
+      { session_id: 'invalid-mode-session', cwd: fixture.worktree },
+      fixture.worktree,
+      { CURRENT_FLOW_CODEX_EXECUTION: 'remote' },
+    )
+    assert.equal(result.continue, false)
+    assert.match(result.stopReason, /must be either local or cloud/)
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
 test('SessionStart claims, branches, resumes, and exclusively leases a linked checkout', () => {
   const fixture = temporaryRepository({ linked: true })
   try {
