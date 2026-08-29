@@ -52,8 +52,9 @@ different Node, npm, Python, or uv inside task startup.
 
 ## Verification criteria
 
-- A clean Codex Cloud setup reports the four exact versions and completes `npm ci` plus
-  `uv sync --locked` without installing a language runtime or package manager.
+- A clean Codex Cloud setup reports the four exact versions and completes the script-suppressed,
+  exact-approved JavaScript dependency install plus `uv sync --locked` without installing a
+  language runtime or package manager.
 - `npm run toolchain:check`, the complete frontend gate, and the complete backend gate pass under
   the exact native versions.
 - GitHub's frontend, backend, Neo4j, and container checks pass with the synchronized declarations.

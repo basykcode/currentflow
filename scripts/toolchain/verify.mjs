@@ -40,6 +40,16 @@ assert.deepEqual(packageJson.allowScripts, {
   'fsevents@2.3.3': true,
   'workerd@1.20260825.1': true,
 })
+const lockedInstallScripts = Object.entries(packageLock.packages)
+  .filter(([, details]) => details.hasInstallScript)
+  .map(([lockPath, details]) => {
+    const packageName = lockPath.slice(
+      lockPath.lastIndexOf('node_modules/') + 'node_modules/'.length,
+    )
+    return `${packageName}@${details.version}`
+  })
+  .sort()
+assert.deepEqual(lockedInstallScripts, Object.keys(packageJson.allowScripts).sort())
 assert.equal(packageJson.devDependencies['@tsconfig/node22'], '22.0.5')
 assert.equal(packageJson.devDependencies['@types/node'], '22.20.1')
 assert.match(await text('tsconfig.node.json'), /@tsconfig\/node22\/tsconfig\.json/)
@@ -111,6 +121,7 @@ assert.ok(cloudGuide.includes(`Python \`${versions.Python}\``))
 
 assert.equal(packageLock.lockfileVersion, 3)
 assert.match(await text('.npmrc'), /(?:^|\n)engine-strict=true(?:\n|$)/)
+assert.match(await text('.npmrc'), /(?:^|\n)ignore-scripts=true(?:\n|$)/)
 assert.match(await text('.npmrc'), /(?:^|\n)save-exact=true(?:\n|$)/)
 try {
   await access(path.join(repositoryRoot, 'pnpm-lock.yaml'))

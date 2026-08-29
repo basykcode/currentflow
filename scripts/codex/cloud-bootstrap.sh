@@ -32,7 +32,8 @@ if [[ "$(npm --version)" != "$expected_npm" ]]; then
   exit 2
 fi
 
-python_version="$(python3 -c 'import platform; print(platform.python_version())')"
+python_executable="$(command -v python3)"
+python_version="$("$python_executable" -c 'import platform; print(platform.python_version())')"
 if [[ "$python_version" != "$expected_python" ]]; then
   echo "Codex Cloud Python mismatch: expected $expected_python, received $python_version." >&2
   echo "Select Python 3.13 in the Current Flow Cloud environment package versions." >&2
@@ -49,9 +50,11 @@ if [[ "$uv_version" != "$expected_uv" ]]; then
   exit 2
 fi
 
-npm ci
-uv --directory services/alchemy-api sync --locked --all-groups --python "$expected_python"
-uv --directory services/alchemy-api run --python "$expected_python" python -c \
+npm run dependencies:install
+uv --directory services/alchemy-api sync --locked --all-groups \
+  --python "$python_executable" --no-managed-python --no-python-downloads
+uv --directory services/alchemy-api run --python "$python_executable" \
+  --no-managed-python --no-python-downloads python -c \
   "import platform; actual=platform.python_version(); expected='$expected_python'; assert actual == expected, (actual, expected)"
 
 npm run toolchain:check

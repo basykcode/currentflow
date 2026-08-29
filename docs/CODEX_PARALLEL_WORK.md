@@ -50,7 +50,7 @@ cannot enforce it.
    - rejects an existing lease owned by another task and a branch that no longer matches its lease;
    - records an exclusive task/worktree/branch lease in the repository's local Git metadata; and
    - assigns a unique Vite, API, Neo4j, and Docker Compose namespace.
-6. The worker installs dependencies if needed with `npm ci`, then runs
+6. The worker installs dependencies if needed with `npm run dependencies:install`, then runs
    `npm run codex:doctor` (or the compatible `npm run workspace:doctor`). It does not edit until the command reports
    `Workspace isolation: OK`.
 

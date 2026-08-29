@@ -29,14 +29,19 @@ source-to-result route based on the _Jiaoshi Yilin_, with its source locator and
 ## Local setup
 
 Use Node 22.22.2 and npm 11.4.2 as declared in `config/toolchain.json`. These are the native Codex
-Cloud versions used by development, CI, and production builds.
+Cloud versions and the canonical versions for the pending synchronized CI and production release.
 
 ```bash
 nvm use
-npm ci
+npm install --global npm@11.4.2
+node --version && npm --version
+npm run dependencies:install
 npm run toolchain:check
 npm run dev
 ```
+
+The npm command is a one-time install inside the pinned nvm Node version; do not repeat it in task
+bootstrap. Volta users can instead rely on the exact `volta` declaration in `package.json`.
 
 The development server prints the local URL. No service credentials or environment variables are
 required for Alchemy demo mode.

@@ -14,7 +14,7 @@
         "workers/api-gateway/tsconfig.json",
         "GitHub Actions"
       ],
-      "updatePolicy": "Reviewed LTS patch updates through pull requests"
+      "updatePolicy": "Adopt the exact native Codex Cloud LTS patch through a synchronized reviewed pull request"
     },
     {
       "tool": "npm",
@@ -26,7 +26,7 @@
         "scripts/codex/cloud-bootstrap.sh",
         "GitHub Actions"
       ],
-      "updatePolicy": "Reviewed patch updates with a regenerated package-lock.json"
+      "updatePolicy": "Adopt the exact native Codex Cloud version with a regenerated package-lock.json"
     },
     {
       "tool": "Python",
@@ -38,7 +38,7 @@
         "services/alchemy-api/pyproject.toml",
         "scripts/codex/cloud-bootstrap.sh"
       ],
-      "updatePolicy": "Stay on an actively maintained, uv-installable Python line and take reviewed patch releases"
+      "updatePolicy": "Adopt the exact native Codex Cloud Python patch through a synchronized reviewed pull request"
     },
     {
       "tool": "uv",
@@ -49,7 +49,7 @@
         "scripts/codex/cloud-bootstrap.sh",
         "GitHub Actions"
       ],
-      "updatePolicy": "Reviewed exact-version updates"
+      "updatePolicy": "Adopt the exact native Codex Cloud version through a synchronized reviewed pull request"
     },
     {
       "tool": "Neo4j Community",

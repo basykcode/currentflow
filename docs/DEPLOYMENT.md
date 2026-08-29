@@ -248,7 +248,10 @@ Use the exact repository toolchain versions in `config/toolchain.json`. In Windo
 - Root directory: repository root
 - Node version: `22.22.2`
 - npm version: `11.4.2`; skip the platform's automatic dependency install and run exact npm for
-  `npm ci` before the build when activating this toolchain
+  the audited dependency installer before the build when activating this toolchain. In Workers
+  Builds set
+  `SKIP_DEPENDENCY_INSTALL=1` and begin the build command with
+  `npx --yes npm@11.4.2 run dependencies:install && npx --yes npm@11.4.2 run build`.
 
 Vite uses `/` as its base. The existing `currentflow` Worker owns apex and `www`. The separate
 `current-flow-api-gateway` Worker owns the Alchemy proxy and the private `/api/gene-keys-lab/*`

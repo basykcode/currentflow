@@ -132,7 +132,7 @@ or call an external model. Only the active provider may return substantive formu
 ## Development commands
 
 ```powershell
-npm install
+npm run dependencies:install
 npm run dev
 npm run format
 npm run type-check

@@ -301,13 +301,15 @@ The integrated release-aware Alchemy foundation additionally provides:
   chosen IANA timezone and make no apparent-solar-time correction.
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
-- Production tooling is locked to Node 22.22.2, npm 11.4.2, Python 3.13.13, uv 0.7.22, Neo4j
-  Community 5.26.28, Neo4j Python driver 5.28.2, TypeScript 5.8.3, Vite 7.3.6, and Wrangler 4.126.0;
-  `npm run check` is required before completion.
+- The pending Cloud integration synchronizes development, CI, and production declarations to Node
+  22.22.2, npm 11.4.2, Python 3.13.13, and uv 0.7.22. Neo4j Community 5.26.28, Neo4j Python driver
+  5.28.2, TypeScript 5.8.3, Vite 7.3.6, and Wrangler 4.126.0 remain locked; `npm run check` is
+  required before completion. Live production retains its prior release until the protected merge
+  and provider verification succeed.
 - npm and `package-lock.json` are the sole JavaScript package-manager contract. uv and `uv.lock` are
   the Python contract. CI, Codex Cloud, Cloudflare, and the Render container must use the exact
-  synchronized runtimes and `npm ci` / `uv sync --locked`; the competing pnpm lockfile is
-  intentionally removed.
+  synchronized runtimes, the audited `npm run dependencies:install` flow, and
+  `uv sync --locked`; the competing pnpm lockfile is intentionally removed.
 - The primary checkout is read-only for Codex: it may inspect and coordinate app tasks but may not
   mutate project files, Git state, dependencies, generated output, tests/builds, or runtimes. It
   automatically dispatches each mutation request once, in full, to an app-managed worktree based on

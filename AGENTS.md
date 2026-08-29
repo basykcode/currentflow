@@ -12,8 +12,14 @@
 
 ## Production foundation rules
 
-- `config/toolchain.json` is the canonical toolchain manifest. Automation uses `npm ci`; direct
-  dependency and runtime changes require synchronized exact pins and reviewed lockfiles.
+- `config/toolchain.json` is the canonical toolchain manifest. Automation uses
+  `npm run dependencies:install`, which performs `npm ci --ignore-scripts` and rebuilds only the
+  exact audited install-script packages; direct dependency and runtime changes require synchronized
+  exact pins and reviewed lockfiles.
+- The exact runtimes and package managers native to the configured Codex Cloud image are canonical
+  across development, CI, builds, and production wherever the platform supports them. Setup verifies
+  and fails on drift; it never installs a competing runtime or package manager during task startup.
+  Project libraries not supplied by Codex remain exact, reviewed, lockfile-controlled dependencies.
 - `master` is the production branch. Keep frontend, backend, container, Render, and Cloudflare
   release configuration aligned to it.
 - Migrations, foundation reconciliation, ingestion, and projection rebuilds never run in ordinary
