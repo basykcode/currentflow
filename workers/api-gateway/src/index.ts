@@ -1,6 +1,10 @@
+import { handlePromptLabRequest } from '../../../server/gene-keys-prompt-lab/worker.ts'
+import type { PromptLabEnv } from '../../../server/gene-keys-prompt-lab/types.ts'
+
 import {
   API_PREFIX,
   MAX_REQUEST_BODY_BYTES,
+  PROMPT_LAB_PREFIX,
   declaredBodyTooLarge,
   isPublicCacheCandidate,
   routePolicy,
@@ -19,9 +23,8 @@ const HOP_BY_HOP_HEADERS = new Set([
   'upgrade',
 ])
 
-export interface GatewayEnvironment {
-  ORIGIN_BASE_URL: string
-  ALLOWED_ORIGINS?: string
+export type GatewayEnvironment = Partial<PromptLabEnv> & {
+  ORIGIN_BASE_URL?: string
   CURRENT_EDGE_ORIGIN_TOKEN?: string
   ORIGIN_TOKEN?: string
 }
@@ -148,6 +151,34 @@ function applyCors(response: Response, request: Request, env: GatewayEnvironment
   return response
 }
 
+function applyPromptLabCors(
+  response: Response,
+  request: Request,
+  env: GatewayEnvironment,
+): Response {
+  applyCors(response, request, env)
+  if (response.headers.has('Access-Control-Allow-Origin')) {
+    response.headers.set('Access-Control-Allow-Credentials', 'true')
+  }
+  return response
+}
+
+function promptLabPreflight(request: Request, env: GatewayEnvironment): Response {
+  const origin = request.headers.get('Origin')
+  if (!origin || !allowedOrigins(env).has(origin)) {
+    return new Response(null, { status: 403, headers: { 'Cache-Control': 'no-store' } })
+  }
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Headers': 'Content-Type',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Max-Age': '600',
+      'Cache-Control': 'no-store',
+    },
+  })
+}
+
 function removeOriginSpecificHeaders(response: Response): void {
   response.headers.delete('Access-Control-Allow-Credentials')
   response.headers.delete('Access-Control-Allow-Origin')
@@ -239,13 +270,49 @@ export async function handleRequest(
     return response
   }
 
+  const finishPromptLab = (response: Response): Response => {
+    response.headers.set('X-Request-ID', id)
+    response.headers.set('X-Current-Flow-Gateway', 'cloudflare-worker')
+    response.headers.set('X-Current-Flow-Cache', 'BYPASS')
+    if (!response.headers.has('Cache-Control')) {
+      response.headers.set('Cache-Control', 'private, no-store')
+    }
+    applyPromptLabCors(response, request, env)
+    applySecurityHeaders(response)
+    emitLog(logger, started, request, id, policy, response)
+    return response
+  }
+
+  if (incomingUrl.pathname.startsWith(PROMPT_LAB_PREFIX)) {
+    if (request.method === 'OPTIONS') {
+      return finishPromptLab(promptLabPreflight(request, env))
+    }
+    try {
+      const response = await handlePromptLabRequest({
+        request,
+        env: env as PromptLabEnv,
+      })
+      return finishPromptLab(response)
+    } catch {
+      return finishPromptLab(
+        Response.json(
+          { error: 'The private workspace is temporarily unavailable.' },
+          {
+            status: 503,
+            headers: { 'Cache-Control': 'private, no-store' },
+          },
+        ),
+      )
+    }
+  }
+
   if (!incomingUrl.pathname.startsWith(API_PREFIX)) {
     return finish(
       problem(
         404,
         'gateway_route_not_found',
         'Gateway route not found',
-        'Only /api/v1 routes are available.',
+        'Only Current Flow API routes are available.',
         id,
       ),
     )
@@ -285,9 +352,22 @@ export async function handleRequest(
     )
   }
 
+  const configuredOrigin = env.ORIGIN_BASE_URL
+  if (!configuredOrigin) {
+    return finish(
+      problem(
+        500,
+        'gateway_configuration_error',
+        'Gateway configuration error',
+        'The API origin is not configured.',
+        id,
+      ),
+    )
+  }
+
   let originBase: URL
   try {
-    originBase = new URL(env.ORIGIN_BASE_URL)
+    originBase = new URL(configuredOrigin)
   } catch {
     return finish(
       problem(

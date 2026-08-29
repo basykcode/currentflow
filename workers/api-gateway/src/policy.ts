@@ -1,4 +1,5 @@
 export const API_PREFIX = '/api/v1/'
+export const PROMPT_LAB_PREFIX = '/api/gene-keys-lab/'
 export const MAX_REQUEST_BODY_BYTES = 1_048_576
 
 export type EndpointClass =
@@ -38,6 +39,9 @@ const hasPrefix = (path: string, prefixes: readonly string[]): boolean =>
   prefixes.some((prefix) => path === prefix.slice(0, -1) || path.startsWith(prefix))
 
 export function routePolicy(method: string, path: string): RoutePolicy {
+  if (path.startsWith(PROMPT_LAB_PREFIX)) {
+    return { endpointClass: 'private-no-store', rateClass: 'future-intelligence' }
+  }
   if (HEALTH_PATHS.has(path)) {
     return { endpointClass: 'health', rateClass: 'anonymous-public-read' }
   }

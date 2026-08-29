@@ -401,7 +401,11 @@ def validate_wang_bi_epub_identity(epub_path: Path) -> None:
         )
 
 
-def xhtml_blocks(document: html.HtmlElement) -> list[str]:
+def xhtml_blocks(
+    document: html.HtmlElement,
+    *,
+    include_table_cells: bool = False,
+) -> list[str]:
     body_matches = document.xpath("//body")
     if not body_matches:
         return []
@@ -412,10 +416,18 @@ def xhtml_blocks(document: html.HtmlElement) -> list[str]:
             parent.remove(unwanted)
 
     blocks: list[str] = []
-    for original in body.xpath(
+    block_selector = (
         ".//*[self::h1 or self::h2 or self::h3 or self::h4 "
         "or self::h5 or self::h6 or self::p or self::li or self::blockquote]"
-    ):
+    )
+    if include_table_cells:
+        block_selector = (
+            ".//*[((self::h1 or self::h2 or self::h3 or self::h4 "
+            "or self::h5 or self::h6 or self::p or self::li or self::blockquote) "
+            "and not(ancestor::td or ancestor::th)) or self::td or self::th]"
+        )
+
+    for original in body.xpath(block_selector):
         node = deepcopy(original)
         for br in node.xpath(".//br"):
             br.tail = "\n" + (br.tail or "")
@@ -457,6 +469,49 @@ def extract_rudd_64_ways(epub_path: Path) -> dict[int, str]:
         if number in chunks:
             raise ValueError(f"{epub_path.name}: duplicate Gene Key {number}")
         chunks[number] = normalize_text("\n\n".join(xhtml_blocks(document)))
+    validate_complete_mapping(epub_path.name, chunks)
+    return chunks
+
+
+def extract_rudd_gene_keys(epub_path: Path) -> dict[int, str]:
+    chunks: dict[int, str] = {}
+    shadow_heading = re.compile(
+        r"\bTHE\s+(\d{1,2})(?:ST|ND|RD|TH)\s*SHADOW\b",
+        re.IGNORECASE,
+    )
+    for member, payload in epub_spine(epub_path):
+        document = html.fromstring(payload)
+        headings = [
+            " ".join(node.text_content().split())
+            for node in document.xpath(
+                "//body//*[self::h1 or self::h2 or self::h3 or self::h4 "
+                "or self::h5 or self::h6]"
+            )
+        ]
+        numbers = {
+            int(number)
+            for heading in headings
+            for number in shadow_heading.findall(heading)
+            if 1 <= int(number) <= 64
+        }
+        if not numbers:
+            continue
+        if len(numbers) != 1:
+            raise ValueError(
+                f"{member}: ambiguous numbered Shadow headings {sorted(numbers)}"
+            )
+        number = numbers.pop()
+        combined_headings = "\n".join(headings).upper()
+        if "GIFT" not in combined_headings or "SIDDHI" not in combined_headings:
+            raise ValueError(
+                f"{member}: Gene Key {number} lacks a Gift or Siddhi heading"
+            )
+        if number in chunks:
+            raise ValueError(f"{epub_path.name}: duplicate Gene Key {number}")
+        blocks = xhtml_blocks(document, include_table_cells=True)
+        if not blocks:
+            raise ValueError(f"{member}: Gene Key {number} has no extractable text")
+        chunks[number] = normalize_text("\n\n".join(blocks))
     validate_complete_mapping(epub_path.name, chunks)
     return chunks
 

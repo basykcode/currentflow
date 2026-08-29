@@ -7,6 +7,8 @@ current-flow.net (Cloudflare frontend Worker)
         |
         v
 api.current-flow.net (Cloudflare API gateway Worker)
+        |-- Workers AI or OpenAI Responses API (selected Prompt Lab generation)
+        |-- private Workers KV binding (source chapters + global Prompt Lab state)
         |
         v
 current-flow-alchemy-api.onrender.com (Render Standard Docker web service)
@@ -125,7 +127,7 @@ Do not change the existing apex or `www` records. Render specifically requires D
 domain verification. Do not route the production hostname through the Worker until workers.dev
 proxy, CORS, health, origin-token, cache, and bypass tests pass.
 
-## Connect the Cloudflare Pages frontend
+## Connect the Cloudflare frontend Worker
 
 The repository tracks these non-secret production build values in `.env.production`:
 
@@ -133,16 +135,64 @@ The repository tracks these non-secret production build values in `.env.producti
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=https://api.current-flow.net
 VITE_ALCHEMY_REQUEST_TIMEOUT_MS=30000
+VITE_PROMPT_LAB_API_BASE_URL=https://api.current-flow.net
 ```
 
-Pushing `master` therefore gives Cloudflare Pages the connected API configuration without requiring
-dashboard variables. Vite values are public browser configuration, so only the data mode, public API
-URL, and timeout belong in this file. Render Standard is always on, so ordinary interactive reads use
-a bounded 30-second deadline; imports and projection rebuilds remain offline work.
+Pushing `master` therefore gives the Cloudflare frontend Worker the connected API configuration
+without requiring dashboard variables. Vite values are public browser configuration, so only the
+data mode, public API URLs, and timeout belong in this file. Render Standard is always on, so
+ordinary interactive reads use a bounded 30-second deadline; imports and projection rebuilds remain
+offline work.
 
 Cloudflare production environment variables may override these values when an operational
 change must be made without a source release. Never place Aura or Render credentials in either
 location.
+
+## Configure the private Gene Keys Prompt Lab
+
+The Prompt Lab is handled directly by the existing `current-flow-api-gateway` Worker before its
+Render proxy boundary. It uses Workers AI or the OpenAI Responses API plus private Workers KV
+without sending source text or generated drafts to the Alchemy API. Configure these bindings for
+the gateway's Production and Preview environments:
+
+| Binding or secret           | Kind                     | Required value                                            |
+| --------------------------- | ------------------------ | --------------------------------------------------------- |
+| `AI`                        | Workers AI binding       | The account's Workers AI catalog                          |
+| `GENE_KEYS_SOURCES`         | Workers KV binding       | A private namespace created for the 128 Gene Key chapters |
+| `PROMPT_LAB_STATE`          | Workers KV binding       | Private global users and generated experiment records    |
+| `PROMPT_LAB_PASSWORD`       | encrypted secret         | The shared password supplied out of band by the owner     |
+| `PROMPT_LAB_SESSION_SECRET` | encrypted secret         | At least 32 random bytes, independently generated         |
+| `OPENAI_API_KEY`            | encrypted secret         | Project OpenAI key for the GPT-5.6 choices                |
+| `PROMPT_LAB_MODEL`          | plain variable, optional | Defaults to `@cf/meta/llama-3.1-8b-instruct-fast`         |
+
+Never put either secret or a Cloudflare API token in Git, Vite variables,
+chat, build logs, or continuity files. The password is server-only and the session secret must not be
+the password. After binding the namespace, upload the ignored local chunks from a trusted terminal:
+
+```bash
+CLOUDFLARE_ACCOUNT_ID=<account-id> \
+CLOUDFLARE_API_TOKEN=<short-lived-kv-edit-token> \
+GENE_KEYS_KV_NAMESPACE_ID=<namespace-id> \
+npm run prompt-lab:publish-sources
+```
+
+The upload command performs one explicit outbound request and never writes a source-bearing staging
+file. Revoke the short-lived API token after the upload. The namespace key contract is
+`v1/<gene-keys|64-ways>/hex_NN.txt`; changing it requires a coordinated server and upload migration.
+
+The login endpoint should also receive a Cloudflare rate-limiting rule before the shared URL is
+distributed broadly. The current shared-password gate is an internal-workspace boundary, not
+identity-aware authorization. Shared user names are attribution labels rather than verified
+accounts; a future multi-user service still needs revocation and audit policy. `PROMPT_LAB_STATE`
+may reuse the source namespace under the disjoint `state/v1/` prefix until retention or access
+policies require a separate store.
+
+Useful provider references:
+
+- [Workers bindings](https://developers.cloudflare.com/workers/runtime-apis/bindings/)
+- [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
+- [Workers KV limits](https://developers.cloudflare.com/kv/platform/limits/)
+- [OpenAI Responses API](https://developers.openai.com/api/reference/resources/responses/methods/create)
 
 ## Production smoke check
 
@@ -199,4 +249,5 @@ Use the exact repository toolchain versions in `config/toolchain.json`. In Windo
 - Node version: `24.19.0`
 
 Vite uses `/` as its base. The existing `currentflow` Worker owns apex and `www`. The separate
-`current-flow-api-gateway` Worker owns only the API gateway and must not replace the frontend Worker.
+`current-flow-api-gateway` Worker owns the Alchemy proxy and the private `/api/gene-keys-lab/*`
+edge routes; it must not replace the frontend Worker.

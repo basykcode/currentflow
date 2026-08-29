@@ -243,5 +243,48 @@ describe('Cloudflare API gateway', () => {
     expect(routePolicy('GET', '/api/v1/private/profile').endpointClass).toBe('private-no-store')
     expect(routePolicy('GET', '/api/v1/text/search').rateClass).toBe('search')
     expect(routePolicy('POST', '/api/v1/formulas/compare').rateClass).toBe('formula-analysis')
+    expect(routePolicy('POST', '/api/gene-keys-lab/generate')).toEqual({
+      endpointClass: 'private-no-store',
+      rateClass: 'future-intelligence',
+    })
+  })
+
+  it('serves credentialed Prompt Lab routes at the edge without contacting Render', async () => {
+    const origin = 'https://current-flow.net'
+    const promptLabEnvironment: GatewayEnvironment = {
+      ALLOWED_ORIGINS: 'https://current-flow.net,https://www.current-flow.net',
+      PROMPT_LAB_SESSION_SECRET: 'a-test-secret-that-is-longer-than-32-characters',
+    }
+    const fetcher = vi.fn(() => Promise.reject(new Error('Render must not be contacted')))
+    const platform = { cache: new TestCache(), fetcher, logger: silentLogger }
+
+    const session = await handleRequest(
+      new Request('https://api.current-flow.net/api/gene-keys-lab/session', {
+        headers: { Origin: origin },
+      }),
+      promptLabEnvironment,
+      context(),
+      platform,
+    )
+    expect(session.status).toBe(200)
+    expect(session.headers.get('Access-Control-Allow-Origin')).toBe(origin)
+    expect(session.headers.get('Access-Control-Allow-Credentials')).toBe('true')
+    expect(session.headers.get('X-Current-Flow-Cache')).toBe('BYPASS')
+    expect(session.headers.get('Cache-Control')).toContain('no-store')
+    await expect(session.json()).resolves.toEqual({ authenticated: false })
+
+    const preflight = await handleRequest(
+      new Request('https://api.current-flow.net/api/gene-keys-lab/generate', {
+        method: 'OPTIONS',
+        headers: { Origin: origin, 'Access-Control-Request-Method': 'POST' },
+      }),
+      promptLabEnvironment,
+      context(),
+      platform,
+    )
+    expect(preflight.status).toBe(204)
+    expect(preflight.headers.get('Access-Control-Allow-Credentials')).toBe('true')
+    expect(preflight.headers.get('Access-Control-Allow-Methods')).toContain('POST')
+    expect(fetcher).not.toHaveBeenCalled()
   })
 })
