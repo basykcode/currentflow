@@ -88,6 +88,17 @@ async def test_public_cache_if_none_match_uses_weak_comparison(client: httpx.Asy
         "/api/v1/meta",
         headers={"If-None-Match": f'"not-current", W/{etag}, "also-not-current"'},
     )
+    listed_with_empty_members = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": f", W/{etag},,"},
+    )
+    repeated_fields = await client.get(
+        "/api/v1/meta",
+        headers=[
+            ("If-None-Match", '"not-current"'),
+            ("If-None-Match", f"W/{etag}"),
+        ],
+    )
     wildcard = await client.get(
         "/api/v1/meta",
         headers={"If-None-Match": "*"},
@@ -101,7 +112,13 @@ async def test_public_cache_if_none_match_uses_weak_comparison(client: httpx.Asy
         headers={"If-None-Match": f"*, {etag}"},
     )
 
-    for unchanged in (edge_shaped, listed, wildcard):
+    for unchanged in (
+        edge_shaped,
+        listed,
+        listed_with_empty_members,
+        repeated_fields,
+        wildcard,
+    ):
         assert unchanged.status_code == 304
         assert unchanged.content == b""
         assert unchanged.headers["ETag"] == etag

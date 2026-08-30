@@ -19,9 +19,11 @@ strong ETag using exact string equality, so Cloudflare's equivalent `W/` validat
 
 - Added grammar-aware entity-tag list parsing and weak comparison for public GET conditional
   evaluation, including the exclusive wildcard form, while retaining the strong SHA-256 origin
-  validator. Malformed wildcard/list combinations fail closed to the normal response.
-- Added API coverage for actual weak edge input, comma-separated lists, wildcard, nonmatching
-  validators, retained strong response ETags, and empty 304 bodies.
+  validator. Repeated field lines are combined in order, empty list members are ignored, and
+  malformed wildcard/list combinations fail closed to the normal response.
+- Added API coverage for actual weak edge input, comma-separated lists with empty members, repeated
+  field lines, wildcard, nonmatching validators, retained strong response ETags, and empty 304
+  bodies.
 - Documented Cloudflare edge weakening and the origin's weak precondition comparison contract.
 
 ## Files or components changed
@@ -40,8 +42,10 @@ None. This is a narrow standards-correct repair to the accepted cache contract.
 `If-None-Match` uses weak comparison for the public GET routes supported by this API. Normalizing
 only the optional `W/` prefix during comparison makes an edge-weakened validator equivalent without
 changing the deterministic strong ETag produced by the origin. Parsing list members avoids treating
-a whole comma-separated field as one opaque string. The `*` wildcard is accepted only as the entire
-field value, so invalid wildcard/list combinations do not accidentally satisfy the precondition.
+a whole comma-separated field as one opaque string. Repeated `If-None-Match` field lines are combined
+in their received order, and list-extension empty members are ignored. The `*` wildcard is accepted
+only as the entire combined field value, so invalid wildcard/list combinations do not accidentally
+satisfy the precondition.
 
 ## Verification commands and results
 

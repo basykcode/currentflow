@@ -73,7 +73,10 @@ def _if_none_match_matches(field_value: str | None, current_etag: str) -> bool:
         while position < len(field_value) and field_value[position] in " \t":
             position += 1
         if position >= len(field_value):
-            return False
+            return matched
+        if field_value[position] == ",":
+            position += 1
+            continue
         candidate = _ENTITY_TAG.match(field_value, position)
         if candidate is None:
             return False
@@ -88,7 +91,7 @@ def _if_none_match_matches(field_value: str | None, current_etag: str) -> bool:
             return False
         position += 1
 
-    return False
+    return matched
 
 
 def _endpoint_template(request: Request) -> str:
@@ -296,9 +299,8 @@ def create_app(
                 etag = f'"{sha256(body).hexdigest()}"'
                 headers = dict(response.headers)
                 headers["ETag"] = etag
-                if request.method == "GET" and _if_none_match_matches(
-                    request.headers.get("If-None-Match"), etag
-                ):
+                if_none_match = ", ".join(request.headers.getlist("If-None-Match")) or None
+                if request.method == "GET" and _if_none_match_matches(if_none_match, etag):
                     headers.pop("content-length", None)
                     response_size = 0
                     response = Response(status_code=304, headers=headers)
