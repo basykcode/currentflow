@@ -73,7 +73,7 @@ Connected API mode uses:
 ```dotenv
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=http://localhost:8000
-VITE_ALCHEMY_REQUEST_TIMEOUT_MS=30000
+VITE_ALCHEMY_API_TIMEOUT_MS=35000
 ```
 
 API mode now uses the checked-in OpenAPI schema and `HttpAlchemyProvider`. Missing or invalid API
