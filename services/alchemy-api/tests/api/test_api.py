@@ -37,6 +37,9 @@ async def test_public_cache_etag_and_private_health_bypass(client: httpx.AsyncCl
     live = await client.get("/api/v1/health/live")
     assert live.headers["Cache-Control"] == "no-store"
 
+    ready = await client.get("/api/v1/health/ready")
+    assert ready.headers["Cache-Control"] == "no-store"
+
     meta = await client.get("/api/v1/meta")
     assert meta.headers["Cache-Control"].startswith("public, max-age=60, s-maxage=3600")
     assert meta.headers["ETag"]
@@ -231,6 +234,7 @@ async def test_readiness_failure_reports_dependency_without_internal_address() -
         response = await unready_client.get("/api/v1/health/ready")
     assert response.status_code == 503
     assert response.json()["code"] == "dependency_unavailable"
+    assert response.headers["Cache-Control"] == "no-store"
     assert "private.internal" not in response.text
 
 

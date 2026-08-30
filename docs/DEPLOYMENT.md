@@ -81,7 +81,11 @@ Render builds the Docker image remotely from `services/alchemy-api/Dockerfile`. 
 service runs `deploy/predeploy.sh` before activation to apply checksum-protected migrations and
 reconcile the approved foundation. `deploy/start.sh` is process-only and starts one Uvicorn worker
 on Render's assigned port with a graceful-shutdown window. The Blueprint deploys only after GitHub
-checks pass and uses `/api/v1/health/ready` for dependency-aware health checks.
+checks pass and uses `/api/v1/health/live` for its platform health check. That liveness route proves
+the API process can respond without consulting Aura, so a temporary Aura outage does not cause
+Render to restart an otherwise healthy process. `/api/v1/health/ready` remains the operator-facing,
+dependency-aware route and returns `503` while Neo4j is unavailable. Both health responses are
+`no-store`.
 
 The first useful values to copy from Render are the service URL, such as
 `https://current-flow-alchemy-api.onrender.com`, and the successful deploy event. Do not copy secret

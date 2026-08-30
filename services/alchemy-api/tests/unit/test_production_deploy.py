@@ -7,7 +7,7 @@ _REPOSITORY_ROOT = Path(__file__).resolve().parents[4]
 _SERVICE_ROOT = _REPOSITORY_ROOT / "services" / "alchemy-api"
 
 
-def test_render_blueprint_has_paid_release_and_health_contract() -> None:
+def test_render_blueprint_uses_process_liveness_not_dependency_readiness() -> None:
     document = cast(
         dict[str, Any],
         yaml.safe_load((_REPOSITORY_ROOT / "render.yaml").read_text(encoding="utf-8")),
@@ -19,7 +19,8 @@ def test_render_blueprint_has_paid_release_and_health_contract() -> None:
     assert service["branch"] == "master"
     assert service["preDeployCommand"] == "sh deploy/predeploy.sh"
     assert service["dockerCommand"] == "sh deploy/start.sh"
-    assert service["healthCheckPath"] == "/api/v1/health/ready"
+    assert service["healthCheckPath"] == "/api/v1/health/live"
+    assert service["healthCheckPath"] != "/api/v1/health/ready"
     environment = {item["key"]: item.get("value") for item in service["envVars"]}
     assert environment["WEB_CONCURRENCY"] == "1"
     assert environment["ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN"] == "1"

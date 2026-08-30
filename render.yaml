@@ -12,7 +12,7 @@ services:
     dockerContext: ./services/alchemy-api
     preDeployCommand: sh deploy/predeploy.sh
     dockerCommand: sh deploy/start.sh
-    healthCheckPath: /api/v1/health/ready
+    healthCheckPath: /api/v1/health/live
     domains:
       - api.current-flow.net
     buildFilter:

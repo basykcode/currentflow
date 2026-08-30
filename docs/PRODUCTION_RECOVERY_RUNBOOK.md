@@ -14,10 +14,19 @@ secrets or provider exports into Git, logs, or continuity files.
 
 ## Database unavailable
 
-Liveness should remain 200 and readiness should return a bounded 503. Do not disable dependency
-checks or raise timeouts blindly. Inspect Aura status, CPU/page cache/storage, connection acquisition,
-and query deadlines. If an authorized rollback is necessary, restore the retained former secret set
-in Render and verify it before changing any gateway route. The former AuraDB must not be deleted.
+Render must probe `/api/v1/health/live`, not `/api/v1/health/ready`. Liveness should remain `200`
+while Aura is unavailable, so Render must not restart an otherwise healthy API process solely because
+dependency readiness fails. The operator-facing `/api/v1/health/ready` route should return a bounded
+`503` until Neo4j recovers; use it to gate recovery verification. Both routes are uncached with
+`Cache-Control: no-store`.
+
+Confirm liveness first, then inspect Aura status, CPU/page cache/storage, connection acquisition, and
+query deadlines. Resume or restore Aura through the provider controls and wait for readiness to
+return `200` before declaring recovery. If Render restarts while liveness is healthy, verify that the
+deployed platform health path still matches `render.yaml`; correct configuration drift rather than
+weakening readiness or cycling the process. Do not disable dependency checks or raise timeouts
+blindly. If an authorized rollback is necessary, restore the retained former secret set in Render
+and verify it before changing any gateway route. The former AuraDB must not be deleted.
 
 ## Projection recovery
 
