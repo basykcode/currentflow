@@ -27,6 +27,7 @@ from current_alchemy.logging import configure_logging
 from current_alchemy.observability import begin_request, end_request, request_metrics
 
 _REQUEST_ID = re.compile(r"^[A-Za-z0-9._:-]{1,128}$")
+_ENTITY_TAG = re.compile(r'(?:W/)?"[\x21\x23-\x7e\x80-\xff]*"')
 
 
 def _request_id(request: Request) -> str:
@@ -56,6 +57,41 @@ def _cache_control(request: Request, response: Response, policy: EndpointPolicy)
     ):
         return "private, no-store"
     return policy.cache_control
+
+
+def _if_none_match_matches(field_value: str | None, current_etag: str) -> bool:
+    """Evaluate If-None-Match with the weak comparison required for GET."""
+    if field_value is None:
+        return False
+
+    if field_value.strip(" \t") == "*":
+        return True
+
+    position = 0
+    matched = False
+    while position < len(field_value):
+        while position < len(field_value) and field_value[position] in " \t":
+            position += 1
+        if position >= len(field_value):
+            return matched
+        if field_value[position] == ",":
+            position += 1
+            continue
+        candidate = _ENTITY_TAG.match(field_value, position)
+        if candidate is None:
+            return False
+        candidate_etag = candidate.group(0)
+        position = candidate.end()
+        matched = matched or candidate_etag.removeprefix("W/") == current_etag
+        while position < len(field_value) and field_value[position] in " \t":
+            position += 1
+        if position == len(field_value):
+            return matched
+        if field_value[position] != ",":
+            return False
+        position += 1
+
+    return matched
 
 
 def _endpoint_template(request: Request) -> str:
@@ -263,7 +299,8 @@ def create_app(
                 etag = f'"{sha256(body).hexdigest()}"'
                 headers = dict(response.headers)
                 headers["ETag"] = etag
-                if request.headers.get("If-None-Match") == etag:
+                if_none_match = ", ".join(request.headers.getlist("If-None-Match")) or None
+                if request.method == "GET" and _if_none_match_matches(if_none_match, etag):
                     headers.pop("content-length", None)
                     response_size = 0
                     response = Response(status_code=304, headers=headers)

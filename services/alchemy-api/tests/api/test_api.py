@@ -76,6 +76,61 @@ async def test_public_cache_etag_and_private_health_bypass(client: httpx.AsyncCl
 
 
 @pytest.mark.asyncio
+async def test_public_cache_if_none_match_uses_weak_comparison(client: httpx.AsyncClient) -> None:
+    initial = await client.get("/api/v1/meta")
+    etag = initial.headers["ETag"]
+
+    edge_shaped = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": f"W/{etag}"},
+    )
+    listed = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": f'"not-current", W/{etag}, "also-not-current"'},
+    )
+    listed_with_empty_members = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": f", W/{etag},,"},
+    )
+    repeated_fields = await client.get(
+        "/api/v1/meta",
+        headers=[
+            ("If-None-Match", '"not-current"'),
+            ("If-None-Match", f"W/{etag}"),
+        ],
+    )
+    wildcard = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": "*"},
+    )
+    nonmatching = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": 'W/"not-current", "also-not-current"'},
+    )
+    malformed_wildcard_list = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": f"*, {etag}"},
+    )
+
+    for unchanged in (
+        edge_shaped,
+        listed,
+        listed_with_empty_members,
+        repeated_fields,
+        wildcard,
+    ):
+        assert unchanged.status_code == 304
+        assert unchanged.content == b""
+        assert unchanged.headers["ETag"] == etag
+    assert nonmatching.status_code == 200
+    assert nonmatching.content == initial.content
+    assert nonmatching.headers["ETag"] == etag
+    assert malformed_wildcard_list.status_code == 200
+    assert malformed_wildcard_list.content == initial.content
+    assert malformed_wildcard_list.headers["ETag"] == etag
+
+
+@pytest.mark.asyncio
 async def test_request_size_limit_rejects_declared_oversize_body(
     client: httpx.AsyncClient,
 ) -> None:

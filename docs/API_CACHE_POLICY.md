@@ -26,9 +26,15 @@ FastAPI generates a deterministic strong ETag from the final representation byte
 already projections of versioned graph/source contracts and exclude response-time noise. Public
 knowledge envelopes keep compatibility fields `requestId` and `generatedAt` explicitly unavailable;
 request correlation comes from the per-request `X-Request-ID` response header, including edge cache
-hits. A matching `If-None-Match` returns 304 without a body. Future immutable version-addressed resources may use
-`public, max-age=300, s-maxage=86400, stale-while-revalidate=604800` only after their version is part
-of the URL or representation contract.
+hits. Cloudflare may expose the origin's strong validator as a weak `W/` validator. For public `GET`
+preconditions, FastAPI therefore evaluates `If-None-Match` with weak comparison across
+comma-separated entity-tag lists, combines repeated field lines in order, ignores empty list
+members, and supports `*` as the exclusive wildcard form, while continuing to emit the deterministic
+strong origin ETag. Malformed wildcard/list combinations do not satisfy the precondition. A match
+returns 304 without a body. Future immutable
+version-addressed resources may use `public, max-age=300, s-maxage=86400,
+stale-while-revalidate=604800` only after their version is part of the URL or representation
+contract.
 
 Cloudflare stores origin Cache-Control in an internal cache-only header because Cache API may
 rewrite browser TTLs. The header is removed and the exact origin policy restored on HIT.
