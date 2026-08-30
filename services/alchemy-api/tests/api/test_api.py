@@ -1,3 +1,4 @@
+import asyncio
 from collections.abc import AsyncIterator
 from typing import cast
 
@@ -23,6 +24,11 @@ async def test_liveness_readiness_meta_and_request_id(client: httpx.AsyncClient)
     meta = await client.get("/api/v1/meta")
     assert meta.status_code == 200
     assert meta.json()["formulaAnalysisAlgorithmVersion"] == "alchemy-formula-analysis-v0"
+    assert meta.json()["pythonVersion"] == "3.13.13"
+    assert meta.json()["neo4jDriverVersion"] == "5.28.2"
+    assert meta.json()["projectionVersions"] == ["production-approved-v1", "accepted-claims-v1"]
+    assert meta.json()["processWorkerCount"] == 1
+    assert meta.json()["neo4jConfiguration"]["maximumConnectionPoolSize"] == 20
     assert "external-ai" in meta.json()["featureFlags"]["disabled"]
 
 
@@ -31,9 +37,13 @@ async def test_public_cache_etag_and_private_health_bypass(client: httpx.AsyncCl
     live = await client.get("/api/v1/health/live")
     assert live.headers["Cache-Control"] == "no-store"
 
+    ready = await client.get("/api/v1/health/ready")
+    assert ready.headers["Cache-Control"] == "no-store"
+
     meta = await client.get("/api/v1/meta")
-    assert meta.headers["Cache-Control"].startswith("public, max-age=0, s-maxage=60")
+    assert meta.headers["Cache-Control"].startswith("public, max-age=60, s-maxage=3600")
     assert meta.headers["ETag"]
+    assert meta.headers["X-Content-Type-Options"] == "nosniff"
 
     unchanged = await client.get(
         "/api/v1/meta",
@@ -41,6 +51,21 @@ async def test_public_cache_etag_and_private_health_bypass(client: httpx.AsyncCl
     )
     assert unchanged.status_code == 304
     assert unchanged.content == b""
+
+    first_search = await client.get(
+        "/api/v1/herbs",
+        headers={"X-Request-ID": "cache-request-one"},
+    )
+    second_search = await client.get(
+        "/api/v1/herbs",
+        headers={
+            "X-Request-ID": "cache-request-two",
+            "If-None-Match": first_search.headers["ETag"],
+        },
+    )
+    assert first_search.json()["meta"]["requestId"] is None
+    assert first_search.json()["meta"]["generatedAt"] is None
+    assert second_search.status_code == 304
 
     private = await client.get(
         "/api/v1/meta",
@@ -90,6 +115,7 @@ async def test_production_origin_token_protects_application_routes() -> None:
         PUBCHEM_USER_AGENT="CurrentAlchemy-tests/0.1",
         ALCHEMY_ENV="production",
         ALCHEMY_ORIGIN_TOKEN="origin-token-test-only",
+        ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN=True,
     )
     api = create_app(settings=settings, repository=MemoryAlchemyRepository())
     async with httpx.AsyncClient(
@@ -106,6 +132,85 @@ async def test_production_origin_token_protects_application_routes() -> None:
     assert denied.status_code == 403
     assert denied.json()["code"] == "origin_access_denied"
     assert allowed.status_code == 200
+
+
+@pytest.mark.asyncio
+async def test_production_origin_token_supports_zero_downtime_secondary_rotation() -> None:
+    settings = Settings(
+        NEO4J_URI="bolt://test.invalid:7687",
+        NEO4J_USERNAME="test",
+        NEO4J_PASSWORD="test-only",
+        PUBCHEM_USER_AGENT="CurrentAlchemy-tests/0.1",
+        ALCHEMY_ENV="production",
+        ALCHEMY_ORIGIN_TOKEN="current-origin-token-test-only",
+        ALCHEMY_ORIGIN_TOKEN_SECONDARY="next-origin-token-test-only",
+        ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN=True,
+    )
+    api = create_app(settings=settings, repository=MemoryAlchemyRepository())
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=api),
+        base_url="http://test",
+    ) as protected_client:
+        current = await protected_client.get(
+            "/api/v1/meta",
+            headers={"X-Current-Flow-Origin-Token": "current-origin-token-test-only"},
+        )
+        next_token = await protected_client.get(
+            "/api/v1/meta",
+            headers={"X-Current-Flow-Origin-Token": "next-origin-token-test-only"},
+        )
+
+    assert current.status_code == 200
+    assert next_token.status_code == 200
+
+
+def test_production_edge_enforcement_requires_a_secret() -> None:
+    with pytest.raises(ValueError, match="edge origin enforcement"):
+        Settings(
+            NEO4J_URI="bolt://test.invalid:7687",
+            NEO4J_USERNAME="test",
+            NEO4J_PASSWORD="test-only",
+            PUBCHEM_USER_AGENT="CurrentAlchemy-tests/0.1",
+            ALCHEMY_ENV="production",
+            ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN=True,
+        )
+
+    with pytest.raises(ValueError, match="edge origin enforcement"):
+        Settings(
+            NEO4J_URI="bolt://test.invalid:7687",
+            NEO4J_USERNAME="test",
+            NEO4J_PASSWORD="test-only",
+            PUBCHEM_USER_AGENT="CurrentAlchemy-tests/0.1",
+            ALCHEMY_ENV="production",
+            ALCHEMY_ORIGIN_TOKEN="",
+            ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN=True,
+        )
+
+
+@pytest.mark.asyncio
+async def test_request_deadline_returns_bounded_problem() -> None:
+    class SlowRepository(MemoryAlchemyRepository):
+        async def active_source_count(self) -> int:
+            await asyncio.sleep(0.05)
+            return 0
+
+    settings = Settings(
+        NEO4J_URI="bolt://test.invalid:7687",
+        NEO4J_USERNAME="test",
+        NEO4J_PASSWORD="test-only",
+        PUBCHEM_USER_AGENT="CurrentAlchemy-tests/0.1",
+        ALCHEMY_ENV="test",
+        ALCHEMY_REQUEST_TIMEOUT_SECONDS=0.01,
+    )
+    api = create_app(settings=settings, repository=SlowRepository())
+    async with httpx.AsyncClient(
+        transport=httpx.ASGITransport(app=api),
+        base_url="http://test",
+    ) as timeout_client:
+        response = await timeout_client.get("/api/v1/meta")
+    assert response.status_code == 504
+    assert response.json()["code"] == "request_timeout"
+    assert response.headers["Cache-Control"] == "no-store"
 
 
 @pytest.mark.asyncio
@@ -129,6 +234,7 @@ async def test_readiness_failure_reports_dependency_without_internal_address() -
         response = await unready_client.get("/api/v1/health/ready")
     assert response.status_code == 503
     assert response.json()["code"] == "dependency_unavailable"
+    assert response.headers["Cache-Control"] == "no-store"
     assert "private.internal" not in response.text
 
 
@@ -204,6 +310,32 @@ async def test_safe_exploration_and_raw_cypher_rejection(client: httpx.AsyncClie
     )
     assert invalid.status_code == 422
     assert invalid.json()["code"] == "validation_error"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("path", "payload"),
+    [
+        (
+            "/api/v1/explore/query",
+            {
+                "startEntityType": "HerbMaterial",
+                "relationshipTypes": ["HAS_ACTION"],
+            },
+        ),
+        (
+            "/api/v1/retrieval/context",
+            {"passageIds": ["demo:passage:fixture-manual:1"]},
+        ),
+    ],
+)
+async def test_graph_retrieval_posts_are_actually_no_store(
+    client: httpx.AsyncClient, path: str, payload: dict[str, object]
+) -> None:
+    response = await client.post(path, json=payload)
+
+    assert response.status_code == 200
+    assert response.headers["Cache-Control"] == "no-store"
 
 
 @pytest.mark.asyncio

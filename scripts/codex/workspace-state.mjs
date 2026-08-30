@@ -12,6 +12,7 @@ import {
   parseRegistry,
   runtimeForLease,
 } from './workspace-core.mjs'
+import { codexExecutionMode } from './execution-mode.mjs'
 
 const LOCK_RETRY_COUNT = 100
 const LOCK_RETRY_MS = 50
@@ -77,6 +78,10 @@ export function registryPaths(commonGitDir) {
     registry: path.join(directory, 'current-flow-chat-leases.json'),
     lock: path.join(directory, 'current-flow-chat-leases.lock'),
   }
+}
+
+export function hasLocalWorkspaceRegistry(inspected) {
+  return fs.existsSync(registryPaths(inspected.commonGitDir).registry)
 }
 
 export function readRegistry(commonGitDir) {
@@ -179,8 +184,43 @@ function hookOutput({ continueRun = true, message, context }) {
   }
 }
 
-export function handleSessionStart(input, cwd = input.cwd ?? process.cwd()) {
+export function handleSessionStart(
+  input,
+  cwd = input.cwd ?? process.cwd(),
+  environment = process.env,
+) {
   const inspected = inspectWorkspace(cwd)
+  let executionMode
+  try {
+    executionMode = codexExecutionMode(environment)
+  } catch (error) {
+    return hookOutput({
+      continueRun: false,
+      message: error instanceof Error ? error.message : String(error),
+    })
+  }
+
+  if (executionMode === 'cloud' && hasLocalWorkspaceRegistry(inspected)) {
+    return hookOutput({
+      continueRun: false,
+      message:
+        'CURRENT_FLOW_CODEX_EXECUTION=cloud cannot override this checkout because it belongs to the local managed-worktree registry.',
+    })
+  }
+
+  if (executionMode === 'cloud') {
+    return hookOutput({
+      message: 'Current Flow recognized this isolated Codex Cloud worker.',
+      context: [
+        'CLOUD-WORKER: this task owns an isolated ephemeral checkout and may implement the user request here.',
+        'Do not dispatch to a desktop worktree, use the local lease registry, switch branches, or import a local working-tree snapshot.',
+        'Start from the explicitly selected GitHub master revision and use one short-lived task branch and protected pull request for publication.',
+        'The ignored commentary, transition, Alchemy raw-data, and private environment roots are forbidden in Codex Cloud and GitHub.',
+        'Run npm run codex:doctor before tracked changes and npm run check before completion.',
+        'Only an explicitly authorized integration task may reconcile docs/continuity/PROJECT_STATE.md or merge to master.',
+      ].join(' '),
+    })
+  }
 
   if (inspected.isPrimary) {
     const decision = evaluateClaim({

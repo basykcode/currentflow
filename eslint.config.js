@@ -3,12 +3,14 @@ import eslintPluginVue from 'eslint-plugin-vue'
 import tseslint from 'typescript-eslint'
 
 export default tseslint.config(
-  { ignores: ['dist/**', 'coverage/**', 'node_modules/**', 'eslint.config.js'] },
+  {
+    ignores: ['dist/**', 'coverage/**', 'node_modules/**', '**/.wrangler/**', 'eslint.config.js'],
+  },
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   ...eslintPluginVue.configs['flat/essential'],
   {
-    files: ['scripts/**/*.mjs', 'workers/**/*.mjs'],
+    files: ['scripts/**/*.mjs', 'workers/**/*.mjs', 'load-tests/**/*.{js,mjs}'],
     ...tseslint.configs.disableTypeChecked,
     languageOptions: {
       ...tseslint.configs.disableTypeChecked.languageOptions,
@@ -18,6 +20,7 @@ export default tseslint.config(
         Request: 'readonly',
         Response: 'readonly',
         URL: 'readonly',
+        __ENV: 'readonly',
         caches: 'readonly',
         console: 'readonly',
         crypto: 'readonly',

@@ -1,5 +1,5 @@
 {
-  "description": "Dispatch primary Current Flow tasks and enforce one worker chat per branch and linked worktree.",
+  "description": "Select the Current Flow Cloud-worker or local worktree-isolation boundary at task startup.",
   "hooks": {
     "SessionStart": [
       {

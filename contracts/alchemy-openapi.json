@@ -1729,13 +1729,27 @@
             "$ref": "#/components/schemas/DataStatus"
           },
           "generatedAt": {
-            "format": "date-time",
-            "title": "Generatedat",
-            "type": "string"
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Generatedat"
           },
           "requestId": {
-            "title": "Requestid",
-            "type": "string"
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Requestid"
           },
           "schemaVersion": {
             "title": "Schemaversion",
@@ -1757,7 +1771,6 @@
           }
         },
         "required": [
-          "requestId",
           "dataStatus",
           "schemaVersion"
         ],
@@ -1803,8 +1816,34 @@
             "title": "Formulaanalysisalgorithmversion",
             "type": "string"
           },
+          "gitSha": {
+            "title": "Gitsha",
+            "type": "string"
+          },
           "graphSchemaVersion": {
             "title": "Graphschemaversion",
+            "type": "string"
+          },
+          "neo4jConfiguration": {
+            "$ref": "#/components/schemas/Neo4jRuntimeConfiguration"
+          },
+          "neo4jDriverVersion": {
+            "title": "Neo4Jdriverversion",
+            "type": "string"
+          },
+          "processWorkerCount": {
+            "title": "Processworkercount",
+            "type": "integer"
+          },
+          "projectionVersions": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Projectionversions",
+            "type": "array"
+          },
+          "pythonVersion": {
+            "title": "Pythonversion",
             "type": "string"
           },
           "safetyBoundarySummary": {
@@ -1820,9 +1859,15 @@
           "serviceName",
           "apiVersion",
           "applicationVersion",
+          "gitSha",
+          "pythonVersion",
+          "neo4jDriverVersion",
           "graphSchemaVersion",
+          "projectionVersions",
           "formulaAnalysisAlgorithmVersion",
           "activeDataSourceCount",
+          "processWorkerCount",
+          "neo4jConfiguration",
           "safetyBoundarySummary",
           "featureFlags"
         ],
@@ -1870,6 +1915,50 @@
           "reviewStatus"
         ],
         "title": "NameRecord",
+        "type": "object"
+      },
+      "Neo4jRuntimeConfiguration": {
+        "additionalProperties": false,
+        "properties": {
+          "connectionAcquisitionTimeoutSeconds": {
+            "title": "Connectionacquisitiontimeoutseconds",
+            "type": "number"
+          },
+          "connectionTimeoutSeconds": {
+            "title": "Connectiontimeoutseconds",
+            "type": "number"
+          },
+          "livenessCheckTimeoutSeconds": {
+            "title": "Livenesschecktimeoutseconds",
+            "type": "number"
+          },
+          "maximumConnectionLifetimeSeconds": {
+            "title": "Maximumconnectionlifetimeseconds",
+            "type": "number"
+          },
+          "maximumConnectionPoolSize": {
+            "title": "Maximumconnectionpoolsize",
+            "type": "integer"
+          },
+          "maximumTransactionRetryTimeSeconds": {
+            "title": "Maximumtransactionretrytimeseconds",
+            "type": "number"
+          },
+          "queryTimeoutSeconds": {
+            "title": "Querytimeoutseconds",
+            "type": "number"
+          }
+        },
+        "required": [
+          "maximumConnectionPoolSize",
+          "connectionAcquisitionTimeoutSeconds",
+          "connectionTimeoutSeconds",
+          "maximumConnectionLifetimeSeconds",
+          "livenessCheckTimeoutSeconds",
+          "maximumTransactionRetryTimeSeconds",
+          "queryTimeoutSeconds"
+        ],
+        "title": "Neo4jRuntimeConfiguration",
         "type": "object"
       },
       "NormalizedIngredient": {
@@ -2690,7 +2779,7 @@
     },
     "/api/v1/explore/query": {
       "post": {
-        "operationId": "explore_api_v1_explore_query_post",
+        "operationId": "explore_query",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3524,7 +3613,7 @@
     },
     "/api/v1/retrieval/context": {
       "post": {
-        "operationId": "retrieval_context_api_v1_retrieval_context_post",
+        "operationId": "build_retrieval_context",
         "requestBody": {
           "content": {
             "application/json": {

@@ -57,10 +57,11 @@ lengths, and collection limits are capped at 100 or lower by the route contract.
 
 ## Observability
 
-Render JSON logs record request ID, method, path, status, duration, and outcome without bodies,
-credentials, Cypher, or query parameters. Neo4j logs record connectivity and query-dispatch duration
-plus outcome. Cloudflare observability records Worker request status and execution without the
-origin token.
+Render JSON logs record request ID, endpoint template, method, status, duration, response size,
+cache/rate policy, query count, cumulative Neo4j time, and outcome without bodies, credentials,
+Cypher, or parameters. Neo4j logs add stable query operation, result count, duration, and request
+correlation. Cloudflare observability records Worker request status, duration, cache state, and
+policy class without the origin token.
 
 Investigate or roll back when any of these occur:
 
@@ -77,6 +78,9 @@ These are investigation thresholds, not automatic scaling commands. Before incre
 workers or replicas, keep the total possible Neo4j connections within the reviewed Aura budget.
 
 ## Bounded load smoke
+
+The canonical k6 profiles and production opt-in gates are documented in `LOAD_TESTING.md`. The
+manual GitHub workflow is the only shared runner path and is never scheduled automatically.
 
 The read-only harness defaults to localhost, 2 requests per second, and 10 seconds:
 
@@ -98,8 +102,9 @@ against production without a separate change window and provider-metric observat
   only if that database is still healthy. Never paste or record them in Git or a ticket.
 - **Gateway:** remove or disable only the `api.current-flow.net/*` Worker route and restore the API
   DNS record's prior proxy state; its CNAME target remains the Render origin.
-- **Origin token:** remove the Render token only when traffic has first returned to the direct origin,
-  or rotate the token in the Worker before Render so live gateway requests remain accepted.
+- **Origin token:** remove Render enforcement only when traffic has first returned to the direct
+  origin. For rotation, add the new Render secondary token first, then promote the Worker, promote
+  the Render primary, and remove the old/secondary value after observation.
 
 After rollback, verify all three health/meta reads and one herb/formula read from the user-facing
 hostname, then record the exact deployment and observed result in a unique continuity handoff.

@@ -20,17 +20,30 @@ jobs:
         working-directory: services/alchemy-api
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.2'
+          cache: npm
+      - run: npm install --global npm@11.4.2
+        working-directory: .
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12.14'
+          python-version: '3.13.13'
       - uses: astral-sh/setup-uv@v6
         with:
-          version: '0.11.32'
+          version: '0.7.22'
           enable-cache: true
-      - run: uv sync --frozen --all-groups
+      - run: uv sync --locked --all-groups
       - name: Verify repository toolchain manifest
         working-directory: .
-        run: python -c "import json; json.load(open('config/toolchain.json'))"
+        run: npm run toolchain:check
+      - name: Verify exact Python runtime
+        working-directory: .
+        run: >-
+          python -c "import json, platform;
+          manifest=json.load(open('config/toolchain.json'));
+          expected=next(item['version'] for item in manifest['tools'] if item['tool']=='Python');
+          assert platform.python_version()==expected, (platform.python_version(), expected)"
       - run: uv run ruff format --check .
       - run: uv run ruff check .
       - run: uv run mypy src
@@ -69,12 +82,12 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.12.14'
+          python-version: '3.13.13'
       - uses: astral-sh/setup-uv@v6
         with:
-          version: '0.11.32'
+          version: '0.7.22'
           enable-cache: true
-      - run: uv sync --frozen --all-groups
+      - run: uv sync --locked --all-groups
       - run: uv run pytest -m integration
       - run: uv run alchemy graph audit
 

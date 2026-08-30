@@ -15,7 +15,7 @@ export const alchemyDataMode: AlchemyDataMode =
   configuredMode === 'api' ? 'api' : configuredMode === 'demo' || !configuredMode ? 'demo' : 'api'
 
 const apiBaseUrl = import.meta.env.VITE_ALCHEMY_API_BASE_URL?.trim()
-const parsedTimeout = Number(import.meta.env.VITE_ALCHEMY_REQUEST_TIMEOUT_MS)
+const parsedTimeout = Number(import.meta.env.VITE_ALCHEMY_API_TIMEOUT_MS)
 
 export const createConfiguredAlchemyProvider = (): AlchemyProvider => {
   if (alchemyDataMode === 'demo') return new DemoAlchemyProvider()

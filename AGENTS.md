@@ -10,6 +10,27 @@
 - Update documentation when architecture or integration boundaries change.
 - Preserve accessibility, responsive behavior, and the product principles in `docs/PRODUCT_PRINCIPLES.md`.
 
+## Production foundation rules
+
+- `config/toolchain.json` is the canonical toolchain manifest. Automation uses
+  `npm run dependencies:install`, which performs `npm ci --ignore-scripts` and rebuilds only the
+  exact audited install-script packages; direct dependency and runtime changes require synchronized
+  exact pins and reviewed lockfiles.
+- The exact runtimes and package managers native to the configured Codex Cloud image are canonical
+  across development, CI, builds, and production wherever the platform supports them. Setup verifies
+  and fails on drift; it never installs a competing runtime or package manager during task startup.
+  Project libraries not supplied by Codex remain exact, reviewed, lockfile-controlled dependencies.
+- `master` is the production branch. Keep frontend, backend, container, Render, and Cloudflare
+  release configuration aligned to it.
+- Migrations, foundation reconciliation, ingestion, and projection rebuilds never run in ordinary
+  web startup. API processes remain disposable and stateless.
+- Every API route has an explicit public/private/health/admin cache class. Private, authenticated,
+  cookie-bearing, and error responses are never edge-cached.
+- Neo4j queries use stable operation names, parameters, deterministic ordering, timeouts, and
+  bounded result counts. Review the aggregate connection budget before adding workers or instances.
+- Load-test and capacity claims name the dataset, commit, topology, workload, and observed provider
+  metrics. DAU alone is not evidence of capacity.
+
 ## Yijing transformation rules
 
 - Store and calculate hexagram lines bottom-to-top; resolve every target through the canonical
@@ -131,40 +152,63 @@ Authority, from intent to implementation:
 - Never push, merge, rebase, switch branches, delete branches, or delete worktrees without explicit
   authorization in the current task.
 
-### Codex chat isolation
+### Codex execution and isolation
+
+The project supports two explicit worker boundaries. Run `npm run codex:doctor` before tracked
+changes in either boundary. The `SessionStart` hook selects the boundary and must not be disabled or
+bypassed.
+
+#### Local Codex desktop
 
 - The primary checkout (where `.git` is a directory) is a strictly read-only coordinator. Codex may
   inspect it and use app-level task-management tools, but must not create, edit, delete, move,
   install, build, test, generate, or otherwise mutate project files, Git state, or project runtimes
   there.
-- When the current user request requires implementation or any other project mutation and the task
-  is in the primary checkout, dispatch it automatically. Use the Codex app's `list_projects`
-  capability to resolve the saved Current Flow Git project, then use its `create_thread` capability with
-  `target.type=project`, `environment.type=worktree`, and `startingState.type=branch` with
-  `branchName=master`. Never use the primary working tree as the starting state.
-- Forward the user's full current request to the created task, together with the necessary Current
-  Flow context: this is an automatically dispatched worker based on clean `master`, it must obey
-  this `AGENTS.md`, claim its SessionStart lease, and run `npm run workspace:doctor` before tracked
-  changes. Do not ask the user to restate, copy, or paste the request. Do not tell them to find a
-  Worktree composer control, and do not require Create Permanent Worktree for ordinary tasks.
-- After task creation succeeds, return the app's created-task UI directive using the actual result:
-  `::created-thread{threadId="..."}` when a ready task returns `threadId`, or
-  `::created-thread{clientThreadId="..."}` while managed-worktree setup returns `clientThreadId`.
-  Do not invent either identifier.
-- A task already running in its own leased, app-managed linked worktree is the worker. It proceeds
-  normally and must not dispatch another worker merely because the request involves implementation.
-- One chat owns one linked worktree and one branch. Never reuse a worktree for another active chat,
-  hand implementation work back to Local, or switch the worktree's branch.
-- The project `SessionStart` hook is an isolation boundary. Do not disable or bypass it. It assigns
-  detached Codex worktrees a `codex/chat-<session>` branch, rejects dirty unclaimed worktrees, and
-  rejects worktrees leased to another chat.
-- Run `npm run workspace:doctor` before tracked changes. Use `npm run workspace:dev` and
-  `npm run workspace:alchemy -- <action>` so concurrent chats receive isolated ports, containers,
-  volumes, migrations, and seed operations.
-- Do not use `git stash` as chat state and do not use broad staging. A feature chat owns only its
-  branch, worktree, unique handoff, and task-scoped files.
-- Feature chats do not edit `docs/continuity/PROJECT_STATE.md`; only an explicitly authorized
-  integration task reconciles that shared summary.
+- When an implementation request starts in the primary checkout, dispatch it automatically. Resolve
+  the saved Current Flow Git project with the app's `list_projects` capability, then use
+  `create_thread` with `target.type=project`, `environment.type=worktree`, and
+  `startingState.type=branch`, `branchName=master`. Never use the primary working tree as starting
+  state.
+- Forward the user's complete request and repository constraints. Do not ask the user to restate it,
+  send them to a Worktree control, or require a permanent worktree. Return the actual created-task UI
+  directive after dispatch.
+- A task already running in its own leased app-managed linked worktree is the worker. One task owns
+  one linked worktree, branch, lease, and runtime namespace. Never reuse or switch its worktree.
+- Local workers use `npm run workspace:dev` and `npm run workspace:alchemy -- <action>` for isolated
+  ports, containers, volumes, migrations, and seed operations. `npm run workspace:doctor` remains a
+  compatible local alias for the universal doctor.
+
+#### Codex Cloud
+
+- The configured Cloud environment must set the non-secret variable
+  `CURRENT_FLOW_CODEX_EXECUTION=cloud`. Missing mode retains the fail-safe local behavior; any unknown
+  value stops startup.
+- A recognized Cloud task is already an isolated worker. It must not dispatch to desktop, consult or
+  create the local lease registry, switch branches, or import a local working-tree snapshot.
+- Start ordinary Cloud tasks from the latest GitHub `master`. Use one scoped task, one short-lived
+  `codex/*` branch, and one protected pull request. Multiple Cloud tasks may work concurrently in
+  Astrology, Alchemy, Intelligence, Finance, Other Tools, or Miscellaneous workstreams.
+- Treat those workstream names as routing labels, not long-lived mutable branches. Dependent work
+  either starts from an explicitly named prerequisite branch or waits for that pull request to merge.
+- Never place `.env` files, credentials, raw commentary, internal Yijing packets, local transition
+  evidence, Alchemy raw data, or private runtime state in Codex Cloud or GitHub. The checked Cloud
+  boundary is mandatory. The separately approved password-protected Cloudflare KV Prompt Lab is a
+  production data boundary, not permission to expose its sources to Codex Cloud.
+- Cloud workers use repository checks and GitHub Actions for shared service verification. They do not
+  require Aura, Render, Cloudflare, or production credentials for ordinary implementation.
+
+#### Convergence and release
+
+- Do not use `git stash` as task state or broad staging. Each task owns only its isolated checkout,
+  branch, unique handoff, and scoped changes.
+- Protected `master` is the sole release authority. A dedicated Master / Integration task serializes
+  reconciliation, updates stale branches from `master`, resolves conflicts without dropping either
+  workstream, and confirms required checks before an authorized merge.
+- Feature tasks never edit `docs/continuity/PROJECT_STATE.md`. Only an explicitly authorized
+  integration task reconciles that shared summary and production activation state.
+- A merge to `master`, production deployment, provider configuration change, or bypass of branch
+  protections requires explicit authorization for that action. A request to implement or open a pull
+  request does not imply publication.
 
 ### Completion
 

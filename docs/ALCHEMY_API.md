@@ -26,6 +26,11 @@ Knowledge responses use:
 All responses return `X-Request-ID`. Callers may supply a safe request ID. Errors use
 `type`, `title`, `status`, stable `code`, `detail`, `requestId`, and typed `errors`.
 
+Public caching is deny-by-default and follows [`API_CACHE_POLICY.md`](API_CACHE_POLICY.md).
+`/meta` also returns the non-secret Git/runtime/driver/projection versions, process worker count,
+feature flags, and effective Neo4j pool/timeouts. Health remains `no-store`; private, authenticated,
+cookie-bearing, `Set-Cookie`, write, and error responses are never publicly cached.
+
 ## Endpoints
 
 | Area           | Endpoints                                                             |

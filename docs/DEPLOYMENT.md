@@ -81,7 +81,11 @@ Render builds the Docker image remotely from `services/alchemy-api/Dockerfile`. 
 service runs `deploy/predeploy.sh` before activation to apply checksum-protected migrations and
 reconcile the approved foundation. `deploy/start.sh` is process-only and starts one Uvicorn worker
 on Render's assigned port with a graceful-shutdown window. The Blueprint deploys only after GitHub
-checks pass and uses `/api/v1/health/ready` for dependency-aware health checks.
+checks pass and uses `/api/v1/health/live` for its platform health check. That liveness route proves
+the API process can respond without consulting Aura, so a temporary Aura outage does not cause
+Render to restart an otherwise healthy process. `/api/v1/health/ready` remains the operator-facing,
+dependency-aware route and returns `503` while Neo4j is unavailable. Both health responses are
+`no-store`.
 
 The first useful values to copy from Render are the service URL, such as
 `https://current-flow-alchemy-api.onrender.com`, and the successful deploy event. Do not copy secret
@@ -93,6 +97,10 @@ the database name from the Aura credentials file, save, and deploy the latest co
 prompts for new `sync: false` values during initial Blueprint creation.
 
 ## API gateway and custom domain
+
+The gateway route and protected origin are active. The following order is the reproducible initial
+cutover procedure; do not repeat DNS changes merely because they appear in this runbook. For later
+zero-downtime token rotation, use the secondary-token sequence in `EDGE_GATEWAY.md`.
 
 The Blueprint registers `api.current-flow.net` with the Render service. After the service has a live
 `onrender.com` URL:
@@ -107,15 +115,17 @@ The Blueprint registers `api.current-flow.net` with the Render service. After th
 3. In Render's **Settings → Custom Domains**, verify `api.current-flow.net` and wait for its TLS
    certificate to become valid.
 4. Confirm `https://api.current-flow.net/api/v1/health/ready` returns HTTP 200.
-5. Deploy `workers/api-gateway` to its workers.dev hostname. Add `ORIGIN_TOKEN` with Wrangler's
-   secret store; never place the value in `wrangler.jsonc`.
+5. Deploy `workers/api-gateway` to its workers.dev hostname. Add the canonical
+   `CURRENT_EDGE_ORIGIN_TOKEN` with Wrangler's secret store; the existing `ORIGIN_TOKEN` remains a
+   compatibility alias during rotation. Never place either value in `wrangler.jsonc`.
 6. Verify the workers.dev proxy and cache-bypass matrix in `PRODUCTION_OPERATIONS.md`.
 7. Add the path-scoped `api.current-flow.net/*` Worker route and change only the existing API
    record's proxy state when required. Keep its Render CNAME target recorded and unchanged so the
    cutover is reversible.
-8. After the gateway route is healthy, set the matching `ALCHEMY_ORIGIN_TOKEN` Render secret and
-   verify direct-origin application routes are rejected while provider health checks and gateway
-   traffic remain healthy.
+8. After the gateway route is healthy, set the matching canonical token (or retained
+   `ALCHEMY_ORIGIN_TOKEN` alias) and `ALCHEMY_REQUIRE_EDGE_ORIGIN_TOKEN=1` in Render. Verify
+   direct-origin application routes are rejected while provider health checks and gateway traffic
+   remain healthy.
 
 Do not change the existing apex or `www` records. Render specifically requires DNS-only mode during
 domain verification. Do not route the production hostname through the Worker until workers.dev
@@ -128,13 +138,16 @@ The repository tracks these non-secret production build values in `.env.producti
 ```dotenv
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=https://api.current-flow.net
-VITE_ALCHEMY_REQUEST_TIMEOUT_MS=90000
+VITE_ALCHEMY_API_TIMEOUT_MS=35000
 VITE_PROMPT_LAB_API_BASE_URL=https://api.current-flow.net
 ```
 
 Pushing `master` therefore gives the Cloudflare frontend Worker the connected API configuration
 without requiring dashboard variables. Vite values are public browser configuration, so only the
-data mode, public API URLs, and timeout belong in this file.
+data mode, public API URLs, and timeout belong in this file. Render Standard is always on. The
+browser allows 35 seconds so the gateway and browser transport retain a clear five-second margin
+above Render's bounded 30-second application deadline; imports and projection rebuilds remain
+offline work.
 
 Cloudflare production environment variables may override these values when an operational
 change must be made without a source release. Never place Aura or Render credentials in either
@@ -151,7 +164,7 @@ the gateway's Production and Preview environments:
 | --------------------------- | ------------------------ | --------------------------------------------------------- |
 | `AI`                        | Workers AI binding       | The account's Workers AI catalog                          |
 | `GENE_KEYS_SOURCES`         | Workers KV binding       | A private namespace created for the 128 Gene Key chapters |
-| `PROMPT_LAB_STATE`          | Workers KV binding       | Private global users and generated experiment records    |
+| `PROMPT_LAB_STATE`          | Workers KV binding       | Private global users and generated experiment records     |
 | `PROMPT_LAB_PASSWORD`       | encrypted secret         | The shared password supplied out of band by the owner     |
 | `PROMPT_LAB_SESSION_SECRET` | encrypted secret         | At least 32 random bytes, independently generated         |
 | `OPENAI_API_KEY`            | encrypted secret         | Project OpenAI key for the GPT-5.6 choices                |
@@ -238,7 +251,12 @@ Use the exact repository toolchain versions in `config/toolchain.json`. In Windo
 - Build command: `npm run build`
 - Build output directory: `dist`
 - Root directory: repository root
-- Node version: `24.19.0`
+- Node version: `22.22.2`
+- npm version: `11.4.2`; skip the platform's automatic dependency install and run exact npm for
+  the audited dependency installer before the build when activating this toolchain. In Workers
+  Builds set
+  `SKIP_DEPENDENCY_INSTALL=1` and begin the build command with
+  `npx --yes npm@11.4.2 run dependencies:install && npx --yes npm@11.4.2 run build`.
 
 Vite uses `/` as its base. The existing `currentflow` Worker owns apex and `www`. The separate
 `current-flow-api-gateway` Worker owns the Alchemy proxy and the private `/api/gene-keys-lab/*`

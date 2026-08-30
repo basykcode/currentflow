@@ -505,6 +505,47 @@ describe('HttpAlchemyProvider', () => {
     expect(failingFetch).toHaveBeenCalledTimes(1)
   })
 
+  it('uses the retrieval response request ID for collision-safe package identity', async () => {
+    let requestSequence = 0
+    const retrievalFetch = vi.fn((input: Request) => {
+      expect(new URL(input.url).pathname).toBe('/api/v1/retrieval/context')
+      requestSequence += 1
+      const response = json(
+        envelope({
+          query: 'Selected passages',
+          passages: [passage],
+          citations: [citation],
+          matchedEntities: [herb],
+          graphNeighborhoodFacts: [],
+          unresolvedAmbiguities: [],
+          sourceStatuses: { [source.id]: 'approved' },
+          reviewStatuses: { [source.id]: 'synthetic_fixture' },
+          usedCharacters: passage.originalText.length,
+          characterBudget: 6000,
+        }),
+      )
+      response.headers.set('x-request-id', `retrieval-${requestSequence}`)
+      return Promise.resolve(response)
+    })
+    const provider = new HttpAlchemyProvider({
+      baseUrl: 'http://alchemy.test',
+      fetch: retrievalFetch,
+    })
+
+    const first = await provider.buildRetrievalContext({
+      passageIds: [passage.id],
+      characterBudget: 6000,
+    })
+    const second = await provider.buildRetrievalContext({
+      passageIds: [passage.id],
+      characterBudget: 6000,
+    })
+
+    expect(first.id).toBe('api-retrieval:retrieval-1')
+    expect(second.id).toBe('api-retrieval:retrieval-2')
+    expect(second.id).not.toBe(first.id)
+  })
+
   it('normalizes configured timeouts', async () => {
     const hangingFetch = vi.fn(
       (input: Request) =>

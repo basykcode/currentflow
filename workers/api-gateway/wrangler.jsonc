@@ -1,7 +1,7 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "current-flow-api-gateway",
-  "main": "src/index.mjs",
+  "main": "src/index.ts",
   "compatibility_date": "2026-08-26",
   "workers_dev": true,
   "preview_urls": true,
@@ -20,10 +20,10 @@
   ],
   "observability": {
     "enabled": true,
-    "head_sampling_rate": 1
+    "head_sampling_rate": 1,
   },
   "vars": {
     "ORIGIN_BASE_URL": "https://current-flow-alchemy-api.onrender.com",
-    "ALLOWED_ORIGINS": "https://current-flow.net,https://www.current-flow.net"
-  }
+    "ALLOWED_ORIGINS": "https://current-flow.net,https://www.current-flow.net",
+  },
 }
