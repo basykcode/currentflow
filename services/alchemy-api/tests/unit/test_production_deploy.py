@@ -54,3 +54,31 @@ def test_gateway_source_configuration_cannot_claim_the_production_hostname() -> 
     assert configuration["workers_dev"] is True
     assert configuration["main"] == "src/index.ts"
     assert "routes" not in configuration
+
+
+def test_production_browser_timeout_retains_transport_margin() -> None:
+    def dotenv(path: Path) -> dict[str, str]:
+        return {
+            key: value
+            for line in path.read_text(encoding="utf-8").splitlines()
+            if line and not line.startswith("#")
+            for key, separator, value in [line.partition("=")]
+            if separator
+        }
+
+    production_browser = dotenv(_REPOSITORY_ROOT / ".env.production")
+    example_browser = dotenv(_REPOSITORY_ROOT / ".env.example")
+    render = cast(
+        dict[str, Any],
+        yaml.safe_load((_REPOSITORY_ROOT / "render.yaml").read_text(encoding="utf-8")),
+    )
+    render_service = cast(dict[str, Any], render["services"][0])
+    render_environment = {item["key"]: item.get("value") for item in render_service["envVars"]}
+
+    production_timeout_ms = int(production_browser["VITE_ALCHEMY_API_TIMEOUT_MS"])
+    example_timeout_ms = int(example_browser["VITE_ALCHEMY_API_TIMEOUT_MS"])
+    render_timeout_ms = int(render_environment["ALCHEMY_REQUEST_TIMEOUT_SECONDS"]) * 1_000
+
+    assert production_timeout_ms == example_timeout_ms
+    assert render_timeout_ms == 30_000
+    assert production_timeout_ms - render_timeout_ms >= 5_000

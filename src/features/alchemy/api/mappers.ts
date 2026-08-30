@@ -640,6 +640,7 @@ const mapPassage = (passage: ApiPassage, status: AlchemyDataStatus): TextPassage
 export const mapRetrieval = (
   data: ApiRetrieval,
   meta: ApiKnowledgeMeta,
+  requestId: string,
 ): RetrievalContextResult => {
   const citations = data.citations.map(mapCitation)
   const citationIds = new Map(citations.map((citation) => [citation.sourceId, citation.id]))
@@ -661,7 +662,7 @@ export const mapRetrieval = (
     sourceSummary.set(title, existing)
   })
   return {
-    id: `api-retrieval:${meta.requestId}`,
+    id: `api-retrieval:${requestId}`,
     status: meta.dataStatus,
     passages: data.passages.map((passage) => mapPassage(passage, meta.dataStatus)),
     citations,

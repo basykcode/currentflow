@@ -42,6 +42,7 @@ jobs:
           LOAD_PROFILE: ${{ inputs.profile }}
           ALLOW_REMOTE_LOAD: ${{ inputs.allow_remote && '1' || '0' }}
           ALLOW_PRODUCTION_LOAD: ${{ inputs.allow_production && '1' || '0' }}
+          ALCHEMY_ORIGIN_TOKEN: ${{ secrets.ALCHEMY_ORIGIN_TOKEN }}
         run: >-
           docker run --rm
           -v "$GITHUB_WORKSPACE:/work"
@@ -50,5 +51,6 @@ jobs:
           -e LOAD_PROFILE
           -e ALLOW_REMOTE_LOAD
           -e ALLOW_PRODUCTION_LOAD
+          -e ALCHEMY_ORIGIN_TOKEN
           grafana/k6:1.0.0
           run load-tests/alchemy.js

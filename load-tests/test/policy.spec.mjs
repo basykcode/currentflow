@@ -1,7 +1,16 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import path from 'node:path'
 import test from 'node:test'
+import { fileURLToPath } from 'node:url'
 
-import { loadOptions, loadProfiles, targetPolicy, thresholds } from '../policy.mjs'
+import {
+  loadOptions,
+  loadProfiles,
+  originRequestHeaders,
+  targetPolicy,
+  thresholds,
+} from '../policy.mjs'
 
 test('all locked load profiles are present and bounded', () => {
   assert.deepEqual(Object.keys(loadProfiles), [
@@ -44,4 +53,44 @@ test('remote and production targets require independent explicit opt-ins', () =>
     }).production,
     true,
   )
+})
+
+test('origin token headers are scoped to explicitly authorized direct Render runs', () => {
+  const authorization = { ALLOW_REMOTE_LOAD: '1', ALLOW_PRODUCTION_LOAD: '1' }
+  const withToken = { ...authorization, ALCHEMY_ORIGIN_TOKEN: 'test-only' }
+  assert.throws(
+    () => targetPolicy('https://current-flow-alchemy-api.onrender.com', authorization),
+    /require ALCHEMY_ORIGIN_TOKEN/,
+  )
+  const renderPolicy = targetPolicy('https://current-flow-alchemy-api.onrender.com', withToken)
+  assert.deepEqual(originRequestHeaders(renderPolicy, withToken), {
+    'X-Current-Flow-Origin-Token': 'test-only',
+  })
+
+  for (const rejectedTarget of [
+    'http://current-flow-alchemy-api.onrender.com',
+    'https://current-flow-alchemy-api.onrender.com:8443',
+    'https://api.current-flow.net',
+    'http://127.0.0.1:8000',
+    'https://current-flow-alchemy-api.onrender.com.example',
+  ]) {
+    assert.throws(
+      () => targetPolicy(rejectedTarget, withToken),
+      /ALCHEMY_ORIGIN_TOKEN is allowed only/,
+      rejectedTarget,
+    )
+  }
+})
+
+test('manual direct-origin workflow passes the secret by variable name only', () => {
+  const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
+  const workflow = fs.readFileSync(
+    path.join(repositoryRoot, '.github/workflows/load-test.yml'),
+    'utf8',
+  )
+
+  assert.match(workflow, /ALCHEMY_ORIGIN_TOKEN: \$\{\{ secrets\.ALCHEMY_ORIGIN_TOKEN \}\}/)
+  assert.match(workflow, /^\s+-e ALCHEMY_ORIGIN_TOKEN$/m)
+  assert.doesNotMatch(workflow, /-e ALCHEMY_ORIGIN_TOKEN=/)
+  assert.doesNotMatch(workflow, /echo[^\n]*ALCHEMY_ORIGIN_TOKEN/i)
 })

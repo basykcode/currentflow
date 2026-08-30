@@ -28,4 +28,11 @@ active provider-metric observation. The manual GitHub workflow uses exact `grafa
 requires both confirmations. It is never scheduled automatically.
 
 Optional variables are `HERB_ID`, `FORMULA_ID`, `FORMULA_COMPARISON_BODY`, and
-`CANON_SEARCH_PATH`. Do not invent production identifiers or load private/future routes.
+`CANON_SEARCH_PATH`. An explicitly authorized direct Render-origin run may additionally supply the
+secret `ALCHEMY_ORIGIN_TOKEN`; the manual workflow maps that secret to the job environment and
+passes only its variable name into the k6 container. The workload requires the token for the exact
+`https://current-flow-alchemy-api.onrender.com` origin and sends it as
+`X-Current-Flow-Origin-Token` on every request. HTTP, alternate ports, the gateway, local targets,
+and lookalike hosts are rejected when the token is present. Never print the variable, include it in
+results, or pass it for any other origin. Do not invent production identifiers or load
+private/future routes.

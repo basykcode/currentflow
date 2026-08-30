@@ -34,6 +34,42 @@ function context(): { pending: Promise<unknown>[]; waitUntil(promise: Promise<un
 const silentLogger = (): void => undefined
 
 describe('Cloudflare API gateway', () => {
+  it.each(['/api/v1/explore/query', '/api/v1/retrieval/context'])(
+    'registers %s as an explicit graph-retrieval POST',
+    (path) => {
+      const policy = routePolicy('POST', path)
+      expect(policy).toEqual({
+        endpointClass: 'public-uncacheable',
+        rateClass: 'graph-retrieval',
+      })
+      expect(policy).not.toEqual(routePolicy('POST', '/api/v1/unregistered'))
+    },
+  )
+
+  it.each(['/api/v1/explore/query', '/api/v1/retrieval/context'])(
+    'forces an origin-public response from %s to no-store',
+    async (path) => {
+      const cache = new TestCache()
+      const response = await handleRequest(
+        new Request(`https://gateway.example${path}`, { method: 'POST', body: '{}' }),
+        environment,
+        context(),
+        {
+          cache,
+          logger: silentLogger,
+          fetcher: () =>
+            Promise.resolve(
+              Response.json({ ok: true }, { headers: { 'Cache-Control': 'public, s-maxage=60' } }),
+            ),
+        },
+      )
+
+      expect(response.headers.get('Cache-Control')).toBe('no-store')
+      expect(response.headers.get('X-Current-Flow-Cache')).toBe('BYPASS')
+      expect(cache.entries.size).toBe(0)
+    },
+  )
+
   it('proxies public GETs with query, request ID, and canonical origin token', async () => {
     const seen: Request[] = []
     const ctx = context()

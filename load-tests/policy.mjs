@@ -34,6 +34,8 @@ export const thresholds = Object.freeze({
   'http_req_duration{workload:complex_bounded}': ['p(95)<2000'],
 })
 
+export const DIRECT_RENDER_ORIGIN = 'https://current-flow-alchemy-api.onrender.com'
+
 export function targetPolicy(target, environment = {}) {
   const parsed = new URL(target)
   const local = new Set(['localhost', '127.0.0.1', '::1']).has(parsed.hostname)
@@ -46,7 +48,23 @@ export function targetPolicy(target, environment = {}) {
   if (production && environment.ALLOW_PRODUCTION_LOAD !== '1') {
     throw new Error('Production load targets require ALLOW_PRODUCTION_LOAD=1.')
   }
-  return Object.freeze({ origin: parsed.origin, local, production })
+  const directRenderOrigin = parsed.origin === DIRECT_RENDER_ORIGIN
+  const token = environment.ALCHEMY_ORIGIN_TOKEN
+  const hasOriginToken = typeof token === 'string' && token.length > 0
+  if (hasOriginToken && !directRenderOrigin) {
+    throw new Error(`ALCHEMY_ORIGIN_TOKEN is allowed only for ${DIRECT_RENDER_ORIGIN}.`)
+  }
+  if (directRenderOrigin && !hasOriginToken) {
+    throw new Error('Direct Render-origin load tests require ALCHEMY_ORIGIN_TOKEN.')
+  }
+  return Object.freeze({ origin: parsed.origin, local, production, directRenderOrigin })
+}
+
+export function originRequestHeaders(policy, environment = {}) {
+  const token = environment.ALCHEMY_ORIGIN_TOKEN
+  if (!policy.directRenderOrigin || typeof token !== 'string' || token.length === 0)
+    return undefined
+  return Object.freeze({ 'X-Current-Flow-Origin-Token': token })
 }
 
 export function loadOptions(profileName) {

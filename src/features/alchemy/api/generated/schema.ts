@@ -48,7 +48,7 @@ export interface paths {
     get?: never
     put?: never
     /** Explore */
-    post: operations['explore_api_v1_explore_query_post']
+    post: operations['explore_query']
     delete?: never
     options?: never
     head?: never
@@ -269,7 +269,7 @@ export interface paths {
     get?: never
     put?: never
     /** Retrieval Context */
-    post: operations['retrieval_context_api_v1_retrieval_context_post']
+    post: operations['build_retrieval_context']
     delete?: never
     options?: never
     head?: never
@@ -1233,7 +1233,7 @@ export interface operations {
       }
     }
   }
-  explore_api_v1_explore_query_post: {
+  explore_query: {
     parameters: {
       query?: never
       header?: never
@@ -1640,7 +1640,7 @@ export interface operations {
       }
     }
   }
-  retrieval_context_api_v1_retrieval_context_post: {
+  build_retrieval_context: {
     parameters: {
       query?: never
       header?: never

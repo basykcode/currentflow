@@ -8,7 +8,7 @@ uncacheable. Adding a new route requires an explicit classification and tests.
 | ------------------------- | --------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | `public-cacheable` search | suggestions, text search                                              | `public, max-age=0, s-maxage=60, stale-while-revalidate=300`      |
 | `public-cacheable` stable | metadata, herbs, formulas, sources, documents, passages, graph detail | `public, max-age=60, s-maxage=3600, stale-while-revalidate=86400` |
-| `public-uncacheable`      | formula analysis/comparison and unmatched public routes               | `no-store`                                                        |
+| `public-uncacheable`      | graph retrieval, formula analysis/comparison, unmatched public routes | `no-store`                                                        |
 | `private-no-store`        | auth, users, profiles, subscriptions, memories, Intelligence          | `private, no-store`                                               |
 | `health`                  | live and ready                                                        | `no-store`                                                        |
 | `administrative`          | admin, internal, imports                                              | `private, no-store`                                               |
@@ -16,6 +16,11 @@ uncacheable. Adding a new route requires an explicit classification and tests.
 Any error, non-GET, Authorization, Cookie, or `Set-Cookie` response overrides the route class and is
 never publicly cached. Range and explicit no-cache requests bypass the Worker cache. CORS varies
 only when an allowlisted `Origin` changes the response.
+
+The unauthenticated bounded graph POST routes `/api/v1/explore/query` and
+`/api/v1/retrieval/context` use the synchronized `graph-retrieval` rate class and explicit
+`public-uncacheable` endpoint class. They always return `no-store`; this is distinct from the
+deny-by-default unknown-route fallback even though that fallback is also uncacheable.
 
 FastAPI generates a deterministic strong ETag from the final representation bytes. Those bytes are
 already projections of versioned graph/source contracts and exclude response-time noise. Public

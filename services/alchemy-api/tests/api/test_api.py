@@ -309,6 +309,32 @@ async def test_safe_exploration_and_raw_cypher_rejection(client: httpx.AsyncClie
 
 
 @pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("path", "payload"),
+    [
+        (
+            "/api/v1/explore/query",
+            {
+                "startEntityType": "HerbMaterial",
+                "relationshipTypes": ["HAS_ACTION"],
+            },
+        ),
+        (
+            "/api/v1/retrieval/context",
+            {"passageIds": ["demo:passage:fixture-manual:1"]},
+        ),
+    ],
+)
+async def test_graph_retrieval_posts_are_actually_no_store(
+    client: httpx.AsyncClient, path: str, payload: dict[str, object]
+) -> None:
+    response = await client.post(path, json=payload)
+
+    assert response.status_code == 200
+    assert response.headers["Cache-Control"] == "no-store"
+
+
+@pytest.mark.asyncio
 async def test_one_formula_analysis_and_four_formula_comparison(
     client: httpx.AsyncClient,
 ) -> None:

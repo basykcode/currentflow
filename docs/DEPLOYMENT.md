@@ -134,14 +134,15 @@ The repository tracks these non-secret production build values in `.env.producti
 ```dotenv
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=https://api.current-flow.net
-VITE_ALCHEMY_REQUEST_TIMEOUT_MS=30000
+VITE_ALCHEMY_API_TIMEOUT_MS=35000
 VITE_PROMPT_LAB_API_BASE_URL=https://api.current-flow.net
 ```
 
 Pushing `master` therefore gives the Cloudflare frontend Worker the connected API configuration
 without requiring dashboard variables. Vite values are public browser configuration, so only the
-data mode, public API URLs, and timeout belong in this file. Render Standard is always on, so
-ordinary interactive reads use a bounded 30-second deadline; imports and projection rebuilds remain
+data mode, public API URLs, and timeout belong in this file. Render Standard is always on. The
+browser allows 35 seconds so the gateway and browser transport retain a clear five-second margin
+above Render's bounded 30-second application deadline; imports and projection rebuilds remain
 offline work.
 
 Cloudflare production environment variables may override these values when an operational

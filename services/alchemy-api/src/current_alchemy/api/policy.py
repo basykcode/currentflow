@@ -18,6 +18,7 @@ class RatePolicyClass(StrEnum):
     AUTHENTICATED_READ = "authenticated-read"
     SEARCH = "search"
     FORMULA_ANALYSIS = "formula-analysis"
+    GRAPH_RETRIEVAL = "graph-retrieval"
     FUTURE_INTELLIGENCE = "future-intelligence"
     ADMINISTRATIVE_IMPORT = "administrative-import"
 
@@ -65,6 +66,10 @@ FORMULA_ANALYSIS = EndpointPolicy(
     EndpointClass.PUBLIC_UNCACHEABLE,
     RatePolicyClass.FORMULA_ANALYSIS,
 )
+GRAPH_RETRIEVAL = EndpointPolicy(
+    EndpointClass.PUBLIC_UNCACHEABLE,
+    RatePolicyClass.GRAPH_RETRIEVAL,
+)
 FUTURE_INTELLIGENCE = EndpointPolicy(
     EndpointClass.PRIVATE_NO_STORE,
     RatePolicyClass.FUTURE_INTELLIGENCE,
@@ -93,6 +98,11 @@ _REGISTRY: tuple[RegisteredPolicy, ...] = (
         frozenset({"POST"}),
         compile(r"^/api/v1/formulas/(analyze|compare)$"),
         FORMULA_ANALYSIS,
+    ),
+    RegisteredPolicy(
+        frozenset({"POST"}),
+        compile(r"^/api/v1/(explore/query|retrieval/context)$"),
+        GRAPH_RETRIEVAL,
     ),
     RegisteredPolicy(
         frozenset({"GET"}),

@@ -41,6 +41,8 @@ integration owns the production `master` release. Never point `ORIGIN_BASE_URL` 
 `api.current-flow.net`; same-host recursion is rejected at runtime.
 
 Cloudflare Rate Limiting/WAF rules remain dashboard configuration. Use the policy classes exported
-by `src/policy.ts`: anonymous public reads, authenticated reads, search, formula analysis, future
-Intelligence, and administrative/import operations. Process-local distributed limiting is
-forbidden.
+by `src/policy.ts`: anonymous public reads, authenticated reads, search, formula analysis, bounded
+graph retrieval, future Intelligence, and administrative/import operations. The unauthenticated
+`POST /api/v1/explore/query` and `POST /api/v1/retrieval/context` routes use the explicit
+`graph-retrieval` class and remain public-uncacheable with `no-store`. Process-local distributed
+limiting is forbidden.
