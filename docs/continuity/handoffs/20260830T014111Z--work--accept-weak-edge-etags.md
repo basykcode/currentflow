@@ -17,8 +17,9 @@ strong ETag using exact string equality, so Cloudflare's equivalent `W/` validat
 
 ## Work completed
 
-- Added grammar-aware entity-tag list parsing and weak comparison for public GET/HEAD conditional
-  evaluation, including wildcard support, while retaining the strong SHA-256 origin validator.
+- Added grammar-aware entity-tag list parsing and weak comparison for public GET conditional
+  evaluation, including the exclusive wildcard form, while retaining the strong SHA-256 origin
+  validator. Malformed wildcard/list combinations fail closed to the normal response.
 - Added API coverage for actual weak edge input, comma-separated lists, wildcard, nonmatching
   validators, retained strong response ETags, and empty 304 bodies.
 - Documented Cloudflare edge weakening and the origin's weak precondition comparison contract.
@@ -36,10 +37,11 @@ None. This is a narrow standards-correct repair to the accepted cache contract.
 
 ## Important rationale
 
-`If-None-Match` uses weak comparison for GET and HEAD. Normalizing only the optional `W/` prefix
-during comparison makes an edge-weakened validator equivalent without changing the deterministic
-strong ETag produced by the origin. Parsing list members avoids treating a whole comma-separated
-field as one opaque string, and invalid syntax does not accidentally satisfy the precondition.
+`If-None-Match` uses weak comparison for the public GET routes supported by this API. Normalizing
+only the optional `W/` prefix during comparison makes an edge-weakened validator equivalent without
+changing the deterministic strong ETag produced by the origin. Parsing list members avoids treating
+a whole comma-separated field as one opaque string. The `*` wildcard is accepted only as the entire
+field value, so invalid wildcard/list combinations do not accidentally satisfy the precondition.
 
 ## Verification commands and results
 
@@ -59,13 +61,15 @@ field as one opaque string, and invalid syntax does not accidentally satisfy the
 
 ## Failed or rejected approaches worth remembering
 
-- Exact validator string equality is not valid for GET/HEAD `If-None-Match`; do not strip the weak
-  prefix from the emitted origin ETag as a workaround.
+- Exact validator string equality is not valid for GET `If-None-Match`; do not strip the weak prefix
+  from the emitted origin ETag as a workaround.
 
 ## Known risks and assumptions
 
 - No live provider smoke was run because deployment and provider access were explicitly out of
   scope. GitHub Actions and a separately authorized release should verify the public edge path.
+- Public API routes do not support HEAD, and this hotfix deliberately does not broaden route or cache
+  behavior to add it.
 
 ## Unresolved issues
 

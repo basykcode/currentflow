@@ -96,6 +96,10 @@ async def test_public_cache_if_none_match_uses_weak_comparison(client: httpx.Asy
         "/api/v1/meta",
         headers={"If-None-Match": 'W/"not-current", "also-not-current"'},
     )
+    malformed_wildcard_list = await client.get(
+        "/api/v1/meta",
+        headers={"If-None-Match": f"*, {etag}"},
+    )
 
     for unchanged in (edge_shaped, listed, wildcard):
         assert unchanged.status_code == 304
@@ -104,6 +108,9 @@ async def test_public_cache_if_none_match_uses_weak_comparison(client: httpx.Asy
     assert nonmatching.status_code == 200
     assert nonmatching.content == initial.content
     assert nonmatching.headers["ETag"] == etag
+    assert malformed_wildcard_list.status_code == 200
+    assert malformed_wildcard_list.content == initial.content
+    assert malformed_wildcard_list.headers["ETag"] == etag
 
 
 @pytest.mark.asyncio

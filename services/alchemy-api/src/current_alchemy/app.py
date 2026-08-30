@@ -60,9 +60,12 @@ def _cache_control(request: Request, response: Response, policy: EndpointPolicy)
 
 
 def _if_none_match_matches(field_value: str | None, current_etag: str) -> bool:
-    """Evaluate If-None-Match with the weak comparison required for GET and HEAD."""
+    """Evaluate If-None-Match with the weak comparison required for GET."""
     if field_value is None:
         return False
+
+    if field_value.strip(" \t") == "*":
+        return True
 
     position = 0
     matched = False
@@ -71,16 +74,12 @@ def _if_none_match_matches(field_value: str | None, current_etag: str) -> bool:
             position += 1
         if position >= len(field_value):
             return False
-        if field_value[position] == "*":
-            position += 1
-            matched = True
-        else:
-            candidate = _ENTITY_TAG.match(field_value, position)
-            if candidate is None:
-                return False
-            candidate_etag = candidate.group(0)
-            position = candidate.end()
-            matched = matched or candidate_etag.removeprefix("W/") == current_etag
+        candidate = _ENTITY_TAG.match(field_value, position)
+        if candidate is None:
+            return False
+        candidate_etag = candidate.group(0)
+        position = candidate.end()
+        matched = matched or candidate_etag.removeprefix("W/") == current_etag
         while position < len(field_value) and field_value[position] in " \t":
             position += 1
         if position == len(field_value):
@@ -297,7 +296,7 @@ def create_app(
                 etag = f'"{sha256(body).hexdigest()}"'
                 headers = dict(response.headers)
                 headers["ETag"] = etag
-                if request.method in {"GET", "HEAD"} and _if_none_match_matches(
+                if request.method == "GET" and _if_none_match_matches(
                     request.headers.get("If-None-Match"), etag
                 ):
                     headers.pop("content-length", None)

@@ -26,10 +26,11 @@ FastAPI generates a deterministic strong ETag from the final representation byte
 already projections of versioned graph/source contracts and exclude response-time noise. Public
 knowledge envelopes keep compatibility fields `requestId` and `generatedAt` explicitly unavailable;
 request correlation comes from the per-request `X-Request-ID` response header, including edge cache
-hits. Cloudflare may expose the origin's strong validator as a weak `W/` validator. For public
-`GET` and `HEAD` preconditions, FastAPI therefore evaluates `If-None-Match` with weak comparison
-across comma-separated validator lists and supports the wildcard, while continuing to emit the
-deterministic strong origin ETag. A match returns 304 without a body. Future immutable
+hits. Cloudflare may expose the origin's strong validator as a weak `W/` validator. For public `GET`
+preconditions, FastAPI therefore evaluates `If-None-Match` with weak comparison across
+comma-separated entity-tag lists and supports `*` as the exclusive wildcard form, while continuing
+to emit the deterministic strong origin ETag. Malformed wildcard/list combinations do not satisfy
+the precondition. A match returns 304 without a body. Future immutable
 version-addressed resources may use `public, max-age=300, s-maxage=86400,
 stale-while-revalidate=604800` only after their version is part of the URL or representation
 contract.
