@@ -1,175 +1,102 @@
-# Current Flow Codex Cloud workflow
+# Current Flow Codex Cloud operating guide
 
-Codex Cloud is the default boundary for development that must be available from a phone or any web
-browser. It provides disposable, isolated checkouts for concurrent work; GitHub is the durable task
-state; protected `master` remains the sole release authority. The local Codex desktop worktree system
-remains a fallback for protected evidence and machine-specific work.
+Codex Cloud is Current Flow's default from-anywhere development boundary. It creates isolated,
+disposable repository checkouts; GitHub branches and pull requests are the durable bridge between
+Cloud tasks, Desktop work, review, and production. Protected `master` remains the only release
+authority. Cloud is not a production service and ordinary tasks receive no Render, AuraDB,
+Cloudflare, or application secrets.
 
-```text
-Astrology task ─┐
-Alchemy task ───┼─> short-lived branches ─> protected pull requests ─> Integration queue
-Other task ─────┘                                                        │
-                                                                          v
-                               Cloudflare frontend + API gateway <─ master ─> Render API
-                                                                          │
-                                                                          v
-                                                                 verified live product
-```
+## Saved environment
 
-Codex Cloud is a development environment, not another production service. Ordinary Cloud tasks
-receive no Render, AuraDB, Cloudflare, or production application credentials.
+Use the saved **Current Flow Cloud** environment for `basykcode/currentflow`:
 
-## Canonical environment
+| Setting             | Exact value                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| Setup command       | `bash scripts/codex/cloud-bootstrap.sh setup`               |
+| Maintenance command | `bash scripts/codex/cloud-bootstrap.sh maintenance`         |
+| Container caching   | On                                                          |
+| Agent internet      | Off                                                         |
+| Non-secret variable | `CURRENT_FLOW_CODEX_EXECUTION=cloud`                        |
+| Native toolchain    | Node `22.22.2`, npm `11.4.2`, Python `3.13.13`, uv `0.7.22` |
 
-Maintain one active environment named **Current Flow Cloud** with:
+The bootstrap verifies the native tools before dependency access and never installs alternate
+runtimes, package managers, or shims. Reset the environment cache after any reviewed change to the
+image, setup/maintenance commands, runtime pins, or dependency lockfiles. Keep internet Off unless a
+specific task is authorized to use a minimal allowlist; setup dependency access is separate.
 
-| Setting              | Value                                               |
-| -------------------- | --------------------------------------------------- |
-| Repository           | `basykcode/currentflow`                             |
-| Image                | `universal`                                         |
-| Package version      | Node `22` (currently exact `22.22.2`)               |
-| Package version      | Python `3.13` (currently exact `3.13.13`)           |
-| Environment variable | `CURRENT_FLOW_CODEX_EXECUTION=cloud`                |
-| Setup script         | `bash scripts/codex/cloud-bootstrap.sh setup`       |
-| Maintenance script   | `bash scripts/codex/cloud-bootstrap.sh maintenance` |
-| Container caching    | enabled after the bootstrap is on default `master`  |
-| Secrets              | none for ordinary development                       |
+## Open Cloud from Desktop or phone
 
-Use **Set package versions** in the environment editor for Node `22` and Python `3.13`. The configured
-universal image currently supplies exact Node `22.22.2`, npm `11.4.2`, Python `3.13.13`, and uv
-`0.7.22`. Those are the canonical development and production versions. The setup script verifies the
-native tools before dependency access and never installs a second Node, npm, Python, or uv runtime.
-`.node-version` and `.python-version` remain enforcement evidence, not substitutes for the Cloud
-runtime controls. GitHub Actions, Cloudflare builds, and the Render container carry the same exact
-declarations. If the Cloud image advances, update every declaration and lockfile together through a
-reviewed pull request. Setup must fail rather than improvise a different runtime or silently
-reconstruct protected inputs.
+- **Desktop:** use the signed-in in-app browser at <https://chatgpt.com/codex>.
+- **Phone:** use a same-account browser at <https://chatgpt.com/codex>. The native ChatGPT app is
+  also suitable only when its Code/Codex tab is available to this account.
 
-Codex creates a cached base by checking out the repository default branch before running setup. Do
-not enable the tracked setup command plus caching until `cloud-bootstrap.sh` exists on default
-`master`. A pre-merge pilot must keep caching disabled so its selected feature branch is checked out
-before setup. After the bootstrap merges, reset the environment cache, enable caching, and run one
-fresh pilot. Reset the cache again whenever a Node, npm, Python, uv, image, setup, or maintenance pin
-changes.
+Do not assume repository-backed Cloud `task_e` tasks will appear in the Desktop app's native
+local-task list. Cloud and the local managed-worktree interface are distinct surfaces; GitHub is the
+shared durable record.
 
-Keep agent internet access off for ordinary repository tasks. Enable only the smallest necessary
-allowlist for a task that explicitly requires current primary-source research; dependency access
-during setup is separate. Never use internet access to retrieve proprietary evidence that the Git
-checkout intentionally excludes.
+**Remote is not Cloud.** Remote execution depends on an awake, connected machine. Cloud tasks run in
+the saved hosted environment and do not require the development workstation to remain online.
 
-If duplicate environments exist, stop creating tasks in the unused entry. Retain it until the active
-environment has passed the pilot and no task references the duplicate; deletion is a separate
-cleanup action.
+## Start and complete everyday work
 
-## Start work from anywhere
+1. Open Current Flow Cloud, select current GitHub `master`, and start one task for one independent
+   concern. Start separate Cloud tasks in parallel for unrelated concerns.
+2. Verify the selected source by exact `HEAD`. A hosted checkout may name its disposable branch
+   `work`; do not switch it merely to reproduce the GitHub source-branch name.
+3. Run `npm run codex:doctor`, inspect the relevant code, continuity, decisions, handoffs, and
+   history, then make only the scoped change.
+4. Run focused checks while iterating, the appropriate Python gate for backend work, and
+   `npm run check` before readiness. Create the required unique handoff and commit task-owned files.
+5. Use **Create PR**. Wait for review and these exact required checks on the final head:
+   - `Frontend / frontend-quality`
+   - `Alchemy API / alchemy-quality`
+   - `Alchemy API / alchemy-neo4j-integration`
+   - `Alchemy API / alchemy-container`
+6. Integrate one pull request at a time through the protected Master / Integration path. If another
+   change lands first, update from current `master` and rerun affected checks; two independently
+   green stale heads are not automatically composable.
+7. After an authorized merge, wait for Render and both Cloudflare production builds, verify the live
+   product and API contracts, and retain rollback options until the smoke pass completes.
 
-1. Open Codex Cloud in ChatGPT on the web or phone.
-2. Select **Current Flow Cloud** and branch `master` explicitly for the task; branch selection is per
-   task, not an environment-level base-branch setting.
-3. Submit one concrete request. Name its workstream—Astrology, Alchemy, Intelligence, Finance, Other
-   Tools, or Miscellaneous—when that helps routing.
-4. Let the task run in its isolated checkout. For another independent request, start another Cloud
-   task from the same current `master` in parallel.
+Workstream names such as Astrology, Alchemy, Intelligence, Finance, Other Tools, and Miscellaneous
+are routing labels, not long-lived shared branches. A dependent task must start from the exact
+prerequisite GitHub branch or wait for its pull request to merge.
 
-Workstream names are labels, not permanent branches or mutable shared chats. GitHub branches and pull
-requests preserve completed work more reliably than a long-lived environment. A task that depends on
-unmerged work must either start from the exact prerequisite branch or wait for its pull request to
-merge; it must not rediscover or copy the changes by hand.
+## Moving work between local and Cloud
 
-The hosted checkout may expose its disposable working branch as `work` even when the task was
-started from a named GitHub source branch. Verify the selected source by exact `HEAD` commit; do not
-switch the managed branch merely to reproduce the source branch name.
+An existing local managed-worktree task cannot be live-moved into Cloud. Preserve useful work by
+committing it to its GitHub branch and opening or updating its pull request, then start the Cloud task
+from that exact branch. Do the reverse the same way when protected evidence or machine-specific
+state requires local work. Never copy an uncommitted working tree into another execution boundary.
 
-## Worker completion contract
+GitHub branches, commits, pull requests, reviews, checks, and continuity handoffs—not a Cloud task's
+lifespan or a local app list—are the durable bridge.
 
-Every implementation task:
+## Integration, production verification, and rollback
 
-1. runs `npm run codex:doctor` before tracked changes;
-2. inspects current code, continuity, relevant history, and the exact base revision;
-3. keeps the change scoped and creates a unique handoff;
-4. runs focused tests while iterating and `npm run check` before claiming readiness;
-5. commits only task-owned files when authorized; and
-6. pushes or opens a pull request only when authorized.
+Merging protected `master` is a release event and requires explicit authorization. It drives the
+Cloudflare frontend, the separately rooted Cloudflare API gateway, and the Render FastAPI service.
+AuraDB remains a managed dependency accessed only through Render secrets.
 
-Backend changes additionally run `npm run alchemy:check` or the exact frozen uv equivalent. Container
-and disposable Neo4j verification remain in GitHub Actions; a Cloud worker does not need production
-Aura credentials.
+Verify the release as one product:
 
-Feature tasks do not edit `docs/continuity/PROJECT_STATE.md`. They report their exact source head and
-verification in their unique handoff.
+- frontend `/` and `/alchemy` return successfully;
+- gateway `/api/v1/health/live`, `/api/v1/health/ready`, and `/api/v1/meta` succeed;
+- readiness reports Neo4j available and metadata matches the exact release/toolchain contract;
+- representative herb and formula reads pass, eligible public GETs show MISS then HIT, weak edge
+  ETag replay returns an empty 304, and no-cache/auth/cookie traffic remains no-store BYPASS;
+- allowed and denied CORS origins behave correctly; and
+- direct protected Render application routes return origin denial.
 
-## Parallel pull requests and integration queue
-
-Independent pull requests may test concurrently. Merges are serialized through the Master /
-Integration role so the product has one coherent release line.
-
-A feature pull request is a queue entry. After its exact head is reconciled into an integration pull
-request and that integration change reaches `master`, close the absorbed feature pull request with a
-link to the integration commit; do not merge it a second time.
-
-The protected `master` path requires an up-to-date pull request, resolved conversations, and these
-exact checks:
-
-- `Frontend / frontend-quality`
-- `Alchemy API / alchemy-quality`
-- `Alchemy API / alchemy-neo4j-integration`
-- `Alchemy API / alchemy-container`
-
-The Integration task inspects each exact source commit and handoff, merges or reconciles it into a
-fresh branch based on current `master`, resolves semantic conflicts, updates `PROJECT_STATE.md`, runs
-the full release gate, and opens the integration pull request. If another change lands first, update
-from the new `master` and rerun the affected checks. Never merge two green-but-stale branches as if
-their results were composable.
-
-A failing required check blocks the queue. Do not bypass it. The existing administrative bypass is
-reserved for an explicitly authorized, fully verified solo-maintainer merge when GitHub cannot
-satisfy its own-review requirement; restore the normal rule immediately afterward and record the
-event without secrets.
-
-## Build and ship as one product
-
-Merging protected `master` is the release event and therefore requires explicit authorization.
-Repository and provider configuration keep the release synchronized:
-
-- the frontend Cloudflare Worker builds the Vue application from `master`;
-- `current-flow-api-gateway` builds the gateway root from `master`;
-- Render deploys the FastAPI service from `master` after checks pass; and
-- AuraDB remains a managed dependency reached only through Render secrets.
-
-After the provider deployments finish, verify the release as a unit:
-
-- apex and `www` frontend load successfully;
-- `/api/v1/health/live`, `/api/v1/health/ready`, and `/api/v1/meta` succeed through the public gateway;
-- representative Alchemy herb and formula reads satisfy their cache and ETag contract;
-- a changed user-facing route receives a focused browser smoke check; and
-- direct protected Render application routes remain unavailable without the edge token.
-
-Keep the prior verified provider versions and database credentials available until this smoke pass is
-complete. Follow `PRODUCTION_RECOVERY_RUNBOOK.md` for rollback; never delete the former AuraDB as an
-incidental release step.
+For rollback, use a GitHub revert through a protected pull request, select the prior verified Render
+deploy, and use Cloudflare version rollback for the affected frontend or gateway. Follow
+[`PRODUCTION_RECOVERY_RUNBOOK.md`](PRODUCTION_RECOVERY_RUNBOOK.md); do not delete a former AuraDB as
+part of routine release cleanup.
 
 ## Evidence and secret boundary
 
-These roots stay out of Codex Cloud and GitHub:
-
-- `data/hexagram-commentary/chunked/`
-- `content/yijing/internal/`
-- `data/hexagram-transitions/local/`
-- `services/alchemy-api/data/raw/`
-- `var/alchemy-data/`
-- real `.env` files, local credentials, dependencies, builds, caches, and virtual environments
-
-Tracked public drafts, provenance metadata, hashes, rights statuses, and validators remain eligible.
-The two rights-approved Prompt Lab source sets already stored in private Cloudflare Workers KV are a
-separate password-protected production boundary; they must not be downloaded into a Cloud task.
-
-## Local fallback and rollback
-
-Use the desktop worktree system when a task requires protected local evidence, machine-specific
-browser state, or a provider operation that cannot be performed safely from Cloud. Run
-`npm run codex:doctor`; the local checkout keeps its lease and isolated runtime behavior.
-
-The migration is reversible: stop starting new Cloud tasks, preserve every Cloud branch or pull
-request in GitHub, and continue from the existing local managed worktrees. Do not delete local lanes
-or the duplicate Cloud environment until the active environment, parallel pilots, protected pull
-request, and a complete release have all been verified.
+Never place real `.env` files, credentials, raw commentary, internal Yijing packets, local
+transition evidence, Alchemy raw data, or private runtime state in Cloud or GitHub. The tracked
+Cloud boundary enforces the repository-specific protected roots. Private Prompt Lab source data in
+password-protected Cloudflare KV is a separate production boundary and must not be downloaded into
+ordinary Cloud tasks.
