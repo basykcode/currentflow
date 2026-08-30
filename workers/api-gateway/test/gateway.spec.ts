@@ -34,6 +34,18 @@ function context(): { pending: Promise<unknown>[]; waitUntil(promise: Promise<un
 const silentLogger = (): void => undefined
 
 describe('Cloudflare API gateway', () => {
+  it.each(['/api/v1/explore/query', '/api/v1/retrieval/context'])(
+    'registers %s as an explicit private bounded POST',
+    (path) => {
+      const policy = routePolicy('POST', path)
+      expect(policy).toEqual({
+        endpointClass: 'private-no-store',
+        rateClass: 'authenticated-read',
+      })
+      expect(policy).not.toEqual(routePolicy('POST', '/api/v1/unregistered'))
+    },
+  )
+
   it('proxies public GETs with query, request ID, and canonical origin token', async () => {
     const seen: Request[] = []
     const ctx = context()

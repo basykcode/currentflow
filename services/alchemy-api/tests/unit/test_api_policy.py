@@ -52,6 +52,19 @@ def test_endpoint_registry_is_deny_by_default_and_separates_private_routes() -> 
     )
 
 
+@pytest.mark.parametrize(
+    "path",
+    ["/api/v1/explore/query", "/api/v1/retrieval/context"],
+)
+def test_bounded_post_routes_are_explicitly_private(path: str) -> None:
+    policy = endpoint_policy("POST", path)
+
+    assert policy.endpoint_class is EndpointClass.PRIVATE_NO_STORE
+    assert policy.rate_class is RatePolicyClass.AUTHENTICATED_READ
+    assert policy.cache_control == "private, no-store"
+    assert policy is not endpoint_policy("POST", "/api/v1/unregistered")
+
+
 def test_set_cookie_and_authorization_override_public_cache_policy() -> None:
     policy = endpoint_policy("GET", "/api/v1/meta")
     cookie_response = Response(status_code=200, headers={"Set-Cookie": "private=1"})

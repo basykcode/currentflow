@@ -78,7 +78,7 @@ Do not export raw transport objects from the provider. Do not redefine response 
 VITE_ALCHEMY_DATA_MODE=demo
 VITE_ALCHEMY_DATA_MODE=api
 VITE_ALCHEMY_API_BASE_URL=http://localhost:8000
-VITE_ALCHEMY_REQUEST_TIMEOUT_MS=30000
+VITE_ALCHEMY_REQUEST_TIMEOUT_MS=35000
 ```
 
 The local backend default is `http://localhost:8000`. Do not display that URL, credentials, request

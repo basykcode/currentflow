@@ -1,7 +1,13 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { loadOptions, loadProfiles, targetPolicy, thresholds } from '../policy.mjs'
+import {
+  loadOptions,
+  loadProfiles,
+  originRequestHeaders,
+  targetPolicy,
+  thresholds,
+} from '../policy.mjs'
 
 test('all locked load profiles are present and bounded', () => {
   assert.deepEqual(Object.keys(loadProfiles), [
@@ -43,5 +49,22 @@ test('remote and production targets require independent explicit opt-ins', () =>
       ALLOW_PRODUCTION_LOAD: '1',
     }).production,
     true,
+  )
+})
+
+test('origin token headers are scoped to explicitly authorized direct Render runs', () => {
+  const authorization = { ALLOW_REMOTE_LOAD: '1', ALLOW_PRODUCTION_LOAD: '1' }
+  const renderPolicy = targetPolicy('https://current-flow-alchemy-api.onrender.com', authorization)
+  assert.equal(originRequestHeaders(renderPolicy, authorization), undefined)
+  assert.deepEqual(
+    originRequestHeaders(renderPolicy, { ...authorization, ALCHEMY_ORIGIN_TOKEN: 'test-only' }),
+    {
+      'X-Current-Flow-Origin-Token': 'test-only',
+    },
+  )
+  const gatewayPolicy = targetPolicy('https://api.current-flow.net', authorization)
+  assert.equal(
+    originRequestHeaders(gatewayPolicy, { ...authorization, ALCHEMY_ORIGIN_TOKEN: 'test-only' }),
+    undefined,
   )
 })

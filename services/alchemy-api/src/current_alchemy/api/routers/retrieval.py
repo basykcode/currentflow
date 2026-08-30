@@ -24,7 +24,11 @@ from current_alchemy.domain.texts.models import (
 router = APIRouter(tags=["retrieval"])
 
 
-@router.post("/retrieval/context", response_model=Envelope[RetrievalPackage])
+@router.post(
+    "/retrieval/context",
+    response_model=Envelope[RetrievalPackage],
+    operation_id="build_retrieval_context",
+)
 async def retrieval_context(
     payload: RetrievalContextRequest,
     request: Request,
