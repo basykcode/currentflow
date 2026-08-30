@@ -76,6 +76,10 @@ requests preserve completed work more reliably than a long-lived environment. A 
 unmerged work must either start from the exact prerequisite branch or wait for its pull request to
 merge; it must not rediscover or copy the changes by hand.
 
+The hosted checkout may expose its disposable working branch as `work` even when the task was
+started from a named GitHub source branch. Verify the selected source by exact `HEAD` commit; do not
+switch the managed branch merely to reproduce the source branch name.
+
 ## Worker completion contract
 
 Every implementation task:
