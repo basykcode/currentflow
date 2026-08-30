@@ -46,7 +46,15 @@ export function targetPolicy(target, environment = {}) {
   if (production && environment.ALLOW_PRODUCTION_LOAD !== '1') {
     throw new Error('Production load targets require ALLOW_PRODUCTION_LOAD=1.')
   }
-  return Object.freeze({ origin: parsed.origin, local, production })
+  const directRenderOrigin = parsed.hostname === 'current-flow-alchemy-api.onrender.com'
+  return Object.freeze({ origin: parsed.origin, local, production, directRenderOrigin })
+}
+
+export function originRequestHeaders(policy, environment = {}) {
+  const token = environment.ALCHEMY_ORIGIN_TOKEN
+  if (!policy.directRenderOrigin || typeof token !== 'string' || token.length === 0)
+    return undefined
+  return Object.freeze({ 'X-Current-Flow-Origin-Token': token })
 }
 
 export function loadOptions(profileName) {

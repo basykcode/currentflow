@@ -54,3 +54,9 @@ def test_gateway_source_configuration_cannot_claim_the_production_hostname() -> 
     assert configuration["workers_dev"] is True
     assert configuration["main"] == "src/index.ts"
     assert "routes" not in configuration
+
+
+def test_production_browser_timeout_retains_transport_margin() -> None:
+    production_environment = (_REPOSITORY_ROOT / ".env.production").read_text(encoding="utf-8")
+
+    assert "VITE_ALCHEMY_REQUEST_TIMEOUT_MS=35000" in production_environment.splitlines()

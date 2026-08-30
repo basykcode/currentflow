@@ -95,6 +95,11 @@ _REGISTRY: tuple[RegisteredPolicy, ...] = (
         FORMULA_ANALYSIS,
     ),
     RegisteredPolicy(
+        frozenset({"POST"}),
+        compile(r"^/api/v1/(explore/query|retrieval/context)$"),
+        PRIVATE_NO_STORE,
+    ),
+    RegisteredPolicy(
         frozenset({"GET"}),
         compile(r"^/api/v1/(meta|sources|documents|passages|graph/entities/[^/]+/neighborhood)$"),
         STABLE_RECORD,

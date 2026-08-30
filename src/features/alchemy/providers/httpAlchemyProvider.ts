@@ -382,9 +382,7 @@ export class HttpAlchemyProvider implements AlchemyProvider {
       )
       return mapFormulaDetail(
         result.data,
-        new Map(
-          herbs.filter((herb) => herb !== undefined).map((herb) => [herb.id, herb]),
-        ),
+        new Map(herbs.filter((herb) => herb !== undefined).map((herb) => [herb.id, herb])),
       )
     } catch (error) {
       if (error instanceof AlchemyProviderError) throw error
@@ -508,7 +506,9 @@ export class HttpAlchemyProvider implements AlchemyProvider {
       })
       if (result.error) throw problemError(result.error, result.response)
       if (!result.data) throwMissingData()
-      return mapRetrieval(result.data.data, result.data.meta)
+      const requestId = result.response.headers.get('x-request-id') ?? result.data.meta.requestId
+      if (!requestId) return throwMissingData()
+      return mapRetrieval(result.data.data, result.data.meta, requestId)
     } catch (error) {
       if (error instanceof AlchemyProviderError) throw error
       throw networkError(error)

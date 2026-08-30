@@ -34,6 +34,7 @@ const stableRecord = /^\/api\/v1\/(meta|sources|documents|passages)$/
 const stableDetail = /^\/api\/v1\/(herbs|formulas|sources|documents|passages)\/[^/]+$/
 const graphDetail = /^\/api\/v1\/graph\/entities\/[^/]+\/neighborhood$/
 const search = /^\/api\/v1\/(search\/suggest|text\/search|herbs|formulas)$/
+const privateBoundedPost = new Set(['/api/v1/explore/query', '/api/v1/retrieval/context'])
 
 const hasPrefix = (path: string, prefixes: readonly string[]): boolean =>
   prefixes.some((prefix) => path === prefix.slice(0, -1) || path.startsWith(prefix))
@@ -53,6 +54,9 @@ export function routePolicy(method: string, path: string): RoutePolicy {
   }
   if (hasPrefix(path, INTELLIGENCE_PREFIXES)) {
     return { endpointClass: 'private-no-store', rateClass: 'future-intelligence' }
+  }
+  if (method === 'POST' && privateBoundedPost.has(path)) {
+    return { endpointClass: 'private-no-store', rateClass: 'authenticated-read' }
   }
   if (method === 'POST' && /^\/api\/v1\/formulas\/(analyze|compare)$/.test(path)) {
     return { endpointClass: 'public-uncacheable', rateClass: 'formula-analysis' }
