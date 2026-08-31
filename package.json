@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "engines": {
-    "node": "24.19.0",
-    "npm": "11.17.0"
+    "node": "22.22.2",
+    "npm": "11.4.2"
   },
-  "packageManager": "npm@11.17.0",
+  "packageManager": "npm@11.4.2",
   "volta": {
-    "node": "24.19.0",
-    "npm": "11.17.0"
+    "node": "22.22.2",
+    "npm": "11.4.2"
   },
   "scripts": {
     "dev": "vite",
@@ -20,10 +20,19 @@
     "lint": "eslint . --max-warnings=0",
     "format": "prettier --write .",
     "test:unit": "vitest run",
-    "check": "npm run toolchain:check && npm run type-check && npm run lint && npm run test:unit && npm run workspace:test && npm run gateway:test && npm run commentary:validate && npm run transitions:validate && npm run build",
+    "check": "npm run cloud:boundary && npm run toolchain:check && npm run toolchain:test && npm run alchemy:types:check && npm run type-check && npm run lint && npm run test:unit && npm run workspace:test && npm run gateway:check && npm run load:test && npm run commentary:validate && npm run transitions:validate && npm run build",
+    "dependencies:install": "node scripts/toolchain/install-js-dependencies.mjs",
     "toolchain:check": "node scripts/toolchain/verify.mjs",
-    "gateway:test": "node --test workers/api-gateway/test/*.spec.mjs",
+    "toolchain:test": "node --test scripts/toolchain/*.spec.mjs",
+    "gateway:test": "vitest run --config workers/api-gateway/vitest.config.ts",
+    "gateway:build": "wrangler deploy --dry-run --config workers/api-gateway/wrangler.jsonc --outdir .wrangler/dry-run",
+    "gateway:check": "npm run gateway:test && npm run gateway:build",
     "gateway:deploy": "wrangler deploy --config workers/api-gateway/wrangler.jsonc",
+    "load:test": "node --test load-tests/test/*.spec.mjs",
+    "codex:doctor": "node scripts/codex/workspace.mjs doctor",
+    "cloud:boundary": "node scripts/codex/cloud-boundary.mjs",
+    "cloud:setup": "bash scripts/codex/cloud-bootstrap.sh setup",
+    "cloud:maintenance": "bash scripts/codex/cloud-bootstrap.sh maintenance",
     "workspace:status": "node scripts/codex/workspace.mjs status",
     "workspace:doctor": "node scripts/codex/workspace.mjs doctor",
     "workspace:dev": "node scripts/codex/workspace.mjs dev",
@@ -54,7 +63,8 @@
     "alchemy:seed": "uv --directory services/alchemy-api run alchemy data seed-demo",
     "alchemy:check": "uv --directory services/alchemy-api run alchemy check",
     "alchemy:openapi": "uv --directory services/alchemy-api run alchemy openapi export",
-    "alchemy:types": "openapi-typescript contracts/alchemy-openapi.json -o src/features/alchemy/api/generated/schema.ts"
+    "alchemy:types": "openapi-typescript contracts/alchemy-openapi.json -o src/features/alchemy/api/generated/schema.ts && prettier --write src/features/alchemy/api/generated/schema.ts",
+    "alchemy:types:check": "node scripts/alchemy/check-generated-types.mjs"
   },
   "dependencies": {
     "@fontsource-variable/fraunces": "5.3.0",
@@ -68,7 +78,7 @@
   "devDependencies": {
     "@eslint/js": "9.39.5",
     "@tsconfig/node22": "22.0.5",
-    "@types/node": "24.13.3",
+    "@types/node": "22.20.1",
     "@vitejs/plugin-vue": "6.0.8",
     "@vue/test-utils": "2.4.11",
     "@vue/tsconfig": "0.7.0",
@@ -83,5 +93,11 @@
     "vitest": "3.2.7",
     "vue-tsc": "3.3.8",
     "wrangler": "4.126.0"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "esbuild@0.28.2": true,
+    "fsevents@2.3.3": true,
+    "workerd@1.20260825.1": true
   }
 }

@@ -25,6 +25,8 @@ def neo4j_lifespan(
             max_connection_pool_size=settings.neo4j_max_connection_pool_size,
             connection_acquisition_timeout=(settings.neo4j_connection_acquisition_timeout_seconds),
             connection_timeout=settings.neo4j_connection_timeout_seconds,
+            max_connection_lifetime=settings.neo4j_max_connection_lifetime_seconds,
+            liveness_check_timeout=settings.neo4j_liveness_check_timeout_seconds,
             max_transaction_retry_time=settings.neo4j_max_transaction_retry_time_seconds,
             keep_alive=True,
         )
@@ -38,6 +40,9 @@ def neo4j_lifespan(
             "Neo4j driver initialized",
             extra={
                 "pool_size": settings.neo4j_max_connection_pool_size,
+                "connection_acquisition_timeout_ms": round(
+                    settings.neo4j_connection_acquisition_timeout_seconds * 1000
+                ),
                 "query_timeout_ms": round(settings.neo4j_query_timeout_seconds * 1000),
             },
         )

@@ -33,11 +33,16 @@ Before changing content:
 
 ## Prepare evidence
 
+Evidence preparation and synthesis require the ignored local corpus. If
+`CURRENT_FLOW_CODEX_EXECUTION=cloud`, do not fetch, upload, reconstruct, or infer those inputs. A
+Cloud task may validate tracked public bundles or change rights-safe rendering, but source onboarding,
+packet rebuilding, and draft synthesis must be routed to a rights-approved local worktree.
+
 Run:
 
-```powershell
-npm.cmd run commentary:inventory
-npm.cmd run commentary:prepare
+```bash
+npm run commentary:inventory
+npm run commentary:prepare
 ```
 
 Preparation verifies the source manifest, checksums local chunks, normalizes school aliases, rejects
@@ -69,13 +74,13 @@ Write drafts to `content/yijing/drafts/hexagrams/NN.json`. All synthesized recor
 
 For deterministic full-corpus scaffolding, run:
 
-```powershell
-npm.cmd run commentary:generate-drafts
+```bash
+npm run commentary:generate-drafts
 ```
 
 To resume one batch, call the script with one of the batch starts:
 
-```powershell
+```bash
 node scripts/commentary/generate-drafts.mjs 33
 ```
 
@@ -86,10 +91,10 @@ Valid starts are 1, 9, 17, 25, 33, 41, 49, and 57. Batch state and hashes are wr
 
 Run:
 
-```powershell
-npm.cmd run commentary:build-public
-npm.cmd run commentary:validate
-npm.cmd run commentary:review
+```bash
+npm run commentary:build-public
+npm run commentary:validate
+npm run commentary:review
 ```
 
 Inspect `content/yijing/reports/review.md` and `review.json`. Resolve every `needs-revision` record.
@@ -109,7 +114,7 @@ When commentary rendering changes:
 3. Test desktop and a narrow mobile viewport.
 4. Verify the tablist with Arrow keys, Home, and End; remembered selection; source disclosure;
    loading and unavailable states; and the absence of horizontal overflow.
-5. Run `npm.cmd run check`.
+5. Run `npm run check`.
 
 ## Protect provenance and rights
 

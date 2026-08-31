@@ -12,6 +12,8 @@ import {
   readRegistry,
 } from './workspace-state.mjs'
 
+const localExecution = { CURRENT_FLOW_CODEX_EXECUTION: 'local' }
+
 function git(cwd, args) {
   const result = spawnSync('git', args, {
     cwd,
@@ -63,10 +65,14 @@ test('SessionStart continues in the primary checkout with coordination-only cont
   try {
     const branchBefore = git(fixture.worktree, ['branch', '--show-current'])
     const statusBefore = git(fixture.worktree, ['status', '--porcelain=v1'])
-    const result = handleSessionStart({
-      session_id: 'primary-test-session',
-      cwd: fixture.worktree,
-    })
+    const result = handleSessionStart(
+      {
+        session_id: 'primary-test-session',
+        cwd: fixture.worktree,
+      },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(result.continue, true)
     assert.equal('stopReason' in result, false)
     assert.match(result.systemMessage, /read-only coordination/)
@@ -82,11 +88,74 @@ test('SessionStart continues in the primary checkout with coordination-only cont
   }
 })
 
+test('SessionStart recognizes an explicit isolated Codex Cloud worker without a local lease', () => {
+  const fixture = temporaryRepository({ linked: false, dirty: true })
+  try {
+    const branchBefore = git(fixture.worktree, ['branch', '--show-current'])
+    const statusBefore = git(fixture.worktree, ['status', '--porcelain=v1'])
+    const result = handleSessionStart(
+      { session_id: 'cloud-test-session', cwd: fixture.worktree },
+      fixture.worktree,
+      { CURRENT_FLOW_CODEX_EXECUTION: 'cloud' },
+    )
+    assert.equal(result.continue, true)
+    assert.match(result.systemMessage, /isolated Codex Cloud worker/)
+    assert.match(result.hookSpecificOutput.additionalContext, /CLOUD-WORKER/)
+    assert.match(result.hookSpecificOutput.additionalContext, /npm run codex:doctor/)
+    assert.equal(git(fixture.worktree, ['branch', '--show-current']), branchBefore)
+    assert.equal(git(fixture.worktree, ['status', '--porcelain=v1']), statusBefore)
+    assert.equal(fs.existsSync(path.join(fixture.worktree, '.git', 'codex')), false)
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
+test('SessionStart refuses a Cloud marker in a checkout owned by the local registry', () => {
+  const fixture = temporaryRepository({ linked: false })
+  try {
+    const inspected = inspectWorkspace(fixture.worktree)
+    const registryDirectory = path.join(inspected.commonGitDir, 'codex')
+    fs.mkdirSync(registryDirectory, { recursive: true })
+    fs.writeFileSync(
+      path.join(registryDirectory, 'current-flow-chat-leases.json'),
+      '{"version":1,"leases":{}}\n',
+    )
+    const result = handleSessionStart(
+      { session_id: 'false-cloud-session', cwd: fixture.worktree },
+      fixture.worktree,
+      { CURRENT_FLOW_CODEX_EXECUTION: 'cloud' },
+    )
+    assert.equal(result.continue, false)
+    assert.match(result.stopReason, /cannot override this checkout/)
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
+test('SessionStart fails closed for an unknown execution mode', () => {
+  const fixture = temporaryRepository({ linked: false })
+  try {
+    const result = handleSessionStart(
+      { session_id: 'invalid-mode-session', cwd: fixture.worktree },
+      fixture.worktree,
+      { CURRENT_FLOW_CODEX_EXECUTION: 'remote' },
+    )
+    assert.equal(result.continue, false)
+    assert.match(result.stopReason, /must be either local or cloud/)
+  } finally {
+    removeTemporaryRepository(fixture.container)
+  }
+})
+
 test('SessionStart claims, branches, resumes, and exclusively leases a linked checkout', () => {
   const fixture = temporaryRepository({ linked: true })
   try {
     const sessionId = '019fb0c4-4069-7f93-86c5-13685a57786d'
-    const claimed = handleSessionStart({ session_id: sessionId, cwd: fixture.worktree })
+    const claimed = handleSessionStart(
+      { session_id: sessionId, cwd: fixture.worktree },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(claimed.continue, true)
     assert.equal(git(fixture.worktree, ['branch', '--show-current']), 'codex/chat-019fb0c44069')
 
@@ -97,13 +166,21 @@ test('SessionStart claims, branches, resumes, and exclusively leases a linked ch
     assert.equal(lease.branch, 'codex/chat-019fb0c44069')
 
     fs.writeFileSync(path.join(fixture.worktree, 'owned-change.txt'), 'in progress\n')
-    const resumed = handleSessionStart({ session_id: sessionId, cwd: fixture.worktree })
+    const resumed = handleSessionStart(
+      { session_id: sessionId, cwd: fixture.worktree },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(resumed.continue, true)
 
-    const conflict = handleSessionStart({
-      session_id: 'different-session',
-      cwd: fixture.worktree,
-    })
+    const conflict = handleSessionStart(
+      {
+        session_id: 'different-session',
+        cwd: fixture.worktree,
+      },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(conflict.continue, false)
     assert.match(conflict.stopReason, /leased to another Codex chat/)
   } finally {
@@ -114,10 +191,14 @@ test('SessionStart claims, branches, resumes, and exclusively leases a linked ch
 test('SessionStart rejects an unclaimed dirty linked checkout', () => {
   const fixture = temporaryRepository({ linked: true, dirty: true })
   try {
-    const result = handleSessionStart({
-      session_id: 'dirty-test-session',
-      cwd: fixture.worktree,
-    })
+    const result = handleSessionStart(
+      {
+        session_id: 'dirty-test-session',
+        cwd: fixture.worktree,
+      },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(result.continue, false)
     assert.match(result.stopReason, /already dirty/)
     assert.equal(git(fixture.worktree, ['branch', '--show-current']), '')
@@ -130,11 +211,19 @@ test('SessionStart rejects a branch mismatch in a leased linked checkout', () =>
   const fixture = temporaryRepository({ linked: true })
   try {
     const sessionId = 'branch-mismatch-session'
-    const claimed = handleSessionStart({ session_id: sessionId, cwd: fixture.worktree })
+    const claimed = handleSessionStart(
+      { session_id: sessionId, cwd: fixture.worktree },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(claimed.continue, true)
 
     git(fixture.worktree, ['switch', '-c', 'feature/unexpected-switch'])
-    const result = handleSessionStart({ session_id: sessionId, cwd: fixture.worktree })
+    const result = handleSessionStart(
+      { session_id: sessionId, cwd: fixture.worktree },
+      fixture.worktree,
+      localExecution,
+    )
     assert.equal(result.continue, false)
     assert.match(result.stopReason, /worktree now has feature\/unexpected-switch checked out/)
   } finally {

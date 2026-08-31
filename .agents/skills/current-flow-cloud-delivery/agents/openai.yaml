@@ -1,0 +1,4 @@
+interface:
+  display_name: 'Current Flow Cloud Delivery'
+  short_description: 'Coordinate parallel Cloud work and protected releases'
+  default_prompt: 'Use $current-flow-cloud-delivery to coordinate this Current Flow change through Cloud implementation, integration, and release.'

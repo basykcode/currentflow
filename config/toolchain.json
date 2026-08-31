@@ -1,37 +1,55 @@
 {
-  "lastReviewed": "2026-08-26",
+  "lastReviewed": "2026-08-29",
   "tools": [
     {
       "tool": "Node.js",
-      "version": "24.19.0",
+      "version": "22.22.2",
       "purpose": "Frontend builds, tests, and repository automation",
-      "enforcedBy": [".nvmrc", ".node-version", "package.json", "GitHub Actions"],
-      "updatePolicy": "Reviewed LTS patch updates through pull requests"
+      "enforcedBy": [
+        ".nvmrc",
+        ".node-version",
+        "package.json",
+        "scripts/codex/cloud-bootstrap.sh",
+        "tsconfig.node.json",
+        "workers/api-gateway/tsconfig.json",
+        "GitHub Actions"
+      ],
+      "updatePolicy": "Adopt the exact native Codex Cloud LTS patch through a synchronized reviewed pull request"
     },
     {
       "tool": "npm",
-      "version": "11.17.0",
+      "version": "11.4.2",
       "purpose": "Reproducible JavaScript dependency installation",
-      "enforcedBy": ["package.json", ".npmrc", "GitHub Actions"],
-      "updatePolicy": "Reviewed patch updates with a regenerated package-lock.json"
+      "enforcedBy": [
+        "package.json",
+        ".npmrc",
+        "scripts/codex/cloud-bootstrap.sh",
+        "GitHub Actions"
+      ],
+      "updatePolicy": "Adopt the exact native Codex Cloud version with a regenerated package-lock.json"
     },
     {
       "tool": "Python",
-      "version": "3.12.14",
+      "version": "3.13.13",
       "purpose": "FastAPI runtime and backend tooling",
       "enforcedBy": [
         "services/alchemy-api/.python-version",
         "services/alchemy-api/Dockerfile",
-        "services/alchemy-api/pyproject.toml"
+        "services/alchemy-api/pyproject.toml",
+        "scripts/codex/cloud-bootstrap.sh"
       ],
-      "updatePolicy": "Stay on Python 3.12 and take reviewed security patch releases"
+      "updatePolicy": "Adopt the exact native Codex Cloud Python patch through a synchronized reviewed pull request"
     },
     {
       "tool": "uv",
-      "version": "0.11.32",
+      "version": "0.7.22",
       "purpose": "Locked Python dependency installation",
-      "enforcedBy": ["services/alchemy-api/Dockerfile", "GitHub Actions"],
-      "updatePolicy": "Reviewed exact-version updates"
+      "enforcedBy": [
+        "services/alchemy-api/Dockerfile",
+        "scripts/codex/cloud-bootstrap.sh",
+        "GitHub Actions"
+      ],
+      "updatePolicy": "Adopt the exact native Codex Cloud version through a synchronized reviewed pull request"
     },
     {
       "tool": "Neo4j Community",
@@ -67,6 +85,13 @@
       "purpose": "Reproducible API gateway validation and workers.dev deployment",
       "enforcedBy": ["package.json", "package-lock.json"],
       "updatePolicy": "Reviewed exact-version updates after gateway tests"
+    },
+    {
+      "tool": "k6",
+      "version": "1.0.0",
+      "purpose": "Guarded manual API load-test execution",
+      "enforcedBy": [".github/workflows/load-test.yml"],
+      "updatePolicy": "Reviewed exact Docker image updates after script validation"
     }
   ]
 }

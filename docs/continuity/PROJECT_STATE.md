@@ -2,10 +2,19 @@
 
 ## Last reconciled
 
-- UTC date: 2026-08-26
-- Branch represented: protected `master` after the dedicated `codex/chat-01a02bf0beb1`
-  integration/deployment branch completed the production-scale Render, AuraDB, Cloudflare, and
-  GitHub foundation
+- UTC date: 2026-08-30
+- Branch represented: the dedicated `codex/chat-01a02bf0beb1` integration candidate. It merges
+  current GitHub `master` at `abe5dd2` with the retained production-hardening ancestry at `54adc7d`
+  through merge `33e56a5`; its verified Cloud/toolchain head is `f7658df` and protected pull request
+  #9 is open.
+- GitHub `master` at `abe5dd2` also contains the private Gene Keys Prompt Lab, shared history/model
+  choices, refreshed social assets, complete hexagram search, and spectrum alignment merged after
+  the 2026-08-26 production cutover.
+- The integration candidate adds the GitHub-backed Codex Cloud execution boundary, exact portable
+  toolchain bootstrap, ephemeral parallel-worker workflow, serialized integration queue, and local
+  desktop fallback. Two independent hosted pilots passed on the exact Codex-native toolchain. It does
+  not claim Cloud activation or a production release until its protected pull request and authorized
+  merge complete.
 - Repository foundation `6ba6c42`, CI protection correction `dd8c695`, and gateway cache correction
   `63913ec` are published through protected merges `2964dfc` and `a6b8ff7`; all four uniquely named
   GitHub Actions production checks passed before both merges.
@@ -84,12 +93,13 @@ adapter computes solar and lunar instrument geometry without runtime network acc
 local-civil Shichen coordinate is shared by Organ System presentation, Chu-Zheng-Ke phase calculation,
 boundaries, and diagnostics so those consumers cannot drift onto separate clocks.
 
-Concurrent Codex implementation uses a read-only primary coordinator and app-managed worktree
-workers. A trusted project `SessionStart` hook lets primary tasks continue only for read-only
-inspection and app-level coordination; mutation requests are automatically forwarded in full to a
-new managed worktree based on committed `master`. Each worker then receives one branch and lease in
-the local atomic registry under shared Git metadata, copied-by-value ignored inputs, and isolated
-Vite/Alchemy runtime namespaces. See [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md).
+Concurrent Codex implementation uses a hybrid boundary. Codex Cloud is the default from-anywhere
+path: isolated ephemeral workers begin from explicit GitHub `master`, use short-lived task branches
+and protected pull requests, then converge through one serialized Master / Integration queue. The
+desktop fallback retains its read-only primary coordinator, app-managed worktree workers, one
+branch/lease per task, copied-by-value ignored inputs, and isolated Vite/Alchemy runtime namespaces
+for protected local evidence and machine-specific work. See [`../CODEX_CLOUD.md`](../CODEX_CLOUD.md)
+and [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md).
 
 The framework-independent hexagram reference boundary now owns the complete identity catalog,
 trigrams, Gene Keys keyword mapping, three library orderings, and pure structural transformations.
@@ -105,7 +115,7 @@ The inspector loads public, quotation-free commentary through typed repositories
 lazy generated bundles: six school lenses across all 64 figures and one Forest summary for each of
 the 384 single-line routes. Raw and normalized evidence remains local-only and ignored.
 
-The integrated Alchemy stack adds a separately deployable Python 3.12 FastAPI service under
+The integrated Alchemy stack adds a separately deployable Python 3.13 FastAPI service under
 `services/alchemy-api`. Its official asynchronous Neo4j driver is lifecycle-managed; Neo4j is its
 only persistent database; external-source access is limited to explicit administration commands;
 and `contracts/alchemy-openapi.json` is the frontend seam. Local Compose/CI use the pinned Community
@@ -164,8 +174,15 @@ is the only Alchemy state in Pinia.
   source inputs exist; the UI does not infer or fabricate missing lineage data.
 - The Other Tools Hexagram Library renders all 64 verified figures and can order them by King Wen,
   bottom-up Fu Xi binary value, or an Early Heaven trigram matrix.
+- The Library and shared inspector provide one canonical search across King Wen number, English,
+  Traditional Chinese, tone-insensitive Pinyin, and Gene Keys spectrum terms. Search navigation uses
+  the existing modal history rather than creating false transformation steps.
 - The inspector shows the official Shadow/Gift/Siddhi vocabulary for all 64 corresponding Gene Keys
   with direct source links; it makes no runtime request.
+- A private Gene Keys Prompt Lab under Other Tools uses password-authorized Cloudflare gateway
+  routes, private KV source/state boundaries, Workers AI or explicit OpenAI model selection, shared
+  collaborator attribution/history, originality checks, and draft-only output. Its source passages
+  and provider secrets never enter the browser, Git, or ordinary Codex Cloud workers.
 - Daoist, Buddhist, Confucian, Psychological, Human Design, and Gene Keys tabs lazily expose 379
   source-grounded draft summaries and OLTRs across all 64 figures. Five Buddhist records are
   explicitly unavailable because their evidence is quarantined; Absolute Shadow remains unavailable
@@ -187,12 +204,13 @@ is the only Alchemy state in Pinia.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
   password-derived AES-GCM decryption boundary, scalable message text, and visibly unavailable
   music controls until the track is supplied.
-- Three hundred ninety-three application tests cover Astrology calculations, semantic guidance,
+- Four hundred ten application tests cover Astrology calculations, semantic guidance,
   Shichen/Chu-Zheng-Ke boundaries, Celestial Current geometry, Current Flow and Organ System
   presentation, the complete hexagram catalog and transforms, commentary/transition repositories and
   rendering, inspector/library interactions, Alchemy UI/state, every HTTP provider operation,
   timeout/problem handling, no-fallback behavior, special-message decryption, and two-level tools
-  navigation; 11 additional workspace tests cover worktree isolation guardrails.
+  navigation; 23 workspace tests cover local/Cloud isolation, bootstrap ordering, protected-evidence
+  boundaries, and runtime guardrails. Twelve gateway tests cover edge behavior.
 
 ## Current Alchemy capabilities
 
@@ -285,11 +303,15 @@ The integrated release-aware Alchemy foundation additionally provides:
   chosen IANA timezone and make no apparent-solar-time correction.
 - Dark is the root/default theme to avoid a pre-mount light flash; explicit Light and System choices
   remain available.
-- Production tooling is locked to Node 24.19.0, npm 11.17.0, Python 3.12.14, uv 0.11.32, Neo4j
-  Community 5.26.28, Neo4j Python driver 5.28.2, TypeScript 5.8.3, Vite 7.3.6, and Wrangler 4.126.0;
-  `npm run check` is required before completion.
-- npm and `package-lock.json` are the sole JavaScript package-manager contract. CI and Cloudflare use
-  reproducible npm installs; the competing pnpm lockfile is intentionally removed.
+- The pending Cloud integration synchronizes development, CI, and production declarations to Node
+  22.22.2, npm 11.4.2, Python 3.13.13, and uv 0.7.22. Neo4j Community 5.26.28, Neo4j Python driver
+  5.28.2, TypeScript 5.8.3, Vite 7.3.6, and Wrangler 4.126.0 remain locked; `npm run check` is
+  required before completion. Live production retains its prior release until the protected merge
+  and provider verification succeed.
+- npm and `package-lock.json` are the sole JavaScript package-manager contract. uv and `uv.lock` are
+  the Python contract. CI, Codex Cloud, Cloudflare, and the Render container must use the exact
+  synchronized runtimes, the audited `npm run dependencies:install` flow, and
+  `uv sync --locked`; the competing pnpm lockfile is intentionally removed.
 - The primary checkout is read-only for Codex: it may inspect and coordinate app tasks but may not
   mutate project files, Git state, dependencies, generated output, tests/builds, or runtimes. It
   automatically dispatches each mutation request once, in full, to an app-managed worktree based on
@@ -297,6 +319,10 @@ The integrated release-aware Alchemy foundation additionally provides:
 - Every worker starts in a clean linked worktree and owns one worktree/branch lease. Worker tasks do
   not redispatch, switch branches, use stash as task state, hand work to the primary checkout, or
   rewrite canonical project state unless explicitly authorized as an integration task.
+- Ordinary Codex Cloud workers receive no production secrets or local protected evidence. They use
+  explicit Cloud mode, a repository boundary check before dependency access, exact Node/Python
+  environment pins, short-lived branches, and GitHub checks. The Cloud marker cannot override a
+  checkout registered to the desktop lease system.
 - Production branch is `master`; Vite base is `/`; static output is `dist`.
 
 ## Key accepted decisions
@@ -312,6 +338,10 @@ The integrated release-aware Alchemy foundation additionally provides:
 - [Align the Alchemy HTTP contract with the frontend domain](decisions/20260724T204127Z--align-alchemy-http-contract-with-the-frontend-domain.md)
 - [Host the alpha Alchemy API on Render and its graph on AuraDB](decisions/20260724T224853Z--host-alpha-alchemy-on-render-and-aura.md)
 - [Adopt a production Render, AuraDB, and Cloudflare gateway topology](decisions/20260826T175411Z--adopt-production-render-aura-cloudflare-topology.md)
+- [Protect the Gene Keys Prompt Lab at the edge](decisions/20260826T222903Z--protect-gene-keys-prompt-lab-at-the-edge.md)
+- [Share Prompt Lab history and select the inference provider](decisions/20260827T170500Z--share-prompt-lab-history-and-select-inference-provider.md)
+- [Adopt GitHub-backed Codex Cloud workers](decisions/20260829T230215Z--adopt-github-backed-codex-cloud-workers.md)
+- [Align development and production with the native Codex toolchain](decisions/20260829T233942Z--align-dev-and-production-with-codex-native-toolchain.md)
 - [Protect static special messages with browser-side encryption](decisions/20260725T215859Z--protect-static-special-messages-with-browser-side-encryption.md)
 - [Establish a provenance-first hexagram reference workspace](decisions/20260726T194513Z--establish-provenance-first-hexagram-reference-workspace.md)
 - [Establish a release-aware Alchemy knowledge foundation](decisions/20260726T220215Z--establish-release-aware-alchemy-knowledge-foundation.md)
@@ -335,27 +365,29 @@ The integrated release-aware Alchemy foundation additionally provides:
 
 ## Active workstreams
 
-| Branch/worktree            | Objective                                        | Status                                                                                                         | Latest handoff                                                                                                       |
-| -------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `master`                   | Replace fixtures with live factors               | Published to `origin/master` in `9b6cbe1`                                                                      | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                      |
-| `master`                   | Adopt dark-first water palette                   | Published to `origin/master` in `11c5ced`                                                                      | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                          |
-| `feat/alchemy-backend`     | Alchemy graph backend foundation                 | Scoped commit `8a287c3`; published workstream                                                                  | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                        |
-| `feat/alchemy-frontend`    | Alchemy research frontend                        | Scoped commit `fc2a0f9`; published workstream                                                                  | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                     |
-| `feat/alchemy-integration` | Reconcile Alchemy contracts                      | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`                                           | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md)     |
-| `master`                   | Publish complete Alchemy stack                   | Canonical integrated branch at merge `c8f8e04` plus publication record                                         | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)         |
-| `master`                   | Connect production Alchemy stack                 | API-mode Pages release is live at `3a44820`                                                                    | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)              |
-| `master`                   | Publish VH special message                       | Feature `5fa474f` is live on Cloudflare                                                                        | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                              |
-| `master`                   | Build hexagram inspection/library                | Feature `a095f06` is live on Cloudflare                                                                        | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                     |
-| `master`                   | Publish release-aware Alchemy data foundation    | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5`          | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md)   |
-| `master`                   | Publish official herb/formula foundation         | Feature and production corrections through `9a1fa5a`; audited Taiwan MOHW release and real-data UI are live    | [Official foundation handoff](handoffs/20260727T003600Z--master--publish-official-herb-formula-foundation.md)        |
-| `master`                   | Publish English-first multilingual Alchemy names | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
-| `master`                   | Isolate concurrent Codex chats                   | Integrated at `6ed5351` with continuity at `828c400`; included in the current publication                      | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
-| `master`                   | Add the Advanced Yijing Transformation Lab       | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized           | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
-| `master`                   | Restore line changes and school commentary       | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                      | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
-| `master`                   | Adopt the Lake Yin live-flow interface           | Feature `66119dc` and publication record `b5426ca` are published to `origin/master`                            | [Publication handoff](handoffs/20260822T140829Z--codex-alchemy-lake-yin--publish-lake-yin-interface.md)              |
-| `master`                   | Automate primary-task worktree dispatch          | Feature `5cbdbe9` merged at `79720a8` with continuity at `ddb58c2`; active in the local integration line       | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
-| `master`                   | Publish the complete current Astrology lane      | Source `23b3a9c` merged at `74be6c8`; release `30f81ed` and lock repair `7502f31` are live on Cloudflare       | [Publication handoff](handoffs/20260826T001515Z--codex-chat-01a02bf0beb1--publish-complete-astrology-integration.md) |
-| `master`                   | Establish production-scale platform foundation   | Live through `a6b8ff7`: protected GitHub master, Render Standard/Aura Professional, and Cloudflare API gateway | [Production handoff](handoffs/20260826T180153Z--codex-chat-01a02bf0beb1--production-scale-foundation-and-cutover.md) |
+| Branch/worktree            | Objective                                         | Status                                                                                                          | Latest handoff                                                                                                       |
+| -------------------------- | ------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `master`                   | Replace fixtures with live factors                | Published to `origin/master` in `9b6cbe1`                                                                       | [Publication handoff](handoffs/20260724T000640Z--master--publish-live-temporal-calculations.md)                      |
+| `master`                   | Adopt dark-first water palette                    | Published to `origin/master` in `11c5ced`                                                                       | [Publication handoff](handoffs/20260724T001811Z--master--publish-dark-first-water-theme.md)                          |
+| `feat/alchemy-backend`     | Alchemy graph backend foundation                  | Scoped commit `8a287c3`; published workstream                                                                   | [Backend handoff](handoffs/20260724T005309Z--master--establish-alchemy-backend-foundation.md)                        |
+| `feat/alchemy-frontend`    | Alchemy research frontend                         | Scoped commit `fc2a0f9`; published workstream                                                                   | [Frontend handoff](handoffs/20260724T010800Z--master--build-alchemy-frontend.md)                                     |
+| `feat/alchemy-integration` | Reconcile Alchemy contracts                       | Complete integration at `15e77c0`; merged into `master` at `c8f8e04`                                            | [Cross-device handoff](handoffs/20260724T212022Z--feat-alchemy-integration--prepare-cross-device-publication.md)     |
+| `master`                   | Publish complete Alchemy stack                    | Canonical integrated branch at merge `c8f8e04` plus publication record                                          | [Publication handoff](handoffs/20260724T212147Z--master--publish-complete-alchemy-and-cross-device-state.md)         |
+| `master`                   | Connect production Alchemy stack                  | API-mode Pages release is live at `3a44820`                                                                     | [Connected frontend handoff](handoffs/20260725T233921Z--master--connect-production-alchemy-frontend.md)              |
+| `master`                   | Publish VH special message                        | Feature `5fa474f` is live on Cloudflare                                                                         | [Publication handoff](handoffs/20260725T220503Z--master--publish-vh-special-message.md)                              |
+| `master`                   | Build hexagram inspection/library                 | Feature `a095f06` is live on Cloudflare                                                                         | [Publication handoff](handoffs/20260726T195642Z--master--publish-hexagram-inspection-library.md)                     |
+| `master`                   | Publish release-aware Alchemy data foundation     | Feature `e24f440` and continuity `0eea8d3` are integrated; Render/Aura schema v2 is live at `b32f2d5`           | [Foundation handoff](handoffs/20260726T220953Z--feat-alchemy-knowledge-graph--build-knowledge-graph-foundation.md)   |
+| `master`                   | Publish official herb/formula foundation          | Feature and production corrections through `9a1fa5a`; audited Taiwan MOHW release and real-data UI are live     | [Official foundation handoff](handoffs/20260727T003600Z--master--publish-official-herb-formula-foundation.md)        |
+| `master`                   | Publish English-first multilingual Alchemy names  | Feature and production corrections through `fc941d8`; multilingual graph, API search, and live UI are verified  | [Multilingual publication handoff](handoffs/20260727T021740Z--master--publish-english-first-multilingual-alchemy.md) |
+| `master`                   | Isolate concurrent Codex chats                    | Integrated at `6ed5351` with continuity at `828c400`; included in the current publication                       | [Isolation integration handoff](handoffs/20260730T024407Z--master--integrate-codex-chat-isolation.md)                |
+| `master`                   | Add the Advanced Yijing Transformation Lab        | Feature `f4f21ee` merged at `267cbd0`; merged-tree release gate passed and publication is authorized            | [Integration handoff](handoffs/20260731T002136Z--master--integrate-advanced-transformation-lab.md)                   |
+| `master`                   | Restore line changes and school commentary        | Feature `ea077e8` merged and published at `8b14fc8`; full merged-tree release gate passed                       | [Integration handoff](handoffs/20260731T011518Z--master--integrate-school-commentaries-and-line-changes.md)          |
+| `master`                   | Adopt the Lake Yin live-flow interface            | Feature `66119dc` and publication record `b5426ca` are published to `origin/master`                             | [Publication handoff](handoffs/20260822T140829Z--codex-alchemy-lake-yin--publish-lake-yin-interface.md)              |
+| `master`                   | Automate primary-task worktree dispatch           | Feature `5cbdbe9` merged at `79720a8` with continuity at `ddb58c2`; active in the local integration line        | [Integration handoff](handoffs/20260823T000948Z--codex-chat-01a02bf0beb1--integrate-automatic-worktree-dispatch.md)  |
+| `master`                   | Publish the complete current Astrology lane       | Source `23b3a9c` merged at `74be6c8`; release `30f81ed` and lock repair `7502f31` are live on Cloudflare        | [Publication handoff](handoffs/20260826T001515Z--codex-chat-01a02bf0beb1--publish-complete-astrology-integration.md) |
+| `master`                   | Establish production-scale platform foundation    | Live through `a6b8ff7`: protected GitHub master, Render Standard/Aura Professional, and Cloudflare API gateway  | [Production handoff](handoffs/20260826T180153Z--codex-chat-01a02bf0beb1--production-scale-foundation-and-cutover.md) |
+| `master`                   | Add private Prompt Lab and hexagram search        | Integrated through GitHub `master` at `abe5dd2`; provider secrets remain outside Git and ordinary Cloud tasks   | [Prompt Lab handoff](handoffs/20260827T171200Z--codex-chat-01a02c2ef1c9--globalize-prompt-lab-history-and-models.md) |
+| `codex/chat-01a02bf0beb1`  | Establish Codex Cloud delivery and exact runtimes | Verified head `f7658df`; hosted pilots passed; protected PR #9 is open; merge and production activation pending | [Cloud delivery handoff](handoffs/20260830T001548Z--codex-chat-01a02bf0beb1--establish-codex-cloud-delivery.md)      |
 
 ## Known issues and risks
 
@@ -409,6 +441,10 @@ The integrated release-aware Alchemy foundation additionally provides:
   `https://www.current-flow.net`; Cloudflare nameservers are authoritative for the domain.
 - The VH page intentionally contains encrypted Lorem Ipsum and no music asset yet. Its music controls
   remain visibly unavailable until the licensed track is supplied.
+- The Codex Cloud workflow and Codex-native Python 3.13.13 Render runtime are integration candidates,
+  not yet active production facts. Two independent hosted pilots passed. Required GitHub checks,
+  protected merge approval, provider deployment, and live metadata/API smoke checks remain release
+  gates.
 
 ## Open questions
 
@@ -422,30 +458,32 @@ The integrated release-aware Alchemy foundation additionally provides:
 
 ## Next priorities
 
-1. Human-review the 379 school commentary drafts and 384 Forest transition drafts before changing
+1. Keep protected Cloud/toolchain pull request #9 green and obtain explicit authorization before
+   merging the production branch; then complete the documented Cloud cache and provider smoke gates.
+2. Human-review the 379 school commentary drafts and 384 Forest transition drafts before changing
    their publication eligibility.
-2. Replace the quarantined Buddhist evidence for Hexagrams 1, 5, 6, 7, and 17, then regenerate and
+3. Replace the quarantined Buddhist evidence for Hexagrams 1, 5, 6, 7, and 17, then regenerate and
    review those explicit unavailable records.
-3. Domain-review the Transformation Lab terminology and onboard remaining lineage relations only
+4. Domain-review the Transformation Lab terminology and onboard remaining lineage relations only
    from reviewed, rights-eligible source inputs; keep missing modules explicitly unavailable.
-4. Define and review the deterministic Absolute Shadow transformation before implementation.
-5. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
+5. Define and review the deterministic Absolute Shadow transformation before implementation.
+6. Replace the encrypted VH placeholder copy and add the licensed looping track when the user
    supplies both.
-6. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
+7. Cross-check Li Chun and monthly solar-term boundaries with an independent maintained calendrical
    implementation and add before/after fixtures.
-7. Domain-review the 200 derived formula English titles, 92 public formula-only material
+8. Domain-review the 200 derived formula English titles, 92 public formula-only material
    translations, the non-public excipient, and prepared-material boundaries; promote reviewed names
    and add explicit equivalence mappings without collapsing source wording.
-8. Independently verify the selected Celestial Current reference instants against a golden ephemeris
+9. Independently verify the selected Celestial Current reference instants against a golden ephemeris
    before promoting astronomy results from computed to verified.
-9. Review and expand the Current semantic resolver beyond its 13-profile MVP without inferring
-   unsupported guidance.
-10. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
+10. Review and expand the Current semantic resolver beyond its 13-profile MVP without inferring
+    unsupported guidance.
+11. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
     mapping before stronger authority claims.
-11. Add condition, compound, and target sources such as Disease Ontology only after the live
+12. Add condition, compound, and target sources such as Disease Ontology only after the live
     herb/formula identity review; then define authentication, privacy, retention, and private Neo4j
     deployment requirements.
-12. Observe the first production-day Render, AuraDB, and Cloudflare metrics; run the bounded load
+13. Observe the first production-day Render, AuraDB, and Cloudflare metrics; run the bounded load
     smoke during low traffic and scale only at the thresholds in `PRODUCTION_OPERATIONS.md`.
 
 Exact next useful action for Alchemy: domain-review the derived formula/material English names and
@@ -486,6 +524,8 @@ while preserving the live Taiwan MOHW source records and formula witness text.
 - Forest transition commentary: [`../HEXAGRAM_TRANSITION_COMMENTARY.md`](../HEXAGRAM_TRANSITION_COMMENTARY.md)
 - Deployment: [`../DEPLOYMENT.md`](../DEPLOYMENT.md)
 - Concurrent Codex work: [`../CODEX_PARALLEL_WORK.md`](../CODEX_PARALLEL_WORK.md)
+- Codex Cloud delivery: [`../CODEX_CLOUD.md`](../CODEX_CLOUD.md)
+- Canonical toolchain: [`../TOOLCHAIN.md`](../TOOLCHAIN.md)
 - Continuity procedure: [`README.md`](README.md)
 - Accepted decisions: [`decisions/`](decisions/)
 - Session handoffs: [`handoffs/`](handoffs/)

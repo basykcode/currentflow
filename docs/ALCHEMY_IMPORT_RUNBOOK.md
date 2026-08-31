@@ -2,12 +2,12 @@
 
 ## Prerequisites
 
-Use Python 3.12, `uv`, and Neo4j 5.26. Configure `NEO4J_*`, a truthful PubChem contact user agent,
+Use Python 3.13, `uv`, and Neo4j 5.26. Configure `NEO4J_*`, a truthful PubChem contact user agent,
 and optionally `ALCHEMY_DATA_ROOT`. Do not store credentials in source.
 
 ```powershell
 cd services/alchemy-api
-uv sync --frozen --all-groups
+uv sync --locked --all-groups
 uv run alchemy db verify
 uv run alchemy db migrate
 uv run alchemy sources validate

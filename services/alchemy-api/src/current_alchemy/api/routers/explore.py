@@ -11,7 +11,11 @@ from current_alchemy.domain.common.models import DataStatus, Envelope
 router = APIRouter(tags=["exploration"])
 
 
-@router.post("/explore/query", response_model=Envelope[ExploreQueryResult])
+@router.post(
+    "/explore/query",
+    response_model=Envelope[ExploreQueryResult],
+    operation_id="explore_query",
+)
 async def explore(
     payload: ExploreQueryRequest,
     request: Request,

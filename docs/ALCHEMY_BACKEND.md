@@ -2,7 +2,7 @@
 
 ## Scope
 
-`services/alchemy-api` is a separately deployable Python 3.12 service. FastAPI owns the HTTP
+`services/alchemy-api` is a separately deployable Python 3.13 service. FastAPI owns the HTTP
 contract, Neo4j is the only persistent database, and offline administration commands own all
 external source ingestion. Local Compose and CI use the pinned Community image; production uses
 AuraDB Professional through the same driver and repository contract. The existing Vue application
@@ -48,7 +48,7 @@ Direct service operation:
 ```powershell
 Set-Location services/alchemy-api
 Copy-Item .env.example .env
-uv sync --frozen
+uv sync --locked
 uv run alchemy db migrate
 uv run alchemy data seed-demo
 uv run uvicorn current_alchemy.app:create_app --factory --host 0.0.0.0 --port 8000
@@ -86,11 +86,13 @@ The complete account, DNS, gateway, smoke-test, scaling, rollback, and no-admin 
 5. Database records are converted into typed domain models before transport.
 6. Knowledge responses carry data status, sources, warnings, generation time, schema version, and
    algorithm version where applicable.
-7. Public anonymous GET responses receive a short shared-cache policy and ETag. Health, errors,
-   non-GETs, authorization, and cookies are private or `no-store`.
+7. The deny-by-default endpoint registry assigns public-cacheable, public-uncacheable,
+   private-no-store, health, or administrative policy. Eligible anonymous GET responses receive a
+   class-specific shared-cache policy and ETag; health, errors, non-GETs, authorization, cookies,
+   `Set-Cookie`, private, and administrative responses are never publicly cached.
 8. Validation and application failures use one RFC 7807-inspired problem shape. Logs are structured
-   JSON with request/query duration and outcome and omit secrets, complete bodies, Cypher, and query
-   parameters.
+   JSON with endpoint templates, response/cache fields, request-correlated query operations/counts,
+   and duration while omitting secrets, complete bodies, Cypher, and parameters.
 
 The application lifespan creates the official asynchronous Neo4j driver with bounded pool,
 acquisition, connection, retry, and query deadlines, then closes it during shutdown. It does not

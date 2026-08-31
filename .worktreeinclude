@@ -1,5 +1,6 @@
-# Codex-managed worktrees copy these ignored, local-only inputs by value.
-# Each chat gets an isolated snapshot; changes are not synchronized back.
+# Codex desktop-managed worktrees copy these ignored, local-only inputs by value.
+# Each local chat gets an isolated snapshot; changes are not synchronized back.
+# Codex Cloud must start from GitHub and never receives this copied evidence.
 .env
 .env.local
 .env.*.local

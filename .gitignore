@@ -2,9 +2,15 @@ node_modules/
 dist/
 .vite/
 coverage/
+.wrangler/
+*.tsbuildinfo
 *.local
 .DS_Store
 .env
+.env.*
+!.env.example
+!.env.production
+!**/.env.example
 .venv/
 __pycache__/
 .pytest_cache/

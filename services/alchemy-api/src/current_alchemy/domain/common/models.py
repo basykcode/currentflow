@@ -1,6 +1,6 @@
 """Shared typed domain and transport-safe knowledge models."""
 
-from datetime import UTC, datetime
+from datetime import datetime
 from enum import StrEnum
 from typing import Generic, TypeVar
 
@@ -146,11 +146,11 @@ class PageMeta(ApiModel):
 
 
 class KnowledgeMeta(ApiModel):
-    request_id: str
+    request_id: str | None = None
     data_status: DataStatus
     sources: list[SourceSummary] = Field(default_factory=list)
     warnings: list[str] = Field(default_factory=list)
-    generated_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+    generated_at: datetime | None = None
     schema_version: str
     algorithm_version: str | None = None
 
