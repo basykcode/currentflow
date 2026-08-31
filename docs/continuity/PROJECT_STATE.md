@@ -2,19 +2,13 @@
 
 ## Last reconciled
 
-- UTC date: 2026-08-30
-- Branch represented: the dedicated `codex/chat-01a02bf0beb1` integration candidate. It merges
-  current GitHub `master` at `abe5dd2` with the retained production-hardening ancestry at `54adc7d`
-  through merge `33e56a5`; its verified Cloud/toolchain head is `f7658df` and protected pull request
-  #9 is open.
-- GitHub `master` at `abe5dd2` also contains the private Gene Keys Prompt Lab, shared history/model
-  choices, refreshed social assets, complete hexagram search, and spectrum alignment merged after
-  the 2026-08-26 production cutover.
-- The integration candidate adds the GitHub-backed Codex Cloud execution boundary, exact portable
-  toolchain bootstrap, ephemeral parallel-worker workflow, serialized integration queue, and local
-  desktop fallback. Two independent hosted pilots passed on the exact Codex-native toolchain. It does
-  not claim Cloud activation or a production release until its protected pull request and authorized
-  merge complete.
+- UTC date: 2026-08-31
+- Branch represented: the dedicated `codex/chat-01a02c2ef1c9` Guidance integration candidate. It
+  merges current GitHub `master` at `9984ee1` with the complete runtime Guidance v0 at `c52de7a`.
+  Publication remains pending until verification and the protected pull-request merge complete.
+- GitHub `master` at `9984ee1` contains the private Gene Keys Prompt Lab, shared history/model
+  choices, refreshed social assets, complete hexagram search, spectrum alignment, the GitHub-backed
+  Codex Cloud execution boundary, and the subsequent production API/edge hardening merges.
 - Repository foundation `6ba6c42`, CI protection correction `dd8c695`, and gateway cache correction
   `63913ec` are published through protected merges `2964dfc` and `a6b8ff7`; all four uniquely named
   GitHub Actions production checks passed before both merges.
@@ -148,9 +142,11 @@ is the only Alchemy state in Pinia.
 - The versioned `liu-shi-jiazi-peigua-king-wen-v1` 60 Jia Zi projection resolves all four pillars to
   King Wen hexagrams, preserves its documented omissions, and includes reviewed corrections for
   Geng Yin, Jia Wu, and Geng Shen; the 2026 Yang Fire Horse golden case resolves to Hexagram 28.
-- A versioned deterministic Current semantic resolver combines eligible pillar, element, organ, and
-  temporal facts into provenance-bearing guidance for its reviewed 13-profile MVP coverage. States
-  outside that coverage remain explicitly partial or unavailable; no LLM or runtime service is used.
+- A versioned deterministic Current semantic resolver combines eligible pillar, element, organ,
+  environment, and temporal facts into provenance-bearing guidance for all 64 canonical Day
+  hexagrams. Every valid temporal state produces the semicolon-format OLTR, exactly three controlled
+  Intentions, and three ranked Five Phase work domains including the active Organ's element; no LLM,
+  runtime service, or precomputed temporal-state database is used.
 - The Organ System card and timeline derive canonical Shichen identity, Chinese/Pinyin/phase labels,
   Macro maturity, observational Micro position, boundaries, and DST diagnostics from civil time in
   the selected IANA timezone. Compact phase labels are Chu, Zheng, and Ci, and redundant zodiac-animal
@@ -197,8 +193,9 @@ is the only Alchemy state in Pinia.
 - Current Flow titles use the locally bundled Fraunces 5.3.0 variable display serif under its local
   OFL license, while dense data and controls retain the established supporting type system. The
   official borderless Current Flow logo is bundled locally.
-- Deterministic situational guidance is available only for reviewed semantic profiles; personal
-  divination, diagnosis, forecasts, and execution instructions remain unavailable.
+- Deterministic situational guidance is available for all 64 spec-reviewed operational profiles;
+  personal divination, diagnosis, forecasts, and imperative execution instructions remain
+  unavailable.
 - Disabled, nonconnected shells for authentication, Intelligence, and future tools; Alchemy has
   explicit demo and connected API modes.
 - A responsive VH special-message experience uses the supplied four-frame fixed background, a
@@ -458,8 +455,8 @@ The integrated release-aware Alchemy foundation additionally provides:
 
 ## Next priorities
 
-1. Keep protected Cloud/toolchain pull request #9 green and obtain explicit authorization before
-   merging the production branch; then complete the documented Cloud cache and provider smoke gates.
+1. Complete the protected Guidance v0 integration and verify its production Home output after the
+   Cloudflare Pages deployment reaches `master`.
 2. Human-review the 379 school commentary drafts and 384 Forest transition drafts before changing
    their publication eligibility.
 3. Replace the quarantined Buddhist evidence for Hexagrams 1, 5, 6, 7, and 17, then regenerate and
@@ -476,8 +473,8 @@ The integrated release-aware Alchemy foundation additionally provides:
    and add explicit equivalence mappings without collapsing source wording.
 9. Independently verify the selected Celestial Current reference instants against a golden ephemeris
    before promoting astronomy results from computed to verified.
-10. Review and expand the Current semantic resolver beyond its 13-profile MVP without inferring
-    unsupported guidance.
+10. Human-review the 64 Current operational profiles and Five Phase work-domain formalizations;
+    retain `spec-reviewed` status until that editorial review occurs.
 11. Obtain domain review for USDA mappings, traditional-source identity boundaries, and the 60 Jia Zi
     mapping before stronger authority claims.
 12. Add condition, compound, and target sources such as Disease Ontology only after the live
