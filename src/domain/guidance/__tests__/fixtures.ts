@@ -11,7 +11,10 @@ import {
   getResponseRelationDefinition,
   resolveResponseRelation,
 } from '../synthesis/responseRelation'
-import { TEMPORAL_SEMANTICS_VERSION } from '../synthesis/semanticVersion'
+import {
+  GUIDANCE_ENVIRONMENT_VERSION,
+  TEMPORAL_SEMANTICS_VERSION,
+} from '../synthesis/semanticVersion'
 
 const theme = (
   label: string,
@@ -31,7 +34,7 @@ const CONFIG_BY_CONDITION: Readonly<
     GuidanceCondition,
     Readonly<{
       field: GuidanceSemanticInput['field']
-      operativeWork: Omit<GuidanceSemanticInput['operativeWork'], 'hourMaturity'>
+      operativeWork: Omit<GuidanceSemanticInput['operativeWork'], 'hourMaturity' | 'activeOrgan'>
     }>
   >
 > = {
@@ -49,8 +52,8 @@ const CONFIG_BY_CONDITION: Readonly<
       dayTheme: theme('Develop the supported opening', ['advance', 'adapt'], ['maintain-rhythm']),
       hourTheme: theme('Keep movement responsive', ['adapt', 'clarify'], ['allow-space']),
       backgroundThemes: [
-        background('solar', 'Forward seasonal support', ['advance'], ['maintain-rhythm']),
-        background('wu-yun-liu-qi', 'Adaptive circulation', ['adapt'], ['restore-circulation']),
+        background('other', 'Forward fixture support', ['advance'], ['maintain-rhythm']),
+        background('other', 'Adaptive fixture circulation', ['adapt'], ['restore-circulation']),
       ],
     },
   },
@@ -68,8 +71,8 @@ const CONFIG_BY_CONDITION: Readonly<
       dayTheme: theme('Limit surplus motion', ['limit', 'simplify'], ['reduce-pace']),
       hourTheme: theme('Steady what remains', ['stabilize'], ['ground']),
       backgroundThemes: [
-        background('solar', 'Hold proportion', ['limit'], ['settle']),
-        background('wu-yun-liu-qi', 'Contain pressure', ['stabilize'], ['ground']),
+        background('other', 'Hold proportion', ['limit'], ['settle']),
+        background('other', 'Contain pressure', ['stabilize'], ['ground']),
       ],
     },
   },
@@ -87,8 +90,8 @@ const CONFIG_BY_CONDITION: Readonly<
       dayTheme: theme('Supply practical support', ['nourish', 'stabilize'], ['ground']),
       hourTheme: theme('Clarify the missing piece', ['clarify'], ['allow-space']),
       backgroundThemes: [
-        background('solar', 'Conserve available support', ['stabilize'], ['settle']),
-        background('wu-yun-liu-qi', 'Restore proportion', ['nourish'], ['soften']),
+        background('other', 'Conserve available support', ['stabilize'], ['settle']),
+        background('other', 'Restore proportion', ['nourish'], ['soften']),
       ],
     },
   },
@@ -106,8 +109,8 @@ const CONFIG_BY_CONDITION: Readonly<
       dayTheme: theme('Close the ripest work', ['complete', 'release'], ['ground']),
       hourTheme: theme('Reduce remaining demands', ['simplify', 'release'], ['settle']),
       backgroundThemes: [
-        background('solar', 'Conclude the cycle', ['complete'], ['maintain-rhythm']),
-        background('wu-yun-liu-qi', 'Release accumulation', ['release'], ['settle']),
+        background('other', 'Conclude the cycle', ['complete'], ['maintain-rhythm']),
+        background('other', 'Release accumulation', ['release'], ['settle']),
       ],
     },
   },
@@ -125,8 +128,8 @@ const CONFIG_BY_CONDITION: Readonly<
       dayTheme: theme('Preserve the boundary', ['pause', 'stabilize'], ['settle']),
       hourTheme: theme('Wait for clearer definition', ['clarify', 'pause'], ['allow-space']),
       backgroundThemes: [
-        background('solar', 'Hold the present line', ['stabilize'], ['ground']),
-        background('wu-yun-liu-qi', 'Keep the interval open', ['pause'], ['allow-space']),
+        background('other', 'Hold the present line', ['stabilize'], ['ground']),
+        background('other', 'Keep the interval open', ['pause'], ['allow-space']),
       ],
     },
   },
@@ -148,13 +151,8 @@ const CONFIG_BY_CONDITION: Readonly<
       ),
       hourTheme: theme('Keep the repair adaptable', ['adapt'], ['soften']),
       backgroundThemes: [
-        background('solar', 'Restore useful motion', ['repair'], ['maintain-rhythm']),
-        background(
-          'wu-yun-liu-qi',
-          'Release accumulated friction',
-          ['simplify'],
-          ['restore-circulation'],
-        ),
+        background('other', 'Restore useful motion', ['repair'], ['maintain-rhythm']),
+        background('other', 'Release accumulated friction', ['simplify'], ['restore-circulation']),
       ],
     },
   },
@@ -172,8 +170,8 @@ const CONFIG_BY_CONDITION: Readonly<
       dayTheme: theme('Gather attention inward', ['gather', 'release'], ['reduce-pace']),
       hourTheme: theme('Leave external demands unopened', ['pause'], ['allow-space']),
       backgroundThemes: [
-        background('solar', 'Reduce outward reach', ['gather'], ['settle']),
-        background('wu-yun-liu-qi', 'Release surplus demand', ['release'], ['reduce-pace']),
+        background('other', 'Reduce outward reach', ['gather'], ['settle']),
+        background('other', 'Release surplus demand', ['release'], ['reduce-pace']),
       ],
     },
   },
@@ -182,6 +180,10 @@ const CONFIG_BY_CONDITION: Readonly<
 export const createGuidanceFixture = (condition: GuidanceCondition): GuidanceSemanticInput => ({
   synthesisId: `fixture-${condition}-20260822T120000Z`,
   semanticVersion: TEMPORAL_SEMANTICS_VERSION,
+  environmentVersion: GUIDANCE_ENVIRONMENT_VERSION,
+  coverage: 'complete',
+  missingProfileNumbers: [],
+  conflicts: [],
   condition,
   primaryCurrent: {
     id: `fixture-${condition}`,
@@ -192,6 +194,14 @@ export const createGuidanceFixture = (condition: GuidanceCondition): GuidanceSem
   ...CONFIG_BY_CONDITION[condition],
   operativeWork: {
     ...CONFIG_BY_CONDITION[condition].operativeWork,
+    activeOrgan: {
+      key: 'spleen',
+      nameEnglish: 'Spleen',
+      nameChinese: '脾',
+      element: 'earth',
+      sourceLabel: 'Guidance engine acceptance fixture',
+      methodologyId: GUIDANCE_ENVIRONMENT_VERSION,
+    },
     hourMaturity: resolveHourMaturity(resolveResponseRelation(condition), {
       macroHour: 'chu',
       macroSemantic: 'entering',

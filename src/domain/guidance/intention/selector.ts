@@ -1,10 +1,10 @@
 import type {
-  BackgroundTheme,
   GuidanceSynthesis,
   IntentionDefinition,
   IntentionSelection,
   SemanticTheme,
 } from '../types'
+import { GuidanceConstructionError } from '../errors'
 import { INTENTION_LEXICON } from './lexicon'
 import { validateIntention } from './validator'
 
@@ -21,20 +21,23 @@ const matchesTheme = (definition: IntentionDefinition, theme: SemanticTheme) =>
   overlaps(definition.strategicVectors, theme.strategicVectors) ||
   overlaps(definition.somaticVectors, theme.somaticVectors)
 
-const matchesWuYunLiuQi = (definition: IntentionDefinition, themes: readonly BackgroundTheme[]) =>
-  themes.some((theme) => theme.kind === 'wu-yun-liu-qi' && matchesTheme(definition, theme))
+const matchesBackground = (definition: IntentionDefinition, synthesis: GuidanceSynthesis) =>
+  synthesis.operativeWork.backgroundThemes.value.some((theme) => matchesTheme(definition, theme))
 
 const matchesMaturity = (definition: IntentionDefinition, synthesis: GuidanceSynthesis) => {
-  const text = [
-    definition.englishLabel,
-    definition.shortDefinition,
-    ...definition.strategicVectors,
-    ...definition.somaticVectors,
-  ]
-    .join(' ')
-    .toLowerCase()
+  const tokens = new Set(
+    [
+      definition.englishLabel,
+      definition.shortDefinition,
+      ...definition.strategicVectors,
+      ...definition.somaticVectors,
+    ]
+      .join(' ')
+      .toLowerCase()
+      .match(/[a-z]+/g) ?? [],
+  )
   return synthesis.operativeWork.hourMaturity.value.supportedVerbs.some((verb) =>
-    text.includes(verb),
+    tokens.has(verb.toLowerCase()),
   )
 }
 
@@ -47,6 +50,10 @@ const rankIntention = (
   if (definition.compatibleRelations.includes(synthesis.response.relation.value)) {
     score += 35
     reasons.push(`Supports ${synthesis.response.relation.value}.`)
+  }
+  if (synthesis.response.compatibleIntentionIds.value.includes(definition.id)) {
+    score += 25
+    reasons.push('Preferred by the temporal profiles.')
   }
   if (matchesTheme(definition, synthesis.operativeWork.dayTheme.value)) {
     score += 20
@@ -67,9 +74,13 @@ const rankIntention = (
     score += 10
     reasons.push('Fits the field direction.')
   }
-  if (matchesWuYunLiuQi(definition, synthesis.operativeWork.backgroundThemes.value)) {
+  if (definition.compatibleEffortLevels.includes(synthesis.response.effortLevel.value)) {
+    score += 8
+    reasons.push('Fits the resolved effort.')
+  }
+  if (matchesBackground(definition, synthesis)) {
     score += 10
-    reasons.push('Matches the Wu Yun Liu Qi background signal.')
+    reasons.push('Matches the active background current.')
   }
   if (matchesMaturity(definition, synthesis)) {
     score += 5
@@ -91,9 +102,7 @@ const meaningfullyDistinct = (
 
 export const selectIntentions = (synthesis: GuidanceSynthesis): readonly IntentionSelection[] => {
   const ranked = INTENTION_LEXICON.filter(
-    (definition) =>
-      synthesis.response.compatibleIntentionIds.value.includes(definition.id) &&
-      validateIntention(definition, synthesis).valid,
+    (definition) => validateIntention(definition, synthesis).valid,
   )
     .map((definition) => rankIntention(definition, synthesis))
     .sort(
@@ -114,14 +123,23 @@ export const selectIntentions = (synthesis: GuidanceSynthesis): readonly Intenti
     }
   }
 
-  if (selected.length === 0) {
-    throw new Error('No compatible controlled intention exists for this synthesis.')
+  for (const candidate of ranked) {
+    if (selected.length >= 3) break
+    if (!selected.some((item) => item.definition.id === candidate.definition.id)) {
+      selected.push(candidate)
+    }
+  }
+
+  if (selected.length !== 3) {
+    throw new GuidanceConstructionError(
+      'The controlled intention lexicon must provide exactly three ranked intentions.',
+    )
   }
 
   return selected.map((item, index) =>
     Object.freeze({
       definition: item.definition,
-      rank: index === 0 ? 'primary' : 'alternative',
+      rank: (index + 1) as 1 | 2 | 3,
       reasons: item.reasons,
     }),
   )

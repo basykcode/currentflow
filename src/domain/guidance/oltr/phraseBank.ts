@@ -1,8 +1,10 @@
 import type {
+  DominantTexture,
   EffortLevel,
   GuidanceCondition,
   GuidanceDirection,
   ImageFamily,
+  LunarMode,
   ResponseRelation,
 } from '../types'
 
@@ -11,6 +13,8 @@ export type OltrFieldPhrase = Readonly<{
   conditions: readonly GuidanceCondition[]
   directions: readonly GuidanceDirection[]
   imageFamilies: readonly ImageFamily[]
+  textures?: readonly DominantTexture[]
+  lunarModes?: readonly LunarMode[]
 }>
 
 export type OltrResponsePhrase = Readonly<{
@@ -59,6 +63,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       imageFamilies: everyImage,
     },
     {
+      text: 'Clear conditions are opening a path for coherent development',
+      conditions: ['emergence'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['clear'],
+    },
+    {
+      text: 'An emerging current is gathering enough shape for supported continuation',
+      conditions: ['emergence'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['emerging'],
+    },
+    {
       text: "Momentum is exceeding the field's present capacity for useful movement",
       conditions: ['excess'],
       directions: everyDirection,
@@ -69,6 +87,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       conditions: ['excess'],
       directions: ['forward', 'circulating', 'holding'],
       imageFamilies: ['container', 'vessel', 'current'],
+    },
+    {
+      text: 'Pressurized conditions are crowding the container beyond useful proportion',
+      conditions: ['excess'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['pressurized'],
+    },
+    {
+      text: 'Culminating movement is filling the field faster than it can settle',
+      conditions: ['excess'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['culminating'],
     },
     {
       text: 'The field lacks one stabilizing quality for coherent forward movement',
@@ -83,6 +115,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       imageFamilies: ['bridge', 'shelter', 'vessel'],
     },
     {
+      text: 'Fragmented conditions are exposing the support that coherent movement still needs',
+      conditions: ['deficiency'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['fragmented'],
+    },
+    {
+      text: 'Resting conditions are gathering around an absence that needs practical support',
+      conditions: ['deficiency'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['resting'],
+    },
+    {
       text: 'Ripening work is ready for a clean and proportionate close',
       conditions: ['completion'],
       directions: ['closing', 'releasing', 'inward'],
@@ -93,6 +139,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       conditions: ['completion'],
       directions: everyDirection,
       imageFamilies: everyImage,
+    },
+    {
+      text: 'A ripening vessel is carrying finished work toward deliberate release',
+      conditions: ['completion'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['ripening'],
+    },
+    {
+      text: 'Culminating conditions are concentrating attention on what is ready to close',
+      conditions: ['completion'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['culminating'],
     },
     {
       text: 'Conditions are holding at a threshold where premature movement adds friction',
@@ -107,6 +167,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       imageFamilies: everyImage,
     },
     {
+      text: 'Settled conditions are preserving a boundary while the next form remains unclear',
+      conditions: ['threshold'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['settled'],
+    },
+    {
+      text: 'Threshold movement is gathering inward before a new direction becomes legible',
+      conditions: ['threshold'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['threshold'],
+    },
+    {
       text: 'Accumulated friction is slowing circulation and asking for careful repair',
       conditions: ['repair'],
       directions: everyDirection,
@@ -119,6 +193,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       imageFamilies: ['current', 'bridge', 'vessel'],
     },
     {
+      text: 'Dense conditions are revealing the obstruction that limits useful circulation',
+      conditions: ['repair'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['dense'],
+    },
+    {
+      text: 'Releasing movement is loosening the field around a repairable point of friction',
+      conditions: ['repair'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['releasing'],
+    },
+    {
       text: 'Outward momentum is thinning and inward space is becoming more useful',
       conditions: ['withdrawal'],
       directions: everyDirection,
@@ -129,6 +217,20 @@ export const CONTROLLED_OLTR_PHRASE_BANK: OltrPhraseBank = Object.freeze({
       conditions: ['withdrawal'],
       directions: ['inward', 'releasing', 'holding'],
       imageFamilies: ['shelter', 'container', 'vessel'],
+    },
+    {
+      text: 'Settled conditions are drawing useful attention away from outward expenditure',
+      conditions: ['withdrawal'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      textures: ['settled'],
+    },
+    {
+      text: 'Releasing movement is clearing space for a quieter and more durable center',
+      conditions: ['withdrawal'],
+      directions: everyDirection,
+      imageFamilies: everyImage,
+      lunarModes: ['releasing'],
     },
   ],
   responsePhrases: [

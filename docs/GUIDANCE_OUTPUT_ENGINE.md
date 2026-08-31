@@ -2,172 +2,155 @@
 
 ## Purpose
 
-The Guidance Output Engine converts already-resolved temporal semantics into three coherent,
-bounded outputs:
+The Guidance Output Engine turns one already-resolved temporal state into one coherent bundle:
 
-- **One Line to Remember (OLTR):** what is happening and how it should be met;
-- **Intention:** one controlled internal orientation plus up to two distinct alternatives;
-- **Execution:** one ordinary, observable, reversible action plus safe ranked alternatives.
+- **OLTR:** one validated `FIELD CLAUSE; RESPONSE CLAUSE.` sentence;
+- **Intention:** exactly three ranked choices from the controlled 15-entry lexicon;
+- **Execution:** exactly three ranked Five Phase work domains, including the active Organ's element.
 
-It is a pure, deterministic TypeScript domain module. It performs no network request, has no model
-dependency, reads no browser state, and does not calculate astrology.
+This is a pure deterministic TypeScript engine, not a database of temporal combinations. It stores
+64 individual semantic profiles, 15 intention definitions, five Elemental work-domain definitions,
+and composition rules. For each requested instant, the provider resolves the four identities and
+the engine composes only those profiles at runtime. It does not precompute or persist the nominal
+60⁴ (12,960,000-row) four-pillar cross-product—or any environment-enriched cross-product—call a
+model, inspect browser state, or make a network request.
 
-## Semantic resolver
+## Runtime flow
 
-`resolveGuidanceSynthesis()` accepts `GuidanceSemanticInput`, not a `CurrentFlowSnapshot`. The live
-input is produced by the Temporal Semantic Resolver adapter when an eligible operative day profile
-exists. The input
-contains a semantic condition, field description, day work, hour theme, Macro Hour maturity,
-background signals,
-evidence, and future boundaries. The resolver selects one response relation, qualitative effort,
-supported and forbidden verbs, strategic and somatic vectors, and categorical completion,
-initiation, containment, and release profiles.
+```text
+four temporal hexagram profiles
+  + authoritative Macro Hour
+  + active Organ and Five Phase
+  + Cantong qi node and solar season when available
+  -> GuidanceSemanticInput
+  -> one versioned GuidanceSynthesis
+  -> OLTR + 3 Intentions + 3 Elemental Executions
+  -> validateGuidanceBundle()
+```
 
-Effort uses only:
+All three outputs consume the same `GuidanceSynthesis`. Output selectors never calculate from raw
+dates, GanZhi, Organ periods, hexagram numbers, source prose, or Vue state.
 
-- `minimal`
-- `measured`
-- `steady`
-- `decisive`
-
-Profiles use `none`, `low`, `moderate`, and `high`. No displayed percentage, confidence decimal, or
-numeric pseudo-precision is produced.
+The environmental adapter consumes the `GlobalConditionsSnapshot` already calculated for the
+Celestial Current instruments. It does not run Astronomy Engine a second time. Cantong qi provides
+the actual lunar tempo, annual Yin/Yang movement provides the subordinate direction, and the solar
+season provides a named Current-formalized background. If those inputs are missing, provenance
+records the unavailable signal and the resolver retains its bounded profile-compatibility fallback;
+it does not invent astronomy.
 
 ## OLTR
 
-`renderOltr()` performs four deterministic stages:
+`renderOltr()` selects controlled field and response phrases, constructs candidates in the exact
+semicolon format, rejects every hard failure, and selects deterministically. The original 100-point
+base ranking is retained, with controlled texture, lunar-tempo, and Macro-maturity tie-breakers so
+the renderer can express more of the resolved field without changing its grammar.
 
-1. select controlled field and response phrases compatible with the synthesis;
-2. construct candidates as `FIELD CLAUSE; RESPONSE CLAUSE.`;
-3. reject every hard validation failure;
-4. score remaining candidates and select deterministically.
+Hard validation requires:
 
-The base score totals 100. A relation-compatible Macro maturity verb adds a 12-point deterministic
-preference and a discouraged escalation verb subtracts 12; hard validators and the response
-relation still control eligibility:
+- exactly one sentence, one semicolon, and one final period;
+- 14–26 words;
+- a present-tense field clause and an imperative response clause;
+- no first- or second-person pronouns;
+- no metadata, prediction, fate, generic-spirituality, unsafe, or high-stakes language.
 
-| Criterion          | Weight |
-| ------------------ | -----: |
-| Semantic fidelity  |     30 |
-| Response relation  |     20 |
-| Direction clarity  |     15 |
-| Compression        |     15 |
-| Grammar            |     10 |
-| Metaphor coherence |      5 |
-| Safety             |      5 |
-
-Chū can prefer onset-compatible response verbs such as `follow`, `set`, or `observe`; Zhèng can
-prefer continuation-compatible verbs such as `continue`, `steady`, or `hold`. Neither introduces a
-new response relation or raises effort.
-
-Hard validation requires exactly one sentence, exactly one semicolon, 14–26 words, one final
-period, a present-tense field clause, and an imperative response clause. It rejects first- and
-second-person pronouns, colons, parentheses, em dashes, metadata, predictions, fate language,
-generic spirituality, unsupported claims, unsafe instructions, and high-stakes subject matter.
-
-Every response relation has a separately validated fallback template. Rendering remains available
-when the normal phrase bank yields no valid candidate.
+Every response relation has a separately validated fallback. Chū may favor an onset-compatible
+verb, and Zhèng may favor continuation, but Macro maturity cannot change the relation or effort.
 
 ## Intention
 
-`INTENTION_LEXICON` is the only intention vocabulary. It contains the 15 requested Current
-interpretive choices, including separate entries for `守 Shǒu` and `收 Shōu`. Each record carries a
-stable ID, character, tone-marked pinyin, English label, short definition, compatible relations,
-directions, lunar modes, effort levels, strategic and somatic vectors, conflicts, and a lexicon
-version.
+`INTENTION_LEXICON` remains the only vocabulary. Each definition includes its stable ID, Chinese
+character, tone-marked Pinyin, English label, short definition, affinities, conflicts, and version.
+These are Current operational formalizations, not claims that a classical source mechanically
+assigns an intention to an instant.
 
-These records are explicitly Current formalizations. The engine does not claim that a classical
-tradition mechanically assigns them to dates or hexagrams.
+Relation compatibility is the hard gate. Profile preference, Day and Hour work, real lunar tempo,
+field direction, effort, environmental background, and Macro maturity rank the compatible set.
+The selector first favors meaningful diversity, then deterministically fills any remaining place.
+It must return exactly ranks 1, 2, and 3 for every available synthesis.
 
-Selection weights are:
+Choosing a different ranked intention preserves the temporal field, Primary Current, OLTR,
+evidence, versions, and validity. It re-ranks Execution only.
 
-| Criterion                       | Weight |
-| ------------------------------- | -----: |
-| Response relation compatibility |     35 |
-| Day operative work              |     20 |
-| Hour modulation                 |     15 |
-| Lunar tempo                     |     10 |
-| Solar direction                 |     10 |
-| Wu Yun Liu Qi background        |     10 |
-| Macro maturity tie-breaker      |      5 |
+## Elemental Execution
 
-Compatibility is validated before ranking. The selector returns one primary intention and at most
-two alternatives whose labels and leading strategic/somatic signatures are meaningfully distinct.
+Execution is a ranking of adult work categories, not a small command or productivity nudge. The
+complete library contains exactly five definitions:
 
-## Execution
+| Phase         | Spirit correspondence | Current work domain        |
+| ------------- | --------------------- | -------------------------- |
+| Wood 木 Mù    | Hún 魂 · Liver        | Direction & Development    |
+| Fire 火 Huǒ   | Shén 神 · Heart       | Communication & Leadership |
+| Earth 土 Tǔ   | Yì 意 · Spleen        | Operations & Stewardship   |
+| Metal 金 Jīn  | Pò 魄 · Lung          | Refinement & Closure       |
+| Water 水 Shuǐ | Zhì 志 · Kidney       | Insight & Resolve          |
 
-`EXECUTION_ACTION_LIBRARY` contains controlled somatic, task, environment, and pause actions. Each
-definition includes an observable endpoint, one or two actions, a maximum qualitative effort,
-compatible relations, directions and intention IDs, strategic and somatic vectors, low-risk status,
-and a library version.
+The traditional Five Phase, Zang, and spirit correspondences are kept separate from the modern task
+taxonomy. Work-domain names, examples, affinities, scores, and ranking are Current
+formalizations—not traditional attributions, medical claims, or performance claims. A paired Fu
+Organ uses its Phase for ranking; the displayed spirit remains associated with its traditional Zang
+correspondence.
 
-The validator rejects an action when it:
+The engine scores all five definitions and never filters a safe category out. Internal weights are:
 
-- lacks an observable endpoint;
-- contains more than two actions;
-- exceeds the synthesis effort;
-- conflicts with relation, direction, intention, or a forbidden response verb;
-- contains medical, legal, financial, irreversible, advanced cultivation, or otherwise unsafe
-  content;
-- contains unsupported claims;
-- merely repeats the OLTR.
+| Criterion            | Weight |
+| -------------------- | -----: |
+| Response relation    |     25 |
+| Selected intention   |     20 |
+| Strategic response   |     15 |
+| Field direction      |     10 |
+| Day work             |     10 |
+| Hour work            |      5 |
+| Active Organ element |     10 |
+| Macro maturity       |      5 |
 
-Selection is deterministic. A requested category re-ranks only already-valid actions; it cannot
-make an incompatible action eligible.
-Macro maturity adds only a five-point tie-breaker among those valid actions.
+It returns the top three unique phases. If the active Organ's Phase is absent, that definition
+replaces rank 3 and records `active-organ-coverage` as the inclusion basis. Scores remain internal;
+the UI shows rank and contextual labels, not pseudo-precision.
 
-## Cross-output validation
+Every definition has five representative work domains, explicit Current-formalization metadata,
+library version, and source links for the traditional correspondence only. Validation rejects
+incomplete identity, imperative atomic copy, duplicated domains or affinities, version mismatch,
+unsupported claims, and medical, legal, financial, or otherwise high-stakes guidance.
 
-`validateGuidanceBundle()` runs after selection and after every user-requested alternative or
-re-ranking. It validates OLTR format, selected-item membership, intention compatibility, every
-ranked execution, forbidden verbs, effort, direction, unsupported claims, safety, and repeated
-sentences. An invalid available bundle is never returned by `createGuidanceBundle()`.
+## Cross-output validation and containment
 
-An unavailable bundle is valid only as an absence record: it contains no OLTR, intention, or
-execution claim and supplies an explicit reason and source boundary.
+`validateGuidanceBundle()` enforces the output contract after initial construction and after an
+intention change. Available bundles must contain exactly three unique intention ranks and exactly
+three unique Elemental ranks, include the active Organ element, preserve selected-item membership,
+pass each output validator, avoid repeated output, and agree with the bundle version manifest.
 
-## Validity and versions
+Construction failures use a typed `GuidanceConstructionError`. The active provider converts only
+that known fail-closed condition into an explicit unavailable bundle; unrelated implementation
+errors are not swallowed. Unavailable bundles are validated as absence records and cannot retain a
+generated OLTR, intention, or execution.
 
-`resolveValidityWindow()` chooses the earliest candidate boundary after `validFromUtc`. Supported
-reasons are:
+## Validity and caching
 
-- Shíchen change;
-- Macro Hour change when it precedes the Shíchen end;
-- legacy Earthly Branch hour change records;
-- lunar node change;
-- solar-term boundary;
-- Wu Yun Liu Qi period boundary;
-- semantic classification change.
+The bundle expires at the earliest known future semantic boundary:
 
-Every bundle stores temporal semantics, guidance synthesis, OLTR renderer, intention lexicon,
-execution library, and validator versions. `isGuidanceExpired()` treats the boundary instant as
-expired. The active provider caches its bundle until expiration instead of regenerating it on the
-page’s minute refresh. The temporal-semantics version is the connected resolver version; exact
-profile and registry versions remain in synthesis evidence.
-Micro Hour boundaries are intentionally absent, so ordinary Kè passage reuses the same bundle.
+- Macro Hour;
+- Shíchen or legacy Earthly Branch hour;
+- civil-day semantic classification;
+- Cantong qi node;
+- either solar-term boundary supplied by the traditional calendar or local astronomy.
 
-## Frontend behavior
+Micro Hour remains observational and does not enter guidance identity or validity. A live bundle is
+cached inside its half-open validity interval. Selected-time requests bypass that cache and never
+overwrite it. Cache identity includes the four-profile resolution, Macro state, Organ, Cantong node
+and interval, solar term and interval, and timezone.
 
-The frontend renders `GuidanceBundle`; it does not inspect raw Astrology fields. Selecting an
-alternative calls `selectGuidanceIntention()`, which preserves the semantic synthesis and OLTR and
-reselects only Execution. Choosing a preferred action form calls `rerankGuidanceExecutions()`, which
-reorders valid actions without changing temporal semantics, OLTR, or intention.
+## Safety and future language models
 
-## Safety and future AI boundary
+The engine produces no diagnosis, treatment, breath retention, qi manipulation, sexual cultivation,
+advanced Neidan work, legal or financial instruction, prediction, fate claim, or irreversible life
+decision. A future language model may phrase an already selected result only if the result preserves
+the deterministic state and passes the same validators. The deterministic renderer is complete
+without a model.
 
-The engine does not generate diagnosis, treatment, breath retention, qi manipulation, sexual
-cultivation, advanced Neidan work, legal or financial instruction, or irreversible life decisions.
-Actions stay ordinary, proportional, reversible, and low risk.
+## Verification strategy
 
-A future language model may only rewrite the phrasing of an already selected semantic result. It
-may not calculate the temporal field, select a response relation, invent an intention, select an
-action, change evidence, or bypass validators. The deterministic renderer is the complete fallback
-and requires no language model.
-
-## Verification
-
-Acceptance fixtures cover emergence (`follow`), withdrawal (`withdraw`), completion (`complete`
-then release), damp accumulation and repair (`transform`), and threshold (`wait`). Tests cover OLTR
-format and safety, controlled intention and execution compatibility, cross-output coherence,
-expiration, alternative selection, re-ranking, provider caching, explicit unavailability, and the
-deterministic fallback.
+Tests generate states in memory and discard them. They do not build a state database. The closure
+suite currently executes all 64 Day profiles × all 64 Hour profiles × both Macro states—8,192
+runtime bundles—and asserts a validated semicolon OLTR, exactly three intentions, exactly three
+unique Elemental domains, and active-Organ coverage. Separate table tests cover all Cantong nodes,
+annual movements, seasons, status preservation, boundaries, and live/selected cache isolation.

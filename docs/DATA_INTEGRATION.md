@@ -15,6 +15,14 @@ implementation.
   120-basis-minute coordinate and exact observed boundaries to the pure Chū–Zhèng–Kè phase engine.
   Macro maturity enters guidance; observational Micro does not. DST gaps/repeats use the existing
   IANA projection policy rather than fixed UTC arithmetic.
+- **Runtime guidance engine:** the complete 64-profile Current semantic registry composes only the
+  Year, Month, Day, and Hour identities resolved for the requested instant. The environment adapter
+  joins the active Organ and categorical Cantong and seasonal signals from the same authoritative
+  `GlobalConditionsSnapshot`. One versioned synthesis produces a validated semicolon OLTR, exactly
+  three ranked intentions, and the top three of five Five Phase work domains with active-Organ
+  coverage. No temporal cross-product is materialized or persisted. See
+  [`TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md`](TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md) and
+  [`GUIDANCE_OUTPUT_ARCHITECTURE.md`](GUIDANCE_OUTPUT_ARCHITECTURE.md).
 - **Structural relationships:** pure line transformations calculate intrinsic, symmetry, interior,
   moving-line destination/path, and anatomy results with explicit provenance.
 - **Hexagram reference library:** a local 64-entry catalog supplies received Chinese names,
@@ -33,11 +41,6 @@ Full sources and boundary conventions are in
 ## Planned connections
 
 - **Personal BaZi:** enters through a separate personal-context contract. Global temporal facts and personal facts remain separate before synthesis.
-- **Temporal semantic resolver:** the first local implementation converts eligible year, month, day,
-  and hour hexagram identities into versioned Current operational vectors. Its initial registry has
-  13 product-specification-reviewed profiles; a missing operative day remains unavailable, while
-  missing lesser scales remain explicit partial coverage. See
-  [`TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md`](TEMPORAL_SEMANTIC_RESOLVER_ARCHITECTURE.md).
 - **AI phrasing:** may later receive only an already selected and validated guidance bundle. It may
   improve phrasing but may not calculate semantic state, invent hexagrams or calendar facts,
   select relation/intention/execution, alter evidence, or bypass validators.

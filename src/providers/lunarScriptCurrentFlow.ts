@@ -14,12 +14,14 @@ import type { CurrentFlowSnapshot, TemporalHexagram, TemporalScope } from '@/dom
 import {
   createGuidanceBundle,
   createUnavailableGuidanceBundle,
+  GuidanceConstructionError,
   isGuidanceExpired,
   resolveTemporalSemantics,
   toGuidanceSemanticInput,
 } from '@/domain/guidance'
 import type { GuidanceBundle } from '@/domain/guidance/types'
 
+import { resolveGuidanceEnvironment } from './guidanceEnvironment'
 import { getTemporalBounds, getTemporalSemanticBoundaries } from './lunarScriptTemporalBounds'
 
 const TEMPORAL_SOURCE = 'lunar-javascript 1.7.7 · 六十甲子配卦 · canonical King Wen IDs'
@@ -47,6 +49,12 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
   private guidanceCache: GuidanceBundle | undefined
 
   getSnapshot(at: Date, context: CurrentFlowContext = {}): Promise<CurrentFlowSnapshot> {
+    if (
+      context.globalConditions &&
+      context.globalConditions.generatedAtIso !== at.toISOString()
+    ) {
+      throw new Error('Global Conditions and temporal guidance must use the same instant.')
+    }
     const civil = getZonedCivilTime(at, context.timezone)
     const lunar = Solar.fromYmdHms(
       civil.year,
@@ -76,29 +84,52 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
     }
     const temporal = { year, month, day, hour }
     const semanticResolution = resolveTemporalSemantics({ temporal, hourPhase: organ.hourPhase })
-    const semanticBoundaries = getTemporalSemanticBoundaries(lunar, civil, organ.hourPhase)
-    const guidanceId = `${semanticResolution.resolutionId}-${civil.timezone}`
+    const guidanceEnvironment = resolveGuidanceEnvironment(organ, context.globalConditions)
+    const semanticBoundaries = Object.freeze([
+      ...getTemporalSemanticBoundaries(lunar, civil, organ.hourPhase),
+      ...guidanceEnvironment.boundaries,
+    ])
+    const guidanceId = `${semanticResolution.resolutionId}-${guidanceEnvironment.identityKey}-${civil.timezone}`
+    let guidance = this.guidanceCache
     if (
-      !this.guidanceCache ||
-      this.guidanceCache.synthesisId !== guidanceId ||
-      isGuidanceExpired(this.guidanceCache, at)
+      context.mode === 'selected' ||
+      !guidance ||
+      guidance.synthesisId !== guidanceId ||
+      isGuidanceExpired(guidance, at)
     ) {
-      this.guidanceCache =
-        semanticResolution.status === 'available'
-          ? createGuidanceBundle(
-              toGuidanceSemanticInput(semanticResolution, {
-                synthesisId: guidanceId,
-                validFromUtc: at.toISOString(),
-                boundaries: semanticBoundaries,
-              }),
-            )
-          : createUnavailableGuidanceBundle({
+      let nextGuidance: GuidanceBundle
+      if (semanticResolution.status === 'available') {
+        try {
+          nextGuidance = createGuidanceBundle(
+            toGuidanceSemanticInput(semanticResolution, {
               synthesisId: guidanceId,
               validFromUtc: at.toISOString(),
               boundaries: semanticBoundaries,
-              reason: semanticResolution.reason,
-              sourceLabel: 'Current Semantic Layer v1 · partial 13-profile registry',
-            })
+              environment: guidanceEnvironment.environment,
+            }),
+          )
+        } catch (error) {
+          if (!(error instanceof GuidanceConstructionError)) throw error
+          nextGuidance = createUnavailableGuidanceBundle({
+            synthesisId: guidanceId,
+            validFromUtc: at.toISOString(),
+            boundaries: semanticBoundaries,
+            reason:
+              'The controlled guidance vocabulary could not resolve this temporal state safely.',
+            sourceLabel: 'Current Guidance Engine · fail-closed candidate boundary',
+          })
+        }
+      } else {
+        nextGuidance = createUnavailableGuidanceBundle({
+          synthesisId: guidanceId,
+          validFromUtc: at.toISOString(),
+          boundaries: semanticBoundaries,
+          reason: semanticResolution.reason,
+          sourceLabel: 'Current Semantic Layer v1 · explicit profile coverage',
+        })
+      }
+      guidance = nextGuidance
+      if (context.mode !== 'selected') this.guidanceCache = nextGuidance
     }
 
     const fallbackNote = civil.usedTimezoneFallback
@@ -115,7 +146,7 @@ export class LunarScriptCurrentFlowProvider implements CurrentFlowProvider {
         ...organ,
         timeRangeLabel: `${organ.timeRangeLabel} · ${civil.timezone}`,
       },
-      guidance: this.guidanceCache,
+      guidance,
       relatedHexagrams: getStructuralRelationships(day.hexagram),
       provenance: {
         providerId: 'lunar-script-current-flow',
