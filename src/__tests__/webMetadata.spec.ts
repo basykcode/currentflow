@@ -16,8 +16,11 @@ describe('public web identity', () => {
   it('publishes complete social-preview metadata with cache-safe branded images', () => {
     const html = readProjectFile('index.html').toString('utf8')
 
-    expect(html).toContain('https://current-flow.net/social/current-flow-share-1200x630.png')
-    expect(html).toContain('https://current-flow.net/social/current-flow-share-square.png')
+    expect(html).toContain(
+      'https://current-flow.net/social/current-flow-share-fire-horse-taiji-28-20260831.png',
+    )
+    expect(html.match(/property="og:image"/g)).toHaveLength(1)
+    expect(html).not.toContain('https://current-flow.net/social/current-flow-share-square.png')
     expect(html).toContain('<meta property="og:image:width" content="1200" />')
     expect(html).toContain('<meta property="og:image:height" content="630" />')
     expect(html).toContain('<meta name="twitter:card" content="summary_large_image" />')
@@ -36,7 +39,9 @@ describe('public web identity', () => {
   })
 
   it('ships correctly sized social and installable-app artwork', () => {
-    expect(pngDimensions('public/social/current-flow-share-1200x630.png')).toEqual([1200, 630])
+    expect(
+      pngDimensions('public/social/current-flow-share-fire-horse-taiji-28-20260831.png'),
+    ).toEqual([1200, 630])
     expect(pngDimensions('public/social/current-flow-share-square.png')).toEqual([600, 600])
     expect(pngDimensions('public/brand/current-flow-touch-icon.png')).toEqual([180, 180])
     expect(pngDimensions('public/brand/current-flow-app-icon-192.png')).toEqual([192, 192])
